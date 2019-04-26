@@ -1,7 +1,7 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>GeminiWpf</id>
+		<id>MinoriShell</id>
 		<version>$version$</version>
 		<title>$id$</title>
 		<authors>$author$</authors>
