@@ -6,11 +6,11 @@ using System.Windows.Markup;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Gemini")]
-[assembly: AssemblyDescription("Gemini is an application shell similar in concept to the Visual Studio Shell. It uses AvalonDock and has an MVVM architecture based on Caliburn Micro.")]
+[assembly: AssemblyTitle("MinoriEditorStudio")]
+[assembly: AssemblyDescription("MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell. It uses AvalonDock and has an MVVM architecture based on Caliburn Micro.")]
 [assembly: AssemblyConfiguration("Retail")]
 [assembly: AssemblyCompany("Tim Jones")]
-[assembly: AssemblyProduct("Gemini")]
+[assembly: AssemblyProduct("MinoriEditorStudio")]
 [assembly: AssemblyCopyright("Copyright ©2013 Tim Jones")]
 [assembly: AssemblyTrademark("timjones.tw")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Windows.Markup;
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 
-[assembly: XmlnsDefinition("http://schemas.timjones.tw/gemini", "Gemini")]
-[assembly: XmlnsDefinition("http://schemas.timjones.tw/gemini", "Gemini.Framework.Controls")]
+[assembly: XmlnsDefinition("http://schemas.timjones.tw/MinoriEditorStudio", "MinoriEditorStudio")]
+[assembly: XmlnsDefinition("http://schemas.timjones.tw/MinoriEditorStudio", "MinoriEditorStudio.Framework.Controls")]

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SimpleDemo.Core.ViewModels
 {
-    class MainViewModel : MvxViewModel
+    public class MainViewModel : MvxViewModel
     {
     }
 }
