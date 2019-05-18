@@ -14,7 +14,7 @@ namespace SimpleDemo.Core
         {
             Mvx.IoCProvider.RegisterType<ICalculationService, CalculationService>();
 
-            RegisterAppStart<TipViewModel>();
+            RegisterAppStart<MainViewModel>();
         }
     }
 }

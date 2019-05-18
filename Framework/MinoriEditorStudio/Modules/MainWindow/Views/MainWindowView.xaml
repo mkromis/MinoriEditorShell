@@ -1,0 +1,35 @@
+<!--<mahapps:MetroWindow-->
+<Window
+    x:Class="MinoriEditorStudio.Modules.MainWindow.Views.MainWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
+    xmlns:behaviors="clr-namespace:MinoriEditorStudio.Framework.Behaviors"
+    Title="{Binding Title}" 
+    Icon="{Binding Icon}" 
+    Width="{Binding Width, Mode=TwoWay}" 
+    Height="{Binding Height, Mode=TwoWay}" 
+    WindowStartupLocation="CenterScreen"
+    WindowState="{Binding WindowState}"
+    ResizeMode="CanResizeWithGrip"
+    UseLayoutRounding="True"
+    >
+    <!--Style="{DynamicResource MainWindowStyle}"-->
+    <!--WindowTransitionsEnabled="False"--> 
+    <!--WindowCloseButtonStyle="{DynamicResource MetroWindowButtonStyle}"
+    WindowMinButtonStyle="{DynamicResource MetroWindowButtonStyle}"
+    WindowMaxButtonStyle="{DynamicResource MetroWindowButtonStyle}"-->
+    <!--xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:cal="http://www.caliburnproject.org"-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ThemeDictionary" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <ContentControl />
+        <!--cal:View.Model="{Binding Shell}" />-->
+	</Grid>
+</Window>

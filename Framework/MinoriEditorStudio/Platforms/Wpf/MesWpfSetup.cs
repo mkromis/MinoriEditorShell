@@ -1,4 +1,4 @@
-using Gemini.Platforms.Wpf.Presenters;
+using MinoriEditorStudio.Platforms.Wpf.Presenters;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.ViewModels;
@@ -8,7 +8,7 @@ namespace MinoriEditorStudio.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
-        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root) => new MesWpfPresenter(root);
+        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root) => new MvxWpfViewPresenter(root);
 
         /// <summary>
         /// Creates the app.

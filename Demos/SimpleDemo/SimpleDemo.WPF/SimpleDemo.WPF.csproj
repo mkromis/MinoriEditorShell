@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TipView.xaml.cs">
       <DependentUpon>TipView.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TipView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +121,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\MinoriEditorStudio\MinoriEditorStudio.csproj">
+      <Project>{13dbfc87-c152-4a86-94b0-d9944beef647}</Project>
+      <Name>MinoriEditorStudio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj">
       <Project>{1be23c45-838b-47e7-8437-90493cbea59a}</Project>
       <Name>SimpleDemo.Core</Name>
