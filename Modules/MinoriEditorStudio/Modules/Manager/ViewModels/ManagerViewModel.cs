@@ -8,44 +8,25 @@ using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Themes;
 using MinoriEditorStudio.Modules.MainMenu;
-using MinoriEditorStudio.Modules.Shell.Services;
+using MinoriEditorStudio.Modules.Manager.Views;
+using MinoriEditorStudio.Modules.Manager.Services;
 using MinoriEditorStudio.Modules.Shell.Views;
 using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Modules.ToolBars;
 using MvvmCross;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.Shell.ViewModels
+namespace MinoriEditorStudio.Modules.Manager.ViewModels
 {
-    [Export(typeof(IShell))]
-    public class ShellViewModel : MvxNotifyPropertyChanged, IShell
+    public class ManagerViewModel : MvxViewModel, IManager
     {
         public event EventHandler ActiveDocumentChanging;
         public event EventHandler ActiveDocumentChanged;
 
-        [Import]
-        private IThemeManager _themeManager;
+        private readonly ILayoutItemStatePersister _layoutItemStatePersister;
 
-        [Import]
-        private IMenu _mainMenu;
-
-        [Import]
-        private IToolBars _toolBars;
-
-        [Import]
-        private IStatusBar _statusBar;
-
-        [Import]
-        private ILayoutItemStatePersister _layoutItemStatePersister;
-
-        private IShellView _shellView;
+        public IManagerView ManagerView { get; set; }
 	    private bool _closing;
-
-        public IMenu MainMenu => _mainMenu;
-
-        public IToolBars ToolBars => _toolBars;
-
-        public IStatusBar StatusBar => _statusBar;
 
         private ILayoutItem _activeItem;
 	    public ILayoutItem ActiveItem
@@ -53,51 +34,48 @@ namespace MinoriEditorStudio.Modules.Shell.ViewModels
             get => _activeItem;
             set
             {
-#warning activateLayoutItem
-#if false
-                if (ReferenceEquals(_activeLayoutItem, value))
-                    return;
+                if (SetProperty(ref _activeItem, value))
+                {
 
-                _activeLayoutItem = value;
-
-                if (value is IDocument)
-                    ActivateItem((IDocument)value);
-#endif
-
-                RaisePropertyChanged(() => ActiveItem);
+                    if (value is IDocument document)
+                    {
+                        SelectedDocument = document;
+                    }
+                }
             }
         }
 
-        private readonly MvxObservableCollection<ITool> _tools;
-        public MvxObservableCollection<ITool> Tools => _tools;
+        public MvxObservableCollection<ITool> Tools { get; }
+        public MvxObservableCollection<IDocument> Documents { get; }
 
-#warning Documents
-        public MvxObservableCollection<IDocument> Documents => null; //Items;
-
-        private bool _showFloatingWindowsInTaskbar;
-        public bool ShowFloatingWindowsInTaskbar
+        public Boolean ShowFloatingWindowsInTaskbar
         {
-            get { return _showFloatingWindowsInTaskbar; }
+            get => _showFloatingWindowsInTaskbar;
             set
             {
                 _showFloatingWindowsInTaskbar = value;
                 RaisePropertyChanged(() => ShowFloatingWindowsInTaskbar);
-                if (_shellView != null)
-                    _shellView.UpdateFloatingWindows();
+                if (ManagerView != null)
+                {
+                    ManagerView.UpdateFloatingWindows();
+                }
             }
         }
 
-        public virtual string StateFile => @".\ApplicationState.bin";
+        public virtual String StateFile => @".\ApplicationState.bin";
 
-        public bool HasPersistedState => File.Exists(StateFile);
+        public Boolean HasPersistedState => File.Exists(StateFile);
 
-        public IDocument SelectedDocument { get; }
+        public IDocument SelectedDocument { get; private set; }
 
-        public ShellViewModel()
+        public ManagerViewModel()
         {
+            _layoutItemStatePersister = Mvx.IoCProvider.Resolve<ILayoutItemStatePersister>();
+
             //((IActivate)this).Activate();
 
-            _tools = new MvxObservableCollection<ITool>();
+            Tools = new MvxObservableCollection<ITool>();
+            Documents = new MvxObservableCollection<IDocument>();
         }
 
 #warning OnViewLoaded(object view)
@@ -173,6 +151,7 @@ namespace MinoriEditorStudio.Modules.Shell.ViewModels
         }
 
         private bool _activateItemGuard = false;
+        private bool _showFloatingWindowsInTaskbar;
 
 #warning ActivateItem(IDocument item)
 #if false
@@ -203,7 +182,7 @@ namespace MinoriEditorStudio.Modules.Shell.ViewModels
         }
 #endif
 
-	    private void RaiseActiveDocumentChanging()
+        private void RaiseActiveDocumentChanging()
 	    {
             var handler = ActiveDocumentChanging;
             if (handler != null)

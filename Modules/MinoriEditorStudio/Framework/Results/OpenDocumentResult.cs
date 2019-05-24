@@ -12,7 +12,7 @@ namespace MinoriEditorStudio.Framework.Results
 		private readonly Type _editorType;
 		private readonly string _path;
 
-        private IShell _shell = Mvx.IoCProvider.Resolve<IShell>();
+        private IManager _shell = Mvx.IoCProvider.Resolve<IManager>();
 
         public OpenDocumentResult(IDocument editor)
 		{

@@ -9,10 +9,10 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     [CommandHandler]
     public class ExitCommandHandler : CommandHandlerBase<ExitCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public ExitCommandHandler(IShell shell)
+        public ExitCommandHandler(IManager shell)
         {
             _shell = shell;
         }

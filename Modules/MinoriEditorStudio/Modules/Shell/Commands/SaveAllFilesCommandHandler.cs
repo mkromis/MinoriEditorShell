@@ -12,10 +12,10 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     [CommandHandler]
     public class SaveAllFilesCommandHandler : CommandHandlerBase<SaveAllFilesCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public SaveAllFilesCommandHandler(IShell shell)
+        public SaveAllFilesCommandHandler(IManager shell)
         {
             _shell = shell;
         }

@@ -14,7 +14,7 @@ namespace MinoriEditorStudio.Modules.MainWindow.ViewModels
     {
 #pragma warning disable 649
         [Import]
-        private IShell _shell;
+        private IManager _shell;
 
         [Import]
         private IResourceManager _resourceManager;
@@ -78,7 +78,7 @@ namespace MinoriEditorStudio.Modules.MainWindow.ViewModels
             }
         }
 
-        public IShell Shell
+        public IManager Shell
         {
             get { return _shell; }
         }

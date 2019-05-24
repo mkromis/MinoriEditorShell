@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
@@ -23,12 +23,12 @@
     <None Remove="Modules\MainMenu\Views\MainMenuSettingsView.xaml" />
     <None Remove="Modules\MainMenu\Views\MainMenuView.xaml" />
     <None Remove="Modules\MainWindow\Views\MainWindowView.xaml" />
+    <None Remove="Modules\Manager\Views\ManagerView.xaml" />
     <None Remove="Modules\Settings\Views\SettingsView.xaml" />
     <None Remove="Modules\StatusBar\Views\StatusBarView.xaml" />
     <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
     <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
     <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
-    <None Remove="Platforms\Wpf\Views\ShellView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,7 +62,7 @@
     <Page Include="Modules\UndoRedo\Views\HistoryView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Platforms\Wpf\Views\ShellView.xaml">
+    <Page Include="Modules\Manager\Views\ManagerView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -89,20 +89,20 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.de.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.ko.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.ru.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 

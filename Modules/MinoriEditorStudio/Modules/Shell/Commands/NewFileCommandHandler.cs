@@ -15,12 +15,12 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     {
         private int _newFileCounter = 1;
 
-        private readonly IShell _shell;
+        private readonly IManager _shell;
         private readonly IEditorProvider[] _editorProviders;
 
         [ImportingConstructor]
         public NewFileCommandHandler(
-            IShell shell,
+            IManager shell,
             [ImportMany] IEditorProvider[] editorProviders)
         {
             _shell = shell;

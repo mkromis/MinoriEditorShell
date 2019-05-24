@@ -5,16 +5,17 @@ using System.IO;
 using System.Linq;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Modules.Manager.Views;
 using MinoriEditorStudio.Modules.Shell.Views;
 
-namespace MinoriEditorStudio.Modules.Shell.Services
+namespace MinoriEditorStudio.Modules.Manager.Services
 {
     [Export(typeof(ILayoutItemStatePersister))]
     public class LayoutItemStatePersister : ILayoutItemStatePersister
     {
         private static readonly Type LayoutBaseType = typeof(ILayoutItem);
 
-        public bool SaveState(IShell shell, IShellView shellView, string fileName)
+        public bool SaveState(IManager shell, IManagerView shellView, string fileName)
         {
             try
             {
@@ -140,7 +141,7 @@ namespace MinoriEditorStudio.Modules.Shell.Services
             return typeof(ILayoutItem).IsAssignableFrom(type) ? type : null;
         }
 
-        public bool LoadState(IShell shell, IShellView shellView, string fileName)
+        public bool LoadState(IManager shell, IManagerView shellView, string fileName)
         {
             var layoutItems = new Dictionary<string, ILayoutItem>();
 

@@ -8,13 +8,18 @@ namespace MinoriEditorStudio.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
-        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root) => new MvxWpfViewPresenter(root);
+        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
+        {
+            // This handles main window.
+            return new MesWpfPresenter(root);
+        }
 
         /// <summary>
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
         protected override IMvxApplication CreateApp() => new TApplication();
+
 
         //public class AppBootstrapper : BootstrapperBase
         //{

@@ -60,7 +60,7 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
         public MvxObservableCollection<HistoryItemViewModel> HistoryItems { get; } = new MvxObservableCollection<HistoryItemViewModel>();
 
         [ImportingConstructor]
-        public HistoryViewModel(IShell shell)
+        public HistoryViewModel(IManager shell)
         {
             #warning HistoryViewModel ctor
 #if false
