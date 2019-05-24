@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MinoriEditorStudio.Modules.Shell.Views
+namespace MinoriEditorStudio.Modules.Manager.Views
 {
-    public interface IShellView
+    public interface IManagerView
     {
         void LoadLayout(Stream stream, Action<ITool> addToolCallback, Action<IDocument> addDocumentCallback,
                         Dictionary<string, ILayoutItem> itemsState);

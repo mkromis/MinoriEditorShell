@@ -9,10 +9,10 @@ namespace MinoriEditorStudio.Modules.UndoRedo.Commands
     [CommandHandler]
     public class ViewHistoryCommandHandler : CommandHandlerBase<ViewHistoryCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public ViewHistoryCommandHandler(IShell shell)
+        public ViewHistoryCommandHandler(IManager shell)
         {
             _shell = shell;
         }

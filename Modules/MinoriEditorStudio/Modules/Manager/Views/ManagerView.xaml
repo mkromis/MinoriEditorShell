@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="MinoriEditorStudio.Platforms.Wpf.Views.ShellView"
+    x:Class="MinoriEditorStudio.Modules.Manager.Views.ManagerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
@@ -18,9 +18,9 @@
     </UserControl.Resources>
 
     <xcad:DockingManager
-        x:Name="Manager" DocumentsSource="{Binding Items}"
+        x:Name="Manager" DocumentsSource="{Binding Documents}"
         AnchorablesSource="{Binding Tools}"
-        ActiveContent="{Binding ActiveLayoutItem, Mode=TwoWay}"
+        ActiveContent="{Binding ActiveItem, Mode=TwoWay}"
         LayoutUpdated="OnManagerLayoutUpdated">
         <xcad:DockingManager.LayoutItemTemplateSelector>
             <controls:PanesTemplateSelector>
@@ -32,9 +32,10 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <toolbarcontrols:ToolPaneToolBar ItemsSource="{Binding ToolBar}" />
-                            <ContentControl Grid.Row="1"
-                                            IsTabStop="False" />
-                                            <!--cal:View.Model="{Binding}"-->
+                            <ContentControl 
+                                Grid.Row="1"
+                                Content="{Binding}"
+                                IsTabStop="False" />
                         </Grid>
                     </DataTemplate>
                 </controls:PanesTemplateSelector.DocumentTemplate>
@@ -46,9 +47,10 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <toolbarcontrols:ToolPaneToolBar ItemsSource="{Binding ToolBar}" />
-                            <ContentControl Grid.Row="1"
-                                            IsTabStop="False" />
-                                            <!--cal:View.Model="{Binding}"-->
+                            <ContentControl 
+                                Grid.Row="1"
+                                Content="{Binding}"
+                                IsTabStop="False" />
                         </Grid>
                     </DataTemplate>
                 </controls:PanesTemplateSelector.ToolTemplate>

@@ -9,10 +9,10 @@ namespace MinoriEditorStudio.Modules.Toolbox.Commands
     [CommandHandler]
     public class ViewToolboxCommandHandler : CommandHandlerBase<ViewToolboxCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public ViewToolboxCommandHandler(IShell shell)
+        public ViewToolboxCommandHandler(IManager shell)
         {
             _shell = shell;
         }

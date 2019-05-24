@@ -13,11 +13,11 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     [CommandHandler]
     public class OpenFileCommandHandler : CommandHandlerBase<OpenFileCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
         private readonly IEditorProvider[] _editorProviders;
 
         [ImportingConstructor]
-        public OpenFileCommandHandler(IShell shell, [ImportMany] IEditorProvider[] editorProviders)
+        public OpenFileCommandHandler(IManager shell, [ImportMany] IEditorProvider[] editorProviders)
         {
             _shell = shell;
             _editorProviders = editorProviders;

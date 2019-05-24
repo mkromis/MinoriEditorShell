@@ -42,7 +42,7 @@ namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
         }
 
         [ImportingConstructor]
-        public ToolboxViewModel(IShell shell, IToolboxService toolboxService)
+        public ToolboxViewModel(IManager shell, IToolboxService toolboxService)
         {
             throw new NotImplementedException();
 #if false
@@ -64,7 +64,7 @@ namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
 #endif
         }
 
-        private void RefreshToolboxItems(IShell shell)
+        private void RefreshToolboxItems(IManager shell)
         {
             throw new NotImplementedException();
 #warning RefreshToolboxItems

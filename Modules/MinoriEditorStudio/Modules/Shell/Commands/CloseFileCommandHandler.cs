@@ -9,10 +9,10 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     [CommandHandler]
     public class CloseFileCommandHandler : CommandHandlerBase<CloseFileCommandDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public CloseFileCommandHandler(IShell shell)
+        public CloseFileCommandHandler(IManager shell)
         {
             _shell = shell;
         }

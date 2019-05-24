@@ -1,5 +1,6 @@
 using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Shell.ViewModels;
+using MinoriEditorStudio.Modules.Manager.ViewModels;
+using MinoriEditorStudio.Modules.Manager.Services;
 using MvvmCross;
 using MvvmCross.Plugin;
 using System;
@@ -16,7 +17,8 @@ namespace MinoriEditorStudio.Platforms.Wpf
         public void Configure(IMvxPluginConfiguration configuration) {}
 
         public void Load() {
-            Mvx.IoCProvider.RegisterSingleton<IShell>(() => new ShellViewModel());
+            Mvx.IoCProvider.RegisterSingleton<IManager>(() => new ManagerViewModel());
+            Mvx.IoCProvider.RegisterSingleton<ILayoutItemStatePersister>(() => new LayoutItemStatePersister());
         }
 
 //#pragma warning disable 649

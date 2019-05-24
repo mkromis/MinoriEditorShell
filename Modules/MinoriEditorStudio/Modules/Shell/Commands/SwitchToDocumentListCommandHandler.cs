@@ -11,10 +11,10 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
     [CommandHandler]
     public class SwitchToDocumentListCommandHandler : ICommandListHandler<SwitchToDocumentCommandListDefinition>
     {
-        private readonly IShell _shell;
+        private readonly IManager _shell;
 
         [ImportingConstructor]
-        public SwitchToDocumentListCommandHandler(IShell shell)
+        public SwitchToDocumentListCommandHandler(IManager shell)
         {
             _shell = shell;
         }

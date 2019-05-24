@@ -12,6 +12,6 @@ namespace MinoriEditorStudio.Framework.Services
         string Title { get; set; }
         ImageSource Icon { get; set; } 
 
-        IShell Shell { get; }
+        IManager Shell { get; }
     }
 }
