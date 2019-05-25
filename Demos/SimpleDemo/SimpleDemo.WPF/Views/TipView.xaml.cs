@@ -1,3 +1,6 @@
+using MinoriEditorStudio.Framework.Attributes;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,8 @@ namespace SimpleDemo.WPF.Views
     /// <summary>
     /// Interaction logic for TipView.xaml
     /// </summary>
-    public partial class TipView
+    [Document]
+    public partial class TipView : MvxWpfView
     {
         public TipView()
         {

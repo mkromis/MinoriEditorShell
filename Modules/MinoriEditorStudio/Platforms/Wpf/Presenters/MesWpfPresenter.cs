@@ -1,4 +1,6 @@
+using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Attributes;
+using MinoriEditorStudio.Framework.Services;
 using MvvmCross;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;
@@ -9,6 +11,7 @@ using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.Presenters.Hints;
 using MvvmCross.ViewModels;
+using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,25 +38,8 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
         }
 
         public override async Task<Boolean> Show(MvxViewModelRequest request)
-        {
-            try
-            {
-                IMvxWpfViewLoader loader = Mvx.IoCProvider.Resolve<IMvxWpfViewLoader>();
-                FrameworkElement view = loader.CreateView(request);
-                //ShowContentView(view);
-                return await base.Show(request);
-            }
-            catch (Exception exception)
-            {
-                if (_log == null)
-                {
-                    _log = Mvx.IoCProvider.Resolve<IMvxLog>();
-                }
-                _log.ErrorException("Error seen during navigation request to {0} - error {1}",
-                    exception, request.ViewModelType.Name, exception.ToLongString());
-                return false;
-            }
-        }
+            => await base.Show(request);
+
 
         protected override MvxPresentationAttributeAction GetPresentationAttributeAction(MvxViewModelRequest request, out MvxBasePresentationAttribute attribute) => 
             base.GetPresentationAttributeAction(request, out attribute);
@@ -61,8 +47,21 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
         public override MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType) => 
             base.GetOverridePresentationAttribute(request, viewType);
 
-        public override void RegisterAttributeTypes() => 
+        public override void RegisterAttributeTypes()
+        {
+            AttributeTypesToActionsDictionary.Add(
+                typeof(DocumentAttribute),
+                new MvxPresentationAttributeAction
+                {
+                    ShowAction = (viewType, attribute, request) =>
+                    {
+                        FrameworkElement view = WpfViewLoader.CreateView(request);
+                        return ShowContentView(view, (DocumentAttribute)attribute, request);
+                    },
+                    CloseAction = (viewModel, attribute) => CloseWindow(viewModel)
+                });
             base.RegisterAttributeTypes();
+        }
 
         public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request) => 
             base.GetPresentationAttribute(request);
@@ -110,43 +109,65 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
 
 #warning fix ContentView
         protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
-        //protected void ShowContentView(FrameworkElement frameworkElement)
         {
-            // grab the attribute off of the view
-            //RegionType regionName = !(frameworkElement
-            //    .GetType()
-            //    .GetCustomAttributes(typeof(RegionAttribute), true)
-            //    .FirstOrDefault() is RegionAttribute attribute) ? RegionType.Unknown : attribute.Region;
+            try
+            {
 
-            //var result = element.GetType().GetCustomAttributes(typeof(ManagerAttribute), true);
-            //var result2 = element.FindName("Manager");
+                // grab the attribute off of the view
+                //RegionType regionName = !(frameworkElement
+                //    .GetType()
+                //    .GetCustomAttributes(typeof(RegionAttribute), true)
+                //    .FirstOrDefault() is RegionAttribute attribute) ? RegionType.Unknown : attribute.Region;
 
-            //based on region decide where we are going to show it
-            //switch (regionName)
-            //{
-            //    //    case RegionType.BaseTab:
-            //    //        //set the base tab
-            //    //        _mainWindow.Content = frameworkElement;
-            //    //        _homeView = (HomeView)frameworkElement;
-            //    //        break;
-            //    //    case RegionType.Tab:
-            //    //        if (_navigationStack.Any())
-            //    //        {
-            //    //            _navigationStack.Pop();
-            //    //        }
+                //var result = element.GetType().GetCustomAttributes(typeof(ManagerAttribute), true);
+                //var result2 = element.FindName("Manager");
 
-            //    //        _homeView.ContentGrid.Children.Clear();
-            //    //        _homeView.ContentGrid.Children.Add(frameworkElement);
-            //    //        _navigationStack.Push(frameworkElement);
-            //    //        break;
-            //    //    case RegionType.FullScreen:
-            //    //        //view that requires full screen
-            //    //        //but can navigate backwards
-            //    //        _mainWindow.Content = frameworkElement;
-            //    //        _navigationStack.Push(frameworkElement);
-            //    //        break;
-            //}
-            return await base.ShowContentView(element, attribute, request);
+                switch (attribute)
+                {
+                    case DocumentAttribute document:
+                        IManager manager = Mvx.IoCProvider.Resolve<IManager>();
+                        IMvxView view = (IMvxView)element;
+                        manager.Documents.Add((Document)view.ViewModel);
+                        _log.Info(document.ToString());
+                        return true;
+                }
+                //based on region decide where we are going to show it
+                //switch (regionName)
+                //{
+                //    //    case RegionType.BaseTab:
+                //    //        //set the base tab
+                //    //        _mainWindow.Content = frameworkElement;
+                //    //        _homeView = (HomeView)frameworkElement;
+                //    //        break;
+                //    //    case RegionType.Tab:
+                //    //        if (_navigationStack.Any())
+                //    //        {
+                //    //            _navigationStack.Pop();
+                //    //        }
+
+                //    //        _homeView.ContentGrid.Children.Clear();
+                //    //        _homeView.ContentGrid.Children.Add(frameworkElement);
+                //    //        _navigationStack.Push(frameworkElement);
+                //    //        break;
+                //    //    case RegionType.FullScreen:
+                //    //        //view that requires full screen
+                //    //        //but can navigate backwards
+                //    //        _mainWindow.Content = frameworkElement;
+                //    //        _navigationStack.Push(frameworkElement);
+                //    //        break;
+                //}
+                return await base.ShowContentView(element, attribute, request);
+            }
+            catch (Exception exception)
+            {
+                if (_log == null)
+                {
+                    _log = Mvx.IoCProvider.Resolve<IMvxLog>();
+                }
+                _log.ErrorException("Error seen during navigation request to {0} - error {1}",
+                    exception, request.ViewModelType.Name, exception.ToLongString());
+                return false;
+            }
         }
     }
 }

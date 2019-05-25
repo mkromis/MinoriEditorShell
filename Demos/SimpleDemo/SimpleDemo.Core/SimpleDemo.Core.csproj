@@ -8,4 +8,8 @@
     <PackageReference Include="MvvmCross" Version="6.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,3 +1,5 @@
+using Fluent;
+using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace SimpleDemo.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : MvxWindow
     {
         public MainWindow()
         {
