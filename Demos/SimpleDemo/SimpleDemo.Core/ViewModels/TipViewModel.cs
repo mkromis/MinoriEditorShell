@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MinoriEditorStudio.Framework;
 
 namespace SimpleDemo.Core.ViewModels
 {
-    public class TipViewModel : MvxViewModel
+    public class TipViewModel : Document
     {
         readonly ICalculationService _calculationService;
 

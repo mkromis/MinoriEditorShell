@@ -26,22 +26,20 @@ namespace MinoriEditorStudio.Framework
         ICommandHandler<SaveFileAsCommandDefinition>
 	{
 	    private IUndoRedoManager _undoRedoManager;
-	    public IUndoRedoManager UndoRedoManager
-	    {
-            get { return _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager()); }
-	    }
+        public IUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager());
 
 #warning fix CloseCommand
         private ICommand _closeCommand;
-        public override ICommand CloseCommand => null;//_closeCommand ?? (_closeCommand = new MvxCommand(p => TryClose(null), p => true));
+        public override ICommand CloseCommand => null; // _closeCommand ?? (_closeCommand = new MvxCommand(p => TryClose(null), p => true));
 
         private ToolBarDefinition _toolBarDefinition;
         public ToolBarDefinition ToolBarDefinition
         {
-            get { return _toolBarDefinition; }
+            get => _toolBarDefinition;
             protected set
             {
-                if (SetProperty(ref _toolBarDefinition, value)) {
+                if (SetProperty(ref _toolBarDefinition, value))
+                {
                     RaisePropertyChanged(() => ToolBar);
                 }
             }
@@ -58,7 +56,7 @@ namespace MinoriEditorStudio.Framework
                 if (ToolBarDefinition == null)
                     return null;
 
-                var toolBarBuilder = Mvx.IoCProvider.Resolve<IToolBarBuilder>();
+                IToolBarBuilder toolBarBuilder = Mvx.IoCProvider.Resolve<IToolBarBuilder>();
                 _toolBar = new ToolBarModel();
                 toolBarBuilder.BuildToolBar(ToolBarDefinition, _toolBar);
                 return _toolBar;
@@ -96,17 +94,19 @@ namespace MinoriEditorStudio.Framework
 	    {
 	        var persistedDocument = this as IPersistedDocument;
 	        if (persistedDocument == null)
-	            return;
+            {
+                return;
+            }
 
-	        // If file has never been saved, show Save As dialog.
-	        if (persistedDocument.IsNew)
+            // If file has never been saved, show Save As dialog.
+            if (persistedDocument.IsNew)
 	        {
 	            await DoSaveAs(persistedDocument);
 	            return;
 	        }
 
-	        // Save file.
-            var filePath = persistedDocument.FilePath;
+            // Save file.
+            String filePath = persistedDocument.FilePath;
             await persistedDocument.Save(filePath);
 	    }
 

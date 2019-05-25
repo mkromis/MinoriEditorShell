@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace MinoriEditorStudio.Framework
 {
-	public abstract class LayoutItemBase : MvxNotifyPropertyChanged, ILayoutItem
+	public abstract class LayoutItemBase : MvxViewModel, ILayoutItem
 	{
         private bool _isSelected;
 

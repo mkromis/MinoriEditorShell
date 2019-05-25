@@ -11,6 +11,7 @@
     d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <Button Content="TipCalc" Command="{Binding TipCalcCommand}" />
             <!--<ContentControl cal:View.Model="{Binding MainMenu}" />-->
             <!--<ContentControl cal:View.Model="{Binding ToolBars}" />-->
         </StackPanel>
