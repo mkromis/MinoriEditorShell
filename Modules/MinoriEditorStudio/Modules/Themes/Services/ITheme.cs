@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Framework.Themes
+namespace MinoriEditorStudio.Modules.Themes.Services
 {
     public interface ITheme
     {
         /// <summary>
         /// Name of the theme, used in menus and settings.
         /// </summary>
-        string Name { get; }
+        String Name { get; }
         
         /// <summary>
         /// Resources to be added to Application.Resources.

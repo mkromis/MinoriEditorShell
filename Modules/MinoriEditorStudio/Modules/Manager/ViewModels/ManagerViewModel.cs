@@ -1,20 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Windows;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Themes;
-using MinoriEditorStudio.Modules.MainMenu;
-using MinoriEditorStudio.Modules.Manager.Views;
 using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Shell.Views;
-using MinoriEditorStudio.Modules.StatusBar;
-using MinoriEditorStudio.Modules.ToolBars;
+using MinoriEditorStudio.Modules.Manager.Views;
 using MvvmCross;
 using MvvmCross.ViewModels;
+using System;
+using System.IO;
+using System.Windows;
 
 namespace MinoriEditorStudio.Modules.Manager.ViewModels
 {
@@ -36,7 +28,6 @@ namespace MinoriEditorStudio.Modules.Manager.ViewModels
             {
                 if (SetProperty(ref _activeItem, value))
                 {
-
                     if (value is IDocument document)
                     {
                         SelectedDocument = document;

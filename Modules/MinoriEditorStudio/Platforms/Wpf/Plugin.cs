@@ -1,24 +1,23 @@
 using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Manager.ViewModels;
+using MinoriEditorStudio.Modules.MainMenu.ViewModels;
 using MinoriEditorStudio.Modules.Manager.Services;
+using MinoriEditorStudio.Modules.Manager.ViewModels;
+using MinoriEditorStudio.Modules.Settings;
+using MinoriEditorStudio.Modules.Themes.Services;
 using MvvmCross;
 using MvvmCross.Plugin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MvvmCross.Plugin.Messenger;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
     [MvxPlugin]
-    public class Plugin : IMvxConfigurablePlugin
+    public class Plugin : IMvxPlugin
     {
-        public void Configure(IMvxPluginConfiguration configuration) {}
-
         public void Load() {
             Mvx.IoCProvider.RegisterSingleton<IManager>(() => new ManagerViewModel());
             Mvx.IoCProvider.RegisterSingleton<ILayoutItemStatePersister>(() => new LayoutItemStatePersister());
+            Mvx.IoCProvider.RegisterSingleton<IThemeManager>(() => new ThemeManager(Mvx.IoCProvider.Resolve<IMvxMessenger>()));
+            Mvx.IoCProvider.RegisterSingleton<ISettingsEditor>(() => new MainMenuSettingsViewModel());
         }
 
 //#pragma warning disable 649
