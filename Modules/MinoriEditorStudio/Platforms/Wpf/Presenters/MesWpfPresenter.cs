@@ -50,13 +50,13 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
         public override void RegisterAttributeTypes()
         {
             AttributeTypesToActionsDictionary.Add(
-                typeof(DocumentAttribute),
+                typeof(DocumentViewAttribute),
                 new MvxPresentationAttributeAction
                 {
                     ShowAction = (viewType, attribute, request) =>
                     {
                         FrameworkElement view = WpfViewLoader.CreateView(request);
-                        return ShowContentView(view, (DocumentAttribute)attribute, request);
+                        return ShowContentView(view, (DocumentViewAttribute)attribute, request);
                     },
                     CloseAction = (viewModel, attribute) => CloseWindow(viewModel)
                 });
@@ -124,7 +124,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
 
                 switch (attribute)
                 {
-                    case DocumentAttribute document:
+                    case DocumentViewAttribute document:
                         IManager manager = Mvx.IoCProvider.Resolve<IManager>();
                         IMvxView view = (IMvxView)element;
 
