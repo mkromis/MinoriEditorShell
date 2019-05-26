@@ -127,7 +127,12 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
                     case DocumentAttribute document:
                         IManager manager = Mvx.IoCProvider.Resolve<IManager>();
                         IMvxView view = (IMvxView)element;
-                        manager.Documents.Add((Document)view.ViewModel);
+
+                        // Try to set view
+                        Document docViewModel = (Document)view.ViewModel;
+                        docViewModel.View = view;
+
+                        manager.Documents.Add(docViewModel);
                         _log.Info(document.ToString());
                         return true;
                 }

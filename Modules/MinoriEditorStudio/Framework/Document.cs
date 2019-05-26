@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using MvvmCross.Commands;
 using MvvmCross;
 using System;
+using MvvmCross.Views;
 
 namespace MinoriEditorStudio.Framework
 {
@@ -63,7 +64,9 @@ namespace MinoriEditorStudio.Framework
             }
         }
 
-	    void ICommandHandler<UndoCommandDefinition>.Update(Command command)
+        public IMvxView View { get; set; }
+
+        void ICommandHandler<UndoCommandDefinition>.Update(Command command)
 	    {
             command.Enabled = UndoRedoManager.CanUndo;
 	    }
