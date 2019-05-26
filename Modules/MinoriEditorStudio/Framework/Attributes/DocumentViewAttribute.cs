@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MinoriEditorStudio.Framework.Attributes
 {
-    public class DocumentAttribute : MvxContentPresentationAttribute
+    public class DocumentViewAttribute : MvxContentPresentationAttribute
     {
     }
 }

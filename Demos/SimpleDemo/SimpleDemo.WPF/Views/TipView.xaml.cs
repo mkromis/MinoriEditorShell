@@ -21,7 +21,7 @@ namespace SimpleDemo.WPF.Views
     /// <summary>
     /// Interaction logic for TipView.xaml
     /// </summary>
-    [Document]
+    [DocumentView]
     public partial class TipView : MvxWpfView
     {
         public TipView()
