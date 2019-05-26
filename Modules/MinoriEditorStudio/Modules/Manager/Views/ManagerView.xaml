@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:MinoriEditorStudio.Modules.Shell.Controls"
     xmlns:converters="clr-namespace:MinoriEditorStudio.Modules.Shell.Converters"
+    xmlns:framework="clr-namespace:MinoriEditorStudio.Framework"
     xmlns:toolbarcontrols="clr-namespace:MinoriEditorStudio.Modules.ToolBars.Controls"
     mc:Ignorable="d"
     d:DesignHeight="800" d:DesignWidth="600">
@@ -18,7 +19,8 @@
     </UserControl.Resources>
 
     <xcad:DockingManager
-        x:Name="Manager" DocumentsSource="{Binding Documents}"
+        x:Name="Manager" 
+        DocumentsSource="{Binding Documents}"
         AnchorablesSource="{Binding Tools}"
         ActiveContent="{Binding ActiveItem, Mode=TwoWay}"
         LayoutUpdated="OnManagerLayoutUpdated">
@@ -34,7 +36,7 @@
                             <toolbarcontrols:ToolPaneToolBar ItemsSource="{Binding ToolBar}" />
                             <ContentControl 
                                 Grid.Row="1"
-                                Content="{Binding}"
+                                Content="{Binding View}"
                                 IsTabStop="False" />
                         </Grid>
                     </DataTemplate>

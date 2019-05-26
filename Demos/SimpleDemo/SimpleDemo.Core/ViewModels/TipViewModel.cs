@@ -15,6 +15,8 @@ namespace SimpleDemo.Core.ViewModels
         public TipViewModel(ICalculationService calculationService)
         {
             _calculationService = calculationService;
+
+            DisplayName = "TipCalc Sample";
         }
 
         public override async Task Initialize()
