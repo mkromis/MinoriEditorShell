@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.3.0" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>

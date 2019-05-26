@@ -27,26 +27,23 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+using MinoriEditorStudio.Modules.Themes.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Framework.Themes
+namespace MinoriEditorStudio.Modules.Themes.Definitions
 {
-    [Export(typeof(ITheme))]
     public class DarkTheme : ITheme
     {
-        public virtual string Name
-        {
-            get { return Properties.Resources.ThemeDarkName; }
-        }
+        public virtual String Name => Properties.Resources.ThemeDarkName;
 
         public virtual IEnumerable<Uri> ApplicationResources
         {
             get
             {
                 yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/DarkTheme.xaml");
-                yield return new Uri("pack://application:,,,/MinoriEditorStudio;component/Themes/VS2013/DarkTheme.xaml");
+#warning DarkTheme
+                //yield return new Uri("pack://application:,,,/MinoriEditorStudio;component/Themes/VS2013/DarkTheme.xaml");
             }
         }
 

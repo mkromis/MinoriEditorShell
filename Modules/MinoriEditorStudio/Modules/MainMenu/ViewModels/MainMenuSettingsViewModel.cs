@@ -1,19 +1,21 @@
+using MinoriEditorStudio.Modules.Settings;
+using MinoriEditorStudio.Modules.Themes;
+using MinoriEditorStudio.Modules.Themes.Services;
+using MvvmCross;
+using MvvmCross.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Themes;
-using MinoriEditorStudio.Modules.Settings;
-using MvvmCross.ViewModels;
 
 namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
 {
-    [Export(typeof (ISettingsEditor))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class MainMenuSettingsViewModel : MvxNotifyPropertyChanged, ISettingsEditor
     {
         private readonly IThemeManager _themeManager;
 
-        private readonly static List<string> _availableLanguages = new List<string> {
-            string.Empty,
+        private readonly static List<String> _availableLanguages = new List<String> {
+            String.Empty,
             "en",
             "de",
             "ru",
@@ -22,14 +24,13 @@ namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
         };
 
         private ITheme _selectedTheme;
-        private string _selectedLanguage;
-        private bool _autoHideMainMenu;
+        private String _selectedLanguage;
+        private Boolean _autoHideMainMenu;
 
-        [ImportingConstructor]
-        public MainMenuSettingsViewModel(IThemeManager themeManager)
+        public MainMenuSettingsViewModel()
         {
-            _themeManager = themeManager;
-            SelectedTheme = themeManager.CurrentTheme;
+            _themeManager = Mvx.IoCProvider.Resolve<IThemeManager>();
+            SelectedTheme = _themeManager.CurrentTheme;
             AutoHideMainMenu = Properties.Settings.Default.AutoHideMainMenu;
             SelectedLanguage = Properties.Settings.Default.LanguageCode;
         }
@@ -42,34 +43,27 @@ namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
             set => SetProperty(ref _selectedTheme, value);
         }
 
-        public IEnumerable<string> Languages => _availableLanguages;
+        public IEnumerable<String> Languages => _availableLanguages;
 
-        public string SelectedLanguage
+        public String SelectedLanguage
         {
             get => _selectedLanguage;
             set => SetProperty(ref _selectedLanguage, value);
         }
 
-        public bool AutoHideMainMenu
+        public Boolean AutoHideMainMenu
         {
-            get { return _autoHideMainMenu; }
+            get => _autoHideMainMenu;
             set
             {
-                if (value.Equals(_autoHideMainMenu)) return;
-                _autoHideMainMenu = value;
-                RaisePropertyChanged(() => AutoHideMainMenu);
+                if (value.Equals(_autoHideMainMenu)) { return; }
+                SetProperty(ref _autoHideMainMenu, value);
             }
         }
 
-        public string SettingsPageName
-        {
-            get { return Properties.Resources.SettingsPageGeneral; }
-        }
+        public String SettingsPageName => Properties.Resources.SettingsPageGeneral;
 
-        public string SettingsPagePath
-        {
-            get { return Properties.Resources.SettingsPathEnvironment; }
-        }
+        public String SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
 
         public void ApplyChanges()
         {

@@ -1,6 +1,7 @@
 using MinoriEditorStudio.Platforms.Wpf.Presenters;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
+using MvvmCross.Plugin;
 using MvvmCross.ViewModels;
 using System.Windows.Controls;
 
@@ -20,6 +21,11 @@ namespace MinoriEditorStudio.Platforms.Wpf
         /// <returns>An instance of MvxApplication</returns>
         protected override IMvxApplication CreateApp() => new TApplication();
 
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
+            base.LoadPlugins(pluginManager);
+        }
 
         //public class AppBootstrapper : BootstrapperBase
         //{

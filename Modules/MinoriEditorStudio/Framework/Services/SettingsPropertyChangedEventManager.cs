@@ -21,10 +21,9 @@ namespace MinoriEditorStudio.Framework.Services
             Expression<Func<TApplicationSettings, TSettingsProperty>> property,
             Action<TSettingsProperty> onPropertyChanged)
         {
-            string propertyName = ExtensionMethods.GetPropertyName(property);
+            String propertyName = ExtensionMethods.GetPropertyName(property);
 
-            var listener = new PropertyChangedEventListener<TSettingsProperty>(_applicationSettings, property,
-                onPropertyChanged);
+            var listener = new PropertyChangedEventListener<TSettingsProperty>(_applicationSettings, property, onPropertyChanged);
             PropertyChangedEventManager.AddListener(_applicationSettings, listener, propertyName);
 
             _eventListeners.Add(listener);
