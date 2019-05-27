@@ -21,7 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.WPF", "Demos\Sim
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{417CE623-3714-4105-8A2F-4C1A7DB61AA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriEditorStudio", "Modules\MinoriEditorStudio\MinoriEditorStudio.csproj", "{320B6932-9C96-4A1C-A2FC-F393516AE13F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorStudio", "Modules\MinoriEditorStudio\MinoriEditorStudio.csproj", "{320B6932-9C96-4A1C-A2FC-F393516AE13F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.RibbonWPF", "SimpleDemo.RibbonWPF\SimpleDemo.RibbonWPF.csproj", "{4179EC7D-789B-4570-91F9-A5D56251A6EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{320B6932-9C96-4A1C-A2FC-F393516AE13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{320B6932-9C96-4A1C-A2FC-F393516AE13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{320B6932-9C96-4A1C-A2FC-F393516AE13F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4179EC7D-789B-4570-91F9-A5D56251A6EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4179EC7D-789B-4570-91F9-A5D56251A6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4179EC7D-789B-4570-91F9-A5D56251A6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4179EC7D-789B-4570-91F9-A5D56251A6EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{1BE23C45-838B-47E7-8437-90493CBEA59A} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 		{1C1AD720-523F-4144-8BA3-1E86461BC019} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 		{320B6932-9C96-4A1C-A2FC-F393516AE13F} = {417CE623-3714-4105-8A2F-4C1A7DB61AA7}
+		{4179EC7D-789B-4570-91F9-A5D56251A6EE} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4DE08D7-0160-4FCF-876A-904438A56A8A}
