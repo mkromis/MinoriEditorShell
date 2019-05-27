@@ -1,0 +1,22 @@
+<Project Sdk="MSBuild.Sdk.Extras">
+    <PropertyGroup>
+        <AssemblyName>MinoriEditorSystem</AssemblyName>
+        <RootNamespace>MinoriEditorSystem</RootNamespace>
+        <Description>
+            Enter a description here
+        </Description>
+        <PackageId>MinoriEditorSystem</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+        <Compile Include="Platforms\Net\**\*.cs" />
+        <Compile Include="Platforms\Console\**\*.cs" />
+        <PackageReference Include="System.Console" Version="4.3.1" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('uap')) ">
+        <Compile Include="Platforms\Windows-common\**\*.cs" />
+        <Compile Condition=" '$(OS)' == 'Windows_NT' " Include="Platforms\Uap\**\*.cs" />
+    </ItemGroup>
+
+</Project>
