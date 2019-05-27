@@ -1,5 +1,4 @@
 using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Attributes;
 using MinoriEditorStudio.Framework.Services;
 using MvvmCross;
 using MvvmCross.Exceptions;
@@ -37,131 +36,33 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
             _mainWindow = mainWindow;
         }
 
-        public override async Task<Boolean> Show(MvxViewModelRequest request)
-            => await base.Show(request);
-
-
-        protected override MvxPresentationAttributeAction GetPresentationAttributeAction(MvxViewModelRequest request, out MvxBasePresentationAttribute attribute) => 
-            base.GetPresentationAttributeAction(request, out attribute);
-
-        public override MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType) => 
-            base.GetOverridePresentationAttribute(request, viewType);
-
-        public override void RegisterAttributeTypes()
-        {
-            AttributeTypesToActionsDictionary.Add(
-                typeof(DocumentViewAttribute),
-                new MvxPresentationAttributeAction
-                {
-                    ShowAction = (viewType, attribute, request) =>
-                    {
-                        FrameworkElement view = WpfViewLoader.CreateView(request);
-                        return ShowContentView(view, (DocumentViewAttribute)attribute, request);
-                    },
-                    CloseAction = (viewModel, attribute) => CloseWindow(viewModel)
-                });
-            base.RegisterAttributeTypes();
-        }
-
-        public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request) => 
-            base.GetPresentationAttribute(request);
-
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType) => 
-            base.CreatePresentationAttribute(viewModelType, viewType);
-
-        protected override Task<Boolean> CloseContentView(IMvxViewModel toClose) => 
-            base.CloseContentView(toClose);
-
-        public override Task<Boolean> Close(IMvxViewModel toClose) => 
-            base.Close(toClose);
-
-        protected override Task<Boolean> CloseWindow(IMvxViewModel toClose) => 
-            base.CloseWindow(toClose);
-
-        protected override Task<Boolean> ShowWindow(FrameworkElement element, MvxWindowPresentationAttribute attribute, MvxViewModelRequest request) => 
-            base.ShowWindow(element, attribute, request);
-
-#warning Fix close hint
-        public override async Task<Boolean> ChangePresentation(MvxPresentationHint hint)
-        {
-            //if (hint is MvxClosePresentationHint)
-            //{
-            //    //ensure we have at least 2 items on the stack
-            //    //this will be the base view that shows the sliding menu and another view
-            //    //that was selected on the base sliding view
-            //    //ensure we do not pop the base sliding view
-            //    if (_navigationStack.Count >= 2)
-            //    {
-            //        _navigationStack.Pop();
-            //        //if (1 == _navigationStack.Count)
-            //        //{
-            //        //    //we have navigated down to the last screen, this is a base
-            //        //    //view that shows the tab menu, show it                       
-            //        //    _homeView.ContentGrid.Children.Clear();
-            //        //    _homeView.ContentGrid.Children.Add(_navigationStack.Peek());
-            //        //    _mainWindow.Content = _homeView;
-            //        //}
-            //    }
-            //    return true;
-            //}
-            return await base.ChangePresentation(hint);
-        }
-
-#warning fix ContentView
         protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
         {
             try
             {
+                // Everything that passes here should be a view
+                IMvxView view = element as IMvxView;
 
-                // grab the attribute off of the view
-                //RegionType regionName = !(frameworkElement
-                //    .GetType()
-                //    .GetCustomAttributes(typeof(RegionAttribute), true)
-                //    .FirstOrDefault() is RegionAttribute attribute) ? RegionType.Unknown : attribute.Region;
+                // from which we can now get the view model.
+                switch(view.ViewModel) {
+                    case Document document:
 
-                //var result = element.GetType().GetCustomAttributes(typeof(ManagerAttribute), true);
-                //var result2 = element.FindName("Manager");
-
-                switch (attribute)
-                {
-                    case DocumentViewAttribute document:
-                        IManager manager = Mvx.IoCProvider.Resolve<IManager>();
-                        IMvxView view = (IMvxView)element;
-
-                        // Try to set view
+                        // Try to set view, this is needed for DocumentManager
                         Document docViewModel = (Document)view.ViewModel;
                         docViewModel.View = view;
 
+                        // Add to manager model
+                        IManager manager = Mvx.IoCProvider.Resolve<IManager>();
                         manager.Documents.Add(docViewModel);
-                        _log.Info(document.ToString());
+                        _log.Trace($"Add {document.ToString()} to IManager.Documents");
                         return true;
-                }
-                //based on region decide where we are going to show it
-                //switch (regionName)
-                //{
-                //    //    case RegionType.BaseTab:
-                //    //        //set the base tab
-                //    //        _mainWindow.Content = frameworkElement;
-                //    //        _homeView = (HomeView)frameworkElement;
-                //    //        break;
-                //    //    case RegionType.Tab:
-                //    //        if (_navigationStack.Any())
-                //    //        {
-                //    //            _navigationStack.Pop();
-                //    //        }
 
-                //    //        _homeView.ContentGrid.Children.Clear();
-                //    //        _homeView.ContentGrid.Children.Add(frameworkElement);
-                //    //        _navigationStack.Push(frameworkElement);
-                //    //        break;
-                //    //    case RegionType.FullScreen:
-                //    //        //view that requires full screen
-                //    //        //but can navigate backwards
-                //    //        _mainWindow.Content = frameworkElement;
-                //    //        _navigationStack.Push(frameworkElement);
-                //    //        break;
-                //}
-                return await base.ShowContentView(element, attribute, request);
+                    case Tool tool:
+                        throw new NotImplementedException();
+
+                    default:
+                        return await base.ShowContentView(element, attribute, request);
+                }
             }
             catch (Exception exception)
             {

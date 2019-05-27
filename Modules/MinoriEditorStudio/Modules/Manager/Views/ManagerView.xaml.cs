@@ -1,5 +1,4 @@
 using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Attributes;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Manager.ViewModels;
 using MinoriEditorStudio.Modules.Shell.Views;
