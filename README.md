@@ -1,93 +1,83 @@
-# Gemini
+# MinoriEditorStudio
 
-[![Build status](https://ci.appveyor.com/api/projects/status/jwagos6igfdgx819/branch/master?svg=true)](https://ci.appveyor.com/project/tgjones/gemini/branch/master)
-[![NuGet](https://img.shields.io/nuget/v/GeminiWpf.svg)](https://www.nuget.org/packages/GeminiWpf/)
-[![Issue Stats](http://www.issuestats.com/github/tgjones/gemini/badge/pr?style=flat)](http://www.issuestats.com/github/tgjones/gemini)
-[![Issue Stats](http://www.issuestats.com/github/tgjones/gemini/badge/issue?style=flat)](http://www.issuestats.com/github/tgjones/gemini)
-[![Join the chat at https://gitter.im/tgjones/gemini](https://badges.gitter.im/tgjones/gemini.svg)](https://gitter.im/tgjones/gemini?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+### Not Implemented
+ * [![Build status](https://ci.appveyor.com/api/projects/status/jwagos6igfdgx819/branch/master?svg=true)](https://ci.appveyor.com/project/tgjones/MinoriEditorStudio/branch/master)
+ * [![NuGet](https://img.shields.io/nuget/v/MinoriEditorStudioWpf.svg)](https://www.nuget.org/packages/MinoriEditorStudioWpf/)
+ * [![Issue Stats](http://www.issuestats.com/github/tgjones/MinoriEditorStudio/badge/pr?style=flat)](http://www.issuestats.com/github/tgjones/MinoriEditorStudio)
+ * [![Issue Stats](http://www.issuestats.com/github/tgjones/MinoriEditorStudio/badge/issue?style=flat)](http://www.issuestats.com/github/tgjones/MinoriEditorStudio)
+ * [![Join the chat at https://gitter.im/tgjones/MinoriEditorStudio](https://badges.gitter.im/tgjones/MinoriEditorStudio.svg)](https://gitter.im/tgjones/MinoriEditorStudio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## What is this?
 
-Gemini is a WPF framework designed specifically for building IDE-like applications. It builds on some excellent libraries:
+MinoriEditorStudio is a IDE framework designed specifically for building IDE-like applications. It builds on some excellent libraries:
 
 * [AvalonDock](http://avalondock.codeplex.com)
-* [Caliburn Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
-* [MEF](http://msdn.microsoft.com/en-us/library/dd460648.aspx)
+* [MvvmCross](https://www.mvvmcross.com/)
 
-Gemini ships with two themes: a Light theme and a Blue theme. There is also an in-development Dark theme.
+MinoriEditorStudio ships with three themes: a Light theme, Dark theme and a Blue theme.
+It will try to pick the theme that matches your environment. Blue for Win7, and Win10 based on Light or Dark mode.
 
-![Screenshot - Light theme](https://raw.github.com/tgjones/gemini/master/doc/gemini-everything-light.png)
+### Fix this
+![Screenshot - Light theme](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-everything-light.png)
 
-![Screenshot - Blue theme](https://raw.github.com/tgjones/gemini/master/doc/gemini-everything-blue.png)
+![Screenshot - Blue theme](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-everything-blue.png)
 
 ## Getting started
 
 If you are creating a new WPF application, follow these steps:
 
-* Install the [Gemini](http://nuget.org/packages/GeminiWpf/) NuGet package.
-* Delete `MainWindow.xaml` - you don't need it.
-* Open `App.xaml` and delete the `StartupUri="MainWindow.xaml"` attribute.
-* Add `xmlns:gemini="http://schemas.timjones.tw/gemini"` to `App.xaml`.
-* Add `<gemini:AppBootstrapper x:Key="bootstrapper" />` to a `ResourceDictionary` within `<Application.Resources>`.
+* Create a core project [MvvmCross TipCalc.Core](https://www.mvvmcross.com/documentation/tutorials/tipcalc/the-core-project)
+* Create a wpf project [MvvmCross TipCalc.WPF](https://www.mvvmcross.com/documentation/tutorials/tipcalc/a-wpf-ui-project)
 
-So the whole `App.xaml` should look something like this:
+* For the wpf project add the [MinoriShell](http://nuget.org/packages/MinoriShell/) nuget package.
+* Update the setup type in App.xmal.cs to use MisWpfSetup. 
+	*Note: Objects are prefixed with Mes (Minori Editor Studio)*
 
-```xml
-<Application x:Class="Gemini.Demo.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             xmlns:gemini="http://schemas.timjones.tw/gemini">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <gemini:AppBootstrapper x:Key="bootstrapper" />
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
-</Application>
+```csharp
+ protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
 ```
+* Create a MainView object that inherits from MvxWpfView
+
 
 Now hit F5 and see a very empty application!
 
-By far the easiest way to get started with Gemini is to use the various NuGet packages.
-First, install the base Gemini package (note that the package ID is `GeminiWpf`, to
+By far the easiest way to get started with MinoriEditorStudio is to use the various NuGet packages.
+First, install the base MinoriEditorStudio package (note that the package ID is `MinoriEditorStudioWpf`, to
 distinguish it from another NuGet package with the same name):
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 Then add any other modules you are interested in (note that some modules have dependencies
 on other modules, but this is taken care of by the NuGet package dependency system):
 
-* [Gemini.Modules.CodeCompiler](http://nuget.org/packages/Gemini.Modules.CodeCompiler/)
-* [Gemini.Modules.CodeEditor](http://nuget.org/packages/Gemini.Modules.CodeEditor/)
-* [Gemini.Modules.ErrorList](http://nuget.org/packages/Gemini.Modules.ErrorList/)
-* [Gemini.Modules.GraphEditor](http://nuget.org/packages/Gemini.Modules.GraphEditor/)
-* [Gemini.Modules.Inspector](http://nuget.org/packages/Gemini.Modules.Inspector/)
-* [Gemini.Modules.Inspector.MonoGame](http://nuget.org/packages/Gemini.Modules.Inspector.MonoGame/)
-* [Gemini.Modules.Inspector.Xna](http://nuget.org/packages/Gemini.Modules.Inspector.Xna/)
-* [Gemini.Modules.MonoGame](http://nuget.org/packages/Gemini.Modules.MonoGame/)
-* [Gemini.Modules.Output](http://nuget.org/packages/Gemini.Modules.Output/)
-* [Gemini.Modules.PropertyGrid](http://nuget.org/packages/Gemini.Modules.PropertyGrid/)
-* [Gemini.Modules.SharpDX](http://nuget.org/packages/Gemini.Modules.SharpDX/)
-* [Gemini.Modules.Xna](http://nuget.org/packages/Gemini.Modules.Xna/)
+* [MinoriEditorStudio.Modules.CodeCompiler](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeCompiler/)
+* [MinoriEditorStudio.Modules.CodeEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeEditor/)
+* [MinoriEditorStudio.Modules.ErrorList](http://nuget.org/packages/MinoriEditorStudio.Modules.ErrorList/)
+* [MinoriEditorStudio.Modules.GraphEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.GraphEditor/)
+* [MinoriEditorStudio.Modules.Inspector](http://nuget.org/packages/MinoriEditorStudio.Modules.Inspector/)
+* [MinoriEditorStudio.Modules.Inspector.MonoGame](http://nuget.org/packages/MinoriEditorStudio.Modules.Inspector.MonoGame/)
+* [MinoriEditorStudio.Modules.Inspector.Xna](http://nuget.org/packages/MinoriEditorStudio.Modules.Inspector.Xna/)
+* [MinoriEditorStudio.Modules.MonoGame](http://nuget.org/packages/MinoriEditorStudio.Modules.MonoGame/)
+* [MinoriEditorStudio.Modules.Output](http://nuget.org/packages/MinoriEditorStudio.Modules.Output/)
+* [MinoriEditorStudio.Modules.PropertyGrid](http://nuget.org/packages/MinoriEditorStudio.Modules.PropertyGrid/)
+* [MinoriEditorStudio.Modules.SharpDX](http://nuget.org/packages/MinoriEditorStudio.Modules.SharpDX/)
+* [MinoriEditorStudio.Modules.Xna](http://nuget.org/packages/MinoriEditorStudio.Modules.Xna/)
 
 ## Continuous builds
 
-We use AppVeyor to build Gemini after every commit to the master branch,
+We use AppVeyor to build MinoriEditorStudio after every commit to the master branch,
 and also to generate pre-release NuGet packages so you can try out new features immediately.
 
 To access the pre-release NuGet packages, you'll need to add a custom package source in Visual Studio,
 pointing to this URL:
 
-https://ci.appveyor.com/nuget/gemini-g84phgw340sm
+https://ci.appveyor.com/nuget/MinoriEditorStudio-g84phgw340sm
 
 Make sure you select "Include Prerelease" when searching for NuGet packages.
 
 ## What does it do?
 
-Gemini allows you to build your WPF application by composing separate modules. This provides a nice
+MinoriEditorStudio allows you to build your WPF application by composing separate modules. This provides a nice
 way of separating out the code for each part of your application. For example, here is a very simple
 module:
 
@@ -238,17 +228,17 @@ public class PropertyGridViewModel : Tool, IPropertyGrid
 ```
 
 For more details on creating documents and tools, look at the 
-[demo program](https://github.com/tgjones/gemini/tree/master/src/Gemini.Demo)
+[demo program](https://github.com/tgjones/MinoriEditorStudio/tree/master/src/MinoriEditorStudio.Demo)
 and the source code for the built-in modules.
 
 ### Commands
 
-Commands are one of the core concepts in Gemini. Commands help you to avoid duplicating code
+Commands are one of the core concepts in MinoriEditorStudio. Commands help you to avoid duplicating code
 by letting you define command handlers in a single place, regardless of whether the command
 is invoked through a menu item, toolbar item, or other trigger.
-Gemini's commands are conceptually similar to WPF commands, but they are more powerful.
+MinoriEditorStudio's commands are conceptually similar to WPF commands, but they are more powerful.
 
-First, create a command definition. Here's Gemini [command definition for opening files](https://github.com/tgjones/gemini/blob/master/src/Gemini/Modules/Shell/Commands/OpenFileCommandDefinition.cs):
+First, create a command definition. Here's MinoriEditorStudio [command definition for opening files](https://github.com/tgjones/MinoriEditorStudio/blob/master/src/MinoriEditorStudio/Modules/Shell/Commands/OpenFileCommandDefinition.cs):
 
 ``` csharp
 [CommandDefinition]
@@ -273,7 +263,7 @@ public class OpenFileCommandDefinition : CommandDefinition
 
 	public override Uri IconSource
 	{
-		get { return new Uri("pack://application:,,,/Gemini;component/Resources/Icons/Open.png"); }
+		get { return new Uri("pack://application:,,,/MinoriEditorStudio;component/Resources/Icons/Open.png"); }
 	}
 	
 	[Export]
@@ -334,7 +324,7 @@ To find out how to bind commands to menus or toolbars, see the "MainMenu" and "T
 
 ## What modules are built-in?
 
-Gemini itself is built out of seven core modules:
+MinoriEditorStudio itself is built out of seven core modules:
 
 * MainWindow
 * Shell
@@ -344,8 +334,8 @@ Gemini itself is built out of seven core modules:
 * Toolbox
 * UndoRedo
 
-Several more modules ship with Gemini, and are available as 
-[NuGet packages](http://nuget.org/packages?q=Gemini.Modules) as described above:
+Several more modules ship with MinoriEditorStudio, and are available as 
+[NuGet packages](http://nuget.org/packages?q=MinoriEditorStudio.Modules) as described above:
 
 * CodeCompiler
 * CodeEditor
@@ -375,7 +365,7 @@ The main window module:
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -402,7 +392,7 @@ public interface IMainWindow
 
 ### Shell module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-shell.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-shell.png)
 
 The shell module:
 
@@ -416,7 +406,7 @@ The shell module:
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -425,7 +415,7 @@ The shell module:
 #### Usage
 
 The `IShell` interface exposes a number of useful properties and methods. It is the main way
-to control Gemini's behaviour.
+to control MinoriEditorStudio's behaviour.
 
 ```csharp
 public interface IShell
@@ -456,13 +446,13 @@ public interface IShell
 
 ### MainMenu module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-mainmenu.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-mainmenu.png)
 
 Adds a main menu to the top of the window.
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -495,18 +485,18 @@ To remove an existing menu item (such as a built-in menu item that you don't wan
 
 ``` csharp
 [Export]
-public static ExcludeMenuItemDefinition ExcludeOpenMenuItem = new ExcludeMenuItemDefinition(Gemini.Modules.Shell.MenuDefinitions.FileOpenMenuItem);
+public static ExcludeMenuItemDefinition ExcludeOpenMenuItem = new ExcludeMenuItemDefinition(MinoriEditorStudio.Modules.Shell.MenuDefinitions.FileOpenMenuItem);
 
 [Export]
-public static ExcludeMenuItemGroupDefinition ExcludeWindowMenuItemGroup = new ExcludeMenuItemGroupDefinition(Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup);
+public static ExcludeMenuItemGroupDefinition ExcludeWindowMenuItemGroup = new ExcludeMenuItemGroupDefinition(MinoriEditorStudio.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup);
 
 [Export]
-public static ExcludeMenuDefinition ExcludeWindowMenuDefinition = new ExcludeMenuDefinition(Gemini.Modules.MainMenu.MenuDefinitions.WindowMenu);
+public static ExcludeMenuDefinition ExcludeWindowMenuDefinition = new ExcludeMenuDefinition(MinoriEditorStudio.Modules.MainMenu.MenuDefinitions.WindowMenu);
 ```
 
 ### StatusBar module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-statusbar.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-statusbar.png)
 
 Adds a status bar to the bottom of the window.
 
@@ -517,7 +507,7 @@ Adds a status bar to the bottom of the window.
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -534,14 +524,14 @@ statusBar.AddItem("Col 79", new GridLength(100));
 
 ### ToolBars module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-toolbars.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-toolbars.png)
 
 Adds a toolbar tray to the top of the window. By default, the toolbar tray is hidden - use
 `Shell.ToolBars.Visible = true` to show it.
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -575,11 +565,11 @@ Shell.ToolBars.Visible = true;
 
 ### Toolbox module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-toolbox.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-toolbox.png)
 
 Reproduces the toolbox tool window from Visual Studio. Use the `[ToolboxItem]` attribute to provide
 available items for listing in the toolbox. You specify the document type for each toolbox item.
-When the user switches to a different document, Gemini manages showing only the toolbox items that 
+When the user switches to a different document, MinoriEditorStudio manages showing only the toolbox items that 
 are supported for the active document type. Items are listed in categories. 
 The toolbox supports drag and drop.
 
@@ -591,7 +581,7 @@ The toolbox supports drag and drop.
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -607,7 +597,7 @@ public class ImageSource : ElementViewModel
 }
 ```
 
-Handling dropping onto a document (this code is from [`GraphView.xaml.cs`](https://github.com/tgjones/gemini/blob/master/src/Gemini.Demo.FilterDesigner/Modules/FilterDesigner/Views/GraphView.xaml.cs)):
+Handling dropping onto a document (this code is from [`GraphView.xaml.cs`](https://github.com/tgjones/MinoriEditorStudio/blob/master/src/MinoriEditorStudio.Demo.FilterDesigner/Modules/FilterDesigner/Views/GraphView.xaml.cs)):
 
 ```csharp
 private void OnGraphControlDragEnter(object sender, DragEventArgs e)
@@ -634,7 +624,7 @@ private void OnGraphControlDrop(object sender, DragEventArgs e)
 
 ### UndoRedo module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-undoredo.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-undoredo.png)
 
 Provides a framework for adding undo/redo support to your application. An undo/redo stack is maintained
 separately for each document. The screenshot above shows the history tool window. You can drag the slider
@@ -648,7 +638,7 @@ to move forward or backward in the document's history.
 
 #### NuGet package
 
-* [Gemini](http://nuget.org/packages/GeminiWpf/)
+* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 #### Dependencies
 
@@ -714,7 +704,7 @@ source file.
 
 #### NuGet package
 
-* [Gemini.Modules.CodeCompiler](http://nuget.org/packages/Gemini.Modules.CodeCompiler/)
+* [MinoriEditorStudio.Modules.CodeCompiler](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeCompiler/)
 
 #### Dependencies
 
@@ -722,7 +712,7 @@ source file.
 
 #### Usage
 
-This example is from [HelixViewModel](https://github.com/tgjones/gemini/blob/master/src/Gemini.Demo/Modules/Home/ViewModels/HelixViewModel.cs) in one of the sample applications.
+This example is from [HelixViewModel](https://github.com/tgjones/MinoriEditorStudio/blob/master/src/MinoriEditorStudio.Demo/Modules/Home/ViewModels/HelixViewModel.cs) in one of the sample applications.
 
 ```csharp
 var newAssembly = _codeCompiler.Compile(
@@ -736,14 +726,14 @@ var newAssembly = _codeCompiler.Compile(
         new MetadataFileReference(typeof(AppBootstrapper).Assembly.Location),
         new MetadataFileReference(GetType().Assembly.Location)
     },
-    "GeminiDemoScript");
+    "MinoriEditorStudioDemoScript");
 ```
 
 Once there are no references to `newAssembly`, it will be eligible for garbage collection.
 
 ### CodeEditor module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-codeeditor.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-codeeditor.png)
 
 Uses AvalonEdit to provide syntax highlighting and other features for editing C# source files.
 
@@ -754,7 +744,7 @@ Uses AvalonEdit to provide syntax highlighting and other features for editing C#
 
 #### NuGet package
 
-* [Gemini.Modules.CodeEditor](http://nuget.org/packages/Gemini.Modules.CodeEditor/)
+* [MinoriEditorStudio.Modules.CodeEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeEditor/)
 
 #### Dependencies
 
@@ -771,7 +761,7 @@ the document. You can also use the `CodeEditor` control in your own views:
 
 ### ErrorList module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-errorlist.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-errorlist.png)
 
 Reproduces the error list tool window from Visual Studio. Can be used to show errors, warning, or information.
 
@@ -781,7 +771,7 @@ Reproduces the error list tool window from Visual Studio. Can be used to show er
 
 #### NuGet package
 
-* [Gemini.Modules.ErrorList](http://nuget.org/packages/Gemini.Modules.ErrorList/)
+* [MinoriEditorStudio.Modules.ErrorList](http://nuget.org/packages/MinoriEditorStudio.Modules.ErrorList/)
 
 #### Dependencies
 
@@ -819,7 +809,7 @@ errorList.AddItem(
 
 ### GraphEditor module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-grapheditor.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-grapheditor.png)
 
 Implements a general purpose graph / node editing UI. This module provides the UI controls - the logic
 and view models are usually specific to your application, and are left to you. The FilterDesigner sample
@@ -837,7 +827,7 @@ from Ashley Davis's [CodeProject article](http://www.codeproject.com/Articles/18
 
 #### NuGet package
 
-* [Gemini.Modules.GraphEditor](http://nuget.org/packages/Gemini.Modules.GraphEditor/)
+* [MinoriEditorStudio.Modules.GraphEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.GraphEditor/)
 
 #### Dependencies
 
@@ -853,12 +843,12 @@ You'll need to create view models to represent:
 * connections.
 
 I suggest looking at the 
-[FilterDesigner sample application](https://github.com/tgjones/gemini/tree/master/src/Gemini.Demo.FilterDesigner)
+[FilterDesigner sample application](https://github.com/tgjones/MinoriEditorStudio/tree/master/src/MinoriEditorStudio.Demo.FilterDesigner)
 to get an idea of what's involved.
 
 ### Inspector module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-inspector.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-inspector.png)
 
 Similar in purpose to the property grid, but the Inspector module takes a more flexible approach.
 Instead of the strict "two-column / property per row" layout used in the standard PropertyGrid,
@@ -882,7 +872,7 @@ It comes with the following editors:
 
 #### NuGet package
 
-* [Gemini.Modules.Inspector](http://nuget.org/packages/Gemini.Modules.Inspector/)
+* [MinoriEditorStudio.Modules.Inspector](http://nuget.org/packages/MinoriEditorStudio.Modules.Inspector/)
 
 #### Dependencies
 
@@ -923,7 +913,7 @@ Provides a number of utilities and controls for working with MonoGame content in
 
 #### NuGet package
 
-* [Gemini.Modules.MonoGame](http://nuget.org/packages/Gemini.Modules.MonoGame/)
+* [MinoriEditorStudio.Modules.MonoGame](http://nuget.org/packages/MinoriEditorStudio.Modules.MonoGame/)
 
 #### Dependencies
 
@@ -944,7 +934,7 @@ public class MyDrawingSurface : DrawingSurface
 
 ### Output module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-output.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-output.png)
 
 Much like the output tool window from Visual Studio.
 
@@ -954,7 +944,7 @@ Much like the output tool window from Visual Studio.
 
 #### NuGet package
 
-* [Gemini.Modules.Output](http://nuget.org/packages/Gemini.Modules.Output/)
+* [MinoriEditorStudio.Modules.Output](http://nuget.org/packages/MinoriEditorStudio.Modules.Output/)
 
 #### Dependencies
 
@@ -969,7 +959,7 @@ output.AppendLine("Started up");
 
 ### PropertyGrid module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-propertygrid.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-propertygrid.png)
 
 Pretty much does what it says on the tin. It uses the PropertyGrid control from the
 Extended WPF Toolkit.
@@ -980,7 +970,7 @@ Extended WPF Toolkit.
 
 #### NuGet package
 
-* [Gemini.Modules.PropertyGrid](http://nuget.org/packages/Gemini.Modules.PropertyGrid/)
+* [MinoriEditorStudio.Modules.PropertyGrid](http://nuget.org/packages/MinoriEditorStudio.Modules.PropertyGrid/)
 
 #### Dependencies
 
@@ -995,7 +985,7 @@ propertyGrid.SelectedObject = myObject;
 
 ### Xna module
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-module-xna.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-module-xna.png)
 
 Provides a number of utilities and controls for working with XNA content in WPF. In the screenshot above,
 the document on the left uses `DrawingSurface`, and the tool window on the right uses `GraphicsDeviceControl`.
@@ -1015,7 +1005,7 @@ The Xna module includes 2 alternatives for hosting XNA content in WPF:
 
 #### NuGet package
 
-* [Gemini.Modules.Xna](http://nuget.org/packages/Gemini.Modules.Xna/)
+* [MinoriEditorStudio.Modules.Xna](http://nuget.org/packages/MinoriEditorStudio.Modules.Xna/)
 
 #### Dependencies
 
@@ -1052,44 +1042,44 @@ public class MyGraphicsDeviceControl : GraphicsDeviceControl
 
 ## Sample applications
 
-Gemini includes three sample applications:
+MinoriEditorStudio includes three sample applications:
 
-### Gemini.Demo
+### MinoriEditorStudio.Demo
 
 Showcases many of the available modules. The screenshot below shows the interactive script editor in action -
 as you type, the code will be compiled in real-time into a dynamic assembly and then executed in the same AppDomain.
 
 It also includes a very basic example of a filter designer, built on the GraphEditor module.
 
-* [Source code](https://raw.github.com/tgjones/gemini/master/src/Gemini.Demo)
+* [Source code](https://raw.github.com/tgjones/MinoriEditorStudio/master/src/MinoriEditorStudio.Demo)
 
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-demo.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-demo.png)
 
-### Gemini.Demo.MonoGame
+### MinoriEditorStudio.Demo.MonoGame
 
 Showcases the MonoGame module.
 
-* [Source code](https://raw.github.com/tgjones/gemini/master/src/Gemini.Demo.MonoGame)
+* [Source code](https://raw.github.com/tgjones/MinoriEditorStudio/master/src/MinoriEditorStudio.Demo.MonoGame)
   
-### Gemini.Demo.SharpDX
+### MinoriEditorStudio.Demo.SharpDX
 
 Showcases the SharpDX module.
 
-* [Source code](https://raw.github.com/tgjones/gemini/master/src/Gemini.Demo.SharpDX)
+* [Source code](https://raw.github.com/tgjones/MinoriEditorStudio/master/src/MinoriEditorStudio.Demo.SharpDX)
   
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-demo-sharpdx.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-demo-sharpdx.png)
 
-### Gemini.Demo.Xna
+### MinoriEditorStudio.Demo.Xna
 
 Showcases the Xna module.
 
-* [Source code](https://raw.github.com/tgjones/gemini/master/src/Gemini.Demo.Xna)
+* [Source code](https://raw.github.com/tgjones/MinoriEditorStudio/master/src/MinoriEditorStudio.Demo.Xna)
   
-![Screenshot](https://raw.github.com/tgjones/gemini/master/doc/gemini-demo-xna.png)
+![Screenshot](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-demo-xna.png)
 
-## What projects use Gemini?
+## What projects use MinoriEditorStudio?
 
-I've used Gemini on several of my own projects:
+I've used MinoriEditorStudio on several of my own projects:
 
 * [Meshellator](http://github.com/tgjones/meshellator)
 * [Rasterizr](http://github.com/tgjones/rasterizr)
@@ -1108,7 +1098,7 @@ To build the XNA module and demo on your own machine, you'll need to install
   his code to integrate better with AvalonDock 2.0, which natively supports MVVM-style binding.
 * I used the VS2010 theme from [Edi](http://edi.codeplex.com/).
 
-Gemini is not the only WPF framework for building IDE-like applications. Here are some others:
+MinoriEditorStudio is not the only WPF framework for building IDE-like applications. Here are some others:
 
 * [SoapBox Core](http://soapboxautomation.com/products/soapbox-core-2/) - source [here](http://svn.soapboxcore.com/svn/),
   but I think this project might be dead.
