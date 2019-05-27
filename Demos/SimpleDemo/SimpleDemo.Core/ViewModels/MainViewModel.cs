@@ -13,9 +13,8 @@ namespace SimpleDemo.Core.ViewModels
 {
     public class MainViewModel : MvxNavigationViewModel
     {
-        public MainViewModel(IThemeManager themeManager, IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            themeManager.SetCurrentTheme(themeManager.Themes.First().Name);
         }
 
         public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
