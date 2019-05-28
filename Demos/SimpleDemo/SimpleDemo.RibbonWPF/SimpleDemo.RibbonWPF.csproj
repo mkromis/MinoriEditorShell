@@ -109,11 +109,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
       <Name>MinoriEditorStudio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Demos\SimpleDemo\SimpleDemo.Core\SimpleDemo.Core.csproj">
+    <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj">
       <Project>{1be23c45-838b-47e7-8437-90493cbea59a}</Project>
       <Name>SimpleDemo.Core</Name>
     </ProjectReference>

@@ -2,17 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <Description>
-        MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell. 
-        It uses AvalonDock and has an MVVM architecture based on Caliburn Micro.
-    </Description>
-    <Copyright>Copyright</Copyright>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/e</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/e</RepositoryUrl>
-    <PackageIconUrl>https://github.com/TorisanKitsune/e</PackageIconUrl>
+    <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell. 
+It uses AvalonDock and has an MVVM architecture based on Caliburn Micro.
+</Description>
+    <Copyright>Copyright 2019</Copyright>
+    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+    <PackageIconUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>IDE</PackageTags>
+    <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mark Kromis</Authors>
+    <Company>Mark Kromis</Company>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +32,10 @@
     <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
     <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
     <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
+    <None Include="..\..\LICENCE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
