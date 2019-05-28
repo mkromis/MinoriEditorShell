@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{417C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorStudio", "Modules\MinoriEditorStudio\MinoriEditorStudio.csproj", "{320B6932-9C96-4A1C-A2FC-F393516AE13F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.RibbonWPF", "SimpleDemo.RibbonWPF\SimpleDemo.RibbonWPF.csproj", "{4179EC7D-789B-4570-91F9-A5D56251A6EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.RibbonWPF", "Demos\SimpleDemo\SimpleDemo.RibbonWPF\SimpleDemo.RibbonWPF.csproj", "{4179EC7D-789B-4570-91F9-A5D56251A6EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
