@@ -44,22 +44,14 @@ namespace MinoriEditorStudio.Modules.Themes.Services
 
         private readonly IMvxMessenger _messenger;
 
-        public List<ITheme> Themes
-        {
-            get; private set;
-        }
+        public IThemeList Themes { get; private set; }
 
         public ITheme CurrentTheme { get; private set; }
 
-        public ThemeManager(IMvxMessenger messenger)
+        public ThemeManager(IMvxMessenger messenger, IThemeList themeList)
         {
-            Themes = new List<ITheme>();
+            Themes = themeList;
             _messenger = messenger;
-
-            // Setup manager, is there a better way?
-            Themes.Add(new BlueTheme());
-            Themes.Add(new LightTheme());
-            Themes.Add(new DarkTheme());
 
             SetCurrentTheme(Properties.Resources.ThemeBlueName);
 #warning fix settingsEventManager

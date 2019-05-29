@@ -3,10 +3,13 @@ using MinoriEditorStudio.Modules.MainMenu.ViewModels;
 using MinoriEditorStudio.Modules.Manager.Services;
 using MinoriEditorStudio.Modules.Manager.ViewModels;
 using MinoriEditorStudio.Modules.Settings;
+using MinoriEditorStudio.Modules.Themes.Definitions;
 using MinoriEditorStudio.Modules.Themes.Services;
 using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using MvvmCross.Plugin.Messenger;
+using System.Collections.Generic;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
@@ -14,10 +17,18 @@ namespace MinoriEditorStudio.Platforms.Wpf
     public class Plugin : IMvxPlugin
     {
         public void Load() {
-            Mvx.IoCProvider.RegisterSingleton<IManager>(() => new ManagerViewModel());
-            Mvx.IoCProvider.RegisterSingleton<ILayoutItemStatePersister>(() => new LayoutItemStatePersister());
-            Mvx.IoCProvider.RegisterSingleton<IThemeManager>(() => new ThemeManager(Mvx.IoCProvider.Resolve<IMvxMessenger>()));
-            Mvx.IoCProvider.RegisterSingleton<ISettingsEditor>(() => new MainMenuSettingsViewModel());
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
+
+            // Setup manager, is there a better way?
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeList>(() => new ThemeList
+            {
+                new BlueTheme(),
+                new LightTheme(),
+                new DarkTheme(),
+            });
         }
 
 //#pragma warning disable 649

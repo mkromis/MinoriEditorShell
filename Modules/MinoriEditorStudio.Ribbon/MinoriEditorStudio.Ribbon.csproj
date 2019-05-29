@@ -11,4 +11,12 @@
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Platform\Wpf\Themes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+  </ItemGroup>
+
 </Project>
