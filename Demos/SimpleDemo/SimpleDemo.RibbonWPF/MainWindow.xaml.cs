@@ -1,4 +1,5 @@
-using Fluent;
+using MinoriEditorStudio.Modules.Themes.Services;
+using MvvmCross;
 using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,11 @@ namespace SimpleDemo.RibbonWPF
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow() => InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
 
-        public String Identifier { get; set; }
+            Mvx.IoCProvider.Resolve<IThemeManager>().SetCurrentTheme("Default");
+        }
     }
 }
