@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
+    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
+    <PackageReference Include="MvvmCross" Version="6.3.0" />
+    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
+  </ItemGroup>
+
+</Project>
