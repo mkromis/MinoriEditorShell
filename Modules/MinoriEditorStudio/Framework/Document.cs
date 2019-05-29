@@ -29,9 +29,10 @@ namespace MinoriEditorStudio.Framework
 	    private IUndoRedoManager _undoRedoManager;
         public IUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager());
 
-#warning fix CloseCommand
-        private ICommand _closeCommand;
-        public override ICommand CloseCommand => null; // _closeCommand ?? (_closeCommand = new MvxCommand(p => TryClose(null), p => true));
+        /// <summary>
+        /// Removes the document from manager
+        /// </summary>
+        public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IManager>().Documents.Remove(this));
 
         private ToolBarDefinition _toolBarDefinition;
         public ToolBarDefinition ToolBarDefinition
