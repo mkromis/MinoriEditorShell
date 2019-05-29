@@ -34,7 +34,7 @@ namespace MinoriEditorStudio.Modules.Themes.Services
 {
     public interface IThemeManager
     {
-        List<ITheme> Themes { get; }
+        IThemeList Themes { get; }
         ITheme CurrentTheme { get; }
 
         Boolean SetCurrentTheme(String name);
