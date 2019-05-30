@@ -2,10 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mark Kromis</Authors>
+    <Company>Mark Kromis</Company>
+    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Ribbon Mahapp IDE</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
+    <PackageReference Include="GitVersionTask" Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MvvmCross" Version="6.3.0" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
@@ -17,6 +30,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENCE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
