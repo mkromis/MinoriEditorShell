@@ -15,6 +15,10 @@
 
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
+    <PackageReference Include="GitVersionTask" Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MvvmCross" Version="6.3.0" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
