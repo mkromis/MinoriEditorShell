@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mark Kromis</Authors>
+    <Company>Mark Kromis</Company>
+    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Ribbon Mahapp IDE</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +26,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENCE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
