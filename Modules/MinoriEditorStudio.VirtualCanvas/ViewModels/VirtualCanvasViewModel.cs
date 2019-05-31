@@ -3,6 +3,7 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.VirtualCanvas.Gestures;
 using MvvmCross.ViewModels;
 using System.Windows.Controls;
@@ -14,7 +15,7 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasViewModel : MvxViewModel
+    public class VirtualCanvasViewModel : Document
 
     {
         public MapZoom Zoom { get; protected set; }

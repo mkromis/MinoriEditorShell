@@ -6,7 +6,6 @@
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
     <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
-    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>

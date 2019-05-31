@@ -15,7 +15,6 @@ It uses AvalonDock and has an MVVM architecture based on MvvmCross.
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
