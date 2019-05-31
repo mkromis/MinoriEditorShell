@@ -22,15 +22,11 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public Pan Pan { get; protected set; }
         public RectangleSelectionGesture RectZoom { get; protected set; }
         public AutoScroll AutoScroll { get; protected set; }
-
         public Controls.VirtualCanvas Graph { get; protected set; }
 
-        public VirtualCanvasViewModel()
+        public void DefaultGestures(Controls.VirtualCanvas graph) 
         {
-            Views.VirtualCanvas canvas = new Views.VirtualCanvas();
-            //Graph = canvas.Graph;
-            //View = canvas;
-
+            Graph = graph;
             Canvas target = Graph.ContentCanvas;
             Zoom = new MapZoom(target);
             Pan = new Pan(target, Zoom);

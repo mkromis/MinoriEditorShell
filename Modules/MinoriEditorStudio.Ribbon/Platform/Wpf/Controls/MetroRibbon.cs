@@ -28,7 +28,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             }
         }
 
-        public string Identifier { get; set; }
+        public String Identifier { get; set; }
 
         public IMvxBindingContext BindingContext
         {
@@ -78,7 +78,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
         }
 
 
-        private void MvxMetroRibbon_Initialized(object sender, EventArgs e)
+        private void MvxMetroRibbon_Initialized(Object sender, EventArgs e)
         {
             if (this == Application.Current.MainWindow)
             {
@@ -98,7 +98,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             }
         }
 
-        private void MvxMetroRibbon_Unloaded(object sender, RoutedEventArgs e)
+        private void MvxMetroRibbon_Unloaded(Object sender, RoutedEventArgs e)
         {
             ViewModel?.ViewDisappearing();
             ViewModel?.ViewDisappeared();
@@ -110,7 +110,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
         /// </summary>
         /// <seealso cref="https://fluentribbon.github.io/documentation/interop_with_MahApps.Metro"/>
         /// <seealso cref="https://stackoverflow.com/questions/5755455/how-to-set-control-template-in-code"/>
-        private void MvxMetroRibbon_Loaded(object sender, RoutedEventArgs e)
+        private void MvxMetroRibbon_Loaded(Object sender, RoutedEventArgs e)
         {
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
@@ -132,7 +132,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             Dispose(false);
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(Boolean disposing)
         {
             if (disposing)
             {

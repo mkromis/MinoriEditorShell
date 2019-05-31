@@ -5,7 +5,6 @@ using System.Windows;
 
 namespace MinoriEditorStudio.Modules.StatusBar.ViewModels
 {
-	[Export(typeof(IStatusBar))]
 	public class StatusBarViewModel : MvxNotifyPropertyChanged, IStatusBar
 	{
         private readonly StatusBarItemCollection _items;

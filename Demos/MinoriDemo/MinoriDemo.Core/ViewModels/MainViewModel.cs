@@ -18,7 +18,5 @@ namespace MinoriDemo.Core.ViewModels
         {
             themeManager.SetCurrentTheme("Blue");
         }
-
-        public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
     }
 }
