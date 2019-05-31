@@ -5,7 +5,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Views
     /// <summary>
     /// Interaction logic for VirtualCanvas
     /// </summary>
-    public partial class VirtualCanvas : UserControl
+    public partial class VirtualCanvas
     {
         public VirtualCanvas() => InitializeComponent();
     }

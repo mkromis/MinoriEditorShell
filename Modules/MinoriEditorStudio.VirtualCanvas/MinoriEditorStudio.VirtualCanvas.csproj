@@ -14,6 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\VirtualCanvas.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\VirtualCanvas.xaml" />
   </ItemGroup>
 
@@ -28,12 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Views\VirtualCanvas.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -55,11 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core.App.cs" />
+    <Compile Include="Modules\VirtualCanvas\Extensions\QuadrantExtension.cs" />
+    <Compile Include="Modules\VirtualCanvas\Extensions\QuadTreeExtension.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\HlsColor.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\LogWriter.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
+    <Compile Include="Modules\VirtualCanvas\ViewModels\VirtualCanvasViewModel.cs" />
+    <Compile Include="Modules\VirtualCanvas\View\VirtualCanvasView.xaml.cs">
+      <DependentUpon>VirtualCanvasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TipView.xaml.cs">
-      <DependentUpon>TipView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -73,11 +81,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Modules\VirtualCanvas\View\VirtualCanvasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TipView.xaml">
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,13 +121,13 @@
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
       <Name>MinoriEditorStudio.Ribbon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj">
+      <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
+      <Name>MinoriEditorStudio.VirtualCanvas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
       <Name>MinoriEditorStudio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj">
-      <Project>{e2733b2f-5c55-4c2e-879f-1495c5e11a4b}</Project>
-      <Name>MinoriDemo.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
