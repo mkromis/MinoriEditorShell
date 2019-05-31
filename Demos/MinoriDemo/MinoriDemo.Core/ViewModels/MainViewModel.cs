@@ -13,8 +13,10 @@ namespace MinoriDemo.Core.ViewModels
 {
     public class MainViewModel : MvxNavigationViewModel
     {
-        public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IThemeManager themeManager) 
+            : base(logProvider, navigationService)
         {
+            themeManager.SetCurrentTheme("Blue");
         }
 
         public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
