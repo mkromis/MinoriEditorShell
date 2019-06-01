@@ -332,7 +332,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
         {
             base.ViewAppeared();
             View.VirtualCanvasView view = View as View.VirtualCanvasView;
-            DefaultGestures(view.Graph);
+            Initialize(view.Graph);
         }
     }
 }

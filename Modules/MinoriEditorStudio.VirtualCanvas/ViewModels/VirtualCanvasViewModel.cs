@@ -24,7 +24,7 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public AutoScroll AutoScroll { get; protected set; }
         public Controls.VirtualCanvas Graph { get; protected set; }
 
-        public void DefaultGestures(Controls.VirtualCanvas graph) 
+        public void Initialize(Controls.VirtualCanvas graph) 
         {
             Graph = graph;
             Canvas target = Graph.ContentCanvas;
