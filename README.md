@@ -1,15 +1,10 @@
 # MinoriEditorStudio
-
-### Not Implemented
- * [![Build status](https://ci.appveyor.com/api/projects/status/jwagos6igfdgx819/branch/master?svg=true)](https://ci.appveyor.com/project/tgjones/MinoriEditorStudio/branch/master)
- * [![NuGet](https://img.shields.io/nuget/v/MinoriEditorStudioWpf.svg)](https://www.nuget.org/packages/MinoriEditorStudioWpf/)
- * [![Issue Stats](http://www.issuestats.com/github/tgjones/MinoriEditorStudio/badge/pr?style=flat)](http://www.issuestats.com/github/tgjones/MinoriEditorStudio)
- * [![Issue Stats](http://www.issuestats.com/github/tgjones/MinoriEditorStudio/badge/issue?style=flat)](http://www.issuestats.com/github/tgjones/MinoriEditorStudio)
- * [![Join the chat at https://gitter.im/tgjones/MinoriEditorStudio](https://badges.gitter.im/tgjones/MinoriEditorStudio.svg)](https://gitter.im/tgjones/MinoriEditorStudio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorStudio/_apis/build/status/MinoriEditorStudio-.NET%20Desktop-CI)](https://dev.azure.com/TorisanKitsune/MinoriEditorStudio/_build/latest?definitionId=3)
+[![NuGet](https://img.shields.io/nuget/v/MinoriEditorStudio.svg)](https://www.nuget.org/packages/MinoriEditorStudio/)
 
 ## What is this?
 
-MinoriEditorStudio is a IDE framework designed specifically for building IDE-like applications. It builds on some excellent libraries:
+MinoriEditorStudio is a IDE framework designed specifically for building IDE-like applications with MvvmCross. It builds on some excellent libraries:
 
 * [AvalonDock](http://avalondock.codeplex.com)
 * [MvvmCross](https://www.mvvmcross.com/)

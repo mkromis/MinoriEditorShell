@@ -1,8 +1,3 @@
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.MainMenu.ViewModels;
-using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Manager.ViewModels;
-using MinoriEditorStudio.Modules.Settings;
 using MinoriEditorStudio.Modules.Themes.Definitions;
 using MinoriEditorStudio.Modules.Themes.Services;
 using MvvmCross;
@@ -17,12 +12,13 @@ namespace MinoriEditorStudio.Platforms.Wpf
     public class Plugin : IMvxPlugin
     {
         public void Load() {
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Framework.Services.IManager, Modules.Manager.ViewModels.ManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.StatusBar.IStatusBar, Modules.StatusBar.ViewModels.StatusBarViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Manager.Services.ILayoutItemStatePersister, Modules.Manager.Services.LayoutItemStatePersister>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Settings.ISettingsEditor, Modules.MainMenu.ViewModels.MainMenuSettingsViewModel>();
 
             // Setup manager, is there a better way?
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeList>(() => new ThemeList
             {
                 new BlueTheme(),
