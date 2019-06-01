@@ -28,7 +28,7 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         {
             Graph = graph;
             Canvas target = Graph.ContentCanvas;
-            Zoom = new MapZoom(target);
+            Graph.Zoom = Zoom = new MapZoom(target);
             Pan = new Pan(target, Zoom);
             AutoScroll = new AutoScroll(target, Zoom);
             RectZoom = new RectangleSelectionGesture(target, Zoom);
