@@ -1,6 +1,7 @@
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Modules.Themes.Services;
 using MvvmCross;
 using MvvmCross.Commands;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MinoriDemo.RibbonWPF.ViewModels
@@ -64,12 +66,14 @@ namespace MinoriDemo.RibbonWPF.ViewModels
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IManager manager, IThemeManager themeManager)
+            IManager manager, IThemeManager themeManager, IStatusBar statusBar)
             : base(logProvider, navigationService)
         {
             _themeManager = themeManager;
-            _themeManager.SetCurrentTheme("Blue");
+            _themeManager.SetCurrentTheme("Light");
             _manager = manager;
+
+            statusBar.AddItem(String.Empty, GridLength.Auto);
 
             //_settingsManager = Container.Resolve<ISettingsManager>();
             //_themeSettings = Container.Resolve<IThemeSettings>();
