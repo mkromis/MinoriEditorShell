@@ -92,7 +92,12 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             Index = new QuadTree<IVirtualChild>();
             _children = new ObservableCollection<IVirtualChild>();
             _children.CollectionChanged += new NotifyCollectionChangedEventHandler(OnChildrenCollectionChanged);
+
+            // Set default back color
             ContentCanvas = new Canvas();
+            ContentCanvas.Background = new SolidColorBrush(Colors.White);
+
+            // Setup boarder
             Backdrop = new Border();
             ContentCanvas.Children.Add(Backdrop);
 
