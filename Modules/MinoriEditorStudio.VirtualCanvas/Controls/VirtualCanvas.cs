@@ -95,7 +95,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
 
             // Set default back color
             ContentCanvas = new Canvas();
-            ContentCanvas.Background = new SolidColorBrush(Colors.White);
+            ContentCanvas.Background = Brushes.White;
 
             // Setup boarder
             Backdrop = new Border();
