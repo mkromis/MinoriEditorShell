@@ -1,7 +1,9 @@
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using MinoriEditorStudio.Modules.StatusBar.ViewModels;
+using MvvmCross;
 
 namespace MinoriEditorStudio.Modules.StatusBar.Views
 {
@@ -15,9 +17,12 @@ namespace MinoriEditorStudio.Modules.StatusBar.Views
         public StatusBarView()
         {
             InitializeComponent();
+            IStatusBar statusBar = Mvx.IoCProvider.Resolve<IStatusBar>();
+            statusBar.Items.CollectionChanged += (s, e) => RefreshGridColumns();
+            DataContext = statusBar;
         }
 
-        private void OnStatusBarGridLoaded(object sender, RoutedEventArgs e)
+        private void OnStatusBarGridLoaded(Object sender, RoutedEventArgs e)
         {
             _statusBarGrid = (Grid) sender;
             RefreshGridColumns();
@@ -26,8 +31,10 @@ namespace MinoriEditorStudio.Modules.StatusBar.Views
         private void RefreshGridColumns()
         {
             _statusBarGrid.ColumnDefinitions.Clear();
-            foreach (var item in StatusBar.Items.Cast<StatusBarItemViewModel>())
+            foreach (StatusBarItemViewModel item in StatusBar.Items.Cast<StatusBarItemViewModel>())
+            {
                 _statusBarGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = item.Width });
+            }
         }
     }
 }

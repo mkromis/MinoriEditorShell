@@ -2,6 +2,7 @@
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Extensions;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Modules.StatusBar;
+using MinoriEditorStudio.Modules.StatusBar.ViewModels;
 using MvvmCross.Commands;
 using System;
 using System.Globalization;
@@ -87,9 +88,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             {
                 Double value = Double.Parse(x);
                 Zoom.Zoom = value / 100;
-
-#warning fix Statusbar5
-                //_statusbar.Text = $"Zoom is {value}";
+                _statusbarText.Message = $"Zoom is {value}";
             }
         });
 
@@ -112,22 +111,23 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             DisplayName = "Virtual Canvas Sample";
 
             _statusbar = statusbar;
+            _statusbarText = new StatusBarItemViewModel("Loading", GridLength.Auto);
+            _statusbar.Items.Add(_statusbarText);
         }
 
         public override void ViewCreated()
         {
             base.ViewCreated();
-#warning Fix Statusbar2
-            //_statusbar.Text = "Loading";
+
+            _statusbarText.Message = "Loading";
 
             // Override ctrl with alt. (Test code)
-            // RectZoom.ModifierKeys = ModifierKeys.Alt;
+            RectZoom.ModifierKeys = ModifierKeys.Alt;
 
             Zoom.ZoomChanged += (s, e) =>
             {
                 RaisePropertyChanged("ZoomValue");
-#warning fixStatubar3
-                //_statusbar.Text = $"Zoom:{ZoomValue}";
+                _statusbarText.Message = $"Zoom:{ZoomValue}";
             };
 
             RectZoom.ZoomReset += (s, e) => ResetZoom();
@@ -140,11 +140,10 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             Graph.ContentCanvas.Background = Brushes.White;
 
             // Origianlly 100 x 100 nodes
-            //AllocateNodes();
+            AllocateNodes();
 
-#warning fixStatusbar4
             // Update info 
-            //_statusbar.Text = "Ready";
+            _statusbarText.Message = "Ready";
         }
 
         private void AllocateNodes()
@@ -183,6 +182,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
         private readonly Brush[] _strokeBrushes = new Brush[10];
         private readonly Brush[] _fillBrushes = new Brush[10];
         private readonly IStatusBar _statusbar;
+        private readonly StatusBarItemViewModel _statusbarText;
 
         void SetRandomBrushes(TestShape s, Random r)
         {
