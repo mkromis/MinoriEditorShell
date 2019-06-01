@@ -88,7 +88,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             {
                 Double value = Double.Parse(x);
                 Zoom.Zoom = value / 100;
-                _statusbarText.Message = $"Zoom is {value}";
+                _statusbar.AddItem($"Zoom is {value}", GridLength.Auto);
             }
         });
 
@@ -111,15 +111,15 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             DisplayName = "Virtual Canvas Sample";
 
             _statusbar = statusbar;
-            _statusbarText = new StatusBarItemViewModel("Loading", GridLength.Auto);
-            _statusbar.Items.Add(_statusbarText);
+            _statusbar.AddItem("Loading", GridLength.Auto);
         }
 
         public override void ViewCreated()
         {
             base.ViewCreated();
 
-            _statusbarText.Message = "Loading";
+            _statusbar.Items.Clear();
+            _statusbar.AddItem("Loading", GridLength.Auto);
 
             // Override ctrl with alt. (Test code)
             RectZoom.ModifierKeys = ModifierKeys.Alt;
@@ -127,7 +127,8 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             Zoom.ZoomChanged += (s, e) =>
             {
                 RaisePropertyChanged("ZoomValue");
-                _statusbarText.Message = $"Zoom:{ZoomValue}";
+                _statusbar.Items.Clear();
+                _statusbar.AddItem($"Zoom:{ZoomValue}", GridLength.Auto);
             };
 
             RectZoom.ZoomReset += (s, e) => ResetZoom();
@@ -143,7 +144,8 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             AllocateNodes();
 
             // Update info 
-            _statusbarText.Message = "Ready";
+            _statusbar.Items.Clear();
+            _statusbar.AddItem("Ready", GridLength.Auto);
         }
 
         private void AllocateNodes()
@@ -182,7 +184,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
         private readonly Brush[] _strokeBrushes = new Brush[10];
         private readonly Brush[] _fillBrushes = new Brush[10];
         private readonly IStatusBar _statusbar;
-        private readonly StatusBarItemViewModel _statusbarText;
 
         void SetRandomBrushes(TestShape s, Random r)
         {
