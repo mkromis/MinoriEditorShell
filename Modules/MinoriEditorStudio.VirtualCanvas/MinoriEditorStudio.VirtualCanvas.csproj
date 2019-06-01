@@ -5,26 +5,35 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
-    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+    <Description>Easy Virtual Canvas with zoom</Description>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>Ribbon Mahapp IDE</PackageTags>
+    <PackageTags>IDE VirtualCanvas Module</PackageTags>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
+    <None Remove="Views\VirtualCanvas.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="4.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MvvmCross" Version="6.3.0" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Platform\Wpf\Themes\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Views\VirtualCanvas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

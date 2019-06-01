@@ -15,7 +15,6 @@ It uses AvalonDock and has an MVVM architecture based on MvvmCross.
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,10 +31,6 @@ It uses AvalonDock and has an MVVM architecture based on MvvmCross.
     <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
     <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
     <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
-    <None Include="..\..\LICENCE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
