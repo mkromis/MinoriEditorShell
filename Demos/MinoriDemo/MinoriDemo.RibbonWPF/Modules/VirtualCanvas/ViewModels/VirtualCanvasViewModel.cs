@@ -114,9 +114,12 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             _statusbar.AddItem("Loading", GridLength.Auto);
         }
 
-        public override void ViewCreated()
+        public override void ViewAppeared()  
         {
-            base.ViewCreated();
+            base.ViewAppeared();
+
+            View.VirtualCanvasView view = View as View.VirtualCanvasView;
+            Initialize(view.Graph);
 
             _statusbar.Items.Clear();
             _statusbar.AddItem("Loading", GridLength.Auto);
@@ -136,9 +139,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             Graph.SmallScrollIncrement = new Size(_tileWidth + _tileMargin, _tileHeight + _tileMargin);
             Graph.Scale.Changed += new EventHandler(OnScaleChanged);
             Graph.Translate.Changed += new EventHandler(OnScaleChanged);
-
-            Graph.Background = new SolidColorBrush(Color.FromRgb(0xd0, 0xd0, 0xd0));
-            Graph.ContentCanvas.Background = Brushes.White;
 
             // Origianlly 100 x 100 nodes
             AllocateNodes();
@@ -325,14 +325,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
                     Graph.Backdrop.Background = null;
                 }
             }
-        }
-
-        // Try to setup view default gesture bindings.
-        public override void ViewAppeared()
-        {
-            base.ViewAppeared();
-            View.VirtualCanvasView view = View as View.VirtualCanvasView;
-            Initialize(view.Graph);
         }
     }
 }
