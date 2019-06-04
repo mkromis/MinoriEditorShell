@@ -2,6 +2,7 @@
 using MinoriEditorStudio.VirtualCanvas.Gestures;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Views;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -19,6 +20,7 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public RectangleSelectionGesture RectZoom { get; protected set; }
         public AutoScroll AutoScroll { get; protected set; }
         public Controls.VirtualCanvas Graph { get; protected set; }
+        public new Boolean CanClose { get; set; }
 
         public void EnsureLoaded()
         { 

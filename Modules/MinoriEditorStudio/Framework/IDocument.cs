@@ -8,5 +8,7 @@ namespace MinoriEditorStudio.Framework
         string DisplayName { get; set; }
         IMvxView View { get; }
         IUndoRedoManager UndoRedoManager { get; }
+
+        bool CanClose { get; }
 	}
 }
