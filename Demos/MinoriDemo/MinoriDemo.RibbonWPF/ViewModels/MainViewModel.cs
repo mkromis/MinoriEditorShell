@@ -36,13 +36,17 @@ namespace MinoriDemo.RibbonWPF.ViewModels
 
         public ICommand OpenCanvasCommand => new MvxAsyncCommand(async() =>
         {
-            IVirtualCanvas canvas = Mvx.IoCProvider.Resolve<IVirtualCanvas>();
-            await NavigationService.Navigate(canvas);
+            if (CanvasModel == null)
+            {
+                IVirtualCanvas canvas = Mvx.IoCProvider.Resolve<IVirtualCanvas>();
+                await NavigationService.Navigate(canvas);
 
-            CanvasModel = new VirtualCanvasModel(canvas);
-
-            //var viewModel = OpenAndFocus<IVirtualCanvas>();
-            //CanvasViewModel =
+                CanvasModel = new VirtualCanvasModel(canvas);
+            }
+            else
+            {
+                _manager.ActiveItem = CanvasModel.Canvas;
+            }
             //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
 

@@ -29,6 +29,7 @@ namespace MinoriEditorStudio.Framework
 	    private IUndoRedoManager _undoRedoManager;
         public IUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager());
 
+        public Boolean CanClose => true;
         /// <summary>
         /// Removes the document from manager
         /// </summary>
