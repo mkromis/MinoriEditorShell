@@ -1,11 +1,9 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Window1.xaml.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
-using MinoriEditorStudio.Framework;
+﻿using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.VirtualCanvas.Gestures;
-using MvvmCross.ViewModels;
+using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Views;
+using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.ViewModels
@@ -15,18 +13,18 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasViewModel : Document
-
+    public class VirtualCanvasViewModel : Document, IVirtualCanvas
     {
         public MapZoom Zoom { get; protected set; }
         public Pan Pan { get; protected set; }
         public RectangleSelectionGesture RectZoom { get; protected set; }
         public AutoScroll AutoScroll { get; protected set; }
         public Controls.VirtualCanvas Graph { get; protected set; }
+        public new Boolean CanClose { get; set; }
 
-        public void Initialize(Controls.VirtualCanvas graph) 
-        {
-            Graph = graph;
+        public void EnsureLoaded()
+        { 
+            Graph = ((VirtualCanvasView)View).Graph;
             Canvas target = Graph.ContentCanvas;
             Graph.Zoom = Zoom = new MapZoom(target);
             Pan = new Pan(target, Zoom);

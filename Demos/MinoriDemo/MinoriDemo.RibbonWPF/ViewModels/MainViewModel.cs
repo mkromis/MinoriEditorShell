@@ -1,8 +1,10 @@
-using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels;
+using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -20,22 +22,32 @@ namespace MinoriDemo.RibbonWPF.ViewModels
     public class MainViewModel : MvxNavigationViewModel
     {
         // Handles data context for ribbon.
-        private VirtualCanvasViewModel _canvasViewModel;
+        private VirtualCanvasModel _canvasModel;
         //private readonly ISettingsManager _settingsManager;
         //private readonly IThemeSettings _themeSettings;
         private readonly IThemeManager _themeManager;
         private readonly IManager _manager;
 
-        public VirtualCanvasViewModel CanvasViewModel
+        public VirtualCanvasModel CanvasModel
         {
-            get => _canvasViewModel;
-            set => SetProperty(ref _canvasViewModel, value);
+            get => _canvasModel;
+            set => SetProperty(ref _canvasModel, value);
         }
 
-        public ICommand OpenCanvasCommand => new MvxCommand(() =>
+        public ICommand OpenCanvasCommand => new MvxAsyncCommand(async() =>
         {
-            CanvasViewModel = OpenAndFocus<VirtualCanvasViewModel>();
-            CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
+            if (CanvasModel == null)
+            {
+                IVirtualCanvas canvas = Mvx.IoCProvider.Resolve<IVirtualCanvas>();
+                await NavigationService.Navigate(canvas);
+
+                CanvasModel = new VirtualCanvasModel(canvas);
+            }
+            else
+            {
+                _manager.ActiveItem = CanvasModel.Canvas;
+            }
+            //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
 
         //public ICommand TaskRunCommand => new DelegateCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
