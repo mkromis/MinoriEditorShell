@@ -1,27 +1,28 @@
 ﻿using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Extensions;
-using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Modules.StatusBar;
-using MinoriEditorStudio.Modules.StatusBar.ViewModels;
+using MinoriEditorStudio.VirtualCanvas.Controls;
+using MinoriEditorStudio.VirtualCanvas.Service;
+using MvvmCross;
 using MvvmCross.Commands;
+using MvvmCross.ViewModels;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
+namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
     /// <summary>
     /// This demo shows the VirtualCanvas managing up to 50,000 random WPF shapes providing smooth scrolling and
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasViewModel : MinoriEditorStudio.VirtualCanvas.ViewModels.VirtualCanvasViewModel
+    public class VirtualCanvasModel : MvxNotifyPropertyChanged
     {
         //private readonly Boolean _animateStatus = true;
         //private readonly Int32 _totalVisuals = 0;
@@ -61,7 +62,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
                     using (LogWriter log = new LogWriter(w))
                     {
                         log.Open("QuadTree");
-                        Graph.Index.Dump(log);
+                        _canvas.Graph.Index.Dump(log);
                         log.Open("Other");
                         log.WriteAttribute("MaxDepth", log.MaxDepth.ToString(CultureInfo.CurrentUICulture));
                         log.Close();
@@ -87,58 +88,51 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             else
             {
                 Double value = Double.Parse(x);
-                Zoom.Zoom = value / 100;
+                _canvas.Zoom.Zoom = value / 100;
                 _statusbar.AddItem($"Zoom is {value}", GridLength.Auto);
             }
         });
 
         private void ResetZoom()
         {
-            Double scaleX = Graph.ViewportWidth / Graph.Extent.Width;
-            Double scaleY = Graph.ViewportHeight / Graph.Extent.Height;
-            Zoom.Zoom = Math.Min(scaleX, scaleY);
-            Zoom.Offset = new Point(0, 0);
+            Double scaleX = _canvas.Graph.ViewportWidth / _canvas.Graph.Extent.Width;
+            Double scaleY = _canvas.Graph.ViewportHeight / _canvas.Graph.Extent.Height;
+            _canvas.Zoom.Zoom = Math.Min(scaleX, scaleY);
+            _canvas.Zoom.Offset = new Point(0, 0);
         }
 
         public Double ZoomValue
         {
-            get => Zoom?.Zoom ?? 0;
-            set => Zoom.Zoom = value;
+            get => _canvas.Zoom?.Zoom ?? 0;
+            set => _canvas.Zoom.Zoom = value;
         }
 
-        public VirtualCanvasViewModel(IStatusBar statusbar)
+
+        public VirtualCanvasModel(IVirtualCanvas canvas)
         {
-            DisplayName = "Virtual Canvas Sample";
+            _canvas = canvas;
+            _canvas.EnsureLoaded();
+            _canvas.DisplayName = "Virtual Canvas Sample";
 
-            _statusbar = statusbar;
-            _statusbar.AddItem("Loading", GridLength.Auto);
-        }
-
-        public override void ViewAppeared()  
-        {
-            base.ViewAppeared();
-
-            View.VirtualCanvasView view = View as View.VirtualCanvasView;
-            Initialize(view.Graph);
-
-            _statusbar.Items.Clear();
+            // Update Statusbar
+            _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
             _statusbar.AddItem("Loading", GridLength.Auto);
 
             // Override ctrl with alt. (Test code)
-            RectZoom.ModifierKeys = ModifierKeys.Alt;
+            _canvas.RectZoom.ModifierKeys = ModifierKeys.Alt;
 
-            Zoom.ZoomChanged += (s, e) =>
+            _canvas.Zoom.ZoomChanged += (s, e) =>
             {
                 RaisePropertyChanged("ZoomValue");
                 _statusbar.Items.Clear();
                 _statusbar.AddItem($"Zoom:{ZoomValue}", GridLength.Auto);
             };
 
-            RectZoom.ZoomReset += (s, e) => ResetZoom();
+            _canvas.RectZoom.ZoomReset += (s, e) => ResetZoom();
 
-            Graph.SmallScrollIncrement = new Size(_tileWidth + _tileMargin, _tileHeight + _tileMargin);
-            Graph.Scale.Changed += new EventHandler(OnScaleChanged);
-            Graph.Translate.Changed += new EventHandler(OnScaleChanged);
+            _canvas.Graph.SmallScrollIncrement = new Size(_tileWidth + _tileMargin, _tileHeight + _tileMargin);
+            _canvas.Graph.Scale.Changed += new EventHandler(OnScaleChanged);
+            _canvas.Graph.Translate.Changed += new EventHandler(OnScaleChanged);
 
             // Origianlly 100 x 100 nodes
             AllocateNodes();
@@ -150,13 +144,13 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
 
         private void AllocateNodes()
         {
-            Zoom.Zoom = 1;
-            Zoom.Offset = new Point(0, 0);
+            _canvas.Zoom.Zoom = 1;
+            _canvas.Zoom.Offset = new Point(0, 0);
 
             // Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
             // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
             Random r = new Random(Environment.TickCount);
-            Graph.VirtualChildren.Clear();
+            _canvas.Graph.VirtualChildren.Clear();
             Double w = _tileWidth + _tileMargin;
             Double h = _tileHeight + _tileMargin;
             Int32 count = (rows * cols) / 20;
@@ -175,7 +169,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
                 //Color color = HlsColor.ColorFromHLS((x * 240) / cols, 100, 240 - ((y * 240) / rows));
                 TestShape shape = new TestShape(new Rect(pos, s), type, r);
                 SetRandomBrushes(shape, r);
-                Graph.AddVirtualChild(shape);
+                _canvas.Graph.AddVirtualChild(shape);
                 count--;
             }
         }
@@ -184,6 +178,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
         private readonly Brush[] _strokeBrushes = new Brush[10];
         private readonly Brush[] _fillBrushes = new Brush[10];
         private readonly IStatusBar _statusbar;
+        private readonly IVirtualCanvas _canvas;
 
         void SetRandomBrushes(TestShape s, Random r)
         {
@@ -214,12 +209,10 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
         void OnScaleChanged(Object sender, EventArgs e)
         {
             // Make the grid lines get thinner as you zoom in
-            Double t = _gridLines.StrokeThickness = 0.1 / Graph.Scale.ScaleX;
-            Graph.Backdrop.BorderThickness = new Thickness(t);
+            Double t = _gridLines.StrokeThickness = 0.1 / _canvas.Graph.Scale.ScaleX;
+            _canvas.Graph.Backdrop.BorderThickness = new Thickness(t);
         }
 
-#warning fix status
-#if false
         private readonly Int32 lastTick = Environment.TickCount;
         private readonly Int32 addedPerSecond = 0;
         private readonly Int32 removedPerSecond = 0;
@@ -259,7 +252,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
 
         void OnAnimateStatus(Object sender, RoutedEventArgs e)
         {
-#warning fix animate status
             //MenuItem item = (MenuItem)sender;
             //_animateStatus = item.IsChecked = !item.IsChecked;
 
@@ -271,7 +263,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
             //Destroyed.Width = 0;
             //DestroyedLabel.Text = "";
         }
-#endif
 
         public Boolean ShowGridLines
         {
@@ -313,16 +304,16 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels
                     outerVB.ViewportUnits = BrushMappingMode.Absolute;
                     outerVB.TileMode = TileMode.Tile;
 
-                    Graph.Backdrop.Background = outerVB;
+                    _canvas.Graph.Backdrop.Background = outerVB;
 
-                    Border border = Graph.Backdrop;
+                    Border border = _canvas.Graph.Backdrop;
                     border.BorderBrush = Brushes.Blue;
                     border.BorderThickness = new Thickness(0.1);
-                    Graph.InvalidateVisual();
+                    _canvas.Graph.InvalidateVisual();
                 }
                 else
                 {
-                    Graph.Backdrop.Background = null;
+                    _canvas.Graph.Backdrop.Background = null;
                 }
             }
         }

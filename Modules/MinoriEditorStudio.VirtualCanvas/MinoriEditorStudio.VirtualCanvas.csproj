@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\VirtualCanvas.xaml" />
+    <None Remove="Views\VirtualCanvasView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="Views\VirtualCanvas.xaml">
+    <Page Include="Views\VirtualCanvasView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
