@@ -1,10 +1,11 @@
+using MvvmCross.ViewModels;
 using System;
 using System.IO;
 using System.Windows.Input;
 
 namespace MinoriEditorStudio.Framework
 {
-    public interface ILayoutItem
+    public interface ILayoutItem : IMvxViewModel
     {
         Guid Id { get; }
         string ContentId { get; }

@@ -9,8 +9,6 @@ namespace MinoriDemo.Core
     {
         public override void Initialize()
         {
-            Mvx.IoCProvider.RegisterType<MinoriDemo.RibbonWPF.Modules.VirtualCanvas.ViewModels.VirtualCanvasViewModel>();
-
             RegisterAppStart<MainViewModel>();
         }
     }

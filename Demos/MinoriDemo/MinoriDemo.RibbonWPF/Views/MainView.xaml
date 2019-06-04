@@ -55,7 +55,7 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
             <!-- Bind context group to tab item -->
-            <fluent:RibbonTabItem Header="Canvas" Group="{Binding Source={x:Reference canvasGroup}}" DataContext="{Binding CanvasViewModel}">
+            <fluent:RibbonTabItem Header="Canvas" Group="{Binding Source={x:Reference canvasGroup}}" DataContext="{Binding CanvasModel}">
                 <fluent:RibbonTabItem.Style>
                     <Style TargetType="fluent:RibbonTabItem">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -103,7 +103,7 @@
             </fluent:RibbonTabItem>
             <fluent:RibbonTabItem 
             Header="Status Info" Group="{Binding Source={x:Reference canvasGroup}}" 
-            DataContext="{Binding CanvasViewModel}">
+            DataContext="{Binding CanvasModel}">
                 <fluent:RibbonTabItem.Style>
                     <Style TargetType="fluent:RibbonTabItem">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -125,7 +125,7 @@
                     </StackPanel>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
-            <fluent:RibbonTabItem Header="Mouse Help" Group="{Binding Source={x:Reference canvasGroup}}" DataContext="{Binding CanvasViewModel}">
+            <fluent:RibbonTabItem Header="Mouse Help" Group="{Binding Source={x:Reference canvasGroup}}" DataContext="{Binding CanvasModel}">
                 <fluent:RibbonTabItem.Style>
                     <Style TargetType="fluent:RibbonTabItem">
                         <Setter Property="Visibility" Value="Collapsed" />
