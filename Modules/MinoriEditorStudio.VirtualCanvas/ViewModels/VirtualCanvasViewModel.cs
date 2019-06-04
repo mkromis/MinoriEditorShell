@@ -22,8 +22,8 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public Controls.VirtualCanvas Graph { get; protected set; }
         public new Boolean CanClose { get; set; }
 
-        public void EnsureLoaded()
-        { 
+        public override void ViewCreated()
+        {
             Graph = ((VirtualCanvasView)View).Graph;
             Canvas target = Graph.ContentCanvas;
             Graph.Zoom = Zoom = new MapZoom(target);

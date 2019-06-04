@@ -13,7 +13,5 @@ namespace MinoriEditorStudio.VirtualCanvas.Service
         RectangleSelectionGesture RectZoom { get; }
         MapZoom Zoom { get; }
         new Boolean CanClose { get; set; }
-
-        void EnsureLoaded();
     }
 }
