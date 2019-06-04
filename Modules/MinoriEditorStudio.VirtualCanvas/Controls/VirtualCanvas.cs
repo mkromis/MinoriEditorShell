@@ -719,36 +719,39 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 _dirtyRegions.RemoveAt(last);
                 regionCount++;
 
-                // Iterate over the visible range of nodes and make sure they have visuals.
-                foreach (IVirtualChild n in Index.GetNodesInside(dirty))
+                if (Index != null)
                 {
-                    UIElement e = n.Visual;
-                    if (e != null)
+                    // Iterate over the visible range of nodes and make sure they have visuals.
+                    foreach (IVirtualChild n in Index.GetNodesInside(dirty))
                     {
-                        Rect nrect = n.Bounds;
-                        if (!nrect.IntersectsWith(visible))
+                        UIElement e = n.Visual;
+                        if (e != null)
                         {
-                            e.ClearValue(VirtualChildProperty);
-                            ContentCanvas.Children.Remove(e);
-                            n.DisposeVisual();
-                            Removed++;
+                            Rect nrect = n.Bounds;
+                            if (!nrect.IntersectsWith(visible))
+                            {
+                                e.ClearValue(VirtualChildProperty);
+                                ContentCanvas.Children.Remove(e);
+                                n.DisposeVisual();
+                                Removed++;
+                            }
                         }
-                    }
 
-                    count++;
-                    if (count >= quantum)
-                    {
-                        if (regionCount == 1)
+                        count++;
+                        if (count >= quantum)
                         {
-                            // We didn't even complete 1 region, so we better split it.
-                            SplitRegion(dirty, _dirtyRegions);
+                            if (regionCount == 1)
+                            {
+                                // We didn't even complete 1 region, so we better split it.
+                                SplitRegion(dirty, _dirtyRegions);
+                            }
+                            else
+                            {
+                                _dirtyRegions.Add(dirty); // put it back since we're not done!
+                            }
+                            IsDone = false;
+                            break;
                         }
-                        else
-                        {
-                            _dirtyRegions.Add(dirty); // put it back since we're not done!
-                        }
-                        IsDone = false;
-                        break;
                     }
                 }
             }
