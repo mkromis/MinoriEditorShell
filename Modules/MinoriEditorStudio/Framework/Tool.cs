@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.ToolBars;
@@ -5,16 +6,14 @@ using MinoriEditorStudio.Modules.ToolBars;
 using MinoriEditorStudio.Modules.ToolBars.Models;
 using MvvmCross;
 using MvvmCross.Commands;
+using MvvmCross.Views;
 
 namespace MinoriEditorStudio.Framework
 {
 	public abstract class Tool : LayoutItemBase, ITool
 	{
 		private ICommand _closeCommand;
-		public override ICommand CloseCommand
-		{
-            get { return null; } //_closeCommand ?? (_closeCommand = new MvxCommand(p => IsVisible = false, p => true)); }
-		}
+        public override ICommand CloseCommand => new MvxCommand(() => IsVisible = false);
 
 	    public abstract PaneLocation PreferredLocation { get; }
 
@@ -63,13 +62,12 @@ namespace MinoriEditorStudio.Framework
             }
         }
 
-        public override bool ShouldReopenOnStart
-        {
-            // Tool windows should always reopen on app start by default.
-            get { return true; }
-        }
+        public override Boolean ShouldReopenOnStart => true;
 
-		protected Tool()
+        public IMvxView View { get; set; }
+        public Boolean CanClose { get; }
+
+        protected Tool()
 		{
 			IsVisible = true;
 		}

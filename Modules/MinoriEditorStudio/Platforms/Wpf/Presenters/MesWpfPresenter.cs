@@ -35,6 +35,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
             {
                 // Everything that passes here should be a view
                 IMvxView view = element as IMvxView;
+                IManager manager = Mvx.IoCProvider.Resolve<IManager>();
 
                 // from which we can now get the view model.
                 switch(view.ViewModel) {
@@ -42,16 +43,26 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
 
                         // Try to set view, this is needed for DocumentManager
                         Document docViewModel = (Document)view.ViewModel;
-                        docViewModel.View = view;
+                        docViewModel.View = view; // Needed for Binding with AvalonDock
+                        docViewModel.ViewAppearing();
+                        docViewModel.ViewAppeared();
 
                         // Add to manager model
-                        IManager manager = Mvx.IoCProvider.Resolve<IManager>();
                         manager.Documents.Add(docViewModel);
                         _log.Trace($"Add {document.ToString()} to IManager.Documents");
                         return true;
 
                     case Tool tool:
-                        throw new NotImplementedException();
+                        // Try to set view, this is needed for DocumentManager
+                        Tool toolViewModel = (Tool)view.ViewModel;
+                        toolViewModel.View = view; // Needed for Binding with AvalonDock
+                        toolViewModel.ViewAppearing();
+                        toolViewModel.ViewAppeared();
+
+                        // Add to manager model
+                        manager.Tools.Add(toolViewModel);
+                        _log.Trace($"Add {tool.ToString()} to IManager.Tools");
+                        return true;
 
                     default:
                         return await base.ShowContentView(element, attribute, request);

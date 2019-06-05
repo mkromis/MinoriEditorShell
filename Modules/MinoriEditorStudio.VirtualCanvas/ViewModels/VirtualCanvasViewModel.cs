@@ -22,14 +22,20 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public Controls.VirtualCanvas Graph { get; protected set; }
         public new Boolean CanClose { get; set; }
 
-        public override void ViewCreated()
+        public override void ViewDestroy(Boolean viewFinishing = true) => base.ViewDestroy(viewFinishing);
+
+        public override void ViewAppeared()
         {
-            Graph = ((VirtualCanvasView)View).Graph;
-            Canvas target = Graph.ContentCanvas;
-            Graph.Zoom = Zoom = new MapZoom(target);
-            Pan = new Pan(target, Zoom);
-            AutoScroll = new AutoScroll(target, Zoom);
-            RectZoom = new RectangleSelectionGesture(target, Zoom);
+            // This is being called twice or not at all.
+            if (Graph == null)
+            {
+                Graph = ((VirtualCanvasView)View).Graph;
+                Canvas target = Graph.ContentCanvas;
+                Graph.Zoom = Zoom = new MapZoom(target);
+                Pan = new Pan(target, Zoom);
+                AutoScroll = new AutoScroll(target, Zoom);
+                RectZoom = new RectangleSelectionGesture(target, Zoom);
+            }
         }
     }
 }
