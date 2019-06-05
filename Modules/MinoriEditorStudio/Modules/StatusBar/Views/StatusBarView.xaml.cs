@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,9 +18,14 @@ namespace MinoriEditorStudio.Modules.StatusBar.Views
         public StatusBarView()
         {
             InitializeComponent();
-            IStatusBar statusBar = Mvx.IoCProvider.Resolve<IStatusBar>();
-            statusBar.Items.CollectionChanged += (s, e) => RefreshGridColumns();
-            DataContext = statusBar;
+
+            // for Design Editor
+            try
+            {
+                IStatusBar statusBar = Mvx.IoCProvider.Resolve<IStatusBar>();
+                statusBar.Items.CollectionChanged += (s, e) => RefreshGridColumns();
+                DataContext = statusBar;
+            } catch { }
         }
 
         private void OnStatusBarGridLoaded(Object sender, RoutedEventArgs e)

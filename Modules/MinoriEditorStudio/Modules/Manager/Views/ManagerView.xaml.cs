@@ -19,9 +19,13 @@ namespace MinoriEditorStudio.Modules.Manager.Views
         public ManagerView()
         {
             InitializeComponent();
-            IManager manager = Mvx.IoCProvider.Resolve<IManager>();
-            manager.ManagerView = this;
-            DataContext = manager;
+
+            try
+            {
+                IManager manager = Mvx.IoCProvider.Resolve<IManager>();
+                manager.ManagerView = this;
+                DataContext = manager;
+            } catch { }
         }
 
         public void LoadLayout(
