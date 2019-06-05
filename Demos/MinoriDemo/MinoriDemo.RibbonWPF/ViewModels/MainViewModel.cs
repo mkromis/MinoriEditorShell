@@ -50,6 +50,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
             //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
 
+        public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
         //public ICommand TaskRunCommand => new DelegateCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
 
         //public ICommand SettingsCommand => _settingsManager.SettingsCommand;
