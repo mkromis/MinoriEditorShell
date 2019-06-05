@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MinoriEditorStudio.VirtualCanvas
 {
     [MvxPlugin]
-    class Plugin : IMvxPlugin
+    public class Plugin : IMvxPlugin
     {
         public void Load()
         {
