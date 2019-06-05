@@ -48,7 +48,7 @@
             <fluent:RibbonTabItem Header="Samples">
                 <fluent:RibbonGroupBox Header="Content ">
                     <fluent:Button Header="Virtual Content" Size="Middle" Command="{Binding OpenCanvasCommand}"/>
-                    <fluent:Button Header="Task Run Test" Size="Middle" Command="{Binding TaskRunCommand}" />
+                    <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Settings">
                     <fluent:ComboBox Header="Theme" ItemsSource="{Binding ThemeList}" SelectedItem="{Binding SelectedTheme}" />
