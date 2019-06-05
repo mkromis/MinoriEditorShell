@@ -22,8 +22,6 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
         public Controls.VirtualCanvas Graph { get; protected set; }
         public new Boolean CanClose { get; set; }
 
-        public override void ViewDestroy(Boolean viewFinishing = true) => base.ViewDestroy(viewFinishing);
-
         public override void ViewAppeared()
         {
             // This is being called twice or not at all.
