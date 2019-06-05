@@ -111,7 +111,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
         public VirtualCanvasModel(IVirtualCanvas canvas)
         {
             Canvas = canvas;
-            Canvas.EnsureLoaded();
             Canvas.CanClose = false;
             Canvas.DisplayName = "Virtual Canvas Sample";
 

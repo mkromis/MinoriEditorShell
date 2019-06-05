@@ -61,10 +61,14 @@
     <Compile Include="Modules\VirtualCanvas\Models\HlsColor.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\LogWriter.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\ToolSampleViewModel.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\VirtualCanvasModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolSampleView.xaml.cs">
+      <DependentUpon>ToolSampleView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolSampleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
