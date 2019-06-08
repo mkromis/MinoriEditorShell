@@ -1,196 +1,201 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell. 
-It uses AvalonDock and has an MVVM architecture based on MvvmCross.
-</Description>
-    <Copyright>Copyright 2019</Copyright>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <PackageLicenseExpression></PackageLicenseExpression>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <Description>
+            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+            It uses AvalonDock and has an MVVM architecture based on MvvmCross.
+        </Description>
+        <Copyright>Copyright 2019</Copyright>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+        <PackageIconUrl></PackageIconUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mark Kromis</Authors>
+        <Company>Mark Kromis</Company>
+        <PackageLicenseExpression></PackageLicenseExpression>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Framework\Behaviors\CustomGlowWindowBehavior.cs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Framework\Behaviors\CustomGlowWindowBehavior.cs" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Modules\MainMenu\Views\MainMenuSettingsView.xaml" />
-    <None Remove="Modules\MainMenu\Views\MainMenuView.xaml" />
-    <None Remove="Modules\MainWindow\Views\MainWindowView.xaml" />
-    <None Remove="Modules\Manager\Views\ManagerView.xaml" />
-    <None Remove="Modules\Settings\Views\SettingsView.xaml" />
-    <None Remove="Modules\StatusBar\Views\StatusBarView.xaml" />
-    <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
-    <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
-    <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Modules\MainMenu\Views\MainMenuSettingsView.xaml" />
+        <None Remove="Modules\MainMenu\Views\MainMenuView.xaml" />
+        <None Remove="Modules\MainWindow\Views\MainWindowView.xaml" />
+        <None Remove="Modules\Manager\Views\ManagerView.xaml" />
+        <None Remove="Modules\Settings\Views\SettingsView.xaml" />
+        <None Remove="Modules\StatusBar\Views\StatusBarView.xaml" />
+        <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
+        <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
+        <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
-    <PackageReference Include="GitVersionTask" Version="4.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
-    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-    <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
-  </ItemGroup>
+    <ItemGroup><!-- All Reference Groups -->
+        <PackageReference Include="MvvmCross" Version="6.3.0" />
+        <PackageReference Include="GitVersionTask" Version="4.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Page Include="Modules\MainMenu\Views\MainMenuSettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\MainMenu\Views\MainMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\MainWindow\Views\MainWindowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\Settings\Views\SettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\StatusBar\Views\StatusBarView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\ToolBars\Views\ToolBarsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\Toolbox\Views\ToolboxView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\UndoRedo\Views\HistoryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modules\Manager\Views\ManagerView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
+        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+        <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        <Page Include="Modules\MainMenu\Views\MainMenuSettingsView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\MainMenu\Views\MainMenuView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\MainWindow\Views\MainWindowView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\Settings\Views\SettingsView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\StatusBar\Views\StatusBarView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\ToolBars\Views\ToolBarsView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\Toolbox\Views\ToolboxView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\UndoRedo\Views\HistoryView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Modules\Manager\Views\ManagerView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="WindowsBase" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.ko.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Modules\MainMenu\Resources\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Modules\Settings\SampleData\SettingsViewModelSampleData.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Modules\ToolBars\Resources\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Update="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\BlueTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Button.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\CheckBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\ColorCanvas.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\ColorPicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\ComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Focus.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Label.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Menu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Merged.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\ScrollBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Slider.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\TextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Toolbar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Tooltip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\TreeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\Window.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\Controls\WindowCommands.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\DarkTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Themes\VS2013\LightTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.de.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Resources.ko.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Resources.ru.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        <None Update="Modules\MainMenu\Resources\Styles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Modules\Settings\SampleData\SettingsViewModelSampleData.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Modules\ToolBars\Resources\Styles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+        <None Update="Themes\Generic.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\BlueTheme.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Button.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\CheckBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\ColorCanvas.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\ColorPicker.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\ComboBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Focus.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Label.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Menu.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Merged.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\ScrollBar.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Slider.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\TextBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Toolbar.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Tooltip.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\TreeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\Window.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\Controls\WindowCommands.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\DarkTheme.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Themes\VS2013\LightTheme.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+    </ItemGroup>
 
 </Project>
