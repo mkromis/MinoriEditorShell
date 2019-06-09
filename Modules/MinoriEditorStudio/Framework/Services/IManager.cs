@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using MinoriEditorStudio.Modules.MainMenu;
-using MinoriEditorStudio.Modules.Manager.Views;
-using MinoriEditorStudio.Modules.Shell.Views;
-using MinoriEditorStudio.Modules.StatusBar;
-using MinoriEditorStudio.Modules.ToolBars;
+using MinoriEditorStudio.Modules.Manager.Services;
 using MvvmCross.ViewModels;
+using System;
 
 namespace MinoriEditorStudio.Framework.Services
 {

@@ -1,6 +1,4 @@
 using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Manager.Views;
-using MinoriEditorStudio.Modules.Shell.Views;
 using System;
 
 namespace MinoriEditorStudio.Modules.Manager.Services

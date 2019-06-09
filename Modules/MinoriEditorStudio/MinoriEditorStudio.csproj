@@ -19,68 +19,38 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Framework\Behaviors\CustomGlowWindowBehavior.cs" />
-    </ItemGroup>
+        <Compile Remove="Platforms\**\*.cs" />
+        <None Include="Platforms\**\*.cs" />
+        <Compile Remove="Resources\*.cs" />
+        <None Include="Resources\*.cs" />
 
-    <ItemGroup>
-        <None Remove="Modules\MainMenu\Views\MainMenuSettingsView.xaml" />
-        <None Remove="Modules\MainMenu\Views\MainMenuView.xaml" />
-        <None Remove="Modules\MainWindow\Views\MainWindowView.xaml" />
-        <None Remove="Modules\Manager\Views\ManagerView.xaml" />
-        <None Remove="Modules\Settings\Views\SettingsView.xaml" />
-        <None Remove="Modules\StatusBar\Views\StatusBarView.xaml" />
-        <None Remove="Modules\ToolBars\Views\ToolBarsView.xaml" />
-        <None Remove="Modules\Toolbox\Views\ToolboxView.xaml" />
-        <None Remove="Modules\UndoRedo\Views\HistoryView.xaml" />
-    </ItemGroup>
-
-    <ItemGroup><!-- All Reference Groups -->
         <PackageReference Include="MvvmCross" Version="6.3.0" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
         <PackageReference Include="GitVersionTask" Version="4.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+        <Compile Include="Platforms\Netstandard\**\*.cs" />
+
+        <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+        <PackageReference Include="System.ComponentModel.Composition" Version="4.5.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+        <Page Include="Platforms\Wpf\**\*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Compile Include="Platforms\Wpf\**\*.cs" />
+        
         <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
         <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
-    </ItemGroup>
-
-    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-        <Page Include="Modules\MainMenu\Views\MainMenuSettingsView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\MainMenu\Views\MainMenuView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\MainWindow\Views\MainWindowView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\Settings\Views\SettingsView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\StatusBar\Views\StatusBarView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\ToolBars\Views\ToolBarsView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\Toolbox\Views\ToolboxView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\UndoRedo\Views\HistoryView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Include="Modules\Manager\Views\ManagerView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-
-    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        
         <Reference Include="PresentationCore" />
         <Reference Include="PresentationFramework" />
         <Reference Include="System.ComponentModel.Composition" />
@@ -92,11 +62,6 @@
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
-        <Compile Update="Properties\Settings.Designer.cs">
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
         </Compile>
     </ItemGroup>
 

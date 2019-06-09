@@ -6,7 +6,8 @@ namespace MinoriEditorStudio.Framework
 {
 	public interface IModule
 	{
-        IEnumerable<ResourceDictionary> GlobalResourceDictionaries { get; }
+#warning GlobalResourceDictionaries Disabled
+        //IEnumerable<ResourceDictionary> GlobalResourceDictionaries { get; }
         IEnumerable<IDocument> DefaultDocuments { get; }
         IEnumerable<Type> DefaultTools { get; }
 
