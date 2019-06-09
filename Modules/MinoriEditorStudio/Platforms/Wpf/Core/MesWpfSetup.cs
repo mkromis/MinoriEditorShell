@@ -1,7 +1,10 @@
+using MinoriEditorStudio.Messages;
 using MinoriEditorStudio.Platforms.Wpf.Presenters;
+using MvvmCross;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Plugin;
+using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using System.Windows.Controls;
 
@@ -9,6 +12,8 @@ namespace MinoriEditorStudio.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
+        private IMvxMessenger _messenger;
+
         protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
         {
             // This handles main window.
@@ -19,7 +24,19 @@ namespace MinoriEditorStudio.Platforms.Wpf
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
-        protected override IMvxApplication CreateApp() => new TApplication();
+        protected override IMvxApplication CreateApp()
+        {
+            _messenger = Mvx.IoCProvider.Resolve<IMvxMessenger>();
+            Properties.Settings.Default.PropertyChanged += (s, e) =>
+            {
+                SettingsChangedMessage message = new SettingsChangedMessage(
+                    s, e.PropertyName,
+                    Properties.Settings.Default.PropertyValues[e.PropertyName]);
+                _messenger.Publish(message);
+            };
+ 
+            return new TApplication();
+        }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {

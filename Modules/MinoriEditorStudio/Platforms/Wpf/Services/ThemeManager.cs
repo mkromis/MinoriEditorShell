@@ -27,6 +27,7 @@
  */
 
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Messages;
 using MinoriEditorStudio.Modules.Themes.Definitions;
 using MvvmCross.Plugin.Messenger;
 using System;
@@ -39,9 +40,7 @@ namespace MinoriEditorStudio.Modules.Themes.Services
 {
     public class ThemeManager : IThemeManager
     {
-        private readonly SettingsPropertyChangedEventManager<Properties.Settings> _settingsEventManager =
-            new SettingsPropertyChangedEventManager<Properties.Settings>(Properties.Settings.Default);
-
+        // IOC
         private readonly IMvxMessenger _messenger;
 
         public IThemeList Themes { get; private set; }
@@ -53,12 +52,28 @@ namespace MinoriEditorStudio.Modules.Themes.Services
             Themes = themeList;
             _messenger = messenger;
 
-            SetCurrentTheme(Properties.Resources.ThemeBlueName);
-#warning fix settingsEventManager
-            //_settingsEventManager.AddListener(s => s.ThemeName, value => SetCurrentTheme(value));
+            String themeName = Properties.Settings.Default.ThemeName;
+            if (String.IsNullOrEmpty(themeName)) {
+                themeName = GetDefaultApplicationMode();
+            }
+
+            SetCurrentTheme(Properties.Resources.ThemeBlueName, false);
+
+            _messenger.Subscribe<SettingsChangedMessage>((x) =>
+            {
+                if (x.Name == "ThemeName")
+                {
+                    SetCurrentTheme(x.Name);
+                }
+            });
         }
 
-        public Boolean SetCurrentTheme(String name)
+        private String GetDefaultApplicationMode() => null;
+
+        // Needed for Interface
+        public Boolean SetCurrentTheme(String name) => SetCurrentTheme(name, true);
+
+        public Boolean SetCurrentTheme(String name, Boolean applySetting)
         {
             // Find theme for name
             ITheme theme = Themes.FirstOrDefault(x => x.Name == name);
@@ -134,7 +149,13 @@ namespace MinoriEditorStudio.Modules.Themes.Services
             // publish event
             _messenger.Publish(new ThemeChangeMessage(this, CurrentTheme.Name));
 
+            if (applySetting)
+            {
+                Properties.Settings.Default.ThemeName = CurrentTheme.Name;
+            }
+
             return true;
         }
+
     }
 }

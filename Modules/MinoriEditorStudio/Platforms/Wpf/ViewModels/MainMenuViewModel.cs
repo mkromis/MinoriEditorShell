@@ -1,27 +1,33 @@
+using MinoriEditorStudio.Modules.MainMenu.Models;
+using MinoriEditorStudio.Messages;
+using MvvmCross.Plugin.Messenger;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.MainMenu.Models;
-using ExtensionMethods = MinoriEditorStudio.Framework.Services.ExtensionMethods;
+using System;
 
 namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
 {
-	[Export(typeof(IMenu))]
+    [Export(typeof(IMenu))]
     public class MainMenuViewModel : MenuModel, IPartImportsSatisfiedNotification
 	{
         private readonly IMenuBuilder _menuBuilder;
-
-	    private bool _autoHide;
-
-	    private readonly SettingsPropertyChangedEventManager<Properties.Settings> _settingsEventManager =
-	        new SettingsPropertyChangedEventManager<Properties.Settings>(Properties.Settings.Default);
+        private readonly IMvxMessenger _messenger;
+        private bool _autoHide;
 
         [ImportingConstructor]
-	    public MainMenuViewModel(IMenuBuilder menuBuilder)
+	    public MainMenuViewModel(IMenuBuilder menuBuilder, IMvxMessenger messenger)
 	    {
             _menuBuilder = menuBuilder;
+            _messenger = messenger;
+
             _autoHide = Properties.Settings.Default.AutoHideMainMenu;
-            _settingsEventManager.AddListener(s => s.AutoHideMainMenu, value => { AutoHide = value; });
+            _messenger.Subscribe<SettingsChangedMessage>((x) =>
+            {
+                if (x.Name == "AutoHideMainMenu")
+                {
+                    AutoHide = (Boolean)x.Value;
+                }
+            });
 		}
 
 	    public bool AutoHide
