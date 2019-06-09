@@ -24,6 +24,7 @@
         <Compile Remove="Platforms\Wpf\Themes\VS2013\Controls\Converters\**" />
         <Compile Remove="Resources\*.cs" />
         <None Include="Resources\*.cs" />
+        <None Include="Services\Document.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.3.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />

@@ -5,7 +5,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
-using MinoriEditorStudio.Framework.ToolBars;
+//using MinoriEditorStudio.Framework.ToolBars;
 using MinoriEditorStudio.Modules.Shell.Commands;
 using MinoriEditorStudio.Modules.ToolBars;
 using MinoriEditorStudio.Modules.ToolBars.Models;
@@ -20,11 +20,12 @@ using MvvmCross.Views;
 
 namespace MinoriEditorStudio.Framework
 {
-	public abstract class Document : LayoutItemBase, IDocument, 
-        ICommandHandler<UndoCommandDefinition>,
-        ICommandHandler<RedoCommandDefinition>,
-        ICommandHandler<SaveFileCommandDefinition>,
-        ICommandHandler<SaveFileAsCommandDefinition>
+	public abstract class Document : LayoutItemBase, IDocument
+#warning fix command handler inherit.
+        //ICommandHandler<UndoCommandDefinition>,
+        //ICommandHandler<RedoCommandDefinition>,
+        //ICommandHandler<SaveFileCommandDefinition>,
+        //ICommandHandler<SaveFileAsCommandDefinition>
 	{
 	    private IUndoRedoManager _undoRedoManager;
         public IUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager());
@@ -35,6 +36,8 @@ namespace MinoriEditorStudio.Framework
         /// </summary>
         public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IManager>().Documents.Remove(this));
 
+#warning Fix Toolbar
+#if false
         private ToolBarDefinition _toolBarDefinition;
         public ToolBarDefinition ToolBarDefinition
         {
@@ -65,9 +68,11 @@ namespace MinoriEditorStudio.Framework
                 return _toolBar;
             }
         }
+#endif
 
         public IMvxView View { get; set; }
 
+#if false
         void ICommandHandler<UndoCommandDefinition>.Update(Command command)
 	    {
             command.Enabled = UndoRedoManager.CanUndo;
@@ -128,12 +133,12 @@ namespace MinoriEditorStudio.Framework
 
             await DoSaveAs(persistedDocument);
 	    }
-
+#endif
+#if false
 	    private static async Task DoSaveAs(IPersistedDocument persistedDocument)
 	    {
             throw new NotImplementedException();
 
-#if false
             // Show user dialog to choose filename.
             var dialog = new SaveFileDialog();
             dialog.FileName = persistedDocument.FileName;
@@ -156,7 +161,7 @@ namespace MinoriEditorStudio.Framework
 
             // Save file.
             await persistedDocument.Save(filePath);
-#endif
 	    }
+#endif
 	}
 }
