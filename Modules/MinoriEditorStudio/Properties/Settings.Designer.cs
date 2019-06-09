@@ -37,7 +37,7 @@ namespace MinoriEditorStudio.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("LightTheme")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ThemeName {
             get {
                 return ((string)(this["ThemeName"]));
