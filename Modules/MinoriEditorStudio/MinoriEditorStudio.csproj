@@ -24,12 +24,6 @@
         <Compile Remove="Platforms\Wpf\Themes\VS2013\Controls\Converters\**" />
         <Compile Remove="Resources\*.cs" />
         <None Include="Resources\*.cs" />
-        <EmbeddedResource Remove="Platforms\Wpf\Themes\VS2013\Controls\Converters\**" />
-        <None Remove="Platforms\Wpf\Themes\VS2013\Controls\Converters\**" />
-        <Compile Include="Platforms\Wpf\ThemeDefinitions\BlueTheme.cs" />
-        <Compile Include="Platforms\Wpf\ThemeDefinitions\DarkTheme.cs" />
-        <Compile Include="Platforms\Wpf\ThemeDefinitions\LightTheme.cs" />
-        <Compile Include="Platforms\Wpf\Win32\NativeMethods.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.3.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
@@ -37,6 +31,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">

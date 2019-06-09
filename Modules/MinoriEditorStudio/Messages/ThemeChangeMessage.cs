@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Modules.Themes.Services
+namespace MinoriEditorStudio.Messages
 {
     public class ThemeChangeMessage : MvxMessage
     {
