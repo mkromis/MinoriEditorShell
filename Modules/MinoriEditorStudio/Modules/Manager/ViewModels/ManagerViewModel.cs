@@ -1,7 +1,6 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Manager.Views;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
@@ -247,7 +246,7 @@ namespace MinoriEditorStudio.Modules.Manager.ViewModels
 
         public void Close()
         {
-            Application.Current.MainWindow.Close();
+            Environment.Exit(0);
         }
 	}
 }
