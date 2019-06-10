@@ -5,6 +5,8 @@
 //-----------------------------------------------------------------------
 using MinoriEditorStudio.VirtualCanvas.Gestures;
 using MinoriEditorStudio.VirtualCanvas.Models;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,7 +71,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
     /// visuals.  This helps manage the memory consumption when you have so many objects that creating
     /// all the WPF visuals would take too much memory.
     /// </summary>
-    public class VirtualCanvas : VirtualizingPanel, IScrollInfo
+    public class VirtualCanvas : VirtualizingPanel, IScrollInfo, IVirtualCanvasControl
     {
         Size _viewPortSize;
         public QuadTree<IVirtualChild> Index { get; private set; }
@@ -94,23 +96,23 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             _children.CollectionChanged += new NotifyCollectionChangedEventHandler(OnChildrenCollectionChanged);
 
             // Set default back color
-            ContentCanvas = new Canvas();
-            ContentCanvas.Background = Brushes.White;
+            _contentCanvas = new ContentCanvas();
+            _contentCanvas.Background = Brushes.White;
 
             // Setup boarder
             Backdrop = new Border();
-            ContentCanvas.Children.Add(Backdrop);
+            _contentCanvas.Children.Add(Backdrop);
 
             TransformGroup g = new TransformGroup();
             Scale = new ScaleTransform();
             Translate = new TranslateTransform();
             g.Children.Add(Scale);
             g.Children.Add(Translate);
-            ContentCanvas.RenderTransform = g;
+            _contentCanvas.RenderTransform = g;
 
             Translate.Changed += new EventHandler(OnTranslateChanged);
             Scale.Changed += new EventHandler(OnScaleChanged);
-            Children.Add(ContentCanvas);
+            Children.Add(_contentCanvas);
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         {
             if (drawing)
             {
-                Index.ShowQuadTree(ContentCanvas);
+                Index.ShowQuadTree(_contentCanvas);
             }
             else
             {
@@ -138,7 +140,10 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// Get/Set the MapZoom object used for manipulating the scale and translation on this canvas.
         /// </summary>
-        internal MapZoom Zoom { get; set; }
+        public IMapZoom Zoom {
+            get => _zoom;
+            set => _zoom = (MapZoom)value;
+        }
 
         /// <summary>
         /// Returns true if all Visuals have been created for the current scroll position
@@ -156,7 +161,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             _visualPositions = null;
             _visible = Rect.Empty;
             IsDone = false;
-            foreach (UIElement e in ContentCanvas.Children)
+            foreach (UIElement e in _contentCanvas.Children)
             {
                 if (e.GetValue(VirtualChildProperty) is IVirtualChild n)
                 {
@@ -164,8 +169,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                     n.DisposeVisual();
                 }
             }
-            ContentCanvas.Children.Clear();
-            ContentCanvas.Children.Add(Backdrop);
+            _contentCanvas.Children.Clear();
+            _contentCanvas.Children.Add(Backdrop);
             InvalidateArrange();
             StartLazyUpdate();
         }
@@ -246,7 +251,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// The number of visual children that are visible right now.
         /// </summary>
-        public Int32 LiveVisualCount => ContentCanvas.Children.Count - 1;
+        public Int32 LiveVisualCount => _contentCanvas.Children.Count - 1;
 
         /// <summary>
         /// Callback whenever the current TranslateTransform is changed.
@@ -265,7 +270,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// The ContentCanvas that is actually the parent of all the VirtualChildren Visuals.
         /// </summary>
-        public Canvas ContentCanvas { get; }
+        public IContentCanvas ContentCanvas => _contentCanvas;
 
         /// <summary>
         /// The backgrop is the back most child of the ContentCanvas used for drawing any sort
@@ -280,8 +285,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         {
             if (_children.Count() == 0)
             {
-                ContentCanvas.Width = 0;
-                ContentCanvas.Height = 0;
+                _contentCanvas.Width = 0;
+                _contentCanvas.Height = 0;
                 Backdrop.Width = 0;
                 Backdrop.Height = 0;
                 return;
@@ -338,10 +343,10 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             }
 
             // Make sure we honor the min width & height.
-            Double w = Math.Max(ContentCanvas.MinWidth, Extent.Width);
-            Double h = Math.Max(ContentCanvas.MinHeight, Extent.Height);
-            ContentCanvas.Width = w;
-            ContentCanvas.Height = h;
+            Double w = Math.Max(_contentCanvas.MinWidth, Extent.Width);
+            Double h = Math.Max(_contentCanvas.MinHeight, Extent.Height);
+            _contentCanvas.Width = w;
+            _contentCanvas.Height = h;
 
             // Make sure the backdrop covers the ViewPort bounds.
             Double zoom = Scale.ScaleX;
@@ -416,7 +421,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 SetViewportSize(finalSize);
             }
 
-            ContentCanvas.Arrange(new Rect(0, 0, ContentCanvas.Width, ContentCanvas.Height));
+            _contentCanvas.Arrange(new Rect(0, 0, _contentCanvas.Width, _contentCanvas.Height));
 
             if (Index == null)
             {
@@ -469,8 +474,11 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         Int32 _removeQuanta = 2000;
         Int32 _gcQuanta = 5000;
         readonly Int32 _idealDuration = 50; // 50 milliseconds.
+        private readonly ContentCanvas _contentCanvas;
         Int32 _added;
         Rect _visible = Rect.Empty;
+        private MapZoom _zoom;
+
         delegate Int32 QuantizedWorkHandler(Int32 quantum);
 
         /// <summary>
@@ -624,13 +632,13 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
 
             // Now do a binary search for the correct insertion position based
             // on the visual positions of the existing visible children.
-            UIElementCollection c = ContentCanvas.Children;
+            UIElementCollection c = _contentCanvas.Children;
             Int32 min = 0;
             Int32 max = c.Count - 1;
             while (max > min + 1)
             {
                 Int32 i = (min + max) / 2;
-                UIElement v = ContentCanvas.Children[i];
+                UIElement v = _contentCanvas.Children[i];
                 if (v.GetValue(VirtualChildProperty) is IVirtualChild n)
                 {
                     Int32 index = _visualPositions[n];
@@ -731,7 +739,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                             if (!nrect.IntersectsWith(visible))
                             {
                                 e.ClearValue(VirtualChildProperty);
-                                ContentCanvas.Children.Remove(e);
+                                _contentCanvas.Children.Remove(e);
                                 n.DisposeVisual();
                                 Removed++;
                             }
@@ -769,16 +777,16 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             Int32 count = 0;
             // Now after every update also do a full incremental scan over all the children
             // to make sure we didn't leak any nodes that need to be removed.
-            while (count < quantum && _nodeCollectCycle < ContentCanvas.Children.Count)
+            while (count < quantum && _nodeCollectCycle < _contentCanvas.Children.Count)
             {
-                UIElement e = ContentCanvas.Children[_nodeCollectCycle++];
+                UIElement e = _contentCanvas.Children[_nodeCollectCycle++];
                 if (e.GetValue(VirtualChildProperty) is IVirtualChild n)
                 {
                     Rect nrect = n.Bounds;
                     if (!nrect.IntersectsWith(_visible))
                     {
                         e.ClearValue(VirtualChildProperty);
-                        ContentCanvas.Children.Remove(e);
+                        _contentCanvas.Children.Remove(e);
                         n.DisposeVisual();
                         Removed++;
                     }
@@ -787,7 +795,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 _nodeCollectCycle++;
             }
 
-            if (_nodeCollectCycle < ContentCanvas.Children.Count)
+            if (_nodeCollectCycle < _contentCanvas.Children.Count)
             {
                 IsDone = false;
             }
@@ -848,11 +856,11 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <param name="visual">The visual that will become visible</param>
         /// <param name="rectangle">The bounds of that visual</param>
         /// <returns>The bounds that is actually visible.</returns>
-        public Rect MakeVisible(System.Windows.Media.Visual visual, Rect rectangle)
+        public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             if (Zoom != null && visual != this)
             {
-                return Zoom.ScrollIntoView(visual as FrameworkElement);
+                return _zoom.ScrollIntoView(visual as FrameworkElement);
             }
             return rectangle;
         }

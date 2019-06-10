@@ -3,6 +3,8 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +15,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
     /// <summary>
     /// This class provides the ability to draw a rectangle on a zoomable object and zoom into that location.
     /// </summary>
-    public class RectangleSelectionGesture
+    public class RectangleSelectionGesture : IRectangleSelectionGesture
     {
         private SelectionRectVisual _selectionRectVisual;
         private Point _start;
@@ -32,15 +34,15 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
         /// </summary>
         /// <param name="target">A FrameworkElement</param>
         /// <param name="zoom">The MapZoom object that wraps this same target object</param>
-        public RectangleSelectionGesture(FrameworkElement target, MapZoom zoom)
+        public RectangleSelectionGesture(IContentCanvas target, IMapZoom zoom)
         {
-            _target = target;
-            _container = target.Parent as Panel;
+            _target = (ContentCanvas)target;
+            _container = _target.Parent as Panel;
             if (_container == null)
             {
                 throw new ArgumentException("Target object must live in a Panel");
             }
-            _zoom = zoom;
+            _zoom = (MapZoom)zoom;
             _container.MouseLeftButtonDown += new MouseButtonEventHandler(OnMouseLeftButtonDown);
             _container.MouseLeftButtonUp += new MouseButtonEventHandler(OnMouseLeftButtonUp);
             _container.MouseMove += new MouseEventHandler(OnMouseMove);

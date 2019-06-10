@@ -15,11 +15,11 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
     /// </summary>
     public class VirtualCanvasViewModel : Document, IVirtualCanvas
     {
-        public MapZoom Zoom { get; protected set; }
-        public Pan Pan { get; protected set; }
-        public RectangleSelectionGesture RectZoom { get; protected set; }
-        public AutoScroll AutoScroll { get; protected set; }
-        public Controls.VirtualCanvas Graph { get; protected set; }
+        public IMapZoom Zoom { get; protected set; }
+        public IPan Pan { get; protected set; }
+        public IRectangleSelectionGesture RectZoom { get; protected set; }
+        public IAutoScroll AutoScroll { get; protected set; }
+        public IVirtualCanvasControl Graph { get; protected set; }
         public new Boolean CanClose { get; set; }
 
         public override void ViewAppeared()
@@ -28,7 +28,7 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
             if (Graph == null)
             {
                 Graph = ((VirtualCanvasView)View).Graph;
-                Canvas target = Graph.ContentCanvas;
+                IContentCanvas target = Graph.ContentCanvas;
                 Graph.Zoom = Zoom = new MapZoom(target);
                 Pan = new Pan(target, Zoom);
                 AutoScroll = new AutoScroll(target, Zoom);

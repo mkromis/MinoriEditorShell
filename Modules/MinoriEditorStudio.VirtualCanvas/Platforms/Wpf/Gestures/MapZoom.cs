@@ -12,6 +12,8 @@ using System.Windows.Media.Animation;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Controls.Primitives;
+using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.Gestures
 {
@@ -20,7 +22,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
     /// general management of the scale and translate transformations and a "ScrollIntoView" 
     /// method than can be used by other gestures.
     /// </summary>
-    public class MapZoom : Animatable
+    public class MapZoom : Animatable, IMapZoom
     {
         // sensitivity is a number between 0 and 1 that controls how much each mouse wheel click
         // zooms in.  This value means one mouse click will zoom to 0.90 of the original size, but
@@ -33,8 +35,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
         const Double _defaultZoomTime = 100;
         const Double _maxZoomTime = 300;
 
-        private readonly FrameworkElement _container;
-        private readonly FrameworkElement _target;
+        private FrameworkElement _container;
+        private FrameworkElement _target;
                 
         // Note that because we want to animate the zoom and translate while spinning the mouse
         // we keep two sets of values.  Note that when an animation is active on a given property it
@@ -44,8 +46,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
         // _offset and these values are copied to the master _scale and _translate on each animation
         // step.  If some external change is made to the _scale and _translate transforms then
         // we "StopAnimation" and sync up the _offset and _zoom variables.
-        private readonly ScaleTransform _scale;
-        private readonly TranslateTransform _translate;
+        private ScaleTransform _scale;
+        private TranslateTransform _translate;
         Double _zoom = 1;
         Double _newZoom = 1;
         Point _offset;
@@ -79,8 +81,17 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
         /// The target object must have a parent container.
         /// </summary>
         /// <param name="target">The target object we will be zooming.</param>
+        public MapZoom(IContentCanvas target)
+        {
+            Initialize((ContentCanvas)target);
+        }
         public MapZoom(FrameworkElement target)
         {
+            Initialize(target);
+        }
+
+        private void Initialize (FrameworkElement target)
+        { 
             _container = target.Parent as FrameworkElement;
             _target = target;
 
