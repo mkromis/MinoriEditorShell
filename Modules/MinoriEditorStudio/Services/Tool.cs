@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.ToolBars;
+//using MinoriEditorStudio.Framework.ToolBars;
 using MinoriEditorStudio.Modules.ToolBars;
 using MinoriEditorStudio.Modules.ToolBars.Models;
 using MvvmCross;
@@ -32,6 +32,8 @@ namespace MinoriEditorStudio.Framework
             }
         }
 
+        #warning Fix toolbar
+#if false
         private ToolBarDefinition _toolBarDefinition;
         public ToolBarDefinition ToolBarDefinition
         {
@@ -61,6 +63,7 @@ namespace MinoriEditorStudio.Framework
                 return _toolBar;
             }
         }
+#endif
 
         public override Boolean ShouldReopenOnStart => true;
 

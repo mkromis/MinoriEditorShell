@@ -39,10 +39,10 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
 
                 // from which we can now get the view model.
                 switch(view.ViewModel) {
-                    case Document document:
+                    case IDocument document:
 
                         // Try to set view, this is needed for DocumentManager
-                        Document docViewModel = (Document)view.ViewModel;
+                        IDocument docViewModel = (IDocument)view.ViewModel;
                         docViewModel.View = view; // Needed for Binding with AvalonDock
                         docViewModel.ViewAppearing();
                         docViewModel.ViewAppeared();
@@ -52,9 +52,9 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
                         _log.Trace($"Add {document.ToString()} to IManager.Documents");
                         return true;
 
-                    case Tool tool:
+                    case ITool tool:
                         // Try to set view, this is needed for DocumentManager
-                        Tool toolViewModel = (Tool)view.ViewModel;
+                        ITool toolViewModel = (ITool)view.ViewModel;
                         toolViewModel.View = view; // Needed for Binding with AvalonDock
                         toolViewModel.ViewAppearing();
                         toolViewModel.ViewAppeared();
