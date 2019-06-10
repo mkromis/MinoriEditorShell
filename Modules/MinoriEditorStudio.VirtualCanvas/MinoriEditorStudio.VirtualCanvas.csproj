@@ -1,43 +1,57 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <Description>Easy Virtual Canvas with zoom</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>IDE VirtualCanvas Module</PackageTags>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mark Kromis</Authors>
+        <Company>Mark Kromis</Company>
+        <Description>Easy Virtual Canvas with zoom</Description>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>IDE VirtualCanvas Module</PackageTags>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Views\VirtualCanvasView.xaml" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Platforms\Wpf\Views\VirtualCanvasView.xaml" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="4.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MvvmCross" Version="6.3.0" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Platforms\**\*.cs" />
+        <None Include="Platforms\**\*.cs" />
+        <Compile Remove="Resources\*.cs" />
+        <None Include="Resources\*.cs" />
+        <Folder Include="Properties\" />
+        <None Include="Service\IVirtualCanvas.cs" />
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+        <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+        
+        <PackageReference Include="MvvmCross" Version="6.3.0" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
+        <PackageReference Include="GitVersionTask" Version="4.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Page Include="Views\VirtualCanvasView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+        <Page Include="Platforms\Wpf\**\*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Compile Include="Platforms\Wpf\**\*.cs" />
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
-  </ItemGroup>
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
+        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+        <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
+
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="WindowsBase" />
+    </ItemGroup>
 
 </Project>

@@ -10,6 +10,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
+using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.Gestures
 {
@@ -17,7 +19,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
     /// <summary>
     /// This class provides the ability to pan the target object when dragging the mouse 
     /// </summary>
-    public class Pan {
+    public class Pan : IPan
+    {
 
         private Boolean _dragging;
         private readonly FrameworkElement _target;
@@ -33,14 +36,14 @@ namespace MinoriEditorStudio.VirtualCanvas.Gestures
         /// </summary>
         /// <param name="target">The target to be panned, must live inside a container Panel</param>
         /// <param name="zoom"></param>
-        public Pan(FrameworkElement target, MapZoom zoom) {
-            _target = target;
-            _container = target.Parent as Panel;
+        public Pan(IContentCanvas target, IMapZoom zoom) {
+            _target = (ContentCanvas)target;
+            _container = _target.Parent as Panel;
             if (_container == null) {
                 // todo: localization
                 throw new ArgumentException("Target object must live in a Panel");
             }
-            _zoom = zoom;
+            _zoom = (MapZoom)zoom;
             _container.MouseLeftButtonDown += new MouseButtonEventHandler(OnMouseLeftButtonDown);
             _container.MouseLeftButtonUp += new MouseButtonEventHandler(OnMouseLeftButtonUp);
             _container.MouseMove += new MouseEventHandler(OnMouseMove);
