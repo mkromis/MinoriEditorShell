@@ -3,6 +3,8 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorStudio.VirtualCanvas.Services;
+using System.Drawing;
 using System.Windows;
 
 namespace MinoriEditorStudio.VirtualCanvas.Models
@@ -10,7 +12,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Models
     /// <summary>
     /// Each node stored in the tree has a position, width & height.
     /// </summary>
-    public class QuadNode<T>
+    public class QuadNode<T> : IQuadNode<T>
     {
 
         /// <summary>
@@ -18,7 +20,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Models
         /// </summary>
         /// <param name="node">The node</param>
         /// <param name="bounds">The bounds of that node</param>
-        public QuadNode(T node, Rect bounds)
+        public QuadNode(T node, RectangleF bounds)
         {
             Node = node;
             Bounds = bounds;
@@ -32,11 +34,11 @@ namespace MinoriEditorStudio.VirtualCanvas.Models
         /// <summary>
         /// The Rect bounds of the node
         /// </summary>
-        public Rect Bounds { get; }
+        public RectangleF Bounds { get; }
 
         /// <summary>
         /// QuadNodes form a linked list in the Quadrant.
         /// </summary>
-        public QuadNode<T> Next { get; set; }
+        public IQuadNode<T> Next { get; set; }
     }
 }
