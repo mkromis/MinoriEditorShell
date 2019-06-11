@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
+namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 {
     public class LogWriter : IDisposable
     {
