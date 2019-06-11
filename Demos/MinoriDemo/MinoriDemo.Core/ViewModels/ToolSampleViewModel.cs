@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
+namespace MinoriDemo.Core.Models
 {
     class ToolSampleViewModel : Tool
     {
