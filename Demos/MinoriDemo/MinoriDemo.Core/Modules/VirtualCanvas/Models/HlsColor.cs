@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media;
 
-namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
+namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 {
     /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor"]/*' />
     /// <devdoc>
@@ -52,7 +52,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 /* saturation */
                 Saturation = Luminosity <= (HLSMax / 2)
                     ? ((dif * HLSMax) + (sum / 2)) / sum
-                    : ((dif * HLSMax) + (2 * RGBMax - sum) / 2) / (2 * RGBMax - sum);
+                    : ((dif * HLSMax) + ((2 * RGBMax - sum) / 2)) / (2 * RGBMax - sum);
                 /* hue */
                 Rdelta = (((max - r) * (HLSMax / 6)) + (dif / 2)) / dif;
                 Gdelta = (((max - g) * (HLSMax / 6)) + (dif / 2)) / dif;
@@ -142,11 +142,11 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             {
                 if (n > 0)
                 {
-                    return (Int32)((luminosity * (1000 - n) + (Range + 1L) * n) / 1000);
+                    return (Int32)(((luminosity * (1000 - n)) + ((Range + 1L) * n)) / 1000);
                 }
                 else
                 {
-                    return (luminosity * (n + 1000)) / 1000;
+                    return luminosity * (n + 1000) / 1000;
                 }
             }
 
@@ -175,8 +175,9 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             Int32 magic1, magic2;       /* calculated magic numbers (really!) */
 
             if (saturation == 0)
-            {                /* achromatic case */
-                r = g = b = (Byte)((luminosity * RGBMax) / HLSMax);
+            {                
+                /* achromatic case */
+                r = g = b = (Byte)(luminosity * RGBMax / HLSMax);
                 if (hue != Undefined)
                 {
                     /* ERROR */
@@ -187,21 +188,21 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 /* set up magic numbers */
                 if (luminosity <= (HLSMax / 2))
                 {
-                    magic2 = (luminosity * (HLSMax + saturation) + (HLSMax / 2)) / HLSMax;
+                    magic2 = ((luminosity * (HLSMax + saturation)) + (HLSMax / 2)) / HLSMax;
                 }
                 else
                 {
-                    magic2 = luminosity + saturation - ((luminosity * saturation) + HLSMax / 2) / HLSMax;
+                    magic2 = luminosity + saturation - (((luminosity * saturation) + (HLSMax / 2)) / HLSMax);
                 }
 
-                magic1 = 2 * luminosity - magic2;
+                magic1 = (2 * luminosity) - magic2;
 
                 /* get RGB, change units from HLSMax to RGBMax */
-                r = (Byte)((HueToRGB(magic1, magic2, hue + HLSMax / 3) * RGBMax + (HLSMax / 2)) / HLSMax);
-                g = (Byte)((HueToRGB(magic1, magic2, hue) * RGBMax + (HLSMax / 2)) / HLSMax);
-                b = (Byte)((HueToRGB(magic1, magic2, hue - HLSMax / 3) * RGBMax + (HLSMax / 2)) / HLSMax);
+                r = (Byte)(((HueToRGB(magic1, magic2, hue + (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
+                g = (Byte)(((HueToRGB(magic1, magic2, hue) * RGBMax) + (HLSMax / 2)) / HLSMax);
+                b = (Byte)(((HueToRGB(magic1, magic2, hue - (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
             }
-            return Color.FromRgb(r, g, b);
+            return Color.FromArgb(r, g, b);
         }
 
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.HueToRGB"]/*' />
@@ -225,21 +226,21 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             /* return r,g, or b value from this tridrant */
             if (hue < (HLSMax / 6))
             {
-                return (n1 + (((n2 - n1) * hue + (HLSMax / 12)) / (HLSMax / 6)));
+                return n1 + ((((n2 - n1) * hue) + (HLSMax / 12)) / (HLSMax / 6));
             }
 
             if (hue < (HLSMax / 2))
             {
-                return (n2);
+                return n2;
             }
 
-            if (hue < ((HLSMax * 2) / 3))
+            if (hue < (HLSMax * 2 / 3))
             {
-                return (n1 + (((n2 - n1) * (((HLSMax * 2) / 3) - hue) + (HLSMax / 12)) / (HLSMax / 6)));
+                return n1 + ((((n2 - n1) * ((HLSMax * 2 / 3) - hue)) + (HLSMax / 12)) / (HLSMax / 6));
             }
             else
             {
-                return (n1);
+                return n1;
             }
         }
 
