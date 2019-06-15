@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows;
 
 namespace MinoriEditorStudio.VirtualCanvas.Services
 {

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using RectangleF = System.Drawing.RectangleF;
 
 namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
@@ -17,17 +18,17 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
     class TestShape : IVirtualChild
     {
-        Rect _bounds;
-        public Brush Fill { get; set; }
-        public Brush Stroke { get; set; }
+        RectangleF _bounds;
+        public System.Windows.Media.Brush Fill { get; set; }
+        public System.Windows.Media.Brush Stroke { get; set; }
         public String Label { get; set; }
 
         private readonly TestShapeType _shape;
-        private readonly Point[] _points;
+        private readonly System.Windows.Point[] _points;
 
         public event EventHandler BoundsChanged;
 
-        public TestShape(Rect bounds, TestShapeType s, Random r)
+        public TestShape(RectangleF bounds, TestShapeType s, Random r)
         {
             _bounds = bounds;
             _shape = s;
@@ -39,48 +40,48 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
                 _points = new Point[3];
 
-                bounds = new Rect(0, 0, _bounds.Width, _bounds.Height);
+                bounds = new RectangleF(0, 0, _bounds.Width, _bounds.Height);
                 switch (r.Next(0, 8))
                 {
                     case 0:
-                        _points[0] = bounds.TopLeft;
-                        _points[1] = bounds.TopRight;
-                        _points[2] = bounds.BottomRight;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
+                        _points[1] = new Point(bounds.Right, bounds.Top);
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                     case 1:
-                        _points[0] = bounds.TopRight;
-                        _points[1] = bounds.BottomRight;
-                        _points[2] = bounds.BottomLeft;
+                        _points[0] = new Point(bounds.Right, bounds.Top);
+                        _points[1] = new Point(bounds.Right, bounds.Bottom);
+                        _points[2] = new Point(bounds.Left, bounds.Right);
                         break;
                     case 2:
-                        _points[0] = bounds.BottomRight;
-                        _points[1] = bounds.BottomLeft;
-                        _points[2] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Right, bounds.Bottom);
+                        _points[1] = new Point(bounds.Left, bounds.Bottom);
+                        _points[2] = new Point(bounds.Left, bounds.Top);
                         break;
                     case 3:
-                        _points[0] = bounds.BottomLeft;
-                        _points[1] = bounds.TopLeft;
-                        _points[2] = bounds.TopRight;
+                        _points[0] = new Point(bounds.Left, bounds.Bottom);
+                        _points[1] = new Point(bounds.Left, bounds.Top);
+                        _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
                     case 4:
-                        _points[0] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Right, bounds.Height / 2);
-                        _points[2] = bounds.BottomLeft;
+                        _points[2] = new Point(bounds.Left, bounds.Bottom);
                         break;
                     case 5:
-                        _points[0] = bounds.TopRight;
+                        _points[0] = new Point(bounds.Right, bounds.Top);
                         _points[1] = new Point(bounds.Left, bounds.Height / 2);
-                        _points[2] = bounds.BottomRight;
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                     case 6:
-                        _points[0] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Width / 2, bounds.Bottom);
-                        _points[2] = bounds.TopRight;
+                        _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
                     case 7:
-                        _points[0] = bounds.BottomLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Bottom);
                         _points[1] = new Point(bounds.Width / 2, bounds.Top);
-                        _points[2] = bounds.BottomRight;
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                 }
             }
@@ -174,11 +175,11 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             // Testing for BoundsChanged event.
                             b.MouseRightButtonDown += (s, e) =>
                             {
-                                _bounds = new Rect(
+                                _bounds = new RectangleF(
                                     Bounds.X + 10,
                                     Bounds.Y + 10,
-                                    b.Width,
-                                    b.Height);
+                                    (Single)b.Width,
+                                    (Single)b.Height);
                                 BoundsChanged?.Invoke(this, null);
                             };
                             b.Child = text;
@@ -198,7 +199,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public void DisposeVisual() => Visual = null;
 
-        public Rect Bounds => _bounds;
+        public RectangleF Bounds => _bounds;
 
         MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas _parent;
         Typeface _typeface;

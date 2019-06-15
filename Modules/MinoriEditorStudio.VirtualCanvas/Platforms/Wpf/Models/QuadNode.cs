@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------
 using MinoriEditorStudio.VirtualCanvas.Services;
 using System.Drawing;
-using System.Windows;
 
 namespace MinoriEditorStudio.VirtualCanvas.Models
 {
