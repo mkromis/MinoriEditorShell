@@ -23,7 +23,6 @@
         <Compile Remove="Resources\*.cs" />
         <None Include="Resources\*.cs" />
         <Folder Include="Properties\" />
-        <None Include="Service\IVirtualCanvas.cs" />
 
         <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
         
@@ -34,7 +33,11 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+        <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
     </ItemGroup>
+
+
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
         <Page Include="Platforms\Wpf\**\*.xaml">

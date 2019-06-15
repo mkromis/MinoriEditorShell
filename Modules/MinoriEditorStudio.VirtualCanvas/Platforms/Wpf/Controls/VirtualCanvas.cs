@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -40,7 +41,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// The bounds of your child object
         /// </summary>
-        Rect Bounds { get; }
+        RectangleF Bounds { get; }
 
         /// <summary>
         /// Raise this event if the Bounds changes.
@@ -73,11 +74,11 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
     /// </summary>
     public class VirtualCanvas : VirtualizingPanel, IScrollInfo, IVirtualCanvasControl
     {
-        Size _viewPortSize;
+        System.Windows.Size _viewPortSize;
         public QuadTree<IVirtualChild> Index { get; private set; }
         ObservableCollection<IVirtualChild> _children;
-        readonly IList<Rect> _dirtyRegions = new List<Rect>();
-        readonly IList<Rect> _visibleRegions = new List<Rect>();
+        readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
+        readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
         IDictionary<IVirtualChild, Int32> _visualPositions;
         Int32 _nodeCollectCycle;
         public static DependencyProperty VirtualChildProperty = DependencyProperty.Register("VirtualChild", typeof(IVirtualChild), typeof(VirtualCanvas));
@@ -97,7 +98,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
 
             // Set default back color
             _contentCanvas = new ContentCanvas();
-            _contentCanvas.Background = Brushes.White;
+            _contentCanvas.Background = System.Windows.Media.Brushes.White;
 
             // Setup boarder
             Backdrop = new Border();
@@ -159,7 +160,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             // need to rebuild the index.
             Index = null;
             _visualPositions = null;
-            _visible = Rect.Empty;
+            _visible = RectangleF.Empty;
             IsDone = false;
             foreach (UIElement e in _contentCanvas.Children)
             {
@@ -207,7 +208,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// Set the scroll amount for the scroll bar arrows.
         /// </summary>
-        public Size SmallScrollIncrement
+        public SizeF SmallScrollIncrement
         {
             get => SmallScrollIncrement1;
             set => SmallScrollIncrement1 = value;
@@ -225,28 +226,14 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>The list of virtual children found or null if there are none</returns>
-        public IEnumerable<IVirtualChild> GetChildrenIntersecting(Rect bounds)
-        {
-            if (Index != null)
-            {
-                return Index.GetNodesInside(bounds);
-            }
-            return null;
-        }
+        public IEnumerable<IVirtualChild> GetChildrenIntersecting(RectangleF bounds) => Index != null ? Index.GetNodesInside(bounds) : null;
 
         /// <summary>
         /// Return true if there are any virtual children inside the given bounds.
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>True if a node is found whose bounds intersect the given bounds</returns>
-        public Boolean HasChildrenIntersecting(Rect bounds)
-        {
-            if (Index != null)
-            {
-                return Index.HasNodesInside(bounds);
-            }
-            return false;
-        }
+        public Boolean HasChildrenIntersecting(RectangleF bounds) => Index != null ? Index.HasNodesInside(bounds) : false;
 
         /// <summary>
         /// The number of visual children that are visible right now.
@@ -306,7 +293,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                     _visualPositions[c] = index++;
 
                     // Sanity check
-                    Rect childBounds = c.Bounds;
+                    RectangleF childBounds = c.Bounds;
                     if (childBounds.Width != 0 && childBounds.Height != 0)
                     {
                         if (Double.IsNaN(childBounds.Width) || Double.IsNaN(childBounds.Height))
@@ -324,14 +311,14 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 }
 
                 // Get extents
-                Extent = new Size(
+                Extent = new SizeF(
                     _children.Max(x => x.Bounds.Right),
                     _children.Max(x => x.Bounds.Bottom));
 
                 // Ok, now we know the size we can create the index.
                 Index = new QuadTree<IVirtualChild>
                 {
-                    Bounds = new Rect(0, 0, Extent.Width, Extent.Height)
+                    Bounds = new RectangleF(0, 0, Extent.Width, Extent.Height)
                 };
                 foreach (IVirtualChild n in _children)
                 {
@@ -370,19 +357,20 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             }
         }
 
+
         /// <summary>
         /// WPF Measure override for measuring the control
         /// </summary>
         /// <param name="availableSize">Available size will be the viewport size in the scroll viewer</param>
         /// <returns>availableSize</returns>
-        protected override Size MeasureOverride(Size availableSize)
+        protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
         {
             base.MeasureOverride(availableSize);
 
             // We will be given the visible size in the scroll viewer here.
             CalculateExtent();
 
-            if (availableSize != _viewPortSize)
+            if (availableSize.Width != _viewPortSize.Width && availableSize.Height != _viewPortSize.Height)
             {
                 SetViewportSize(availableSize);
             }
@@ -391,13 +379,13 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             {
                 if (child.GetValue(VirtualChildProperty) is IVirtualChild n)
                 {
-                    Rect bounds = n.Bounds;
-                    child.Measure(bounds.Size);
+                    SizeF boundSize = n.Bounds.Size;
+                    child.Measure(new System.Windows.Size(boundSize.Width, boundSize.Height));
                 }
             }
             if (Double.IsInfinity(availableSize.Width))
             {
-                return Extent;
+                return new System.Windows.Size(Extent.Width, Extent.Height);
             }
             else
             {
@@ -410,7 +398,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// </summary>
         /// <param name="finalSize">The size allocated by parents</param>
         /// <returns>finalSize</returns>
-        protected override Size ArrangeOverride(Size finalSize)
+        protected override System.Windows.Size ArrangeOverride(System.Windows.Size finalSize)
         {
             base.ArrangeOverride(finalSize);
 
@@ -461,7 +449,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// Set the viewport size and raize a scroll changed event.
         /// </summary>
         /// <param name="s">The new size</param>
-        void SetViewportSize(Size s)
+        void SetViewportSize(System.Windows.Size s)
         {
             if (s != _viewPortSize)
             {
@@ -476,7 +464,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         readonly Int32 _idealDuration = 50; // 50 milliseconds.
         private readonly ContentCanvas _contentCanvas;
         Int32 _added;
-        Rect _visible = Rect.Empty;
+        RectangleF _visible = RectangleF.Empty;
         private MapZoom _zoom;
 
         delegate Int32 QuantizedWorkHandler(Int32 quantum);
@@ -548,7 +536,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         private Int32 LazyCreateNodes(Int32 quantum)
         {
 
-            if (_visible == Rect.Empty)
+            if (_visible == RectangleF.Empty)
             {
                 _visible = GetVisibleRect();
                 _visibleRegions.Add(_visible);
@@ -559,7 +547,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             Int32 regionCount = 0;
             while (_visibleRegions.Count > 0 && count < quantum)
             {
-                Rect r = _visibleRegions[0];
+                RectangleF r = _visibleRegions[0];
                 _visibleRegions.RemoveAt(0);
                 regionCount++;
 
@@ -623,7 +611,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
 
             UIElement e = child.CreateVisual(this);
             e.SetValue(VirtualChildProperty, child);
-            Rect bounds = child.Bounds;
+            RectangleF bounds = child.Bounds;
             Canvas.SetLeft(e, bounds.Left);
             Canvas.SetTop(e, bounds.Top);
 
@@ -683,7 +671,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// </summary>
         /// <param name="r">Rectangle to split</param>
         /// <param name="regions">List to add to</param>
-        private void SplitRegion(Rect r, IList<Rect> regions)
+        private void SplitRegion(RectangleF r, IList<RectangleF> regions)
         {
             Double minWidth = SmallScrollIncrement.Width * 2;
             Double minHeight = SmallScrollIncrement.Height * 2;
@@ -691,16 +679,16 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             if (r.Width > r.Height && r.Height > minHeight)
             {
                 // horizontal slices
-                Double h = r.Height / 2;
-                regions.Add(new Rect(r.Left, r.Top, r.Width, h + 10));
-                regions.Add(new Rect(r.Left, r.Top + h, r.Width, h + 10));
+                Single h = r.Height / 2;
+                regions.Add(new RectangleF(r.Left, r.Top, r.Width, h + 10));
+                regions.Add(new RectangleF(r.Left, r.Top + h, r.Width, h + 10));
             }
             else if (r.Width < r.Height && r.Width > minWidth)
             {
                 // vertical slices
-                Double w = r.Width / 2;
-                regions.Add(new Rect(r.Left, r.Top, w + 10, r.Height));
-                regions.Add(new Rect(r.Left + w, r.Top, w + 10, r.Height));
+                Single w = r.Width / 2;
+                regions.Add(new RectangleF(r.Left, r.Top, w + 10, r.Height));
+                regions.Add(new RectangleF(r.Left + w, r.Top, w + 10, r.Height));
             }
             else
             {
@@ -715,7 +703,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <returns>Amount of work we did</returns>
         private Int32 LazyRemoveNodes(Int32 quantum)
         {
-            Rect visible = GetVisibleRect();
+            RectangleF visible = GetVisibleRect();
             Int32 count = 0;
 
             // Also remove nodes that are no longer visible.
@@ -723,7 +711,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
             while (_dirtyRegions.Count > 0 && count < quantum)
             {
                 Int32 last = _dirtyRegions.Count - 1;
-                Rect dirty = _dirtyRegions[last];
+                RectangleF dirty = _dirtyRegions[last];
                 _dirtyRegions.RemoveAt(last);
                 regionCount++;
 
@@ -735,7 +723,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                         UIElement e = n.Visual;
                         if (e != null)
                         {
-                            Rect nrect = n.Bounds;
+                            RectangleF nrect = n.Bounds;
                             if (!nrect.IntersectsWith(visible))
                             {
                                 e.ClearValue(VirtualChildProperty);
@@ -782,7 +770,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 UIElement e = _contentCanvas.Children[_nodeCollectCycle++];
                 if (e.GetValue(VirtualChildProperty) is IVirtualChild n)
                 {
-                    Rect nrect = n.Bounds;
+                    RectangleF nrect = n.Bounds;
                     if (!nrect.IntersectsWith(_visible))
                     {
                         e.ClearValue(VirtualChildProperty);
@@ -806,7 +794,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// <summary>
         /// Return the full size of this canvas.
         /// </summary>
-        public Size Extent { get; private set; }
+        public SizeF Extent { get; private set; }
 
         #region IScrollInfo Members
 
@@ -952,7 +940,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// </summary>
         public Double ViewportWidth => _viewPortSize.Width;
 
-        public Size SmallScrollIncrement1 { get; set; } = new Size(10, 10);
+        public SizeF SmallScrollIncrement1 { get; set; } = new SizeF(10, 10);
         public Int32 Removed { get; set; }
 
         #endregion
@@ -962,14 +950,14 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// size of scroller viewport.
         /// </summary>
         /// <returns>A rectangle</returns>
-        Rect GetVisibleRect()
+        RectangleF GetVisibleRect()
         {
             // Add a bit of extra around the edges so we are sure to create nodes that have a tiny bit showing.
-            Double xstart = (HorizontalOffset - SmallScrollIncrement1.Width) / Scale.ScaleX;
-            Double ystart = (VerticalOffset - SmallScrollIncrement1.Height) / Scale.ScaleY;
-            Double xend = (HorizontalOffset + (_viewPortSize.Width + (2 * SmallScrollIncrement1.Width))) / Scale.ScaleX;
-            Double yend = (VerticalOffset + (_viewPortSize.Height + (2 * SmallScrollIncrement1.Height))) / Scale.ScaleY;
-            return new Rect(xstart, ystart, xend - xstart, yend - ystart);
+            Single xstart = (Single)((HorizontalOffset - SmallScrollIncrement1.Width) / Scale.ScaleX);
+            Single ystart = (Single)((VerticalOffset - SmallScrollIncrement1.Height) / Scale.ScaleY);
+            Single xend = (Single)((HorizontalOffset + (_viewPortSize.Width + (2 * SmallScrollIncrement1.Width))) / Scale.ScaleX);
+            Single yend = (Single)((VerticalOffset + (_viewPortSize.Height + (2 * SmallScrollIncrement1.Height))) / Scale.ScaleY);
+            return new RectangleF(xstart, ystart, xend - xstart, yend - ystart);
         }
 
         /// <summary>
@@ -978,13 +966,13 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
         /// </summary>
         void OnScrollChanged()
         {
-            Rect dirty = _visible;
+            RectangleF dirty = _visible;
             AddVisibleRegion();
             _nodeCollectCycle = 0;
             IsDone = false;
 
-            Rect intersection = Rect.Intersect(dirty, _visible);
-            if (intersection == Rect.Empty)
+            RectangleF intersection = RectangleF.Intersect(dirty, _visible);
+            if (intersection == RectangleF.Empty)
             {
                 _dirtyRegions.Add(dirty); // the whole thing is dirty
             }
@@ -993,22 +981,22 @@ namespace MinoriEditorStudio.VirtualCanvas.Controls
                 // Add left stripe
                 if (dirty.Left < intersection.Left)
                 {
-                    _dirtyRegions.Add(new Rect(dirty.Left, dirty.Top, intersection.Left - dirty.Left, dirty.Height));
+                    _dirtyRegions.Add(new RectangleF(dirty.Left, dirty.Top, intersection.Left - dirty.Left, dirty.Height));
                 }
                 // Add right stripe
                 if (dirty.Right > intersection.Right)
                 {
-                    _dirtyRegions.Add(new Rect(intersection.Right, dirty.Top, dirty.Right - intersection.Right, dirty.Height));
+                    _dirtyRegions.Add(new RectangleF(intersection.Right, dirty.Top, dirty.Right - intersection.Right, dirty.Height));
                 }
                 // Add top stripe
                 if (dirty.Top < intersection.Top)
                 {
-                    _dirtyRegions.Add(new Rect(dirty.Left, dirty.Top, dirty.Width, intersection.Top - dirty.Top));
+                    _dirtyRegions.Add(new RectangleF(dirty.Left, dirty.Top, dirty.Width, intersection.Top - dirty.Top));
                 }
                 // Add right stripe
                 if (dirty.Bottom > intersection.Bottom)
                 {
-                    _dirtyRegions.Add(new Rect(dirty.Left, intersection.Bottom, dirty.Width, dirty.Bottom - intersection.Bottom));
+                    _dirtyRegions.Add(new RectangleF(dirty.Left, intersection.Bottom, dirty.Width, dirty.Bottom - intersection.Bottom));
                 }
             }
 
