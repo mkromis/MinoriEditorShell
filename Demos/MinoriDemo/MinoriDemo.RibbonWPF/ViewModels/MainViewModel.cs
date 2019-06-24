@@ -51,7 +51,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
         });
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
-        //public ICommand TaskRunCommand => new DelegateCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
+        //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
 
         //public ICommand SettingsCommand => _settingsManager.SettingsCommand;
 

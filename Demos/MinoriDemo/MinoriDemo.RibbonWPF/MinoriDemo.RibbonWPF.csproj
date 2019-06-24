@@ -61,7 +61,7 @@
     <Compile Include="Modules\VirtualCanvas\Models\HlsColor.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\LogWriter.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
-    <Compile Include="Modules\VirtualCanvas\Models\ToolSampleViewModel.cs" />
+    <Compile Include="ViewModels\ToolSampleViewModel.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\VirtualCanvasModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
