@@ -28,7 +28,7 @@
 
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Messages;
-using MinoriEditorStudio.Modules.Themes.Definitions;
+using MinoriEditorStudio.Services;
 using MvvmCross.Logging;
 using MvvmCross.Plugin.Messenger;
 using System;
@@ -37,7 +37,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
-namespace MinoriEditorStudio.Modules.Themes.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public class ThemeManager : IThemeManager
     {
@@ -60,7 +60,7 @@ namespace MinoriEditorStudio.Modules.Themes.Services
                 themeName = GetDefaultApplicationMode();
             }
 
-            SetCurrentTheme(Properties.Resources.ThemeBlueName, false);
+            SetCurrentTheme(themeList.First().Name, false);
 
             _messenger.Subscribe<SettingsChangedMessage>((x) =>
             {
@@ -98,9 +98,9 @@ namespace MinoriEditorStudio.Modules.Themes.Services
                     Application.Current.Resources.MergedDictionaries.Add(appTheme);
                 }
 
-                appTheme.MergedDictionaries.Clear();
                 appTheme.BeginInit();
 
+                appTheme.MergedDictionaries.Clear(); 
                 foreach (Uri uri in theme.ApplicationResources)
                 {
                     ResourceDictionary newDict = new ResourceDictionary { Source = uri };

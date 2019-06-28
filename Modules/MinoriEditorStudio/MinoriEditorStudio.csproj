@@ -45,6 +45,7 @@
         <Compile Include="Platforms\Wpf\**\*.cs" />
         
         <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
+        <PackageReference Include="MahApps.Metro" Version="1.6.5" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
@@ -86,13 +87,6 @@
         <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
             <Generator>ResXFileCodeGenerator</Generator>
         </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-        <None Update="Properties\Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
