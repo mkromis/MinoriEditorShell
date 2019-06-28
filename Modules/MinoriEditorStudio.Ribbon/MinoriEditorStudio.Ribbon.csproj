@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Platform\Wpf\Themes\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Platform\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 

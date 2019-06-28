@@ -1,4 +1,4 @@
-﻿using MinoriEditorStudio.Modules.Themes.Services;
+﻿using MinoriEditorStudio.Services;
 using System;
 using System.Collections.Generic;
 
@@ -7,13 +7,13 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
     /// <summary>
     /// Class DefaultTheme
     /// </summary>
-    public sealed class DarkTheme : ITheme
+    public sealed class DefaultTheme : ITheme
     {
         /// <summary>
-        /// The name of the theme - "Dark"
+        /// The name of the theme - "Default"
         /// </summary>
         /// <value>The name.</value>
-        public String Name => "Dark";
+        public String Name => "Default";
 
         /// <summary>
         /// Lists of valid URIs which will be loaded in the theme dictionary
@@ -24,13 +24,13 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"),
             new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"),
             new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml"),
-            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml"),
+            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"),
 
             new Uri("pack://application:,,,/Fluent;Component/Themes/Generic.xaml"),
             new Uri("pack://application:,,,/Fluent;component/Themes/Accents/Cobalt.xaml"),
-            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseDark.xaml"),
+            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
 
-            new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/DarkTheme.xaml"),
+            new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.Aero;component/Theme.xaml"),
         };
 
         public IEnumerable<Uri> MainWindowResources { get; }
