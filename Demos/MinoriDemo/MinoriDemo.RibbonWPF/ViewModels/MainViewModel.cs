@@ -2,7 +2,7 @@ using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.StatusBar;
-using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.ViewModels;
 using MvvmCross;
@@ -51,7 +51,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
         });
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
-        //public ICommand TaskRunCommand => new DelegateCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
+        //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
 
         //public ICommand SettingsCommand => _settingsManager.SettingsCommand;
 
@@ -83,7 +83,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
             : base(logProvider, navigationService)
         {
             _themeManager = themeManager;
-            _themeManager.SetCurrentTheme("Light");
+            //_themeManager.SetCurrentTheme("Light");
             _manager = manager;
 
             statusBar.AddItem(String.Empty, GridLength.Auto);

@@ -1,5 +1,6 @@
 ﻿using Fluent;
 using MahApps.Metro.Controls;
+using MinoriEditorStudio.Platforms.Wpf.Views;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Views;
@@ -10,45 +11,10 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
-namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
+namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Views
 {
-    public class MetroRibbon : MetroWindow, IMvxWindow, IMvxWpfView, IRibbonWindow, IDisposable
+    public class MesRibbonWindow : MesWindow, IMvxWindow, IMvxWpfView, IRibbonWindow, IDisposable
     {
-        private IMvxViewModel _viewModel;
-        private IMvxBindingContext _bindingContext;
-
-        public IMvxViewModel ViewModel
-        {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                DataContext = value;
-                BindingContext.DataContext = value;
-            }
-        }
-
-        public String Identifier { get; set; }
-
-        public IMvxBindingContext BindingContext
-        {
-            get
-            {
-                if (_bindingContext != null)
-                {
-                    return _bindingContext;
-                }
-
-                if (Mvx.IoCProvider != null)
-                {
-                    this.CreateBindingContext();
-                }
-
-                return _bindingContext;
-            }
-            set => _bindingContext = value;
-        }
-
         #region TitelBar
         /// <summary>
         /// Gets ribbon titlebar
@@ -61,22 +27,19 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
 
         // ReSharper disable once InconsistentNaming
         private static readonly DependencyPropertyKey TitleBarPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(TitleBar), typeof(RibbonTitleBar), typeof(MetroRibbon), new PropertyMetadata());
+            DependencyProperty.RegisterReadOnly(nameof(TitleBar), typeof(RibbonTitleBar), typeof(MesRibbonWindow), new PropertyMetadata());
 
         /// <summary>
         /// <see cref="DependencyProperty"/> for <see cref="TitleBar"/>.
         /// </summary>
         public static readonly DependencyProperty TitleBarProperty = TitleBarPropertyKey.DependencyProperty;
-
         #endregion
 
-        public MetroRibbon()
+        public MesRibbonWindow()
         {
-            Unloaded += MvxMetroRibbon_Unloaded;
             Loaded += MvxMetroRibbon_Loaded;
             Initialized += MvxMetroRibbon_Initialized;
         }
-
 
         private void MvxMetroRibbon_Initialized(Object sender, EventArgs e)
         {
@@ -98,13 +61,6 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             }
         }
 
-        private void MvxMetroRibbon_Unloaded(Object sender, RoutedEventArgs e)
-        {
-            ViewModel?.ViewDisappearing();
-            ViewModel?.ViewDisappeared();
-            ViewModel?.ViewDestroy();
-        }
-
         /// <summary>
         /// Initial Metro setup
         /// </summary>
@@ -120,27 +76,6 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
             TitleBar?.InvalidateArrange();
             TitleBar?.UpdateLayout();
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~MetroRibbon()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(Boolean disposing)
-        {
-            if (disposing)
-            {
-                Unloaded -= MvxMetroRibbon_Unloaded;
-                Loaded -= MvxMetroRibbon_Loaded;
-            }
-        }
-
     }
 
     public class MvxWindow<TViewModel> : MvxWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel

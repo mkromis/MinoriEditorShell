@@ -1,6 +1,5 @@
 using MinoriEditorStudio.Modules.Settings;
-using MinoriEditorStudio.Modules.Themes;
-using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
