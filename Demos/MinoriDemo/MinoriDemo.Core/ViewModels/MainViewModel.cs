@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

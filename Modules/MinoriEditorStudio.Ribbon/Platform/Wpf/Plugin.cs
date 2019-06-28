@@ -1,5 +1,5 @@
-﻿using MinoriEditorStudio.Modules.Themes.Services;
-using MinoriEditorStudio.Ribbon.Platform.Wpf.Controls;
+﻿using MinoriEditorStudio.Ribbon.Platform.Wpf.Controls;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
@@ -16,14 +16,6 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf
     {
         public void Load()
         {
-            // Setup manager, is there a better way?
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeList>(() => new ThemeList
-            {
-                new DefaultTheme(),
-                new BlueTheme(),
-                new LightTheme(),
-                new DarkTheme(),
-            }); ;
         }
     }
 }

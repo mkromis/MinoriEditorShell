@@ -1,5 +1,6 @@
-using MinoriEditorStudio.Modules.Themes.Definitions;
-using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorStudio.Platforms.Wpf.Themes;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
