@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Modules.Themes.Services
+namespace MinoriEditorStudio.Services
 {
     public interface ITheme
     {
@@ -14,10 +14,5 @@ namespace MinoriEditorStudio.Modules.Themes.Services
         /// Resources to be added to Application.Resources.
         /// </summary>
         IEnumerable<Uri> ApplicationResources { get; }
-
-        /// <summary>
-        /// Resources to be added to the main window's Window.Resources collection.
-        /// </summary>
-        IEnumerable<Uri> MainWindowResources { get; }
     }
 }

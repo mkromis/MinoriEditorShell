@@ -127,7 +127,7 @@
       <Version>6.1.0.326</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.3.0</Version>
+      <Version>6.3.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

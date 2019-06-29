@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Modules.Themes.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using SimpleDemo.Core.Services;
