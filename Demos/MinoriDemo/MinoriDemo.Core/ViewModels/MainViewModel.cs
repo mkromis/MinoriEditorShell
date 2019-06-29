@@ -13,10 +13,21 @@ namespace MinoriDemo.Core.ViewModels
 {
     public class MainViewModel : MvxNavigationViewModel
     {
+        private readonly IThemeManager _themeManager;
+
         public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IThemeManager themeManager) 
             : base(logProvider, navigationService)
         {
-            themeManager.SetCurrentTheme("Blue");
+            _themeManager = themeManager;
+        }
+
+
+        public IEnumerable<String> ThemeList => _themeManager.Themes.Select(x => x.Name);
+
+        public String SelectedTheme
+        {
+            set => _themeManager.SetCurrentTheme(value);
+            get => _themeManager.CurrentTheme.Name;
         }
     }
 }

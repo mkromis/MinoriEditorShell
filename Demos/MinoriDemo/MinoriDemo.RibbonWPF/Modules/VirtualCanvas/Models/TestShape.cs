@@ -1,4 +1,4 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Controls;
+﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -89,7 +89,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public UIElement Visual { get; private set; }
 
-        public UIElement CreateVisual(MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas parent)
+        public UIElement CreateVisual(MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas parent)
         {
             if (Visual == null)
             {
@@ -201,11 +201,11 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public RectangleF Bounds => _bounds;
 
-        MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas _parent;
+        MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas _parent;
         Typeface _typeface;
         Double _fontSize;
 
-        public Size MeasureText(MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas parent, String label)
+        public Size MeasureText(MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas parent, String label)
         {
             if (_parent != parent)
             {
