@@ -4,7 +4,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Service;
-using MinoriEditorStudio.VirtualCanvas.ViewModels;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 
 namespace MinoriDemo.RibbonWPF.ViewModels
 {
@@ -69,13 +70,6 @@ namespace MinoriDemo.RibbonWPF.ViewModels
             return vm;
         }
 
-        public IEnumerable<String> ThemeList => _themeManager.Themes.Select(x => x.Name);
-
-        public String SelectedTheme
-        {
-            set => _themeManager.SetCurrentTheme(value);
-            get => _themeManager.CurrentTheme.Name;
-        }
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
