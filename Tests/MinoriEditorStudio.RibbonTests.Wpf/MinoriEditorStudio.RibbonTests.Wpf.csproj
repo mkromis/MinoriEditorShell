@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{057B4FDD-4E41-47BF-8DA6-6955523D4DD1}</ProjectGuid>
+    <ProjectGuid>{AB42B92D-2FA1-4D09-A6C4-5D8614B793A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MinoriEditorStudio.CoreTests.Wpf</RootNamespace>
-    <AssemblyName>MinoriEditorStudio.CoreTests.Wpf</AssemblyName>
+    <RootNamespace>MinoriEditorStudio.RibbonTests.Wpf</RootNamespace>
+    <AssemblyName>MinoriEditorStudio.RibbonTests.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,6 +60,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\MinoriEditorStudio.Ribbon\MinoriEditorStudio.Ribbon.csproj">
+      <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
+      <Name>MinoriEditorStudio.Ribbon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
       <Name>MinoriEditorStudio</Name>
