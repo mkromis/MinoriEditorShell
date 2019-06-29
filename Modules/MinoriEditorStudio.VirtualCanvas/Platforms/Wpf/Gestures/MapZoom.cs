@@ -15,7 +15,7 @@ using System.Windows.Controls.Primitives;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Gestures
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 {
     /// <summary>
     /// The MapZoom gesture provides animated mouse wheel zooming behavior as well as a

@@ -11,7 +11,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Models
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
 {
 
     /// <summary>

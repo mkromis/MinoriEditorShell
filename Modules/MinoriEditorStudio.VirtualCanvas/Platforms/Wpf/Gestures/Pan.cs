@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Gestures
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 {
 
     /// <summary>

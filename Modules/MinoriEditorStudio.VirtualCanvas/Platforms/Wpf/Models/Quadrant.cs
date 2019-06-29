@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.VirtualCanvas.Models
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
 {
 
     /// <summary>

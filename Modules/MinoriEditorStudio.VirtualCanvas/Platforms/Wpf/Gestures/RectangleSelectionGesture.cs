@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.VirtualCanvas.Gestures
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 {
     /// <summary>
     /// This class provides the ability to draw a rectangle on a zoomable object and zoom into that location.
