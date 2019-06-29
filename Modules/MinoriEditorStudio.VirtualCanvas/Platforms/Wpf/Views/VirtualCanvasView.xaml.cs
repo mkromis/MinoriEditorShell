@@ -1,10 +1,10 @@
-﻿using MinoriEditorStudio.VirtualCanvas.ViewModels;
+﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.ViewModels;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Views
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for VirtualCanvas

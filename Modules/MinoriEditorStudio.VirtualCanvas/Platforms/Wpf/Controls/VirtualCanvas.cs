@@ -3,8 +3,8 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-using MinoriEditorStudio.VirtualCanvas.Gestures;
-using MinoriEditorStudio.VirtualCanvas.Models;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
@@ -20,7 +20,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace MinoriEditorStudio.VirtualCanvas.Controls
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
 {
     public class VisualChangeEventArgs : EventArgs
     {

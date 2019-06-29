@@ -6,7 +6,7 @@
 using MinoriEditorStudio.VirtualCanvas.Services;
 using System.Drawing;
 
-namespace MinoriEditorStudio.VirtualCanvas.Models
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
 {
     /// <summary>
     /// Each node stored in the tree has a position, width & height.

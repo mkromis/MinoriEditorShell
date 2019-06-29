@@ -1,5 +1,6 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Service;
-using MinoriEditorStudio.VirtualCanvas.ViewModels;
+﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Views;
+using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
@@ -10,17 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.VirtualCanvas
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf
 {
     [MvxPlugin]
     public class Plugin : IMvxPlugin
     {
         public void Load()
         {
-            Mvx.IoCProvider.RegisterType<Views.VirtualCanvasView>();
+            Mvx.IoCProvider.RegisterType<VirtualCanvasView>();
             Mvx.IoCProvider.RegisterType<IVirtualCanvas>(() =>
             {
-                Mvx.IoCProvider.Resolve<IMvxViewsContainer>().Add<VirtualCanvasViewModel, Views.VirtualCanvasView>();
+                Mvx.IoCProvider.Resolve<IMvxViewsContainer>().Add<VirtualCanvasViewModel, VirtualCanvasView>();
                 return new VirtualCanvasViewModel();
             });
 

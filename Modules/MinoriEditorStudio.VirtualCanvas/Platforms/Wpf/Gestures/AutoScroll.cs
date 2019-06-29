@@ -13,7 +13,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Gestures
+namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 {
     /// <summary>
     /// This class implements a mouse middle-button auto-scrolling feature over any target view.
