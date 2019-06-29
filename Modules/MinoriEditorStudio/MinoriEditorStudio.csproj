@@ -94,6 +94,9 @@
         <Generator>SettingsSingleFileGenerator</Generator>
         <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       </None>
+      <None Update="SampleData\SettingsViewModelSampleData.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
     </ItemGroup>
 
 </Project>
