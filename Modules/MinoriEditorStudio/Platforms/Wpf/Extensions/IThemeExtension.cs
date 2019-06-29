@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Extensions
 {
-    static class IThemeExtension
+    public static class IThemeExtension
     {
         /// <summary>
         /// Try to see if Mes.Ribbon is loaded.
