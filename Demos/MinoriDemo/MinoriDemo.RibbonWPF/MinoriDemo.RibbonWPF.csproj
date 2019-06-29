@@ -55,7 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core.App.cs" />
+    <Compile Include="Modules\VirtualCanvas\Extensions\QuadrantExtension.cs" />
+    <Compile Include="Modules\VirtualCanvas\Extensions\QuadTreeExtension.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\HlsColor.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\LogWriter.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
+    <Compile Include="ViewModels\ToolSampleViewModel.cs" />
+    <Compile Include="Modules\VirtualCanvas\Models\VirtualCanvasModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -122,22 +130,15 @@
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
       <Name>MinoriEditorStudio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj">
-      <Project>{e2733b2f-5c55-4c2e-879f-1495c5e11a4b}</Project>
-      <Name>MinoriDemo.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon">
       <Version>6.1.0.326</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.3.0</Version>
+      <Version>6.3.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\VirtualCanvas\Extensions\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Modules.Themes.Services
+namespace MinoriEditorStudio.Services
 {
     public interface IThemeManager
     {

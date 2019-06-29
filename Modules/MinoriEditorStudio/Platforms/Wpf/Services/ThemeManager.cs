@@ -28,36 +28,42 @@
 
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Messages;
-using MinoriEditorStudio.Modules.Themes.Definitions;
+using MinoriEditorStudio.Services;
+using MvvmCross;
+using MvvmCross.Base;
+using MvvmCross.Logging;
 using MvvmCross.Plugin.Messenger;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
-namespace MinoriEditorStudio.Modules.Themes.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public class ThemeManager : IThemeManager
     {
         // IOC
         private readonly IMvxMessenger _messenger;
+        private readonly IMvxLog _log;
 
         public IThemeList Themes { get; private set; }
 
         public ITheme CurrentTheme { get; private set; }
 
-        public ThemeManager(IMvxMessenger messenger, IThemeList themeList)
+        public ThemeManager(IMvxMessenger messenger, IThemeList themeList, IMvxLogProvider provider)
         {
             Themes = themeList;
             _messenger = messenger;
+            _log = provider.GetLogFor<ThemeManager>();
 
             String themeName = Properties.Settings.Default.ThemeName;
             if (String.IsNullOrEmpty(themeName)) {
                 themeName = GetDefaultApplicationMode();
             }
 
-            SetCurrentTheme(Properties.Resources.ThemeBlueName, false);
+            SetCurrentTheme(themeList.First().Name, false);
 
             _messenger.Subscribe<SettingsChangedMessage>((x) =>
             {
@@ -75,86 +81,56 @@ namespace MinoriEditorStudio.Modules.Themes.Services
 
         public Boolean SetCurrentTheme(String name, Boolean applySetting)
         {
-            // Find theme for name
-            ITheme theme = Themes.FirstOrDefault(x => x.Name == name);
-            if (theme == null) { return false; }
-            CurrentTheme = theme;
-
-            Application.Current.Dispatcher.InvokeAsync(() =>
+            try
             {
-                // Setup app style
-                ResourceDictionary appTheme =
-                    Application.Current.Resources.MergedDictionaries.Count > 0
-                    ? Application.Current.Resources.MergedDictionaries[0] : null;
+                // Find theme for name
+                ITheme theme = Themes.FirstOrDefault(x => x.Name == name);
+                if (theme == null) { return false; }
+                CurrentTheme = theme;
 
-                if (appTheme == null)
+                // Setup asnc info
+                Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
+                    .ExecuteOnMainThreadAsync(() =>
                 {
-                    appTheme = new ResourceDictionary();
-                    Application.Current.Resources.MergedDictionaries.Add(appTheme);
+                    // Setup app style
+                    ResourceDictionary appTheme =
+                        Application.Current.Resources.MergedDictionaries.Count > 0
+                        ? Application.Current.Resources.MergedDictionaries[0] : null;
+
+                    if (appTheme == null)
+                    {
+                        appTheme = new ResourceDictionary();
+                        Application.Current.Resources.MergedDictionaries.Add(appTheme);
+                    }
+
+                    appTheme.BeginInit();
+
+                    appTheme.MergedDictionaries.Clear(); 
+                    foreach (Uri uri in theme.ApplicationResources)
+                    {
+                        ResourceDictionary newDict = new ResourceDictionary { Source = uri };
+                        appTheme.MergedDictionaries.Add(newDict);
+                    }
+                    appTheme.EndInit();
+                });
+
+                _log.Info($"Theme set to {name}");
+
+                // publish event
+                _messenger.Publish(new ThemeChangeMessage(this, CurrentTheme.Name));
+
+                if (applySetting)
+                {
+                    Properties.Settings.Default.ThemeName = CurrentTheme.Name;
                 }
 
-                appTheme.MergedDictionaries.Clear();
-                appTheme.BeginInit();
+                return true;
 
-                foreach (Uri uri in theme.ApplicationResources)
-                {
-                    ResourceDictionary newDict = new ResourceDictionary { Source = uri };
-                    appTheme.MergedDictionaries.Add(newDict);
-                }
-                appTheme.EndInit();
-
-                //_logger.Log($"Theme set to {name}", Category.Info, Priority.None);
-                //_eventAggregator.GetEvent<ThemeChangeEvent>().Publish(newTheme);
-            });
-
-            //private ResourceDictionary applicationResourceDictionary;
-            //if (_applicationResourceDictionary == null)
-            //{
-            //    _applicationResourceDictionary = new ResourceDictionary();
-            //    Application.Current.Resources.MergedDictionaries.Add(_applicationResourceDictionary);
-            //}
-            //_applicationResourceDictionary.BeginInit();
-            //_applicationResourceDictionary.MergedDictionaries.Clear();
-
-            //ResourceDictionary maindictionary = mainWindow.Resources;
-            //if (maindictionary.Count() == 0)
-            //{
-            //}
-
-            //ResourceDictionary windowResourceDictionary = mainWindow.Resources.MergedDictionaries[0];
-            //windowResourceDictionary.BeginInit();
-            //windowResourceDictionary.MergedDictionaries.Clear();
-
-            //foreach (Uri uri in theme.ApplicationResources)
-            //{
-            //    _applicationResourceDictionary.MergedDictionaries.Add(new ResourceDictionary
-            //    {
-            //        Source = uri
-            //    });
-            //}
-
-            //foreach (Uri uri in theme.MainWindowResources)
-            //{
-            //    windowResourceDictionary.MergedDictionaries.Add(new ResourceDictionary
-            //    {
-            //        Source = uri
-            //    });
-            //}
-
-            //windowResourceDictionary.EndInit();
-            //_applicationResourceDictionary.EndInit();
-        //});
-
-
-            // publish event
-            _messenger.Publish(new ThemeChangeMessage(this, CurrentTheme.Name));
-
-            if (applySetting)
+            } catch (Exception e)
             {
-                Properties.Settings.Default.ThemeName = CurrentTheme.Name;
+                _log.InfoException("Log Theme Setting", e);
+                return false;
             }
-
-            return true;
         }
 
     }

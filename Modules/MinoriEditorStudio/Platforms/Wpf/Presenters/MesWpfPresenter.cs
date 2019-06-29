@@ -25,7 +25,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
             _log = provider.GetLogFor<MesWpfPresenter>();
-            _log.Info("ctor");
+            _log.Trace("ctor");
             _mainWindow = mainWindow;
         }
 
