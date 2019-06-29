@@ -1,4 +1,5 @@
-﻿using MinoriEditorStudio.Services;
+﻿using MinoriEditorStudio.Platforms.Wpf.Extensions;
+using MinoriEditorStudio.Services;
 using System;
 using System.Collections.Generic;
 
@@ -19,20 +20,24 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
         /// Lists of valid URIs which will be loaded in the theme dictionary
         /// </summary>
         /// <value>The URI list.</value>
-        public IEnumerable<Uri> ApplicationResources { get; } = new List<Uri>
+        public IEnumerable<Uri> ApplicationResources
         {
-            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"),
-            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"),
-            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml"),
-            new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"),
+            get
+            {
+                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml");
+                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml");
+                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml");
+                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml");
 
-            new Uri("pack://application:,,,/Fluent;Component/Themes/Generic.xaml"),
-            new Uri("pack://application:,,,/Fluent;component/Themes/Accents/Cobalt.xaml"),
-            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
+                if (this.HasRibbon())
+                {
+                    yield return new Uri("pack://application:,,,/Fluent;Component/Themes/Generic.xaml");
+                    yield return new Uri("pack://application:,,,/Fluent;component/Themes/Accents/Cobalt.xaml");
+                    yield return new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml");
+                }
 
-            new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.Aero;component/Theme.xaml"),
-        };
-
-        public IEnumerable<Uri> MainWindowResources { get; }
+                yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.Aero;component/Theme.xaml");
+            }
+        }
     }
 }

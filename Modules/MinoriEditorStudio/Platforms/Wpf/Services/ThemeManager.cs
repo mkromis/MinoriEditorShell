@@ -29,12 +29,15 @@
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Messages;
 using MinoriEditorStudio.Services;
+using MvvmCross;
+using MvvmCross.Base;
 using MvvmCross.Logging;
 using MvvmCross.Plugin.Messenger;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Services
@@ -85,67 +88,31 @@ namespace MinoriEditorStudio.Platforms.Wpf.Services
                 if (theme == null) { return false; }
                 CurrentTheme = theme;
 
-                //Application.Current.Dispatcher.InvokeAsync(() =>
-                //{
-                // Setup app style
-                ResourceDictionary appTheme =
-                    Application.Current.Resources.MergedDictionaries.Count > 0
-                    ? Application.Current.Resources.MergedDictionaries[0] : null;
-
-                if (appTheme == null)
+                // Setup asnc info
+                Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
+                    .ExecuteOnMainThreadAsync(() =>
                 {
-                    appTheme = new ResourceDictionary();
-                    Application.Current.Resources.MergedDictionaries.Add(appTheme);
-                }
+                    // Setup app style
+                    ResourceDictionary appTheme =
+                        Application.Current.Resources.MergedDictionaries.Count > 0
+                        ? Application.Current.Resources.MergedDictionaries[0] : null;
 
-                appTheme.BeginInit();
+                    if (appTheme == null)
+                    {
+                        appTheme = new ResourceDictionary();
+                        Application.Current.Resources.MergedDictionaries.Add(appTheme);
+                    }
 
-                appTheme.MergedDictionaries.Clear(); 
-                foreach (Uri uri in theme.ApplicationResources)
-                {
-                    ResourceDictionary newDict = new ResourceDictionary { Source = uri };
-                    appTheme.MergedDictionaries.Add(newDict);
-                }
-                appTheme.EndInit();
+                    appTheme.BeginInit();
 
-
-                //private ResourceDictionary applicationResourceDictionary;
-                //if (_applicationResourceDictionary == null)
-                //{
-                //    _applicationResourceDictionary = new ResourceDictionary();
-                //    Application.Current.Resources.MergedDictionaries.Add(_applicationResourceDictionary);
-                //}
-                //_applicationResourceDictionary.BeginInit();
-                //_applicationResourceDictionary.MergedDictionaries.Clear();
-
-                //ResourceDictionary maindictionary = mainWindow.Resources;
-                //if (maindictionary.Count() == 0)
-                //{
-                //}
-
-                //ResourceDictionary windowResourceDictionary = mainWindow.Resources.MergedDictionaries[0];
-                //windowResourceDictionary.BeginInit();
-                //windowResourceDictionary.MergedDictionaries.Clear();
-
-                //foreach (Uri uri in theme.ApplicationResources)
-                //{
-                //    _applicationResourceDictionary.MergedDictionaries.Add(new ResourceDictionary
-                //    {
-                //        Source = uri
-                //    });
-                //}
-
-                //foreach (Uri uri in theme.MainWindowResources)
-                //{
-                //    windowResourceDictionary.MergedDictionaries.Add(new ResourceDictionary
-                //    {
-                //        Source = uri
-                //    });
-                //}
-
-                //windowResourceDictionary.EndInit();
-                //_applicationResourceDictionary.EndInit();
-                //});
+                    appTheme.MergedDictionaries.Clear(); 
+                    foreach (Uri uri in theme.ApplicationResources)
+                    {
+                        ResourceDictionary newDict = new ResourceDictionary { Source = uri };
+                        appTheme.MergedDictionaries.Add(newDict);
+                    }
+                    appTheme.EndInit();
+                });
 
                 _log.Info($"Theme set to {name}");
 
