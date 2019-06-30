@@ -100,4 +100,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="Converters\CultureInfoNameConverter.cs" />
+    </ItemGroup>
+
 </Project>

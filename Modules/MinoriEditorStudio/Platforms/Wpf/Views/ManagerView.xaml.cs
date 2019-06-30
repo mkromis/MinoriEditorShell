@@ -1,8 +1,9 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Manager.ViewModels;
 using MinoriEditorStudio.Modules.Shell.Views;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
