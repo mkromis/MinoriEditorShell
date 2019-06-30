@@ -14,7 +14,7 @@ using System.Windows.Media;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Controls;
 
-namespace MinoriEditorStudio.Modules.Manager.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     public partial class ManagerView : IManagerView
 	{

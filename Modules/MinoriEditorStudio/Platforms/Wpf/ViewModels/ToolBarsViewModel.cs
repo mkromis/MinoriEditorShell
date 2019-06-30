@@ -1,6 +1,4 @@
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Modules.ToolBars.Controls;
-using MinoriEditorStudio.Modules.ToolBars.Views;
 using MvvmCross.ViewModels;
 
 namespace MinoriEditorStudio.Modules.ToolBars.ViewModels
