@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MinoriEditorStudio.Framework;
 
-namespace MinoriEditorStudio.Modules.Shell.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
 	public class PanesStyleSelector : StyleSelector
 	{

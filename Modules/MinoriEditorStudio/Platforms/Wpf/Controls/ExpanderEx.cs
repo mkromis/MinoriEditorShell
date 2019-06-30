@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Framework.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public class ExpanderEx : Expander
     {

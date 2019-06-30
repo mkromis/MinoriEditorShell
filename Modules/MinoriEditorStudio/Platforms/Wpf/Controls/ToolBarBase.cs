@@ -1,9 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Framework.Controls;
 using MinoriEditorStudio.Modules.ToolBars.Models;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public class ToolBarBase : ToolBar
     {
