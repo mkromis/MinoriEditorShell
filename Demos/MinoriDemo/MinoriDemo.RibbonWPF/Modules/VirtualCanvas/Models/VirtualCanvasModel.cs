@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Extensions;
 using MinoriEditorStudio.Modules.StatusBar;
+using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Controls;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MvvmCross;
@@ -89,7 +90,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             {
                 Double value = Double.Parse(x);
                 Canvas.Zoom.Zoom = value / 100;
-                _statusbar.AddItem($"Zoom is {value}", GridLength.Auto);
+                _statusbar.Text = $"Zoom is {value}";
             }
         });
 
@@ -116,7 +117,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
             // Update Statusbar
             _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
-            _statusbar.AddItem("Loading", GridLength.Auto);
+            _statusbar.Text = "Loading";
 
             // Override ctrl with alt. (Test code)
             Canvas.RectZoom.ModifierKeys = ModifierKeys.Alt;
@@ -124,8 +125,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             Canvas.Zoom.ZoomChanged += (s, e) =>
             {
                 RaisePropertyChanged("ZoomValue");
-                _statusbar.Items.Clear();
-                _statusbar.AddItem($"Zoom:{ZoomValue}", GridLength.Auto);
+                _statusbar.Text = $"Zoom:{ZoomValue}";
             };
 
             Canvas.RectZoom.ZoomReset += (s, e) => ResetZoom();
@@ -138,8 +138,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             AllocateNodes();
 
             // Update info 
-            _statusbar.Items.Clear();
-            _statusbar.AddItem("Ready", GridLength.Auto);
+            _statusbar.Text = "Ready";
         }
 
         private void AllocateNodes()

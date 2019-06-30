@@ -86,7 +86,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
             //_themeManager.SetCurrentTheme("Light");
             _manager = manager;
 
-            statusBar.AddItem(String.Empty, GridLength.Auto);
+            //statusBar.AddItem(String.Empty, GridLength.Auto);
 
             //_settingsManager = Container.Resolve<ISettingsManager>();
             //_themeSettings = Container.Resolve<IThemeSettings>();

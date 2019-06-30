@@ -12,7 +12,7 @@ namespace MinoriEditorStudio.ViewModels
     /// <summary>
     /// Class Wider Status bar
     /// </summary>
-    internal class StatusbarService : MvxViewModel, IStatusBar
+    internal class StatusBarViewModel : MvxViewModel, IStatusBar
     {
         #region Fields
         /// <summary>
@@ -69,7 +69,7 @@ namespace MinoriEditorStudio.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusbarService"/> class.
         /// </summary>
-        public StatusbarService() => Clear();
+        public StatusBarViewModel() => Clear();
         #endregion
 
         #region IStatusbarService members

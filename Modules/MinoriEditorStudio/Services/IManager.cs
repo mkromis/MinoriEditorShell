@@ -1,8 +1,9 @@
+using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Modules.Manager.Services;
 using MvvmCross.ViewModels;
 using System;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Services
 {
     public interface IManager
     {

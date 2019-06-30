@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Modules.Shell.Commands
 {
