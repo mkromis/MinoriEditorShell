@@ -38,21 +38,18 @@ namespace MinoriEditorStudio.Modules.Manager.Views
 
         public void SaveLayout(Stream stream) => LayoutUtility.SaveLayout(Manager, stream);
 
-        private void OnManagerLayoutUpdated(Object sender, EventArgs e)
-        {
-            UpdateFloatingWindows();
-        }
+        private void OnManagerLayoutUpdated(Object sender, EventArgs e) => UpdateFloatingWindows();
 
         public void UpdateFloatingWindows()
         {
-            //Window mainWindow = Window.GetWindow(this);
-            //ImageSource mainWindowIcon = mainWindow?.Icon;
-            //Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
-            //foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
-            //{
-            //    window.Icon = mainWindowIcon;
-            //    window.ShowInTaskbar = showFloatingWindowsInTaskbar;
-            //}
+            Window mainWindow = Window.GetWindow(this);
+            ImageSource mainWindowIcon = mainWindow?.Icon;
+            Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
+            foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
+            {
+                window.Icon = mainWindowIcon;
+                window.ShowInTaskbar = showFloatingWindowsInTaskbar;
+            }
         }
     }
 }
