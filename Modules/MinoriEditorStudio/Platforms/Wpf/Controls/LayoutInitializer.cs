@@ -6,7 +6,7 @@ using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using Xceed.Wpf.AvalonDock.Layout;
 
-namespace MinoriEditorStudio.Modules.Shell.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
 	public class LayoutInitializer : ILayoutUpdateStrategy
 	{
