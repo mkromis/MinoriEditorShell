@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:viewModels="clr-namespace:MinoriEditorStudio.Modules.MainMenu.ViewModels"
     xmlns:p="clr-namespace:MinoriEditorStudio.Properties"
-    xmlns:converters="clr-namespace:MinoriEditorStudio.Modules.MainMenu.Converters"
+    xmlns:converters="clr-namespace:MinoriEditorStudio.Converters"
     x:Class="MinoriEditorStudio.Modules.MainMenu.Views.MainMenuSettingsView" mc:Ignorable="d" d:DesignHeight="300"
     d:DesignWidth="300" d:DataContext="{d:DesignInstance viewModels:MainMenuSettingsViewModel}"
     IsTabStop="False">
