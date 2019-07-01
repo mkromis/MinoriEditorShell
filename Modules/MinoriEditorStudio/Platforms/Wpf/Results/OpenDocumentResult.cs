@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.Composition;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Shell.Commands;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 
 namespace MinoriEditorStudio.Framework.Results

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Modules.Manager.Services
 {

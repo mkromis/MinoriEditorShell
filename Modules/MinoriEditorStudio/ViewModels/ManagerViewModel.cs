@@ -1,13 +1,14 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Manager.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
 using System.IO;
 using System.Windows;
 
-namespace MinoriEditorStudio.Modules.Manager.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     public class ManagerViewModel : MvxViewModel, IManager
     {

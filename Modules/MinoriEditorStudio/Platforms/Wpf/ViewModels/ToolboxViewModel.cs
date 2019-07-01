@@ -11,6 +11,7 @@ using MinoriEditorStudio.Properties;
 using System.Windows.Input;
 using MvvmCross.Commands;
 using System.Collections.ObjectModel;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
 {

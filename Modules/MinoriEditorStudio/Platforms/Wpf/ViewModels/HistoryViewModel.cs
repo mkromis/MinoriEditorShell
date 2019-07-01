@@ -6,6 +6,7 @@ using System.Linq;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Properties;
+using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
 
 namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels

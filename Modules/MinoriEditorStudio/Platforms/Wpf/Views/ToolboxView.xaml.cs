@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Modules.Toolbox.ViewModels;
+using MinoriEditorStudio.Platforms.Wpf.Controls;
 
 namespace MinoriEditorStudio.Modules.Toolbox.Views
 {
