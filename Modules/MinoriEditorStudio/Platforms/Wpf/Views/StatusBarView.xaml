@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:converter="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters"
+    xmlns:xctkConv="clr-namespace:Xceed.Wpf.Toolkit.Core.Converters;assembly=Xceed.Wpf.Toolkit"
     mc:Ignorable="d" 
     d:DesignHeight="20" d:DesignWidth="300">
     <UserControl.Resources>
@@ -12,9 +13,10 @@
             <converter:NullObjectToVisibiltyConverter x:Key="nullToVisibilityConverter" />
             <converter:BoolToInsertModeConverter x:Key="booleanToInsertModeConverter" />
             <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+            <converter:DrawingColorToMediaBrushConverter x:Key="drawingColorToMediaBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <StatusBar x:Name="statusBar" Background="{Binding Path=Background}">
+    <StatusBar x:Name="statusBar" Background="{Binding Path=Background, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}}">
         <StatusBar.ItemsPanel>
             <ItemsPanelTemplate>
                 <Grid>
@@ -32,44 +34,65 @@
         </StatusBar.ItemsPanel>
         <!--Status message-->
         <StatusBarItem>
-            <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock 
+                Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
         </StatusBarItem>
         <!--Progress bar-->
-        <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Stretch" Visibility="{Binding Path=ShowProgressBar, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
-            <ProgressBar Width="Auto" 
-                         Maximum="{Binding Path=ProgressMaximum, UpdateSourceTrigger=PropertyChanged}" 
-                         Value="{Binding Path=ProgressValue, UpdateSourceTrigger=PropertyChanged}" />
+        <StatusBarItem 
+            Grid.Column="1" HorizontalContentAlignment="Stretch" 
+            Visibility="{Binding Path=ShowProgressBar, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <ProgressBar 
+                Width="Auto" 
+                Maximum="{Binding Path=ProgressMaximum, UpdateSourceTrigger=PropertyChanged}" 
+                Value="{Binding Path=ProgressValue, UpdateSourceTrigger=PropertyChanged}" />
         </StatusBarItem>
         <!--Icon animation-->
-        <StatusBarItem Grid.Column="2" 
-                       Visibility="{Binding Path=AnimationImage, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+        <StatusBarItem 
+            Grid.Column="2" 
+            Visibility="{Binding Path=AnimationImage, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
             <ContentControl Content="{Binding Path=AnimationImage, UpdateSourceTrigger=PropertyChanged}" />
         </StatusBarItem>
         <!--Line number-->
-        <StatusBarItem Grid.Column="3" 
-                       Visibility="{Binding Path=LineNumber, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+        <StatusBarItem 
+            Grid.Column="3" 
+            Visibility="{Binding Path=LineNumber, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="Ln " />
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LineNumber, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="Ln " />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="{Binding Path=LineNumber, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StatusBarItem>
         <!--Column number-->
         <StatusBarItem Grid.Column="4" Visibility="{Binding Path=ColPosition, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="Col " />
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=ColPosition}" />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="Col " />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="{Binding Path=ColPosition}" />
             </StackPanel>
         </StatusBarItem>
         <!--Character number-->
         <StatusBarItem Grid.Column="5" Visibility="{Binding Path=CharPosition, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="Ch " />
-                <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=CharPosition, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="Ch " />
+                <TextBlock 
+                    Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="{Binding Path=CharPosition, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StatusBarItem>
         <!--Insert-->
         <StatusBarItem Grid.Column="6" HorizontalAlignment="Right" Visibility="{Binding Path=InsertMode, Converter={StaticResource ResourceKey=nullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
-            <TextBlock Foreground="{Binding Path=Foreground, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=InsertMode, Converter={StaticResource ResourceKey=booleanToInsertModeConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock 
+                Foreground="{Binding Path=Foreground, Converter={StaticResource ResourceKey=drawingColorToMediaBrushConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                Text="{Binding Path=InsertMode, Converter={StaticResource ResourceKey=booleanToInsertModeConverter}, UpdateSourceTrigger=PropertyChanged}" />
         </StatusBarItem>
     </StatusBar>
     <!--<UserControl.Resources>

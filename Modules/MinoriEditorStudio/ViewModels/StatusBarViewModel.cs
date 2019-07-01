@@ -90,7 +90,7 @@ namespace MinoriEditorStudio.ViewModels
         /// <returns><c>true</c> if successfully, <c>false</c> otherwise</returns>
         public Boolean Clear()
         {
-            MvxColor purple = MvxColor.ParseHexString("#FF007ACC");
+            MvxColor purple = MvxColor.ParseHexString("#007ACC");
 
             Foreground = Color.White;
             Background = Color.FromArgb(purple.ARGB);
