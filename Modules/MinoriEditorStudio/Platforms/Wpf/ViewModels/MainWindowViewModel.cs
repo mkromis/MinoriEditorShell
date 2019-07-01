@@ -4,6 +4,7 @@ using System.Windows.Media;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Properties;
+using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
 
 namespace MinoriEditorStudio.Modules.MainWindow.ViewModels

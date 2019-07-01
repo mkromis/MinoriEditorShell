@@ -15,7 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using MinoriEditorStudio.Framework.Win32;
 
-namespace MinoriEditorStudio.Framework.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     /// <summary>
     /// A control that enables graphics rendering inside a WPF control through

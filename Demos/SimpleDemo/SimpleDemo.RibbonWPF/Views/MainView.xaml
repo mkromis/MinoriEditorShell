@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:fluent="urn:fluent-ribbon"
     xmlns:local="clr-namespace:SimpleDemo.RibbonWPF.Views"
-    xmlns:manager="clr-namespace:MinoriEditorStudio.Modules.Manager.Views;assembly=MinoriEditorStudio"
+    xmlns:mes="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Views;assembly=MinoriEditorStudio"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800">
@@ -20,6 +20,6 @@
         </fluent:Ribbon>
 
         <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
-        <manager:ManagerView />
+        <mes:ManagerView />
     </DockPanel>
 </views:MvxWpfView>

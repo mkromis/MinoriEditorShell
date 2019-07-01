@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Themes.VS2013.Controls.Converters
+namespace MinoriEditorStudio.Platforms.Wpf.Converters
 {
     public class TreeViewIndentConverter : IValueConverter
     {

@@ -17,6 +17,7 @@ using MvvmCross.Commands;
 using MvvmCross;
 using System;
 using MvvmCross.Views;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Framework
 {

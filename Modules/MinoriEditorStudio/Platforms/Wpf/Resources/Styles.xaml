@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:MinoriEditorStudio.Modules.MainMenu.Controls"
-                    xmlns:converters="clr-namespace:MinoriEditorStudio.Modules.Shell.Converters"
+                    xmlns:controls="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls"
+                    xmlns:converters="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters"
                     xmlns:b="clr-namespace:MinoriEditorStudio.Modules.MainMenu.Behaviors">
     <converters:NullableValueConverter x:Key="NullableValueConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

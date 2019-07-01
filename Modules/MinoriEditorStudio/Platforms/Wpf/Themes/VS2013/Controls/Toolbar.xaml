@@ -1,7 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:c="clr-namespace:MinoriEditorStudio.Modules.ToolBars.Controls"
+    xmlns:c="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls"
     xmlns:shaderEffects="clr-namespace:MinoriEditorStudio.Framework.ShaderEffects"
     xmlns:controls="clr-namespace:MinoriEditorStudio.Framework.Controls">
     <Style x:Key="ToolBarThumbStyle" TargetType="{x:Type Thumb}">

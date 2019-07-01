@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 
 namespace MinoriEditorStudio.Framework.Results

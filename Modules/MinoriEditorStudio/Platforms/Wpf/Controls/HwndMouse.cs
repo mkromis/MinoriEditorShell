@@ -1,7 +1,7 @@
 using System.Windows;
 using MinoriEditorStudio.Framework.Win32;
 
-namespace MinoriEditorStudio.Framework.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public static class HwndMouse
     {
