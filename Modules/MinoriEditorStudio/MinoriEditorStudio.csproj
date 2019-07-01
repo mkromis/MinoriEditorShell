@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
         <Description>
             MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
             It uses AvalonDock and has an MVVM architecture based on MvvmCross.
@@ -21,6 +21,7 @@
     <ItemGroup>
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*" />
+        <None Remove="Platforms\Wpf\Converters\DrawingColorToMediaBrushConverter.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.3.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.1" />
