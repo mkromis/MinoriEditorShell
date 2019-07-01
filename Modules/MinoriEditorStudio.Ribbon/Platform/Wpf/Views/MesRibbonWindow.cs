@@ -35,18 +35,16 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Views
         public static readonly DependencyProperty TitleBarProperty = TitleBarPropertyKey.DependencyProperty;
         #endregion
 
-        public MesRibbonWindow()
+        public MesRibbonWindow() : base()
         {
-            Loaded += MvxMetroRibbon_Loaded;
-            Initialized += MvxMetroRibbon_Initialized;
+            Loaded += MesRibbonWindow_Loaded;
+            Initialized += MesRibbonWindow_Initialized;
         }
 
-        private void MvxMetroRibbon_Initialized(Object sender, EventArgs e)
+        private void MesRibbonWindow_Initialized(Object sender, EventArgs e)
         {
             if (this == Application.Current.MainWindow)
             {
-                (Application.Current as MvxApplication).ApplicationInitialized();
-
                 // Apply tempate if we are window. We invalidate later for rendering.
                 String template =
                     "<DataTemplate " +
@@ -61,16 +59,14 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Views
             }
         }
 
+
         /// <summary>
         /// Initial Metro setup
         /// </summary>
         /// <seealso cref="https://fluentribbon.github.io/documentation/interop_with_MahApps.Metro"/>
         /// <seealso cref="https://stackoverflow.com/questions/5755455/how-to-set-control-template-in-code"/>
-        private void MvxMetroRibbon_Loaded(Object sender, RoutedEventArgs e)
+        private void MesRibbonWindow_Loaded(Object sender, RoutedEventArgs e)
         {
-            ViewModel?.ViewAppearing();
-            ViewModel?.ViewAppeared();
-
             // Finding title must be done after init, (Time to render?)
             TitleBar = this.FindChild<RibbonTitleBar>("ribbonTitleBar");
             TitleBar?.InvalidateArrange();
@@ -78,7 +74,7 @@ namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Views
         }
     }
 
-    public class MvxWindow<TViewModel> : MvxWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
+    public class MesRibbonWindow<TViewModel> : MesRibbonWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel
         {
