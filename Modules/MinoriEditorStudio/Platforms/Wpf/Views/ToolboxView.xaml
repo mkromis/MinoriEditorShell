@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dd="clr-namespace:MinoriEditorStudio.Modules.Toolbox.Design"
-             xmlns:controls="clr-namespace:MinoriEditorStudio.Framework.Controls"
+             xmlns:controls="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"

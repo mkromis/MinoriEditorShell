@@ -1,6 +1,7 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;

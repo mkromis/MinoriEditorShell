@@ -1,11 +1,13 @@
 using MinoriEditorStudio.Platforms.Wpf.Services;
 using MinoriEditorStudio.Platforms.Wpf.Themes;
+using MinoriEditorStudio.ViewModels;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using MvvmCross.Plugin.Messenger;
 using System.Collections.Generic;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
@@ -13,8 +15,8 @@ namespace MinoriEditorStudio.Platforms.Wpf
     public class Plugin : IMvxPlugin
     {
         public void Load() {
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Framework.Services.IManager, Modules.Manager.ViewModels.ManagerViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.StatusBar.IStatusBar, Modules.StatusBar.ViewModels.StatusBarViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStatusBar, StatusBarViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Manager.Services.ILayoutItemStatePersister, Modules.Manager.Services.LayoutItemStatePersister>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Settings.ISettingsEditor, Modules.MainMenu.ViewModels.MainMenuSettingsViewModel>();
 

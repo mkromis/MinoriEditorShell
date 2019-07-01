@@ -1,5 +1,6 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;

@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public static class VisualTreeUtility
     {

@@ -7,6 +7,7 @@ using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
 using Microsoft.Win32;
 using System;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Modules.Shell.Commands
 {
