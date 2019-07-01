@@ -51,23 +51,27 @@ namespace MinoriEditorStudio.Platforms.Wpf.Views
 
         public MesWindow()
         {
-            Unloaded += MvxMetroRibbon_Unloaded;
-            Loaded += MvxMetroRibbon_Loaded;
+            Unloaded += MesWindow_Unloaded;
+            Loaded += MesWindow_Loaded;
+            Initialized += MesWindow_Initialized;
         }
 
-        private void MvxMetroRibbon_Unloaded(Object sender, RoutedEventArgs e)
+        private void MesWindow_Initialized(Object sender, EventArgs e)
+        {
+            if (this == Application.Current.MainWindow)
+            {
+                (Application.Current as MvxApplication).ApplicationInitialized();
+            }
+        }
+
+        private void MesWindow_Unloaded(Object sender, RoutedEventArgs e)
         {
             ViewModel?.ViewDisappearing();
             ViewModel?.ViewDisappeared();
             ViewModel?.ViewDestroy();
         }
 
-        /// <summary>
-        /// Initial Metro setup
-        /// </summary>
-        /// <seealso cref="https://fluentribbon.github.io/documentation/interop_with_MahApps.Metro"/>
-        /// <seealso cref="https://stackoverflow.com/questions/5755455/how-to-set-control-template-in-code"/>
-        private void MvxMetroRibbon_Loaded(Object sender, RoutedEventArgs e)
+        private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
         {
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
@@ -88,14 +92,15 @@ namespace MinoriEditorStudio.Platforms.Wpf.Views
         {
             if (disposing)
             {
-                Unloaded -= MvxMetroRibbon_Unloaded;
-                Loaded -= MvxMetroRibbon_Loaded;
+                Unloaded -= MesWindow_Unloaded;
+                Loaded -= MesWindow_Loaded;
             }
         }
-
     }
 
-    public class MvxWindow<TViewModel> : MvxWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
+    public class MesWindow<TViewModel>
+        : MesWindow
+          , IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel
         {
