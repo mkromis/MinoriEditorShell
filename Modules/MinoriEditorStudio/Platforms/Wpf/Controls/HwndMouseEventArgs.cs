@@ -10,7 +10,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Framework.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public class HwndMouseEventArgs : EventArgs
     {

@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
 	public class MenuEx : System.Windows.Controls.Menu
 	{

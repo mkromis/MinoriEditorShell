@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
         <Description>
             MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
             It uses AvalonDock and has an MVVM architecture based on MvvmCross.
@@ -20,7 +20,8 @@
 
     <ItemGroup>
         <Compile Remove="Platforms\**\*.cs" />
-        <None Include="Platforms\**\*.cs" />
+        <None Include="Platforms\**\*" />
+        <None Remove="Platforms\Wpf\Converters\DrawingColorToMediaBrushConverter.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.3.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.1" />
@@ -32,10 +33,11 @@
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-        <Compile Include="Platforms\Netstandard\**\*.cs" />
+        <Compile Include="Platforms\NetStandard\**\*.cs" />
 
         <PackageReference Include="System.ComponentModel" Version="4.3.0" />
         <PackageReference Include="System.ComponentModel.Composition" Version="4.5.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
@@ -43,17 +45,30 @@
             <Generator>MSBuild:Compile</Generator>
         </Page>
         <Compile Include="Platforms\Wpf\**\*.cs" />
-        
+
         <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
         <PackageReference Include="MahApps.Metro" Version="1.6.5" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.3.1" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
         <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
-        
+
         <Reference Include="PresentationCore" />
         <Reference Include="PresentationFramework" />
         <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="System.Drawing" />
         <Reference Include="WindowsBase" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -62,14 +77,6 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <Compile Update="Properties\Settings.Designer.cs">
-          <DesignTimeSharedInput>True</DesignTimeSharedInput>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
         <EmbeddedResource Update="Properties\Resources.de.resx">
             <Generator>ResXFileCodeGenerator</Generator>
         </EmbeddedResource>
@@ -87,15 +94,4 @@
             <Generator>ResXFileCodeGenerator</Generator>
         </EmbeddedResource>
     </ItemGroup>
-
-    <ItemGroup>
-      <None Update="Properties\Settings.settings">
-        <Generator>SettingsSingleFileGenerator</Generator>
-        <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      </None>
-      <None Update="SampleData\SettingsViewModelSampleData.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </None>
-    </ItemGroup>
-
 </Project>

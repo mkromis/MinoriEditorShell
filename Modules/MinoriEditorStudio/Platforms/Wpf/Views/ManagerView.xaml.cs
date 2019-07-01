@@ -1,8 +1,9 @@
 using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Manager.ViewModels;
 using MinoriEditorStudio.Modules.Shell.Views;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
@@ -13,7 +14,7 @@ using System.Windows.Media;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Controls;
 
-namespace MinoriEditorStudio.Modules.Manager.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     public partial class ManagerView : IManagerView
 	{
@@ -38,21 +39,18 @@ namespace MinoriEditorStudio.Modules.Manager.Views
 
         public void SaveLayout(Stream stream) => LayoutUtility.SaveLayout(Manager, stream);
 
-        private void OnManagerLayoutUpdated(Object sender, EventArgs e)
-        {
-            UpdateFloatingWindows();
-        }
+        private void OnManagerLayoutUpdated(Object sender, EventArgs e) => UpdateFloatingWindows();
 
         public void UpdateFloatingWindows()
         {
-            //Window mainWindow = Window.GetWindow(this);
-            //ImageSource mainWindowIcon = mainWindow?.Icon;
-            //Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
-            //foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
-            //{
-            //    window.Icon = mainWindowIcon;
-            //    window.ShowInTaskbar = showFloatingWindowsInTaskbar;
-            //}
+            Window mainWindow = Window.GetWindow(this);
+            ImageSource mainWindowIcon = mainWindow?.Icon;
+            Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
+            foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
+            {
+                window.Icon = mainWindowIcon;
+                window.ShowInTaskbar = showFloatingWindowsInTaskbar;
+            }
         }
     }
 }

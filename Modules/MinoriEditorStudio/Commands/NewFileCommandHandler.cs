@@ -7,6 +7,7 @@ using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Properties;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Modules.Shell.Commands
 {

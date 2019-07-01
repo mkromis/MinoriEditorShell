@@ -3,7 +3,7 @@ using MinoriEditorStudio.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Ribbon.Platform.Wpf.Controls
+namespace MinoriEditorStudio.Platform.Wpf.Controls
 {
     /// <summary>
     /// Class DefaultTheme
