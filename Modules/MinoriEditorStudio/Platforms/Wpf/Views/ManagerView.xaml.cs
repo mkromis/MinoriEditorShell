@@ -44,12 +44,15 @@ namespace MinoriEditorStudio.Platforms.Wpf.Views
         public void UpdateFloatingWindows()
         {
             Window mainWindow = Window.GetWindow(this);
-            ImageSource mainWindowIcon = mainWindow?.Icon;
-            Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
-            foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
+            if (mainWindow != null)
             {
-                window.Icon = mainWindowIcon;
-                window.ShowInTaskbar = showFloatingWindowsInTaskbar;
+                ImageSource mainWindowIcon = mainWindow.Icon;
+                Boolean showFloatingWindowsInTaskbar = ((ManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
+                foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
+                {
+                    window.Icon = mainWindowIcon;
+                    window.ShowInTaskbar = showFloatingWindowsInTaskbar;
+                }
             }
         }
     }
