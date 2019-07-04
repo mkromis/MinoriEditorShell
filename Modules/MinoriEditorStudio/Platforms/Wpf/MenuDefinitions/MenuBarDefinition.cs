@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
     public class MenuBarDefinition
     {

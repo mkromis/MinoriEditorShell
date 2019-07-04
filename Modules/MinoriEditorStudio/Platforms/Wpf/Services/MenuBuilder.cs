@@ -1,5 +1,5 @@
 using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
 using MinoriEditorStudio.Platforms.Wpf.Menus;
 using MinoriEditorStudio.Platforms.Wpf.Models;
 using System;

@@ -2,9 +2,9 @@ using System.ComponentModel.Composition;
 using MinoriEditorStudio.Platforms.Wpf.Menus;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
-    public static class MenuDefinitions
+    public static class MenuDefinitionsCollection
     {
         [Export]
         public static MenuBarDefinition MainMenuBar = new MenuBarDefinition();

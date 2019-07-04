@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for HistoryView.xaml

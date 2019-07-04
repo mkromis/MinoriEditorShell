@@ -6,7 +6,7 @@
     xmlns:viewModels="clr-namespace:MinoriEditorStudio.Platforms.Wpf.ViewModels"
     xmlns:p="clr-namespace:MinoriEditorStudio.Properties"
     xmlns:converters="clr-namespace:MinoriEditorStudio.Converters"
-    x:Class="MinoriEditorStudio.Modules.MainMenu.Views.MainMenuSettingsView" mc:Ignorable="d" d:DesignHeight="300"
+    x:Class="MinoriEditorStudio.Platforms.Wpf.Views.MainMenuSettingsView" mc:Ignorable="d" d:DesignHeight="300"
     d:DesignWidth="300" d:DataContext="{d:DesignInstance viewModels:MainMenuSettingsViewModel}"
     IsTabStop="False">
     <!--xmlns:l="http://gu.se/Localization"

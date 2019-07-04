@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Platforms.Wpf.Services;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for ToolBarsView.xaml

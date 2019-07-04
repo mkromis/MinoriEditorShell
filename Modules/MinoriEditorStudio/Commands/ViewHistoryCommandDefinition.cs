@@ -1,26 +1,14 @@
-using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
+using System;
 
 namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class ViewHistoryCommandDefinition : CommandDefinition
     {
-        public const string CommandName = "View.History";
-
-        public override string Name
-        {
-            get { return CommandName; }
-        }
-
-        public override string Text
-        {
-            get { return Resources.ViewHistoryCommandText; }
-        }
-
-        public override string ToolTip
-        {
-            get { return Resources.ViewHistoryCommandToolTip; }
-        }
+        public const String CommandName = "View.History";
+        public override String Name => CommandName;
+        public override String Text => Resources.ViewHistoryCommandText;
+        public override String ToolTip => Resources.ViewHistoryCommandToolTip;
     }
 }

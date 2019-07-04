@@ -5,9 +5,8 @@ using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
-using MvvmCross.Plugin.Messenger;
-using System.Collections.Generic;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.Modules.Services;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
@@ -17,8 +16,8 @@ namespace MinoriEditorStudio.Platforms.Wpf
         public void Load() {
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStatusBar, StatusBarViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Manager.Services.ILayoutItemStatePersister, Modules.Manager.Services.LayoutItemStatePersister>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<Modules.Settings.ISettingsEditor, Modules.MainMenu.ViewModels.MainMenuSettingsViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
 
             // Setup manager, is there a better way?
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();

@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using MinoriEditorStudio.Commands;
 using MinoriEditorStudio.Modules.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
 using MinoriEditorStudio.Platforms.Wpf.Menus;
 using MinoriEditorStudio.Properties;
 
@@ -11,7 +11,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
     {
         [Export]
         public static MenuItemDefinition FileNewMenuItem = new TextMenuItemDefinition(
-            MainMenu.MenuDefinitions.FileNewOpenMenuGroup, 0, Resources.FileNewCommandText);
+            MenuDefinitionsCollection.FileNewOpenMenuGroup, 0, Resources.FileNewCommandText);
 
         [Export]
         public static MenuItemGroupDefinition FileNewCascadeGroup = new MenuItemGroupDefinition(
@@ -23,34 +23,34 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
 
         [Export]
         public static MenuItemDefinition FileOpenMenuItem = new CommandMenuItemDefinition<OpenFileCommandDefinition>(
-            MainMenu.MenuDefinitions.FileNewOpenMenuGroup, 1);
+            MenuDefinitionsCollection.FileNewOpenMenuGroup, 1);
 
         [Export]
         public static MenuItemDefinition FileCloseMenuItem = new CommandMenuItemDefinition<CloseFileCommandDefinition>(
-            MainMenu.MenuDefinitions.FileCloseMenuGroup, 0);
+            MenuDefinitionsCollection.FileCloseMenuGroup, 0);
 
         [Export]
         public static MenuItemDefinition FileSaveMenuItem = new CommandMenuItemDefinition<SaveFileCommandDefinition>(
-            MainMenu.MenuDefinitions.FileSaveMenuGroup, 0);
+            MenuDefinitionsCollection.FileSaveMenuGroup, 0);
 
         [Export]
         public static MenuItemDefinition FileSaveAsMenuItem = new CommandMenuItemDefinition<SaveFileAsCommandDefinition>(
-            MainMenu.MenuDefinitions.FileSaveMenuGroup, 1);
+            MenuDefinitionsCollection.FileSaveMenuGroup, 1);
 
         [Export]
         public static MenuItemDefinition FileSaveAllMenuItem = new CommandMenuItemDefinition<SaveAllFilesCommandDefinition>(
-            MainMenu.MenuDefinitions.FileSaveMenuGroup, 1);
+            MenuDefinitionsCollection.FileSaveMenuGroup, 1);
 
         [Export]
         public static MenuItemDefinition FileExitMenuItem = new CommandMenuItemDefinition<ExitCommandDefinition>(
-            MainMenu.MenuDefinitions.FileExitOpenMenuGroup, 0);
+            MenuDefinitionsCollection.FileExitOpenMenuGroup, 0);
 
         [Export]
         public static MenuItemDefinition WindowDocumentList = new CommandMenuItemDefinition<SwitchToDocumentCommandListDefinition>(
-            MainMenu.MenuDefinitions.WindowDocumentListMenuGroup, 0);
+            MenuDefinitionsCollection.WindowDocumentListMenuGroup, 0);
 
         [Export]
         public static MenuItemDefinition ViewFullscreenItem = new CommandMenuItemDefinition<ViewFullScreenCommandDefinition>(
-            MainMenu.MenuDefinitions.ViewPropertiesMenuGroup, 0);
+            MenuDefinitionsCollection.ViewPropertiesMenuGroup, 0);
     }
 }

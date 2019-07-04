@@ -6,7 +6,7 @@ using MinoriEditorStudio.Platforms.Wpf.Controls;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for ToolboxView.xaml

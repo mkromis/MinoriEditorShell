@@ -1,16 +1,16 @@
-using MinoriEditorStudio.Framework.Services;
 using MvvmCross.Views;
+using System;
 
 namespace MinoriEditorStudio.Services
 {
-	public interface ITool : ILayoutItem
+    public interface ITool : ILayoutItem
 	{
 		PaneLocation PreferredLocation { get; }
-        double PreferredWidth { get; }
-        double PreferredHeight { get; }
+        Double PreferredWidth { get; }
+        Double PreferredHeight { get; }
         IMvxView View { get; set; }
-		bool IsVisible { get; set; }
+        Boolean IsVisible { get; set; }
 
-        bool CanClose { get; }
+        Boolean CanClose { get; }
 	}
 }
