@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Extensions;
-using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Controls;
 using MinoriEditorStudio.VirtualCanvas.Service;

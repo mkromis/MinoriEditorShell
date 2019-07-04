@@ -1,9 +1,8 @@
-﻿using MinoriEditorStudio.Framework;
+﻿using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Gestures;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Views;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.ViewModels
