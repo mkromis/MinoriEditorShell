@@ -12,7 +12,7 @@
         <ResourceDictionary>
             <converter:NullObjectToVisibiltyConverter x:Key="nullToVisibilityConverter" />
             <converter:BoolToInsertModeConverter x:Key="booleanToInsertModeConverter" />
-            <avalon:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+            <!--<avalon:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />-->
             <converter:DrawingColorToMediaBrushConverter x:Key="drawingColorToMediaBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
