@@ -1,5 +1,5 @@
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Menus;
+using MinoriEditorStudio.Platforms.Wpf.Menus;
 using MinoriEditorStudio.Properties;
 
 namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions

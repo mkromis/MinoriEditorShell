@@ -1,35 +1,21 @@
+using MinoriEditorStudio.Models;
 using System;
-using MinoriEditorStudio.Modules.Toolbox.Models;
 
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     public class ToolboxItemViewModel
     {
-        private readonly ToolboxItem _model;
+        public ToolboxItem Model { get; }
 
-        public ToolboxItem Model
-        {
-            get { return _model; }
-        }
+        public String Name => Model.Name;
 
-        public string Name
-        {
-            get { return _model.Name; }
-        }
+        public virtual String Category => Model.Category;
 
-        public virtual string Category
-        {
-            get { return _model.Category; }
-        }
-
-        public virtual Uri IconSource
-        {
-            get { return _model.IconSource; }
-        }
+        public virtual Uri IconSource => Model.IconSource;
 
         public ToolboxItemViewModel(ToolboxItem model)
         {
-            _model = model;
+            Model = model;
         }
     }
 }

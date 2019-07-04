@@ -1,8 +1,9 @@
+using System;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
@@ -15,19 +16,19 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
     {
 #pragma warning disable 649
         [Import]
-        private IManager _shell;
+        private readonly IManager _shell;
 
         [Import]
-        private IResourceManager _resourceManager;
+        private readonly IResourceManager _resourceManager;
 
         [Import]
-        private ICommandKeyGestureService _commandKeyGestureService;
+        private readonly ICommandKeyGestureService _commandKeyGestureService;
 #pragma warning restore 649
 
         private WindowState _windowState = WindowState.Normal;
         public WindowState WindowState
         {
-            get { return _windowState; }
+            get => _windowState;
             set
             {
                 _windowState = value;
@@ -35,10 +36,10 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             }
         }
 
-        private double _width = 1000.0;
-        public double Width
+        private Double _width = 1000.0;
+        public Double Width
         {
-            get { return _width; }
+            get => _width;
             set
             {
                 _width = value;
@@ -46,10 +47,10 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             }
         }
 
-        private double _height = 800.0;
-        public double Height
+        private Double _height = 800.0;
+        public Double Height
         {
-            get { return _height; }
+            get => _height;
             set
             {
                 _height = value;
@@ -57,10 +58,10 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             }
         }
 
-        private string _title = Resources.MainWindowDefaultTitle;
+        private String _title = Resources.MainWindowDefaultTitle;
         public string Title
         {
-            get { return _title; }
+            get => _title;
             set
             {
                 _title = value;
@@ -71,7 +72,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         private ImageSource _icon;
         public ImageSource Icon
         {
-            get { return _icon; }
+            get => _icon;
             set
             {
                 _icon = value;
@@ -79,10 +80,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             }
         }
 
-        public IManager Shell
-        {
-            get { return _shell; }
-        }
+        public IManager Shell => _shell;
 
         void IPartImportsSatisfiedNotification.OnImportsSatisfied()
         {

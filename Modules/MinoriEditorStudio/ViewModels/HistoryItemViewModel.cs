@@ -1,5 +1,6 @@
-
+using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
+using System;
 
 namespace MinoriEditorStudio.ViewModels
 {
@@ -7,8 +8,8 @@ namespace MinoriEditorStudio.ViewModels
     {
         public IUndoableAction Action { get; }
 
-        private readonly string _name;
-        public string Name => _name ?? Action.Name;
+        private readonly String _name;
+        public String Name => _name ?? Action.Name;
 
         private HistoryItemType _itemType;
         public HistoryItemType ItemType
@@ -30,7 +31,7 @@ namespace MinoriEditorStudio.ViewModels
             Action = action;
         }
 
-        public HistoryItemViewModel(string name)
+        public HistoryItemViewModel(String name)
         {
             _name = name;
         }

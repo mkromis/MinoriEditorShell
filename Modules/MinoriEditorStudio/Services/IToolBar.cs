@@ -1,5 +1,4 @@
-using MvvmCross.ViewModels;
-using MinoriEditorStudio.Modules.ToolBars.Models;
+using MinoriEditorStudio.Models;
 using System.Collections.Generic;
 
 namespace MinoriEditorStudio.Services

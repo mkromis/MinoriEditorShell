@@ -1,6 +1,7 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Menus
 {

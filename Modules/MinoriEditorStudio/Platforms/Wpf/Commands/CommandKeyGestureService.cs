@@ -1,3 +1,5 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;

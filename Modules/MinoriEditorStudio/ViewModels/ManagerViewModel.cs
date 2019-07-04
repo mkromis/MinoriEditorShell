@@ -1,12 +1,8 @@
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Manager.Services;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
 using System.IO;
-using System.Windows;
 
 namespace MinoriEditorStudio.ViewModels
 {
@@ -15,10 +11,8 @@ namespace MinoriEditorStudio.ViewModels
         public event EventHandler ActiveDocumentChanging;
         public event EventHandler ActiveDocumentChanged;
 
-        private readonly ILayoutItemStatePersister _layoutItemStatePersister;
-
         public IManagerView ManagerView { get; set; }
-	    private bool _closing;
+	    private readonly Boolean _closing;
 
         private ILayoutItem _activeItem;
 	    public ILayoutItem ActiveItem
@@ -59,9 +53,11 @@ namespace MinoriEditorStudio.ViewModels
 
         public IDocument SelectedDocument { get; private set; }
 
+        public ILayoutItemStatePersister LayoutItemStatePersister { get; private set; }
+
         public ManagerViewModel()
         {
-            _layoutItemStatePersister = Mvx.IoCProvider.Resolve<ILayoutItemStatePersister>();
+            LayoutItemStatePersister = Mvx.IoCProvider.Resolve<ILayoutItemStatePersister>();
 
             //((IActivate)this).Activate();
 
@@ -122,10 +118,15 @@ namespace MinoriEditorStudio.ViewModels
 	    public void ShowTool(ITool model)
 		{
 		    if (Tools.Contains(model))
-		        model.IsVisible = true;
-		    else
-		        Tools.Add(model);
-		    model.IsSelected = true;
+            {
+                model.IsVisible = true;
+            }
+            else
+            {
+                Tools.Add(model);
+            }
+
+            model.IsSelected = true;
 	        ActiveItem = model;
 		}
 
@@ -173,19 +174,9 @@ namespace MinoriEditorStudio.ViewModels
         }
 #endif
 
-        private void RaiseActiveDocumentChanging()
-	    {
-            var handler = ActiveDocumentChanging;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-	    }
+        private void RaiseActiveDocumentChanging() => ActiveDocumentChanging?.Invoke(this, EventArgs.Empty);
 
-	    private void RaiseActiveDocumentChanged()
-	    {
-            var handler = ActiveDocumentChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-	    }
+        private void RaiseActiveDocumentChanged() => ActiveDocumentChanged?.Invoke(this, EventArgs.Empty);
 
 #warning OnActivationProcessed(IDocument item, bool success)
 #if false
@@ -245,9 +236,6 @@ namespace MinoriEditorStudio.ViewModels
         }
 #endif
 
-        public void Close()
-        {
-            Environment.Exit(0);
-        }
-	}
+        public void Close() => Environment.Exit(0);
+    }
 }

@@ -1,4 +1,5 @@
-using MinoriEditorStudio.Modules.UndoRedo.ViewModels;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.ViewModels;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Design
 {

@@ -1,7 +1,9 @@
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MinoriEditorStudio.Modules.UndoRedo.ViewModels;
 
 namespace MinoriEditorStudio.Modules.UndoRedo.Views
 {
@@ -10,15 +12,12 @@ namespace MinoriEditorStudio.Modules.UndoRedo.Views
     /// </summary>
     public partial class HistoryView : UserControl
     {
-        public HistoryView()
-        {
-            InitializeComponent();
-        }
+        public HistoryView() => InitializeComponent();
 
-        private void HistoryItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void HistoryItemMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
         {
-            var viewModel = (HistoryViewModel) DataContext;
-            var itemViewModel = (HistoryItemViewModel) ((FrameworkElement) sender).DataContext;
+            HistoryViewModel viewModel = (HistoryViewModel) DataContext;
+            HistoryItemViewModel itemViewModel = (HistoryItemViewModel) ((FrameworkElement) sender).DataContext;
             viewModel.UndoOrRedoTo(itemViewModel, true);
         }
     }

@@ -1,3 +1,5 @@
+using MinoriEditorStudio.Services;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -5,19 +7,21 @@ namespace MinoriEditorStudio.Platforms.Wpf
 {
     public abstract class PersistedDocument : Document, IPersistedDocument
     {
-        private bool _isDirty;
+        private Boolean _isDirty;
 
-        public bool IsNew { get; private set; }
-        public string FileName { get; private set; }
-        public string FilePath { get; private set; }
+        public Boolean IsNew { get; private set; }
+        public String FileName { get; private set; }
+        public String FilePath { get; private set; }
 
-        public bool IsDirty
+        public Boolean IsDirty
         {
             get => _isDirty;
             set
             {
                 if (value == _isDirty)
+                {
                     return;
+                }
 
                 _isDirty = value;
                 RaisePropertyChanged(() => IsDirty);
@@ -34,12 +38,9 @@ namespace MinoriEditorStudio.Platforms.Wpf
         }
 #endif
 
-        private void UpdateDisplayName()
-        {
-            DisplayName = (IsDirty) ? FileName + "*" : FileName;
-        }
+        private void UpdateDisplayName() => DisplayName = (IsDirty) ? FileName + "*" : FileName;
 
-        public async Task New(string fileName)
+        public async Task New(String fileName)
         {
             FileName = fileName;
             UpdateDisplayName();
@@ -52,7 +53,7 @@ namespace MinoriEditorStudio.Platforms.Wpf
 
         protected abstract Task DoNew();
 
-        public async Task Load(string filePath)
+        public async Task Load(String filePath)
         {
             FilePath = filePath;
             FileName = Path.GetFileName(filePath);
@@ -64,9 +65,9 @@ namespace MinoriEditorStudio.Platforms.Wpf
             await DoLoad(filePath);
         }
 
-        protected abstract Task DoLoad(string filePath);
+        protected abstract Task DoLoad(String filePath);
 
-        public async Task Save(string filePath)
+        public async Task Save(String filePath)
         {
             FilePath = filePath;
             FileName = Path.GetFileName(filePath);
@@ -78,6 +79,6 @@ namespace MinoriEditorStudio.Platforms.Wpf
             IsNew = false;
         }
 
-        protected abstract Task DoSave(string filePath);
+        protected abstract Task DoSave(String filePath);
     }
 }

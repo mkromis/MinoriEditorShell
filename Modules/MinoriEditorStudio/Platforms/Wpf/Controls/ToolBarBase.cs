@@ -1,14 +1,16 @@
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Modules.ToolBars.Models;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public class ToolBarBase : ToolBar
     {
-        private object _currentItem;
+        private Object _currentItem;
 
-        protected override bool IsItemItsOwnContainerOverride(object item)
+        protected override Boolean IsItemItsOwnContainerOverride(Object item)
         {
             _currentItem = item;
             return base.IsItemItsOwnContainerOverride(item);
@@ -16,19 +18,21 @@ namespace MinoriEditorStudio.Platforms.Wpf.Controls
 
         protected override DependencyObject GetContainerForItemOverride()
         {
-            if (_currentItem is ToolBarItemSeparator)
-                return new Separator();
-
-            if (_currentItem is CommandToolBarItem)
-                return CreateButton<CustomToggleButton>(ToggleButtonStyleKey, "ToolBarButton");
-
-            return base.GetContainerForItemOverride();
+            switch(_currentItem)
+            {
+                case ToolBarItemSeparator _:
+                    return new Separator();
+                case CommandToolBarItem _:
+                    return CreateButton<CustomToggleButton>(ToggleButtonStyleKey, "ToolBarButton");
+                default:
+                    return base.GetContainerForItemOverride();
+            }
         }
 
-        private static T CreateButton<T>(object baseStyleKey, string styleKey)
+        private static T CreateButton<T>(Object baseStyleKey, String styleKey)
             where T : FrameworkElement, new()
         {
-            var result = new T();
+            T result = new T();
             result.SetResourceReference(DynamicStyle.BaseStyleProperty, baseStyleKey);
             result.SetResourceReference(DynamicStyle.DerivedStyleProperty, styleKey);
             return result;

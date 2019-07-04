@@ -1,6 +1,6 @@
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.ToolBars;
-using MinoriEditorStudio.Modules.UndoRedo.Commands;
 
 namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
 {

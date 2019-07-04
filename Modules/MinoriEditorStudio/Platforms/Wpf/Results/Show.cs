@@ -1,41 +1,25 @@
 using Microsoft.Win32;
+using MinoriEditorStudio.Results;
+using MinoriEditorStudio.Services;
+using System;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Results
 {
 	public static class Show
 	{
-		public static ShowCommonDialogResult CommonDialog(CommonDialog commonDialog)
-		{
-			return new ShowCommonDialogResult(commonDialog);
-		}
+        public static ShowCommonDialogResult CommonDialog(CommonDialog commonDialog) => new ShowCommonDialogResult(commonDialog);
 
-		public static ShowToolResult<TTool> Tool<TTool>()
-			where TTool : ITool
-		{
-			return new ShowToolResult<TTool>();
-		}
+        public static ShowToolResult<TTool> Tool<TTool>()
+            where TTool : ITool => new ShowToolResult<TTool>();
 
-		public static ShowToolResult<TTool> Tool<TTool>(TTool tool)
-			where TTool : ITool
-		{
-			return new ShowToolResult<TTool>(tool);
-		}
+        public static ShowToolResult<TTool> Tool<TTool>(TTool tool)
+            where TTool : ITool => new ShowToolResult<TTool>(tool);
 
-		public static OpenDocumentResult Document(IDocument document)
-		{
-			return new OpenDocumentResult(document);
-		}
+        public static OpenDocumentResult Document(IDocument document) => new OpenDocumentResult(document);
 
-		public static OpenDocumentResult Document(string path)
-		{
-			return new OpenDocumentResult(path);
-		}
+        public static OpenDocumentResult Document(String path) => new OpenDocumentResult(path);
 
-		public static OpenDocumentResult Document<T>()
-				where T : IDocument
-		{
-			return new OpenDocumentResult(typeof(T));
-		}
+        public static OpenDocumentResult Document<T>() where T : IDocument => new OpenDocumentResult(typeof(T));
 
 #warning IWindow
 #if false

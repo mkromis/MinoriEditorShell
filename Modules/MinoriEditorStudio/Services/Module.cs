@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Windows;
-using MinoriEditorStudio.Framework;
 
 namespace MinoriEditorStudio.Services
 {

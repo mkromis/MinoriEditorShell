@@ -1,6 +1,8 @@
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Menus;
-using MinoriEditorStudio.Modules.Shell.Commands;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Modules.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
+using MinoriEditorStudio.Platforms.Wpf.Menus;
 using MinoriEditorStudio.Properties;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Commands

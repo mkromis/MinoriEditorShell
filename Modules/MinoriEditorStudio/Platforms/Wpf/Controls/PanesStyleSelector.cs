@@ -1,32 +1,26 @@
+using MinoriEditorStudio.Services;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Framework;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
 	public class PanesStyleSelector : StyleSelector
 	{
-		public Style ToolStyle
+		public Style ToolStyle { get; set; }
+		public Style DocumentStyle { get; set; }
+
+		public override Style SelectStyle(Object item, DependencyObject container)
 		{
-			get;
-			set;
-		}
-
-		public Style DocumentStyle
-		{
-			get;
-			set;
-		}
-
-		public override Style SelectStyle(object item, DependencyObject container)
-		{
-			if (item is ITool)
-				return ToolStyle;
-
-			if (item is IDocument)
-				return DocumentStyle;
-
-			return base.SelectStyle(item, container);
+            switch(item)
+            {
+                case ITool _:
+                    return ToolStyle;
+                case IDocument _:
+                    return DocumentStyle;
+                default:
+                    return base.SelectStyle(item, container);
+            }
 		}
 	}
 }
