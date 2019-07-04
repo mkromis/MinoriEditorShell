@@ -50,7 +50,8 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 
         void IPartImportsSatisfiedNotification.OnImportsSatisfied()
 	    {
-	        _menuBuilder.BuildMenuBar(MenuDefinitionCollection.MainMenuBar, this);
+            throw new NotImplementedException();
+	        //_menuBuilder.BuildMenuBar(MenuDefinitionCollection.MainMenuBar, this);
 	    }
 	}
 }
