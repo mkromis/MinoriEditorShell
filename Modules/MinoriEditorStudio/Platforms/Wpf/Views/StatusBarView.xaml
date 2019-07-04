@@ -4,15 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:avalon="clr-namespace:Xceed.Wpf.AvalonDock.Converters;assembly=Xceed.Wpf.AvalonDock"
     xmlns:converter="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters"
-    xmlns:xctkConv="clr-namespace:Xceed.Wpf.Toolkit.Core.Converters;assembly=Xceed.Wpf.Toolkit"
     mc:Ignorable="d" 
     d:DesignHeight="20" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <converter:NullObjectToVisibiltyConverter x:Key="nullToVisibilityConverter" />
             <converter:BoolToInsertModeConverter x:Key="booleanToInsertModeConverter" />
-            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+            <avalon:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             <converter:DrawingColorToMediaBrushConverter x:Key="drawingColorToMediaBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
 	public class InputBindingTrigger : TriggerBase<FrameworkElement>, ICommand
 	{

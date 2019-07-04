@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
     public class CommandMenuItem : StandardMenuItem, ICommandUiItem
     {
@@ -14,40 +17,25 @@ namespace MinoriEditorStudio.Modules.MainMenu.Models
         private readonly StandardMenuItem _parent;
         private readonly List<StandardMenuItem> _listItems;
 
-        public override string Text
-        {
-            get { return _command.Text; }
-        }
+        public override String Text => _command.Text;
 
-        public override Uri IconSource
-        {
-            get { return _command.IconSource; }
-        }
+        public override Uri IconSource => _command.IconSource;
 
-        public override string InputGestureText
+        public override String InputGestureText
         {
             get
             {
                 return _keyGesture == null
-                    ? string.Empty
+                    ? String.Empty
                     : _keyGesture.GetDisplayStringForCulture(CultureInfo.CurrentUICulture);
             }
         }
 
-        public override ICommand Command
-        {
-            get { return Mvx.IoCProvider.Resolve<ICommandService>().GetTargetableCommand(_command); }
-        }
+        public override ICommand Command => Mvx.IoCProvider.Resolve<ICommandService>().GetTargetableCommand(_command);
 
-        public override bool IsChecked
-        {
-            get { return _command.Checked; }
-        }
+        public override Boolean IsChecked => _command.Checked;
 
-        public override bool IsVisible
-        {
-            get { return _command.Visible; }
-        }
+        public override Boolean IsVisible => _command.Visible;
 
         private bool IsListItem { get; set; }
 
@@ -60,30 +48,29 @@ namespace MinoriEditorStudio.Modules.MainMenu.Models
             _listItems = new List<StandardMenuItem>();
         }
 
-        CommandDefinitionBase ICommandUiItem.CommandDefinition
-        {
-            get { return _command.CommandDefinition; }
-        }
+        CommandDefinitionBase ICommandUiItem.CommandDefinition => _command.CommandDefinition;
 
         void ICommandUiItem.Update(CommandHandlerWrapper commandHandler)
         {
             if (_command != null && _command.CommandDefinition.IsList && !IsListItem)
             {
-                foreach (var listItem in _listItems)
+                foreach (StandardMenuItem listItem in _listItems)
+                {
                     _parent.Children.Remove(listItem);
+                }
 
                 _listItems.Clear();
 
-                var listCommands = new List<Command>();
+                List<Command> listCommands = new List<Command>();
                 commandHandler.Populate(_command, listCommands);
 
                 _command.Visible = false;
 
-                int startIndex = _parent.Children.IndexOf(this) + 1;
+                Int32 startIndex = _parent.Children.IndexOf(this) + 1;
 
-                foreach (var command in listCommands)
+                foreach (Command command in listCommands)
                 {
-                    var newMenuItem = new CommandMenuItem(command, _parent)
+                    CommandMenuItem newMenuItem = new CommandMenuItem(command, _parent)
                     {
                         IsListItem = true
                     };

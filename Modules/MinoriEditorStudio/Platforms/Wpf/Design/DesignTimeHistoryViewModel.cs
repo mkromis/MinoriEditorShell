@@ -1,6 +1,7 @@
-using MinoriEditorStudio.Modules.UndoRedo.ViewModels;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.ViewModels;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Design
+namespace MinoriEditorStudio.Platforms.Wpf.Design
 {
     public class DesignTimeHistoryViewModel : HistoryViewModel
     {

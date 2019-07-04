@@ -1,19 +1,21 @@
+using MinoriEditorStudio.Services;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
 	[Export(typeof(IResourceManager))]
 	public class ResourceManager : IResourceManager
 	{
-		public Stream GetStream(string relativeUri, string assemblyName)
+		public Stream GetStream(String relativeUri, String assemblyName)
 		{
 			try
 			{
-				var resource = Application.GetResourceStream(new Uri(assemblyName + ";component/" + relativeUri, UriKind.Relative))
+                StreamResourceInfo resource = Application.GetResourceStream(new Uri(assemblyName + ";component/" + relativeUri, UriKind.Relative))
 					?? Application.GetResourceStream(new Uri(relativeUri, UriKind.Relative));
 
 				return (resource != null)
@@ -28,12 +30,12 @@ namespace MinoriEditorStudio.Framework.Services
 
 		public BitmapImage GetBitmap(string relativeUri, string assemblyName)
 		{
-			var s = GetStream(relativeUri, assemblyName);
-			if (s == null) return null;
+            Stream s = GetStream(relativeUri, assemblyName);
+			if (s == null) { return null; }
 
-			using (s)
+            using (s)
 			{
-				var bmp = new BitmapImage();
+                BitmapImage bmp = new BitmapImage();
 				bmp.BeginInit();
 				bmp.StreamSource = s;
 				bmp.EndInit();
@@ -42,9 +44,6 @@ namespace MinoriEditorStudio.Framework.Services
 			}
 		}
 
-		public BitmapImage GetBitmap(string relativeUri)
-		{
-			return GetBitmap(relativeUri, ExtensionMethods.GetExecutingAssemblyName());
-		}
-	}
+        public BitmapImage GetBitmap(string relativeUri) => GetBitmap(relativeUri, ExtensionMethods.GetExecutingAssemblyName());
+    }
 }

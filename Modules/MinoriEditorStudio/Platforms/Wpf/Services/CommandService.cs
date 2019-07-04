@@ -1,9 +1,11 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     [Export(typeof(ICommandService))]
     public class CommandService : ICommandService

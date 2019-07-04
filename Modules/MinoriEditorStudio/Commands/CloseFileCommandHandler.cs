@@ -1,11 +1,9 @@
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.Threading;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class CloseFileCommandHandler : CommandHandlerBase<CloseFileCommandDefinition>
@@ -13,10 +11,7 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
         private readonly IManager _shell;
 
         [ImportingConstructor]
-        public CloseFileCommandHandler(IManager shell)
-        {
-            _shell = shell;
-        }
+        public CloseFileCommandHandler(IManager shell) => _shell = shell;
 
         public override void Update(Command command)
         {

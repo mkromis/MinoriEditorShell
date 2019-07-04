@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Framework.ShaderEffects
+namespace MinoriEditorStudio.Platforms.Wpf.ShaderEffects
 {
     public class GrayscaleEffect : ShaderEffectBase<GrayscaleEffect>
     {

@@ -1,8 +1,8 @@
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.ToolBars;
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.ToolBars
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
     internal static class ToolBarDefinitions
     {

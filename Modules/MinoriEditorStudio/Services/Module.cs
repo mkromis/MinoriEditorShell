@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Windows;
-using MinoriEditorStudio.Framework;
 
-namespace MinoriEditorStudio.Modules.ToolBars
+namespace MinoriEditorStudio.Services
 {
 #warning ModuleBase
     [Export(typeof(IModule))]

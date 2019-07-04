@@ -1,14 +1,13 @@
-using MinoriEditorStudio.Modules.UndoRedo;
 using MvvmCross.Views;
+using System;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
 	public interface IDocument : ILayoutItem
 	{
-        string DisplayName { get; set; }
+        String DisplayName { get; set; }
         IMvxView View { get; set; }
         IUndoRedoManager UndoRedoManager { get; }
-
-        bool CanClose { get; }
+        Boolean CanClose { get; }
 	}
 }

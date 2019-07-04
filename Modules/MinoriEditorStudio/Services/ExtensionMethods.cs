@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Services
 {
     public static class ExtensionMethods
 	{

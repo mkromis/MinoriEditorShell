@@ -1,24 +1,21 @@
+using System;
 using System.ComponentModel.Composition;
+using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.ToolBars.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
 #warning ViewAware
     [Export(typeof(IToolBars))]
     public class ToolBarsViewModel : MvxViewModel, IToolBars
     {
-        private readonly MvxObservableCollection<IToolBar> _items;
-        public MvxObservableCollection<IToolBar> Items
-        {
-            get { return _items; }
-        }
+        public MvxObservableCollection<IToolBar> Items { get; }
 
-        private readonly IToolBarBuilder _toolBarBuilder;
-
-        private bool _visible;
-        public bool Visible
+        private Boolean _visible;
+        public Boolean Visible
         {
-            get { return _visible; }
+            get => _visible;
             set
             {
                 _visible = value;
@@ -26,11 +23,13 @@ namespace MinoriEditorStudio.Modules.ToolBars.ViewModels
             }
         }
 
+        public IToolBarBuilder ToolBarBuilder { get; }
+
         [ImportingConstructor]
         public ToolBarsViewModel(IToolBarBuilder toolBarBuilder)
         {
-            _toolBarBuilder = toolBarBuilder;
-            _items = new MvxObservableCollection<IToolBar>();
+            ToolBarBuilder = toolBarBuilder;
+            Items = new MvxObservableCollection<IToolBar>();
         }
 
 #warning OnViewLoaded

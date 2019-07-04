@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using MinoriEditorStudio.Modules.Toolbox.Models;
+using MinoriEditorStudio.Models;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Services
+namespace MinoriEditorStudio.Services
 {
     [Export(typeof(IToolboxService))]
     public class ToolboxService : IToolboxService
@@ -34,12 +33,8 @@ namespace MinoriEditorStudio.Modules.Toolbox.Services
 #endif
         }
 
-        public IEnumerable<ToolboxItem> GetToolboxItems(Type documentType)
-        {
-            IEnumerable<ToolboxItem> result;
-            if (_toolboxItems.TryGetValue(documentType, out result))
-                return result;
-            return new List<ToolboxItem>();
-        }
+        public IEnumerable<Models.ToolboxItem> GetToolboxItems(Type documentType) => 
+            _toolboxItems.TryGetValue(documentType, out IEnumerable<ToolboxItem> result) ? result : new List<ToolboxItem>();
+        IEnumerable<Models.ToolboxItem> IToolboxService.GetToolboxItems(Type documentType) => throw new NotImplementedException();
     }
 }

@@ -1,8 +1,9 @@
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
 
-namespace MinoriEditorStudio.Framework.Menus
+namespace MinoriEditorStudio.Platforms.Wpf.Menus
 {
     public class MenuDefinition : MenuDefinitionBase
     {
@@ -10,35 +11,17 @@ namespace MinoriEditorStudio.Framework.Menus
         private readonly int _sortOrder;
         private readonly string _text;
 
-        public MenuBarDefinition MenuBar
-        {
-            get { return _menuBar; }
-        }
+        public MenuBarDefinition MenuBar => _menuBar;
 
-        public override int SortOrder
-        {
-            get { return _sortOrder; }
-        }
+        public override int SortOrder => _sortOrder;
 
-        public override string Text
-        {
-            get { return _text; }
-        }
+        public override string Text => _text;
 
-        public override Uri IconSource
-        {
-            get { return null; }
-        }
+        public override Uri IconSource => null;
 
-        public override KeyGesture KeyGesture
-        {
-            get { return null; }
-        }
+        public override KeyGesture KeyGesture => null;
 
-        public override CommandDefinitionBase CommandDefinition
-        {
-            get { return null; }
-        }
+        public override CommandDefinitionBase CommandDefinition => null;
 
         public MenuDefinition(MenuBarDefinition menuBar, int sortOrder, string text)
         {

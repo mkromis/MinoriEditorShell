@@ -1,14 +1,14 @@
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.ToolBars;
-using MinoriEditorStudio.Modules.UndoRedo.Commands;
 
-namespace MinoriEditorStudio.Modules.UndoRedo
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
-    public static class ToolBarDefinitions
+    public static class UndoToolBarDefinitions
     {
         [Export]
         public static ToolBarItemGroupDefinition StandardUndoRedoToolBarGroup = new ToolBarItemGroupDefinition(
-            ToolBars.ToolBarDefinitions.StandardToolBar, 10);
+            ToolBarDefinitions.StandardToolBar, 10);
 
         [Export]
         public static ToolBarItemDefinition UndoToolBarItem = new CommandToolBarItemDefinition<UndoCommandDefinition>(

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Models
 {
     public abstract class StandardMenuItem : MenuItemBase
     {

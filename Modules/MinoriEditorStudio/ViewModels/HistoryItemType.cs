@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
+namespace MinoriEditorStudio.ViewModels
 {
     public enum HistoryItemType
     {

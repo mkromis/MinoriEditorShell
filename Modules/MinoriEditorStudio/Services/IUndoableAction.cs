@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Modules.UndoRedo
+namespace MinoriEditorStudio.Services
 {
     public interface IUndoableAction
     {

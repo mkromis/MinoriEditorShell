@@ -1,66 +1,73 @@
+using MinoriEditorStudio.Platforms.Wpf.Win32;
 using System;
 using System.Windows;
 using System.Windows.Interactivity;
 using System.Windows.Interop;
-using MinoriEditorStudio.Framework.Win32;
 
-namespace MinoriEditorStudio.Framework.Behaviors
+namespace MinoriEditorStudio.Platforms.Wpf.Behaviors
 {
     public class WindowOptionsBehavior : Behavior<Window>
     {
         public static readonly DependencyProperty ShowIconProperty = DependencyProperty.Register(
-            "ShowIcon", typeof(bool), typeof(WindowOptionsBehavior), 
+            "ShowIcon", typeof(Boolean), typeof(WindowOptionsBehavior), 
             new PropertyMetadata(true, OnWindowOptionChanged));
 
-        public bool ShowIcon
+        public Boolean ShowIcon
         {
-            get { return (bool) GetValue(ShowIconProperty); }
-            set { SetValue(ShowIconProperty, value); }
+            get => (Boolean)GetValue(ShowIconProperty);
+            set => SetValue(ShowIconProperty, value);
         }
 
         public static readonly DependencyProperty ShowMinimizeBoxProperty = DependencyProperty.Register(
-            "ShowMinimizeBox", typeof(bool), typeof(WindowOptionsBehavior),
+            "ShowMinimizeBox", typeof(Boolean), typeof(WindowOptionsBehavior),
             new PropertyMetadata(true, OnWindowOptionChanged));
 
-        public bool ShowMinimizeBox
+        public Boolean ShowMinimizeBox
         {
-            get { return (bool) GetValue(ShowMinimizeBoxProperty); }
-            set { SetValue(ShowMinimizeBoxProperty, value); }
+            get => (Boolean)GetValue(ShowMinimizeBoxProperty);
+            set => SetValue(ShowMinimizeBoxProperty, value);
         }
 
         public static readonly DependencyProperty ShowMaximizeBoxProperty = DependencyProperty.Register(
-            "ShowMaximizeBox", typeof(bool), typeof(WindowOptionsBehavior),
+            "ShowMaximizeBox", typeof(Boolean), typeof(WindowOptionsBehavior),
             new PropertyMetadata(true, OnWindowOptionChanged));
 
-        public bool ShowMaximizeBox
+        public Boolean ShowMaximizeBox
         {
-            get { return (bool) GetValue(ShowMaximizeBoxProperty); }
-            set { SetValue(ShowMaximizeBoxProperty, value); }
+            get => (Boolean)GetValue(ShowMaximizeBoxProperty);
+            set => SetValue(ShowMaximizeBoxProperty, value);
         }
 
-        private static void OnWindowOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((WindowOptionsBehavior) d).UpdateWindowStyle();
-        }
+        private static void OnWindowOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((WindowOptionsBehavior)d).UpdateWindowStyle();
 
         private void UpdateWindowStyle()
         {
             if (AssociatedObject == null)
+            {
                 return;
+            }
 
-            var handle = new WindowInteropHelper(AssociatedObject).Handle;
+            IntPtr handle = new WindowInteropHelper(AssociatedObject).Handle;
 
-            var windowStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_STYLE);
+            Int32 windowStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_STYLE);
 
             if (ShowMinimizeBox)
+            {
                 windowStyle |= NativeMethods.WS_MINIMIZEBOX;
+            }
             else
+            {
                 windowStyle &= ~NativeMethods.WS_MINIMIZEBOX;
+            }
 
             if (ShowMaximizeBox)
+            {
                 windowStyle |= NativeMethods.WS_MAXIMIZEBOX;
+            }
             else
+            {
                 windowStyle &= ~NativeMethods.WS_MAXIMIZEBOX;
+            }
 
             NativeMethods.SetWindowLong(handle, NativeMethods.GWL_STYLE, windowStyle);
 
@@ -70,7 +77,7 @@ namespace MinoriEditorStudio.Framework.Behaviors
             }
             else
             {
-                var exWindowStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
+                Int32 exWindowStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
                 NativeMethods.SetWindowLong(handle, NativeMethods.GWL_EXSTYLE,
                     exWindowStyle | NativeMethods.WS_EX_DLGMODALFRAME);
 
@@ -93,9 +100,6 @@ namespace MinoriEditorStudio.Framework.Behaviors
             base.OnDetaching();
         }
 
-        private void OnSourceInitialized(object sender, EventArgs e)
-        {
-            UpdateWindowStyle();
-        }
+        private void OnSourceInitialized(Object sender, EventArgs e) => UpdateWindowStyle();
     }
 }

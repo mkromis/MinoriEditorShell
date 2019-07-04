@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Results
 {
 	public abstract class OpenResultBase<TTarget> : IOpenResult<TTarget>
 	{
