@@ -1,10 +1,6 @@
-using MvvmCross.ViewModels;
+using MinoriEditorStudio.Services;
 using SimpleDemo.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework;
 
 namespace SimpleDemo.Core.ViewModels
 {
