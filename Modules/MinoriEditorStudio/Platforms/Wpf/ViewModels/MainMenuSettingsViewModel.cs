@@ -1,4 +1,3 @@
-using MinoriEditorStudio.Modules.Settings;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;

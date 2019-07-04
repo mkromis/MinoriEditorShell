@@ -7,7 +7,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
     {
         [Export]
         public static ToolBarItemGroupDefinition StandardOpenSaveToolBarGroup = new ToolBarItemGroupDefinition(
-            ToolBars.ToolBarDefinitions.StandardToolBar, 8);
+            ToolBarDefinition.StandardToolBar, 8);
 
         [Export]
         public static ToolBarItemDefinition OpenFileToolBarItem = new CommandToolBarItemDefinition<OpenFileCommandDefinition>(

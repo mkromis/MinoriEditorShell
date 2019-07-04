@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Platforms.Wpf.Menus;
 using System;
 
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
     public abstract class MenuItemDefinition : MenuDefinitionBase
     {

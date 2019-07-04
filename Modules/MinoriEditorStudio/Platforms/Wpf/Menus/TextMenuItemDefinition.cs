@@ -1,5 +1,5 @@
 using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
 using System;
 using System.Windows.Input;
 

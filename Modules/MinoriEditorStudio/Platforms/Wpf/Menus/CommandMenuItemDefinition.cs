@@ -2,7 +2,7 @@ using System;
 using System.Windows.Input;
 using MinoriEditorStudio.Commands;
 using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitions;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
 using MinoriEditorStudio.Platforms.Wpf.Services;
 using MvvmCross;
 

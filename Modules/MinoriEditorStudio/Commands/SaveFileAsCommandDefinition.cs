@@ -1,26 +1,14 @@
-using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
+using System;
 
 namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class SaveFileAsCommandDefinition : CommandDefinition
     {
-        public const string CommandName = "File.SaveFileAs";
-
-        public override string Name
-        {
-            get { return CommandName; }
-        }
-
-        public override string Text
-        {
-            get { return Resources.FileSaveAsCommandText; }
-        }
-
-        public override string ToolTip
-        {
-            get { return Resources.FileSaveAsCommandToolTip; }
-        }
+        public const String CommandName = "File.SaveFileAs";
+        public override String Name => CommandName;
+        public override String Text => Resources.FileSaveAsCommandText;
+        public override String ToolTip => Resources.FileSaveAsCommandToolTip;
     }
 }
