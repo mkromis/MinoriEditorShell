@@ -2,7 +2,7 @@ using MinoriEditorStudio.Services;
 using System.Windows;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public interface IMainWindow
     {

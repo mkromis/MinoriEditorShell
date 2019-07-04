@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
     internal interface IExecutableItem
     {

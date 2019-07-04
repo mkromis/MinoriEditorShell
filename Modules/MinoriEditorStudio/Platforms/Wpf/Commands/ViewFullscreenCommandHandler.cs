@@ -1,22 +1,22 @@
 using System.Threading.Tasks;
 using System.Windows;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Threading;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Threading;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class ViewFullScreenCommandHandler : CommandHandlerBase<ViewFullScreenCommandDefinition>
     {
         public override Task Run(Command command)
         {
-            var window = Application.Current.MainWindow;
+            Window window = Application.Current.MainWindow;
             if (window == null)
+            {
                 return TaskUtility.Completed;
-            if (window.WindowState != WindowState.Maximized)
-                window.WindowState = WindowState.Maximized;
-            else
-                window.WindowState = WindowState.Normal;
+            }
+
+            window.WindowState = window.WindowState != WindowState.Maximized ? WindowState.Maximized : WindowState.Normal;
             return TaskUtility.Completed;
         }
     }

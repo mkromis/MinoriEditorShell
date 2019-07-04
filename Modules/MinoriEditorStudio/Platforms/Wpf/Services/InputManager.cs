@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
 	[Export(typeof(IInputManager))]
 	public class InputManager : IInputManager

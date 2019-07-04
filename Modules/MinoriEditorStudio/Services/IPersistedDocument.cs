@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
     public interface IPersistedDocument : IDocument
     {

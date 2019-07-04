@@ -3,7 +3,7 @@ using MinoriEditorStudio.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Platform.Wpf.Controls
+namespace MinoriEditorStudio.Platforms.Wpf.Themes
 {
     /// <summary>
     /// Class DefaultTheme

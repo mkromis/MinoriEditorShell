@@ -1,9 +1,10 @@
+using MinoriEditorStudio.Platforms.Wpf.Win32;
+using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using MinoriEditorStudio.Framework.Win32;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
@@ -17,12 +18,15 @@ namespace MinoriEditorStudio.Platforms.Wpf.Controls
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var hwndHost = (ClippingHwndHost) d;
+            ClippingHwndHost hwndHost = (ClippingHwndHost) d;
 
             if (e.OldValue != null)
             {
                 if (hwndHost._source != null)
+                {
                     hwndHost._source.RootVisual = null;
+                }
+
                 hwndHost.RemoveLogicalChild(e.OldValue);
             }
 
@@ -30,14 +34,16 @@ namespace MinoriEditorStudio.Platforms.Wpf.Controls
             {
                 hwndHost.AddLogicalChild(e.NewValue);
                 if (hwndHost._source != null)
+                {
                     hwndHost._source.RootVisual = (Visual) e.NewValue;
+                }
             }
         }
 
         public Visual Content
         {
-            get { return (Visual) GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
+            get => (Visual)GetValue(ContentProperty);
+            set => SetValue(ContentProperty, value);
         }
 
         protected override IEnumerator LogicalChildren
@@ -45,13 +51,15 @@ namespace MinoriEditorStudio.Platforms.Wpf.Controls
             get
             {
                 if (Content != null)
+                {
                     yield return Content;
+                }
             }
         }
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
-            var param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (int) Width, (int) Height)
+            HwndSourceParameters param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (Int32) Width, (Int32) Height)
             {
                 ParentWindow = hwndParent.Handle,
                 WindowStyle = NativeMethods.WS_VISIBLE | NativeMethods.WS_CHILD,

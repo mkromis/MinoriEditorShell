@@ -1,13 +1,13 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Menus;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Menus;
-using MinoriEditorStudio.Modules.Settings.Commands;
 
-namespace MinoriEditorStudio.Modules.Settings
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
     public static class MenuDefinitions
     {
         [Export]
         public static MenuItemDefinition OpenSettingsMenuItem = new CommandMenuItemDefinition<OpenSettingsCommandDefinition>(
-            MainMenu.MenuDefinitions.ToolsOptionsMenuGroup, 0);
+            MenuDefinitionsCollection.ToolsOptionsMenuGroup, 0);
     }
 }

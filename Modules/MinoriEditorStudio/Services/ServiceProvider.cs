@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Services
 {
     /// <summary>
     /// Used for interop with code that requires an IServiceProvider. This class

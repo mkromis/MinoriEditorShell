@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Services
 {
     public interface IEditorProvider
 	{

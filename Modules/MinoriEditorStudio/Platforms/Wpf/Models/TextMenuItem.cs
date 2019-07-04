@@ -1,50 +1,36 @@
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.Menus;
 using System;
 using System.Globalization;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Menus;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
     public class TextMenuItem : StandardMenuItem
 	{
 	    private readonly MenuDefinitionBase _menuDefinition;
 
-        public override string Text
-		{
-            get { return _menuDefinition.Text; }
-		}
+        public override String Text => _menuDefinition.Text;
 
-        public override Uri IconSource
-	    {
-            get { return _menuDefinition.IconSource; }
-	    }
+        public override Uri IconSource => _menuDefinition.IconSource;
 
-        public override string InputGestureText
+        public override String InputGestureText
 		{
 			get
 			{
                 return _menuDefinition.KeyGesture == null
-					? string.Empty
+					? String.Empty
                     : _menuDefinition.KeyGesture.GetDisplayStringForCulture(CultureInfo.CurrentUICulture);
 			}
 		}
 
-        public override ICommand Command
-	    {
-	        get { return null; }
-	    }
+        public override ICommand Command => null;
 
-        public override bool IsChecked
-        {
-            get { return false; }
-        }
+        public override Boolean IsChecked => false;
 
-	    public override bool IsVisible
-	    {
-	        get { return true; }
-	    }
+        public override Boolean IsVisible => true;
 
-	    public TextMenuItem(MenuDefinitionBase menuDefinition)
+        public TextMenuItem(MenuDefinitionBase menuDefinition)
         {
             _menuDefinition = menuDefinition;
         }

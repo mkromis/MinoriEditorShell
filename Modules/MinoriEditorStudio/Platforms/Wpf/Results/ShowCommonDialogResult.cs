@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Win32;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Platforms.Wpf.Results
 {
 #warning IResult
     public class ShowCommonDialogResult /*: IResult*/

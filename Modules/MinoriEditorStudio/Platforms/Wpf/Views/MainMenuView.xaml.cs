@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for MainMenuView.xaml

@@ -3,13 +3,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.ViewModels;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IHistoryTool))]
     public class HistoryViewModel : Tool, IHistoryTool
@@ -19,11 +18,13 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
         private IUndoRedoManager _undoRedoManager;
         public IUndoRedoManager UndoRedoManager
         {
-            get { return _undoRedoManager; }
+            get => _undoRedoManager;
             set
             {
                 if (_undoRedoManager == value)
+                {
                     return;
+                }
 
                 if (_undoRedoManager != null)
                 {
@@ -43,14 +44,16 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
             }
         }
 
-        private int _selectedIndex;
-        public int SelectedIndex
+        private Int32 _selectedIndex;
+        public Int32 SelectedIndex
         {
-            get { return _selectedIndex; }
+            get => _selectedIndex;
             set
             {
                 if (_selectedIndex == value)
+                {
                     return;
+                }
 
                 _selectedIndex = value;
                 RaisePropertyChanged(() => SelectedIndex);
@@ -87,18 +90,24 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
             RefreshItemTypes();
         }
 
-        private void OnUndoRedoManagerActionStackChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnUndoRedoManagerActionStackChanged(Object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    var newItems = e.NewItems.Cast<IUndoableAction>().ToArray();
-                    for (var i = 0; i < newItems.Length; i++)
+                    IUndoableAction[] newItems = e.NewItems.Cast<IUndoableAction>().ToArray();
+                    for (Int32 i = 0; i < newItems.Length; i++)
+                    {
                         HistoryItems.Insert(e.NewStartingIndex + i + 1, new HistoryItemViewModel(newItems[i]));
+                    }
+
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    for (var i = 0; i < e.OldItems.Count; i++)
+                    for (Int32 i = 0; i < e.OldItems.Count; i++)
+                    {
                         HistoryItems.RemoveAt(e.OldStartingIndex + 1);
+                    }
+
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     ResetItems();
@@ -108,7 +117,7 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
             }
         }
 
-        private void OnUndoRedoManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnUndoRedoManagerPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -124,17 +133,15 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
         {
             HistoryItems[0].ItemType = _undoRedoManager.CanUndo ? HistoryItemType.InitialState : HistoryItemType.Current;
 
-            for (var i = 1; i <= _undoRedoManager.ActionStack.Count; i++)
+            for (Int32 i = 1; i <= _undoRedoManager.ActionStack.Count; i++)
             {
-                var delta = _undoRedoManager.UndoActionCount - i;
-                if (delta == 0)
-                    HistoryItems[i].ItemType = HistoryItemType.Current;
-                else
-                    HistoryItems[i].ItemType = delta > 0 ? HistoryItemType.Undo : HistoryItemType.Redo;
+                Int32 delta = _undoRedoManager.UndoActionCount - i;
+                HistoryItems[i].ItemType = delta == 0 ? 
+                    HistoryItemType.Current : delta > 0 ? HistoryItemType.Undo : HistoryItemType.Redo;
             }
         }
 
-        public void UndoOrRedoTo(HistoryItemViewModel item, bool setSelectedIndex)
+        public void UndoOrRedoTo(HistoryItemViewModel item, Boolean setSelectedIndex)
         {
             switch (item.ItemType)
             {
@@ -154,7 +161,9 @@ namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
             }
 
             if (setSelectedIndex)
+            {
                 SelectedIndex = HistoryItems.IndexOf(item) + 1;
+            }
         }
     }
 }

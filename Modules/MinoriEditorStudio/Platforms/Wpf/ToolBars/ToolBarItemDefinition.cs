@@ -1,14 +1,14 @@
+using MinoriEditorStudio.Commands;
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
 
-namespace MinoriEditorStudio.Framework.ToolBars
+namespace MinoriEditorStudio.Platforms.Wpf.ToolBars
 {
     public abstract class ToolBarItemDefinition
     {
         public ToolBarItemGroupDefinition Group { get; }
 
-        public int SortOrder { get; }
+        public Int32 SortOrder { get; }
 
         public ToolBarItemDisplay Display { get; }
 

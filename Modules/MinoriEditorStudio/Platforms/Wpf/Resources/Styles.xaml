@@ -3,12 +3,12 @@
                     xmlns:controls="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls"
                     xmlns:converters="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters"
                     xmlns:b="clr-namespace:MinoriEditorStudio.Modules.MainMenu.Behaviors">
-    <converters:NullableValueConverter x:Key="NullableValueConverter" />
+    <!--<converters:NullableValueConverter x:Key="NullableValueConverter" />-->
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Image x:Key="MenuItemIcon" x:Shared="false" Source="{Binding IconSource, Converter={StaticResource NullableValueConverter}}" />
 
-    <Style x:Key="MenuItem" TargetType="{x:Type controls:MenuItemEx}">
+    <!--<Style x:Key="MenuItem" TargetType="{x:Type controls:MenuItemEx}">
         <Setter Property="Visibility" Value="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <Setter Property="InputGestureText" Value="{Binding InputGestureText}" />
         <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
@@ -16,7 +16,7 @@
         <Setter Property="IsChecked" Value="{Binding IsChecked, Mode=OneWay}" />
         <Setter Property="Command" Value="{Binding Command}" />
         <Setter Property="b:MenuBehavior.UpdateCommandUiItems" Value="True" />
-    </Style>
+    </Style>-->
 
 	<HierarchicalDataTemplate x:Key="menuTemplate" ItemsSource="{Binding Children}">
 		<ContentPresenter Content="{Binding Path=Text}" RecognizesAccessKey="True" />
