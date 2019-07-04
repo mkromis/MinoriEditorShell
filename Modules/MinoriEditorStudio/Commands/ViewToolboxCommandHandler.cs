@@ -1,11 +1,9 @@
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.Threading;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class ViewToolboxCommandHandler : CommandHandlerBase<ViewToolboxCommandDefinition>

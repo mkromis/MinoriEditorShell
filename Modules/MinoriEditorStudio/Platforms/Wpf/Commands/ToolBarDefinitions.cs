@@ -1,14 +1,13 @@
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.ToolBars;
-using MinoriEditorStudio.Modules.Shell.Commands;
 
-namespace MinoriEditorStudio.Modules.Shell
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     public static class ToolBarDefinitions
     {
         [Export]
-        public static ToolBarItemGroupDefinition StandardOpenSaveToolBarGroup = new ToolBarItemGroupDefinition(
-            ToolBars.ToolBarDefinitions.StandardToolBar, 8);
+        public static ToolBarItemGroupDefinition StandardOpenSaveToolBarGroup = null;
+            //new ToolBarItemGroupDefinition(ToolBarDefinition.StandardToolBar, 8);
 
         [Export]
         public static ToolBarItemDefinition OpenFileToolBarItem = new CommandToolBarItemDefinition<OpenFileCommandDefinition>(

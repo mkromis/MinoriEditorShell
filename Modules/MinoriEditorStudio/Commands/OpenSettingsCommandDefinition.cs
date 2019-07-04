@@ -1,26 +1,14 @@
-using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
+using System;
 
-namespace MinoriEditorStudio.Modules.Settings.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class OpenSettingsCommandDefinition : CommandDefinition
     {
-        public const string CommandName = "Tools.Options";
-
-        public override string Name
-        {
-            get { return CommandName; }
-        }
-
-        public override string Text
-        {
-            get { return Resources.ToolsOptionsCommandText; }
-        }
-
-        public override string ToolTip
-        {
-            get { return Resources.ToolsOptionsCommandToolTip; }
-        }
+        public const String CommandName = "Tools.Options";
+        public override String Name => CommandName;
+        public override String Text => Resources.ToolsOptionsCommandText;
+        public override String ToolTip => Resources.ToolsOptionsCommandToolTip;
     }
 }

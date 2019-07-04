@@ -1,15 +1,12 @@
-using MinoriEditorStudio.Framework.Commands;
+using System;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class NewFileCommandListDefinition : CommandListDefinition
     {
-        public const string CommandName = "File.NewFile";
+        public const String CommandName = "File.NewFile";
 
-        public override string Name
-        {
-            get { return CommandName; }
-        }
+        public override String Name => CommandName;
     }
 }

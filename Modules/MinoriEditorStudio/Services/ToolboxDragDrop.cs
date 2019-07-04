@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Modules.Toolbox
+namespace MinoriEditorStudio.Services
 {
     public static class ToolboxDragDrop
     {

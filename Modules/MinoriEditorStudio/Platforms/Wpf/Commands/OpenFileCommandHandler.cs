@@ -2,14 +2,12 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Services;
 using Microsoft.Win32;
 using System;
-using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class OpenFileCommandHandler : CommandHandlerBase<OpenFileCommandDefinition>
@@ -26,23 +24,26 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
 
         public override async Task Run(Command command)
         {
-            var dialog = new OpenFileDialog();
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Filter = "All Supported Files|" + String.Join(";", _editorProviders
+                .SelectMany(x => x.FileTypes).Select(x => "*" + x.FileExtension))
+            };
 
-            dialog.Filter = "All Supported Files|" + string.Join(";", _editorProviders
-                .SelectMany(x => x.FileTypes).Select(x => "*" + x.FileExtension));
-
-            dialog.Filter += "|" + string.Join("|", _editorProviders
+            dialog.Filter += "|" + String.Join("|", _editorProviders
                 .SelectMany(x => x.FileTypes)
                 .Select(x => x.Name + "|*" + x.FileExtension));
 
             if (dialog.ShowDialog() == true)
+            {
                 _shell.OpenDocument(await GetEditor(dialog.FileName));
+            }
         }
 
-#warning OpenFileGetEditor
-        internal static Task<IDocument> GetEditor(string path)
+        internal static Task<IDocument> GetEditor(String path)
         {
             throw new NotImplementedException();
+#warning OpenFileGetEditor
 #if false
             var provider = IoC.GetAllInstances(typeof(IEditorProvider))
                 .Cast<IEditorProvider>()

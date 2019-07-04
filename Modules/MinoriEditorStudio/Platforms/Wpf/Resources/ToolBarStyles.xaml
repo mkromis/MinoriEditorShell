@@ -30,10 +30,10 @@
         <Setter Property="Command" Value="{Binding Command}" />
         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self}}" />
 
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <DataTrigger Binding="{Binding Display}" Value="{x:Static toolbars:ToolBarItemDisplay.IconAndText}">
                 <Setter Property="Content" Value="{StaticResource IconAndTextTemplate}" />
             </DataTrigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 </ResourceDictionary>

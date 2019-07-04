@@ -1,4 +1,3 @@
-using MinoriEditorStudio.Modules.Settings;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
@@ -6,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class MainMenuSettingsViewModel : MvxNotifyPropertyChanged, ISettingsEditor

@@ -1,6 +1,8 @@
+using MinoriEditorStudio.Services;
+using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Modules.Settings.ViewModels
+namespace MinoriEditorStudio.ViewModels
 {
     public class SettingsPageViewModel
     {
@@ -10,7 +12,7 @@ namespace MinoriEditorStudio.Modules.Settings.ViewModels
             Editors = new List<ISettingsEditor>();
         }
 
-        public string Name { get; set; }
+        public String Name { get; set; }
         public List<ISettingsEditor> Editors { get; private set; }
         public List<SettingsPageViewModel> Children { get; private set; }
     }

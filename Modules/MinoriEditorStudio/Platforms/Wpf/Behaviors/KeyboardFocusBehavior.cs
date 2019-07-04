@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace MinoriEditorStudio.Framework.Behaviors
+namespace MinoriEditorStudio.Platforms.Wpf.Behaviors
 {
     public class KeyboardFocusBehavior : Behavior<FrameworkElement>
     {

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using MinoriEditorStudio.Framework.Services;
+using MinoriEditorStudio.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [Export(typeof(ICommandRouter))]
     public class CommandRouter : ICommandRouter
@@ -29,20 +29,22 @@ namespace MinoriEditorStudio.Framework.Commands
 
         private Dictionary<Type, CommandHandlerWrapper> BuildCommandHandlerWrappers(ICommandHandler[] commandHandlers)
         {
-            var commandHandlersList = SortCommandHandlers(commandHandlers);
+            List<ICommandHandler> commandHandlersList = SortCommandHandlers(commandHandlers);
 
             // Command handlers are either ICommandHandler<T> or ICommandListHandler<T>.
             // We need to extract T, and use it as the key in our dictionary.
 
-            var result = new Dictionary<Type, CommandHandlerWrapper>();
+            Dictionary<Type, CommandHandlerWrapper> result = new Dictionary<Type, CommandHandlerWrapper>();
 
-            foreach (var commandHandler in commandHandlersList)
+            foreach (ICommandHandler commandHandler in commandHandlersList)
             {
-                var commandHandlerType = commandHandler.GetType();
+                Type commandHandlerType = commandHandler.GetType();
                 EnsureCommandHandlerTypeToCommandDefinitionTypesPopulated(commandHandlerType);
-                var commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType];
-                foreach (var commandDefinitionType in commandDefinitionTypes)
+                HashSet<Type> commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType];
+                foreach (Type commandDefinitionType in commandDefinitionTypes)
+                {
                     result[commandDefinitionType] = CreateCommandHandlerWrapper(commandDefinitionType, commandHandler);
+                }
             }
 
             return result;
@@ -52,7 +54,7 @@ namespace MinoriEditorStudio.Framework.Commands
         {
             // Put command handlers defined in priority assemblies, last. This allows applications
             // to override built-in command handlers.
-
+#warning SortCommandHandelrs
 #if false
             var bootstrapper = IoC.Get<AppBootstrapper>();
 
@@ -65,6 +67,7 @@ namespace MinoriEditorStudio.Framework.Commands
 
         public CommandHandlerWrapper GetCommandHandler(CommandDefinitionBase commandDefinition)
         {
+#warning GetCommandHandler
 #if false
             CommandHandlerWrapper commandHandler;
 
@@ -98,6 +101,7 @@ namespace MinoriEditorStudio.Framework.Commands
 
         private CommandHandlerWrapper GetCommandHandlerForLayoutItem(CommandDefinitionBase commandDefinition, object activeItemViewModel)
         {
+#warning GetCommandHendlerForLayoutItem
 #if false
             var activeItemView = ViewLocator.LocateForModel(activeItemViewModel, null, null);
             var activeItemWindow = Window.GetWindow(activeItemView);
@@ -115,33 +119,37 @@ namespace MinoriEditorStudio.Framework.Commands
 
         private CommandHandlerWrapper FindCommandHandlerInVisualTree(CommandDefinitionBase commandDefinition, IInputElement target)
         {
-            var visualObject = target as DependencyObject;
-            if (visualObject == null)
+            if (!(target is DependencyObject visualObject))
+            {
                 return null;
+            }
 
-            object previousDataContext = null;
+            Object previousDataContext = null;
             do
             {
-                var frameworkElement = visualObject as FrameworkElement;
-                if (frameworkElement != null)
+                if (visualObject is FrameworkElement frameworkElement)
                 {
-                    var dataContext = frameworkElement.DataContext;
+                    Object dataContext = frameworkElement.DataContext;
                     if (dataContext != null && !ReferenceEquals(dataContext, previousDataContext))
                     {
-                        if (dataContext is ICommandRerouter)
+                        if (dataContext is ICommandRerouter commandRerouter)
                         {
-                            var commandRerouter = (ICommandRerouter) dataContext;
-                            var commandTarget = commandRerouter.GetHandler(commandDefinition);
+                            Object commandTarget = commandRerouter.GetHandler(commandDefinition);
                             if (commandTarget != null)
                             {
                                 if (IsCommandHandlerForCommandDefinitionType(commandTarget, commandDefinition.GetType()))
+                                {
                                     return CreateCommandHandlerWrapper(commandDefinition.GetType(), commandTarget);
+                                }
+
                                 throw new InvalidOperationException("This object does not handle the specified command definition.");
                             }
                         }
 
                         if (IsCommandHandlerForCommandDefinitionType(dataContext, commandDefinition.GetType()))
+                        {
                             return CreateCommandHandlerWrapper(commandDefinition.GetType(), dataContext);
+                        }
 
                         previousDataContext = dataContext;
                     }
@@ -152,22 +160,27 @@ namespace MinoriEditorStudio.Framework.Commands
             return null;
         }
 
-        private static CommandHandlerWrapper CreateCommandHandlerWrapper(
-            Type commandDefinitionType, object commandHandler)
+        private static CommandHandlerWrapper CreateCommandHandlerWrapper(Type commandDefinitionType, Object commandHandler)
         {
             if (typeof(CommandDefinition).IsAssignableFrom(commandDefinitionType))
+            {
                 return CommandHandlerWrapper.FromCommandHandler(CommandHandlerInterfaceType.MakeGenericType(commandDefinitionType), commandHandler);
+            }
+
             if (typeof(CommandListDefinition).IsAssignableFrom(commandDefinitionType))
+            {
                 return CommandHandlerWrapper.FromCommandListHandler(CommandListHandlerInterfaceType.MakeGenericType(commandDefinitionType), commandHandler);
+            }
+
             throw new InvalidOperationException();
         }
 
-        private bool IsCommandHandlerForCommandDefinitionType(
-            object commandHandler, Type commandDefinitionType)
+        private Boolean IsCommandHandlerForCommandDefinitionType(
+            Object commandHandler, Type commandDefinitionType)
         {
-            var commandHandlerType = commandHandler.GetType();
+            Type commandHandlerType = commandHandler.GetType();
             EnsureCommandHandlerTypeToCommandDefinitionTypesPopulated(commandHandlerType);
-            var commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType];
+            HashSet<Type> commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType];
             return commandDefinitionTypes.Contains(commandDefinitionType);
         }
 
@@ -175,20 +188,24 @@ namespace MinoriEditorStudio.Framework.Commands
         {
             if (!_commandHandlerTypeToCommandDefinitionTypesLookup.ContainsKey(commandHandlerType))
             {
-                var commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType] = new HashSet<Type>();
+                HashSet<Type> commandDefinitionTypes = _commandHandlerTypeToCommandDefinitionTypesLookup[commandHandlerType] = new HashSet<Type>();
 
-                foreach (var handledCommandDefinitionType in GetAllHandledCommandedDefinitionTypes(commandHandlerType, CommandHandlerInterfaceType))
+                foreach (Type handledCommandDefinitionType in GetAllHandledCommandedDefinitionTypes(commandHandlerType, CommandHandlerInterfaceType))
+                {
                     commandDefinitionTypes.Add(handledCommandDefinitionType);
+                }
 
-                foreach (var handledCommandDefinitionType in GetAllHandledCommandedDefinitionTypes(commandHandlerType, CommandListHandlerInterfaceType))
+                foreach (Type handledCommandDefinitionType in GetAllHandledCommandedDefinitionTypes(commandHandlerType, CommandListHandlerInterfaceType))
+                {
                     commandDefinitionTypes.Add(handledCommandDefinitionType);
+                }
             }
         }
 
         private static IEnumerable<Type> GetAllHandledCommandedDefinitionTypes(
             Type type, Type genericInterfaceType)
         {
-            var result = new List<Type>();
+            List<Type> result = new List<Type>();
 
             while (type != null)
             {

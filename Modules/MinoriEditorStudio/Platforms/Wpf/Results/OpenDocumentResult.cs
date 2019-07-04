@@ -1,34 +1,24 @@
 using System;
-using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Shell.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Results;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Platforms.Wpf.Results
 {
-	public class OpenDocumentResult : OpenResultBase<IDocument>
+    public class OpenDocumentResult : OpenResultBase<IDocument>
 	{
 		private readonly IDocument _editor;
 		private readonly Type _editorType;
-		private readonly string _path;
+		private readonly String _path;
 
         private IManager _shell = Mvx.IoCProvider.Resolve<IManager>();
 
-        public OpenDocumentResult(IDocument editor)
-		{
-			_editor = editor;
-		}
+        public OpenDocumentResult(IDocument editor) => _editor = editor;
 
-		public OpenDocumentResult(string path)
-		{
-			_path = path;
-		}
+        public OpenDocumentResult(String path) => _path = path;
 
-		public OpenDocumentResult(Type editorType)
-		{
-			_editorType = editorType;
-		}
+        public OpenDocumentResult(Type editorType) => _editorType = editorType;
 
         public override void Execute(/*CoroutineExecutionContext*/Object context)
 		{

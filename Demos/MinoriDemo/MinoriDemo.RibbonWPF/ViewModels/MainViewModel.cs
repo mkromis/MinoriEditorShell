@@ -1,10 +1,6 @@
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.StatusBar;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Service;
-using MinoriEditorStudio.VirtualCanvas.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -13,8 +9,6 @@ using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 namespace MinoriDemo.RibbonWPF.ViewModels

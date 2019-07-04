@@ -1,16 +1,18 @@
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorStudio.Platforms.Wpf.Menus;
+using MinoriEditorStudio.Platforms.Wpf.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Menus;
-using MinoriEditorStudio.Modules.MainMenu.Models;
 
-namespace MinoriEditorStudio.Modules.MainMenu
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     [Export(typeof(IMenuBuilder))]
     public class MenuBuilder : IMenuBuilder
     {
         private readonly ICommandService _commandService;
-        private readonly MenuBarDefinition[] _menuBars;
         private readonly MenuDefinition[] _menus;
         private readonly MenuItemGroupDefinition[] _menuItemGroups;
         private readonly MenuItemDefinition[] _menuItems;
@@ -30,7 +32,7 @@ namespace MinoriEditorStudio.Modules.MainMenu
             [ImportMany] ExcludeMenuItemDefinition[] excludeMenuItems)
         {
             _commandService = commandService;
-            _menuBars = menuBars;
+            MenuBars = menuBars;
             _menus = menus;
             _menuItemGroups = menuItemGroups;
             _menuItems = menuItems;
@@ -39,41 +41,45 @@ namespace MinoriEditorStudio.Modules.MainMenu
             _excludeMenuItems = excludeMenuItems.Select(x => x.MenuItemDefinitionToExclude).ToArray();
         }
 
+        public MenuBarDefinition[] MenuBars { get; }
+
         public void BuildMenuBar(MenuBarDefinition menuBarDefinition, MenuModel result)
         {
-            var menus = _menus
+            IOrderedEnumerable<MenuDefinition> menus = _menus
                 .Where(x => x.MenuBar == menuBarDefinition)
                 .Where(x => !_excludeMenus.Contains(x))
                 .OrderBy(x => x.SortOrder);
 
-            foreach (var menu in menus)
+            foreach (MenuDefinition menu in menus)
             {
-                var menuModel = new TextMenuItem(menu);
+                TextMenuItem menuModel = new TextMenuItem(menu);
                 AddGroupsRecursive(menu, menuModel);
                 if (menuModel.Children.Any())
+                {
                     result.Add(menuModel);
+                }
             }
         }
 
         private void AddGroupsRecursive(MenuDefinitionBase menu, StandardMenuItem menuModel)
         {
-            var groups = _menuItemGroups
+            List<MenuItemGroupDefinition> groups = _menuItemGroups
                 .Where(x => x.Parent == menu)
                 .Where(x => !_excludeMenuItemGroups.Contains(x))
                 .OrderBy(x => x.SortOrder)
                 .ToList();
 
-            for (int i = 0; i < groups.Count; i++)
+            for (Int32 i = 0; i < groups.Count; i++)
             {
-                var group = groups[i];
-                var menuItems = _menuItems
+                MenuItemGroupDefinition group = groups[i];
+                IOrderedEnumerable<MenuItemDefinition> menuItems = _menuItems
                     .Where(x => x.Group == group)
                     .Where(x => !_excludeMenuItems.Contains(x))
                     .OrderBy(x => x.SortOrder);
 
-                foreach (var menuItem in menuItems)
+                foreach (MenuItemDefinition menuItem in menuItems)
                 {
-                    var menuItemModel = (menuItem.CommandDefinition != null)
+                    StandardMenuItem menuItemModel = (menuItem.CommandDefinition != null)
                         ? new CommandMenuItem(_commandService.GetCommand(menuItem.CommandDefinition), menuModel)
                         : (StandardMenuItem)new TextMenuItem(menuItem);
                     AddGroupsRecursive(menuItem, menuItemModel);
@@ -81,7 +87,9 @@ namespace MinoriEditorStudio.Modules.MainMenu
                 }
 
                 if (i < groups.Count - 1 && menuItems.Any())
+                {
                     menuModel.Add(new MenuItemSeparator());
+                }
             }
         }
     }

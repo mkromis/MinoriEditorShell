@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Modules.Settings
+namespace MinoriEditorStudio.Services
 {
     public interface ISettingsEditor
     {

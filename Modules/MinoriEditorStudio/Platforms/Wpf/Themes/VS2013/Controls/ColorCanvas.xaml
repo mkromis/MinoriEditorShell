@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
-    <Style TargetType="{x:Type xctk:ColorCanvas}">
+    <!--<Style TargetType="{x:Type xctk:ColorCanvas}">
         <Setter Property="BorderBrush" Value="{DynamicResource ColorCanvas.Static.Border}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{DynamicResource EnvironmentToolWindowText}"/>
@@ -51,9 +52,9 @@
                                         <Rectangle x:Name="ColorShadingRectangle" Height="{Binding Height, ElementName=PART_ColorShadingCanvas}" Width="{Binding Width, ElementName=PART_ColorShadingCanvas}">
                                             <Rectangle.Fill>
                                                 <Binding ElementName="PART_SpectrumSlider" Path="SelectedColor">
-                                                    <Binding.Converter>
+                                                    --><!--<Binding.Converter>
                                                         <xctk:ColorToSolidColorBrushConverter/>
-                                                    </Binding.Converter>
+                                                    </Binding.Converter>--><!--
                                                 </Binding>
                                             </Rectangle.Fill>
                                         </Rectangle>
@@ -191,5 +192,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 </ResourceDictionary>

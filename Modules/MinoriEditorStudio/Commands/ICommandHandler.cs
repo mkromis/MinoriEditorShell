@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Commands
 {
     public interface ICommandHandler<TCommandDefinition> : ICommandHandler
         where TCommandDefinition : CommandDefinition

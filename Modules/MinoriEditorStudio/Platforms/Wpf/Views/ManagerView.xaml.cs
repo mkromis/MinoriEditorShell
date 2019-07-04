@@ -1,17 +1,11 @@
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Manager.Services;
-using MinoriEditorStudio.Modules.Shell.Views;
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.ViewModels;
 using MvvmCross;
-using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
-using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Controls;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Views

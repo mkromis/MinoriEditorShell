@@ -1,7 +1,7 @@
 using MvvmCross.ViewModels;
 using System;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Services
+namespace MinoriEditorStudio.Services
 {
     public class UndoRedoManager : MvxNotifyPropertyChanged, IUndoRedoManager
     {

@@ -1,19 +1,11 @@
 using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Modules.Toolbox.Services;
-using MinoriEditorStudio.Properties;
 using System.Windows.Input;
 using MvvmCross.Commands;
 using System.Collections.ObjectModel;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IToolbox))]
     public class ToolboxViewModel : Tool, IToolbox
@@ -29,18 +21,12 @@ namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
 
         private readonly IToolboxService _toolboxService;
 
-        public override PaneLocation PreferredLocation
-        {
-            get { return PaneLocation.Left; }
-        }
+        public override PaneLocation PreferredLocation => PaneLocation.Left;
 
         private ObservableCollection<ToolboxItemViewModel> _filteredItems;
 
         private readonly ObservableCollection<ToolboxItemViewModel> _items;
-        public ObservableCollection<ToolboxItemViewModel> Items
-        {
-            get { return _filteredItems.Count == 0 ? _items : _filteredItems; }
-        }
+        public ObservableCollection<ToolboxItemViewModel> Items => _filteredItems.Count == 0 ? _items : _filteredItems;
 
         [ImportingConstructor]
         public ToolboxViewModel(IManager shell, IToolboxService toolboxService)

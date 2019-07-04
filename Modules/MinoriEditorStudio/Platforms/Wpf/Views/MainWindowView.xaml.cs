@@ -1,4 +1,4 @@
-﻿namespace MinoriEditorStudio.Modules.MainWindow.Views
+﻿namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
 	public partial class MainWindowView
     {

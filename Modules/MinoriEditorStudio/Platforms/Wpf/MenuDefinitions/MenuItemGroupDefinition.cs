@@ -1,24 +1,18 @@
-namespace MinoriEditorStudio.Framework.Menus
+using MinoriEditorStudio.Platforms.Wpf.Menus;
+using System;
+
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
 {
     public class MenuItemGroupDefinition
     {
-        private readonly MenuDefinitionBase _parent;
-        private readonly int _sortOrder;
+        public MenuDefinitionBase Parent { get; }
 
-        public MenuDefinitionBase Parent
-        {
-            get { return _parent; }
-        }
+        public Int32 SortOrder { get; }
 
-        public int SortOrder
+        public MenuItemGroupDefinition(MenuDefinitionBase parent, Int32 sortOrder)
         {
-            get { return _sortOrder; }
-        }
-
-        public MenuItemGroupDefinition(MenuDefinitionBase parent, int sortOrder)
-        {
-            _parent = parent;
-            _sortOrder = sortOrder;
+            Parent = parent;
+            SortOrder = sortOrder;
         }
     }
 }

@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 
+using MinoriEditorStudio.Platforms.Wpf.Win32;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,7 +14,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using MinoriEditorStudio.Framework.Win32;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {

@@ -1,13 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Commands; 
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.Threading;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class SwitchToDocumentListCommandHandler : ICommandListHandler<SwitchToDocumentCommandListDefinition>
@@ -22,13 +20,13 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
 
         public void Populate(Command command, List<Command> commands)
         {
-            for (var i = 0; i < _shell.Documents.Count; i++)
+            for (Int32 i = 0; i < _shell.Documents.Count; i++)
             {
-                var document = _shell.Documents[i];
+                IDocument document = _shell.Documents[i];
                 commands.Add(new Command(command.CommandDefinition)
                 {
                     Checked = _shell.ActiveItem == document,
-                    Text = string.Format("_{0} {1}", i + 1, document.DisplayName),
+                    Text = String.Format("_{0} {1}", i + 1, document.DisplayName),
                     Tag = document
                 });
             }
