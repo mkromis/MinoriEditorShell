@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandDefinition]
     public class SaveAllFilesCommandDefinition : CommandDefinition

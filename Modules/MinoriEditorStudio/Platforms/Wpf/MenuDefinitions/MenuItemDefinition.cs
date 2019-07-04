@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Framework.Menus
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
 {
     public abstract class MenuItemDefinition : MenuDefinitionBase
     {

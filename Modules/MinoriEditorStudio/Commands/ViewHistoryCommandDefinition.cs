@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class ViewHistoryCommandDefinition : CommandDefinition

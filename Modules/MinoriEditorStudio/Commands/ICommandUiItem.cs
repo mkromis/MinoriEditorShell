@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Commands
 {
     public interface ICommandUiItem
     {

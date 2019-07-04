@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio..Platforms.Wpf.Commands
 {
     public class TargetableCommand : ICommand
     {

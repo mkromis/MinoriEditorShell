@@ -1,7 +1,7 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
 	public interface IResourceManager
 	{

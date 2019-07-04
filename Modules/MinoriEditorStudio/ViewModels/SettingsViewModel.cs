@@ -7,7 +7,7 @@ using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Properties;
 using MvvmCross.Commands;
 
-namespace MinoriEditorStudio.Modules.Settings.ViewModels
+namespace MinoriEditorStudio.ViewModels
 {
     [Export(typeof (SettingsViewModel))]
     public class SettingsViewModel : WindowBase

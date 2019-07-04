@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Results
 {
     public class ShowDialogResult<TWindow> : OpenResultBase<TWindow>
         where TWindow : IWindow

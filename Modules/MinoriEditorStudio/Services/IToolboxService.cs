@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MinoriEditorStudio.Modules.Toolbox.Models;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Services
+namespace MinoriEditorStudio.Services
 {
     public interface IToolboxService
     {

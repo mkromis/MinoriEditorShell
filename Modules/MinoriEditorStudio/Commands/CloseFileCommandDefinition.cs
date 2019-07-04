@@ -1,7 +1,8 @@
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
+using System;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class CloseFileCommandDefinition : CommandDefinition
@@ -13,7 +14,7 @@ namespace MinoriEditorStudio.Modules.Shell.Commands
             get { return CommandName; }
         }
 
-        public override string Text
+        public override String Text
         {
             get { return Resources.FileCloseCommandText; }
         }

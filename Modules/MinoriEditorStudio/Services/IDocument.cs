@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Modules.UndoRedo;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
 	public interface IDocument : ILayoutItem
 	{

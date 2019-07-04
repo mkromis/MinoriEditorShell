@@ -3,7 +3,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.ToolBars
+namespace MinoriEditorStudio.Platforms.Wpf.ToolBars
 {
     public class CommandToolBarItemDefinition<TCommandDefinition> : ToolBarItemDefinition
         where TCommandDefinition : CommandDefinitionBase

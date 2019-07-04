@@ -7,7 +7,7 @@ using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.MainWindow.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
 #warning Conductor<IShell>
     [Export(typeof(IMainWindow))]

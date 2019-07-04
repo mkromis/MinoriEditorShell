@@ -5,7 +5,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class ViewToolboxCommandHandler : CommandHandlerBase<ViewToolboxCommandDefinition>

@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class SaveAllFilesCommandHandler : CommandHandlerBase<SaveAllFilesCommandDefinition>

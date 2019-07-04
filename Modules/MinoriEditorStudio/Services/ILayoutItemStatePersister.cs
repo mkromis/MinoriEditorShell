@@ -2,7 +2,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Services;
 using System;
 
-namespace MinoriEditorStudio.Modules.Manager.Services
+namespace MinoriEditorStudio.Services
 {
     public interface ILayoutItemStatePersister
     {

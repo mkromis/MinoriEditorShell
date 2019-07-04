@@ -1,6 +1,6 @@
 using MinoriEditorStudio.Framework;
 
-namespace MinoriEditorStudio.Modules.Toolbox
+namespace MinoriEditorStudio.Services
 {
     public interface IToolbox : ITool
     {

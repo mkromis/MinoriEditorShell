@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Framework.Services;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
 	public interface ITool : ILayoutItem
 	{

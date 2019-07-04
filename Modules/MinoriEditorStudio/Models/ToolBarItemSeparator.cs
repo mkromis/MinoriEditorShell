@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Modules.ToolBars.Models
+namespace MinoriEditorStudio.Models
 {
 	public class ToolBarItemSeparator : ToolBarItemBase
 	{

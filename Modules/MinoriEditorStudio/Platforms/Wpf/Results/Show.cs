@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Platforms.Wpf.Results
 {
 	public static class Show
 	{

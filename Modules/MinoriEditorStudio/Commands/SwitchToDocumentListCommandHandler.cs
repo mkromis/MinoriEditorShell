@@ -7,7 +7,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class SwitchToDocumentListCommandHandler : ICommandListHandler<SwitchToDocumentCommandListDefinition>

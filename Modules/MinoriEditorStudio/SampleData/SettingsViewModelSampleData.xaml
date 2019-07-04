@@ -1,5 +1,5 @@
 <ViewModels:SettingsViewModel
-    xmlns:ViewModels="clr-namespace:MinoriEditorStudio.Modules.Settings.ViewModels"
+    xmlns:ViewModels="clr-namespace:MinoriEditorStudio.SampleData"
     DisplayName="Tempor adipiscing"
     IsNotifying="True" IsInitialized="False" IsActive="True">
     <ViewModels:SettingsViewModel.Pages>

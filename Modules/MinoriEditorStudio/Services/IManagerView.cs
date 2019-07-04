@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MinoriEditorStudio.Modules.Manager.Services
+namespace MinoriEditorStudio.Services
 {
     public interface IManagerView
     {

@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Framework.Menus;
 using MinoriEditorStudio.Modules.MainMenu.Models;
 
-namespace MinoriEditorStudio.Modules.MainMenu
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public interface IMenuBuilder
     {

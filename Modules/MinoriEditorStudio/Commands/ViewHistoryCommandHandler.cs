@@ -5,7 +5,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class ViewHistoryCommandHandler : CommandHandlerBase<ViewHistoryCommandDefinition>

@@ -1,6 +1,6 @@
 using MinoriEditorStudio.Modules.Toolbox.ViewModels;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Design
+namespace MinoriEditorStudio.Platforms.Wpf.Design
 {
     public class DesignTimeToolboxViewModel : ToolboxViewModel
     {

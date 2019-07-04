@@ -8,7 +8,7 @@ using System.Windows.Media;
 using MinoriEditorStudio.Framework.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [Export(typeof(ICommandRouter))]
     public class CommandRouter : ICommandRouter

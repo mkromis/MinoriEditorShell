@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Services
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public interface IToolBarsView
     {

@@ -9,7 +9,7 @@ using MinoriEditorStudio.Framework.Threading;
 using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandHandler]
     public class NewFileCommandHandler : ICommandListHandler<NewFileCommandListDefinition>

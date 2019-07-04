@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Models
+namespace MinoriEditorStudio.Models
 {
 	public class ToolBarModel : ObservableCollection<ToolBarItemBase>, IToolBar
 	{

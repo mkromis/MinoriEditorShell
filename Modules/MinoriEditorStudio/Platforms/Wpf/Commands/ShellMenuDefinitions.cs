@@ -3,7 +3,7 @@ using MinoriEditorStudio.Framework.Menus;
 using MinoriEditorStudio.Modules.Shell.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.Shell
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     public static class MenuDefinitions
     {
