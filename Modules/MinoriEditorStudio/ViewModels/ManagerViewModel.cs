@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Windows;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorStudio.ViewModels
 {
     public class ManagerViewModel : MvxViewModel, IManager
     {

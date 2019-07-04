@@ -1,7 +1,7 @@
 using System;
 using MinoriEditorStudio.Modules.Toolbox.Models;
 
-namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     public class ToolboxItemViewModel
     {

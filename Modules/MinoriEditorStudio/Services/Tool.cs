@@ -8,7 +8,7 @@ using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
 	public abstract class Tool : LayoutItemBase, ITool
 	{

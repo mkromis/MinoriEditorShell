@@ -1,6 +1,6 @@
 using MinoriEditorStudio.Framework;
 
-namespace MinoriEditorStudio.Modules.UndoRedo
+namespace MinoriEditorStudio.Services
 {
     public interface IHistoryTool : ITool
     {

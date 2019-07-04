@@ -4,7 +4,7 @@ using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.ToolBars;
 using MinoriEditorStudio.Modules.ToolBars.Models;
 
-namespace MinoriEditorStudio.Modules.ToolBars
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     [Export(typeof(IToolBarBuilder))]
     public class ToolBarBuilder : IToolBarBuilder

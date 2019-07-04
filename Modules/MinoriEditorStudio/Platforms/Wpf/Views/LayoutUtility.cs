@@ -6,7 +6,7 @@ using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
-namespace MinoriEditorStudio.Modules.Shell.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     internal static class LayoutUtility
     {

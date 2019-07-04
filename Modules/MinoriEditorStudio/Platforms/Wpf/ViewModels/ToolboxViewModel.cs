@@ -13,7 +13,7 @@ using MvvmCross.Commands;
 using System.Collections.ObjectModel;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Toolbox.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IToolbox))]
     public class ToolboxViewModel : Tool, IToolbox

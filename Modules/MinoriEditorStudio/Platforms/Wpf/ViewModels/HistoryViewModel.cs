@@ -9,7 +9,7 @@ using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IHistoryTool))]
     public class HistoryViewModel : Tool, IHistoryTool

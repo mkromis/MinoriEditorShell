@@ -3,7 +3,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Menus
+namespace MinoriEditorStudio.Platforms.Wpf.Menus
 {
     public class CommandMenuItemDefinition<TCommandDefinition> : MenuItemDefinition
         where TCommandDefinition : CommandDefinitionBase

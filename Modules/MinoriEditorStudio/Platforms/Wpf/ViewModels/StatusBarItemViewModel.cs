@@ -2,7 +2,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Windows;
 
-namespace MinoriEditorStudio.Modules.StatusBar.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     public class StatusBarItemViewModel : MvxNotifyPropertyChanged
     {

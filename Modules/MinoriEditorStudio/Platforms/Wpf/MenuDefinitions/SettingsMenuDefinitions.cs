@@ -2,7 +2,7 @@ using System.ComponentModel.Composition;
 using MinoriEditorStudio.Framework.Menus;
 using MinoriEditorStudio.Modules.Settings.Commands;
 
-namespace MinoriEditorStudio.Modules.Settings
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
 {
     public static class MenuDefinitions
     {

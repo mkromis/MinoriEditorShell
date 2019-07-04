@@ -2,7 +2,7 @@ using System.ComponentModel.Composition;
 using MinoriEditorStudio.Framework.Menus;
 using MinoriEditorStudio.Modules.UndoRedo.Commands;
 
-namespace MinoriEditorStudio.Modules.UndoRedo
+namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitions
 {
     public static class MenuDefinitions
     {

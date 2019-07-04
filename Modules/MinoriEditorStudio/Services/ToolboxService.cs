@@ -4,7 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using MinoriEditorStudio.Modules.Toolbox.Models;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Services
+namespace MinoriEditorStudio.Services
 {
     [Export(typeof(IToolboxService))]
     public class ToolboxService : IToolboxService

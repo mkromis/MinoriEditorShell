@@ -5,7 +5,7 @@ using MinoriEditorStudio.Modules.Shell.Commands;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Platforms.Wpf.Results
 {
 	public class OpenDocumentResult : OpenResultBase<IDocument>
 	{

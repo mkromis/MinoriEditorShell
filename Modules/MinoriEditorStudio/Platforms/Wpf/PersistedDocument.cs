@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Platforms.Wpf
 {
     public abstract class PersistedDocument : Document, IPersistedDocument
     {

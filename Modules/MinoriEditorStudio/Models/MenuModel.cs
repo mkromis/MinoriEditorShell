@@ -1,7 +1,7 @@
 
 using System.Collections.ObjectModel;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Models
 {
 	public class MenuModel : ObservableCollection<MenuItemBase>, IMenu
 	{

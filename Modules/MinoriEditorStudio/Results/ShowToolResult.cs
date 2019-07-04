@@ -4,7 +4,7 @@ using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Framework.Results
+namespace MinoriEditorStudio.Results
 {
 	public class ShowToolResult<TTool> : OpenResultBase<TTool>
 		where TTool : ITool

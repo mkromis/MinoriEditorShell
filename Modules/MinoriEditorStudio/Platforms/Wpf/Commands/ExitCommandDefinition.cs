@@ -3,7 +3,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Modules.Platforms.Wpf.Commands
 {
     [CommandDefinition]
     public class ExitCommandDefinition : CommandDefinition

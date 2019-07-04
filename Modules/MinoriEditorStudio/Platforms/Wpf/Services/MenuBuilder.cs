@@ -4,7 +4,7 @@ using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Menus;
 using MinoriEditorStudio.Modules.MainMenu.Models;
 
-namespace MinoriEditorStudio.Modules.MainMenu
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     [Export(typeof(IMenuBuilder))]
     public class MenuBuilder : IMenuBuilder

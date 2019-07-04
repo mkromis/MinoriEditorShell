@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Commands
 {
     /// <summary>
     /// Wraps a generic ICommandHandler&lt;T&gt; or ICommandListHandler&lt;T&gt;

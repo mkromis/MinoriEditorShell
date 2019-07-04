@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Modules.Settings.ViewModels
+namespace MinoriEditorStudio.ViewModels
 {
     public class SettingsPageViewModel
     {

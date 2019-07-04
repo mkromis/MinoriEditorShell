@@ -1,7 +1,7 @@
 using MvvmCross.ViewModels;
 using System;
 
-namespace MinoriEditorStudio.Framework
+namespace MinoriEditorStudio.Services
 {
 #warning Screen
     public abstract class WindowBase : MvxNotifyPropertyChanged, /*Screen,*/ IWindow

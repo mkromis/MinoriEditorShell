@@ -7,7 +7,7 @@ using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Framework.Services;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Manager.Services
+namespace MinoriEditorStudio.Modules.Services
 {
     [Export(typeof(ILayoutItemStatePersister))]
     public class LayoutItemStatePersister : ILayoutItemStatePersister

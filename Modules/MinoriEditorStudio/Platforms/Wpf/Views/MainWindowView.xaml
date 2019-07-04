@@ -1,6 +1,6 @@
 <!--<mahapps:MetroWindow-->
 <Window
-    x:Class="MinoriEditorStudio.Modules.MainWindow.Views.MainWindowView"
+    x:Class="MinoriEditorStudio.Platforms.Wpf.Views.MainWindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"

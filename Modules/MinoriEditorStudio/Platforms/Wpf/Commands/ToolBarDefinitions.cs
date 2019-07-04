@@ -2,7 +2,7 @@ using System.ComponentModel.Composition;
 using MinoriEditorStudio.Framework.ToolBars;
 using MinoriEditorStudio.Modules.Shell.Commands;
 
-namespace MinoriEditorStudio.Modules.Shell
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     public static class ToolBarDefinitions
     {

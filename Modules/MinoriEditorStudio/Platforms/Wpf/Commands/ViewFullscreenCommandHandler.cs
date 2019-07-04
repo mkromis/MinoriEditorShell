@@ -3,7 +3,7 @@ using System.Windows;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.Threading;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class ViewFullScreenCommandHandler : CommandHandlerBase<ViewFullScreenCommandDefinition>

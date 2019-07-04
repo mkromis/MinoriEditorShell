@@ -2,7 +2,7 @@ using MvvmCross;
 using System;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     public abstract class CommandKeyboardShortcut
     {

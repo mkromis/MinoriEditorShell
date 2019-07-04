@@ -6,7 +6,7 @@ using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Framework.ToolBars;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
 	public class CommandToolBarItem : ToolBarItemBase, ICommandUiItem
     {

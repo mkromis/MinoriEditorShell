@@ -9,7 +9,7 @@ using Microsoft.Win32;
 using System;
 using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class OpenFileCommandHandler : CommandHandlerBase<OpenFileCommandDefinition>

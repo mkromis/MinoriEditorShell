@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class SaveFileAsCommandDefinition : CommandDefinition

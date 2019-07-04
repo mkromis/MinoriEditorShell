@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Input;
 using MinoriEditorStudio.Framework.Menus;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
     public class TextMenuItem : StandardMenuItem
 	{

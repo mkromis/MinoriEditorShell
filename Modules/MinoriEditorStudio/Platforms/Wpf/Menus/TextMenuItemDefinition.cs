@@ -2,7 +2,7 @@ using System;
 using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 
-namespace MinoriEditorStudio.Framework.Menus
+namespace MinoriEditorStudio.Platforms.Wpf.Menus
 {
     public class TextMenuItemDefinition : MenuItemDefinition
     {

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System;
 
-namespace MinoriEditorStudio.Modules.MainMenu.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IMenu))]
     public class MainMenuViewModel : MenuModel, IPartImportsSatisfiedNotification

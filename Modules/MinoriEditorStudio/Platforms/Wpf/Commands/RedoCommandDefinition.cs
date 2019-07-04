@@ -4,7 +4,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.UndoRedo.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandDefinition]
     public class RedoCommandDefinition : CommandDefinition

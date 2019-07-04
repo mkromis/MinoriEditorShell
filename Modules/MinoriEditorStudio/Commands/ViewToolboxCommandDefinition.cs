@@ -1,7 +1,7 @@
 using MinoriEditorStudio.Framework.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class ViewToolboxCommandDefinition : CommandDefinition

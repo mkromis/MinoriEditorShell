@@ -5,7 +5,7 @@ using System.Windows.Input;
 using MinoriEditorStudio.Framework.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Modules.MainMenu.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
     public class CommandMenuItem : StandardMenuItem, ICommandUiItem
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.ToolBars.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
 #warning ViewAware
     [Export(typeof(IToolBars))]
