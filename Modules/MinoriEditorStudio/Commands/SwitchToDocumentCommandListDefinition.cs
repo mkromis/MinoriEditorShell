@@ -1,15 +1,11 @@
-using MinoriEditorStudio.Framework.Commands;
+using System;
 
-namespace MinoriEditorStudio.Modules.Shell.Commands
+namespace MinoriEditorStudio.Commands
 {
     [CommandDefinition]
     public class SwitchToDocumentCommandListDefinition : CommandListDefinition
     {
-        public const string CommandName = "Window.SwitchToDocument";
-
-        public override string Name
-        {
-            get { return CommandName; }
-        }
+        public const String CommandName = "Window.SwitchToDocument";
+        public override String Name => CommandName;
     }
 }

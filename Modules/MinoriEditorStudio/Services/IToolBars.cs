@@ -1,6 +1,6 @@
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Modules.ToolBars
+namespace MinoriEditorStudio.Services
 {
     public interface IToolBars
     {

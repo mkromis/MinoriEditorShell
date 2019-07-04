@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Framework.Threading
+namespace MinoriEditorStudio.Threading
 {
     public class TaskUtility
     {

@@ -1,6 +1,8 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
 using System;
 
-namespace MinoriEditorStudio.Framework.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public interface ICommandService
     {

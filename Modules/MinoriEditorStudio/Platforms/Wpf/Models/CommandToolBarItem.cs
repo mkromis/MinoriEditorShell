@@ -2,11 +2,15 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.ToolBars;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
+using MinoriEditorStudio.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Modules.ToolBars.Models
+namespace MinoriEditorStudio.Platforms.Wpf.Models
 {
 	public class CommandToolBarItem : ToolBarItemBase, ICommandUiItem
     {
@@ -15,7 +19,7 @@ namespace MinoriEditorStudio.Modules.ToolBars.Models
         private readonly KeyGesture _keyGesture;
         private readonly IToolBar _parent;
 
-        public string Text => _command.Text;
+        public String Text => _command.Text;
 
         public ToolBarItemDisplay Display => _toolBarItem.Display;
 
@@ -25,19 +29,19 @@ namespace MinoriEditorStudio.Modules.ToolBars.Models
 	    {
 	        get
 	        {
-                var inputGestureText = (_keyGesture != null)
-                    ? string.Format(" ({0})", _keyGesture.GetDisplayStringForCulture(CultureInfo.CurrentUICulture))
-                    : string.Empty;
+                String inputGestureText = (_keyGesture != null)
+                    ? String.Format(" ({0})", _keyGesture.GetDisplayStringForCulture(CultureInfo.CurrentUICulture))
+                    : String.Empty;
 
-                return string.Format("{0}{1}", _command.ToolTip, inputGestureText).Trim();
+                return String.Format("{0}{1}", _command.ToolTip, inputGestureText).Trim();
 	        }
 	    }
 
-        public bool HasToolTip => !string.IsNullOrWhiteSpace(ToolTip);
+        public Boolean HasToolTip => !String.IsNullOrWhiteSpace(ToolTip);
 
         public ICommand Command => Mvx.IoCProvider.Resolve<ICommandService>().GetTargetableCommand(_command);
 
-        public bool IsChecked => _command.Checked;
+        public Boolean IsChecked => _command.Checked;
 
         public CommandToolBarItem(ToolBarItemDefinition toolBarItem, Command command, IToolBar parent)
 		{
@@ -49,7 +53,7 @@ namespace MinoriEditorStudio.Modules.ToolBars.Models
             command.PropertyChanged += OnCommandPropertyChanged;
 		}
 
-        private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnCommandPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
             RaisePropertyChanged(() => Text);
             RaisePropertyChanged(() => IconSource);

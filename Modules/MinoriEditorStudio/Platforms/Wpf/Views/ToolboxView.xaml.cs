@@ -2,38 +2,37 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Modules.Toolbox.ViewModels;
 using MinoriEditorStudio.Platforms.Wpf.Controls;
+using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.Toolbox.Views
+namespace MinoriEditorStudio.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for ToolboxView.xaml
     /// </summary>
     public partial class ToolboxView : UserControl
     {
-        private bool _draggingItem;
+        private Boolean _draggingItem;
         private Point _mouseStartPosition;
 
-        public ToolboxView()
-        {
-            InitializeComponent();
-        }
+        public ToolboxView() => InitializeComponent();
 
-        private void OnListBoxPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnListBoxPreviewMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
-            var listBoxItem = VisualTreeUtility.FindParent<ListBoxItem>(
+            ListBoxItem listBoxItem = VisualTreeUtility.FindParent<ListBoxItem>(
                 (DependencyObject) e.OriginalSource);
             _draggingItem = listBoxItem != null;
 
             _mouseStartPosition = e.GetPosition(ListBox);
         }
 
-        private void OnListBoxMouseMove(object sender, MouseEventArgs e)
+        private void OnListBoxMouseMove(Object sender, MouseEventArgs e)
         {
             if (!_draggingItem)
+            {
                 return;
+            }
 
             // Get the current mouse position
             Point mousePosition = e.GetPosition(null);
@@ -43,16 +42,18 @@ namespace MinoriEditorStudio.Modules.Toolbox.Views
                 (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
             {
-                var listBoxItem = VisualTreeUtility.FindParent<ListBoxItem>(
+                ListBoxItem listBoxItem = VisualTreeUtility.FindParent<ListBoxItem>(
                     (DependencyObject) e.OriginalSource);
 
                 if (listBoxItem == null)
+                {
                     return;
+                }
 
-                var itemViewModel = (ToolboxItemViewModel) ListBox.ItemContainerGenerator.
+                ToolboxItemViewModel itemViewModel = (ToolboxItemViewModel) ListBox.ItemContainerGenerator.
                     ItemFromContainer(listBoxItem);
 
-                var dragData = new DataObject(ToolboxDragDrop.DataFormat, itemViewModel.Model);
+                DataObject dragData = new DataObject(ToolboxDragDrop.DataFormat, itemViewModel.Model);
                 DragDrop.DoDragDrop(listBoxItem, dragData, DragDropEffects.Move);
             }
         }

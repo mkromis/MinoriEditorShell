@@ -2,8 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls"
-    xmlns:shaderEffects="clr-namespace:MinoriEditorStudio.Framework.ShaderEffects"
-    xmlns:controls="clr-namespace:MinoriEditorStudio.Framework.Controls">
+    xmlns:shaderEffects="clr-namespace:MinoriEditorStudio.Platforms.Wpf.ShaderEffects"
+    xmlns:controls="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls">
     <Style x:Key="ToolBarThumbStyle" TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Cursor" Value="SizeAll" />
@@ -96,11 +96,11 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Content" Property="Effect">
+                            <!--<Setter TargetName="Content" Property="Effect">
                                 <Setter.Value>
                                     <shaderEffects:GrayscaleEffect />
                                 </Setter.Value>
-                            </Setter>
+                            </Setter>-->
                             <Setter TargetName="Content" Property="TextElement.Foreground" Value="{DynamicResource ToolbarButtonDisabledText}" />
                             <Setter TargetName="Content" Property="Opacity" Value="0.5" />
                         </Trigger>
@@ -170,11 +170,11 @@
                         
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Content" Property="Effect">
+                            <!--<Setter TargetName="Content" Property="Effect">
                                 <Setter.Value>
                                     <shaderEffects:GrayscaleEffect />
                                 </Setter.Value>
-                            </Setter>
+                            </Setter>-->
                             <Setter TargetName="Content" Property="TextElement.Foreground" Value="{DynamicResource ToolbarButtonDisabledText}" />
                             <Setter TargetName="Content" Property="Opacity" Value="0.5" />
                         </Trigger>
@@ -332,10 +332,10 @@
     </Style>
 
     <!--Style the tool pane toolbar-->
-    <Style x:Key="{x:Type c:ToolPaneToolBar}" TargetType="{x:Type c:ToolPaneToolBar}" BasedOn="{StaticResource {x:Type ToolBar}}">
+    <!--<Style x:Key="{x:Type c:ToolPaneToolBar}" TargetType="{x:Type c:ToolPaneToolBar}" BasedOn="{StaticResource {x:Type ToolBar}}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="4 2" />
-    </Style>
+    </Style>-->
 
     <!-- Style the toolbar tray -->
     <Style x:Key="{x:Type ToolBarTray}" TargetType="{x:Type ToolBarTray}">
@@ -343,7 +343,7 @@
     </Style>
     
     <!-- Style the toolbar tray container -->
-    <Style x:Key="{x:Type c:ToolBarTrayContainer}" TargetType="{x:Type c:ToolBarTrayContainer}">
+    <!--<Style x:Key="{x:Type c:ToolBarTrayContainer}" TargetType="{x:Type c:ToolBarTrayContainer}">
         <Setter Property="Background" Value="{DynamicResource ToolbarDefaultTray}" />
         <Setter Property="Padding" Value="8 0 8 1" />
         <Setter Property="Template">
@@ -357,6 +357,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>

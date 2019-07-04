@@ -1,6 +1,7 @@
-using MinoriEditorStudio.Framework.ToolBars;
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
+using MinoriEditorStudio.Services;
 
-namespace MinoriEditorStudio.Modules.ToolBars
+namespace MinoriEditorStudio.Platforms.Wpf.Services
 {
     public interface IToolBarBuilder
     {

@@ -1,5 +1,4 @@
-﻿using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.VirtualCanvas.Controls;
+﻿using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Gestures;
 using System;
 

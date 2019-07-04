@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Framework.Services
+namespace MinoriEditorStudio.Services
 {
 	public enum PaneLocation
 	{

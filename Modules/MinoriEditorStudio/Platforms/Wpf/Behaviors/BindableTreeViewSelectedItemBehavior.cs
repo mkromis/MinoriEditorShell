@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Framework.Behaviors
+namespace MinoriEditorStudio.Platforms.Wpf.Behaviors
 {
     // From http://stackoverflow.com/a/20636049/208817
     public class BindableTreeViewSelectedItemBehavior : Behavior<TreeView>
