@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Modules.ToolBars.Services;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 using System.Windows.Controls;
 
 namespace MinoriEditorStudio.Modules.ToolBars.Views
@@ -10,9 +10,6 @@ namespace MinoriEditorStudio.Modules.ToolBars.Views
     {
         ToolBarTray IToolBarsView.ToolBarTray => ToolBarTray;
 
-        public ToolBarsView()
-        {
-            InitializeComponent();
-        }
+        public ToolBarsView() => InitializeComponent();
     }
 }

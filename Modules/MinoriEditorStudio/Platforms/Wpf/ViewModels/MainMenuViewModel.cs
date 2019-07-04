@@ -1,9 +1,11 @@
-using MinoriEditorStudio.Modules.MainMenu.Models;
 using MinoriEditorStudio.Messages;
 using MvvmCross.Plugin.Messenger;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System;
+using MinoriEditorStudio.Services;
+using MinoriEditorStudio.Models;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
@@ -12,7 +14,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 	{
         private readonly IMenuBuilder _menuBuilder;
         private readonly IMvxMessenger _messenger;
-        private bool _autoHide;
+        private Boolean _autoHide;
 
         [ImportingConstructor]
 	    public MainMenuViewModel(IMenuBuilder menuBuilder, IMvxMessenger messenger)
@@ -30,21 +32,23 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             });
 		}
 
-	    public bool AutoHide
-	    {
-	        get { return _autoHide; }
-	        private set
-	        {
-	            if (_autoHide == value)
-	                return;
+	    public Boolean AutoHide
+        {
+            get => _autoHide;
+            private set
+            {
+                if (_autoHide == value)
+                {
+                    return;
+                }
 
-	            _autoHide = value;
+                _autoHide = value;
 
-	            OnPropertyChanged(new PropertyChangedEventArgs(nameof(AutoHide)));
-	        }
-	    }
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(AutoHide)));
+            }
+        }
 
-	    void IPartImportsSatisfiedNotification.OnImportsSatisfied()
+        void IPartImportsSatisfiedNotification.OnImportsSatisfied()
 	    {
 	        _menuBuilder.BuildMenuBar(MenuDefinitions.MainMenuBar, this);
 	    }

@@ -1,3 +1,5 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Services;
 using MvvmCross;
 using System;
 using System.Windows.Input;
@@ -12,9 +14,9 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
 
         public KeyGesture KeyGesture { get; }
 
-        public int SortOrder { get; }
+        public Int32 SortOrder { get; }
 
-        protected CommandKeyboardShortcut(KeyGesture keyGesture, int sortOrder, Func<CommandDefinitionBase> commandDefinition)
+        protected CommandKeyboardShortcut(KeyGesture keyGesture, Int32 sortOrder, Func<CommandDefinitionBase> commandDefinition)
         {
             _commandDefinition = commandDefinition;
             KeyGesture = keyGesture;
@@ -25,7 +27,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
     public class CommandKeyboardShortcut<TCommandDefinition> : CommandKeyboardShortcut
         where TCommandDefinition : CommandDefinition
     {
-        public CommandKeyboardShortcut(KeyGesture keyGesture, int sortOrder = 5)
+        public CommandKeyboardShortcut(KeyGesture keyGesture, Int32 sortOrder = 5)
             : base(keyGesture, sortOrder, () => Mvx.IoCProvider.Resolve<ICommandService>().GetCommandDefinition(typeof(TCommandDefinition)))
         {
             

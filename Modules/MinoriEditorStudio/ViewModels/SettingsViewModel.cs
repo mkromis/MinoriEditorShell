@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework;
 using MinoriEditorStudio.Properties;
-using MvvmCross.Commands;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.ViewModels
 {
     [Export(typeof (SettingsViewModel))]
     public class SettingsViewModel : WindowBase
     {
-        private IEnumerable<ISettingsEditor> _settingsEditors;
+        private readonly IEnumerable<ISettingsEditor> _settingsEditors;
         private SettingsPageViewModel _selectedPage;
 
         public SettingsViewModel()
@@ -28,7 +27,7 @@ namespace MinoriEditorStudio.ViewModels
 
         public SettingsPageViewModel SelectedPage
         {
-            get { return _selectedPage; }
+            get => _selectedPage;
             set
             {
                 _selectedPage = value;
@@ -75,26 +74,26 @@ namespace MinoriEditorStudio.ViewModels
         private static SettingsPageViewModel GetFirstLeafPageRecursive(List<SettingsPageViewModel> pages)
         {
             if (!pages.Any())
+            {
                 return null;
+            }
 
-            var firstPage = pages.First();
-            if (!firstPage.Children.Any())
-                return firstPage;
-
-            return GetFirstLeafPageRecursive(firstPage.Children);
+            SettingsPageViewModel firstPage = pages.First();
+            return !firstPage.Children.Any() ? firstPage : GetFirstLeafPageRecursive(firstPage.Children);
         }
 
-        private List<SettingsPageViewModel> GetParentCollection(ISettingsEditor settingsEditor,
+        private List<SettingsPageViewModel> GetParentCollection(
+            ISettingsEditor settingsEditor,
             List<SettingsPageViewModel> pages)
         {
-            if (string.IsNullOrEmpty(settingsEditor.SettingsPagePath))
+            if (String.IsNullOrEmpty(settingsEditor.SettingsPagePath))
             {
                 return pages;
             }
 
-            string[] path = settingsEditor.SettingsPagePath.Split(new[] {'\\'}, StringSplitOptions.RemoveEmptyEntries);
+            String[] path = settingsEditor.SettingsPagePath.Split(new[] {'\\'}, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string pathElement in path)
+            foreach (String pathElement in path)
             {
                 SettingsPageViewModel page = pages.FirstOrDefault(s => s.Name == pathElement);
 
@@ -110,7 +109,7 @@ namespace MinoriEditorStudio.ViewModels
             return pages;
         }
 
-        private void SaveChanges(object obj)
+        private void SaveChanges(Object _)
         {
             foreach (ISettingsEditor settingsEditor in _settingsEditors)
             {

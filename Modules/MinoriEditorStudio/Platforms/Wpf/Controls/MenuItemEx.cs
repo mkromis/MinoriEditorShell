@@ -1,32 +1,32 @@
+using MinoriEditorStudio.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Modules.MainMenu.Models;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Controls
 {
     public class MenuItemEx : System.Windows.Controls.MenuItem
 	{
-		private object _currentItem;
+		private Object _currentItem;
 
-		protected override bool IsItemItsOwnContainerOverride(object item)
+		protected override Boolean IsItemItsOwnContainerOverride(Object item)
 		{
 			_currentItem = item;
 			return base.IsItemItsOwnContainerOverride(item);
 		}
 
-		protected override DependencyObject GetContainerForItemOverride()
-		{
-			return GetContainer(this, _currentItem);
-		}
+        protected override DependencyObject GetContainerForItemOverride() => GetContainer(this, _currentItem);
 
-		internal static DependencyObject GetContainer(FrameworkElement frameworkElement, object item)
+        internal static DependencyObject GetContainer(FrameworkElement frameworkElement, Object item)
 		{
 		    if (item is MenuItemSeparator)
-		        return new Separator();
+            {
+                return new Separator();
+            }
 
-		    const string styleKey = "MenuItem";
+            const String styleKey = "MenuItem";
 
-		    var result = new MenuItemEx();
+            MenuItemEx result = new MenuItemEx();
             result.SetResourceReference(DynamicStyle.BaseStyleProperty, typeof(MenuItem));
 		    result.SetResourceReference(DynamicStyle.DerivedStyleProperty, styleKey);
 		    return result;

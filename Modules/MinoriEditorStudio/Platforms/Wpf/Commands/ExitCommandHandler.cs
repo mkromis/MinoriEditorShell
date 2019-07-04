@@ -1,9 +1,9 @@
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Threading;
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Modules.Platforms.Wpf.Commands;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.Threading;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
@@ -13,10 +13,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Commands
         private readonly IManager _shell;
 
         [ImportingConstructor]
-        public ExitCommandHandler(IManager shell)
-        {
-            _shell = shell;
-        }
+        public ExitCommandHandler(IManager shell) => _shell = shell;
 
         public override Task Run(Command command)
         {

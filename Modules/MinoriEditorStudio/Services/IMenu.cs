@@ -1,9 +1,9 @@
-using MinoriEditorStudio.Modules.MainMenu.Models;
+using MinoriEditorStudio.Models;
 using System.Collections.Generic;
 
 namespace MinoriEditorStudio.Services
 {
-	public interface IMenu : ICollection<MenuItemBase>
+    public interface IMenu : ICollection<MenuItemBase>
 	{
 		
 	}

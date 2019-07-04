@@ -1,9 +1,10 @@
+using MinoriEditorStudio.Commands;
 using MvvmCross;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio..Platforms.Wpf.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     public class TargetableCommand : ICommand
     {
@@ -16,22 +17,26 @@ namespace MinoriEditorStudio..Platforms.Wpf.Commands
             _commandRouter = Mvx.IoCProvider.Resolve<ICommandRouter>();
         }
 
-        public bool CanExecute(object parameter)
+        public Boolean CanExecute(Object parameter)
         {
-            var commandHandler = _commandRouter.GetCommandHandler(_command.CommandDefinition);
+            CommandHandlerWrapper commandHandler = _commandRouter.GetCommandHandler(_command.CommandDefinition);
             if (commandHandler == null)
+            {
                 return false;
+            }
 
             commandHandler.Update(_command);
 
             return _command.Enabled;
         }
 
-        public async void Execute(object parameter)
+        public async void Execute(Object parameter)
         {
-            var commandHandler = _commandRouter.GetCommandHandler(_command.CommandDefinition);
+            CommandHandlerWrapper commandHandler = _commandRouter.GetCommandHandler(_command.CommandDefinition);
             if (commandHandler == null)
+            {
                 return;
+            }
 
             await commandHandler.Run(_command);
         }

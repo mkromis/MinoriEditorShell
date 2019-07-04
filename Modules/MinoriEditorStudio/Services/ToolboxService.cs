@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using MinoriEditorStudio.Modules.Toolbox.Models;
+using System.Drawing.Design;
 
 namespace MinoriEditorStudio.Services
 {

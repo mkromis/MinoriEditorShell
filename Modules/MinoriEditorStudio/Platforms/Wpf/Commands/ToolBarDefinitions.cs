@@ -1,6 +1,5 @@
+using MinoriEditorStudio.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Framework.ToolBars;
-using MinoriEditorStudio.Modules.Shell.Commands;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {

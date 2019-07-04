@@ -1,3 +1,5 @@
+using MinoriEditorStudio.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
 using System;
 
 namespace MinoriEditorStudio.Platforms.Wpf.Services

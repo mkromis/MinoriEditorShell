@@ -1,8 +1,4 @@
-using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Threading;
-using MinoriEditorStudio.Modules.Settings.ViewModels;
 
 namespace MinoriEditorStudio.Commands
 {

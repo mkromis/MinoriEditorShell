@@ -1,27 +1,12 @@
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using MinoriEditorStudio.Framework.Commands;
-using MinoriEditorStudio.Framework.Services;
-using MinoriEditorStudio.Framework.Threading;
-//using MinoriEditorStudio.Framework.ToolBars;
-using MinoriEditorStudio.Modules.Shell.Commands;
-using MinoriEditorStudio.Modules.ToolBars;
-using MinoriEditorStudio.Modules.ToolBars.Models;
-using MinoriEditorStudio.Modules.UndoRedo;
-using MinoriEditorStudio.Modules.UndoRedo.Commands;
-using MinoriEditorStudio.Modules.UndoRedo.Services;
-using Microsoft.Win32;
 using MvvmCross.Commands;
 using MvvmCross;
 using System;
 using MvvmCross.Views;
-using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.Services
 {
-	public abstract class Document : LayoutItemBase, IDocument
+    public abstract class Document : LayoutItemBase, IDocument
 #warning fix command handler inherit.
         //ICommandHandler<UndoCommandDefinition>,
         //ICommandHandler<RedoCommandDefinition>,
