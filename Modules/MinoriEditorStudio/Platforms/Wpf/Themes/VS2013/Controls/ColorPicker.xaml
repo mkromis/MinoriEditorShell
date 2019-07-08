@@ -4,7 +4,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <!--xmlns:conv="clr-namespace:Xceed.Wpf.Toolkit.Core.Converters;assembly=Xceed.Wpf.Toolkit"-->
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Xceed.Wpf.Toolkit;component/Themes/Generic/Common.xaml"/>
+        <!--<ResourceDictionary Source="pack://application:,,,/Xceed.Wpf.Toolkit;component/Themes/Generic/Common.xaml"/>-->
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
