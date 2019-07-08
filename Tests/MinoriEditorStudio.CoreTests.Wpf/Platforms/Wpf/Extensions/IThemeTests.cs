@@ -22,7 +22,7 @@ namespace MinoriEditorStudio.CoreTests.Wpf.Platforms.Wpf.Extensions
 
             BlueTheme blue = new BlueTheme();
             Assert.IsFalse(blue.HasRibbon());
-            Assert.AreEqual(6, blue.ApplicationResources.Count());
+            Assert.AreEqual(7, blue.ApplicationResources.Count());
         }
     }
 }

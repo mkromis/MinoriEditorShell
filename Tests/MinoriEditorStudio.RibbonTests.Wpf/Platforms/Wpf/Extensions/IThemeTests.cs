@@ -22,7 +22,7 @@ namespace MinoriEditorStudio.RibbonTests.Wpf.Platforms.Wpf.Extensions
 
             BlueTheme blue = new BlueTheme();
             Assert.IsTrue(blue.HasRibbon());
-            Assert.AreEqual(9, blue.ApplicationResources.Count());
+            Assert.AreEqual(10, blue.ApplicationResources.Count());
         }
     }
 }
