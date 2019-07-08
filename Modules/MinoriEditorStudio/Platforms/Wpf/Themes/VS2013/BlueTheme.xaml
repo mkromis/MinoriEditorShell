@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Generic.xaml" />
         <ResourceDictionary Source="Controls/Merged.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -73,6 +74,10 @@
     <SolidColorBrush x:Key="ToolbarOverflowButtonPressedGlyph" Color="#1B293E" />
 
     <!-- Main Window -->
+    <SolidColorBrush x:Key="WindowTitleColorBrush" Color="#FFCCD5F0" />
+    <!-- Titlebar Foreground Color -->
+    <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="#FF3A436C" />
+
     <SolidColorBrush x:Key="MainWindowActiveBorder" Color="#0D202D" />
     <SolidColorBrush x:Key="MainWindowInactiveBorder" Color="#525252" />
 

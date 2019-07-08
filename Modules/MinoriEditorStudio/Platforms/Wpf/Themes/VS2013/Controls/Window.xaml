@@ -1,7 +1,8 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
 
     <!-- Not Implemented -->
     <!--<Style x:Key="MainWindowStyle"> 
@@ -22,7 +23,7 @@
     </Style>-->
 
     <!-- We don't use it, but it's referenced by the base style. -->
-    <SolidColorBrush x:Key="WindowTitleColorBrush" Color="Red" />
+    <SolidColorBrush x:Key="WindowTitleColorBrush" Color="#FFCCD5F0" />
 
     <system:Double x:Key="WindowTitleFontSize">16</system:Double>
     <FontFamily x:Key="HeaderFontFamily">
