@@ -2,23 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using MinoriEditorStudio.Platforms.Wpf.Extensions;
 using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
+using MinoriEditorStudio.ViewModels;
+using MvvmCross;
+using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
-    [Export(typeof (SettingsViewModel))]
-    public class SettingsViewModel : WindowBase
+    public class SettingsViewModel : WindowBase, ISettingsManager
     {
-        private readonly IEnumerable<ISettingsEditor> _settingsEditors;
+        private IEnumerable<ISettingsEditor> _settingsEditors;
         private SettingsPageViewModel _selectedPage;
 
-        public SettingsViewModel()
+        public SettingsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-#warning TryClose
-            CancelCommand = null; // new MvxCommand(() => /*TryClose(false)*/);
-            OkCommand = null; // new MvxCommand(SaveChanges);
+            //#warning TryClose
+            CancelCommand = new MvxCommand(() => NavigationService.Close(this));
+            OkCommand = new MvxCommand(SaveChanges);
 
             DisplayName = Resources.SettingsDisplayName;
         }
@@ -38,14 +44,12 @@ namespace MinoriEditorStudio.ViewModels
         public ICommand CancelCommand { get; private set; }
         public ICommand OkCommand { get; private set; }
 
-        #warning OnInit
-#if false
-        protected override void OnInitialize()
+        public override async Task Initialize()
         {
-            base.OnInitialize();
+            await base.Initialize();
 
             var pages = new List<SettingsPageViewModel>();
-            _settingsEditors = IoC.GetAll<ISettingsEditor>();
+            _settingsEditors = Mvx.IoCProvider.GetAll<ISettingsEditor>();
 
             foreach (ISettingsEditor settingsEditor in _settingsEditors)
             {
@@ -69,7 +73,6 @@ namespace MinoriEditorStudio.ViewModels
             Pages = pages;
             SelectedPage = GetFirstLeafPageRecursive(pages);
         }
-#endif
 
         private static SettingsPageViewModel GetFirstLeafPageRecursive(List<SettingsPageViewModel> pages)
         {
@@ -109,15 +112,14 @@ namespace MinoriEditorStudio.ViewModels
             return pages;
         }
 
-        private void SaveChanges(Object _)
+        private void SaveChanges()
         {
             foreach (ISettingsEditor settingsEditor in _settingsEditors)
             {
                 settingsEditor.ApplyChanges();
             }
 
-            throw new NotImplementedException();
-            //TryClose(true);
+            NavigationService.Close(this);
         }
     }
 }
