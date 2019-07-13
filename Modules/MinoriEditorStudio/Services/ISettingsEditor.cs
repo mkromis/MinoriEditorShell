@@ -1,9 +1,11 @@
+using System;
+
 namespace MinoriEditorStudio.Services
 {
     public interface ISettingsEditor
     {
-        string SettingsPageName { get; }
-        string SettingsPagePath { get; }
+        String SettingsPageName { get; }
+        String SettingsPagePath { get; }
 
         void ApplyChanges();
     }
