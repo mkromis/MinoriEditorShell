@@ -17,10 +17,11 @@ namespace MinoriDemo.RibbonWPF.ViewModels
     {
         // Handles data context for ribbon.
         private VirtualCanvasModel _canvasModel;
-        //private readonly ISettingsManager _settingsManager;
+        private readonly ISettingsManager _settingsManager;
         //private readonly IThemeSettings _themeSettings;
         private readonly IThemeManager _themeManager;
         private readonly IManager _manager;
+        private readonly IStatusBar _statusBar;
 
         public VirtualCanvasModel CanvasModel
         {
@@ -47,7 +48,7 @@ namespace MinoriDemo.RibbonWPF.ViewModels
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
         //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
 
-        //public ICommand SettingsCommand => _settingsManager.SettingsCommand;
+        public ICommand SettingsCommand =>  new MvxCommand(() =>  NavigationService.Navigate(_settingsManager));
 
         private T OpenAndFocus<T>() where T : Document
         {
@@ -73,12 +74,17 @@ namespace MinoriDemo.RibbonWPF.ViewModels
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IManager manager, IThemeManager themeManager, IStatusBar statusBar)
+            IManager manager, ISettingsManager settingsManager, IThemeManager themeManager, 
+            IStatusBar statusBar)
             : base(logProvider, navigationService)
         {
+            _settingsManager = settingsManager;
             _themeManager = themeManager;
             //_themeManager.SetCurrentTheme("Light");
             _manager = manager;
+
+            _statusBar = statusBar;
+            _statusBar.Text = "Ready";
 
             //statusBar.AddItem(String.Empty, GridLength.Auto);
 
