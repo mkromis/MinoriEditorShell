@@ -26,7 +26,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Extensions
                 foreach(Type type in types)
                 {
                     if (type.GetInterfaces().Contains(typeof(T))) { 
-                        results.Add(type as T);
+                        results.Add((T)Activator.CreateInstance(type));
                     }
                 }
             }

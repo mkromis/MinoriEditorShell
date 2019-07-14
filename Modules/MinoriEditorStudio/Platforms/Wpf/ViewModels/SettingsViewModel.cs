@@ -48,11 +48,12 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         {
             await base.Initialize();
 
-            var pages = new List<SettingsPageViewModel>();
+            List<SettingsPageViewModel> pages = new List<SettingsPageViewModel>();
             _settingsEditors = Mvx.IoCProvider.GetAll<ISettingsEditor>();
 
             foreach (ISettingsEditor settingsEditor in _settingsEditors)
             {
+                if (settingsEditor == null) { throw new InvalidProgramException("ISettingsEditor Missing");  }
                 List<SettingsPageViewModel> parentCollection = GetParentCollection(settingsEditor, pages);
 
                 SettingsPageViewModel page =
