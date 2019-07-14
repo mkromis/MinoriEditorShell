@@ -10,6 +10,9 @@ namespace MinoriEditorStudio.Platforms.Wpf.Views
         public SettingsView()
         {
             InitializeComponent();
+            Owner = Application.Current.MainWindow;
+
+            Closing += (s, e) => Owner.Focus();
         }
     }
 }
