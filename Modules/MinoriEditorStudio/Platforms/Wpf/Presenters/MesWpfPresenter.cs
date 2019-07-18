@@ -64,6 +64,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
                         return true;
 
                     default:
+                        _log.Trace($"Passing to parent {view.ViewModel.ToString()}");
                         return await base.ShowContentView(element, attribute, request);
                 }
             }
