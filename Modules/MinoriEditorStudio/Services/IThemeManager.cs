@@ -5,7 +5,7 @@ namespace MinoriEditorStudio.Services
 {
     public interface IThemeManager
     {
-        IThemeList Themes { get; }
+        IEnumerable<ITheme> Themes { get; }
         ITheme CurrentTheme { get; }
 
         Boolean SetCurrentTheme(String name);
