@@ -12,6 +12,7 @@ using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.Views;
 
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
@@ -20,9 +21,10 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         private IEnumerable<ISettingsEditor> _settingsEditors;
         private SettingsPageViewModel _selectedPage;
 
-        public SettingsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SettingsViewModel(
+            IMvxLogProvider logProvider, IMvxNavigationService navigationService) 
+            : base(logProvider, navigationService)
         {
-            //#warning TryClose
             CancelCommand = new MvxCommand(() => NavigationService.Close(this));
             OkCommand = new MvxCommand(SaveChanges);
 
@@ -41,11 +43,13 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
             }
         }
 
+
         public ICommand CancelCommand { get; private set; }
         public ICommand OkCommand { get; private set; }
 
         public override async Task Initialize()
         {
+            IMvxViewsContainer viewFinder = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             await base.Initialize();
 
             List<SettingsPageViewModel> pages = new List<SettingsPageViewModel>();
@@ -67,6 +71,15 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
                     };
                     parentCollection.Add(page);
                 }
+
+                // Try to create view/viewmodel
+                // we already have viewmodel, go get view type
+                Type type = viewFinder.GetViewType(settingsEditor.GetType());
+                IMvxView view = (IMvxView)Activator.CreateInstance(type);
+
+                // Assign them to each other.
+                settingsEditor.View = view;
+                view.ViewModel = settingsEditor;
 
                 page.Editors.Add(settingsEditor);
             }
