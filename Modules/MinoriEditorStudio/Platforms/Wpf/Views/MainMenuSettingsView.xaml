@@ -17,8 +17,7 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
             <Label Width="100" Content="MainMenuSettingsColorTheme"/> <!--"{l:Static p:Resources.MainMenuSettingsColorTheme}" />-->
-            <ComboBox ItemsSource="{Binding Themes}"
-                      SelectedItem="{Binding SelectedTheme}">
+            <ComboBox ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" />
