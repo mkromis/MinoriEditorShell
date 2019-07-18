@@ -1,6 +1,7 @@
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
+using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -8,7 +9,7 @@ using System.ComponentModel.Composition;
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class MainMenuSettingsViewModel : MvxNotifyPropertyChanged, ISettingsEditor
+    public class MainMenuSettingsViewModel : MvxViewModel, ISettingsEditor
     {
         private readonly IThemeManager _themeManager;
 
@@ -62,6 +63,8 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         public String SettingsPageName => Properties.Resources.SettingsPageGeneral;
 
         public String SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
+
+        public IMvxView View { get; set; }
 
         public void ApplyChanges()
         {
