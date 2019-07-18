@@ -22,12 +22,6 @@ namespace MinoriEditorStudio.Platforms.Wpf
 
             // Setup manager, is there a better way?
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeList>(() => new ThemeList
-            {
-                new BlueTheme(),
-                new LightTheme(),
-                new DarkTheme(),
-            });
         }
 
 //#pragma warning disable 649

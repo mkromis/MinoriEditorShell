@@ -1,4 +1,5 @@
 using MinoriEditorStudio.Messages;
+using MinoriEditorStudio.Platforms.Wpf.Extensions;
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.Base;
@@ -19,13 +20,14 @@ namespace MinoriEditorStudio.Platforms.Wpf.Services
         private readonly IMvxMessenger _messenger;
         private readonly IMvxLog _log;
 
-        public IThemeList Themes { get; private set; }
+        public IEnumerable<ITheme> Themes { get; private set; }
 
         public ITheme CurrentTheme { get; private set; }
 
-        public ThemeManager(IMvxMessenger messenger, IThemeList themeList, IMvxLogProvider provider)
+        public ThemeManager(IMvxMessenger messenger, IMvxLogProvider provider)
         {
-            Themes = themeList;
+            Themes = Mvx.IoCProvider.GetAll<ITheme>();
+
             _messenger = messenger;
             _log = provider.GetLogFor<ThemeManager>();
 
@@ -34,7 +36,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Services
                 themeName = GetDefaultApplicationMode();
             }
 
-            SetCurrentTheme(themeList.First().Name, false);
+            SetCurrentTheme(Themes.First().Name, false);
 
             _messenger.Subscribe<SettingsChangedMessage>((x) =>
             {
