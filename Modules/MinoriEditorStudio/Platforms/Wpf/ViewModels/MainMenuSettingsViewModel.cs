@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class MainMenuSettingsViewModel : MvxViewModel, ISettingsEditor
     {
         private readonly IThemeManager _themeManager;
@@ -39,7 +39,12 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         public ITheme SelectedTheme
         {
             get => _selectedTheme;
-            set => SetProperty(ref _selectedTheme, value);
+            set {
+                if(SetProperty(ref _selectedTheme, value))
+                {
+                    _themeManager.SetCurrentTheme(_selectedTheme.Name);
+                }
+            }
         }
 
         public IEnumerable<String> Languages => _availableLanguages;
