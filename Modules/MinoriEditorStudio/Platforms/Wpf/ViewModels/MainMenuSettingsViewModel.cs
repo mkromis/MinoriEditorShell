@@ -1,14 +1,15 @@
 using MinoriEditorStudio.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
+using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
 namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 {
-    [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class MainMenuSettingsViewModel : MvxNotifyPropertyChanged, ISettingsEditor
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
+    public class MainMenuSettingsViewModel : MvxViewModel, ISettingsEditor
     {
         private readonly IThemeManager _themeManager;
 
@@ -38,7 +39,12 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         public ITheme SelectedTheme
         {
             get => _selectedTheme;
-            set => SetProperty(ref _selectedTheme, value);
+            set {
+                if(SetProperty(ref _selectedTheme, value))
+                {
+                    _themeManager.SetCurrentTheme(_selectedTheme.Name);
+                }
+            }
         }
 
         public IEnumerable<String> Languages => _availableLanguages;
@@ -62,6 +68,8 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         public String SettingsPageName => Properties.Resources.SettingsPageGeneral;
 
         public String SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
+
+        public IMvxView View { get; set; }
 
         public void ApplyChanges()
         {

@@ -17,16 +17,11 @@ namespace MinoriEditorStudio.Platforms.Wpf
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStatusBar, StatusBarViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
+            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsManager, SettingsViewModel>();
 
             // Setup manager, is there a better way?
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeList>(() => new ThemeList
-            {
-                new BlueTheme(),
-                new LightTheme(),
-                new DarkTheme(),
-            });
         }
 
 //#pragma warning disable 649

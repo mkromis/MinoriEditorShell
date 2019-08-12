@@ -61,6 +61,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Views
             if (this == Application.Current.MainWindow)
             {
                 (Application.Current as MvxApplication).ApplicationInitialized();
+                Mvx.IoCProvider.Resolve<IThemeManager>();
             }
         }
 
