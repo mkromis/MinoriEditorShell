@@ -1,11 +1,16 @@
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 
 namespace MinoriEditorStudio.Services
 {
-#warning Screen
-    public abstract class WindowBase : MvxNotifyPropertyChanged, /*Screen,*/ IWindow
+    public abstract class WindowBase : MvxNavigationViewModel, IWindow
 	{
-	    public String DisplayName { get; set; }
+        protected WindowBase(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        {
+        }
+
+        public String DisplayName { get; set; }
 	}
 }
