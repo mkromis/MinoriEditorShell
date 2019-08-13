@@ -1,3 +1,4 @@
+using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Service;

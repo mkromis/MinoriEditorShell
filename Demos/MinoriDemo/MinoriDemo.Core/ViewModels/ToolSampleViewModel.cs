@@ -1,10 +1,4 @@
-﻿using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.Framework.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MinoriEditorStudio.Services;
 
 namespace MinoriDemo.Core.Models
 {
