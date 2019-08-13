@@ -1,10 +1,10 @@
-﻿using MinoriEditorStudio.Framework;
-using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
+﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using MinoriEditorStudio.Services;
 
 namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.ViewModels
 {

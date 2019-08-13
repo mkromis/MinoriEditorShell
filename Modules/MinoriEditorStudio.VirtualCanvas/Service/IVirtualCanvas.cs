@@ -1,4 +1,4 @@
-﻿using MinoriEditorStudio.Framework;
+﻿using MinoriEditorStudio.Services;
 using System;
 
 namespace MinoriEditorStudio.VirtualCanvas.Service
