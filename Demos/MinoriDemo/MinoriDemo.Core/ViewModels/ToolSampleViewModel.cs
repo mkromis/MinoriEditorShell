@@ -1,6 +1,6 @@
 ﻿using MinoriEditorStudio.Services;
 
-namespace MinoriDemo.Core.Models
+namespace MinoriDemo.Core.ViewModels
 {
     class ToolSampleViewModel : Tool
     {
