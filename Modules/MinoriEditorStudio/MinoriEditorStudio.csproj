@@ -21,6 +21,7 @@
     <ItemGroup>
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*" />
+        <None Remove="Platforms\Wpf\Services\MessageBox.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.3.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.1" />
