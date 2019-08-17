@@ -34,39 +34,6 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
     }
 
     /// <summary>
-    /// This interface is implemented by the objects that you want to put in the VirtualCanvas.
-    /// </summary>
-    public interface IVirtualChild
-    {
-        /// <summary>
-        /// The bounds of your child object
-        /// </summary>
-        RectangleF Bounds { get; }
-
-        /// <summary>
-        /// Raise this event if the Bounds changes.
-        /// </summary>
-        event EventHandler BoundsChanged;
-
-        /// <summary>
-        /// Return the current Visual or null if it has not been created yet.
-        /// </summary>
-        UIElement Visual { get; }
-
-        /// <summary>
-        /// Create the WPF visual for this object.
-        /// </summary>
-        /// <param name="parent">The canvas that is calling this method</param>
-        /// <returns>The visual that can be displayed</returns>
-        UIElement CreateVisual(VirtualCanvas parent);
-
-        /// <summary>
-        /// Dispose the WPF visual for this object.
-        /// </summary>
-        void DisposeVisual();
-    }
-
-    /// <summary>
     /// VirtualCanvas dynamically figures out which children are visible and creates their visuals 
     /// and which children are no longer visible (due to scrolling or zooming) and destroys their
     /// visuals.  This helps manage the memory consumption when you have so many objects that creating
@@ -609,60 +576,61 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
                 return;
             }
 
-            UIElement e = child.CreateVisual(this);
-            e.SetValue(VirtualChildProperty, child);
-            RectangleF bounds = child.Bounds;
-            Canvas.SetLeft(e, bounds.Left);
-            Canvas.SetTop(e, bounds.Top);
-
-            // Get the correct absolute position of this child.
-            Int32 position = _visualPositions[child];
-
-            // Now do a binary search for the correct insertion position based
-            // on the visual positions of the existing visible children.
-            UIElementCollection c = _contentCanvas.Children;
-            Int32 min = 0;
-            Int32 max = c.Count - 1;
-            while (max > min + 1)
+            if (child.CreateVisual(this) is UIElement e)
             {
-                Int32 i = (min + max) / 2;
-                UIElement v = _contentCanvas.Children[i];
-                if (v.GetValue(VirtualChildProperty) is IVirtualChild n)
+                e.SetValue(VirtualChildProperty, child);
+                RectangleF bounds = child.Bounds;
+                Canvas.SetLeft(e, bounds.Left);
+                Canvas.SetTop(e, bounds.Top);
+
+                // Get the correct absolute position of this child.
+                Int32 position = _visualPositions[child];
+
+                // Now do a binary search for the correct insertion position based
+                // on the visual positions of the existing visible children.
+                UIElementCollection c = _contentCanvas.Children;
+                Int32 min = 0;
+                Int32 max = c.Count - 1;
+                while (max > min + 1)
                 {
-                    Int32 index = _visualPositions[n];
-                    if (index > position)
+                    Int32 i = (min + max) / 2;
+                    UIElement v = _contentCanvas.Children[i];
+                    if (v.GetValue(VirtualChildProperty) is IVirtualChild n)
                     {
-                        // search from min to i.
-                        max = i;
+                        Int32 index = _visualPositions[n];
+                        if (index > position)
+                        {
+                            // search from min to i.
+                            max = i;
+                        }
+                        else
+                        {
+                            // search from i to max.
+                            min = i;
+                        }
                     }
                     else
                     {
-                        // search from i to max.
+                        // Any nodes without IVirtualChild should be behind the
+                        // IVirtualChildren by definition (like the Backdrop).
                         min = i;
                     }
                 }
-                else
+
+                // If 'max' is the last child in the collection, then we need to see
+                // if we have a new last child.
+                if (max == c.Count - 1)
                 {
-                    // Any nodes without IVirtualChild should be behind the
-                    // IVirtualChildren by definition (like the Backdrop).
-                    min = i;
+                    UIElement v = c[max];
+                    if (!(v.GetValue(VirtualChildProperty) is IVirtualChild maxchild) || position > _visualPositions[maxchild])
+                    {
+                        // Then we have a new last child!
+                        max++;
+                    }
                 }
+
+                c.Insert(max, e);
             }
-
-            // If 'max' is the last child in the collection, then we need to see
-            // if we have a new last child.
-            if (max == c.Count - 1)
-            {
-                UIElement v = c[max];
-                if (!(v.GetValue(VirtualChildProperty) is IVirtualChild maxchild) || position > _visualPositions[maxchild])
-                {
-                    // Then we have a new last child!
-                    max++;
-                }
-            }
-
-            c.Insert(max, e);
-
         }
 
 
@@ -720,8 +688,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
                     // Iterate over the visible range of nodes and make sure they have visuals.
                     foreach (IVirtualChild n in Index.GetNodesInside(dirty))
                     {
-                        UIElement e = n.Visual;
-                        if (e != null)
+                        if (n.Visual is UIElement e)
                         {
                             RectangleF nrect = n.Bounds;
                             if (!nrect.IntersectsWith(visible))
