@@ -48,7 +48,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         // we "StopAnimation" and sync up the _offset and _zoom variables.
         private ScaleTransform _scale;
         private TranslateTransform _translate;
-        Double _zoom = 1;
+        Double _value = 1;
         Double _newZoom = 1;
         Point _offset;
         Point _mouse;
@@ -125,7 +125,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
                 target.RenderTransform = g;
             }
 
-            _zoom = _newZoom = _scale.ScaleX;
+            _value = _newZoom = _scale.ScaleX;
 
             // track changes made by the ScrolLViewer.
             _translate.Changed += new EventHandler(OnTranslateChanged);
@@ -155,9 +155,9 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="e">noop</param>
         void OnScaleChanged(Object sender, EventArgs e)
         {
-            if (_zoom != _scale.ScaleX)
+            if (_value != _scale.ScaleX)
             {
-                _zoom = _scale.ScaleX;
+                _value = _scale.ScaleX;
             }
         }
 
@@ -201,10 +201,10 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 
             // Create a 50 pixel margin on the edges of the target object so that if the mouse is inside
             // that band, then that edge stays pinned on screen and doesn't slide off the edge as we zoom in.
-            if (_onTarget.X < 50 / _zoom) { _onTarget.X = 0; }
-            if (_onTarget.Y < 50 / _zoom) { _onTarget.Y = 0; }
-            if (_onTarget.X + 50 / _zoom > _target.ActualWidth) { _onTarget.X = _target.ActualWidth; }
-            if (_onTarget.Y + 50 / _zoom > _target.ActualHeight) { _onTarget.Y = _target.ActualHeight; }
+            if (_onTarget.X < 50 / _value) { _onTarget.X = 0; }
+            if (_onTarget.Y < 50 / _value) { _onTarget.Y = 0; }
+            if (_onTarget.X + 50 / _value > _target.ActualWidth) { _onTarget.X = _target.ActualWidth; }
+            if (_onTarget.Y + 50 / _value > _target.ActualHeight) { _onTarget.Y = _target.ActualHeight; }
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         void OnZoomChanged()
         {
-            _scale.ScaleX = _scale.ScaleY = _zoom;
+            _scale.ScaleX = _scale.ScaleY = _value;
 
             ZoomChanged?.Invoke(this, EventArgs.Empty);
 
@@ -282,20 +282,20 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
 
             Point delta = new Point(moved.X - _onTarget.X, moved.Y - _onTarget.Y);
 
-            Double x = _translate.X + (delta.X * _zoom);
-            Double y = _translate.Y + (delta.Y * _zoom);
+            Double x = _translate.X + (delta.X * _value);
+            Double y = _translate.Y + (delta.Y * _value);
 
             Size containerSize = ContainerSize;
             Double width = containerSize.Width;
             Double height = containerSize.Height;
             
-            Double right = (_target.ActualWidth * _zoom) + x;
+            Double right = (_target.ActualWidth * _value) + x;
             if (right < width && x < 0)
             {
                 x += (width - right);
             }
 
-            Double bottom = (_target.ActualHeight * _zoom) + y;
+            Double bottom = (_target.ActualHeight * _value) + y;
             if (bottom < height && y < 0)
             {
                 y += (height - bottom);
@@ -354,13 +354,13 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// Get/set the current zoom level - this is a scale factor, 0.5 means zoom out so everything is half
         /// the normal size.  A value of 2 means zoom in so everything on the target object is twice the normal size.
         /// </summary>
-        public Double Zoom
+        public Double Value
         {
-            get => _zoom;
+            get => _value;
             set
             {
                 StopAnimations();
-                _scale.ScaleX = _scale.ScaleY = _zoom = value;
+                _scale.ScaleX = _scale.ScaleY = _value = value;
                 OnZoomChanged();
             }
         }
@@ -386,7 +386,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         void StopAnimations()
         {
             // Stop the animation at the current point.
-            _newZoom = _zoom;
+            _newZoom = _value;
             BeginAnimation(ZoomToPointProperty, null);
             BeginAnimation(ZoomToRectProperty, null);
 
@@ -413,9 +413,9 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
             
             Double xzoom = width / cr.Width;
             Double yzoom = height / cr.Height;
-            Double zoom = _zoom * Math.Min(xzoom, yzoom);
+            Double zoom = _value * Math.Min(xzoom, yzoom);
 
-            Double oldZoom = _zoom;
+            Double oldZoom = _value;
 
             _targetRect = r;
             _startTime = 0;
@@ -431,7 +431,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         public void Reset()
         {
             StopAnimations();
-            _scale.ScaleX = _scale.ScaleY = _zoom = _newZoom = 1;
+            _scale.ScaleX = _scale.ScaleY = _value = _newZoom = 1;
             _translate.X = _offset.X = 0;
             _translate.Y = _offset.Y = 0;
             _startTime = 0;
@@ -448,7 +448,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         void HandleZoom(Double clicks)
         {
             Double amount = clicks;
-            Double oldZoom = _zoom;
+            Double oldZoom = _value;
             if (amount > 1) { amount = 1; }
             if (amount < -1) { amount = -1; }
 
@@ -639,7 +639,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
                 Double v = (Double)e.NewValue;
                 if (v != 0 && v != o)
                 {
-                    _zoom = v;
+                    _value = v;
                     OnZoomChanged();
                     KeepPositionStable();
                 }
@@ -650,7 +650,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
                 Double v = (Double)e.NewValue;
                 if (v != 0 && v != o)
                 {
-                    _zoom = v;
+                    _value = v;
                     OnZoomChanged();
                     KeepRectStable();
                 }

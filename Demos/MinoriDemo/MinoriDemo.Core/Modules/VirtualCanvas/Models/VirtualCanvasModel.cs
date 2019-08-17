@@ -1,8 +1,10 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Service;
+﻿using MinoriEditorStudio.Services;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Input;
@@ -16,14 +18,17 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
     /// </summary>
     public class VirtualCanvasModel : MvxNotifyPropertyChanged
     {
-        //private readonly Boolean _animateStatus = true;
-        //private readonly Int32 _totalVisuals = 0;
-
+        private readonly Boolean _animateStatus = true;
+        private readonly Int32 _totalVisuals = 0;
+        private readonly String[] _colorNames = new String[10];
+        private readonly Brush[] _strokeBrushes = new Brush[10];
+        private readonly Brush[] _fillBrushes = new Brush[10];
         private readonly Double _tileWidth = 50;
         private readonly Double _tileHeight = 30;
         private readonly Double _tileMargin = 10;
-        private Int32 rows;
-        private Int32 cols;
+        private readonly IStatusBar _statusbar;
+        private Int32 _rows;
+        private Int32 _cols;
         private Boolean _showGridLines;
         //private readonly Polyline _gridLines = new Polyline();
 
@@ -33,12 +38,12 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         public ICommand OnHelpCommand => new MvxCommand(() =>
         {
-            //MessageBox.Show(
-            //    "Click left mouse button and drag to pan the view " +
-            //    "Hold Control-Key and run mouse wheel to zoom in and out " +
-            //    "Click middle mouse button to turn on auto-scrolling " +
-            //    "Hold Control-Key and drag the mouse with left button down to draw a rectangle to zoom into that region.",
-            //    "User Interface", MessageBoxButton.OK, MessageBoxImage.Information);
+            Mvx.IoCProvider.Resolve<IMessageBox>().Alert(
+                "Click left mouse button and drag to pan the view " +
+                "Hold Control-Key and run mouse wheel to zoom in and out " +
+                "Click middle mouse button to turn on auto-scrolling " +
+                "Hold Control-Key and drag the mouse with left button down to draw a rectangle to zoom into that region.",
+                "User Interface");
         });
 
         public ICommand DumpQuadTreeCommand => new MvxCommand(() =>
@@ -67,27 +72,27 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         public ICommand RowColChange => new MvxCommand<Object>((x) =>
         {
             Int32 value = Int32.Parse(x.ToString());
-            rows = cols = value;
+            _rows = _cols = value;
             AllocateNodes();
         });
 
         public ICommand ZoomCommand => new MvxCommand<String>((x) =>
         {
-            //if (x == "Fit")
-            //{
-            //    ResetZoom();
-            //}
-            //else
-            //{
-            //    Double value = Double.Parse(x);
-            //    ((MapZoom)Canvas.Zoom).Zoom = value / 100;
-            //    _statusbar.AddItem($"Zoom is {value}", GridLength.Auto);
-            //}
+            if (x == "Fit")
+            {
+                ResetZoom();
+            }
+            else
+            {
+                Double value = Double.Parse(x);
+                Canvas.Zoom.Value = value / 100;
+                _statusbar.Text = $"Zoom is {value}";
+            }
         });
 
         private void ResetZoom()
         {
-            //MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas graph = (MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas)Canvas.Graph;
+            //var graph = Canvas.Graph;
             //Double scaleX = graph.ViewportWidth / graph.Extent.Width;
             //Double scaleY = graph.ViewportHeight / graph.Extent.Height;
 
@@ -105,16 +110,16 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         public VirtualCanvasModel(IVirtualCanvas canvas)
         {
-            //Canvas = canvas;
-            //Canvas.CanClose = false;
-            //Canvas.DisplayName = "Virtual Canvas Sample";
+            Canvas = canvas;
+            Canvas.CanClose = false;
+            Canvas.DisplayName = "Virtual Canvas Sample";
 
-            //// Update Statusbar
-            //_statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
-            //_statusbar.AddItem("Loading", GridLength.Auto);
+            // Update Statusbar
+            _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
+            _statusbar.Text = "Loading";
 
-            //// Override ctrl with alt. (Test code)
-            //((RectangleSelectionGesture)Canvas.RectZoom).ModifierKeys = ModifierKeys.Alt;
+            // Override ctrl with alt. (Test code)
+            Canvas.RectZoom.ConsoleModifiers = ConsoleModifiers.Alt;
 
             //((MapZoom)Canvas.Zoom).ZoomChanged += (s, e) =>
             //{
@@ -130,12 +135,11 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             //graph.Scale.Changed += new EventHandler(OnScaleChanged);
             //graph.Translate.Changed += new EventHandler(OnScaleChanged);
 
-            //// Origianlly 100 x 100 nodes
-            //AllocateNodes();
+            // Origianlly 100 x 100 nodes
+            AllocateNodes();
 
-            //// Update info 
-            //_statusbar.Items.Clear();
-            //_statusbar.AddItem("Ready", GridLength.Auto);
+            // Update info 
+            _statusbar.Text = "Ready";
         }
 
         private void AllocateNodes()
@@ -173,10 +177,6 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             //}
         }
 
-        //private readonly String[] _colorNames = new String[10];
-        //private readonly Brush[] _strokeBrushes = new Brush[10];
-        //private readonly Brush[] _fillBrushes = new Brush[10];
-        //private readonly IStatusBar _statusbar;
         public IVirtualCanvas Canvas { get; private set; }
 
         //void SetRandomBrushes(TestShape s, Random r)
@@ -219,35 +219,35 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         //void OnVisualsChanged(Object sender, VisualChangeEventArgs e)
         //{
-        //    //if (_animateStatus)
-        //    //{
-        //    //    StatusText.Text = string.Format(CultureInfo.InvariantCulture, "{0} live visuals of {1} total", grid.LiveVisualCount, _totalVisuals);
+            //if (_animateStatus)
+            //{
+            //    StatusText.Text = string.Format(CultureInfo.InvariantCulture, "{0} live visuals of {1} total", grid.LiveVisualCount, _totalVisuals);
 
-        //    //    int tick = Environment.TickCount;
-        //    //    if (e.Added != 0 || e.Removed != 0)
-        //    //    {
-        //    //        addedPerSecond += e.Added;
-        //    //        removedPerSecond += e.Removed;
-        //    //        if (tick > lastTick + 100)
-        //    //        {
-        //    //            Created.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
-        //    //                Math.Min(addedPerSecond, 450),
-        //    //                new Duration(TimeSpan.FromMilliseconds(100))));
-        //    //            CreatedLabel.Text = addedPerSecond.ToString(CultureInfo.InvariantCulture) + " created";
-        //    //            addedPerSecond = 0;
+            //    int tick = Environment.TickCount;
+            //    if (e.Added != 0 || e.Removed != 0)
+            //    {
+            //        addedPerSecond += e.Added;
+            //        removedPerSecond += e.Removed;
+            //        if (tick > lastTick + 100)
+            //        {
+            //            Created.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
+            //                Math.Min(addedPerSecond, 450),
+            //                new Duration(TimeSpan.FromMilliseconds(100))));
+            //            CreatedLabel.Text = addedPerSecond.ToString(CultureInfo.InvariantCulture) + " created";
+            //            addedPerSecond = 0;
 
-        //    //            Destroyed.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
-        //    //                Math.Min(removedPerSecond, 450),
-        //    //                new Duration(TimeSpan.FromMilliseconds(100))));
-        //    //            DestroyedLabel.Text = removedPerSecond.ToString(CultureInfo.InvariantCulture) + " disposed";
-        //    //            removedPerSecond = 0;
-        //    //        }
-        //    //    }
-        //    //    if (tick > lastTick + 1000)
-        //    //    {
-        //    //        lastTick = tick;
-        //    //    }
-        //    //}
+            //            Destroyed.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
+            //                Math.Min(removedPerSecond, 450),
+            //                new Duration(TimeSpan.FromMilliseconds(100))));
+            //            DestroyedLabel.Text = removedPerSecond.ToString(CultureInfo.InvariantCulture) + " disposed";
+            //            removedPerSecond = 0;
+            //        }
+            //    }
+            //    if (tick > lastTick + 1000)
+            //    {
+            //        lastTick = tick;
+            //    }
+            //}
         //}
 
         //void OnAnimateStatus(Object sender, RoutedEventArgs e)
@@ -264,60 +264,62 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         //    //DestroyedLabel.Text = "";
         //}
 
-        //public Boolean ShowGridLines
-        //{
-        //    get => _showGridLines;
-        //    set
-        //    {
-        //        _showGridLines = value;
-        //        MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas graph = (MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas)Canvas.Graph;
+        public Boolean ShowGridLines
+        {
+            get => _showGridLines;
+            set
+            {
+                if (SetProperty(ref _showGridLines, value))
+                {
+                    IVirtualCanvasControl graph = Canvas.Graph;
 
-        //        if (value)
-        //        {
-        //            Double width = _tileWidth + _tileMargin;
-        //            Double height = _tileHeight + _tileMargin;
+                    if (value)
+                    {
+                    Double width = _tileWidth + _tileMargin;
+                    Double height = _tileHeight + _tileMargin;
 
-        //            Double numTileToAccumulate = 16;
+                    Double numTileToAccumulate = 16;
 
-        //            Polyline gridCell = _gridLines;
-        //            gridCell.Margin = new Thickness(_tileMargin);
-        //            gridCell.Stroke = Brushes.Blue;
-        //            gridCell.StrokeThickness = 0.1;
-        //            gridCell.Points = new PointCollection(new Point[] { new Point(0, height-0.1),
-        //                new Point(width-0.1, height-0.1), new Point(width-0.1, 0) });
-        //            VisualBrush gridLines = new VisualBrush(gridCell)
-        //            {
-        //                TileMode = TileMode.Tile,
-        //                Viewport = new Rect(0, 0, 1.0 / numTileToAccumulate, 1.0 / numTileToAccumulate),
-        //                AlignmentX = AlignmentX.Center,
-        //                AlignmentY = AlignmentY.Center
-        //            };
+                    //            Polyline gridCell = _gridLines;
+                    //            gridCell.Margin = new Thickness(_tileMargin);
+                    //            gridCell.Stroke = Brushes.Blue;
+                    //            gridCell.StrokeThickness = 0.1;
+                    //            gridCell.Points = new PointCollection(new Point[] { new Point(0, height-0.1),
+                    //                new Point(width-0.1, height-0.1), new Point(width-0.1, 0) });
+                    //            VisualBrush gridLines = new VisualBrush(gridCell)
+                    //            {
+                    //                TileMode = TileMode.Tile,
+                    //                Viewport = new Rect(0, 0, 1.0 / numTileToAccumulate, 1.0 / numTileToAccumulate),
+                    //                AlignmentX = AlignmentX.Center,
+                    //                AlignmentY = AlignmentY.Center
+                    //            };
 
-        //            VisualBrush outerVB = new VisualBrush();
-        //            Rectangle outerRect = new Rectangle
-        //            {
-        //                Width = 10.0,  //can be any size
-        //                Height = 10.0,
-        //                Fill = gridLines
-        //            };
-        //            outerVB.Visual = outerRect;
-        //            outerVB.Viewport = new Rect(0, 0,
-        //                width * numTileToAccumulate, height * numTileToAccumulate);
-        //            outerVB.ViewportUnits = BrushMappingMode.Absolute;
-        //            outerVB.TileMode = TileMode.Tile;
+                    //            VisualBrush outerVB = new VisualBrush();
+                    //            Rectangle outerRect = new Rectangle
+                    //            {
+                    //                Width = 10.0,  //can be any size
+                    //                Height = 10.0,
+                    //                Fill = gridLines
+                    //            };
+                    //            outerVB.Visual = outerRect;
+                    //            outerVB.Viewport = new Rect(0, 0,
+                    //                width * numTileToAccumulate, height * numTileToAccumulate);
+                    //            outerVB.ViewportUnits = BrushMappingMode.Absolute;
+                    //            outerVB.TileMode = TileMode.Tile;
 
-        //            graph.Backdrop.Background = outerVB;
+                    //            graph.Backdrop.Background = outerVB;
 
-        //            Border border = graph.Backdrop;
-        //            border.BorderBrush = Brushes.Blue;
-        //            border.BorderThickness = new Thickness(0.1);
-        //            graph.InvalidateVisual();
-        //        }
-        //        else
-        //        {
-        //            graph.Backdrop.Background = null;
-        //        }
-        //    }
-        //}
+                    //            Border border = graph.Backdrop;
+                    //            border.BorderBrush = Brushes.Blue;
+                    //            border.BorderThickness = new Thickness(0.1);
+                    //            graph.InvalidateVisual();
+                    }
+                    else
+                    {
+                    //            graph.Backdrop.Background = null;
+                    }
+                }
+            }
+        }
     }
 }
