@@ -20,8 +20,8 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
     class TestShape : IVirtualChild
     {
         RectangleF _bounds;
-        public System.Windows.Media.Brush Fill { get; set; }
-        public System.Windows.Media.Brush Stroke { get; set; }
+        public Brush Fill { get; set; }
+        public Brush Stroke { get; set; }
         public String Label { get; set; }
 
         private readonly TestShapeType _shape;
