@@ -41,13 +41,14 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
     /// </summary>
     public class VirtualCanvas : VirtualizingPanel, IScrollInfo, IVirtualCanvasControl
     {
-        System.Windows.Size _viewPortSize;
+        private System.Windows.Size _viewPortSize;
         public QuadTree<IVirtualChild> Index { get; private set; }
-        ObservableCollection<IVirtualChild> _children;
-        readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
-        readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
-        IDictionary<IVirtualChild, Int32> _visualPositions;
-        Int32 _nodeCollectCycle;
+        private ObservableCollection<IVirtualChild> _children;
+        private readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
+        private readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
+        private IDictionary<IVirtualChild, Int32> _visualPositions;
+        private Int32 _nodeCollectCycle;
+
         public static DependencyProperty VirtualChildProperty = DependencyProperty.Register("VirtualChild", typeof(IVirtualChild), typeof(VirtualCanvas));
 
         public event EventHandler<VisualChangeEventArgs> VisualsChanged;

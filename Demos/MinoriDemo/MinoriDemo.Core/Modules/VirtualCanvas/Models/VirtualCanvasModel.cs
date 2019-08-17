@@ -101,11 +101,11 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             //zoom.Offset = new Point(0, 0);
         }
 
-        public Double ZoomValue { get; set; }
-        //{
-        //    get => ((MapZoom)Canvas.Zoom)?.Zoom ?? 0;
-        //    set => ((MapZoom)Canvas.Zoom).Zoom = value;
-        //}
+        public Double ZoomValue
+        {
+            get => Canvas.Zoom?.Value ?? 0;
+            set => Canvas.Zoom.Value = value;
+        }
 
 
         public VirtualCanvasModel(IVirtualCanvas canvas)
@@ -121,12 +121,11 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             // Override ctrl with alt. (Test code)
             Canvas.RectZoom.ConsoleModifiers = ConsoleModifiers.Alt;
 
-            //((MapZoom)Canvas.Zoom).ZoomChanged += (s, e) =>
-            //{
-            //    RaisePropertyChanged("ZoomValue");
-            //    _statusbar.Items.Clear();
-            //    _statusbar.AddItem($"Zoom:{ZoomValue}", GridLength.Auto);
-            //};
+            Canvas.Zoom.ValueChanged += (s, e) =>
+            {
+                RaisePropertyChanged("ZoomValue");
+                _statusbar.Text = $"Zoom:{e}";
+            };
 
             //((RectangleSelectionGesture)Canvas.RectZoom).ZoomReset += (s, e) => ResetZoom();
 
