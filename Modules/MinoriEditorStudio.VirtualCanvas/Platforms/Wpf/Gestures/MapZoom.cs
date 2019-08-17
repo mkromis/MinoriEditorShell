@@ -48,15 +48,15 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         // we "StopAnimation" and sync up the _offset and _zoom variables.
         private ScaleTransform _scale;
         private TranslateTransform _translate;
-        Double _value = 1;
-        Double _newZoom = 1;
-        Point _offset;
-        Point _mouse;
-        Point _onTarget;
-        Double _zoomTime = _defaultZoomTime;
-        Int64 _startTime;
-        Double _lastAmount;
-        Rect _targetRect;
+        private Double _value = 1;
+        private Double _newZoom = 1;
+        private Point _offset;
+        private Point _mouse;
+        private Point _onTarget;
+        private Double _zoomTime = _defaultZoomTime;
+        private Int64 _startTime;
+        private Double _lastAmount;
+        private Rect _targetRect;
 
         /// <summary>
         /// The offset property that can be animated.
@@ -74,7 +74,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// This event is raised when the scale or translation is changed.
         /// </summary>
-        public event EventHandler ZoomChanged;
+        public event EventHandler<Double> ValueChanged;
 
         /// <summary>
         /// Construct new MapZoom object that manages the RenderTransform of the given target object.
@@ -228,7 +228,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         {
             _scale.ScaleX = _scale.ScaleY = _value;
 
-            ZoomChanged?.Invoke(this, EventArgs.Empty);
+            ValueChanged?.Invoke(this, Value);
 
             // focus rectangles may need to be repainted.
             _target.InvalidateVisual();
