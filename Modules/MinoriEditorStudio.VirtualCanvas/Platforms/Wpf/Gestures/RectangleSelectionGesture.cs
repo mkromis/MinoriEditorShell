@@ -3,6 +3,7 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorStudio.Platforms.Wpf.Extensions;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
@@ -65,7 +66,8 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="e">Mouse down information</param>
         void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
-            if (!e.Handled && (Keyboard.Modifiers & ModifierKeys) == ModifierKeys)
+            ModifierKeys modifier = ConsoleModifiers.ToModifierKeys();
+            if (!e.Handled && (Keyboard.Modifiers & modifier) == modifier)
             {
                 _start = e.GetPosition(_container);
                 _watching = true;
@@ -83,7 +85,7 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Specify modifier keys for mouse manipulation
         /// </summary>
-        public ModifierKeys ModifierKeys { get; set; } = ModifierKeys.Control;
+        public ConsoleModifiers ConsoleModifiers { get; set; } = ConsoleModifiers.Control;
 
         /// <summary>
         /// Handle Mouse Move event.  Here we detect whether we've exceeded the _selectionThreshold
