@@ -1,4 +1,5 @@
 ﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -87,9 +88,9 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             }
         }
 
-        public UIElement Visual { get; private set; }
+        public Object Visual { get; private set; }
 
-        public UIElement CreateVisual(MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas parent)
+        public Object CreateVisual(IVirtualCanvasControl parent)
         {
             if (Visual == null)
             {
@@ -201,19 +202,19 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public RectangleF Bounds => _bounds;
 
-        MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas _parent;
+        IVirtualCanvasControl _parent;
         Typeface _typeface;
         Double _fontSize;
 
-        public Size MeasureText(MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas parent, String label)
+        public Size MeasureText(IVirtualCanvasControl parent, String label)
         {
-            if (_parent != parent)
+            if (_parent != parent && parent is MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas control)
             {
-                FontFamily fontFamily = (FontFamily)parent.GetValue(TextBlock.FontFamilyProperty);
-                FontStyle fontStyle = (FontStyle)parent.GetValue(TextBlock.FontStyleProperty);
-                FontWeight fontWeight = (FontWeight)parent.GetValue(TextBlock.FontWeightProperty);
-                FontStretch fontStretch = (FontStretch)parent.GetValue(TextBlock.FontStretchProperty);
-                _fontSize = (Double)parent.GetValue(TextBlock.FontSizeProperty);
+                FontFamily fontFamily = (FontFamily)control.GetValue(TextBlock.FontFamilyProperty);
+                FontStyle fontStyle = (FontStyle)control.GetValue(TextBlock.FontStyleProperty);
+                FontWeight fontWeight = (FontWeight)control.GetValue(TextBlock.FontWeightProperty);
+                FontStretch fontStretch = (FontStretch)control.GetValue(TextBlock.FontStretchProperty);
+                _fontSize = (Double)control.GetValue(TextBlock.FontSizeProperty);
                 _typeface = new Typeface(fontFamily, fontStyle, fontWeight, fontStretch);
                 _parent = parent;
             }
