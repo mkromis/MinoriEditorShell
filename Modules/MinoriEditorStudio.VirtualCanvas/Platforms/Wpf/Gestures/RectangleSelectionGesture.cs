@@ -102,15 +102,15 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
                 {
                     _watching = false;
                     Mouse.Capture(_target, CaptureMode.SubTree);
-                    _selectionRectVisual = new SelectionRectVisual(_start, _start, _zoom.Zoom);
+                    _selectionRectVisual = new SelectionRectVisual(_start, _start, _zoom.Value);
                     _container.Children.Add(_selectionRectVisual);
                 }
             }
             if (_selectionRectVisual != null)
             {
-                if (_selectionRectVisual.Zoom != _zoom.Zoom)
+                if (_selectionRectVisual.Zoom != _zoom.Value)
                 {
-                    _selectionRectVisual.Zoom = _zoom.Zoom;
+                    _selectionRectVisual.Zoom = _zoom.Value;
                 }
                 _selectionRectVisual.SecondPoint = e.GetPosition(_container);
             }
