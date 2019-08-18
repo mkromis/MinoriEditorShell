@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.3.1" />
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.1" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
@@ -14,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
