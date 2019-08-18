@@ -92,12 +92,12 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         private void ResetZoom()
         {
-            //var graph = Canvas.Graph;
-            //Double scaleX = graph.ViewportWidth / graph.Extent.Width;
-            //Double scaleY = graph.ViewportHeight / graph.Extent.Height;
+            IVirtualCanvasControl graph = Canvas.Graph;
+            Double scaleX = graph.ViewportWidth / graph.ExtentWidth;
+            Double scaleY = graph.ViewportHeight / graph.ExtentHeight;
 
-            //MapZoom zoom = (MapZoom)Canvas.Zoom;
-            //zoom.Zoom = Math.Min(scaleX, scaleY);
+            IMapZoom zoom = Canvas.Zoom;
+            zoom.Value = Math.Min(scaleX, scaleY);
             //zoom.Offset = new Point(0, 0);
         }
 
@@ -127,9 +127,10 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 _statusbar.Text = $"Zoom:{e}";
             };
 
-            //((RectangleSelectionGesture)Canvas.RectZoom).ZoomReset += (s, e) => ResetZoom();
+            Canvas.RectZoom.ZoomReset += (s, e) => ResetZoom();
 
-            //MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas graph = (MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas)Canvas.Graph;
+            // Do I even need this?
+            //IVirtualCanvasControl graph = Canvas.Graph;
             //graph.SmallScrollIncrement = new Size(_tileWidth + _tileMargin, _tileHeight + _tileMargin);
             //graph.Scale.Changed += new EventHandler(OnScaleChanged);
             //graph.Translate.Changed += new EventHandler(OnScaleChanged);
