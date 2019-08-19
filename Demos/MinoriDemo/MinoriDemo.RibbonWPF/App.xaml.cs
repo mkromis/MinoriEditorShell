@@ -1,3 +1,4 @@
+using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.Platforms.Wpf;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
@@ -16,7 +17,7 @@ namespace MinoriDemo.RibbonWPF
         public override void ApplicationInitialized()
         {
             base.ApplicationInitialized();
-            Mvx.IoCProvider.RegisterType<IVirtualChild, TestShape>();
+            Mvx.IoCProvider.RegisterType<ITestShape, TestShape>();
         }
 
         protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
