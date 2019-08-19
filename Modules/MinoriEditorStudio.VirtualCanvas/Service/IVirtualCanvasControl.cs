@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 
 namespace MinoriEditorStudio.VirtualCanvas.Service
@@ -11,5 +12,9 @@ namespace MinoriEditorStudio.VirtualCanvas.Service
         Double ExtentHeight { get; }
         Double ViewportWidth { get; }
         Double ViewportHeight { get; }
+
+        ObservableCollection<IVirtualChild> VirtualChildren { get; }
+
+        void AddVirtualChild(IVirtualChild shape);
     }
 }

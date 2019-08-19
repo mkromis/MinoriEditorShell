@@ -1,11 +1,7 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
+﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,26 +10,23 @@ using RectangleF = System.Drawing.RectangleF;
 
 namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
-
-    enum TestShapeType { Ellipse, Curve, Rectangle, Last };
-
-    class TestShape : IVirtualChild
+    public class TestShape : ITestShape
     {
         RectangleF _bounds;
         public Brush Fill { get; set; }
         public Brush Stroke { get; set; }
         public String Label { get; set; }
 
-        private readonly TestShapeType _shape;
-        private readonly System.Windows.Point[] _points;
+        private TestShapeType _shape;
+        private Point[] _points;
 
         public event EventHandler BoundsChanged;
 
-        public TestShape(RectangleF bounds, TestShapeType s, Random r)
+        public void Initialize(RectangleF bounds, TestShapeType shape, Random r)
         {
             _bounds = bounds;
-            _shape = s;
-            if (s == TestShapeType.Curve)
+            _shape = shape;
+            if (_shape == TestShapeType.Curve)
             {
                 _bounds.Width *= 2;
                 _bounds.Height *= 2;
@@ -221,6 +214,32 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
             FormattedText ft = new FormattedText(label, CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight, _typeface, _fontSize, Brushes.Black);
             return new Size(ft.Width, ft.Height);
+        }
+
+        public void SetRandomBrushes(Random r)
+        {
+            //Int32 i = r.Next(0, 10);
+            //if (_strokeBrushes[i] == null)
+            //{
+            //    Color color = Color.FromRgb((Byte)r.Next(0, 255), (Byte)r.Next(0, 255), (Byte)r.Next(0, 255));
+            //    HlsColor hls = new HlsColor(color);
+            //    Color c1 = hls.Darker(0.25f);
+            //    Color c2 = hls.Lighter(0.25f);
+            //    Brush fill = new LinearGradientBrush(Color.FromArgb(0x80, c1.R, c1.G, c1.B),
+            //        Color.FromArgb(0x80, color.R, color.G, color.B), 45);
+            //    Brush stroke = new LinearGradientBrush(Color.FromArgb(0x80, color.R, color.G, color.B),
+            //        Color.FromArgb(0x80, c2.R, c2.G, c2.B), 45);
+
+            //    _colorNames[i] = "#" + color.R.ToString("X2", CultureInfo.InvariantCulture) +
+            //        color.G.ToString("X2", CultureInfo.InvariantCulture) +
+            //        color.B.ToString("X2", CultureInfo.InvariantCulture);
+            //    _strokeBrushes[i] = stroke;
+            //    _fillBrushes[i] = fill;
+            //}
+
+            //s.Label = _colorNames[i];
+            //s.Stroke = _strokeBrushes[i];
+            //s.Fill = _fillBrushes[i];
         }
     }
 }
