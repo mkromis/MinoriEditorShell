@@ -144,66 +144,41 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         private void AllocateNodes()
         {
-            //MapZoom zoom = (MapZoom)Canvas.Zoom;
-            //zoom.Zoom = 1;
+            IMapZoom zoom = Canvas.Zoom;
+            zoom.Value = 1;
             //zoom.Offset = new Point(0, 0);
 
-            //MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas graph = (MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas)Canvas.Graph;
+            IVirtualCanvasControl graph = Canvas.Graph;
 
-            //// Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
-            //// with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
-            //Random r = new Random(Environment.TickCount);
-            //graph.VirtualChildren.Clear();
-            //Double w = _tileWidth + _tileMargin;
-            //Double h = _tileHeight + _tileMargin;
-            //Int32 count = (rows * cols) / 20;
-            //Double width = (w * (cols - 1));
-            //Double height = (h * (rows - 1));
-            //while (count > 0)
-            //{
-            //    Double x = r.NextDouble() * width;
-            //    Double y = r.NextDouble() * height;
+            // Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
+            // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
+            Random r = new Random(Environment.TickCount);
+            graph.VirtualChildren.Clear();
+            Double w = _tileWidth + _tileMargin;
+            Double h = _tileHeight + _tileMargin;
+            Int32 count = _rows * _cols / 20;
+            Double width = w * (_cols - 1);
+            Double height = h * (_rows - 1);
+            while (count > 0)
+            {
+                Double x = r.NextDouble() * width;
+                Double y = r.NextDouble() * height;
 
-            //    Point pos = new Point(_tileMargin + x, _tileMargin + y);
-            //    Size s = new Size(r.Next((Int32)_tileWidth, (Int32)_tileWidth * 5),
-            //                        r.Next((Int32)_tileHeight, (Int32)_tileHeight * 5));
-            //    TestShapeType type = (TestShapeType)r.Next(0, (Int32)TestShapeType.Last);
+                PointF pos = new PointF((Single)(_tileMargin + x), (Single)(_tileMargin + y));
+                SizeF size = new SizeF(r.Next((Int32)_tileWidth, (Int32)_tileWidth * 5),
+                                    r.Next((Int32)_tileHeight, (Int32)_tileHeight * 5));
+                TestShapeType type = (TestShapeType)r.Next(0, (Int32)TestShapeType.Last);
 
-            //    //Color color = HlsColor.ColorFromHLS((x * 240) / cols, 100, 240 - ((y * 240) / rows));
-            //    TestShape shape = new TestShape(new Rect(pos, s), type, r);
-            //    SetRandomBrushes(shape, r);
-            //    graph.AddVirtualChild(shape);
-            //    count--;
-            //}
+                Color color = HlsColor.ColorFromHLS((int)((x * 240) / _cols), 100, (int)(240 - ((y * 240) / _rows)));
+                ITestShape shape = Mvx.IoCProvider.Resolve<ITestShape>();
+                shape.Initialize(new RectangleF(pos, size), type, r);
+                shape.SetRandomBrushes(r);
+                graph.AddVirtualChild(shape);
+                count--;
+            }
         }
 
         public IVirtualCanvas Canvas { get; private set; }
-
-        //void SetRandomBrushes(TestShape s, Random r)
-        //{
-        //    Int32 i = r.Next(0, 10);
-        //    if (_strokeBrushes[i] == null)
-        //    {
-        //        Color color = Color.FromRgb((Byte)r.Next(0, 255), (Byte)r.Next(0, 255), (Byte)r.Next(0, 255));
-        //        HlsColor hls = new HlsColor(color);
-        //        Color c1 = hls.Darker(0.25f);
-        //        Color c2 = hls.Lighter(0.25f);
-        //        Brush fill = new LinearGradientBrush(Color.FromArgb(0x80, c1.R, c1.G, c1.B),
-        //            Color.FromArgb(0x80, color.R, color.G, color.B), 45);
-        //        Brush stroke = new LinearGradientBrush(Color.FromArgb(0x80, color.R, color.G, color.B),
-        //            Color.FromArgb(0x80, c2.R, c2.G, c2.B), 45);
-
-        //        _colorNames[i] = "#" + color.R.ToString("X2", CultureInfo.InvariantCulture) +
-        //            color.G.ToString("X2", CultureInfo.InvariantCulture) +
-        //            color.B.ToString("X2", CultureInfo.InvariantCulture);
-        //        _strokeBrushes[i] = stroke;
-        //        _fillBrushes[i] = fill;
-        //    }
-
-        //    s.Label = _colorNames[i];
-        //    s.Stroke = _strokeBrushes[i];
-        //    s.Fill = _fillBrushes[i];
-        //}
 
         //void OnScaleChanged(Object sender, EventArgs e)
         //{
