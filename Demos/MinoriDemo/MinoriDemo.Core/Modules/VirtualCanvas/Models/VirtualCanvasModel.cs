@@ -22,8 +22,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         private readonly Boolean _animateStatus = true;
         private readonly Int32 _totalVisuals = 0;
         private readonly String[] _colorNames = new String[10];
-        private readonly Color[] _strokeColor = new Color[10];
-        private readonly Color[] _fillColor = new Color[10];
+        private readonly Color[] _baseColor = new Color[10];
         private readonly Double _tileWidth = 50;
         private readonly Double _tileHeight = 30;
         private readonly Double _tileMargin = 10;
@@ -182,32 +181,19 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         private void SetRandomBrushes(ITestShape s, Random r)
         {
             Int32 i = r.Next(0, 10);
-            if (_strokeColor[i].IsEmpty)
+            if (_baseColor[i].IsEmpty)
             {
                 Color color = Color.FromArgb((Byte)r.Next(0, 255), (Byte)r.Next(0, 255), (Byte)r.Next(0, 255));
-                HlsColor hls = new HlsColor(color);
-                Color c1 = hls.Darker(0.25f);
-                Color c2 = hls.Lighter(0.25f);
-#warning Fix this linear Gradinet
-                //Brush fill = new LinearGradientBrush(
-                //    Color.FromArgb(0x80, c1.R, c1.G, c1.B),
-                //    Color.FromArgb(0x80, color.R, color.G, color.B), 45);
-                //Brush stroke = new LinearGradientBrush(
-                //    Color.FromArgb(0x80, color.R, color.G, color.B),
-                //    Color.FromArgb(0x80, c2.R, c2.G, c2.B), 45);
-                Color fill = Color.FromArgb(0x80, c1.R, c1.G, c1.B);
-                Color stroke = Color.FromArgb(0x80, c2.R, c2.G, c2.B);
+
 
                 _colorNames[i] = "#" + color.R.ToString("X2", CultureInfo.InvariantCulture) +
                     color.G.ToString("X2", CultureInfo.InvariantCulture) +
                     color.B.ToString("X2", CultureInfo.InvariantCulture);
-                _strokeColor[i] = stroke;
-                _fillColor[i] = fill;
+                _baseColor[i] = color;
             }
 
             s.Label = _colorNames[i];
-            s.Stroke = _strokeColor[i];
-            s.Fill = _fillColor[i];
+            s.BaseColor = _baseColor[i];
         }
 
         public IVirtualCanvas Canvas { get; private set; }
