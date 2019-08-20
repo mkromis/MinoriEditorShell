@@ -12,15 +12,41 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
     public class TestShape : ITestShape
     {
+        private IVirtualCanvasControl _parent;
+        private Typeface _typeface;
+        Double _fontSize;
+        private System.Drawing.Color baseColor;
         RectangleF _bounds;
-        public System.Drawing.Color Fill { get; set; }
-        public System.Drawing.Color Stroke { get; set; }
-        public String Label { get; set; }
-
         private TestShapeType _shape;
         private Point[] _points;
+        private LinearGradientBrush _fill;
+        private LinearGradientBrush _stroke;
 
         public event EventHandler BoundsChanged;
+
+        public String Label { get; set; }
+
+        public System.Drawing.Color BaseColor {
+            get => baseColor;
+            set
+            {
+                baseColor = value;
+
+                // use hls color for shading
+                HlsColor hls = new HlsColor(baseColor);
+                System.Drawing.Color c1 = hls.Darker(0.25f);
+                System.Drawing.Color c2 = hls.Lighter(0.25f);
+
+                // Create fill and stroke when color is created.
+                // this is created here becuse of wpf depencency
+                _fill = new LinearGradientBrush(
+                    Color.FromArgb(0x80, c1.R, c1.G, c1.B),
+                    Color.FromArgb(0x80, baseColor.R, baseColor.G, baseColor.B), 45);
+                _stroke = new LinearGradientBrush(
+                    Color.FromArgb(0x80, baseColor.R, baseColor.G, baseColor.B),
+                    Color.FromArgb(0x80, c2.R, c2.G, c2.B), 45);
+            }
+        }
 
         public void Initialize(RectangleF bounds, TestShapeType shape, Random r)
         {
@@ -106,7 +132,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             {
                                 Data = g,
 
-                                Stroke = new SolidColorBrush(Color.FromRgb(Stroke.R, Stroke.G, Stroke.B)),
+                                Stroke = _stroke,
                                 StrokeThickness = 2
                             };
 
@@ -140,8 +166,8 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             c.Children.Add(text);
 
                             e.StrokeThickness = 2;
-                            e.Stroke = new SolidColorBrush(Color.FromRgb(Stroke.R, Stroke.G, Stroke.B));
-                            e.Fill = new SolidColorBrush(Color.FromRgb(Fill.R, Fill.G, Fill.B));
+                            e.Stroke = _stroke;
+                            e.Fill = _fill;
 
                             //DropShadowBitmapEffect effect = new DropShadowBitmapEffect();
                             //effect.Opacity = 0.8;
@@ -177,7 +203,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                                 BoundsChanged?.Invoke(this, null);
                             };
                             b.Child = text;
-                            b.Background = new SolidColorBrush(Color.FromRgb(Fill.R, Fill.G, Fill.B));
+                            b.Background = _fill;
                             //DropShadowBitmapEffect effect = new DropShadowBitmapEffect();
                             //effect.Opacity = 0.8;
                             //effect.ShadowDepth = 3;
@@ -194,12 +220,6 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
         public void DisposeVisual() => Visual = null;
 
         public RectangleF Bounds => _bounds;
-
-
-
-        IVirtualCanvasControl _parent;
-        Typeface _typeface;
-        Double _fontSize;
 
         public Size MeasureText(IVirtualCanvasControl parent, String label)
         {
