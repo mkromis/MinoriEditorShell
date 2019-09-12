@@ -9,6 +9,8 @@ using MvvmCross.Plugin;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
+using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace MinoriEditorStudio.Platforms.Wpf
@@ -47,16 +49,16 @@ namespace MinoriEditorStudio.Platforms.Wpf
             base.LoadPlugins(pluginManager);
         }
 
-        protected override void InitializeViewLookup()
+        protected override IDictionary<Type, Type> InitializeLookupDictionary()
         {
-            base.InitializeViewLookup();
-
             IMvxViewsContainer container = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             if (container != null)
             {
                 container.Add<MainMenuSettingsViewModel, MainMenuSettingsView>();
                 container.Add<SettingsViewModel, SettingsView>();
             }
+
+            return base.InitializeLookupDictionary();
         }
 
         //public class AppBootstrapper : BootstrapperBase
