@@ -1,37 +1,58 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Controls;
+﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
+using MinoriEditorStudio.VirtualCanvas.Service;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using RectangleF = System.Drawing.RectangleF;
 
 namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
-
-    enum TestShapeType { Ellipse, Curve, Rectangle, Last };
-
-    class TestShape : IVirtualChild
+    public class TestShape : ITestShape
     {
-        Rect _bounds;
-        public Brush Fill { get; set; }
-        public Brush Stroke { get; set; }
-        public String Label { get; set; }
-
-        private readonly TestShapeType _shape;
-        private readonly Point[] _points;
+        private IVirtualCanvasControl _parent;
+        private Typeface _typeface;
+        Double _fontSize;
+        private System.Drawing.Color baseColor;
+        RectangleF _bounds;
+        private TestShapeType _shape;
+        private Point[] _points;
+        private LinearGradientBrush _fill;
+        private LinearGradientBrush _stroke;
 
         public event EventHandler BoundsChanged;
 
-        public TestShape(Rect bounds, TestShapeType s, Random r)
+        public String Label { get; set; }
+
+        public System.Drawing.Color BaseColor {
+            get => baseColor;
+            set
+            {
+                baseColor = value;
+
+                // use hls color for shading
+                HlsColor hls = new HlsColor(baseColor);
+                System.Drawing.Color c1 = hls.Darker(0.25f);
+                System.Drawing.Color c2 = hls.Lighter(0.25f);
+
+                // Create fill and stroke when color is created.
+                // this is created here becuse of wpf depencency
+                _fill = new LinearGradientBrush(
+                    Color.FromArgb(0x80, c1.R, c1.G, c1.B),
+                    Color.FromArgb(0x80, baseColor.R, baseColor.G, baseColor.B), 45);
+                _stroke = new LinearGradientBrush(
+                    Color.FromArgb(0x80, baseColor.R, baseColor.G, baseColor.B),
+                    Color.FromArgb(0x80, c2.R, c2.G, c2.B), 45);
+            }
+        }
+
+        public void Initialize(RectangleF bounds, TestShapeType shape, Random r)
         {
             _bounds = bounds;
-            _shape = s;
-            if (s == TestShapeType.Curve)
+            _shape = shape;
+            if (_shape == TestShapeType.Curve)
             {
                 _bounds.Width *= 2;
                 _bounds.Height *= 2;
@@ -39,56 +60,56 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
                 _points = new Point[3];
 
-                bounds = new Rect(0, 0, _bounds.Width, _bounds.Height);
+                bounds = new RectangleF(0, 0, _bounds.Width, _bounds.Height);
                 switch (r.Next(0, 8))
                 {
                     case 0:
-                        _points[0] = bounds.TopLeft;
-                        _points[1] = bounds.TopRight;
-                        _points[2] = bounds.BottomRight;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
+                        _points[1] = new Point(bounds.Right, bounds.Top);
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                     case 1:
-                        _points[0] = bounds.TopRight;
-                        _points[1] = bounds.BottomRight;
-                        _points[2] = bounds.BottomLeft;
+                        _points[0] = new Point(bounds.Right, bounds.Top);
+                        _points[1] = new Point(bounds.Right, bounds.Bottom);
+                        _points[2] = new Point(bounds.Left, bounds.Right);
                         break;
                     case 2:
-                        _points[0] = bounds.BottomRight;
-                        _points[1] = bounds.BottomLeft;
-                        _points[2] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Right, bounds.Bottom);
+                        _points[1] = new Point(bounds.Left, bounds.Bottom);
+                        _points[2] = new Point(bounds.Left, bounds.Top);
                         break;
                     case 3:
-                        _points[0] = bounds.BottomLeft;
-                        _points[1] = bounds.TopLeft;
-                        _points[2] = bounds.TopRight;
+                        _points[0] = new Point(bounds.Left, bounds.Bottom);
+                        _points[1] = new Point(bounds.Left, bounds.Top);
+                        _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
                     case 4:
-                        _points[0] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Right, bounds.Height / 2);
-                        _points[2] = bounds.BottomLeft;
+                        _points[2] = new Point(bounds.Left, bounds.Bottom);
                         break;
                     case 5:
-                        _points[0] = bounds.TopRight;
+                        _points[0] = new Point(bounds.Right, bounds.Top);
                         _points[1] = new Point(bounds.Left, bounds.Height / 2);
-                        _points[2] = bounds.BottomRight;
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                     case 6:
-                        _points[0] = bounds.TopLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Width / 2, bounds.Bottom);
-                        _points[2] = bounds.TopRight;
+                        _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
                     case 7:
-                        _points[0] = bounds.BottomLeft;
+                        _points[0] = new Point(bounds.Left, bounds.Bottom);
                         _points[1] = new Point(bounds.Width / 2, bounds.Top);
-                        _points[2] = bounds.BottomRight;
+                        _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
                 }
             }
         }
 
-        public UIElement Visual { get; private set; }
+        public Object Visual { get; private set; }
 
-        public UIElement CreateVisual(MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas parent)
+        public Object CreateVisual(IVirtualCanvasControl parent)
         {
             if (Visual == null)
             {
@@ -111,7 +132,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             {
                                 Data = g,
 
-                                Stroke = Stroke,
+                                Stroke = _stroke,
                                 StrokeThickness = 2
                             };
 
@@ -145,8 +166,8 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             c.Children.Add(text);
 
                             e.StrokeThickness = 2;
-                            e.Stroke = Stroke;
-                            e.Fill = Fill;
+                            e.Stroke = _stroke;
+                            e.Fill = _fill;
 
                             //DropShadowBitmapEffect effect = new DropShadowBitmapEffect();
                             //effect.Opacity = 0.8;
@@ -174,15 +195,15 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             // Testing for BoundsChanged event.
                             b.MouseRightButtonDown += (s, e) =>
                             {
-                                _bounds = new Rect(
+                                _bounds = new RectangleF(
                                     Bounds.X + 10,
                                     Bounds.Y + 10,
-                                    b.Width,
-                                    b.Height);
+                                    (Single)b.Width,
+                                    (Single)b.Height);
                                 BoundsChanged?.Invoke(this, null);
                             };
                             b.Child = text;
-                            b.Background = Fill;
+                            b.Background = _fill;
                             //DropShadowBitmapEffect effect = new DropShadowBitmapEffect();
                             //effect.Opacity = 0.8;
                             //effect.ShadowDepth = 3;
@@ -198,21 +219,17 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public void DisposeVisual() => Visual = null;
 
-        public Rect Bounds => _bounds;
+        public RectangleF Bounds => _bounds;
 
-        MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas _parent;
-        Typeface _typeface;
-        Double _fontSize;
-
-        public Size MeasureText(MinoriEditorStudio.VirtualCanvas.Controls.VirtualCanvas parent, String label)
+        public Size MeasureText(IVirtualCanvasControl parent, String label)
         {
-            if (_parent != parent)
+            if (_parent != parent && parent is MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas control)
             {
-                FontFamily fontFamily = (FontFamily)parent.GetValue(TextBlock.FontFamilyProperty);
-                FontStyle fontStyle = (FontStyle)parent.GetValue(TextBlock.FontStyleProperty);
-                FontWeight fontWeight = (FontWeight)parent.GetValue(TextBlock.FontWeightProperty);
-                FontStretch fontStretch = (FontStretch)parent.GetValue(TextBlock.FontStretchProperty);
-                _fontSize = (Double)parent.GetValue(TextBlock.FontSizeProperty);
+                FontFamily fontFamily = (FontFamily)control.GetValue(TextBlock.FontFamilyProperty);
+                FontStyle fontStyle = (FontStyle)control.GetValue(TextBlock.FontStyleProperty);
+                FontWeight fontWeight = (FontWeight)control.GetValue(TextBlock.FontWeightProperty);
+                FontStretch fontStretch = (FontStretch)control.GetValue(TextBlock.FontStretchProperty);
+                _fontSize = (Double)control.GetValue(TextBlock.FontSizeProperty);
                 _typeface = new Typeface(fontFamily, fontStyle, fontWeight, fontStretch);
                 _parent = parent;
             }
@@ -220,5 +237,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 FlowDirection.LeftToRight, _typeface, _fontSize, Brushes.Black);
             return new Size(ft.Width, ft.Height);
         }
+
+
     }
 }

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.3.1" />
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.1" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
@@ -14,19 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationFramework">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
