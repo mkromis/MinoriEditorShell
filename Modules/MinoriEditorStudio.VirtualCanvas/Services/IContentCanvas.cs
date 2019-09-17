@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinoriEditorStudio.VirtualCanvas.Service
+namespace MinoriEditorStudio.VirtualCanvas.Services
 {
     public interface IContentCanvas
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace MinoriEditorStudio.VirtualCanvas.Service
+namespace MinoriEditorStudio.VirtualCanvas.Services
 {
     /// <summary>
     /// This interface is implemented by the objects that you want to put in the VirtualCanvas.

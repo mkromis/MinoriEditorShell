@@ -1,6 +1,6 @@
 ﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Views;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;

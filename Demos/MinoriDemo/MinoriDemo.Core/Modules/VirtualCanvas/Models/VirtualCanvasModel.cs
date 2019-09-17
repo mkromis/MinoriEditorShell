@@ -1,5 +1,5 @@
 ﻿using MinoriEditorStudio.Services;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;

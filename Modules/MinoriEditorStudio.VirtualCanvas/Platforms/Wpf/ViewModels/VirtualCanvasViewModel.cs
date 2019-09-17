@@ -1,5 +1,5 @@
 ﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Views;
 using System;
 using System.Threading.Tasks;
