@@ -3,6 +3,7 @@ using MinoriEditorStudio.Platforms.Wpf.Presenters;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Platforms.Wpf.Views;
 using MvvmCross;
+using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Plugin;
@@ -17,11 +18,13 @@ namespace MinoriEditorStudio.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
+        private IMvxLog _log;
         private IMvxMessenger _messenger;
 
         protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
         {
             // This handles main window.
+            _log.Trace("Setup: Creating Presenter");
             return new MesWpfPresenter(root);
         }
 
@@ -31,6 +34,7 @@ namespace MinoriEditorStudio.Platforms.Wpf
         /// <returns>An instance of MvxApplication</returns>
         protected override IMvxApplication CreateApp()
         {
+            _log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MesWpfSetup<TApplication>>();
             _messenger = Mvx.IoCProvider.Resolve<IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
             {
