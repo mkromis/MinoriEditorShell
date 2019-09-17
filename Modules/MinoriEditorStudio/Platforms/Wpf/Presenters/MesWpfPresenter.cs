@@ -24,7 +24,9 @@ namespace MinoriEditorStudio.Platforms.Wpf.Presenters
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
             _log = provider.GetLogFor<MesWpfPresenter>();
+            _log.Trace("Setup: Creating Presenter");
             _mainWindow = mainWindow;
+            
         }
 
         protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
