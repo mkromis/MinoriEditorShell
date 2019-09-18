@@ -10,6 +10,5 @@ namespace MinoriEditorStudio.VirtualCanvas.Services
         IPan Pan { get; }
         IRectangleSelectionGesture RectZoom { get; }
         IMapZoom Zoom { get; }
-        new Boolean CanClose { get; set; }
     }
 }
