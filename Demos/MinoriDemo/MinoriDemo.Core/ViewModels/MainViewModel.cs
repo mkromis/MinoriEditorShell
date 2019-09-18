@@ -16,14 +16,14 @@ namespace MinoriDemo.Core.ViewModels
     public class MainViewModel : MvxNavigationViewModel
     {
         // Handles data context for ribbon.
-        private VirtualCanvasModel _canvasModel;
+        private VirtualCanvasViewModel _canvasModel;
         private readonly ISettingsManager _settingsManager;
         //private readonly IThemeSettings _themeSettings;
         private readonly IThemeManager _themeManager;
         private readonly IManager _manager;
         private readonly IStatusBar _statusBar;
 
-        public VirtualCanvasModel CanvasModel
+        public VirtualCanvasViewModel CanvasModel
         {
             get => _canvasModel;
             set => SetProperty(ref _canvasModel, value);
@@ -33,14 +33,12 @@ namespace MinoriDemo.Core.ViewModels
         {
             if (CanvasModel == null)
             {
-                IVirtualCanvas canvas = Mvx.IoCProvider.Resolve<IVirtualCanvas>();
-                await NavigationService.Navigate(canvas);
-
-                CanvasModel = new VirtualCanvasModel(canvas);
+                CanvasModel = new VirtualCanvasViewModel();
+                await NavigationService.Navigate(CanvasModel);
             }
             else
             {
-                _manager.ActiveItem = CanvasModel.Canvas;
+                _manager.ActiveItem = CanvasModel;
             }
             //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });

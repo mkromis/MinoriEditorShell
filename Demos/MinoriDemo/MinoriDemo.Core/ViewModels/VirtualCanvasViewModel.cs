@@ -1,4 +1,5 @@
-﻿using MinoriEditorStudio.Services;
+﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
+using MinoriEditorStudio.Services;
 using MinoriEditorStudio.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
@@ -10,14 +11,14 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Input;
 
-namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
+namespace MinoriDemo.Core.ViewModels
 {
     /// <summary>
     /// This demo shows the VirtualCanvas managing up to 50,000 random WPF shapes providing smooth scrolling and
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasModel : MvxNotifyPropertyChanged
+    public class VirtualCanvasViewModel : MinoriEditorStudio.VirtualCanvas.ViewModels.VirtualCanvasViewModel
     {
         private readonly Boolean _animateStatus = true;
         private readonly Int32 _totalVisuals = 0;
@@ -85,49 +86,46 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             else
             {
                 Double value = Double.Parse(x);
-                Canvas.Zoom.Value = value / 100;
+                Zoom.Value = value / 100;
                 _statusbar.Text = $"Zoom is {value}";
             }
         });
 
         private void ResetZoom()
         {
-            IVirtualCanvasControl graph = Canvas.Graph;
-            Double scaleX = graph.ViewportWidth / graph.ExtentWidth;
-            Double scaleY = graph.ViewportHeight / graph.ExtentHeight;
+            Double scaleX = Graph.ViewportWidth / Graph.ExtentWidth;
+            Double scaleY = Graph.ViewportHeight / Graph.ExtentHeight;
 
-            IMapZoom zoom = Canvas.Zoom;
-            zoom.Value = Math.Min(scaleX, scaleY);
+            Zoom.Value = Math.Min(scaleX, scaleY);
             //zoom.Offset = new Point(0, 0);
         }
 
         public Double ZoomValue
         {
-            get => Canvas.Zoom?.Value ?? 0;
-            set => Canvas.Zoom.Value = value;
+            get => Zoom?.Value ?? 0;
+            set => Zoom.Value = value;
         }
 
 
-        public VirtualCanvasModel(IVirtualCanvas canvas)
+        public VirtualCanvasViewModel() : base()
         {
-            Canvas = canvas;
-            Canvas.CanClose = false;
-            Canvas.DisplayName = "Virtual Canvas Sample";
+            CanClose = false;
+            DisplayName = "Virtual Canvas Sample";
 
             // Update Statusbar
             _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
             _statusbar.Text = "Loading";
 
             // Override ctrl with alt. (Test code)
-            Canvas.RectZoom.ConsoleModifiers = ConsoleModifiers.Alt;
+            RectZoom.ConsoleModifiers = ConsoleModifiers.Alt;
 
-            Canvas.Zoom.ValueChanged += (s, e) =>
+            Zoom.ValueChanged += (s, e) =>
             {
                 RaisePropertyChanged("ZoomValue");
                 _statusbar.Text = $"Zoom:{e}";
             };
 
-            Canvas.RectZoom.ZoomReset += (s, e) => ResetZoom();
+            RectZoom.ZoomReset += (s, e) => ResetZoom();
 
             // Do I even need this?
             //IVirtualCanvasControl graph = Canvas.Graph;
@@ -141,19 +139,16 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             // Update info 
             _statusbar.Text = "Ready";
         }
-
+        
         private void AllocateNodes()
         {
-            IMapZoom zoom = Canvas.Zoom;
-            zoom.Value = 1;
+            Zoom.Value = 1;
             //zoom.Offset = new Point(0, 0);
-
-            IVirtualCanvasControl graph = Canvas.Graph;
 
             // Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
             // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
             Random r = new Random(Environment.TickCount);
-            graph.VirtualChildren.Clear();
+            Graph.VirtualChildren.Clear();
             Double w = _tileWidth + _tileMargin;
             Double h = _tileHeight + _tileMargin;
             Int32 count = _rows * _cols / 20;
@@ -173,7 +168,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 ITestShape shape = Mvx.IoCProvider.Resolve<ITestShape>();
                 shape.Initialize(new RectangleF(pos, size), type, r);
                 SetRandomBrushes(shape, r);
-                graph.AddVirtualChild(shape);
+                Graph.AddVirtualChild(shape);
                 count--;
             }
         }
@@ -195,8 +190,6 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             s.Label = _colorNames[i];
             s.BaseColor = _baseColor[i];
         }
-
-        public IVirtualCanvas Canvas { get; private set; }
 
         //void OnScaleChanged(Object sender, EventArgs e)
         //{
@@ -264,8 +257,6 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             {
                 if (SetProperty(ref _showGridLines, value))
                 {
-                    IVirtualCanvasControl graph = Canvas.Graph;
-
                     if (value)
                     {
                     Double width = _tileWidth + _tileMargin;
