@@ -1,4 +1,6 @@
-﻿using MinoriEditorStudio.VirtualCanvas.ViewModels;
+﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
+using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorStudio.VirtualCanvas.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +27,17 @@ namespace MinoriDemo.RibbonWPF.Views
         {
             InitializeComponent();
 
-#warning FIX INIT
-            //VirtualCanvasViewModel viewModel = ((IVirtualCanvasViewModel)DataContext).Graph;
-            //Graph = ((VirtualCanvasView)View).Graph;
-            //IContentCanvas target = Graph.ContentCanvas;
-            //Graph.Zoom = Zoom = new MapZoom(target);
-            //Pan = new Pan(target, Zoom);
-            //AutoScroll = new AutoScroll(target, Zoom);
-            //RectZoom = new RectangleSelectionGesture(target, Zoom);
+            DataContextChanged += (s, e) =>
+            {
+                VirtualCanvasViewModel dc = (VirtualCanvasViewModel)DataContext;
+                dc.Graph = Graph;
+
+                IContentCanvas canvas = dc.Graph.ContentCanvas;
+                dc.Zoom = new MapZoom(canvas);
+                dc.Pan = new Pan(canvas, dc.Zoom);
+                dc.AutoScroll = new AutoScroll(canvas, dc.Zoom);
+                dc.RectZoom = new RectangleSelectionGesture(canvas, dc.Zoom);
+            };
         }
     }
 }
