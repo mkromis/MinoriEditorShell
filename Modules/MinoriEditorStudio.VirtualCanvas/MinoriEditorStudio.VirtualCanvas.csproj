@@ -11,6 +11,7 @@
         <RepositoryType>Git</RepositoryType>
         <PackageTags>IDE VirtualCanvas Module</PackageTags>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <DocumentationFile>MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -52,14 +53,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+        <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Platforms\Wpf\ViewModels\" />
+        <Folder Include="Platforms\Wpf\ViewModels\" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="ViewModels\VirtualCanvasViewModel.cs" />
+        <None Include="ViewModels\VirtualCanvasViewModel.cs" />
     </ItemGroup>
 </Project>
