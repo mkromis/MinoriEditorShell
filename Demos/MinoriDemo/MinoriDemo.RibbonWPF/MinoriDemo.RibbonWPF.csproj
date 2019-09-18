@@ -62,6 +62,9 @@
     <Compile Include="Views\ToolSampleView.xaml.cs">
       <DependentUpon>ToolSampleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VirtualCanvasView.xaml.cs">
+      <DependentUpon>VirtualCanvasView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ToolSampleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VirtualCanvasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

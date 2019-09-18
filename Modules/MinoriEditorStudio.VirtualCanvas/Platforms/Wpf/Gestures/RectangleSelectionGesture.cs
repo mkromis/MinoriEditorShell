@@ -5,7 +5,7 @@
 //-----------------------------------------------------------------------
 using MinoriEditorStudio.Platforms.Wpf.Extensions;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using System;
 using System.Windows;
 using System.Windows.Controls;

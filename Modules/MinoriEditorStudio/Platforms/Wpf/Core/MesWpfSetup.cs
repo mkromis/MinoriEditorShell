@@ -3,6 +3,7 @@ using MinoriEditorStudio.Platforms.Wpf.Presenters;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Platforms.Wpf.Views;
 using MvvmCross;
+using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Plugin;
