@@ -24,28 +24,41 @@ namespace MinoriEditorStudio.VirtualCanvas.ViewModels
     /// &lt;/ScrollViewer&gt;
     /// </code>
     /// 
-    /// You would then need to call implement a view appeared simular to below
-    ///public override void ViewAppeared()
-    ///{
-    ///    // This is being called twice or not at all.
-    ///    if (Graph == null)
-    ///    {
-    ///        Graph = ((VirtualCanvasView)View).Graph;
-    ///        IContentCanvas target = Graph.ContentCanvas;
-    ///        Graph.Zoom = Zoom = new MapZoom(target);
-    ///        Pan = new Pan(target, Zoom);
-    ///        AutoScroll = new AutoScroll(target, Zoom);
-    ///        RectZoom = new RectangleSelectionGesture(target, Zoom);
-    ///    }
-    ///}
+    /// You would then need to call implement a view ctor simular to below
+    /// 
+    /// DataContextChanged += (s, e) =>
+    /// {
+    ///     VirtualCanvasViewModel dc = (VirtualCanvasViewModel)DataContext;
+    ///     dc.Graph = Graph;
+    ///     
+    ///     IContentCanvas canvas = dc.Graph.ContentCanvas;
+    ///     dc.Zoom = new MapZoom(canvas);
+    ///     dc.Pan = new Pan(canvas, dc.Zoom);
+    ///     dc.AutoScroll = new AutoScroll(canvas, dc.Zoom);
+    ///     dc.RectZoom = new RectangleSelectionGesture(canvas, dc.Zoom);
+    /// };
     /// </summary>
     public class VirtualCanvasViewModel : Document, IVirtualCanvas
     {
-        public IMapZoom Zoom { get; protected set; }
-        public IPan Pan { get; protected set; }
-        public IRectangleSelectionGesture RectZoom { get; protected set; }
-        public IAutoScroll AutoScroll { get; protected set; }
-        public IVirtualCanvasControl Graph { get; protected set; }
-        public new Boolean CanClose { get; set; }
+        /// <summary>
+        /// Platform zoom interface
+        /// </summary>
+        public IMapZoom Zoom { get; set; }
+        /// <summary>
+        /// Platform Pan interface
+        /// </summary>
+        public IPan Pan { get; set; }
+        /// <summary>
+        /// Rectangle Zoom platform interface
+        /// </summary>
+        public IRectangleSelectionGesture RectZoom { get; set; }
+        /// <summary>
+        /// Autoscroll zoom platform interface
+        /// </summary>
+        public IAutoScroll AutoScroll { get; set; }
+        /// <summary>
+        /// Canvas Control platform interface
+        /// </summary>
+        public IVirtualCanvasControl Graph { get; set; }
     }
 }
