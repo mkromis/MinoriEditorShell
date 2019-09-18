@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
@@ -53,5 +53,13 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Platforms\Wpf\ViewModels\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="ViewModels\VirtualCanvasViewModel.cs" />
     </ItemGroup>
 </Project>
