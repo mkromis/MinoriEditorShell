@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace MinoriEditorStudio.VirtualCanvas.Service
+namespace MinoriEditorStudio.VirtualCanvas.Services
 {
     public interface IMapZoom
     {

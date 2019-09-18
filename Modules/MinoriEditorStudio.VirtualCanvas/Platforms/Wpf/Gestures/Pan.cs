@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures

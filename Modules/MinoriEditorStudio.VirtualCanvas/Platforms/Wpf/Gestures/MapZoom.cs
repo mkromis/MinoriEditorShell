@@ -12,7 +12,7 @@ using System.Windows.Media.Animation;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Controls.Primitives;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures

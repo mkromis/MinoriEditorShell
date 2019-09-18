@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Drawing;
 
-namespace MinoriEditorStudio.VirtualCanvas.Service
+namespace MinoriEditorStudio.VirtualCanvas.Services
 {
     public interface IVirtualCanvasControl
     {

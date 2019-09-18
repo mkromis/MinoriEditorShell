@@ -6,7 +6,7 @@
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models;
 using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
-using MinoriEditorStudio.VirtualCanvas.Service;
+using MinoriEditorStudio.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
