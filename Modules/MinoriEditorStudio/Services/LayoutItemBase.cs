@@ -26,7 +26,7 @@ namespace MinoriEditorStudio.Services
         public String DisplayName
         {
             get => _displayName;
-            set => SetProperty(ref _displayName, value);
+            protected set => SetProperty(ref _displayName, value);
         }
 
         [Browsable(false)]
