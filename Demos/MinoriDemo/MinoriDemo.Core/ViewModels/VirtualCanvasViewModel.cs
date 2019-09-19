@@ -106,15 +106,17 @@ namespace MinoriDemo.Core.ViewModels
             set => Zoom.Value = value;
         }
 
-
-        public VirtualCanvasViewModel() : base()
+        public VirtualCanvasViewModel()
         {
-            CanClose = false;
-            DisplayName = "Virtual Canvas Sample";
-
             // Update Statusbar
             _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
             _statusbar.Text = "Loading";
+        }
+
+        public override void ViewAppeared()
+        {
+            CanClose = false;
+            DisplayName = "Virtual Canvas Sample";
 
             // Override ctrl with alt. (Test code)
             RectZoom.ConsoleModifiers = ConsoleModifiers.Alt;

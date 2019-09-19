@@ -6,6 +6,9 @@ using System.Windows.Controls;
 
 namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls
 {
+    /// <summary>
+    /// A wpf interface used to instanciate into a netstandard object
+    /// </summary>
     public class ContentCanvas : Canvas, IContentCanvas
     {
     }

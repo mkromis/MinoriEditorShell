@@ -16,7 +16,11 @@ namespace MinoriEditorStudio.Services
 	    private IUndoRedoManager _undoRedoManager;
         public IUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new UndoRedoManager());
 
-        public Boolean CanClose => true;
+        /// <summary>
+        /// Sets weather a document can be closed by close button
+        /// </summary>
+        public Boolean CanClose { get; protected set; } = true;
+
         /// <summary>
         /// Removes the document from manager
         /// </summary>
