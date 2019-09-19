@@ -37,7 +37,6 @@ namespace MinoriDemo.Core.ViewModels
 
         public Boolean ShowContextRibbon => true;
 
-        
         public ICommand OnHelpCommand => new MvxCommand(() =>
         {
             Mvx.IoCProvider.Resolve<IMessageBox>().Alert(
