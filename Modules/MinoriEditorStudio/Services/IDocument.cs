@@ -5,7 +5,7 @@ namespace MinoriEditorStudio.Services
 {
 	public interface IDocument : ILayoutItem
 	{
-        String DisplayName { get; set; }
+        String DisplayName { get; }
         IMvxView View { get; set; }
         IUndoRedoManager UndoRedoManager { get; }
         Boolean CanClose { get; }
