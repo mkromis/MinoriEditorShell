@@ -18,6 +18,12 @@ namespace MinoriEditorStudio.Platforms.Wpf.Converters
             return color == null ? null : 
                 new SolidColorBrush(Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B));
         }
-        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
+        {
+            SolidColorBrush brush = value as SolidColorBrush;
+            Color? color = brush?.Color;
+            return color == null ? System.Drawing.Color.Empty :
+                System.Drawing.Color.FromArgb(color.Value.R, color.Value.G, color.Value.B);
+        }
     }
 }
