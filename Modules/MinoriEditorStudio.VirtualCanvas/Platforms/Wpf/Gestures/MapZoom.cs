@@ -397,13 +397,22 @@ namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
         }
 
         /// <summary>
+        /// Overload to assist in platform interface
+        /// </summary>
+        /// <param name=""></param>
+        public void ZoomToRect(System.Drawing.RectangleF rectf)
+        {
+            Rect r = new Rect(rectf.X, rectf.Y, rectf.Width, rectf.Height);
+            ZoomToRect(r);
+        }
+
+        /// <summary>
         /// Animate a zoom out and translate scroll so that the given rectangle is entirely visible.
         /// </summary>
         /// <param name="r">Given rectangle is in "target" coordinates.</param>
         public void ZoomToRect(Rect r)
         {
             StopAnimations();
-
             // Convert it to container coordinates 
             Rect cr = _target.TransformToAncestor(_container).TransformBounds(r);
 
