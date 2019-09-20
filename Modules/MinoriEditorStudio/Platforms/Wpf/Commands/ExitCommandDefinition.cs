@@ -5,7 +5,7 @@ using MinoriEditorStudio.Commands;
 using MinoriEditorStudio.Platforms.Wpf.Commands;
 using MinoriEditorStudio.Properties;
 
-namespace MinoriEditorStudio.Modules.Platforms.Wpf.Commands
+namespace MinoriEditorStudio.Platforms.Wpf.Commands
 {
     [CommandDefinition]
     public class ExitCommandDefinition : CommandDefinition
