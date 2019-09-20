@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Modules.Platforms.Wpf.Commands;
+using MinoriEditorStudio.Platforms.Wpf.Commands;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.Threading;
 
