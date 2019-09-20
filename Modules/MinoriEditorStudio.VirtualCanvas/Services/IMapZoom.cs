@@ -7,5 +7,6 @@ namespace MinoriEditorStudio.VirtualCanvas.Services
     {
         event EventHandler<Double> ValueChanged;
         Double Value { get; set; }
+        void ZoomToRect(RectangleF rectangle);
     }
 }
