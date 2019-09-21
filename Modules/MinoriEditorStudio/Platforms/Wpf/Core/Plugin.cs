@@ -7,6 +7,8 @@ using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Modules.Services;
+using MvvmCross.Localization;
+using MvvmCross.Plugin.ResxLocalization;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
@@ -19,6 +21,9 @@ namespace MinoriEditorStudio.Platforms.Wpf
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
             //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsManager, SettingsViewModel>();
+
+            // I18N
+            Mvx.IoCProvider.RegisterSingleton<IMvxTextProvider>(new MvxResxTextProvider(Properties.Resources.ResourceManager));
 
             // Setup manager, is there a better way?
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
