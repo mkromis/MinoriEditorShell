@@ -21,7 +21,6 @@
     <ItemGroup>
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*" />
-        <None Remove="Platforms\Wpf\Services\MessageBox.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.4.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.0" />
@@ -29,6 +28,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     </ItemGroup>
 
