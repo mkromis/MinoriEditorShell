@@ -25,13 +25,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    </ItemGroup>
-
-    <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-        <Compile Include="Platforms\Netstandard\**\*.cs" />
-
-        <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-        <PackageReference Include="System.ComponentModel.Composition" Version="4.5.0" />
+        
+        <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
@@ -40,7 +35,6 @@
         </Page>
         <Compile Include="Platforms\Wpf\**\*.cs" />
 
-        <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
         <PackageReference Include="MahApps.Metro" Version="1.6.5" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.0" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
@@ -50,17 +44,5 @@
         <Reference Include="PresentationFramework" />
         <Reference Include="System.ComponentModel.Composition" />
         <Reference Include="WindowsBase" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Platforms\Wpf\ViewModels\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="ViewModels\VirtualCanvasViewModel.cs" />
     </ItemGroup>
 </Project>
