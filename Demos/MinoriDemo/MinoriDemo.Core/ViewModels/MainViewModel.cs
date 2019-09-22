@@ -8,6 +8,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Input;
 
@@ -17,6 +18,7 @@ namespace MinoriDemo.Core.ViewModels
     {
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
+        private Color _testcolor = Color.CornflowerBlue;
         private readonly ISettingsManager _settingsManager;
         //private readonly IThemeSettings _themeSettings;
         private readonly IThemeManager _themeManager;
@@ -42,6 +44,12 @@ namespace MinoriDemo.Core.ViewModels
             }
             //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
+
+        public Color TestColor
+        {
+            get => _testcolor;
+            set => SetProperty(ref _testcolor, value);
+        }
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
         //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
