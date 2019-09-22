@@ -20,8 +20,7 @@ namespace MinoriEditorStudio.Platforms.Wpf.Converters
         }
         public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
-            SolidColorBrush brush = value as SolidColorBrush;
-            Color? color = brush?.Color;
+            Color? color = value as Color?;
             return color == null ? System.Drawing.Color.Empty :
                 System.Drawing.Color.FromArgb(color.Value.R, color.Value.G, color.Value.B);
         }
