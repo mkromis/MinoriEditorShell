@@ -10,7 +10,6 @@ using MinoriEditorStudio.Services;
 using MinoriEditorStudio.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Views;
@@ -136,8 +135,5 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
 
             NavigationService.Close(this);
         }
-
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
-
     }
 }
