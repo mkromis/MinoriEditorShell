@@ -22,7 +22,7 @@ namespace MinoriEditorStudio.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MinoriEditorStudio.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MinoriEditorStudio.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MinoriEditorStudio.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Failed to set value: {0}.
         /// </summary>
-        public static string AdvancedSliderCommitErrorFormat {
+        internal static string AdvancedSliderCommitErrorFormat {
             get {
                 return ResourceManager.GetString("AdvancedSliderCommitErrorFormat", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to All Files.
         /// </summary>
-        public static string AllFiles {
+        internal static string AllFiles {
             get {
                 return ResourceManager.GetString("AllFiles", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to All Supported Files.
         /// </summary>
-        public static string AllSupportedFiles {
+        internal static string AllSupportedFiles {
             get {
                 return ResourceManager.GetString("AllSupportedFiles", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Edit.
         /// </summary>
-        public static string EditMenuText {
+        internal static string EditMenuText {
             get {
                 return ResourceManager.GetString("EditMenuText", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Redo.
         /// </summary>
-        public static string EditRedoCommandText {
+        internal static string EditRedoCommandText {
             get {
                 return ResourceManager.GetString("EditRedoCommandText", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Redo.
         /// </summary>
-        public static string EditRedoCommandToolTip {
+        internal static string EditRedoCommandToolTip {
             get {
                 return ResourceManager.GetString("EditRedoCommandToolTip", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Undo.
         /// </summary>
-        public static string EditUndoCommandText {
+        internal static string EditUndoCommandText {
             get {
                 return ResourceManager.GetString("EditUndoCommandText", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Undo.
         /// </summary>
-        public static string EditUndoCommandToolTip {
+        internal static string EditUndoCommandToolTip {
             get {
                 return ResourceManager.GetString("EditUndoCommandToolTip", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Close.
         /// </summary>
-        public static string FileCloseCommandText {
+        internal static string FileCloseCommandText {
             get {
                 return ResourceManager.GetString("FileCloseCommandText", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string FileCloseCommandToolTip {
+        internal static string FileCloseCommandToolTip {
             get {
                 return ResourceManager.GetString("FileCloseCommandToolTip", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to E_xit.
         /// </summary>
-        public static string FileExitCommandText {
+        internal static string FileExitCommandText {
             get {
                 return ResourceManager.GetString("FileExitCommandText", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
-        public static string FileExitCommandToolTip {
+        internal static string FileExitCommandToolTip {
             get {
                 return ResourceManager.GetString("FileExitCommandToolTip", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _File.
         /// </summary>
-        public static string FileMenuText {
+        internal static string FileMenuText {
             get {
                 return ResourceManager.GetString("FileMenuText", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _New.
         /// </summary>
-        public static string FileNewCommandText {
+        internal static string FileNewCommandText {
             get {
                 return ResourceManager.GetString("FileNewCommandText", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
-        public static string FileNewCommandToolTip {
+        internal static string FileNewCommandToolTip {
             get {
                 return ResourceManager.GetString("FileNewCommandToolTip", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Untitled {0}.
         /// </summary>
-        public static string FileNewUntitled {
+        internal static string FileNewUntitled {
             get {
                 return ResourceManager.GetString("FileNewUntitled", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Open.
         /// </summary>
-        public static string FileOpenCommandText {
+        internal static string FileOpenCommandText {
             get {
                 return ResourceManager.GetString("FileOpenCommandText", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string FileOpenCommandToolTip {
+        internal static string FileOpenCommandToolTip {
             get {
                 return ResourceManager.GetString("FileOpenCommandToolTip", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Recent Files.
         /// </summary>
-        public static string FileRecentFilesCommandText {
+        internal static string FileRecentFilesCommandText {
             get {
                 return ResourceManager.GetString("FileRecentFilesCommandText", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Recent Files.
         /// </summary>
-        public static string FileRecentFilesCommandToolTip {
+        internal static string FileRecentFilesCommandToolTip {
             get {
                 return ResourceManager.GetString("FileRecentFilesCommandToolTip", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save All.
         /// </summary>
-        public static string FileSaveAllCommandText {
+        internal static string FileSaveAllCommandText {
             get {
                 return ResourceManager.GetString("FileSaveAllCommandText", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save All.
         /// </summary>
-        public static string FileSaveAllCommandToolTip {
+        internal static string FileSaveAllCommandToolTip {
             get {
                 return ResourceManager.GetString("FileSaveAllCommandToolTip", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save _As....
         /// </summary>
-        public static string FileSaveAsCommandText {
+        internal static string FileSaveAsCommandText {
             get {
                 return ResourceManager.GetString("FileSaveAsCommandText", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save As.
         /// </summary>
-        public static string FileSaveAsCommandToolTip {
+        internal static string FileSaveAsCommandToolTip {
             get {
                 return ResourceManager.GetString("FileSaveAsCommandToolTip", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Save.
         /// </summary>
-        public static string FileSaveCommandText {
+        internal static string FileSaveCommandText {
             get {
                 return ResourceManager.GetString("FileSaveCommandText", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        public static string FileSaveCommandToolTip {
+        internal static string FileSaveCommandToolTip {
             get {
                 return ResourceManager.GetString("FileSaveCommandToolTip", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Help.
         /// </summary>
-        public static string HelpMenuText {
+        internal static string HelpMenuText {
             get {
                 return ResourceManager.GetString("HelpMenuText", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
-        public static string HistoryDisplayName {
+        internal static string HistoryDisplayName {
             get {
                 return ResourceManager.GetString("HistoryDisplayName", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Initial State.
         /// </summary>
-        public static string HistoryInitialState {
+        internal static string HistoryInitialState {
             get {
                 return ResourceManager.GetString("HistoryInitialState", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
-        public static string LanguageSystem {
+        internal static string LanguageSystem {
             get {
                 return ResourceManager.GetString("LanguageSystem", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Auto hide main menu.
         /// </summary>
-        public static string MainMenuSettingsAutoHideMainMenu {
+        internal static string MainMenuSettingsAutoHideMainMenu {
             get {
                 return ResourceManager.GetString("MainMenuSettingsAutoHideMainMenu", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Color Theme:.
         /// </summary>
-        public static string MainMenuSettingsColorTheme {
+        internal static string MainMenuSettingsColorTheme {
             get {
                 return ResourceManager.GetString("MainMenuSettingsColorTheme", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Language:.
         /// </summary>
-        public static string MainMenuSettingsLanguage {
+        internal static string MainMenuSettingsLanguage {
             get {
                 return ResourceManager.GetString("MainMenuSettingsLanguage", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Requires restart.
         /// </summary>
-        public static string MainMenuSettingsLanguageRestart {
+        internal static string MainMenuSettingsLanguageRestart {
             get {
                 return ResourceManager.GetString("MainMenuSettingsLanguageRestart", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to [Default Title].
         /// </summary>
-        public static string MainWindowDefaultTitle {
+        internal static string MainWindowDefaultTitle {
             get {
                 return ResourceManager.GetString("MainWindowDefaultTitle", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save changes to the {0} &quot;{1}&quot; before closing?.
         /// </summary>
-        public static string SaveChangesBeforeClosingMessage {
+        internal static string SaveChangesBeforeClosingMessage {
             get {
                 return ResourceManager.GetString("SaveChangesBeforeClosingMessage", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
-        public static string SettingsDisplayName {
+        internal static string SettingsDisplayName {
             get {
                 return ResourceManager.GetString("SettingsDisplayName", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
-        public static string SettingsPageGeneral {
+        internal static string SettingsPageGeneral {
             get {
                 return ResourceManager.GetString("SettingsPageGeneral", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Environment.
         /// </summary>
-        public static string SettingsPathEnvironment {
+        internal static string SettingsPathEnvironment {
             get {
                 return ResourceManager.GetString("SettingsPathEnvironment", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Blue.
         /// </summary>
-        public static string ThemeBlueName {
+        internal static string ThemeBlueName {
             get {
                 return ResourceManager.GetString("ThemeBlueName", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
-        public static string ThemeDarkName {
+        internal static string ThemeDarkName {
             get {
                 return ResourceManager.GetString("ThemeDarkName", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
-        public static string ThemeLightName {
+        internal static string ThemeLightName {
             get {
                 return ResourceManager.GetString("ThemeLightName", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Standard.
         /// </summary>
-        public static string ToolBarStandard {
+        internal static string ToolBarStandard {
             get {
                 return ResourceManager.GetString("ToolBarStandard", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
-        public static string ToolboxCategory {
+        internal static string ToolboxCategory {
             get {
                 return ResourceManager.GetString("ToolboxCategory", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Toolbox.
         /// </summary>
-        public static string ToolboxDisplayName {
+        internal static string ToolboxDisplayName {
             get {
                 return ResourceManager.GetString("ToolboxDisplayName", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Tools.
         /// </summary>
-        public static string ToolsMenuText {
+        internal static string ToolsMenuText {
             get {
                 return ResourceManager.GetString("ToolsMenuText", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Options.
         /// </summary>
-        public static string ToolsOptionsCommandText {
+        internal static string ToolsOptionsCommandText {
             get {
                 return ResourceManager.GetString("ToolsOptionsCommandText", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
-        public static string ToolsOptionsCommandToolTip {
+        internal static string ToolsOptionsCommandToolTip {
             get {
                 return ResourceManager.GetString("ToolsOptionsCommandToolTip", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Full Screen.
         /// </summary>
-        public static string ViewFullScreenCommandText {
+        internal static string ViewFullScreenCommandText {
             get {
                 return ResourceManager.GetString("ViewFullScreenCommandText", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Full Screen.
         /// </summary>
-        public static string ViewFullScreenCommandToolTip {
+        internal static string ViewFullScreenCommandToolTip {
             get {
                 return ResourceManager.GetString("ViewFullScreenCommandToolTip", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _History.
         /// </summary>
-        public static string ViewHistoryCommandText {
+        internal static string ViewHistoryCommandText {
             get {
                 return ResourceManager.GetString("ViewHistoryCommandText", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
-        public static string ViewHistoryCommandToolTip {
+        internal static string ViewHistoryCommandToolTip {
             get {
                 return ResourceManager.GetString("ViewHistoryCommandToolTip", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _View.
         /// </summary>
-        public static string ViewMenuText {
+        internal static string ViewMenuText {
             get {
                 return ResourceManager.GetString("ViewMenuText", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Toolbo_x.
         /// </summary>
-        public static string ViewToolboxCommandText {
+        internal static string ViewToolboxCommandText {
             get {
                 return ResourceManager.GetString("ViewToolboxCommandText", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Toolbox.
         /// </summary>
-        public static string ViewToolboxCommandToolTip {
+        internal static string ViewToolboxCommandToolTip {
             get {
                 return ResourceManager.GetString("ViewToolboxCommandToolTip", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace MinoriEditorStudio.Properties {
         /// <summary>
         ///   Looks up a localized string similar to _Window.
         /// </summary>
-        public static string WindowMenuText {
+        internal static string WindowMenuText {
             get {
                 return ResourceManager.GetString("WindowMenuText", resourceCulture);
             }

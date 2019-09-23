@@ -4,7 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MinoriEditorStudio.Extensions;
+using MinoriEditorStudio.Platforms.Wpf.Extensions;
 using MinoriEditorStudio.Properties;
 using MinoriEditorStudio.Services;
 using MinoriEditorStudio.ViewModels;

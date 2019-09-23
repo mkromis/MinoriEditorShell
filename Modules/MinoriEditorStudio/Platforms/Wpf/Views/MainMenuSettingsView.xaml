@@ -5,18 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:viewModels="clr-namespace:MinoriEditorStudio.Platforms.Wpf.ViewModels"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:resx="clr-namespace:MinoriEditorStudio.Properties"
     xmlns:p="clr-namespace:MinoriEditorStudio.Properties"
     xmlns:converters="clr-namespace:MinoriEditorStudio.Converters"
     x:Class="MinoriEditorStudio.Platforms.Wpf.Views.MainMenuSettingsView" mc:Ignorable="d" d:DesignHeight="300"
     d:DesignWidth="300" d:DataContext="{d:DesignInstance viewModels:MainMenuSettingsViewModel}"
     IsTabStop="False">
+    <!--xmlns:l="http://gu.se/Localization" l:ErrorHandling.Mode="ReturnErrorInfoPreserveNeutral"-->
     <UserControl.Resources>
         <converters:CultureInfoNameConverter x:Key="CultureInfoNameConverter" />
     </UserControl.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-            <Label Width="100" x:Name="ColorThemeLabel" Content="{x:Static resx:Resources.MainMenuSettingsColorTheme}"/>
+            <Label Width="100" Content="MainMenuSettingsColorTheme"/> <!--"{l:Static p:Resources.MainMenuSettingsColorTheme}" />-->
             <ComboBox ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -26,7 +26,7 @@
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-            <Label Width="100" Content="{x:Static resx:Resources.MainMenuSettingsLanguage}"/>
+            <Label Width="100" Content="MainMenuSettingsLanguage"/> <!--l:Static p:Resources.MainMenuSettingsLanguage}" />-->
             <ComboBox ItemsSource="{Binding Languages}"
                       SelectedItem="{Binding SelectedLanguage}">
                 <ComboBox.ItemTemplate>
@@ -37,8 +37,8 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Label Content="{x:Static resx:Resources.MainMenuSettingsLanguageRestart}"/>
+            <Label Content="MainMenuSettingsLanguageRestart"/>   <!--"{l:Static p:Resources.MainMenuSettingsLanguageRestart}" />-->
         </StackPanel>
-        <CheckBox IsChecked="{Binding AutoHideMainMenu}" Margin="0 5 0 0" Content="{x:Static resx:Resources.MainMenuSettingsAutoHideMainMenu}"/>   
+        <CheckBox IsChecked="{Binding AutoHideMainMenu}" Margin="0 5 0 0" Content="MainMenuSettingsAutoHideMainMenu"/>   <!--"{l:Static p:Resources.MainMenuSettingsAutoHideMainMenu}" />-->
     </StackPanel>
 </mvx:MvxWpfView>
