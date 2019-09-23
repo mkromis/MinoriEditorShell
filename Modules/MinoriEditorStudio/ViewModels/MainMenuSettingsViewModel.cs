@@ -1,6 +1,5 @@
 using MinoriEditorStudio.Services;
 using MvvmCross;
-using MvvmCross.Localization;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
 using System;
@@ -69,8 +68,6 @@ namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
         public String SettingsPageName => Properties.Resources.SettingsPageGeneral;
 
         public String SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
-
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         public IMvxView View { get; set; }
 
