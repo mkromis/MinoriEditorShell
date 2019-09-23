@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Extensions
+namespace MinoriEditorStudio.Extensions
 {
     public static class IocProviderExtensions
     {

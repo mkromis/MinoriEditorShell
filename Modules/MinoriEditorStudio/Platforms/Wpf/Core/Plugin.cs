@@ -7,6 +7,9 @@ using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using MinoriEditorStudio.Platforms.Wpf.ViewModels;
 using MinoriEditorStudio.Modules.Services;
+using MvvmCross.Localization;
+using MvvmCross.Plugin.ResxLocalization;
+using MinoriEditorStudio.Properties;
 
 namespace MinoriEditorStudio.Platforms.Wpf
 {
