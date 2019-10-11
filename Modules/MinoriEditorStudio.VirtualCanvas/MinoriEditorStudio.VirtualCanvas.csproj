@@ -18,13 +18,15 @@
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*.cs" />
 
-        <PackageReference Include="MvvmCross" Version="6.4.0" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.0" />
+        <PackageReference Include="MvvmCross" Version="6.4.1" />
+
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />
         <PackageReference Include="GitVersionTask" Version="5.0.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
         
         <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
     </ItemGroup>
@@ -36,7 +38,7 @@
         <Compile Include="Platforms\Wpf\**\*.cs" />
 
         <PackageReference Include="MahApps.Metro" Version="1.6.5" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.0" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
         <PackageReference Include="Xceed.Wpf.AvalonDock.Themes.VS2013" Version="2.9.0.1" />
 
