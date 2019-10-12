@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 
 namespace SimpleDemo.RibbonWPF

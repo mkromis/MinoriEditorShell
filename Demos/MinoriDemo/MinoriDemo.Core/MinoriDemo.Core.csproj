@@ -11,15 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="6.4.0" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.0" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="MvvmCross" Version="6.4.1" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj" />
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
   </ItemGroup>
 
 </Project>

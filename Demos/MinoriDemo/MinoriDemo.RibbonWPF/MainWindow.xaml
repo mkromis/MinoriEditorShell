@@ -1,13 +1,13 @@
-<minori:MesRibbonWindow
+<ribbon:MesRibbonWindow
     x:Class="MinoriDemo.RibbonWPF.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:minori="clr-namespace:MinoriEditorStudio.Ribbon.Platform.Wpf.Views;assembly=MinoriEditorStudio.Ribbon"
+    xmlns:ribbon="clr-namespace:MinoriEditorShell.Ribbon.Platform.Wpf.Views;assembly=MinoriEditorShell.Ribbon"
     mc:Ignorable="d"
-    Title="MainWindow" Height="450" Width="800">
+    Title="Minori Demo App" Height="450" Width="800">
     <Grid>
         
     </Grid>
-</minori:MesRibbonWindow>
+</ribbon:MesRibbonWindow>

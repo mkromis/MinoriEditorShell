@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MinoriEditorStudio.Platforms.Wpf.Extensions;
-using MinoriEditorStudio.Platforms.Wpf.Themes;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Extensions;
+using MinoriEditorShell.Platforms.Wpf.Themes;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.RibbonTests.Wpf.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.RibbonTests.Wpf.Platforms.Wpf.Extensions
 {
     [TestClass]
     public class IThemeTests : MvvmCross.Tests.MvxIoCSupportingTest
@@ -15,7 +15,7 @@ namespace MinoriEditorStudio.RibbonTests.Wpf.Platforms.Wpf.Extensions
             String s = System.IO.Packaging.PackUriHelper.UriSchemePack;
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void RibbonTest()
         {
             Setup(); 

@@ -6,9 +6,9 @@
     xmlns:fluent="urn:fluent-ribbon"
     xmlns:local="clr-namespace:MinoriDemo.RibbonWPF.Views"
     xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
-    xmlns:mes="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Views;assembly=MinoriEditorStudio"
+    xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:Converters="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters;assembly=MinoriEditorStudio"
+    xmlns:Converters="clr-namespace:MinoriEditorShell.Platforms.Wpf.Converters;assembly=MinoriEditorShell"
     x:Class="MinoriDemo.RibbonWPF.Views.MainView"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800">
