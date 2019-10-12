@@ -117,9 +117,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorStudio.Ribbon.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
-      <Name>MinoriEditorStudio.Ribbon</Name>
+      <Name>MinoriEditorShell.Ribbon</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj">
       <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
