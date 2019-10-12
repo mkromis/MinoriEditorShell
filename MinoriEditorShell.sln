@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.RibbonWPF", "Dem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShell.Ribbon", "Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj", "{ED2E6A4C-FE20-4CB8-953E-880C1EE31AE6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorStudio.VirtualCanvas", "Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj", "{B8BA7A12-25B1-445D-93B8-D0F34226D053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShell.VirtualCanvas", "Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj", "{B8BA7A12-25B1-445D-93B8-D0F34226D053}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MinoriDemo", "MinoriDemo", "{0D78D57D-5ED4-4898-A3E5-39C7B5ECEF0C}"
 EndProject
