@@ -109,7 +109,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.Ribbon\MinoriEditorStudio.Ribbon.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorStudio.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
       <Name>MinoriEditorStudio.Ribbon</Name>
     </ProjectReference>

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Interactivity;
 using MahApps.Metro.Controls;
 
-namespace MinoriEditorStudio.Framework.Behaviors
+namespace MinoriEditorShell.Framework.Behaviors
 {
     // Copied from MahApp's GlowWindowBehavior, because that one has a bug if GlowBrush is set in a style, rather than directly.
     public class CustomGlowWindowBehavior : Behavior<MetroWindow>
