@@ -15,7 +15,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
     public class NullObjectToVisibiltyConverter : IValueConverter
     {

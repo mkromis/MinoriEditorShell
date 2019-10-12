@@ -2,7 +2,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.ComponentModel;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public interface IUndoRedoManager : INotifyPropertyChanged
     {

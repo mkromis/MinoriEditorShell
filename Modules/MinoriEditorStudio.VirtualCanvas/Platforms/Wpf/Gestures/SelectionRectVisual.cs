@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
 
-namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures
+namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 {
     /// <summary>
     /// Create a host visual derived from the FrameworkElement class for drawing the

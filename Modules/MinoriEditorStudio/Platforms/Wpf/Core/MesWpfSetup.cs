@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Messages;
-using MinoriEditorStudio.Platforms.Wpf.Presenters;
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.Platforms.Wpf.Views;
+using MinoriEditorShell.Messages;
+using MinoriEditorShell.Platforms.Wpf.Presenters;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.Platforms.Wpf.Views;
 using MvvmCross;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Core;
@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {

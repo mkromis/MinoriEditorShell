@@ -1,9 +1,9 @@
 using Microsoft.Win32;
-using MinoriEditorStudio.Results;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Results;
+using MinoriEditorShell.Services;
 using System;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Results
+namespace MinoriEditorShell.Platforms.Wpf.Results
 {
 	public static class Show
 	{

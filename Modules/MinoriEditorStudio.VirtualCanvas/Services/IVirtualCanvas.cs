@@ -1,7 +1,7 @@
-﻿using MinoriEditorStudio.Services;
+﻿using MinoriEditorShell.Services;
 using System;
 
-namespace MinoriEditorStudio.VirtualCanvas.Services
+namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public interface IVirtualCanvas : IDocument
     {

@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Models
+namespace MinoriEditorShell.Models
 {
 	public class MenuItemSeparator : MenuItemBase
 	{

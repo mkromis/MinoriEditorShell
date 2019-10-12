@@ -13,7 +13,7 @@
 using System;
 using System.Windows.Data;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
     public class BoolToInsertModeConverter : IValueConverter
     {

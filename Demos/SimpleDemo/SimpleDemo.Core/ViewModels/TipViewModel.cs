@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using SimpleDemo.Core.Services;
 using System.Threading.Tasks;
 

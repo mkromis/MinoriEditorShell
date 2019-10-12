@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public interface IHistoryTool : ITool
     {

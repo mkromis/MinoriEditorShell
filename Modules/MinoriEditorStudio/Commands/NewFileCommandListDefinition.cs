@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     [CommandDefinition]
     public class NewFileCommandListDefinition : CommandListDefinition

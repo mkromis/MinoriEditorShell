@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.Modules.Services
+namespace MinoriEditorShell.Modules.Services
 {
     [Export(typeof(ILayoutItemStatePersister))]
     public class LayoutItemStatePersister : ILayoutItemStatePersister

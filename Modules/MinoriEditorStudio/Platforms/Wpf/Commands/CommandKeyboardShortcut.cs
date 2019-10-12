@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using MvvmCross;
 using System;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public abstract class CommandKeyboardShortcut
     {

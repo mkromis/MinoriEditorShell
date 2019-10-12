@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
 {
     /// <summary>
     /// This class implements a high precision timer using the Win32 QueryPerformanceCounter API.

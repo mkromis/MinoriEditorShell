@@ -1,11 +1,11 @@
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
-using MinoriEditorStudio.Platforms.Wpf.Menus;
-using MinoriEditorStudio.Properties;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorShell.Platforms.Wpf.Menus;
+using MinoriEditorShell.Properties;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public static class MenuDefinitions
     {

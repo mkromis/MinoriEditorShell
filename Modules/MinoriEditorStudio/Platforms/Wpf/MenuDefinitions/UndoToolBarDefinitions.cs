@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.ToolBars;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
+namespace MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection
 {
     public static class UndoToolBarDefinitions
     {

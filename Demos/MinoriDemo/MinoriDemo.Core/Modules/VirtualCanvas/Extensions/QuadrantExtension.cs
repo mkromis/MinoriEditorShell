@@ -1,5 +1,5 @@
 ﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 
 namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions

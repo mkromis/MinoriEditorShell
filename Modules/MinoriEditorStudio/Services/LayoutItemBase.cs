@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
 	public abstract class LayoutItemBase : MvxViewModel, ILayoutItem
 	{

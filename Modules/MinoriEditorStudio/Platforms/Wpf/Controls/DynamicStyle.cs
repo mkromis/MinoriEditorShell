@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     // Based on http://stackoverflow.com/questions/9490264/dynamicresource-for-style-basedon
     public class DynamicStyle

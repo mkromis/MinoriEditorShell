@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public enum HistoryItemType
     {

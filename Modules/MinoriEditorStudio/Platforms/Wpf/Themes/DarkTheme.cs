@@ -1,9 +1,9 @@
-using MinoriEditorStudio.Platforms.Wpf.Extensions;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Extensions;
+using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Themes
+namespace MinoriEditorShell.Platforms.Wpf.Themes
 {
     public class DarkTheme : ITheme
     {

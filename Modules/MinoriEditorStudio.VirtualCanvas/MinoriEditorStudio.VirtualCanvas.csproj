@@ -27,8 +27,6 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-        
-        <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
@@ -46,5 +44,9 @@
         <Reference Include="PresentationFramework" />
         <Reference Include="System.ComponentModel.Composition" />
         <Reference Include="WindowsBase" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorShell.csproj" />
     </ItemGroup>
 </Project>

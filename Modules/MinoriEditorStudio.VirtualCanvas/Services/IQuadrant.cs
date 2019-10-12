@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace MinoriEditorStudio.VirtualCanvas.Services
+namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public interface IQuadrant<T>
     {

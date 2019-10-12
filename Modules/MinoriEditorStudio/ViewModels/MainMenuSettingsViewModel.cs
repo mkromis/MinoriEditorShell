@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class MainMenuSettingsViewModel : MvxViewModel, ISettingsEditor

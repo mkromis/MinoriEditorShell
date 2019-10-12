@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Platforms.Wpf.Services;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Services;
+using MinoriEditorShell.Services;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
 #warning ViewAware
     [Export(typeof(IToolBars))]

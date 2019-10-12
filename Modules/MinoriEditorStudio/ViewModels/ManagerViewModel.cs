@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;
 using System.IO;
 
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public class ManagerViewModel : MvxViewModel, IManager
     {

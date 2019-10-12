@@ -1,7 +1,7 @@
 using MvvmCross.ViewModels;
 using System;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     public class Command : MvxNotifyPropertyChanged
     {

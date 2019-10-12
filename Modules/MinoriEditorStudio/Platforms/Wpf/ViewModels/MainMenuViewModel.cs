@@ -1,13 +1,13 @@
-using MinoriEditorStudio.Messages;
+using MinoriEditorShell.Messages;
 using MvvmCross.Plugin.Messenger;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Services;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IMenu))]
     public class MainMenuViewModel : MenuModel, IPartImportsSatisfiedNotification

@@ -6,7 +6,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-using MinoriEditorStudio.Platforms.Wpf.Win32;
+using MinoriEditorShell.Platforms.Wpf.Win32;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -15,7 +15,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     /// <summary>
     /// A control that enables graphics rendering inside a WPF control through

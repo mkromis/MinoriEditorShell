@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Models;
+using MinoriEditorShell.Models;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public interface IMenu : ICollection<MenuItemBase>
 	{

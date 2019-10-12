@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Platforms.Wpf.Win32;
+using MinoriEditorShell.Platforms.Wpf.Win32;
 using System;
 using System.Windows;
 using System.Windows.Interactivity;
 using System.Windows.Interop;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Behaviors
+namespace MinoriEditorShell.Platforms.Wpf.Behaviors
 {
     public class WindowOptionsBehavior : Behavior<Window>
     {

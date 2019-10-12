@@ -1,4 +1,4 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Services;
+﻿using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

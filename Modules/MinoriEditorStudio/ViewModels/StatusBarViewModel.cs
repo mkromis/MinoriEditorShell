@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross.UI;
 using MvvmCross.ViewModels;
 using System;
@@ -7,7 +7,7 @@ using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Windows;
 
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     /// <summary>
     /// Class Wider Status bar

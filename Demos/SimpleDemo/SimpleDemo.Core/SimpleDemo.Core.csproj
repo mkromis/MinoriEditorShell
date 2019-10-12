@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorShell.csproj" />
   </ItemGroup>
 
 </Project>

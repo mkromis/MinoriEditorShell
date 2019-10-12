@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public class SettingsPageViewModel
     {

@@ -4,17 +4,17 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MinoriEditorStudio.Extensions;
-using MinoriEditorStudio.Properties;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.ViewModels;
+using MinoriEditorShell.Extensions;
+using MinoriEditorShell.Properties;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     public class SettingsViewModel : WindowBase, ISettingsManager
     {

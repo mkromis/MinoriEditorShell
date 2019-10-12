@@ -9,7 +9,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class HwndMouseState
     {

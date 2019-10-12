@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.Results
+namespace MinoriEditorShell.Results
 {
     public class ShowToolResult<TTool> : OpenResultBase<TTool>
 		where TTool : ITool

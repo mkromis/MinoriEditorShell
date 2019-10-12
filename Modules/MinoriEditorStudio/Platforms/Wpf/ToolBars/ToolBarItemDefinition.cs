@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Commands;
+using MinoriEditorShell.Commands;
 using System;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ToolBars
+namespace MinoriEditorShell.Platforms.Wpf.ToolBars
 {
     public abstract class ToolBarItemDefinition
     {

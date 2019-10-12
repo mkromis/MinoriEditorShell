@@ -3,7 +3,7 @@ using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public abstract class Tool : LayoutItemBase, ITool
 	{

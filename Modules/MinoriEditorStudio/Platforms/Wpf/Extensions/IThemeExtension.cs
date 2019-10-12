@@ -1,11 +1,11 @@
-﻿using MinoriEditorStudio.Services;
+﻿using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.Platforms.Wpf.Extensions
 {
     public static class IThemeExtension
     {

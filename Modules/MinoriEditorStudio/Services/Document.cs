@@ -4,7 +4,7 @@ using MvvmCross;
 using System;
 using MvvmCross.Views;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public abstract class Document : LayoutItemBase, IDocument
 #warning fix command handler inherit.

@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     public interface IMenuBuilder
     {

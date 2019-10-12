@@ -1,11 +1,11 @@
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [Export(typeof(ICommandKeyGestureService))]
     public class CommandKeyGestureService : ICommandKeyGestureService

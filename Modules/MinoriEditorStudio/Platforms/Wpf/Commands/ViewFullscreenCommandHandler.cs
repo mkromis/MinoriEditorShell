@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using System.Windows;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Threading;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Threading;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class ViewFullScreenCommandHandler : CommandHandlerBase<ViewFullScreenCommandDefinition>

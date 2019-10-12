@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.ViewModels;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.ViewModels;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Design
+namespace MinoriEditorShell.Platforms.Wpf.Design
 {
     public class DesignTimeHistoryViewModel : HistoryViewModel
     {

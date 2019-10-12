@@ -1,11 +1,11 @@
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.ViewModels;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for HistoryView.xaml

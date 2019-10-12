@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Commands;
+using MinoriEditorShell.Commands;
 using MvvmCross;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public class TargetableCommand : ICommand
     {

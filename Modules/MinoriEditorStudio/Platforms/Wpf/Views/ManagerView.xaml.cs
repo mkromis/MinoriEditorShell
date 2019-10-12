@@ -1,5 +1,5 @@
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.ViewModels;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.ViewModels;
 using MvvmCross;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using Xceed.Wpf.AvalonDock.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     public partial class ManagerView : IManagerView
 	{

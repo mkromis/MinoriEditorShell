@@ -1,6 +1,6 @@
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
 #warning ModuleBase
     [Export(typeof(IModule))]

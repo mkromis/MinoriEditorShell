@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     /// <summary>
     /// Slider that exposes the thumb drag started / completed events directly

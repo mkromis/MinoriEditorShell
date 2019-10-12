@@ -1,11 +1,11 @@
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ToolBars
+namespace MinoriEditorShell.Platforms.Wpf.ToolBars
 {
     public class CommandToolBarItemDefinition<TCommandDefinition> : ToolBarItemDefinition
         where TCommandDefinition : CommandDefinitionBase

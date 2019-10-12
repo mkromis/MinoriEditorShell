@@ -1,9 +1,9 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Wpf
 {
     public abstract class PersistedDocument : Document, IPersistedDocument
     {

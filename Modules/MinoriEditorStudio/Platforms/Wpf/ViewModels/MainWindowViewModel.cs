@@ -2,13 +2,13 @@ using System;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
-using MinoriEditorStudio.Properties;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
+using MinoriEditorShell.Properties;
+using MinoriEditorShell.Services;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
 #warning Conductor<IShell>
     [Export(typeof(IMainWindow))]

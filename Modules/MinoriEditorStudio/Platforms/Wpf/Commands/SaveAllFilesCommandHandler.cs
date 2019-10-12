@@ -1,12 +1,12 @@
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class SaveAllFilesCommandHandler : CommandHandlerBase<SaveAllFilesCommandDefinition>

@@ -1,10 +1,10 @@
 using System;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Results;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Results;
+using MinoriEditorShell.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Results
+namespace MinoriEditorShell.Platforms.Wpf.Results
 {
     public class OpenDocumentResult : OpenResultBase<IDocument>
 	{

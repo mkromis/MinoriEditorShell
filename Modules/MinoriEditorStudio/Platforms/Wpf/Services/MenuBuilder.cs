@@ -1,13 +1,13 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
-using MinoriEditorStudio.Platforms.Wpf.Menus;
-using MinoriEditorStudio.Platforms.Wpf.Models;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorShell.Platforms.Wpf.Menus;
+using MinoriEditorShell.Platforms.Wpf.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     [Export(typeof(IMenuBuilder))]
     public class MenuBuilder : IMenuBuilder

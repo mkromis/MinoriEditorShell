@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Models
+namespace MinoriEditorShell.Platforms.Wpf.Models
 {
     public class CommandMenuItem : StandardMenuItem, ICommandUiItem
     {

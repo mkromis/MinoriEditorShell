@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using System.Windows;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     public interface IMainWindow
     {

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using MinoriEditorStudio.Commands;
+using MinoriEditorShell.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [Export(typeof(ICommandRouter))]
     public class CommandRouter : ICommandRouter

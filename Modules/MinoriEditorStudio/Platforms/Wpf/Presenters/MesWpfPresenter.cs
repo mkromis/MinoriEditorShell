@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Presenters
+namespace MinoriEditorShell.Platforms.Wpf.Presenters
 {
     public class MesWpfPresenter : MvxWpfViewPresenter
     {

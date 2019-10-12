@@ -1,12 +1,12 @@
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
-using MinoriEditorStudio.Platforms.Wpf.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Menus
+namespace MinoriEditorShell.Platforms.Wpf.Menus
 {
     public class CommandMenuItemDefinition<TCommandDefinition> : MenuItemDefinition
         where TCommandDefinition : CommandDefinitionBase

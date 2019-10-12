@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Properties;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Properties;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [CommandDefinition]
     public class SaveFileCommandDefinition : CommandDefinition

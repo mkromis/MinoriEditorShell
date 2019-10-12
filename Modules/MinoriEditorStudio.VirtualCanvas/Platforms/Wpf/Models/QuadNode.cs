@@ -3,10 +3,10 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.VirtualCanvas.Services;
 using System.Drawing;
 
-namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
 {
     /// <summary>
     /// Each node stored in the tree has a position, width & height.

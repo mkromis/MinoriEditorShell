@@ -1,6 +1,6 @@
-using MinoriEditorStudio.Platforms.Wpf.Menus;
+using MinoriEditorShell.Platforms.Wpf.Menus;
 
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
+namespace MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection
 {
     public class ExcludeMenuDefinition
     {
