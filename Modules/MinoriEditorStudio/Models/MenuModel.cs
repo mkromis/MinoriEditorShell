@@ -1,8 +1,8 @@
 
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using System.Collections.ObjectModel;
 
-namespace MinoriEditorStudio.Models
+namespace MinoriEditorShell.Models
 {
 	public class MenuModel : ObservableCollection<MenuItemBase>, IMenu
 	{

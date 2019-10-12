@@ -2,12 +2,12 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Services;
 using Microsoft.Win32;
 using System;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class OpenFileCommandHandler : CommandHandlerBase<OpenFileCommandDefinition>

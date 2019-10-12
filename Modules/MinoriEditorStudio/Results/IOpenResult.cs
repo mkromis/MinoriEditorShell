@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Results
+namespace MinoriEditorShell.Results
 {
 #warning IResult
     public interface IOpenResult<TChild> /*: IResult*/

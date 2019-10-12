@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ToolboxItemAttribute : Attribute

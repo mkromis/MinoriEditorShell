@@ -1,4 +1,4 @@
-﻿namespace MinoriEditorStudio.VirtualCanvas.Services
+﻿namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public interface IAutoScroll
     {

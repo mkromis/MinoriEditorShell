@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
 	public interface IModule
 	{

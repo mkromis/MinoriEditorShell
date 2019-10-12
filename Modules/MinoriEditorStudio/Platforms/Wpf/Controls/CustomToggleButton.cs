@@ -1,6 +1,6 @@
 using System.Windows.Controls.Primitives;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class CustomToggleButton : ToggleButton
     {

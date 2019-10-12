@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Platforms.Wpf.Win32;
+using MinoriEditorShell.Platforms.Wpf.Win32;
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class ClippingHwndHost : HwndHost
     {

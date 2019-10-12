@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
+namespace MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection
 {
     public class ExcludeMenuItemDefinition
     {

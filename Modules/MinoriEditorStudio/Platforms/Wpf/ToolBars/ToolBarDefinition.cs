@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Platforms.Wpf.ToolBars
+namespace MinoriEditorShell.Platforms.Wpf.ToolBars
 {
     public class ToolBarDefinition
     {

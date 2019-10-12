@@ -2,15 +2,15 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Services;
-using MinoriEditorStudio.Platforms.Wpf.ToolBars;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Platforms.Wpf.Services;
+using MinoriEditorShell.Platforms.Wpf.ToolBars;
+using MinoriEditorShell.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Models
+namespace MinoriEditorShell.Platforms.Wpf.Models
 {
 	public class CommandToolBarItem : ToolBarItemBase, ICommandUiItem
     {

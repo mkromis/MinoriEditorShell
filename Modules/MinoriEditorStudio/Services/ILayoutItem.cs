@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public interface ILayoutItem : IMvxViewModel
     {

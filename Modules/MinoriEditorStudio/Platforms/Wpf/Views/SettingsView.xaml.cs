@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for SettingsView.xaml

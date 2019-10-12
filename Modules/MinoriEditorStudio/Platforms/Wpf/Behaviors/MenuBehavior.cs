@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Commands;
+using MinoriEditorShell.Commands;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Behaviors
+namespace MinoriEditorShell.Platforms.Wpf.Behaviors
 {
     public class MenuBehavior : DependencyObject
     {

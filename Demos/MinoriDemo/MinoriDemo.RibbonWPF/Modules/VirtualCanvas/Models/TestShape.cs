@@ -1,5 +1,5 @@
 ﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -223,7 +223,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public Size MeasureText(IVirtualCanvasControl parent, String label)
         {
-            if (_parent != parent && parent is MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas control)
+            if (_parent != parent && parent is MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas control)
             {
                 FontFamily fontFamily = (FontFamily)control.GetValue(TextBlock.FontFamilyProperty);
                 FontStyle fontStyle = (FontStyle)control.GetValue(TextBlock.FontStyleProperty);

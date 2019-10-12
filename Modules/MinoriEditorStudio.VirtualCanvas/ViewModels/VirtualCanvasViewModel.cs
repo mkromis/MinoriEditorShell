@@ -1,9 +1,9 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Services;
+﻿using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.VirtualCanvas.ViewModels
+namespace MinoriEditorShell.VirtualCanvas.ViewModels
 {
     /// <summary>
     /// This demo shows the VirtualCanvas managing up to 50,000 random WPF shapes providing smooth scrolling and

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinoriEditorStudio.Messages
+namespace MinoriEditorShell.Messages
 {
     public class SettingsChangedMessage : MvxMessage
     {

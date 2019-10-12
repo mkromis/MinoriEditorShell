@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     public interface ICommandRouter
     {

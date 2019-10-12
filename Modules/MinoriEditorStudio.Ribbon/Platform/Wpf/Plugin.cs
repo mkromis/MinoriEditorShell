@@ -1,6 +1,6 @@
 ﻿using MvvmCross.Plugin;
 
-namespace MinoriEditorStudio.Ribbon.Platform.Wpf
+namespace MinoriEditorShell.Ribbon.Platform.Wpf
 {
     [MvxPlugin]
     public class Plugin : IMvxPlugin

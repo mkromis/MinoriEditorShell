@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross.ViewModels;
 using System;
 
-namespace MinoriEditorStudio.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public class HistoryItemViewModel : MvxNotifyPropertyChanged
     {

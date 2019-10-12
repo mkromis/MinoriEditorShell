@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Commands;
+using MinoriEditorShell.Commands;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public interface ICommandKeyGestureService
     {

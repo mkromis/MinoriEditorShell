@@ -2,7 +2,7 @@ using MvvmCross.Converters;
 using System;
 using System.Globalization;
 
-namespace MinoriEditorStudio.Converters
+namespace MinoriEditorShell.Converters
 {
     public class CultureInfoNameConverter : IMvxValueConverter
     {

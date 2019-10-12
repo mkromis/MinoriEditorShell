@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class)]

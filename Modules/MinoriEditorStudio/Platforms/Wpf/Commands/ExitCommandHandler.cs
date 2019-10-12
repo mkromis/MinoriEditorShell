@@ -1,11 +1,11 @@
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Commands;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.Threading;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Commands;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.Threading;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     [CommandHandler]
     public class ExitCommandHandler : CommandHandlerBase<ExitCommandDefinition>

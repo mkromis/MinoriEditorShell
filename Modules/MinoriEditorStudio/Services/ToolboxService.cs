@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using MinoriEditorStudio.Models;
+using MinoriEditorShell.Models;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     [Export(typeof(IToolboxService))]
     public class ToolboxService : IToolboxService

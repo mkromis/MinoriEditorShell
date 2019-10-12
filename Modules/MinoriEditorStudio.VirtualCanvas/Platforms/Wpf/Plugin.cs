@@ -1,5 +1,5 @@
-﻿using MinoriEditorStudio.VirtualCanvas.ViewModels;
-using MinoriEditorStudio.VirtualCanvas.Services;
+﻿using MinoriEditorShell.VirtualCanvas.ViewModels;
+using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf
+namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf
 {
     [MvxPlugin]
     public class Plugin : IMvxPlugin

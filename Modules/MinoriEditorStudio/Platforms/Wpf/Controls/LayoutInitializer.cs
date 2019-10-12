@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using Xceed.Wpf.AvalonDock.Layout;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
 	public class LayoutInitializer : ILayoutUpdateStrategy
 	{

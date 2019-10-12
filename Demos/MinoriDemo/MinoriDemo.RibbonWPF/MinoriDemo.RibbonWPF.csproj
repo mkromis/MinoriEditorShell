@@ -125,9 +125,9 @@
       <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
       <Name>MinoriEditorStudio.VirtualCanvas</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorShell.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
-      <Name>MinoriEditorStudio</Name>
+      <Name>MinoriEditorShell</Name>
     </ProjectReference>
     <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj">
       <Project>{E2733B2F-5C55-4C2E-879F-1495C5E11A4B}</Project>

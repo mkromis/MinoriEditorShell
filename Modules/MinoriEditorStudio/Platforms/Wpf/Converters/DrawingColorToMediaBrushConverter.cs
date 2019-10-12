@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
     public class DrawingColorToMediaBrushConverter : IValueConverter
     {

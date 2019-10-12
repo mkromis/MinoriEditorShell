@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Menus;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Menus;
 using System;
 using System.Globalization;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Models
+namespace MinoriEditorShell.Platforms.Wpf.Models
 {
     public class TextMenuItem : StandardMenuItem
 	{

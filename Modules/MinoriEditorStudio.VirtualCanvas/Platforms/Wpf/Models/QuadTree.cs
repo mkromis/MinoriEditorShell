@@ -3,7 +3,7 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,7 +11,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
 {
 
     /// <summary>

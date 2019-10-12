@@ -3,12 +3,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using MinoriEditorStudio.Properties;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.ViewModels;
+using MinoriEditorShell.Properties;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.ViewModels;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IHistoryTool))]
     public class HistoryViewModel : Tool, IHistoryTool

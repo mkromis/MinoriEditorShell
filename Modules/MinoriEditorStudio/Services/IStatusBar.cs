@@ -5,7 +5,7 @@ using System.Windows;
 using MvvmCross.UI;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
 	public interface IStatusBar
 	{

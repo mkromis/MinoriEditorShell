@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.Threading;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.Threading;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     [CommandHandler]
     public class SwitchToDocumentListCommandHandler : ICommandListHandler<SwitchToDocumentCommandListDefinition>

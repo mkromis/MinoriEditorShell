@@ -1,5 +1,5 @@
 ﻿using MahApps.Metro.Controls;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Views;
@@ -10,7 +10,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     public class MesWindow : MetroWindow, IMvxWindow, IMvxWpfView, IDisposable
     {

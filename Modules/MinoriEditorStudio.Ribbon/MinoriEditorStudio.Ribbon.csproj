@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorStudio.csproj" />
+    <ProjectReference Include="..\MinoriEditorStudio\MinoriEditorShell.csproj" />
   </ItemGroup>
 
 </Project>

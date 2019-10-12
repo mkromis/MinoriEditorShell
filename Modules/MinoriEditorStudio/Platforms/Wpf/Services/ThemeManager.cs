@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Extensions;
-using MinoriEditorStudio.Messages;
-using MinoriEditorStudio.Platforms.Wpf.Extensions;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Extensions;
+using MinoriEditorShell.Messages;
+using MinoriEditorShell.Platforms.Wpf.Extensions;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Base;
 using MvvmCross.Logging;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     public class ThemeManager : IThemeManager
     {

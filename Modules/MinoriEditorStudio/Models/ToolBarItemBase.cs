@@ -1,6 +1,6 @@
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Models
+namespace MinoriEditorShell.Models
 {
 	public class ToolBarItemBase : MvxNotifyPropertyChanged
 	{

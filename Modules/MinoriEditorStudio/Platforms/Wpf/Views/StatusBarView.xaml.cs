@@ -1,8 +1,8 @@
 using System.Windows.Controls;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for StatusBarView.xaml

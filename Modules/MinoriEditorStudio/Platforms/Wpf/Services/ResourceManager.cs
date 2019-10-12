@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
 	[Export(typeof(IResourceManager))]
 	public class ResourceManager : IResourceManager

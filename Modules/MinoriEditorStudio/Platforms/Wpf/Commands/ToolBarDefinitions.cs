@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Platforms.Wpf.ToolBars;
+using MinoriEditorShell.Platforms.Wpf.ToolBars;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public static class ToolBarDefinitions
     {

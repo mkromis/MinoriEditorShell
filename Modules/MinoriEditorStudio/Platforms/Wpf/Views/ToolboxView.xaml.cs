@@ -2,11 +2,11 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MinoriEditorStudio.Platforms.Wpf.Controls;
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Controls;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for ToolboxView.xaml

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MvvmCross.ViewModels;
 
-namespace MinoriEditorStudio.Models
+namespace MinoriEditorShell.Models
 {
     public class MenuItemBase : MvxNotifyPropertyChanged, IEnumerable<MenuItemBase>
     {

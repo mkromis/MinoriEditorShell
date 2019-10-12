@@ -1,4 +1,4 @@
-namespace MinoriEditorStudio.Platforms.Wpf.Commands
+namespace MinoriEditorShell.Platforms.Wpf.Commands
 {
     public class ExcludeCommandKeyboardShortcut
     {

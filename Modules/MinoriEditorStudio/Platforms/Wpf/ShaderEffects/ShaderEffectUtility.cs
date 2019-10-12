@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Media.Effects;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ShaderEffects
+namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
 {
     internal static class ShaderEffectUtility
     {

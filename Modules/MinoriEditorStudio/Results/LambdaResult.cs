@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Results
+namespace MinoriEditorShell.Results
 {
 #warning CoRoutine
     public class LambdaResult /*: IResult*/

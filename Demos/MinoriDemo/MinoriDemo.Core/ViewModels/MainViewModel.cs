@@ -1,6 +1,6 @@
 using MinoriDemo.Core.Modules.VirtualCanvas.Models;
-using MinoriEditorStudio.Services;
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;

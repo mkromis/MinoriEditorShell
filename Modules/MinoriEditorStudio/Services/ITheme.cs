@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorStudio.Services
+namespace MinoriEditorShell.Services
 {
     public interface ITheme
     {

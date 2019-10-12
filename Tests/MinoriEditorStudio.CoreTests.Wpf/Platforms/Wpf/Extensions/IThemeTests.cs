@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MinoriEditorStudio.Platforms.Wpf.Extensions;
-using MinoriEditorStudio.Platforms.Wpf.Themes;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Extensions;
+using MinoriEditorShell.Platforms.Wpf.Themes;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.CoreTests.Wpf.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.CoreTests.Wpf.Platforms.Wpf.Extensions
 {
     [TestClass]
     public class IThemeTests : MvvmCross.Tests.MvxIoCSupportingTest

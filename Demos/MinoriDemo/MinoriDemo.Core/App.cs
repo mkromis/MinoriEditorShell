@@ -1,5 +1,5 @@
 using MinoriDemo.Core.ViewModels;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using System;

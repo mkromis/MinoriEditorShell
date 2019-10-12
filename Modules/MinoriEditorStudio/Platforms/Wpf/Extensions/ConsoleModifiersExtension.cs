@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.Platforms.Wpf.Extensions
 {
     public static class ConsoleModifiersExtension
     {

@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Properties;
+using MinoriEditorShell.Properties;
 using System;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     [CommandDefinition]
     public class OpenSettingsCommandDefinition : CommandDefinition

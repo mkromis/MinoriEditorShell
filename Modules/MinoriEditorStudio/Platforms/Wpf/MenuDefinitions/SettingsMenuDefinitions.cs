@@ -1,8 +1,8 @@
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.Menus;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.Menus;
 using System.ComponentModel.Composition;
 
-namespace MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection
+namespace MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection
 {
     public static class MenuDefinitions
     {

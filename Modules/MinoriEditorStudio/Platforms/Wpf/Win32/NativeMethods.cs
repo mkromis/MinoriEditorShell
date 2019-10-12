@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Win32
+namespace MinoriEditorShell.Platforms.Wpf.Win32
 {
     internal static class NativeMethods
     {

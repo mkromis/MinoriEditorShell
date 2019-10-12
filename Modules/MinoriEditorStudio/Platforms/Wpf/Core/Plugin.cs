@@ -1,17 +1,17 @@
-using MinoriEditorStudio.Platforms.Wpf.Services;
-using MinoriEditorStudio.Platforms.Wpf.Themes;
-using MinoriEditorStudio.ViewModels;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Platforms.Wpf.Services;
+using MinoriEditorShell.Platforms.Wpf.Themes;
+using MinoriEditorShell.ViewModels;
+using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
-using MinoriEditorStudio.Modules.Services;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.Modules.Services;
 using MvvmCross.Localization;
 using MvvmCross.Plugin.ResxLocalization;
-using MinoriEditorStudio.Properties;
+using MinoriEditorShell.Properties;
 
-namespace MinoriEditorStudio.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Wpf
 {
     [MvxPlugin]
     public class Plugin : IMvxPlugin

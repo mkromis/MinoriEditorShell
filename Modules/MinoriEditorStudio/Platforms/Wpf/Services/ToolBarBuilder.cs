@@ -1,11 +1,11 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Models;
-using MinoriEditorStudio.Platforms.Wpf.ToolBars;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Models;
+using MinoriEditorShell.Platforms.Wpf.ToolBars;
+using MinoriEditorShell.Services;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     [Export(typeof(IToolBarBuilder))]
     public class ToolBarBuilder : IToolBarBuilder

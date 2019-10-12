@@ -1,7 +1,7 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.ViewModels;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Design
+namespace MinoriEditorShell.Platforms.Wpf.Design
 {
     public class DesignTimeToolboxViewModel : ToolboxViewModel
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     public abstract class CommandDefinition : CommandDefinitionBase
     {

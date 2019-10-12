@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorStudio.Models
+namespace MinoriEditorShell.Models
 {
     public class ToolboxItem
     {

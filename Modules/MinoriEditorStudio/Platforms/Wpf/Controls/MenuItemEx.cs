@@ -1,9 +1,9 @@
-using MinoriEditorStudio.Models;
+using MinoriEditorShell.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class MenuItemEx : System.Windows.Controls.MenuItem
 	{

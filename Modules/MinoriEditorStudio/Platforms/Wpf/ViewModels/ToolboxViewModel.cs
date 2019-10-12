@@ -3,9 +3,9 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmCross.Commands;
 using System.Collections.ObjectModel;
-using MinoriEditorStudio.Services;
+using MinoriEditorShell.Services;
 
-namespace MinoriEditorStudio.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     [Export(typeof(IToolbox))]
     public class ToolboxViewModel : Tool, IToolbox

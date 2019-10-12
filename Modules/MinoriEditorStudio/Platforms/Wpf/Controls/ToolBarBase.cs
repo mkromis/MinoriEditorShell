@@ -1,10 +1,10 @@
-using MinoriEditorStudio.Models;
-using MinoriEditorStudio.Platforms.Wpf.Models;
+using MinoriEditorShell.Models;
+using MinoriEditorShell.Platforms.Wpf.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class ToolBarBase : ToolBar
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Input;
-using MinoriEditorStudio.Commands;
-using MinoriEditorStudio.Platforms.Wpf.MenuDefinitionCollection;
+using MinoriEditorShell.Commands;
+using MinoriEditorShell.Platforms.Wpf.MenuDefinitionCollection;
 
-namespace MinoriEditorStudio.Platforms.Wpf.Menus
+namespace MinoriEditorShell.Platforms.Wpf.Menus
 {
     public class MenuDefinition : MenuDefinitionBase
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinoriEditorStudio.VirtualCanvas.Services
+namespace MinoriEditorShell.VirtualCanvas.Services
 {
     /// <summary>
     /// This is used for multi-platform purpose.

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MinoriEditorStudio.Commands
+namespace MinoriEditorShell.Commands
 {
     [CommandHandler]
     public class OpenSettingsCommandHandler : CommandHandlerBase<OpenSettingsCommandDefinition>
