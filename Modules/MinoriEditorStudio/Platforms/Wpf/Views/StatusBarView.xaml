@@ -1,11 +1,11 @@
 ﻿<UserControl 
-    x:Class="MinoriEditorStudio.Platforms.Wpf.Views.StatusBarView"
+    x:Class="MinoriEditorShell.Platforms.Wpf.Views.StatusBarView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:avalon="clr-namespace:Xceed.Wpf.AvalonDock.Converters;assembly=Xceed.Wpf.AvalonDock"
-    xmlns:converter="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Converters"
+    xmlns:converter="clr-namespace:MinoriEditorShell.Platforms.Wpf.Converters"
     mc:Ignorable="d" 
     d:DesignHeight="20" d:DesignWidth="300">
     <UserControl.Resources>
