@@ -1,4 +1,4 @@
-using MinoriEditorStudio.Platforms.Wpf;
+using MinoriEditorShell.Platforms.Wpf;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 

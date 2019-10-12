@@ -1,6 +1,6 @@
-﻿using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Gestures;
-using MinoriEditorStudio.VirtualCanvas.Services;
-using MinoriEditorStudio.VirtualCanvas.ViewModels;
+﻿using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures;
+using MinoriEditorShell.VirtualCanvas.Services;
+using MinoriEditorShell.VirtualCanvas.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,8 @@
 using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
-using MinoriEditorStudio.Platforms.Wpf;
-using MinoriEditorStudio.VirtualCanvas.Platforms.Wpf.Controls;
-using MinoriEditorStudio.VirtualCanvas.Services;
+using MinoriEditorShell.Platforms.Wpf;
+using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;

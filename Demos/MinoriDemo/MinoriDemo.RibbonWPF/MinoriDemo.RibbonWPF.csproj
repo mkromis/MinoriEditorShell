@@ -117,17 +117,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.Ribbon\MinoriEditorStudio.Ribbon.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
-      <Name>MinoriEditorStudio.Ribbon</Name>
+      <Name>MinoriEditorShell.Ribbon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio.VirtualCanvas\MinoriEditorStudio.VirtualCanvas.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj">
       <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
-      <Name>MinoriEditorStudio.VirtualCanvas</Name>
+      <Name>MinoriEditorShell.VirtualCanvas</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Modules\MinoriEditorStudio\MinoriEditorStudio.csproj">
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
-      <Name>MinoriEditorStudio</Name>
+      <Name>MinoriEditorShell</Name>
     </ProjectReference>
     <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj">
       <Project>{E2733B2F-5C55-4C2E-879F-1495C5E11A4B}</Project>
@@ -142,13 +142,13 @@
       <Version>6.1.0.326</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>6.4.0</Version>
+      <Version>6.4.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.4.0</Version>
+      <Version>6.4.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Color">
-      <Version>6.4.0</Version>
+      <Version>6.4.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
