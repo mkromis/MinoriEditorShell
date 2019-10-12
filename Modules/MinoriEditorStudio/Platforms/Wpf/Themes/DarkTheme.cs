@@ -28,7 +28,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
 
                 yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/DarkTheme.xaml");
                 
-                //yield return new Uri("pack://application:,,,/MinoriEditorStudio;component/Themes/VS2013/DarkTheme.xaml");
+                //yield return new Uri("pack://application:,,,/MinoriEditorShell;component/Themes/VS2013/DarkTheme.xaml");
             }
         }
     }

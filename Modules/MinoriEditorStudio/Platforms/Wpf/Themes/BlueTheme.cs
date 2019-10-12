@@ -28,7 +28,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
 
                 yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/BlueTheme.xaml");
 
-                yield return new Uri("pack://application:,,,/MinoriEditorStudio;component/Platforms/Wpf/Themes/VS2013/BlueTheme.xaml");
+                yield return new Uri("pack://application:,,,/MinoriEditorShell;component/Platforms/Wpf/Themes/VS2013/BlueTheme.xaml");
             }
         }
     }
