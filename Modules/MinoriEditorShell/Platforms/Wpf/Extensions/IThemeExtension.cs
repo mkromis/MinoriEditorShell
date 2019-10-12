@@ -17,7 +17,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Extensions
         public static Boolean HasRibbon(this ITheme theme)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            return assemblies.Any(x => x.FullName.Contains("MinoriEditorStudio.Ribbon"));
+            return assemblies.Any(x => x.FullName.Contains("MinoriEditorShell.Ribbon"));
         }
     }
 }
