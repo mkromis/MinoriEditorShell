@@ -87,7 +87,7 @@ namespace MinoriDemo.Core.ViewModels
             {
                 Double value = Double.Parse(x);
                 Zoom.Value = value / 100;
-                _statusbar.Text = $"Zoom is {value}";
+                _statusbar.Text = $"Zoom is {Zoom.Value}";
             }
         });
 

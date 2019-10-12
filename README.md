@@ -1,21 +1,24 @@
 # MinoriEditorStudio
-[![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorStudio/_apis/build/status/MinoriEditorStudio-.NET%20Desktop-CI)](https://dev.azure.com/TorisanKitsune/MinoriEditorStudio/_build/latest?definitionId=3)
-[![NuGet](https://img.shields.io/nuget/v/MinoriEditorStudio.svg)](https://www.nuget.org/packages/MinoriEditorStudio/)
 
-## What is this?
+[![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/MinoriEditorShell)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=3)
+[![NuGet](https://img.shields.io/nuget/v/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
-MinoriEditorStudio is a IDE framework designed specifically for building IDE-like applications with MvvmCross. It builds on some excellent libraries:
+[![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Closed Issues](https://img.shields.io/github/issues-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
 
-* [AvalonDock](http://avalondock.codeplex.com)
+## What is this
+
+MinoriEditorShell is a IDE framework designed specifically for building multi document editor applications with MvvmCross. It builds on some excellent libraries:
+
+* [AvalonDock](https://github.com/Dirkster99/AvalonDock)
 * [MvvmCross](https://www.mvvmcross.com/)
 
-MinoriEditorStudio ships with three themes: a Light theme, Dark theme and a Blue theme.
-It will try to pick the theme that matches your environment. Blue for Win7, and Win10 based on Light or Dark mode.
+MinoriEditorStudio ships with three themes: a Blue theme, a Light theme, and a Dark theme.
+It will try to pick the theme that matches your environment. Blue for Win7, and Win10 based on Light or Dark mode. (TBD)
 
-### Fix this
-![Screenshot - Light theme](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-everything-light.png)
-
-![Screenshot - Blue theme](https://raw.github.com/tgjones/MinoriEditorStudio/master/doc/MinoriEditorStudio-everything-blue.png)
+![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/master/Images/BlueDemoApp.png)
 
 ## Getting started
 
@@ -25,27 +28,32 @@ If you are creating a new WPF application, follow these steps:
 * Create a wpf project [MvvmCross TipCalc.WPF](https://www.mvvmcross.com/documentation/tutorials/tipcalc/a-wpf-ui-project)
 
 * For the wpf project add the [MinoriShell](http://nuget.org/packages/MinoriShell/) nuget package.
-* Update the setup type in App.xmal.cs to use MisWpfSetup. 
-	*Note: Objects are prefixed with Mes (Minori Editor Studio)*
+* Update the setup type in App.xmal.cs to use MisWpfSetup.
+    * *Note: Some Objects are prefixed with Mes (Minori Editor Shell)*
+* Most of the library is setup in the MvvmCross style for various platforms. For wpf items they are in Platforms\Wpf\Views etc.
 
 ```csharp
  protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
 ```
+
 * Create a MainView object that inherits from MvxWpfView
 
 
 Now hit F5 and see a very empty application!
 
-By far the easiest way to get started with MinoriEditorStudio is to use the various NuGet packages.
+By far the easiest way to get started with MinoriEditorShell is to use the various NuGet packages.
 First, install the base MinoriEditorStudio package (note that the package ID is `MinoriEditorStudioWpf`, to
 distinguish it from another NuGet package with the same name):
-
-* [MinoriEditorStudio](http://nuget.org/packages/MinoriEditorStudioWpf/)
 
 Then add any other modules you are interested in (note that some modules have dependencies
 on other modules, but this is taken care of by the NuGet package dependency system):
 
-* [MinoriEditorStudio.Modules.CodeCompiler](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeCompiler/)
+* [MinoriEditorShell](http://nuget.org/packages/MinoriEditorShell/)
+* [MinoriEditorShell.Ribbon](http://nuget.org/packages/MinoriEditorShell.Ribbon/)
+
+The following are not completed as of yet.
+
+* [MinoriEditorStudio.Modules.CodeCompiler](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeCompiler/) 
 * [MinoriEditorStudio.Modules.CodeEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.CodeEditor/)
 * [MinoriEditorStudio.Modules.ErrorList](http://nuget.org/packages/MinoriEditorStudio.Modules.ErrorList/)
 * [MinoriEditorStudio.Modules.GraphEditor](http://nuget.org/packages/MinoriEditorStudio.Modules.GraphEditor/)
@@ -66,16 +74,17 @@ and also to generate pre-release NuGet packages so you can try out new features 
 To access the pre-release NuGet packages, you'll need to add a custom package source in Visual Studio,
 pointing to this URL:
 
-https://ci.appveyor.com/nuget/MinoriEditorStudio-g84phgw340sm
+*Not Implmented yet (TBD)*
 
 Make sure you select "Include Prerelease" when searching for NuGet packages.
 
 ## What does it do?
 
-MinoriEditorStudio allows you to build your WPF application by composing separate modules. This provides a nice
+MinoriEditorShell allows you to build your WPF application by composing separate modules. This provides a nice
 way of separating out the code for each part of your application. For example, here is a very simple
 module:
 
+#Fixme Update this sections 
 ```csharp
 [Export(typeof(IModule))]
 public class Module : ModuleBase
