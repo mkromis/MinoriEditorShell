@@ -15,7 +15,7 @@ namespace MinoriEditorShell.RibbonTests.Wpf.Platforms.Wpf.Extensions
             String s = System.IO.Packaging.PackUriHelper.UriSchemePack;
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void RibbonTest()
         {
             Setup(); 
