@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Platform\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
+    <Compile Remove="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Platform\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
+    <None Include="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup>

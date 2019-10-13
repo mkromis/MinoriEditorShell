@@ -27,17 +27,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
         public ThemeManager(IMvxMessenger messenger, IMvxLogProvider provider)
         {
-            Themes = Mvx.IoCProvider.GetAll<ITheme>();
-
-            _messenger = messenger;
             _log = provider.GetLogFor<ThemeManager>();
+            _messenger = messenger;
 
-            String themeName = Properties.Settings.Default.ThemeName;
-            if (String.IsNullOrEmpty(themeName)) {
-                themeName = GetDefaultApplicationMode();
-            }
-
-            SetCurrentTheme(Themes.First().Name, false);
+            Themes = Mvx.IoCProvider.GetAll<ITheme>();
 
             _messenger.Subscribe<SettingsChangedMessage>((x) =>
             {
@@ -47,8 +40,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 }
             });
         }
-
-        private String GetDefaultApplicationMode() => null;
 
         // Needed for Interface
         public Boolean SetCurrentTheme(String name) => SetCurrentTheme(name, true);
