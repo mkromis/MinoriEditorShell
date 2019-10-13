@@ -75,7 +75,7 @@ namespace MinoriDemo.Core.ViewModels
         public String SelectedTheme
         {
             set => _themeManager.SetCurrentTheme(value);
-            get => _themeManager.CurrentTheme.Name;
+            get => _themeManager.CurrentTheme?.Name;
         }
 
         public MainViewModel(
