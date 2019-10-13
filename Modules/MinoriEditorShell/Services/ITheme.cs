@@ -14,5 +14,7 @@ namespace MinoriEditorShell.Services
         /// Resources to be added to Application.Resources.
         /// </summary>
         IEnumerable<Uri> ApplicationResources { get; }
+        void Add(Uri uri);
+        void AddRange(IEnumerable<Uri> uri);
     }
 }
