@@ -11,7 +11,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
-namespace MinoriEditorShell.Ribbon.Platform.Wpf.Views
+namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
 {
     public class MesRibbonWindow : MesWindow, IMvxWindow, IMvxWpfView, IRibbonWindow, IDisposable
     {

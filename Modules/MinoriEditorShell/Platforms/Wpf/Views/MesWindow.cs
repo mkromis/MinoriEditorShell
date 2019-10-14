@@ -1,10 +1,12 @@
 ﻿using MahApps.Metro.Controls;
+using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -74,6 +76,11 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
 
         private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
         {
+
+            IThemeManager manager = Mvx.IoCProvider.Resolve<IThemeManager>();
+            ITheme theme = manager.Themes.Single(x => x is BlueTheme);
+            manager.SetCurrentTheme(theme.Name);
+
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
         }
