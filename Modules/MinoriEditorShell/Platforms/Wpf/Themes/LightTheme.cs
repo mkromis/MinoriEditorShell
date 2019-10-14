@@ -5,31 +5,21 @@ using System.Collections.Generic;
 
 namespace MinoriEditorShell.Platforms.Wpf.Themes
 {
-    public class LightTheme : ITheme
+    public class LightTheme : ThemeBase
     {
-        public virtual String Name => Properties.Resources.ThemeLightName;
+        List<Uri> _resources; 
 
-        public virtual IEnumerable<Uri> ApplicationResources
+        public override String Name => Properties.Resources.ThemeLightName;
+
+
+        public LightTheme() : base()
         {
-            get
-            {
-                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml");
-                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml");
-                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml");
-                yield return new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml");
+            AddRange(new List<Uri> {
+                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"),
+                new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml"),
 
-                if (this.HasRibbon())
-                {
-                    yield return new Uri("pack://application:,,,/Fluent;Component/Themes/Generic.xaml");
-                    yield return new Uri("pack://application:,,,/Fluent;component/Themes/Accents/Cobalt.xaml");
-                    yield return new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml");
-
-                }
-
-                yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml");
-                //yield return new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml");
-                //yield return new Uri("pack://application:,,,/MinoriEditorShell;component/Themes/VS2013/LightTheme.xaml");
-            }
+                //new Uri("pack://application:,,,/MinoriEditorShell;component/Themes/VS2013/LightTheme.xaml");
+            });
         }
     }
 }

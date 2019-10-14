@@ -10,8 +10,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Attach default Theme -->
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

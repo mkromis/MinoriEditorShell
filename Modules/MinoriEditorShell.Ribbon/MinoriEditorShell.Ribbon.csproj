@@ -13,7 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Platform\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
+    <Compile Remove="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
+    <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
+    <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,11 +41,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Platform\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
+    <None Include="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Platforms\Wpf\Themes\BlueTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platforms\Wpf\Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platforms\Wpf\Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>
