@@ -20,6 +20,6 @@ namespace MinoriDemo.RibbonWPF
             Mvx.IoCProvider.RegisterType<ITestShape, TestShape>();
         }
 
-        protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
+        protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
     }
 }
