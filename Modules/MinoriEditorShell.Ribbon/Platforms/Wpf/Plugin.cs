@@ -30,17 +30,26 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
                 {
                     case BlueTheme blue:
                         blue.AddRange(mainribbon);
-                        blue.Add(new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"));
+                        blue.AddRange(new Uri[] {
+                            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
+                            new Uri("pack://application:,,,/MinoriEditorShell.Ribbon;component/Platforms/Wpf/Themes/BlueTheme.xaml"),
+                        });
                         break;
 
                     case LightTheme light:
                         light.AddRange(mainribbon);
-                        light.Add(new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"));
+                        light.AddRange(new Uri[] {
+                            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
+                            new Uri("pack://application:,,,/MinoriEditorShell.Ribbon;component/Platforms/Wpf/Themes/LightTheme.xaml"),
+                        });
                         break;
 
                     case DarkTheme dark:
                         dark.AddRange(mainribbon);
-                        dark.Add(new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseDark.xaml"));
+                        dark.AddRange(new Uri[] {
+                            new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseDark.xaml"),
+                            new Uri("pack://application:,,,/MinoriEditorShell.Ribbon;component/Platforms/Wpf/Themes/DarkTheme.xaml"),
+                        });
                         break;
                 }
             }

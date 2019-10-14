@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
+    <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
+    <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
     <PackageReference Include="GitVersionTask" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -40,6 +46,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Platforms\Wpf\Themes\BlueTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platforms\Wpf\Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platforms\Wpf\Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>
