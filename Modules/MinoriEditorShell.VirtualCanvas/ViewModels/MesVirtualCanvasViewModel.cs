@@ -38,27 +38,27 @@ namespace MinoriEditorShell.VirtualCanvas.ViewModels
     ///     dc.RectZoom = new RectangleSelectionGesture(canvas, dc.Zoom);
     /// };
     /// </summary>
-    public class VirtualCanvasViewModel : Document, IVirtualCanvas
+    public class MesVirtualCanvasViewModel : Document, IMesVirtualCanvas
     {
         /// <summary>
         /// Platform zoom interface
         /// </summary>
-        public IMapZoom Zoom { get; set; }
+        public IMesMapZoom Zoom { get; set; }
         /// <summary>
         /// Platform Pan interface
         /// </summary>
-        public IPan Pan { get; set; }
+        public IMesPan Pan { get; set; }
         /// <summary>
         /// Rectangle Zoom platform interface
         /// </summary>
-        public IRectangleSelectionGesture RectZoom { get; set; }
+        public IMesRectangleSelectionGesture RectZoom { get; set; }
         /// <summary>
         /// Autoscroll zoom platform interface
         /// </summary>
-        public IAutoScroll AutoScroll { get; set; }
+        public IMesAutoScroll AutoScroll { get; set; }
         /// <summary>
         /// Canvas Control platform interface
         /// </summary>
-        public IVirtualCanvasControl Graph { get; set; }
+        public IMesVirtualCanvasControl Graph { get; set; }
     }
 }

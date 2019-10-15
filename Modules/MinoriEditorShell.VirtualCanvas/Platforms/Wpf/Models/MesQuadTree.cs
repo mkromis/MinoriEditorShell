@@ -21,11 +21,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// The object does not need to implement any special interface because the Rect Bounds
     /// of those objects is handled as a separate argument to Insert.
     /// </summary>
-    public partial class QuadTree<T> : IQuadTree<T> where T : class
+    public partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
     {
         RectangleF _bounds; // overall bounds we are indexing.
-        public IQuadrant<T> Root { get; private set; }
-        IDictionary<T, IQuadrant<T>> _table;
+        public IMesQuadrant<T> Root { get; private set; }
+        IDictionary<T, IMesQuadrant<T>> _table;
 
         /// <summary>
         /// This determines the overall quad-tree indexing strategy, changing this bounds
@@ -56,14 +56,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             }
             if (Root == null)
             {
-                Root = new Quadrant<T>(null, _bounds);
+                Root = new MesQuadrant<T>(null, _bounds);
             }
 
-            IQuadrant<T> parent = Root.Insert(node, bounds);
+            IMesQuadrant<T> parent = Root.Insert(node, bounds);
 
             if (_table == null)
             {
-                _table = new Dictionary<T, IQuadrant<T>>();
+                _table = new Dictionary<T, IMesQuadrant<T>>();
             }
             _table[node] = parent;
 
@@ -77,7 +77,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <returns>List of zero or mode nodes found inside the given bounds</returns>
         public IEnumerable<T> GetNodesInside(RectangleF bounds)
         {
-            foreach (QuadNode<T> n in GetNodes(bounds))
+            foreach (MesQuadNode<T> n in GetNodes(bounds))
             {
                 yield return n.Node;
             }
@@ -102,9 +102,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>The list of nodes intersecting the given bounds</returns>
-        public IEnumerable<IQuadNode<T>> GetNodes(RectangleF bounds)
+        public IEnumerable<IMesQuadNode<T>> GetNodes(RectangleF bounds)
         {
-            List<IQuadNode<T>> result = new List<IQuadNode<T>>();
+            List<IMesQuadNode<T>> result = new List<IMesQuadNode<T>>();
             if (Root != null)
             {
                 Root.GetIntersectingNodes(result, bounds);
@@ -121,7 +121,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         {
             if (_table != null)
             {
-                if (_table.TryGetValue(node, out IQuadrant<T> parent))
+                if (_table.TryGetValue(node, out IMesQuadrant<T> parent))
                 {
                     parent.RemoveNode(node);
                     _table.Remove(node);
@@ -137,7 +137,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         void ReIndex()
         {
             Root = null;
-            foreach (IQuadNode<T> n in GetNodes(_bounds))
+            foreach (IMesQuadNode<T> n in GetNodes(_bounds))
             {
                 // todo: it would be more efficient if we added a code path that allowed
                 // reuse of the QuadNode wrappers.

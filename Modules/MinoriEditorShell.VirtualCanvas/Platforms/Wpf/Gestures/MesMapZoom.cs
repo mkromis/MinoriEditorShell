@@ -22,7 +22,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// general management of the scale and translate transformations and a "ScrollIntoView" 
     /// method than can be used by other gestures.
     /// </summary>
-    public class MapZoom : Animatable, IMapZoom
+    public class MesMapZoom : Animatable, IMesMapZoom
     {
         // sensitivity is a number between 0 and 1 that controls how much each mouse wheel click
         // zooms in.  This value means one mouse click will zoom to 0.90 of the original size, but
@@ -61,15 +61,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// The offset property that can be animated.
         /// </summary>
-        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register("Offset", typeof(Point), typeof(MapZoom));
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register("Offset", typeof(Point), typeof(MesMapZoom));
         /// <summary>
         /// When we are zooming to a point this property can be animated
         /// </summary>
-        public static readonly DependencyProperty ZoomToPointProperty = DependencyProperty.Register("ZoomToPoint", typeof(Double), typeof(MapZoom));
+        public static readonly DependencyProperty ZoomToPointProperty = DependencyProperty.Register("ZoomToPoint", typeof(Double), typeof(MesMapZoom));
         /// <summary>
         /// When we are zooming to a rectangle this property can be animated.
         /// </summary>
-        public static readonly DependencyProperty ZoomToRectProperty = DependencyProperty.Register("ZoomToRect", typeof(Double), typeof(MapZoom));
+        public static readonly DependencyProperty ZoomToRectProperty = DependencyProperty.Register("ZoomToRect", typeof(Double), typeof(MesMapZoom));
 
         /// <summary>
         /// This event is raised when the scale or translation is changed.
@@ -81,11 +81,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// The target object must have a parent container.
         /// </summary>
         /// <param name="target">The target object we will be zooming.</param>
-        public MapZoom(IContentCanvas target)
+        public MesMapZoom(IMesContentCanvas target)
         {
-            Initialize((ContentCanvas)target);
+            Initialize((MesContentCanvas)target);
         }
-        public MapZoom(FrameworkElement target)
+        public MesMapZoom(FrameworkElement target)
         {
             Initialize(target);
         }
@@ -519,7 +519,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="d">The amound of time we can take to do the animation</param>
         void AnimateZoom(DependencyProperty property, Double oldZoom, Double newZoom, Duration d)
         {
-            ExponentialDoubleAnimation a = new ExponentialDoubleAnimation(oldZoom, newZoom, 2, EdgeBehavior.EaseOut, d);
+            MesExponentialDoubleAnimation a = new MesExponentialDoubleAnimation(oldZoom, newZoom, 2, EdgeBehavior.EaseOut, d);
             BeginAnimation(property, a);
         }
 
@@ -679,7 +679,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// Every Freezable subclass must implement this method.
         /// </summary>
         /// <returns>A new instance of this object</returns>
-        protected override Freezable CreateInstanceCore() => new MapZoom(_target);
+        protected override Freezable CreateInstanceCore() => new MesMapZoom(_target);
 
     }
 }

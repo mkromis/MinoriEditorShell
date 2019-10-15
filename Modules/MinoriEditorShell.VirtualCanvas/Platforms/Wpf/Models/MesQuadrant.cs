@@ -20,21 +20,21 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// and each quadrant is split up into four child Quadrants recurrsively.  Objects that overlap more than
     /// one quadrant are stored in the _nodes list for this Quadrant.
     /// </summary>
-    public class Quadrant<T> : IQuadrant<T>
+    public class MesQuadrant<T> : IMesQuadrant<T>
     {
         /// <summary>
         /// The bounds of this quadrant
         /// </summary>
         public RectangleF Bounds { get; private set; } // quadrant bounds.
 
-        public IQuadNode<T> Nodes { get; private set; } // nodes that overlap the sub quadrant boundaries.
+        public IMesQuadNode<T> Nodes { get; private set; } // nodes that overlap the sub quadrant boundaries.
 
         // The quadrant is subdivided when nodes are inserted that are 
         // completely contained within those subdivisions.
-        public IQuadrant<T> TopLeft { get; private set; }
-        public IQuadrant<T> TopRight { get; private set; }
-        public IQuadrant<T> BottomLeft { get; private set; }
-        public IQuadrant<T> BottomRight { get; private set; }
+        public IMesQuadrant<T> TopLeft { get; private set; }
+        public IMesQuadrant<T> TopRight { get; private set; }
+        public IMesQuadrant<T> BottomLeft { get; private set; }
+        public IMesQuadrant<T> BottomRight { get; private set; }
 
         /// <summary>
         /// Statictial information for rendering use.
@@ -71,7 +71,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// </summary>
         /// <param name="parent">The parent quadrant (if any)</param>
         /// <param name="bounds">The bounds of this quadrant</param>
-        public Quadrant(IQuadrant<T> parent, RectangleF bounds)
+        public MesQuadrant(IMesQuadrant<T> parent, RectangleF bounds)
         {
             Parent = parent;
             Debug.Assert(bounds.Width != 0 && bounds.Height != 0);
@@ -86,7 +86,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <summary>
         /// The parent Quadrant or null if this is the root
         /// </summary>
-        internal IQuadrant<T> Parent { get; }
+        internal IMesQuadrant<T> Parent { get; }
 
         /// <summary>
         /// Insert the given node
@@ -94,7 +94,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <param name="node">The node </param>
         /// <param name="bounds">The bounds of that node</param>
         /// <returns></returns>
-        public IQuadrant<T> Insert(T node, RectangleF bounds)
+        public IMesQuadrant<T> Insert(T node, RectangleF bounds)
         {
             Debug.Assert(bounds.Width != 0 && bounds.Height != 0);
             if (bounds.Width == 0 || bounds.Height == 0)
@@ -122,14 +122,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             RectangleF bottomLeft = new RectangleF(Bounds.Left, Bounds.Top + h, w, h);
             RectangleF bottomRight = new RectangleF(Bounds.Left + w, Bounds.Top + h, w, h);
 
-            IQuadrant<T> child = null;
+            IMesQuadrant<T> child = null;
 
             // See if any child quadrants completely contain this node.
             if (topLeft.Contains(bounds))
             {
                 if (TopLeft == null)
                 {
-                    TopLeft = new Quadrant<T>(this, topLeft);
+                    TopLeft = new MesQuadrant<T>(this, topLeft);
                 }
                 child = TopLeft;
             }
@@ -137,7 +137,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             {
                 if (TopRight == null)
                 {
-                    TopRight = new Quadrant<T>(this, topRight);
+                    TopRight = new MesQuadrant<T>(this, topRight);
                 }
                 child = TopRight;
             }
@@ -145,7 +145,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             {
                 if (BottomLeft == null)
                 {
-                    BottomLeft = new Quadrant<T>(this, bottomLeft);
+                    BottomLeft = new MesQuadrant<T>(this, bottomLeft);
                 }
                 child = BottomLeft;
             }
@@ -153,7 +153,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             {
                 if (BottomRight == null)
                 {
-                    BottomRight = new Quadrant<T>(this, bottomRight);
+                    BottomRight = new MesQuadrant<T>(this, bottomRight);
                 }
                 child = BottomRight;
             }
@@ -164,7 +164,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             }
             else
             {
-                QuadNode<T> n = new QuadNode<T>(node, bounds);
+                MesQuadNode<T> n = new MesQuadNode<T>(node, bounds);
                 if (Nodes == null)
                 {
                     n.Next = n;
@@ -172,7 +172,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
                 else
                 {
                     // link up in circular link list.
-                    IQuadNode<T> x = Nodes;
+                    IMesQuadNode<T> x = Nodes;
                     n.Next = x.Next;
                     x.Next = n;
                 }
@@ -187,7 +187,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// </summary>
         /// <param name="nodes">List of nodes found in the given bounds</param>
         /// <param name="bounds">The bounds that contains the nodes you want returned</param>
-        public void GetIntersectingNodes(IList<IQuadNode<T>> nodes, RectangleF bounds)
+        public void GetIntersectingNodes(IList<IMesQuadNode<T>> nodes, RectangleF bounds)
         {
             if (bounds.IsEmpty) { return; }
             Single w = Bounds.Width / 2;
@@ -232,11 +232,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <param name="last">The last QuadNode in a circularly linked list</param>
         /// <param name="nodes">The resulting nodes are added to this list</param>
         /// <param name="bounds">The bounds to test against each node</param>
-        public void GetIntersectingNodes(IQuadNode<T> last, IList<IQuadNode<T>> nodes, RectangleF bounds)
+        public void GetIntersectingNodes(IMesQuadNode<T> last, IList<IMesQuadNode<T>> nodes, RectangleF bounds)
         {
             if (last != null)
             {
-                IQuadNode<T> n = last;
+                IMesQuadNode<T> n = last;
                 do
                 {
                     n = n.Next; // first node.
@@ -302,11 +302,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <param name="last">The last node in the circularly linked list.</param>
         /// <param name="bounds">Bounds to test</param>
         /// <returns>Return true if a node in the list intersects the bounds</returns>
-        public Boolean HasIntersectingNodes(IQuadNode<T> last, RectangleF bounds)
+        public Boolean HasIntersectingNodes(IMesQuadNode<T> last, RectangleF bounds)
         {
             if (last != null)
             {
-                IQuadNode<T> n = last;
+                IMesQuadNode<T> n = last;
                 do
                 {
                     n = n.Next; // first node.
@@ -329,7 +329,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
             Boolean rc = false;
             if (Nodes != null)
             {
-                IQuadNode<T> p = Nodes;
+                IMesQuadNode<T> p = Nodes;
                 while (!p.Next.Node.Equals(node) && p.Next != Nodes)
                 {
                     p = p.Next;
@@ -337,7 +337,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
                 if (p.Next.Node.Equals(node))
                 {
                     rc = true;
-                    IQuadNode<T> n = p.Next;
+                    IMesQuadNode<T> n = p.Next;
                     if (p == n)
                     {
                         // list goes to empty

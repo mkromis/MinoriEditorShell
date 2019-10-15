@@ -4,17 +4,17 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IVirtualCanvasControl
+    public interface IMesVirtualCanvasControl
     {
-        IContentCanvas ContentCanvas { get; }
-        IMapZoom Zoom { get; set; }
+        IMesContentCanvas ContentCanvas { get; }
+        IMesMapZoom Zoom { get; set; }
         Double ExtentWidth { get; }
         Double ExtentHeight { get; }
         Double ViewportWidth { get; }
         Double ViewportHeight { get; }
 
-        ObservableCollection<IVirtualChild> VirtualChildren { get; }
+        ObservableCollection<IMesVirtualChild> VirtualChildren { get; }
 
-        void AddVirtualChild(IVirtualChild shape);
+        void AddVirtualChild(IMesVirtualChild shape);
     }
 }

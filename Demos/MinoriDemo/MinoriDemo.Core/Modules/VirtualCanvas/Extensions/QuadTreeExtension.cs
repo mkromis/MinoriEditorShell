@@ -5,7 +5,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions
 {
     public static class QuadTreeExtension
     {
-        public static void Dump<T>(this IQuadTree<T> source, LogWriter w) where T : class
+        public static void Dump<T>(this IMesQuadTree<T> source, LogWriter w) where T : class
         {
             if (source.Root != null)
             {

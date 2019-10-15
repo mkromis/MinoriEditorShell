@@ -9,7 +9,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
     /// <summary>
     /// A wpf interface used to instanciate into a netstandard object
     /// </summary>
-    public class ContentCanvas : Canvas, IContentCanvas
+    public class MesContentCanvas : Canvas, IMesContentCanvas
     {
     }
 }

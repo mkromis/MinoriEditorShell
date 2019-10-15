@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IMapZoom
+    public interface IMesMapZoom
     {
         event EventHandler<Double> ValueChanged;
         Double Value { get; set; }

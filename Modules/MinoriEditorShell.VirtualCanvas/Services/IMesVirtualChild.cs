@@ -8,7 +8,7 @@ namespace MinoriEditorShell.VirtualCanvas.Services
     /// <summary>
     /// This interface is implemented by the objects that you want to put in the VirtualCanvas.
     /// </summary>
-    public interface IVirtualChild
+    public interface IMesVirtualChild
     {
         /// <summary>
         /// The bounds of your child object
@@ -30,7 +30,7 @@ namespace MinoriEditorShell.VirtualCanvas.Services
         /// </summary>
         /// <param name="parent">The canvas that is calling this method</param>
         /// <returns>The visual that can be displayed</returns>
-        Object CreateVisual(IVirtualCanvasControl parent);
+        Object CreateVisual(IMesVirtualCanvasControl parent);
 
         /// <summary>
         /// Dispose the WPF visual for this object.

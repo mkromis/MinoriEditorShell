@@ -2,10 +2,10 @@
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IQuadNode<T>
+    public interface IMesQuadNode<T>
     {
         RectangleF Bounds { get; }
-        IQuadNode<T> Next { get; set; }
+        IMesQuadNode<T> Next { get; set; }
         T Node { get; set; }
     }
 }

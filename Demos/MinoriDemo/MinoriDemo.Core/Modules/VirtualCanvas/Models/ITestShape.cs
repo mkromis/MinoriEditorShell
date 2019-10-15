@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 {
-    public interface ITestShape : IVirtualChild
+    public interface ITestShape : IMesVirtualChild
     {
         Color BaseColor { get; set; }
         String Label { get; set; }

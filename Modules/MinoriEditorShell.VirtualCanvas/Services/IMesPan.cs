@@ -1,6 +1,6 @@
 ﻿namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IAutoScroll
+    public interface IMesPan
     {
     }
 }

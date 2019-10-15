@@ -18,12 +18,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// <summary>
     /// This class implements a mouse middle-button auto-scrolling feature over any target view.
     /// </summary>
-    public class AutoScroll: IAutoScroll
+    public class MesAutoScroll: IMesAutoScroll
     {
         private readonly Panel _container;
         private Boolean _autoScrolling;
         private Point _startPos;
-        private readonly MapZoom _zoom;
+        private readonly MesMapZoom _zoom;
         private Canvas _marker;
 
         /// <summary>
@@ -32,14 +32,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="target">The target object to scroll</param>
         /// <param name="zoom">The master MapZoom object that manages the actual render transform</param>
-        public AutoScroll(IContentCanvas target, IMapZoom zoom)
+        public MesAutoScroll(IMesContentCanvas target, IMesMapZoom zoom)
         {
-            _container = ((ContentCanvas)target).Parent as Panel;
+            _container = ((MesContentCanvas)target).Parent as Panel;
             _container.MouseDown += new MouseButtonEventHandler(OnMouseDown);
             _container.MouseMove += new MouseEventHandler(OnMouseMove);
             _container.MouseWheel += new MouseWheelEventHandler(OnMouseWheel);
             Keyboard.AddKeyDownHandler(_container, new KeyEventHandler(OnKeyDown));
-            _zoom = (MapZoom)zoom;
+            _zoom = (MesMapZoom)zoom;
         }
 
         /// <summary>

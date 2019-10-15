@@ -2,7 +2,7 @@
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IRectangleSelectionGesture
+    public interface IMesRectangleSelectionGesture
     {
         event EventHandler ZoomReset;
 
