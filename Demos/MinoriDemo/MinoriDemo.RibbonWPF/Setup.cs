@@ -12,18 +12,18 @@ namespace MinoriDemo.RibbonWPF
         {
             base.InitializeLastChance();
 
-            IThemeManager manager = Mvx.IoCProvider.Resolve<IThemeManager>();
-            foreach (ITheme theme in manager.Themes)
+            IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
+            foreach (IMesTheme theme in manager.Themes)
             {
                 switch (theme)
                 {
-                    case BlueTheme blue:
+                    case MesBlueTheme blue:
                         blue.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
                         break;
-                    case LightTheme light:
+                    case MesLightTheme light:
                         light.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
                         break;
-                    case DarkTheme dark:
+                    case MesDarkTheme dark:
                         dark.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/DarkBrushs.xaml"));
                         break;
                     default:

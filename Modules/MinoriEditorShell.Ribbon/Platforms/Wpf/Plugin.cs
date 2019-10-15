@@ -23,12 +23,12 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
                 new Uri("pack://application:,,,/Fluent;component/Themes/Accents/Cobalt.xaml"),
             };
 
-            IThemeManager thememanager = Mvx.IoCProvider.Resolve<IThemeManager>();
+            IMesThemeManager thememanager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
             foreach (var theme in thememanager.Themes)
             {
                 switch (theme)
                 {
-                    case BlueTheme blue:
+                    case MesBlueTheme blue:
                         blue.AddRange(mainribbon);
                         blue.AddRange(new Uri[] {
                             new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
@@ -36,7 +36,7 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
                         });
                         break;
 
-                    case LightTheme light:
+                    case MesLightTheme light:
                         light.AddRange(mainribbon);
                         light.AddRange(new Uri[] {
                             new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseLight.xaml"),
@@ -44,7 +44,7 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
                         });
                         break;
 
-                    case DarkTheme dark:
+                    case MesDarkTheme dark:
                         dark.AddRange(mainribbon);
                         dark.AddRange(new Uri[] {
                             new Uri("pack://application:,,,/Fluent;component/Themes/Colors/BaseDark.xaml"),

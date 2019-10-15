@@ -3,7 +3,7 @@ using System;
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IMesVirtualCanvas : IDocument
+    public interface IMesVirtualCanvas : IMesDocument
     {
         IMesAutoScroll AutoScroll { get; }
         IMesVirtualCanvasControl Graph { get; }

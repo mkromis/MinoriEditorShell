@@ -38,7 +38,7 @@ namespace MinoriEditorShell.VirtualCanvas.ViewModels
     ///     dc.RectZoom = new RectangleSelectionGesture(canvas, dc.Zoom);
     /// };
     /// </summary>
-    public class MesVirtualCanvasViewModel : Document, IMesVirtualCanvas
+    public class MesVirtualCanvasViewModel : MesDocument, IMesVirtualCanvas
     {
         /// <summary>
         /// Platform zoom interface

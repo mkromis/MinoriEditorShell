@@ -35,7 +35,7 @@ namespace MinoriEditorShell.Platforms.Wpf
             _messenger = Mvx.IoCProvider.Resolve<IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
             {
-                SettingsChangedMessage message = new SettingsChangedMessage(
+                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
                     s, e.PropertyName,
                     Properties.Settings.Default.PropertyValues[e.PropertyName]);
                 _messenger.Publish(message);
@@ -55,8 +55,8 @@ namespace MinoriEditorShell.Platforms.Wpf
             IMvxViewsContainer container = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             if (container != null)
             {
-                container.Add<MainMenuSettingsViewModel, MainMenuSettingsView>();
-                container.Add<SettingsViewModel, SettingsView>();
+                container.Add<MesMainMenuSettingsViewModel, MesMainMenuSettingsView>();
+                container.Add<MesSettingsViewModel, MesSettingsView>();
             }
 
             return base.InitializeLookupDictionary();
