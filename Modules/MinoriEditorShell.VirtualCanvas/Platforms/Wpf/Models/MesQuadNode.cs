@@ -11,7 +11,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// <summary>
     /// Each node stored in the tree has a position, width & height.
     /// </summary>
-    public class QuadNode<T> : IQuadNode<T>
+    public class MesQuadNode<T> : IMesQuadNode<T>
     {
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// </summary>
         /// <param name="node">The node</param>
         /// <param name="bounds">The bounds of that node</param>
-        public QuadNode(T node, RectangleF bounds)
+        public MesQuadNode(T node, RectangleF bounds)
         {
             Node = node;
             Bounds = bounds;
@@ -38,6 +38,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <summary>
         /// QuadNodes form a linked list in the Quadrant.
         /// </summary>
-        public IQuadNode<T> Next { get; set; }
+        public IMesQuadNode<T> Next { get; set; }
     }
 }

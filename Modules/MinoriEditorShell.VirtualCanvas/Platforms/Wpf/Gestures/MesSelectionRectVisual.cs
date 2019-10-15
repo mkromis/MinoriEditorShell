@@ -17,7 +17,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// Create a host visual derived from the FrameworkElement class for drawing the
     /// selection rubber band.
     /// </summary>
-    internal class SelectionRectVisual : FrameworkElement
+    internal class MesSelectionRectVisual : FrameworkElement
     {
 
         private const Double _dashRepeatLength = 8;
@@ -29,7 +29,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Construct new SelectionRectVisual object for the given rectangle
         /// </summary>
-        public SelectionRectVisual(Point firstPointP, Point secondPointP, Double zoomP)
+        public MesSelectionRectVisual(Point firstPointP, Point secondPointP, Double zoomP)
         {
             DrawingGroup drawing = new DrawingGroup();
             DrawingContext context = drawing.Open();

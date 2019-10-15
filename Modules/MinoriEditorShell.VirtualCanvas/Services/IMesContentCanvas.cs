@@ -8,7 +8,7 @@ namespace MinoriEditorShell.VirtualCanvas.Services
     /// This is used for multi-platform purpose.
     /// This assists in rendering native controll within netstandard.
     /// </summary>
-    public interface IContentCanvas
+    public interface IMesContentCanvas
     {
     }
 }

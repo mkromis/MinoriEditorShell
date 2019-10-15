@@ -4,10 +4,10 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Services
 {
-    public interface IQuadTree<T> where T : class
+    public interface IMesQuadTree<T> where T : class
     {
         RectangleF Bounds { get; set; }
-        IQuadrant<T> Root { get; }
+        IMesQuadrant<T> Root { get; }
 
         IEnumerable<T> GetNodesInside(RectangleF bounds);
         Boolean HasNodesInside(RectangleF bounds);

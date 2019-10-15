@@ -18,7 +18,7 @@ namespace MinoriDemo.Core.ViewModels
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasViewModel : MinoriEditorShell.VirtualCanvas.ViewModels.VirtualCanvasViewModel
+    public class VirtualCanvasViewModel : MinoriEditorShell.VirtualCanvas.ViewModels.MesVirtualCanvasViewModel
     {
         private readonly Boolean _animateStatus = true;
         private readonly Int32 _totalVisuals = 0;

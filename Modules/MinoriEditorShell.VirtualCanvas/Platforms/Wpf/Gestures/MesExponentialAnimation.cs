@@ -22,24 +22,24 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// <summary>
     /// This class provides a non-linear DoubleAnimation.
     /// </summary>
-    public class ExponentialDoubleAnimation : DoubleAnimation {
+    public class MesExponentialDoubleAnimation : DoubleAnimation {
 
         /// <summary>
         /// The property for defining an EdgeBehavior value.
         /// </summary>
         public static readonly DependencyProperty EdgeBehaviorProperty =
-            DependencyProperty.Register("EdgeBehavior", typeof(EdgeBehavior), typeof(ExponentialDoubleAnimation), new PropertyMetadata(EdgeBehavior.EaseIn));
+            DependencyProperty.Register("EdgeBehavior", typeof(EdgeBehavior), typeof(MesExponentialDoubleAnimation), new PropertyMetadata(EdgeBehavior.EaseIn));
 
         /// <summary>
         /// Property for defining the exponential power of the animation.
         /// </summary>
         public static readonly DependencyProperty PowerProperty =
-            DependencyProperty.Register("Power", typeof(Double), typeof(ExponentialDoubleAnimation), new PropertyMetadata(2.0));
+            DependencyProperty.Register("Power", typeof(Double), typeof(MesExponentialDoubleAnimation), new PropertyMetadata(2.0));
 
         /// <summary>
         /// Construct new empty ExponentialDoubleAnimation object.
         /// </summary>
-        public ExponentialDoubleAnimation() {
+        public MesExponentialDoubleAnimation() {
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="power">With this exponential power</param>
         /// <param name="behavior">Using this type of behavior</param>
         /// <param name="duration">For this long</param>
-        public ExponentialDoubleAnimation(Double from, Double to, Double power, EdgeBehavior behavior, Duration duration) {
+        public MesExponentialDoubleAnimation(Double from, Double to, Double power, EdgeBehavior behavior, Duration duration) {
             EdgeBehavior = behavior;
             Duration = duration;
             Power = power;
@@ -123,7 +123,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// All Freesable objects have to implement this method.
         /// </summary>
         /// <returns></returns>
-        protected override Freezable CreateInstanceCore() => new ExponentialDoubleAnimation();
+        protected override Freezable CreateInstanceCore() => new MesExponentialDoubleAnimation();
 
         /// <summary>
         /// Impelement the EaseIn style of exponential animation which is one of exponential growth.

@@ -12,7 +12,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
     public class TestShape : ITestShape
     {
-        private IVirtualCanvasControl _parent;
+        private IMesVirtualCanvasControl _parent;
         private Typeface _typeface;
         Double _fontSize;
         private System.Drawing.Color baseColor;
@@ -109,7 +109,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public Object Visual { get; private set; }
 
-        public Object CreateVisual(IVirtualCanvasControl parent)
+        public Object CreateVisual(IMesVirtualCanvasControl parent)
         {
             if (Visual == null)
             {
@@ -221,9 +221,9 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 
         public RectangleF Bounds => _bounds;
 
-        public Size MeasureText(IVirtualCanvasControl parent, String label)
+        public Size MeasureText(IMesVirtualCanvasControl parent, String label)
         {
-            if (_parent != parent && parent is MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.VirtualCanvas control)
+            if (_parent != parent && parent is MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas control)
             {
                 FontFamily fontFamily = (FontFamily)control.GetValue(TextBlock.FontFamilyProperty);
                 FontStyle fontStyle = (FontStyle)control.GetValue(TextBlock.FontStyleProperty);

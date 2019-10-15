@@ -22,7 +22,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// You can also use it to add up a bunch of times in a loop and report average, mininum
     /// and maximum times.
     /// </summary>
-    public class PerfTimer
+    public class MesPerfTimer
     {
         Int64 _start;
         Int64 _end;
@@ -35,7 +35,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <summary>
         /// 
         /// </summary>
-        public PerfTimer()
+        public MesPerfTimer()
         {
             _start = _end = 0;
             QueryPerformanceFrequency(ref _freq);

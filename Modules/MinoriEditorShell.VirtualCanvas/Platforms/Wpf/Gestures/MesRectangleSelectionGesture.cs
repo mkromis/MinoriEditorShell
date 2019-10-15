@@ -16,13 +16,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// <summary>
     /// This class provides the ability to draw a rectangle on a zoomable object and zoom into that location.
     /// </summary>
-    public class RectangleSelectionGesture : IRectangleSelectionGesture
+    public class MesRectangleSelectionGesture : IMesRectangleSelectionGesture
     {
-        private SelectionRectVisual _selectionRectVisual;
+        private MesSelectionRectVisual _selectionRectVisual;
         private Point _start;
         private Boolean _watching;
         private readonly FrameworkElement _target;
-        private readonly MapZoom _zoom;
+        private readonly MesMapZoom _zoom;
         private readonly Panel _container;
         private Point _mouseDownPoint;
         private readonly Int32 _selectionThreshold = 5; // allow some mouse wiggle on mouse down without actually selecting stuff!
@@ -35,15 +35,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="target">A FrameworkElement</param>
         /// <param name="zoom">The MapZoom object that wraps this same target object</param>
-        public RectangleSelectionGesture(IContentCanvas target, IMapZoom zoom)
+        public MesRectangleSelectionGesture(IMesContentCanvas target, IMesMapZoom zoom)
         {
-            _target = (ContentCanvas)target;
+            _target = (MesContentCanvas)target;
             _container = _target.Parent as Panel;
             if (_container == null)
             {
                 throw new ArgumentException("Target object must live in a Panel");
             }
-            _zoom = (MapZoom)zoom;
+            _zoom = (MesMapZoom)zoom;
             _container.MouseLeftButtonDown += new MouseButtonEventHandler(OnMouseLeftButtonDown);
             _container.MouseLeftButtonUp += new MouseButtonEventHandler(OnMouseLeftButtonUp);
             _container.MouseMove += new MouseEventHandler(OnMouseMove);
@@ -102,7 +102,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 {
                     _watching = false;
                     Mouse.Capture(_target, CaptureMode.SubTree);
-                    _selectionRectVisual = new SelectionRectVisual(_start, _start, _zoom.Value);
+                    _selectionRectVisual = new MesSelectionRectVisual(_start, _start, _zoom.Value);
                     _container.Children.Add(_selectionRectVisual);
                 }
             }
