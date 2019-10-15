@@ -35,14 +35,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
             {
                 // Everything that passes here should be a view
                 IMvxView view = element as IMvxView;
-                IManager manager = Mvx.IoCProvider.Resolve<IManager>();
+                IMesManager manager = Mvx.IoCProvider.Resolve<IMesManager>();
 
                 // from which we can now get the view model.
                 switch(view.ViewModel) {
-                    case IDocument document:
+                    case IMesDocument document:
 
                         // Try to set view, this is needed for DocumentManager
-                        IDocument docViewModel = (IDocument)view.ViewModel;
+                        IMesDocument docViewModel = (IMesDocument)view.ViewModel;
                         docViewModel.View = view; // Needed for Binding with AvalonDock
                         docViewModel.ViewAppearing();
                         docViewModel.ViewAppeared();
@@ -52,9 +52,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                         _log.Trace($"Add {document.ToString()} to IManager.Documents");
                         return true;
 
-                    case ITool tool:
+                    case IMesTool tool:
                         // Try to set view, this is needed for DocumentManager
-                        ITool toolViewModel = (ITool)view.ViewModel;
+                        IMesTool toolViewModel = (IMesTool)view.ViewModel;
                         toolViewModel.View = view; // Needed for Binding with AvalonDock
                         toolViewModel.ViewAppearing();
                         toolViewModel.ViewAppeared();

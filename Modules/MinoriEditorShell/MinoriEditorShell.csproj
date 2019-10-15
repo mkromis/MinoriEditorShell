@@ -21,7 +21,7 @@
     <ItemGroup>
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*" />
-        <None Remove="Platforms\Wpf\Themes\ThemeBase.cs" />
+        <None Remove="Platforms\Wpf\Themes\MesThemeBase.cs" />
 
         <PackageReference Include="MvvmCross" Version="6.4.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />

@@ -63,7 +63,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             if (this == Application.Current.MainWindow)
             {
                 (Application.Current as MvxApplication).ApplicationInitialized();
-                Mvx.IoCProvider.Resolve<IThemeManager>();
+                Mvx.IoCProvider.Resolve<IMesThemeManager>();
             }
         }
 
@@ -77,8 +77,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
         private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
         {
 
-            IThemeManager manager = Mvx.IoCProvider.Resolve<IThemeManager>();
-            ITheme theme = manager.Themes.Single(x => x is BlueTheme);
+            IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
+            IMesTheme theme = manager.Themes.Single(x => x is MesBlueTheme);
             manager.SetCurrentTheme(theme.Name);
 
             ViewModel?.ViewAppearing();

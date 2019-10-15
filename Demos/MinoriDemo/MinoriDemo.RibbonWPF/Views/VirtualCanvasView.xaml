@@ -14,6 +14,6 @@
         HorizontalScrollBarVisibility="Auto" 
         VerticalScrollBarVisibility="Auto" 
         CanContentScroll="True">
-        <ui:VirtualCanvas x:Name="Graph" />
+        <ui:MesVirtualCanvas x:Name="Graph" />
     </ScrollViewer>
 </mvx:MvxWpfView>

@@ -164,7 +164,7 @@
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
 
-        <mes:StatusBarView DockPanel.Dock="Bottom"/>
-        <mes:ManagerView />
+        <mes:MesStatusBarView DockPanel.Dock="Bottom"/>
+        <mes:MesManagerView />
     </DockPanel>
 </views:MvxWpfView>

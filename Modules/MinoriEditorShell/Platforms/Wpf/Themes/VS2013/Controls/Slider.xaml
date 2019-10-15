@@ -231,7 +231,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style TargetType="{x:Type controls:SliderEx}">
+    <Style TargetType="{x:Type controls:MesSliderEx}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>

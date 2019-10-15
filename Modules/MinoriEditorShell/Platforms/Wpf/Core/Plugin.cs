@@ -17,14 +17,14 @@ namespace MinoriEditorShell.Platforms.Wpf
     public class Plugin : IMvxPlugin
     {
         public void Load() {
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IManager, ManagerViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStatusBar, StatusBarViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILayoutItemStatePersister, LayoutItemStatePersister>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
             //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsManager, SettingsViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesSettingsManager, MesSettingsViewModel>();
 
             // Register themes
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IThemeManager, ThemeManager>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
         }
 
         //#pragma warning disable 649
