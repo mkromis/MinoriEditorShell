@@ -36,14 +36,12 @@ If you are creating a new WPF application, follow these steps:
  protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
 ```
 
-* Create a MainView object that inherits from MvxWpfView
+* Create a MainView object that inherits from MvxWpfView. See SimpleDemo from source for an example.
 
 
-Now hit F5 and see a very empty application!
 
 By far the easiest way to get started with MinoriEditorShell is to use the various NuGet packages.
-First, install the base MinoriEditorStudio package (note that the package ID is `MinoriEditorStudioWpf`, to
-distinguish it from another NuGet package with the same name):
+First, install the base MinoriEditorShell package:
 
 Then add any other modules you are interested in (note that some modules have dependencies
 on other modules, but this is taken care of by the NuGet package dependency system):
@@ -68,15 +66,7 @@ The following are not completed as of yet.
 
 ## Continuous builds
 
-We use AppVeyor to build MinoriEditorStudio after every commit to the master branch,
-and also to generate pre-release NuGet packages so you can try out new features immediately.
-
-To access the pre-release NuGet packages, you'll need to add a custom package source in Visual Studio,
-pointing to this URL:
-
-*Not Implmented yet (TBD)*
-
-Make sure you select "Include Prerelease" when searching for NuGet packages.
+We use DevOps to build MinoriEditorShell after every pull request to the master branch.
 
 ## What does it do?
 
@@ -118,7 +108,7 @@ Documents are (usually) displayed in the main area in the middle of the window. 
 type, simply inherit from the `Document` class:
 
 ```csharp
-public class SceneViewModel : Document
+public class SceneViewModel : MesDocument
 {
 	public override string DisplayName
 	{
