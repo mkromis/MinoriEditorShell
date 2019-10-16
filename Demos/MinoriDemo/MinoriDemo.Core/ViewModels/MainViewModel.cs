@@ -20,8 +20,6 @@ namespace MinoriDemo.Core.ViewModels
         private VirtualCanvasViewModel _canvasModel;
         private Color _testcolor = Color.CornflowerBlue;
         private readonly IMesSettingsManager _settingsManager;
-        //private readonly IThemeSettings _themeSettings;
-        private readonly IMesThemeManager _themeManager;
         private readonly IMesManager _manager;
         private readonly IMesStatusBar _statusBar;
 
@@ -70,41 +68,18 @@ namespace MinoriDemo.Core.ViewModels
             return vm;
         }
 
-        public IEnumerable<String> ThemeList => _themeManager.Themes.Select(x => x.Name);
-
-        public String SelectedTheme
-        {
-            set => _themeManager.SetCurrentTheme(value);
-            get => _themeManager.CurrentTheme?.Name;
-        }
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IMesManager manager, IMesSettingsManager settingsManager, IMesThemeManager themeManager, 
+            IMesManager manager, IMesSettingsManager settingsManager,
             IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {
             _settingsManager = settingsManager;
-            _themeManager = themeManager;
-            //_themeManager.SetCurrentTheme("Light");
             _manager = manager;
 
             _statusBar = statusBar;
             _statusBar.Text = "Ready";
-
-            //statusBar.AddItem(String.Empty, GridLength.Auto);
-
-            //_settingsManager = Container.Resolve<ISettingsManager>();
-            //_themeSettings = Container.Resolve<IThemeSettings>();
-            //_themeManager = Container.Resolve<IThemeManager>();
-
-            //// Setup theme
-            //String themeName = _themeSettings.SelectedTheme;
-            //if (themeName == "Default")
-            //{
-            //    themeName = _themeSettings.GetSystemTheme();
-            //}
-            //_themeManager.SetCurrent(themeName);
 
             //// Setup settings
             //_settingsManager.Add(new SettingsItem("General", Container.Resolve<GeneralSettings>()));

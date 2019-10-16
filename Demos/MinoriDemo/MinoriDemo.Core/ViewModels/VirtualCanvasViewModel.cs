@@ -136,7 +136,7 @@ namespace MinoriDemo.Core.ViewModels
             //graph.Translate.Changed += new EventHandler(OnScaleChanged);
 
             // Origianlly 100 x 100 nodes
-            AllocateNodes();
+            //AllocateNodes();
 
             // Update info 
             _statusbar.Text = "Ready";
