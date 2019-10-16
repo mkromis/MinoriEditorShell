@@ -18,7 +18,7 @@ namespace MinoriDemo.Core.ViewModels
     /// zooming while creating those shapes on the fly.  This helps make a WPF canvas that is a lot more
     /// scalable.
     /// </summary>
-    public class VirtualCanvasViewModel : MinoriEditorShell.VirtualCanvas.ViewModels.VirtualCanvasViewModel
+    public class VirtualCanvasViewModel : MinoriEditorShell.VirtualCanvas.ViewModels.MesVirtualCanvasViewModel
     {
         private readonly Boolean _animateStatus = true;
         private readonly Int32 _totalVisuals = 0;
@@ -27,7 +27,7 @@ namespace MinoriDemo.Core.ViewModels
         private readonly Double _tileWidth = 50;
         private readonly Double _tileHeight = 30;
         private readonly Double _tileMargin = 10;
-        private readonly IStatusBar _statusbar;
+        private readonly IMesStatusBar _statusbar;
         private Int32 _rows;
         private Int32 _cols;
         private Boolean _showGridLines;
@@ -39,7 +39,7 @@ namespace MinoriDemo.Core.ViewModels
 
         public ICommand OnHelpCommand => new MvxCommand(() =>
         {
-            Mvx.IoCProvider.Resolve<IMessageBox>().Alert(
+            Mvx.IoCProvider.Resolve<IMesMessageBox>().Alert(
                 "Click left mouse button and drag to pan the view " +
                 "Hold Control-Key and run mouse wheel to zoom in and out " +
                 "Click middle mouse button to turn on auto-scrolling " +
@@ -109,7 +109,7 @@ namespace MinoriDemo.Core.ViewModels
         public VirtualCanvasViewModel()
         {
             // Update Statusbar
-            _statusbar = Mvx.IoCProvider.Resolve<IStatusBar>();
+            _statusbar = Mvx.IoCProvider.Resolve<IMesStatusBar>();
             _statusbar.Text = "Loading";
         }
 
@@ -136,7 +136,7 @@ namespace MinoriDemo.Core.ViewModels
             //graph.Translate.Changed += new EventHandler(OnScaleChanged);
 
             // Origianlly 100 x 100 nodes
-            AllocateNodes();
+            //AllocateNodes();
 
             // Update info 
             _statusbar.Text = "Ready";

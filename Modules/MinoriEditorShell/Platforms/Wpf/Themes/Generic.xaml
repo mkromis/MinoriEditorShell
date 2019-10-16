@@ -36,10 +36,10 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style TargetType="controls:ExpanderEx">
+    <Style TargetType="controls:MesExpanderEx">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ExpanderEx">
+                <ControlTemplate TargetType="controls:MesExpanderEx">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

@@ -39,9 +39,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriDemo.RibbonWPF", "Dem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D96C6D53-E9ED-4E32-9856-B858A63C9D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriEditorStudio.CoreTests.Wpf", "Tests\MinoriEditorStudio.CoreTests.Wpf\MinoriEditorStudio.CoreTests.Wpf.csproj", "{057B4FDD-4E41-47BF-8DA6-6955523D4DD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriEditorShell.CoreTests.Wpf", "Tests\MinoriEditorShell.CoreTests.Wpf\MinoriEditorShell.CoreTests.Wpf.csproj", "{057B4FDD-4E41-47BF-8DA6-6955523D4DD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriEditorStudio.RibbonTests.Wpf", "Tests\MinoriEditorStudio.RibbonTests.Wpf\MinoriEditorStudio.RibbonTests.Wpf.csproj", "{AB42B92D-2FA1-4D09-A6C4-5D8614B793A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriEditorShell.RibbonTests.Wpf", "Tests\MinoriEditorShell.RibbonTests.Wpf\MinoriEditorShell.RibbonTests.Wpf.csproj", "{AB42B92D-2FA1-4D09-A6C4-5D8614B793A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
