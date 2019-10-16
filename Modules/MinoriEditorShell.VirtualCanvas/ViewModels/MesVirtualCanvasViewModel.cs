@@ -20,7 +20,7 @@ namespace MinoriEditorShell.VirtualCanvas.ViewModels
     ///    HorizontalScrollBarVisibility="Auto" 
     ///    VerticalScrollBarVisibility="Auto" 
     ///    CanContentScroll="True"&gt;
-    ///    &lt;VirtualCanvas x:Name="Graph" /&gt;
+    ///    &lt;MesVirtualCanvas x:Name="Graph" /&gt;
     /// &lt;/ScrollViewer&gt;
     /// </code>
     /// 

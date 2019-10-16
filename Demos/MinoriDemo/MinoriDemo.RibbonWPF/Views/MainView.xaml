@@ -59,9 +59,6 @@
                     <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}"/>
                     <fluent:Button Header="Settings" Size="Middle" Command="{Binding SettingsCommand}"/>
                 </fluent:RibbonGroupBox>
-                <fluent:RibbonGroupBox Header="Settings">
-                    <fluent:ComboBox Header="Theme" ItemsSource="{Binding ThemeList}" SelectedItem="{Binding SelectedTheme}" />
-                </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="DrawingColorTest">
                     <picker:ColorPicker 
                         Height="20" Width="100" UsingAlphaChannel="False" 
@@ -73,17 +70,18 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
             <!-- Bind context group to tab item -->
-            <fluent:RibbonTabItem Header="Canvas" Group="{Binding Source={x:Reference canvasGroup}}" DataContext="{Binding CanvasModel}">
-                <fluent:RibbonTabItem.Style>
+            <fluent:RibbonTabItem Header="Canvas">
+                <!--Group="{Binding Source={x:Reference canvasGroup}}"--> 
+                <!--<fluent:RibbonTabItem.Style>
                     <Style TargetType="{x:Type fluent:RibbonTabItem}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ShowContextRibbon}" Value="True">
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </fluent:RibbonTabItem.Style>
+                </fluent:RibbonTabItem.Style>-->
                 <fluent:RibbonGroupBox Header="File">
                     <fluent:Button 
                     Header="Dump QuadTree Log..."
@@ -92,12 +90,12 @@
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Dimension">
                     <!-- Click=OnRowColChange -->
-                    <fluent:Button Header="0" Size="Middle" CommandParameter="0" Command="{Binding RowColChange}" />
-                    <fluent:Button Header="10" Size="Middle" CommandParameter="10" Command="{Binding RowColChange}" />
-                    <fluent:Button Header="50" Size="Middle" CommandParameter="50" Command="{Binding RowColChange}" />
-                    <fluent:Button Header="100" Size="Middle" CommandParameter="100" Command="{Binding RowColChange}" />
-                    <fluent:Button Header="250" Size="Middle" CommandParameter="250" Command="{Binding RowColChange}" />
-                    <fluent:Button Header="500" Size="Middle" CommandParameter="500" Command="{Binding RowColChange}" />
+                    <fluent:Button Header="0" Size="Middle" CommandParameter="0" Command="{Binding CanvasModel.RowColChange}" />
+                    <fluent:Button Header="10" Size="Middle" CommandParameter="10" Command="{Binding CanvasModel.RowColChange}" />
+                    <fluent:Button Header="50" Size="Middle" CommandParameter="50" Command="{Binding CanvasModel.RowColChange}" />
+                    <fluent:Button Header="100" Size="Middle" CommandParameter="100" Command="{Binding CanvasModel.RowColChange}" />
+                    <fluent:Button Header="250" Size="Middle" CommandParameter="250" Command="{Binding CanvasModel.RowColChange}" />
+                    <fluent:Button Header="500" Size="Middle" CommandParameter="500" Command="{Binding CanvasModel.RowColChange}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="View">
                     <fluent:CheckBox Header="Show Grid Lines" IsChecked="{Binding ShowGridLines}"/>

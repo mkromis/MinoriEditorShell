@@ -58,7 +58,7 @@
                HorizontalScrollBarVisibility="Auto" 
                VerticalScrollBarVisibility="Auto" 
                CanContentScroll="True"&gt;
-               &lt;VirtualCanvas x:Name="Graph" /&gt;
+               &lt;MesVirtualCanvas x:Name="Graph" /&gt;
             &lt;/ScrollViewer&gt;
             </code>
             
@@ -101,6 +101,1142 @@
             <summary>
             Canvas Control platform interface
             </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesContentCanvas">
+            <summary>
+            A wpf interface used to instanciate into a netstandard object
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas">
+            <summary>
+            VirtualCanvas dynamically figures out which children are visible and creates their visuals 
+            and which children are no longer visible (due to scrolling or zooming) and destroys their
+            visuals.  This helps manage the memory consumption when you have so many objects that creating
+            all the WPF visuals would take too much memory.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.#ctor">
+            <summary>
+            Construct empty virtual canvas.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ShowQuadTree(System.Boolean)">
+            <summary>
+            Statitics for internal rendering.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.OnChildrenCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Callback when _children collection is changed.
+            </summary>
+            <param name="sender">This</param>
+            <param name="e">noop</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.Zoom">
+            <summary>
+            Get/Set the MapZoom object used for manipulating the scale and translation on this canvas.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.IsDone">
+            <summary>
+            Returns true if all Visuals have been created for the current scroll position
+            and there is no more idle processing needed.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.RebuildVisuals">
+            <summary>
+            Resets the state so there is no Visuals associated with this canvas.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.Scale">
+            <summary>
+            The current zoom transform.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.Translate">
+            <summary>
+            The current translate transform.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.VirtualChildren">
+            <summary>
+            Get/Set the IVirtualChild collection.  The VirtualCanvas will call CreateVisual on them
+            when the Bounds of your child intersects the current visible view port.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SmallScrollIncrement">
+            <summary>
+            Set the scroll amount for the scroll bar arrows.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.AddVirtualChild(MinoriEditorShell.VirtualCanvas.Services.IMesVirtualChild)">
+            <summary>
+            Add a new IVirtualChild.  The VirtualCanvas will call CreateVisual on them
+            when the Bounds of your child intersects the current visible view port.
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.GetChildrenIntersecting(System.Drawing.RectangleF)">
+            <summary>
+            Return the list of virtual children that intersect the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>The list of virtual children found or null if there are none</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.HasChildrenIntersecting(System.Drawing.RectangleF)">
+            <summary>
+            Return true if there are any virtual children inside the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>True if a node is found whose bounds intersect the given bounds</returns>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LiveVisualCount">
+            <summary>
+            The number of visual children that are visible right now.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.OnTranslateChanged(System.Object,System.EventArgs)">
+            <summary>
+            Callback whenever the current TranslateTransform is changed.
+            </summary>
+            <param name="sender">TranslateTransform</param>
+            <param name="e">noop</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.OnScaleChanged(System.Object,System.EventArgs)">
+            <summary>
+            Callback whenever the current ScaleTransform is changed.
+            </summary>
+            <param name="sender">ScaleTransform</param>
+            <param name="e">noop</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ContentCanvas">
+            <summary>
+            The ContentCanvas that is actually the parent of all the VirtualChildren Visuals.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.Backdrop">
+            <summary>
+            The backgrop is the back most child of the ContentCanvas used for drawing any sort
+            of background that is guarenteed to fill the ViewPort.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.CalculateExtent">
+            <summary>
+            Calculate the size needed to display all the virtual children.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MeasureOverride(System.Windows.Size)">
+            <summary>
+            WPF Measure override for measuring the control
+            </summary>
+            <param name="availableSize">Available size will be the viewport size in the scroll viewer</param>
+            <returns>availableSize</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            WPF ArrangeOverride for laying out the control
+            </summary>
+            <param name="finalSize">The size allocated by parents</param>
+            <returns>finalSize</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.StartLazyUpdate">
+            <summary>
+            Begin a timer for lazily creating IVirtualChildren visuals
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.OnStartLazyUpdate(System.Object,System.EventArgs)">
+            <summary>
+            Callback from the DispatchTimer
+            </summary>
+            <param name="sender">DispatchTimer </param>
+            <param name="args">noop</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SetViewportSize(System.Windows.Size)">
+            <summary>
+            Set the viewport size and raize a scroll changed event.
+            </summary>
+            <param name="s">The new size</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LazyUpdateVisuals">
+            <summary>
+            Do a quantized unit of work for creating newly visible visuals, and cleaning up visuals that are no
+            longer needed.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SelfThrottlingWorker(System.Int32,System.Int32,MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.QuantizedWorkHandler)">
+            <summary>
+            Helper method for self-tuning how much time is allocated to the given handler.
+            </summary>
+            <param name="quantum">The current quantum allocation</param>
+            <param name="idealDuration">The time in milliseconds we want to take</param>
+            <param name="handler">The handler to call that does the work being throttled</param>
+            <returns>Returns the new quantum to use next time that will more likely hit the ideal time</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LazyCreateNodes(System.Int32)">
+            <summary>
+            Create visuals for the nodes that are now visible.
+            </summary>
+            <param name="quantum">Amount of work we can do here</param>
+            <returns>Amount of work we did</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.EnsureVisual(MinoriEditorShell.VirtualCanvas.Services.IMesVirtualChild)">
+            <summary>
+            Insert the visual for the child in the same order as is is defined in the 
+            VirtualChildren collection so the visuals draw on top of each other in the expected order.
+            The trick is that GetNodesIntersecting returns the nodes in pretty much random order depending 
+            on how the QuadTree decides to break up the canvas.  
+            
+            The thing we should avoid is a linear search through the potentially large collection of 
+            IVirtualChildren to compute its visible index which is why we have the _visualPositions map.  
+            We should also avoid a N*M algorithm where N is the number of nodes returned from GetNodesIntersecting 
+            and M is the number of children already visible.  For example, Page down in a zoomed out situation 
+            gives potentially high N and and M which would basically be an O(n2) algorithm.  
+            
+            So the solution is to use the _visualPositions map to get the expected visual position index
+            of a given IVirtualChild, then do a binary search through existing visible children to find the
+            insertion point of the new child.  So this is O(Log M).  
+            </summary>
+            <param name="child">The IVirtualChild to add visual for</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SplitRegion(System.Drawing.RectangleF,System.Collections.Generic.IList{System.Drawing.RectangleF})">
+            <summary>
+            Split a rectangle into 2 and add them to the regions list.
+            </summary>
+            <param name="r">Rectangle to split</param>
+            <param name="regions">List to add to</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LazyRemoveNodes(System.Int32)">
+            <summary>
+            Remove visuals for nodes that are no longer visible.
+            </summary>
+            <param name="quantum">Amount of work we can do here</param>
+            <returns>Amount of work we did</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LazyGarbageCollectNodes(System.Int32)">
+            <summary>
+            Check all child nodes to see if any leaked from LazyRemoveNodes and remove their visuals.
+            </summary>
+            <param name="quantum">Amount of work we can do here</param>
+            <returns>The amount of work we did</returns>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.Extent">
+            <summary>
+            Return the full size of this canvas.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.CanHorizontallyScroll">
+            <summary>
+            Return whether we are allowed to scroll horizontally.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.CanVerticallyScroll">
+            <summary>
+            Return whether we are allowed to scroll vertically.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ExtentHeight">
+            <summary>
+            The height of the canvas to be scrolled.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ExtentWidth">
+            <summary>
+            The width of the canvas to be scrolled.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LineDown">
+            <summary>
+            Scroll down one small scroll increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LineLeft">
+            <summary>
+            Scroll left by one small scroll increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LineRight">
+            <summary>
+            Scroll right by one small scroll increment
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.LineUp">
+            <summary>
+            Scroll up by one small scroll increment
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MakeVisible(System.Windows.Media.Visual,System.Windows.Rect)">
+            <summary>
+            Make the given visual at the given bounds visible.
+            </summary>
+            <param name="visual">The visual that will become visible</param>
+            <param name="rectangle">The bounds of that visual</param>
+            <returns>The bounds that is actually visible.</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MouseWheelDown">
+            <summary>
+            Scroll down by one mouse wheel increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MouseWheelLeft">
+            <summary>
+            Scroll left by one mouse wheel increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MouseWheelRight">
+            <summary>
+            Scroll right by one mouse wheel increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.MouseWheelUp">
+            <summary>
+            Scroll up by one mouse wheel increment.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.PageDown">
+            <summary>
+            Page down by one view port height amount.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.PageLeft">
+            <summary>
+            Page left by one view port width amount.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.PageRight">
+            <summary>
+            Page right by one view port width amount.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.PageUp">
+            <summary>
+            Page up by one view port height amount.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ScrollOwner">
+            <summary>
+            Return the ScrollViewer that contains this object.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SetHorizontalOffset(System.Double)">
+            <summary>
+            Scroll to the given absolute horizontal scroll position.
+            </summary>
+            <param name="offset">The horizontal position to scroll to</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.SetVerticalOffset(System.Double)">
+            <summary>
+            Scroll to the given absolute vertical scroll position.
+            </summary>
+            <param name="offset">The vertical position to scroll to</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.HorizontalOffset">
+            <summary>
+            Get the current horizontal scroll position.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.VerticalOffset">
+            <summary>
+            Return the current vertical scroll position.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ViewportHeight">
+            <summary>
+            Return the height of the current viewport that is visible in the ScrollViewer.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.ViewportWidth">
+            <summary>
+            Return the width of the current viewport that is visible in the ScrollViewer.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.GetVisibleRect">
+            <summary>
+            Get the currently visible rectangle according to current scroll position and zoom factor and
+            size of scroller viewport.
+            </summary>
+            <returns>A rectangle</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.OnScrollChanged">
+            <summary>
+            The visible region has changed, so we need to queue up work for dirty regions and new visible regions
+            then start asynchronously building new visuals via StartLazyUpdate.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.InvalidateScrollInfo">
+            <summary>
+            Tell the ScrollViewer to update the scrollbars because, extent, zoom or translate has changed.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls.MesVirtualCanvas.AddVisibleRegion">
+            <summary>
+            Add the current visible rect to the list of regions to process
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll">
+            <summary>
+            This class implements a mouse middle-button auto-scrolling feature over any target view.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.#ctor(MinoriEditorShell.VirtualCanvas.Services.IMesContentCanvas,MinoriEditorShell.VirtualCanvas.Services.IMesMapZoom)">
+            <summary>
+            Construct new AutoScroll object that will scroll the given target object within it's container
+            by attaching to the mouse events of the container.
+            </summary>
+            <param name="target">The target object to scroll</param>
+            <param name="zoom">The master MapZoom object that manages the actual render transform</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.OnMouseWheel(System.Object,System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            Receive mouse wheel event and stop any active autoscroll behavior.
+            </summary>
+            <param name="sender">The container</param>
+            <param name="e">Mouse wheel info</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Receive mouse move event and do the actual autoscroll if it is active.
+            </summary>
+            <param name="sender">The container</param>
+            <param name="e">Mouse move info</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.OnMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Handle the mouse down event which toggles autoscrolling behavior.
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse button information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.OnKeyDown(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handle key down event and stop any autoscrolling behavior
+            </summary>
+            <param name="sender">Keyboard</param>
+            <param name="e">Event information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesAutoScroll.StopAutoScrolling">
+            <summary>
+            Stop any active auto-scrolling behavior.
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.EdgeBehavior">
+            <summary>
+            EdgeBehavior defines what type of exponential animation to do.
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation">
+            <summary>
+            This class provides a non-linear DoubleAnimation.
+            </summary>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.EdgeBehaviorProperty">
+            <summary>
+            The property for defining an EdgeBehavior value.
+            </summary>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.PowerProperty">
+            <summary>
+            Property for defining the exponential power of the animation.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.#ctor">
+            <summary>
+            Construct new empty ExponentialDoubleAnimation object.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.#ctor(System.Double,System.Double,System.Double,MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.EdgeBehavior,System.Windows.Duration)">
+            <summary>
+            Construct new ExponentialDoubleAnimation with given arguments
+            </summary>
+            <param name="from">Animate from this value</param>
+            <param name="to">To this value</param>
+            <param name="power">With this exponential power</param>
+            <param name="behavior">Using this type of behavior</param>
+            <param name="duration">For this long</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.EdgeBehavior">
+            <summary>
+            Get/Set the exponential behavior.  It can either start fast and finish slow (EaseIn), or it can start slow
+            and finish fast (EaseOut) or it can do both (like a parabola) which is EaseInOut. Default is EaseIn.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.Power">
+            <summary>
+            Get/Set the power of the exponential.  The default is 2.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.GetCurrentValueCore(System.Double,System.Double,System.Windows.Media.Animation.AnimationClock)">
+            <summary>
+            This method is called by WPF to implement the actual animation, so this method calculates 
+            the exponential value based on how long we've been running so far.
+            </summary>
+            <param name="defaultOriginValue"></param>
+            <param name="defaultDestinationValue"></param>
+            <param name="clock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.CreateInstanceCore">
+            <summary>
+            All Freesable objects have to implement this method.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.EaseIn(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Impelement the EaseIn style of exponential animation which is one of exponential growth.
+            </summary>
+            <param name="timeFraction">Time we've been running from 0 to 1.</param>
+            <param name="start">Start value</param>
+            <param name="delta">Delta between start value and the end value we want</param>
+            <param name="power">The rate of exponental growth</param>
+            <returns></returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.EaseOut(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Impelement the EaseOut style of exponential animation which is one of exponential decay.
+            </summary>
+            <param name="timeFraction">Time we've been running from 0 to 1.</param>
+            <param name="start">Start value</param>
+            <param name="delta">Delta between start value and the end value we want</param>
+            <param name="power">The rate of exponental decay</param>
+            <returns></returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesExponentialDoubleAnimation.EaseInOut(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Impelement the EaseInOut style of exponential animation which is one of exponential growth
+            for the first half of the animation and one of exponential decay for the second half.
+            </summary>
+            <param name="timeFraction">Time we've been running from 0 to 1.</param>
+            <param name="start">Start value</param>
+            <param name="delta">Delta between start value and the end value we want</param>
+            <param name="power">The rate of exponental growth/decay</param>
+            <returns></returns>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom">
+            <summary>
+            The MapZoom gesture provides animated mouse wheel zooming behavior as well as a
+            general management of the scale and translate transformations and a "ScrollIntoView" 
+            method than can be used by other gestures.
+            </summary>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OffsetProperty">
+            <summary>
+            The offset property that can be animated.
+            </summary>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ZoomToPointProperty">
+            <summary>
+            When we are zooming to a point this property can be animated
+            </summary>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ZoomToRectProperty">
+            <summary>
+            When we are zooming to a rectangle this property can be animated.
+            </summary>
+        </member>
+        <member name="E:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ValueChanged">
+            <summary>
+            This event is raised when the scale or translation is changed.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.#ctor(MinoriEditorShell.VirtualCanvas.Services.IMesContentCanvas)">
+            <summary>
+            Construct new MapZoom object that manages the RenderTransform of the given target object.
+            The target object must have a parent container.
+            </summary>
+            <param name="target">The target object we will be zooming.</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnTranslateChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handle event when the TranslateTransform is changed by keeping our offset member in sync
+            the new TranslateTransform values.
+            </summary>
+            <param name="sender">The TranslateTransform object</param>
+            <param name="e">noop</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnScaleChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handle event when the ScaleTransform is changed by keeping our zoom member in sync with the
+            new ScaleTransform values.
+            </summary>
+            <param name="sender">The ScaleTransform object</param>
+            <param name="e">noop</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handle the key down event and show special cursor when control key is pressed to
+            indicate we can do some special behavior
+            </summary>
+            <param name="sender">Keyboard</param>
+            <param name="e">Key information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnKeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handle the key up event and remove any special cursor we set in Key down.
+            </summary>
+            <param name="sender">Keyboard</param>
+            <param name="e">Key information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Handle mouse move event and record the position since we want the zoom to be centered around
+            this position.
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse move information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnMouseWheel(System.Object,System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            Handle mouse wheel event and do the actuall zooming if the control key is down.
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse wheel information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnZoomChanged">
+            <summary>
+            Apply the new animated _zoom value to the actual ScaleTransform and fire the ZoomChanged event.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ResetTranslate">
+            <summary>
+            Reset current translate offset back to zero and stop any existing zoom/translate animations.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ContainerSize">
+            <summary>
+            Return the visible size of the target object (the IScrollInfo Viewport dimensions).
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.KeepPositionStable">
+            <summary>
+            The ScaleTransform scales around 0,0, but want it to scale around _onTarget position.
+            So initially when we changed the ScaleTransform the mouse will have appeared to have
+            slipped a bit on the target object which we don't want, so here we calculate the delta 
+            between the current mouse position and the _onTarget position we want and apply a
+            Translate correction so the user doesn't see any slippage.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.KeepRectStable">
+            <summary>
+            This version keeps a given rectangle stable by centering it within the visible region 
+            of the target object.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.Translate(System.Double,System.Double)">
+            <summary>
+            Translate the target object to the given x-y positions.
+            </summary>
+            <param name="x">The x-cordinate</param>
+            <param name="y">The y-coordinate</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.Value">
+            <summary>
+            Get/set the current zoom level - this is a scale factor, 0.5 means zoom out so everything is half
+            the normal size.  A value of 2 means zoom in so everything on the target object is twice the normal size.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.Offset">
+            <summary>
+            Get/set the current translation offset.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.StopAnimations">
+            <summary>
+            For operations that need to tweak the zoom or translate coordinates, we must first
+            stop any animations that are currently changing those values otherwise things get
+            very confused.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ZoomToRect(System.Drawing.RectangleF)">
+            <summary>
+            Overload to assist in platform interface
+            </summary>
+            <param name=""></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ZoomToRect(System.Windows.Rect)">
+            <summary>
+            Animate a zoom out and translate scroll so that the given rectangle is entirely visible.
+            </summary>
+            <param name="r">Given rectangle is in "target" coordinates.</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.Reset">
+            <summary>
+            Reset any zoom/translate on the target object.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.HandleZoom(System.Double)">
+            <summary>
+            Animate the actual zoom by the given amount.  The amount is a measure of how much zoom the
+            user wants - for example, how hard did they spin the mouse.
+            </summary>
+            <param name="amount">Value between -1 and 1</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.AnimateZoom(System.Windows.DependencyProperty,System.Double,System.Double,System.Windows.Duration)">
+            <summary>
+            Start the zoom animation
+            </summary>
+            <param name="property">ZoomToPointProperty or ZoomToRectProperty.
+            This tells us which type of zoom are we doing (around a point or a rectangle)</param>
+            <param name="oldZoom">The old zoom value</param>
+            <param name="newZoom">The new value we want to be at</param>
+            <param name="d">The amound of time we can take to do the animation</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ScrollIntoView(System.Windows.FrameworkElement)">
+            <summary>
+            Scroll the given framework element into view using a smooth animation.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ScrollIntoView(System.Windows.FrameworkElement[])">
+            <summary>
+            Zoom/scroll all the given framework elements into view
+            </summary>
+            <param name="elements">The array of elements</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ScrollIntoView(System.Windows.Rect)">
+            <summary>
+            Zoom and scroll the given rectangle into view.
+            </summary>
+            <param name="rect">The rectangle to scroll into view</param>
+        </member>
+        <member name="F:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.margin">
+            <summary>
+            The margin around the rectangle that we zoom into view so it doesn't take up all the visible space.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.ScrollIntoView(System.Windows.Rect,System.Windows.Duration,System.Boolean)">
+            <summary>
+            Start the zoom/scroll animation
+            </summary>
+            <param name="rect">Rect is in 'container' coordinates.</param>
+            <param name="duration">Time allowed for the animation</param>
+            <param name="zoom">Whether we can zoom or not</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handle the actual animation of the properties
+            </summary>
+            <param name="e">Property change information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesMapZoom.CreateInstanceCore">
+            <summary>
+            Every Freezable subclass must implement this method.
+            </summary>
+            <returns>A new instance of this object</returns>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan">
+            <summary>
+            This class provides the ability to pan the target object when dragging the mouse 
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan.#ctor(MinoriEditorShell.VirtualCanvas.Services.IMesContentCanvas,MinoriEditorShell.VirtualCanvas.Services.IMesMapZoom)">
+            <summary>
+            Construct new Pan gesture object.
+            </summary>
+            <param name="target">The target to be panned, must live inside a container Panel</param>
+            <param name="zoom"></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan.OnMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Handle mouse left button event on container by recording that position and setting
+            a flag that we've received mouse left down.
+            </summary>
+            <param name="sender">Container</param>
+            <param name="e">Mouse information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Handle the mouse move event and this is where we capture the mouse.  We don't want
+            to actually start panning on mouse down.  We want to be sure the user starts dragging
+            first.
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Move information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan.OnMouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Handle the mouse left button up event and stop any panning.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesPan.MoveBy(System.Windows.Vector)">
+            <summary>
+            Move the target object by the given delta delative to the start scroll position we recorded in mouse down event.
+            </summary>
+            <param name="v">A vector containing the delta from recorded mouse down position and current mouse position</param>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture">
+            <summary>
+            This class provides the ability to draw a rectangle on a zoomable object and zoom into that location.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.#ctor(MinoriEditorShell.VirtualCanvas.Services.IMesContentCanvas,MinoriEditorShell.VirtualCanvas.Services.IMesMapZoom)">
+            <summary>
+            Construct new RectangleSelectionGesture object for selecting things in the given target object.
+            </summary>
+            <param name="target">A FrameworkElement</param>
+            <param name="zoom">The MapZoom object that wraps this same target object</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.SelectionRectangle">
+            <summary>
+            Get the rectangle the user drew on the target object.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.ZoomSelection">
+            <summary>
+            Get/Set whether to also zoom the selected rectangle.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.OnMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Handle the mouse left button down event
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse down information</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.ZoomSizeThreshold">
+            <summary>
+            Get/Set threshold that sets the minimum size rectangle we will allow user to draw.
+            This allows user to start drawing a rectangle by then change their mind and mouse up
+            without trigging an almost infinite zoom out to a very smalle piece of real-estate.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.ConsoleModifiers">
+            <summary>
+            Specify modifier keys for mouse manipulation
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Handle Mouse Move event.  Here we detect whether we've exceeded the _selectionThreshold
+            and if so capture the mouse and create the visual zoom rectangle on the container object.
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse move information.</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.OnMouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Handle the mouse left button up event.  Here we actually process the selected rectangle
+            if any by first raising an event for client to receive then also zooming to that rectangle
+            if ZoomSelection is true
+            </summary>
+            <param name="sender">Mouse</param>
+            <param name="e">Mouse button information</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesRectangleSelectionGesture.GetSelectionRect(System.Windows.Point)">
+            <summary>
+            Get the actual selection rectangle that encompasses the mouse down position and the given point.
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual">
+            <summary>
+            Create a host visual derived from the FrameworkElement class for drawing the
+            selection rubber band.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.#ctor(System.Windows.Point,System.Windows.Point,System.Double)">
+            <summary>
+            Construct new SelectionRectVisual object for the given rectangle
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.FirstPoint">
+            <summary>
+            Get/Set the first point in the rectangle (could be before or after second point).
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.SecondPoint">
+            <summary>
+            Get/Set the second point in the rectangle (could be before or after first point).
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.Zoom">
+            <summary>
+            Get/Set the current Zoom level.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.DrawOnTheContext">
+            <summary>
+            Actually draw the rubber band
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.VisualChildrenCount">
+            <summary>
+            Provide a required override for the VisualChildrenCount property
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.GetVisualChild(System.Int32)">
+            <summary>
+            Provide a required override for the GetVisualChild method.
+            </summary>
+            <param name="index">Index of the child</param>
+            <returns>The child visual</returns>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures.MesSelectionRectVisual.SelectedRect">
+            <summary>
+            Get the actual Rectangle of the rubber band.
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer">
+            <summary>
+            This class implements a high precision timer using the Win32 QueryPerformanceCounter API.
+            Typical usage:
+            <code>
+                PerfTimer t = new PerfTimer();
+                t.Start();
+                ...
+                t.Stop();
+                Int64 ms = t.GetDuration();
+            </code>
+            You can also use it to add up a bunch of times in a loop and report average, mininum
+            and maximum times.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Start">
+            <summary>
+            Set current time as the start time.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Stop">
+            <summary>
+            Set the current time as the end time.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.GetDuration">
+            <summary>
+            Get the time in milliseconds between Start() and Stop().
+            </summary>
+            <returns>Milliseconds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.GetMilliseconds(System.Int64)">
+            <summary>
+            Convert the given argument from "ticks" to milliseconds.
+            </summary>
+            <param name="ticks">Number of ticks returned from GetTicks()</param>
+            <returns>Milliseconds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.GetDurationInTicks">
+            <summary>
+            Get the time between Start() and Stop() in the highest fidelity possible
+            as defined by Windows QueryPerformanceFrequency.  Usually this is nanoseconds.
+            </summary>
+            <returns>High fidelity tick count</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.GetCurrentTime">
+            <summary>
+            Get current time in ighest fidelity possible as defined by Windows QueryPerformanceCounter.  
+            Usually this is nanoseconds.
+            </summary>
+            <returns>High fidelity tick count</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Count(System.Int64)">
+            <summary>
+            Add the given time to a running total so we can compute minimum, maximum and average.
+            </summary>
+            <param name="time">The time to record</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Minimum">
+            <summary>
+            Return the minimum time recorded by the Count() method since the last Clear
+            </summary>
+            <returns>The minimum value</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Max">
+            <summary>
+            Return the maximum time recorded by the Count() method since the last Clear
+            </summary>
+            <returns>The maximum value</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Median">
+            <summary>
+            Return the median of the values recorded by the Count() method since the last Clear
+            </summary>
+            <returns>The median value</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.PercentError">
+            <summary>
+            Return the variance in the numbers recorded by the Count() method since the last Clear
+            </summary>
+            <returns>Percentage between 0 and 100</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Average">
+            <summary>
+            Return the avergae of the values recorded by the Count() method since the last Clear
+            </summary>
+            <returns>The average value</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesPerfTimer.Clear">
+            <summary>
+            Reset the timer to its initial state.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadNode`1" -->
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadNode`1.#ctor(`0,System.Drawing.RectangleF)">
+            <summary>
+            Construct new QuadNode to wrap the given node with given bounds
+            </summary>
+            <param name="node">The node</param>
+            <param name="bounds">The bounds of that node</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadNode`1.Node">
+            <summary>
+            The node
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadNode`1.Bounds">
+            <summary>
+            The Rect bounds of the node
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadNode`1.Next">
+            <summary>
+            QuadNodes form a linked list in the Quadrant.
+            </summary>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1">
+            <summary>
+            The canvas is split up into four Quadrants and objects are stored in the quadrant that contains them
+            and each quadrant is split up into four child Quadrants recurrsively.  Objects that overlap more than
+            one quadrant are stored in the _nodes list for this Quadrant.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.Bounds">
+            <summary>
+            The bounds of this quadrant
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.ShowQuadTree(System.Object)">
+            <summary>
+            Statictial information for rendering use.
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.#ctor(MinoriEditorShell.VirtualCanvas.Services.IMesQuadrant{`0},System.Drawing.RectangleF)">
+            <summary>
+            Construct new Quadrant with a given bounds all nodes stored inside this quadrant
+            will fit inside this bounds.  
+            </summary>
+            <param name="parent">The parent quadrant (if any)</param>
+            <param name="bounds">The bounds of this quadrant</param>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.Parent">
+            <summary>
+            The parent Quadrant or null if this is the root
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.Insert(`0,System.Drawing.RectangleF)">
+            <summary>
+            Insert the given node
+            </summary>
+            <param name="node">The node </param>
+            <param name="bounds">The bounds of that node</param>
+            <returns></returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.GetIntersectingNodes(System.Collections.Generic.IList{MinoriEditorShell.VirtualCanvas.Services.IMesQuadNode{`0}},System.Drawing.RectangleF)">
+            <summary>
+            Returns all nodes in this quadrant that intersect the given bounds.
+            The nodes are returned in pretty much random order as far as the caller is concerned.
+            </summary>
+            <param name="nodes">List of nodes found in the given bounds</param>
+            <param name="bounds">The bounds that contains the nodes you want returned</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.GetIntersectingNodes(MinoriEditorShell.VirtualCanvas.Services.IMesQuadNode{`0},System.Collections.Generic.IList{MinoriEditorShell.VirtualCanvas.Services.IMesQuadNode{`0}},System.Drawing.RectangleF)">
+            <summary>
+            Walk the given linked list of QuadNodes and check them against the given bounds.
+            Add all nodes that intersect the bounds in to the list.
+            </summary>
+            <param name="last">The last QuadNode in a circularly linked list</param>
+            <param name="nodes">The resulting nodes are added to this list</param>
+            <param name="bounds">The bounds to test against each node</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.HasIntersectingNodes(System.Drawing.RectangleF)">
+            <summary>
+            Return true if there are any nodes in this Quadrant that intersect the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>boolean</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.HasIntersectingNodes(MinoriEditorShell.VirtualCanvas.Services.IMesQuadNode{`0},System.Drawing.RectangleF)">
+            <summary>
+            Walk the given linked list and test each node against the given bounds/
+            </summary>
+            <param name="last">The last node in the circularly linked list.</param>
+            <param name="bounds">Bounds to test</param>
+            <returns>Return true if a node in the list intersects the bounds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadrant`1.RemoveNode(`0)">
+            <summary>
+            Remove the given node from this Quadrant.
+            </summary>
+            <param name="node">The node to remove</param>
+            <returns>Returns true if the node was found and removed.</returns>
+        </member>
+        <member name="T:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1">
+            <summary>
+            This class efficiently stores and retrieves arbitrarily sized and positioned
+            objects in a quad-tree data structure.  This can be used to do efficient hit
+            detection or visiblility checks on objects in a virtualized canvas.
+            The object does not need to implement any special interface because the Rect Bounds
+            of those objects is handled as a separate argument to Insert.
+            </summary>
+        </member>
+        <member name="P:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.Bounds">
+            <summary>
+            This determines the overall quad-tree indexing strategy, changing this bounds
+            is expensive since it has to re-divide the entire thing - like a re-hash operation.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.Insert(`0,System.Drawing.RectangleF)">
+            <summary>
+            Insert a node with given bounds into this QuadTree.
+            </summary>
+            <param name="node">The node to insert</param>
+            <param name="bounds">The bounds of this node</param>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.GetNodesInside(System.Drawing.RectangleF)">
+            <summary>
+            Get a list of the nodes that intersect the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>List of zero or mode nodes found inside the given bounds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.HasNodesInside(System.Drawing.RectangleF)">
+            <summary>
+            Get a list of the nodes that intersect the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>List of zero or mode nodes found inside the given bounds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.GetNodes(System.Drawing.RectangleF)">
+            <summary>
+            Get list of nodes that intersect the given bounds.
+            </summary>
+            <param name="bounds">The bounds to test</param>
+            <returns>The list of nodes intersecting the given bounds</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.Remove(`0)">
+            <summary>
+            Remove the given node from this QuadTree.
+            </summary>
+            <param name="node">The node to remove</param>
+            <returns>True if the node was found and removed.</returns>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.ReIndex">
+            <summary>
+            Rebuild all the Quadrants according to the current QuadTree Bounds.
+            </summary>
+        </member>
+        <member name="M:MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models.MesQuadTree`1.ShowQuadTree(System.Object)">
+            <summary>
+            Staticail visual information
+            </summary>
+            <param name="container"></param>
         </member>
     </members>
 </doc>
