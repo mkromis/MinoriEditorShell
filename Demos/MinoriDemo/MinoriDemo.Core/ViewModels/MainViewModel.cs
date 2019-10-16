@@ -19,11 +19,9 @@ namespace MinoriDemo.Core.ViewModels
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
         private Color _testcolor = Color.CornflowerBlue;
-        private readonly ISettingsManager _settingsManager;
-        //private readonly IThemeSettings _themeSettings;
-        private readonly IThemeManager _themeManager;
-        private readonly IManager _manager;
-        private readonly IStatusBar _statusBar;
+        private readonly IMesSettingsManager _settingsManager;
+        private readonly IMesManager _manager;
+        private readonly IMesStatusBar _statusBar;
 
         public VirtualCanvasViewModel CanvasModel
         {
@@ -56,7 +54,7 @@ namespace MinoriDemo.Core.ViewModels
 
         public ICommand SettingsCommand =>  new MvxCommand(() =>  NavigationService.Navigate(_settingsManager));
 
-        private T OpenAndFocus<T>() where T : Document
+        private T OpenAndFocus<T>() where T : MesDocument
         {
             T vm = (T)_manager.Documents.Where(x => x is T).FirstOrDefault();
             if (vm == null)
@@ -70,41 +68,18 @@ namespace MinoriDemo.Core.ViewModels
             return vm;
         }
 
-        public IEnumerable<String> ThemeList => _themeManager.Themes.Select(x => x.Name);
-
-        public String SelectedTheme
-        {
-            set => _themeManager.SetCurrentTheme(value);
-            get => _themeManager.CurrentTheme?.Name;
-        }
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IManager manager, ISettingsManager settingsManager, IThemeManager themeManager, 
-            IStatusBar statusBar)
+            IMesManager manager, IMesSettingsManager settingsManager,
+            IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {
             _settingsManager = settingsManager;
-            _themeManager = themeManager;
-            //_themeManager.SetCurrentTheme("Light");
             _manager = manager;
 
             _statusBar = statusBar;
             _statusBar.Text = "Ready";
-
-            //statusBar.AddItem(String.Empty, GridLength.Auto);
-
-            //_settingsManager = Container.Resolve<ISettingsManager>();
-            //_themeSettings = Container.Resolve<IThemeSettings>();
-            //_themeManager = Container.Resolve<IThemeManager>();
-
-            //// Setup theme
-            //String themeName = _themeSettings.SelectedTheme;
-            //if (themeName == "Default")
-            //{
-            //    themeName = _themeSettings.GetSystemTheme();
-            //}
-            //_themeManager.SetCurrent(themeName);
 
             //// Setup settings
             //_settingsManager.Add(new SettingsItem("General", Container.Resolve<GeneralSettings>()));

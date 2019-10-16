@@ -2,9 +2,9 @@
 
 namespace MinoriDemo.Core.ViewModels
 {
-    class ToolSampleViewModel : Tool
+    class ToolSampleViewModel : MesTool
     {
-        public override PaneLocation PreferredLocation { get; } = PaneLocation.Right;
+        public override MesPaneLocation PreferredLocation { get; } = MesPaneLocation.Right;
         
         public ToolSampleViewModel()
         {

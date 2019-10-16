@@ -12,7 +12,7 @@ namespace SimpleDemo.RibbonWPF
         {
             InitializeComponent();
 
-            Mvx.IoCProvider.Resolve<IThemeManager>().SetCurrentTheme("Blue");
+            Mvx.IoCProvider.Resolve<IMesThemeManager>().SetCurrentTheme("Blue");
         }
     }
 }

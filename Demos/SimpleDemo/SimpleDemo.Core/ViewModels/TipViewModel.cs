@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SimpleDemo.Core.ViewModels
 {
-    public class TipViewModel : Document
+    public class TipViewModel : MesDocument
     {
         readonly ICalculationService _calculationService;
 

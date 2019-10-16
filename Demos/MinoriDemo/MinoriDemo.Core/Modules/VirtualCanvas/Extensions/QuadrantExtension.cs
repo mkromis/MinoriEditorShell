@@ -6,12 +6,12 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions
 {
     public static class QuadrantExtension
     {
-        public static void Dump<T>(this IQuadrant<T> source, LogWriter w) where T : class
+        public static void Dump<T>(this IMesQuadrant<T> source, LogWriter w) where T : class
         {
             w.WriteAttribute("Bounds", source.Bounds.ToString());
             if (source.Nodes != null)
             {
-                IQuadNode<T> n = source.Nodes;
+                IMesQuadNode<T> n = source.Nodes;
                 do
                 {
                     n = n.Next; // first node.
@@ -28,7 +28,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions
 
         }
 
-        private static void DumpQuadrant<T>(String label, IQuadrant<T> q, LogWriter w) where T : class
+        private static void DumpQuadrant<T>(String label, IMesQuadrant<T> q, LogWriter w) where T : class
         {
             if (q != null)
             {
