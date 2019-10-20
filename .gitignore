@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /Modules/MinoriEditorStudio.VirtualCanvas/MinoriEditorStudio.VirtualCanvas.xml
+/Modules/MinoriEditorShell.VirtualCanvas/MinoriEditorStudio.VirtualCanvas.xml
