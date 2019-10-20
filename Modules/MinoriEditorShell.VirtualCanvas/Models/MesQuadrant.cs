@@ -8,11 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
-namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Models
 {
 
     /// <summary>
@@ -20,7 +17,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// and each quadrant is split up into four child Quadrants recurrsively.  Objects that overlap more than
     /// one quadrant are stored in the _nodes list for this Quadrant.
     /// </summary>
-    public class MesQuadrant<T> : IMesQuadrant<T>
+    internal class MesQuadrant<T> : IMesQuadrant<T>
     {
         /// <summary>
         /// The bounds of this quadrant
@@ -42,26 +39,26 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// <param name="c"></param>
         public void ShowQuadTree(Object o)
         {
-            if (o is Canvas c)
-            {
-                //Rectangle r = new Rectangle
-                //{
-                //    Width = Bounds.Width,
-                //    Height = Bounds.Height
-                //};
+            //if (o is Canvas c)
+            //{
+            //    //Rectangle r = new Rectangle
+            //    //{
+            //    //    Width = Bounds.Width,
+            //    //    Height = Bounds.Height
+            //    //};
 
-                //Canvas.SetLeft(r, Bounds.);
-                //Canvas.SetTop(r, Bounds.Top);
-                //r.Stroke = Brushes.DarkRed;
-                //r.StrokeThickness = 1;
-                //r.StrokeDashArray = new DoubleCollection(new Double[] { 2.0, 3.0 });
-                //c.Children.Add(r);
+            //    //Canvas.SetLeft(r, Bounds.);
+            //    //Canvas.SetTop(r, Bounds.Top);
+            //    //r.Stroke = Brushes.DarkRed;
+            //    //r.StrokeThickness = 1;
+            //    //r.StrokeDashArray = new DoubleCollection(new Double[] { 2.0, 3.0 });
+            //    //c.Children.Add(r);
 
-                //TopLeft?.ShowQuadTree(c);
-                //TopRight?.ShowQuadTree(c);
-                //BottomLeft?.ShowQuadTree(c);
-                //BottomRight?.ShowQuadTree(c);
-            }
+            //    //TopLeft?.ShowQuadTree(c);
+            //    //TopRight?.ShowQuadTree(c);
+            //    //BottomLeft?.ShowQuadTree(c);
+            //    //BottomRight?.ShowQuadTree(c);
+            //}
             throw new NotImplementedException();
         }
 

@@ -6,12 +6,12 @@
 using MinoriEditorShell.VirtualCanvas.Services;
 using System.Drawing;
 
-namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Models
 {
     /// <summary>
     /// Each node stored in the tree has a position, width & height.
     /// </summary>
-    public class MesQuadNode<T> : IMesQuadNode<T>
+    internal class MesQuadNode<T> : IMesQuadNode<T>
     {
 
         /// <summary>

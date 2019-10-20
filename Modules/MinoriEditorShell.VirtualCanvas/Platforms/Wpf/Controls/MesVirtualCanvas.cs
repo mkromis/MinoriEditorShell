@@ -19,6 +19,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
+using MinoriEditorShell.VirtualCanvas.Models;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 {
@@ -42,7 +43,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
     public class MesVirtualCanvas : VirtualizingPanel, IScrollInfo, IMesVirtualCanvasControl
     {
         private System.Windows.Size _viewPortSize;
-        public MesQuadTree<IMesVirtualChild> Index { get; private set; }
+        public IMesQuadTree<IMesVirtualChild> Index { get; private set; }
         private ObservableCollection<IMesVirtualChild> _children;
         private readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
         private readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
