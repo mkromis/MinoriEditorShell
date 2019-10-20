@@ -86,7 +86,7 @@
                     <fluent:Button 
                     Header="Dump QuadTree Log..."
                     LargeIcon="{DynamicResource appbar_save}"
-                    Command="{Binding DumpQuadTreeCommand}"/>
+                    Command="{Binding CanvasModel.DumpQuadTreeCommand}"/>
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Dimension">
                     <!-- Click=OnRowColChange -->
@@ -98,8 +98,8 @@
                     <fluent:Button Header="500" Size="Middle" CommandParameter="500" Command="{Binding CanvasModel.RowColChange}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="View">
-                    <fluent:CheckBox Header="Show Grid Lines" IsChecked="{Binding ShowGridLines}"/>
-                    <fluent:CheckBox Header="Show Quad Tree" IsChecked="{Binding ShowQuadTree}"/>
+                    <fluent:CheckBox Header="Show Grid Lines" IsChecked="{Binding CanvasModel.ShowGridLines}"/>
+                    <fluent:CheckBox Header="Show Quad Tree" IsChecked="{Binding CanvasModel.ShowQuadTree}"/>
                     <fluent:CheckBox Header="Animate Status" IsChecked="True" />
                     <!-- OnAnimateStatus -->
                 </fluent:RibbonGroupBox>
@@ -157,7 +157,7 @@
                     you can also spin the mouse wheel to <LineBreak/>
                     zoom in and out around the mouse position.<LineBreak/>
                     </TextBlock>
-                    <fluent:Button Header="User Interface" Command="{Binding OnHelpCommand}" LargeIcon="{StaticResource appbar_question}"/>
+                    <fluent:Button Header="User Interface" Command="{Binding CanvasModel.OnHelpCommand}" LargeIcon="{StaticResource appbar_question}"/>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
