@@ -992,5 +992,21 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             _visibleRegions.Clear();
             _visibleRegions.Add(_visible);
         }
+
+
+        /// <summary>
+        /// A simple helper to use default implementation
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <returns></returns>
+        public void UseDefaultControls(IMesVirtualCanvas dc)
+        {
+            IMesContentCanvas canvas = ContentCanvas;
+            dc.Zoom = new MesMapZoom(canvas);
+            dc.Pan = new MesPan(canvas, dc.Zoom);
+            dc.AutoScroll = new MesAutoScroll(canvas, dc.Zoom);
+            dc.RectZoom = new MesRectangleSelectionGesture(canvas, dc.Zoom);
+            dc.Graph = this;
+        }
     }
 }
