@@ -1,6 +1,4 @@
-﻿using MinoriEditorShell.VirtualCanvas.ViewModels;
-using MinoriEditorShell.VirtualCanvas.Services;
-using MvvmCross;
+﻿using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using MvvmCross.Views;
