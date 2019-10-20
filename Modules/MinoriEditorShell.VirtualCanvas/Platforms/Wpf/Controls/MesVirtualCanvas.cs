@@ -19,6 +19,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
+using MinoriEditorShell.VirtualCanvas.Models;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 {
@@ -42,7 +43,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
     public class MesVirtualCanvas : VirtualizingPanel, IScrollInfo, IMesVirtualCanvasControl
     {
         private System.Windows.Size _viewPortSize;
-        public MesQuadTree<IMesVirtualChild> Index { get; private set; }
+        public IMesQuadTree<IMesVirtualChild> Index { get; private set; }
         private ObservableCollection<IMesVirtualChild> _children;
         private readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
         private readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
@@ -991,6 +992,22 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             _visible = GetVisibleRect();
             _visibleRegions.Clear();
             _visibleRegions.Add(_visible);
+        }
+
+
+        /// <summary>
+        /// A simple helper to use default implementation
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <returns></returns>
+        public void UseDefaultControls(IMesVirtualCanvas dc)
+        {
+            IMesContentCanvas canvas = ContentCanvas;
+            dc.Zoom = new MesMapZoom(canvas);
+            dc.Pan = new MesPan(canvas, dc.Zoom);
+            dc.AutoScroll = new MesAutoScroll(canvas, dc.Zoom);
+            dc.RectZoom = new MesRectangleSelectionGesture(canvas, dc.Zoom);
+            dc.Graph = this;
         }
     }
 }
