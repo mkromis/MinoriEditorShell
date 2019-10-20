@@ -25,7 +25,6 @@ MinoriEditorStudio ships with three themes: a Blue theme(Default), a Light theme
 * [MinoriEditorShell.Ribbon](http://nuget.org/packages/MinoriEditorShell.Ribbon/)
 * [MinoriEditorShell.VirtualCanvas](http://nuget.org/packages/MinoriEditorShell.VirtualCanvas/)
 
-
 ## Continuous builds
 
 We use DevOps to build MinoriEditorShell after every pull request to the master branch.
