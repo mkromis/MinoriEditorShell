@@ -7,11 +7,8 @@ using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
 
-namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
+namespace MinoriEditorShell.VirtualCanvas.Models
 {
 
     /// <summary>
@@ -21,7 +18,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// The object does not need to implement any special interface because the Rect Bounds
     /// of those objects is handled as a separate argument to Insert.
     /// </summary>
-    public partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
+    internal partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
     {
         RectangleF _bounds; // overall bounds we are indexing.
         public IMesQuadrant<T> Root { get; private set; }
