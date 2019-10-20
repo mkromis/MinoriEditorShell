@@ -10,7 +10,6 @@
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer
-        x:Name="Scroller" 
         HorizontalScrollBarVisibility="Auto" 
         VerticalScrollBarVisibility="Auto" 
         CanContentScroll="True">

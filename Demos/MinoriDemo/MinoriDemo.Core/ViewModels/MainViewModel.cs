@@ -81,7 +81,7 @@ namespace MinoriDemo.Core.ViewModels
             _statusBar = statusBar;
             _statusBar.Text = "Ready";
 
-            //// Setup settings
+            // Setup settings
             //_settingsManager.Add(new SettingsItem("General", Container.Resolve<GeneralSettings>()));
         }
     }

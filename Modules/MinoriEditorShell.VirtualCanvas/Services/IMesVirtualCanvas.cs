@@ -5,10 +5,10 @@ namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public interface IMesVirtualCanvas : IMesDocument
     {
-        IMesAutoScroll AutoScroll { get; }
-        IMesVirtualCanvasControl Graph { get; }
-        IMesPan Pan { get; }
-        IMesRectangleSelectionGesture RectZoom { get; }
-        IMesMapZoom Zoom { get; }
+        IMesAutoScroll AutoScroll { get; set; }
+        IMesVirtualCanvasControl Graph { get; set; }
+        IMesPan Pan { get; set;  }
+        IMesRectangleSelectionGesture RectZoom { get; set; }
+        IMesMapZoom Zoom { get; set; }
     }
 }

@@ -30,13 +30,7 @@ namespace MinoriDemo.RibbonWPF.Views
             DataContextChanged += (s, e) =>
             {
                 MesVirtualCanvasViewModel dc = (MesVirtualCanvasViewModel)DataContext;
-                dc.Graph = Graph;
-
-                IMesContentCanvas canvas = dc.Graph.ContentCanvas;
-                dc.Zoom = new MesMapZoom(canvas);
-                dc.Pan = new MesPan(canvas, dc.Zoom);
-                dc.AutoScroll = new MesAutoScroll(canvas, dc.Zoom);
-                dc.RectZoom = new MesRectangleSelectionGesture(canvas, dc.Zoom);
+                Graph.UseDefaultControls(dc);
             };
         }
     }
