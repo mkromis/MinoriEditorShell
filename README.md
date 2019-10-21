@@ -6,7 +6,7 @@
 [![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
 [![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues) [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## What is this
 
