@@ -1,12 +1,23 @@
 # MinoriEditorStudio
 
+## Contact
+
+ [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Status
+
 [![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/MinoriEditorShell)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=3)
 [![NuGet](https://img.shields.io/nuget/v/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
+[![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
-[![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Closed Issues](https://img.shields.io/github/issues-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg?style=flat-square)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Closed Issues](https://img.shields.io/github/issues-closed-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+
+Dual-Licensed with either
+[![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
+[![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
 ## What is this
 
