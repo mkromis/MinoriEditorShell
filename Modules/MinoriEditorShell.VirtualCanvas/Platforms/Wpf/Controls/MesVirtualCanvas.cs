@@ -108,14 +108,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         void OnChildrenCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
 
         /// <summary>
-        /// Get/Set the MapZoom object used for manipulating the scale and translation on this canvas.
-        /// </summary>
-        public IMesMapZoom Zoom {
-            get => _zoom;
-            set => _zoom = (MesMapZoom)value;
-        }
-
-        /// <summary>
         /// Returns true if all Visuals have been created for the current scroll position
         /// and there is no more idle processing needed.
         /// </summary>
@@ -434,7 +426,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         private readonly MesContentCanvas _contentCanvas;
         Int32 _added;
         RectangleF _visible = RectangleF.Empty;
-        private MesMapZoom _zoom;
 
         delegate Int32 QuantizedWorkHandler(Int32 quantum);
 
@@ -815,11 +806,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <returns>The bounds that is actually visible.</returns>
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
-            if (Zoom != null && visual != this)
-            {
-                return _zoom.ScrollIntoView(visual as FrameworkElement);
-            }
-            return rectangle;
+            //if (_contentCanvas.Zoom != null && visual != this)
+            //{
+            //    return _zoom.ScrollIntoView(visual as FrameworkElement);
+            //}
+            //return rectangle;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -911,6 +903,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 
         public SizeF SmallScrollIncrement1 { get; set; } = new SizeF(10, 10);
         public Int32 Removed { get; set; }
+
 
         #endregion
 
