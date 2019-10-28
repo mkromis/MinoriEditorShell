@@ -1,5 +1,6 @@
 ﻿using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriEditorShell.Services;
+using MinoriEditorShell.VirtualCanvas.Extensions;
 using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
@@ -81,7 +82,7 @@ namespace MinoriDemo.Core.ViewModels
         {
             if (x == "Fit")
             {
-                ResetZoom();
+                this.ZoomToContent(ZoomToContent.WidthAndHeight);
             }
             else
             {
@@ -90,15 +91,6 @@ namespace MinoriDemo.Core.ViewModels
                 _statusbar.Text = $"Zoom is {Zoom.Value}";
             }
         });
-
-        private void ResetZoom()
-        {
-            Double scaleX = Graph.ViewportWidth / Graph.ExtentWidth;
-            Double scaleY = Graph.ViewportHeight / Graph.ExtentHeight;
-
-            Zoom.Value = Math.Min(scaleX, scaleY);
-            //zoom.Offset = new Point(0, 0);
-        }
 
         public Double ZoomValue
         {
@@ -127,7 +119,7 @@ namespace MinoriDemo.Core.ViewModels
                 _statusbar.Text = $"Zoom:{e}";
             };
 
-            RectZoom.ZoomReset += (s, e) => ResetZoom();
+            RectZoom.ZoomReset += (s, e) => this.ZoomToContent(ZoomToContent.WidthAndHeight);
 
             // Do I even need this?
             //IVirtualCanvasControl graph = Canvas.Graph;
