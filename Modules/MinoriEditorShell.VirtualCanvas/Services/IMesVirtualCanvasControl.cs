@@ -7,13 +7,13 @@ namespace MinoriEditorShell.VirtualCanvas.Services
     public interface IMesVirtualCanvasControl
     {
         IMesContentCanvas ContentCanvas { get; }
-        IMesMapZoom Zoom { get; set; }
         Double ExtentWidth { get; }
         Double ExtentHeight { get; }
         Double ViewportWidth { get; }
         Double ViewportHeight { get; }
 
         ObservableCollection<IMesVirtualChild> VirtualChildren { get; }
+        SizeF Extent { get; }
 
         void AddVirtualChild(IMesVirtualChild shape);
     }
