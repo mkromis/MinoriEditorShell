@@ -23,17 +23,6 @@ using MinoriEditorShell.VirtualCanvas.Models;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 {
-    public class VisualChangeEventArgs : EventArgs
-    {
-        public Int32 Added { get; set; }
-        public Int32 Removed { get; set; }
-        public VisualChangeEventArgs(Int32 added, Int32 removed)
-        {
-            Added = added;
-            Removed = removed;
-        }
-    }
-
     /// <summary>
     /// VirtualCanvas dynamically figures out which children are visible and creates their visuals 
     /// and which children are no longer visible (due to scrolling or zooming) and destroys their
@@ -106,14 +95,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <param name="sender">This</param>
         /// <param name="e">noop</param>
         void OnChildrenCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
-
-        /// <summary>
-        /// Get/Set the MapZoom object used for manipulating the scale and translation on this canvas.
-        /// </summary>
-        public IMesMapZoom Zoom {
-            get => _zoom;
-            set => _zoom = (MesMapZoom)value;
-        }
 
         /// <summary>
         /// Returns true if all Visuals have been created for the current scroll position
@@ -434,7 +415,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         private readonly MesContentCanvas _contentCanvas;
         Int32 _added;
         RectangleF _visible = RectangleF.Empty;
-        private MesMapZoom _zoom;
 
         delegate Int32 QuantizedWorkHandler(Int32 quantum);
 
@@ -815,11 +795,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <returns>The bounds that is actually visible.</returns>
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
-            if (Zoom != null && visual != this)
-            {
-                return _zoom.ScrollIntoView(visual as FrameworkElement);
-            }
-            return rectangle;
+            //if (_contentCanvas.Zoom != null && visual != this)
+            //{
+            //    return _zoom.ScrollIntoView(visual as FrameworkElement);
+            //}
+            //return rectangle;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -911,6 +892,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 
         public SizeF SmallScrollIncrement1 { get; set; } = new SizeF(10, 10);
         public Int32 Removed { get; set; }
+
 
         #endregion
 
