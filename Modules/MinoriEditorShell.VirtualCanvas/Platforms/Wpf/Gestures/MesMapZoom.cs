@@ -399,7 +399,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Overload to assist in platform interface
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="rectf"></param>
         public void ZoomToRect(System.Drawing.RectangleF rectf)
         {
             Rect r = new Rect(rectf.X, rectf.Y, rectf.Width, rectf.Height);
