@@ -121,6 +121,9 @@ namespace MinoriDemo.Core.ViewModels
 
             RectZoom.ZoomReset += (s, e) => this.ZoomToContent(ZoomToContent.WidthAndHeight);
 
+            // Set the background to see the boarder vs demo.
+            Graph.ContentCanvas.SetCanvasBackgroundColor(Color.AliceBlue);
+
             // Do I even need this?
             //IVirtualCanvasControl graph = Canvas.Graph;
             //graph.SmallScrollIncrement = new Size(_tileWidth + _tileMargin, _tileHeight + _tileMargin);

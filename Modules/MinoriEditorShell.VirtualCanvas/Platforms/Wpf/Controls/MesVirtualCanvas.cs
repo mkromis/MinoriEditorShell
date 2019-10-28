@@ -23,17 +23,6 @@ using MinoriEditorShell.VirtualCanvas.Models;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 {
-    public class VisualChangeEventArgs : EventArgs
-    {
-        public Int32 Added { get; set; }
-        public Int32 Removed { get; set; }
-        public VisualChangeEventArgs(Int32 added, Int32 removed)
-        {
-            Added = added;
-            Removed = removed;
-        }
-    }
-
     /// <summary>
     /// VirtualCanvas dynamically figures out which children are visible and creates their visuals 
     /// and which children are no longer visible (due to scrolling or zooming) and destroys their
