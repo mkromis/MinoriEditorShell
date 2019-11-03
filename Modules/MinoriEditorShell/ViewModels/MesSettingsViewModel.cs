@@ -12,17 +12,18 @@ using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using MvvmCross.Views;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
-    public class MesSettingsViewModel : MesWindowBase, IMesSettingsManager
+    public class MesSettingsViewModel : MvxNavigationViewModel, IMesWindow, IMesSettingsManager
     {
         private IEnumerable<IMesSettingsEditor> _settingsEditors;
         private MesSettingsPageViewModel _selectedPage;
+        private String displayName;
 
-        public MesSettingsViewModel(
-            IMvxLogProvider logProvider, IMvxNavigationService navigationService) 
+        public MesSettingsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             CancelCommand = new MvxCommand(() => NavigationService.Close(this));
@@ -46,6 +47,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
         public ICommand CancelCommand { get; private set; }
         public ICommand OkCommand { get; private set; }
+        public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
 
         public override async Task Initialize()
         {
@@ -57,7 +59,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
             foreach (IMesSettingsEditor settingsEditor in _settingsEditors)
             {
-                if (settingsEditor == null) { throw new InvalidProgramException("ISettingsEditor Missing");  }
+                if (settingsEditor == null) { throw new InvalidProgramException("ISettingsEditor Missing"); }
                 List<MesSettingsPageViewModel> parentCollection = GetParentCollection(settingsEditor, pages);
 
                 MesSettingsPageViewModel page =
@@ -108,7 +110,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
                 return pages;
             }
 
-            String[] path = settingsEditor.SettingsPagePath.Split(new[] {'\\'}, StringSplitOptions.RemoveEmptyEntries);
+            String[] path = settingsEditor.SettingsPagePath.Split(new[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (String pathElement in path)
             {
@@ -116,7 +118,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
                 if (page == null)
                 {
-                    page = new MesSettingsPageViewModel {Name = pathElement};
+                    page = new MesSettingsPageViewModel { Name = pathElement };
                     pages.Add(page);
                 }
 
