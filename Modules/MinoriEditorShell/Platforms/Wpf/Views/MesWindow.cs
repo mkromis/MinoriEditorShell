@@ -8,13 +8,11 @@ using MvvmCross.ViewModels;
 using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Markup;
 using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
-    public class MesWindow : MetroWindow, IMvxWindow, IMvxWpfView, IDisposable
+    public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView, IDisposable
     {
         private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
@@ -51,6 +49,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             set => _bindingContext = value;
         }
 
+        public String DisplayName
+        {
+            get => Title;
+            set => Title = value;
+        }
+
         public MesWindow()
         {
             Unloaded += MesWindow_Unloaded;
@@ -62,7 +66,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
         {
             if (this == Application.Current.MainWindow)
             {
+                // Application startup
                 (Application.Current as MvxApplication).ApplicationInitialized();
+
+                // Init mes setup
                 Mvx.IoCProvider.Resolve<IMesThemeManager>();
             }
         }
@@ -76,7 +83,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
 
         private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
         {
-
+            // Set theme
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
             IMesTheme theme = manager.Themes.Single(x => x is MesBlueTheme);
             manager.SetCurrentTheme(theme.Name);

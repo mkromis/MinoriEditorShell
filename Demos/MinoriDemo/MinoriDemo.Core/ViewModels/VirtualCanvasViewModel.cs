@@ -139,8 +139,7 @@ namespace MinoriDemo.Core.ViewModels
         
         private void AllocateNodes()
         {
-            Zoom.Value = 1;
-            //zoom.Offset = new Point(0, 0);
+            Zoom.ResetTranslate();
 
             // Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
             // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;

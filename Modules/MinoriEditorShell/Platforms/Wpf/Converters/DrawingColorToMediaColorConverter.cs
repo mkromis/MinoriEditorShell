@@ -21,7 +21,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
         {
             Color? color = value as Color?;
             return color == null ? System.Drawing.Color.Empty :
-                System.Drawing.Color.FromArgb(color.Value.R, color.Value.G, color.Value.B);
+                System.Drawing.Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B);
         }
     }
 }

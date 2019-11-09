@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Input;
 
 namespace MinoriDemo.Core.ViewModels
@@ -68,7 +69,6 @@ namespace MinoriDemo.Core.ViewModels
             return vm;
         }
 
-
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
             IMesManager manager, IMesSettingsManager settingsManager,
@@ -81,8 +81,8 @@ namespace MinoriDemo.Core.ViewModels
             _statusBar = statusBar;
             _statusBar.Text = "Ready";
 
-            // Setup settings
-            //_settingsManager.Add(new SettingsItem("General", Container.Resolve<GeneralSettings>()));
+            Mvx.IoCProvider.Resolve<IMesWindow>().DisplayName =
+                $"Minori Demo v{Assembly.GetExecutingAssembly().GetName().Version.ToString(3)}";
         }
     }
 }

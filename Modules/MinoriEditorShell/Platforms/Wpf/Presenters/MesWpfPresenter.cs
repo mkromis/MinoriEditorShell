@@ -16,17 +16,19 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
     public class MesWpfPresenter : MvxWpfViewPresenter
     {
         private IMvxLog _log;
-        private readonly ContentControl _mainWindow;
-        //private readonly Stack<FrameworkElement> _navigationStack = new Stack<FrameworkElement>();
-        //private HomeView _homeView;
 
         public MesWpfPresenter(ContentControl mainWindow) : base(mainWindow)
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
             _log = provider.GetLogFor<MesWpfPresenter>();
             _log.Trace("Setup: Creating Presenter");
-            _mainWindow = mainWindow;
-            
+
+            // Setup main window as singleton
+            if (mainWindow is IMesWindow mesWindow)
+            {
+                _log.Trace("Setting IMesWindow to main window");
+                Mvx.IoCProvider.RegisterSingleton<IMesWindow>(mesWindow);
+            }
         }
 
         protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
@@ -44,8 +46,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                         // Try to set view, this is needed for DocumentManager
                         IMesDocument docViewModel = (IMesDocument)view.ViewModel;
                         docViewModel.View = view; // Needed for Binding with AvalonDock
-                        docViewModel.ViewAppearing();
-                        docViewModel.ViewAppeared();
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
@@ -56,8 +56,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                         // Try to set view, this is needed for DocumentManager
                         IMesTool toolViewModel = (IMesTool)view.ViewModel;
                         toolViewModel.View = view; // Needed for Binding with AvalonDock
-                        toolViewModel.ViewAppearing();
-                        toolViewModel.ViewAppeared();
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
@@ -77,7 +75,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                 }
                 _log.ErrorException("Error seen during navigation request to {0} - error {1}",
                     exception, request.ViewModelType.Name, exception.ToLongString());
-                return false;
+                throw exception;
             }
         }
     }
