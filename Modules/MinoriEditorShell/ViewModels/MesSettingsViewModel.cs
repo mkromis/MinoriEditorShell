@@ -17,7 +17,7 @@ using MvvmCross.Views;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
-    public class MesSettingsViewModel : MvxNavigationViewModel, IMesWindow, IMesSettingsManager
+    public class MesSettingsViewModel : MvxNavigationViewModel, IMesSettingsManager
     {
         private IEnumerable<IMesSettingsEditor> _settingsEditors;
         private MesSettingsPageViewModel _selectedPage;
