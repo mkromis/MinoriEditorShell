@@ -1,4 +1,4 @@
-# MinoriEditorStudio
+# MinoriEditorShell
 
 ## Contact
 
@@ -26,7 +26,7 @@ MinoriEditorShell is a IDE framework designed specifically for building multi do
 * [AvalonDock](https://github.com/Dirkster99/AvalonDock)
 * [MvvmCross](https://www.mvvmcross.com/)
 
-MinoriEditorStudio ships with three themes: a Blue theme(Default), a Light theme, and a Dark theme.
+MinoriEditorShell ships with three themes: a Blue theme(Default), a Light theme, and a Dark theme.
 
 ![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/master/Images/BlueDemoApp.png)
 
@@ -55,7 +55,7 @@ Doumentation can be found on the github [wiki](https://github.com/TorisanKitsune
   creator of the [Gemini](https://github.com/tgjones/gemini/) framework. I have extended and modified 
   his code to integrate better with MvvmCore, and AvalonDock 2.0, which natively supports MVVM-style binding.
 
-MinoriEditorStudio is not the only WPF framework for building IDE-like applications. Here are some others:
+MinoriEditorShell is not the only WPF framework for building IDE-like applications. Here are some others:
 
 * [Gemini](https://github.com/tgjones/gemini/) - Basis of this project
 * [SoapBox Core](http://soapboxautomation.com/products/soapbox-core-2/) - source [here](http://svn.soapboxcore.com/svn/),

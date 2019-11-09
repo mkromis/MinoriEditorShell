@@ -1,8 +1,10 @@
+using System;
+
 namespace MinoriEditorShell.Services
 {
-#warning IWindow
-    public interface IMesWindow //: IActivate, IDeactivate, INotifyPropertyChangedEx
+    public interface IMesWindow
     {
-        
+        String DisplayName { get; set; }
+        String Title { get; set; }
     }
 }
