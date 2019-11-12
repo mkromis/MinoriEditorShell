@@ -7,8 +7,8 @@
             It uses AvalonDock and has an MVVM architecture based on MvvmCross.
         </Description>
         <Copyright>Copyright 2019</Copyright>
-        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorStudio</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
         <PackageIconUrl></PackageIconUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
