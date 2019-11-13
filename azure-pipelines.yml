@@ -3,8 +3,8 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-#pool:
-#  vmImage: 'VS2019-Win2019'
+pool:
+  vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
