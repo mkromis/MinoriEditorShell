@@ -37,72 +37,62 @@ steps:
   inputs:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestStable'
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-
-
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/package/nuget?view=vsts
-#- task: NuGetCommand@2
-#  inputs:
-#    command: pack
-#    packagesToPack: 'Framework/**/*.csproj;Modules/**/*.csproj' # Required when command == Pack
-#    packDestination: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)/Nugets'
-#    versioningScheme: 'byEnvVar' # Options: off, byPrereleaseNumber, byEnvVar, byBuildNumber
-#    versionEnvVar: GitVersion.NuGetVersion
+# copy the Nuget to output
+- task: CopyFiles@2
+  displayName: 'Copy Nuget Files'
+  inputs:
+    sourceFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
+    Contents: |
+      *.*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)' 
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
 #- task: CopyFiles@2
-#  displayName: 'Copy WiderClipboard Files'
+#  displayName: 'Copy MinoriClipboard Files'
 #  inputs:
-#    sourceFolder: Examples\WiderClipboard\bin\Release
+#    sourceFolder: Examples\MinoriClipboard\bin\Release
 #    Contents: |
 #     *.exe
 #     *.dll
 #     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderClipboard'
+#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriClipboard'
 
 #- task: CopyFiles@2
-#  displayName: 'Copy WiderMD Files'
+#  displayName: 'Copy MinoriMD Files'
 #  inputs:
-#    sourceFolder: Examples\WiderMD\bin\Release
+#    sourceFolder: Examples\MinoriMD\bin\Release
 #    Contents: |
 #     *.exe
 #     *.dll
 #     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderMD'
+#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriMD'
 
 #- task: CopyFiles@2
-#  displayName: 'Copy WiderRibbonDemo Files'
+#  displayName: 'Copy MinoriRibbonDemo Files'
 #  inputs:
-#    sourceFolder: Examples\WiderRibbonDemo\bin\Release
+#    sourceFolder: Examples\MinoriRibbonDemo\bin\Release
 #    Contents: |
 #     *.exe
 #     *.dll
 #     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderRibbonDemo'
+#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriRibbonDemo'
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
 # Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
 #- task: ArchiveFiles@2
 #  inputs:
-#    rootFolderOrFile: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)' 
+#    rootFolderOrFile: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)' 
 #    includeRootFolder: true 
 #    archiveType: '7z' # Options: zip, 7z, tar, wim
-#    archiveFile: '$(Build.ArtifactStagingDirectory)/Wider-$(GitVersion.NuGetVersion).7z' 
+#    archiveFile: '$(Build.ArtifactStagingDirectory)/Minori-$(GitVersion.NuGetVersion).7z' 
 #    #verbose: # Optional
 #    #quiet: # Optional
-
-# copy the Nuget to output
-#- task: CopyFiles@2
- # displayName: 'Copy Nuget Files'
- # inputs:
- #   sourceFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Nugets'
- #   Contents: |
- #     *.*
- #   TargetFolder: '$(Build.ArtifactStagingDirectory)' 
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/artifacts?view=vsts
 #- task: PublishBuildArtifacts@1
