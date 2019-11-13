@@ -1,0 +1,106 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: gittools.gitversion.gitversion-task.GitVersion@4
+  displayName: GitVersion
+  inputs:
+    updateAssemblyInfo: true
+    preferBundledVersion: false
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/package/nuget?view=vsts
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: 'Framework/**/*.csproj;Modules/**/*.csproj' # Required when command == Pack
+    packDestination: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)/Nugets'
+    versioningScheme: 'byEnvVar' # Options: off, byPrereleaseNumber, byEnvVar, byBuildNumber
+    versionEnvVar: GitVersion.NuGetVersion
+
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
+- task: CopyFiles@2
+  displayName: 'Copy WiderClipboard Files'
+  inputs:
+    sourceFolder: Examples\WiderClipboard\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderClipboard'
+
+- task: CopyFiles@2
+  displayName: 'Copy WiderMD Files'
+  inputs:
+    sourceFolder: Examples\WiderMD\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderMD'
+
+- task: CopyFiles@2
+  displayName: 'Copy WiderRibbonDemo Files'
+  inputs:
+    sourceFolder: Examples\WiderRibbonDemo\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Examples\WiderRibbonDemo'
+
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
+# Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)' 
+    includeRootFolder: true 
+    archiveType: '7z' # Options: zip, 7z, tar, wim
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Wider-$(GitVersion.NuGetVersion).7z' 
+    #verbose: # Optional
+    #quiet: # Optional
+
+# copy the Nuget to output
+- task: CopyFiles@2
+  displayName: 'Copy Nuget Files'
+  inputs:
+    sourceFolder: '$(Build.BinariesDirectory)\Wider-$(GitVersion.NuGetVersion)\Nugets'
+    Contents: |
+      *.*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)' 
+
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/artifacts?view=vsts
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    #publishLocation: 'Container' # Options: container, filePath
+    #targetPath: # Required when publishLocation == FilePath
+    #parallel: false # Optional
+    #parallelCount: # Optional
