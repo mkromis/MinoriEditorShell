@@ -43,13 +43,20 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-# copy the Nuget to output
+# copy the Nuget to compression folder
 - task: CopyFiles@2
-  displayName: 'Copy Nuget Files'
+  displayName: 'Copy Nugets to demo folder'
   inputs:
-    sourceFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
-    Contents: |
-      *.*
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '**/*.nupkg'
+    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
+
+# and to artifacts
+- task: CopyFiles@2
+  displayName: 'Copy Nuget Files to artifacts'
+  inputs:
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '**/*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)' 
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
@@ -83,22 +90,24 @@ steps:
 #     *\*.dll
 #    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriRibbonDemo'
 
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
+# create demo archive for github
 # Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
-#- task: ArchiveFiles@2
-#  inputs:
-#    rootFolderOrFile: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)' 
-#    includeRootFolder: true 
-#    archiveType: '7z' # Options: zip, 7z, tar, wim
-#    archiveFile: '$(Build.ArtifactStagingDirectory)/Minori-$(GitVersion.NuGetVersion).7z' 
-#    #verbose: # Optional
-#    #quiet: # Optional
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)' 
+    includeRootFolder: true 
+    archiveType: '7z' # Options: zip, 7z, tar, wim
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Minori-$(GitVersion.NuGetVersion).7z' 
+    #verbose: # Optional
+    #quiet: # Optional
 
+# publish staging container
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/artifacts?view=vsts
-#- task: PublishBuildArtifacts@1
-#  inputs:
-#    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#    artifactName: 'drop' 
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
     #publishLocation: 'Container' # Options: container, filePath
     #targetPath: # Required when publishLocation == FilePath
     #parallel: false # Optional
