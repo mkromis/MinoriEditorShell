@@ -126,3 +126,27 @@ steps:
     #targetPath: # Required when publishLocation == FilePath
     #parallel: false # Optional
     #parallelCount: # Optional
+
+deployment:
+- powershell: |
+   # Use the environment variables input below to pass secret variables to this script.
+   $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
+   Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
+  displayName: 'PowerShell Script'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+    nuGetFeedType: external
+    publishFeedCredentials: MinoriEditorShell
+
+- task: GitHubRelease@0
+  displayName: 'GitHub release (create)'
+  inputs:
+    gitHubConnection: TorisanKitsune
+    tagSource: manual
+    tag: '$(Build.Version)'
+    isPreRelease: true
+    changeLogCompareToRelease: lastNonDraftRelease
