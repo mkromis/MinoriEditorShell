@@ -65,43 +65,43 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy SimpleDemo.WPF Files'
   inputs:
-    sourceFolder: Demos\SimpleDemo\SimpleDemo.Wpf\bin\Release
+    sourceFolder: Demos/SimpleDemo/SimpleDemo.Wpf/bin/Release
     Contents: |
      *.exe
      *.dll
      *\*.dll
-    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\SimpleDemo'
+    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
 
 - task: CopyFiles@2
   displayName: 'Copy SimpleDemo.RibbonWPF Files'
   inputs:
-    sourceFolder: Demos\SimpleDemo\SimpleDemo.RibbonWpf\bin\Release
+    sourceFolder: Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release
     Contents: |
      *.exe
      *.dll
-     *\*.dll
-    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\SimpleDemo'
+     */*.dll
+    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
     OverWrite: true
 
 - task: CopyFiles@2
-  displayName: 'Copy MinoriEditorShell.WPF Files'
+  displayName: 'Copy MinoriDemo.WPF Files'
   inputs:
-    sourceFolder: Demos\MinoriEditorShell\MinoriEditorShell.Wpf\bin\Release
+    sourceFolder: Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release
     Contents: |
      *.exe
      *.dll
-     *\*.dll
-    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\MinoriEditorShell'
+     */*.dll
+    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
 
 - task: CopyFiles@2
   displayName: 'Copy MinoriEditorShell.RibbonWPF Files'
   inputs:
-    sourceFolder: Demos\MinoriEditorShell\MinoriEditorShell.RibbonWpf\bin\Release
+    sourceFolder: Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release
     Contents: |
      *.exe
      *.dll
-     *\*.dll
-    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\MinoriEditorShell'
+     */*.dll
+    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
     OverWrite: true
 
 # create demo archive for github
