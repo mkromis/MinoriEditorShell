@@ -62,35 +62,47 @@ steps:
     flattenFolders: true
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
-#- task: CopyFiles@2
-#  displayName: 'Copy MinoriClipboard Files'
-#  inputs:
-#    sourceFolder: Examples\MinoriClipboard\bin\Release
-#    Contents: |
-#     *.exe
-#     *.dll
-#     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriClipboard'
+- task: CopyFiles@2
+  displayName: 'Copy SimpleDemo.WPF Files'
+  inputs:
+    sourceFolder: Demos\SimpleDemo\SimpleDemo.Wpf\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\SimpleDemo'
 
-#- task: CopyFiles@2
-#  displayName: 'Copy MinoriMD Files'
-#  inputs:
-#    sourceFolder: Examples\MinoriMD\bin\Release
-#    Contents: |
-#     *.exe
-#     *.dll
-#     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriMD'
+- task: CopyFiles@2
+  displayName: 'Copy SimpleDemo.RibbonWPF Files'
+  inputs:
+    sourceFolder: Demos\SimpleDemo\SimpleDemo.RibbonWpf\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\SimpleDemo'
+    OverWrite: true
 
-#- task: CopyFiles@2
-#  displayName: 'Copy MinoriRibbonDemo Files'
-#  inputs:
-#    sourceFolder: Examples\MinoriRibbonDemo\bin\Release
-#    Contents: |
-#     *.exe
-#     *.dll
-#     *\*.dll
-#    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Examples\MinoriRibbonDemo'
+- task: CopyFiles@2
+  displayName: 'Copy MinoriEditorShell.WPF Files'
+  inputs:
+    sourceFolder: Demos\MinoriEditorShell\MinoriEditorShell.Wpf\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\MinoriEditorShell'
+
+- task: CopyFiles@2
+  displayName: 'Copy MinoriEditorShell.RibbonWPF Files'
+  inputs:
+    sourceFolder: Demos\MinoriEditorShell\MinoriEditorShell.RibbonWpf\bin\Release
+    Contents: |
+     *.exe
+     *.dll
+     *\*.dll
+    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Demos\MinoriEditorShell'
+    OverWrite: true
 
 # create demo archive for github
 # Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
