@@ -50,6 +50,7 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.nupkg'
     TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
+    flattenFolders: true
 
 # and to artifacts
 - task: CopyFiles@2
@@ -58,6 +59,7 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)' 
+    flattenFolders: true
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
 #- task: CopyFiles@2
