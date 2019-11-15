@@ -3,19 +3,20 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-
+name: $(GitVersion.NuGetVersion)
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-jobs:
-  # build the package
-  - job: Build
-    pool:
-      vmImage: 'windows-latest'
+pool:
+  vmImage: 'windows-latest'
 
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
     steps:
     - task: NuGetToolInstaller@1
       displayName: 'Use NuGet > 5.0.0'
@@ -82,9 +83,9 @@ jobs:
       inputs:
         sourceFolder: Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release
         Contents: |
-          *.exe
-          *.dll
-          */*.dll
+         *.exe
+         *.dll
+         */*.dll
         TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
         OverWrite: true
 
@@ -93,9 +94,9 @@ jobs:
       inputs:
         sourceFolder: Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release
         Contents: |
-          *.exe
-          *.dll
-          */*.dll
+         *.exe
+         *.dll
+         */*.dll
         TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
 
     - task: CopyFiles@2
@@ -103,9 +104,9 @@ jobs:
       inputs:
         sourceFolder: Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release
         Contents: |
-          *.exe
-          *.dll
-          */*.dll
+         *.exe
+         *.dll
+         */*.dll
         TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
         OverWrite: true
 
@@ -132,45 +133,39 @@ jobs:
         #parallel: false # Optional
         #parallelCount: # Optional
 
-  # Sample of deployment from
-  # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
-  # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
-  - deployment: Deploy
+  - job: Deploy
+    # Sample of deployment from
+    # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
+  - deployment: DeployJob
     dependsOn: Build
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     pool:
       vmImage: 'windows-latest'
-    environment: 'MinoriShell'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-          #- task: DownloadBuildArtifacts@0
-          #  inputs:
-          #    buildType: 'current'
-          #    downloadType: 'single'
-          #    artifactName: 'drop'
-          #    downloadPath: '$(System.DefaultWorkingDirectory)'
+      environment: 'MinoriShell'
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+            - powershell: |
+                # Use the environment variables input below to pass secret variables to this script.
+                $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
+                Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
+              displayName: 'PowerShell Script'
 
-          - powershell: |
-              # Use the environment variables input below to pass secret variables to this script.
-              $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
-              Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
-            displayName: 'PowerShell Script'
+            - task: NuGetCommand@2
+              displayName: 'NuGet push'
+              inputs:
+                command: push
+                packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+                nuGetFeedType: external
+                publishFeedCredentials: MinoriEditorShell
 
-          - task: NuGetCommand@2
-            displayName: 'NuGet push'
-            inputs:
-              command: push
-              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
-              nuGetFeedType: external
-              publishFeedCredentials: MinoriEditorShell
-
-          - task: GitHubRelease@0
-            displayName: 'GitHub release (create)'
-            inputs:
-              gitHubConnection: TorisanKitsune
-              tagSource: manual
-              tag: '$(Build.Version)'
-              isPreRelease: true
-              changeLogCompareToRelease: lastNonDraftRelease
+            - task: GitHubRelease@0
+              displayName: 'GitHub release (create)'
+              inputs:
+                gitHubConnection: TorisanKitsune
+                tagSource: manual
+                tag: '$(Build.Version)'
+                isPreRelease: true
+                changeLogCompareToRelease: lastNonDraftRelease
