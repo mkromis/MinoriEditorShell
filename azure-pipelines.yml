@@ -144,12 +144,12 @@ jobs:
      runOnce:
        deploy:
          steps:
-          - task: DownloadBuildArtifacts@0
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'drop'
-              downloadPath: '$(System.DefaultWorkingDirectory)'
+          #- task: DownloadBuildArtifacts@0
+          #  inputs:
+          #    buildType: 'current'
+          #    downloadType: 'single'
+          #    artifactName: 'drop'
+          #    downloadPath: '$(System.DefaultWorkingDirectory)'
 
           - powershell: |
               # Use the environment variables input below to pass secret variables to this script.
