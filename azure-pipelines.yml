@@ -134,9 +134,10 @@ jobs:
 
   # Sample of deployment from
   # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
   - deployment: Deploy
     dependsOn: Build
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     pool:
       vmImage: 'windows-latest'
     environment: 'MinoriShell'
