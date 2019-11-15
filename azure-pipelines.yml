@@ -132,9 +132,11 @@ jobs:
         #parallel: false # Optional
         #parallelCount: # Optional
 
+  # Sample of deployment from
+  # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
   - job: Deploy
     dependsOn: Build
-    condition: suceeded()
+    condition: succeeded()
 
     pool:
       vmImage: 'windows-latest'
