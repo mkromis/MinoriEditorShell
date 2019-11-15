@@ -139,7 +139,7 @@ jobs:
     condition: succeeded()
     pool:
       vmImage: 'windows-latest'
-    environment: 'MinoriShell.GitHub'
+    environment: 'MinoriShell'
     strategy:
      runOnce:
        deploy:
