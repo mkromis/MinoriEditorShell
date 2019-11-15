@@ -135,12 +135,10 @@ stages:
 
 - stage: DeployStage
   jobs:
-  - job: Deploy
     # Sample of deployment from
     # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
     # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
   - deployment: DeployJob
-    #dependsOn: BuildStage
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     pool:
       vmImage: 'windows-latest'
@@ -171,3 +169,20 @@ stages:
               tag: '$(Build.Version)'
               isPreRelease: true
               changeLogCompareToRelease: lastNonDraftRelease
+
+  - deployment: TestReleaseJob
+    condition: and(succeeded(), ne(variables['build.sourceBranch'], 'refs/heads/master'))
+    pool:
+      vmImage: 'windows-latest'
+    environment: 'MinoriShell'
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+          - task: NuGetCommand@2
+            displayName: 'NuGet push'
+            inputs:
+              command: push
+              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: GitHub-Nuget
