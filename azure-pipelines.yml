@@ -134,41 +134,42 @@ jobs:
 
   # Sample of deployment from
   # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
-  - job: Deploy
+  - deployment: Deploy
     dependsOn: Build
     condition: succeeded()
-
     pool:
       vmImage: 'windows-latest'
 
-    steps:
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(System.DefaultWorkingDirectory)'
 
-    - task: DownloadBuildArtifacts@0
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'drop'
-        downloadPath: '$(System.DefaultWorkingDirectory)'
+          - powershell: |
+              # Use the environment variables input below to pass secret variables to this script.
+              $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
+              Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
+            displayName: 'PowerShell Script'
 
-    - powershell: |
-        # Use the environment variables input below to pass secret variables to this script.
-        $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
-        Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
-      displayName: 'PowerShell Script'
+          - task: NuGetCommand@2
+            displayName: 'NuGet push'
+            inputs:
+              command: push
+              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: MinoriEditorShell
 
-    - task: NuGetCommand@2
-      displayName: 'NuGet push'
-      inputs:
-        command: push
-        packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
-        nuGetFeedType: external
-        publishFeedCredentials: MinoriEditorShell
-
-    - task: GitHubRelease@0
-      displayName: 'GitHub release (create)'
-      inputs:
-        gitHubConnection: TorisanKitsune
-        tagSource: manual
-        tag: '$(Build.Version)'
-        isPreRelease: true
-        changeLogCompareToRelease: lastNonDraftRelease
+          - task: GitHubRelease@0
+            displayName: 'GitHub release (create)'
+            inputs:
+              gitHubConnection: TorisanKitsune
+              tagSource: manual
+              tag: '$(Build.Version)'
+              isPreRelease: true
+              changeLogCompareToRelease: lastNonDraftRelease
