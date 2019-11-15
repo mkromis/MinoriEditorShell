@@ -3,126 +3,186 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-pool:
-  vmImage: 'windows-latest'
+name: $(GitVersion.NuGetVersion)
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet > 5.0.0'
-  inputs:
-    versionSpec: '> 5.0.0'
+pool:
+  vmImage: 'windows-latest'
 
-- task: GitVersion@5
-  displayName: GitVersion
-  inputs:
-    updateAssemblyInfo: true
-    preferBundledVersion: false
+stages:
+- stage: BuildStage
+  jobs:
+  - job: BuildJob
+    steps:
+    - task: NuGetToolInstaller@1
+      displayName: 'Use NuGet > 5.0.0'
+      inputs:
+        versionSpec: '> 5.0.0'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+    - task: GitVersion@5
+      displayName: GitVersion
+      inputs:
+        updateAssemblyInfo: true
+        preferBundledVersion: false
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '$(solution)'
 
-- task: VisualStudioTestPlatformInstaller@1
-  inputs:
-    packageFeedSelector: 'nugetOrg'
-    versionSelector: 'latestStable'
+    - task: VSBuild@1
+      inputs:
+        solution: '$(solution)'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    - task: VisualStudioTestPlatformInstaller@1
+      inputs:
+        packageFeedSelector: 'nugetOrg'
+        versionSelector: 'latestStable'
 
-# copy the Nuget to compression folder
-- task: CopyFiles@2
-  displayName: 'Copy Nugets to demo folder'
-  inputs:
-    SourceFolder: '$(agent.builddirectory)'
-    Contents: '**/*.nupkg'
-    TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
-    flattenFolders: true
+    - task: VSTest@2
+      inputs:
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
 
-# and to artifacts
-- task: CopyFiles@2
-  displayName: 'Copy Nuget Files to artifacts'
-  inputs:
-    SourceFolder: '$(agent.builddirectory)'
-    Contents: '**/*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)' 
-    flattenFolders: true
+    # copy the Nuget to compression folder
+    - task: CopyFiles@2
+      displayName: 'Copy Nugets to demo folder'
+      inputs:
+        SourceFolder: '$(agent.builddirectory)'
+        Contents: '**/*.nupkg'
+        TargetFolder: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)\Nugets'
+        flattenFolders: true
 
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
-- task: CopyFiles@2
-  displayName: 'Copy SimpleDemo.WPF Files'
-  inputs:
-    sourceFolder: Demos/SimpleDemo/SimpleDemo.Wpf/bin/Release
-    Contents: |
-     *.exe
-     *.dll
-     *\*.dll
-    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
+    # and to artifacts
+    - task: CopyFiles@2
+      displayName: 'Copy Nuget Files to artifacts'
+      inputs:
+        SourceFolder: '$(agent.builddirectory)'
+        Contents: '**/*.nupkg'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)' 
+        flattenFolders: true
 
-- task: CopyFiles@2
-  displayName: 'Copy SimpleDemo.RibbonWPF Files'
-  inputs:
-    sourceFolder: Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release
-    Contents: |
-     *.exe
-     *.dll
-     */*.dll
-    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
-    OverWrite: true
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&tabs=yaml
+    - task: CopyFiles@2
+      displayName: 'Copy SimpleDemo.WPF Files'
+      inputs:
+        sourceFolder: Demos/SimpleDemo/SimpleDemo.Wpf/bin/Release
+        Contents: |
+         *.exe
+         *.dll
+         *\*.dll
+        TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
 
-- task: CopyFiles@2
-  displayName: 'Copy MinoriDemo.WPF Files'
-  inputs:
-    sourceFolder: Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release
-    Contents: |
-     *.exe
-     *.dll
-     */*.dll
-    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
+    - task: CopyFiles@2
+      displayName: 'Copy SimpleDemo.RibbonWPF Files'
+      inputs:
+        sourceFolder: Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release
+        Contents: |
+         *.exe
+         *.dll
+         */*.dll
+        TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/SimpleDemo'
+        OverWrite: true
 
-- task: CopyFiles@2
-  displayName: 'Copy MinoriEditorShell.RibbonWPF Files'
-  inputs:
-    sourceFolder: Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release
-    Contents: |
-     *.exe
-     *.dll
-     */*.dll
-    TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
-    OverWrite: true
+    - task: CopyFiles@2
+      displayName: 'Copy MinoriDemo.WPF Files'
+      inputs:
+        sourceFolder: Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release
+        Contents: |
+         *.exe
+         *.dll
+         */*.dll
+        TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
 
-# create demo archive for github
-# Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)' 
-    includeRootFolder: true 
-    archiveType: '7z' # Options: zip, 7z, tar, wim
-    archiveFile: '$(Build.ArtifactStagingDirectory)/Minori-$(GitVersion.NuGetVersion).7z' 
-    #verbose: # Optional
-    #quiet: # Optional
+    - task: CopyFiles@2
+      displayName: 'Copy MinoriEditorShell.RibbonWPF Files'
+      inputs:
+        sourceFolder: Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release
+        Contents: |
+         *.exe
+         *.dll
+         */*.dll
+        TargetFolder: '$(Build.BinariesDirectory)/Minori-$(GitVersion.NuGetVersion)/Demos/MinoriDemo'
+        OverWrite: true
 
-# publish staging container
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/artifacts?view=vsts
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
-    #publishLocation: 'Container' # Options: container, filePath
-    #targetPath: # Required when publishLocation == FilePath
-    #parallel: false # Optional
-    #parallelCount: # Optional
+    # create demo archive for github
+    # Archive files using compression formats such as .7z, .rar, .tar.gz, and .zip.
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/archive-files?view=azure-devops
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(Build.BinariesDirectory)\Minori-$(GitVersion.NuGetVersion)' 
+        includeRootFolder: true 
+        archiveType: '7z' # Options: zip, 7z, tar, wim
+        archiveFile: '$(Build.ArtifactStagingDirectory)/Minori-$(GitVersion.NuGetVersion).7z' 
+        #verbose: # Optional
+        #quiet: # Optional
+
+    # publish staging container
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/artifacts?view=vsts
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+        artifactName: 'drop' 
+        #publishLocation: 'Container' # Options: container, filePath
+        #targetPath: # Required when publishLocation == FilePath
+        #parallel: false # Optional
+        #parallelCount: # Optional
+
+- stage: DeployStage
+  jobs:
+    # Sample of deployment from
+    # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
+  - deployment: DeployJob
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    pool:
+      vmImage: 'windows-latest'
+    environment: 'MinoriShell'
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+          - powershell: |
+              # Use the environment variables input below to pass secret variables to this script.
+              $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
+              Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
+            displayName: 'PowerShell Script'
+
+          - task: NuGetCommand@2
+            displayName: 'NuGet push'
+            inputs:
+              command: push
+              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: MinoriEditorShell
+
+          - task: GitHubRelease@0
+            displayName: 'GitHub release (create)'
+            inputs:
+              gitHubConnection: TorisanKitsune
+              tagSource: manual
+              tag: '$(Build.Version)'
+              isPreRelease: true
+              changeLogCompareToRelease: lastNonDraftRelease
+
+  - deployment: TestReleaseJob
+    condition: and(succeeded(), ne(variables['build.sourceBranch'], 'refs/heads/master'))
+    pool:
+      vmImage: 'windows-latest'
+    environment: 'MinoriShell'
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+          - task: NuGetCommand@2
+            displayName: 'NuGet push'
+            inputs:
+              command: push
+              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: GitHub-Nuget
