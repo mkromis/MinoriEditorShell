@@ -11,9 +11,14 @@
     d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-            <Button Content="TipCalc" Command="{Binding TipCalcCommand}" />
-            <!--<ContentControl cal:View.Model="{Binding MainMenu}" />-->
-            <!--<ContentControl cal:View.Model="{Binding ToolBars}" />-->
+            <Menu>
+                <MenuItem Header="Samples">
+                    <MenuItem Header="TipCalc" Command="{Binding TipCalcCommand}" />
+                </MenuItem>
+            </Menu>
+            <ToolBar>
+                <Button Content="TipCalc" Command="{Binding TipCalcCommand}" />
+            </ToolBar>
         </StackPanel>
 
         <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
