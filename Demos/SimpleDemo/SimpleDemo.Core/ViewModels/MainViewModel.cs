@@ -18,5 +18,11 @@ namespace SimpleDemo.Core.ViewModels
         }
 
         public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
+
+        public ICommand SettingsCommand => new MvxCommand(() =>
+        {
+            IMesSettingsManager settingsManager = Mvx.IoCProvider.Resolve<IMesSettingsManager>();
+            NavigationService.Navigate(settingsManager);
+        });
     }
 }
