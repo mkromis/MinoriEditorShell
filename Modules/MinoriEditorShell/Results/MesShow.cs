@@ -7,7 +7,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
 {
 	public static class MesShow
 	{
-        public static MesShowCommonDialogResult CommonDialog(CommonDialog commonDialog) => new MesShowCommonDialogResult(commonDialog);
+#warning fix common dialog
+        //public static MesShowCommonDialogResult CommonDialog(CommonDialog commonDialog) => new MesShowCommonDialogResult(commonDialog);
 
         public static MesShowToolResult<TTool> Tool<TTool>()
             where TTool : IMesTool => new MesShowToolResult<TTool>();
@@ -15,14 +16,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
         public static MesShowToolResult<TTool> Tool<TTool>(TTool tool)
             where TTool : IMesTool => new MesShowToolResult<TTool>(tool);
 
-        public static MesOpenDocumentResult Document(IMesDocument document) => new MesOpenDocumentResult(document);
-
-        public static MesOpenDocumentResult Document(String path) => new MesOpenDocumentResult(path);
-
-        public static MesOpenDocumentResult Document<T>() where T : IMesDocument => new MesOpenDocumentResult(typeof(T));
-
 #warning IWindow
 #if false
+        //public static MesOpenDocumentResult Document(IMesDocument document) => new MesOpenDocumentResult(document);
+
+        //public static MesOpenDocumentResult Document(String path) => new MesOpenDocumentResult(path);
+
+        //public static MesOpenDocumentResult Document<T>() where T : IMesDocument => new MesOpenDocumentResult(typeof(T));
+
         public static ShowWindowResult<TWindow> Window<TWindow>()
                 where TWindow : IWindow
         {
