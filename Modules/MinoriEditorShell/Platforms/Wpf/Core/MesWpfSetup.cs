@@ -55,7 +55,8 @@ namespace MinoriEditorShell.Platforms.Wpf
             IMvxViewsContainer container = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             if (container != null)
             {
-                container.Add<MesMainMenuSettingsViewModel, MesMainMenuSettingsView>();
+#warning MesMainMenuSettingsView
+                //container.Add<MesMainMenuSettingsViewModel, MesMainMenuSettingsView>();
                 container.Add<MesSettingsViewModel, MesSettingsView>();
             }
 
