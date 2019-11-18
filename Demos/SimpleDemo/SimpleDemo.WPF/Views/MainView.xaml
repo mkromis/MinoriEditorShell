@@ -14,6 +14,7 @@
             <Menu>
                 <MenuItem Header="Samples">
                     <MenuItem Header="TipCalc" Command="{Binding TipCalcCommand}" />
+                    <MenuItem Header="Settings" Command="{Binding SettingsCommand}" />
                 </MenuItem>
             </Menu>
             <ToolBar>
