@@ -13,8 +13,8 @@ namespace MinoriEditorShell.Services
         //ICommandHandler<SaveFileCommandDefinition>,
         //ICommandHandler<SaveFileAsCommandDefinition>
 	{
-	    private IMesUndoRedoManager _undoRedoManager;
-        public IMesUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new MesUndoRedoManager());
+	    //private IMesUndoRedoManager _undoRedoManager;
+        //public IMesUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new MesUndoRedoManager());
 
         /// <summary>
         /// Sets weather a document can be closed by close button
