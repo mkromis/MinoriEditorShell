@@ -13,11 +13,7 @@ variables:
 pool:
   vmImage: 'windows-latest'
 
-stages:
-- stage: BuildStage
-  jobs:
-  - job: BuildJob
-    steps:
+steps:
     - task: NuGetToolInstaller@1
       displayName: 'Use NuGet > 5.0.0'
       inputs:
@@ -132,57 +128,3 @@ stages:
         #targetPath: # Required when publishLocation == FilePath
         #parallel: false # Optional
         #parallelCount: # Optional
-
-- stage: DeployStage
-  jobs:
-    # Sample of deployment from
-    # https://github.com/Azure/azure-functions-devops-build/blob/master/sample_yaml_builds/linux/consumption/dotnet-consumption.yml
-    # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml for condition
-  - deployment: DeployJob
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    pool:
-      vmImage: 'windows-latest'
-    environment: 'MinoriShell'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-          - powershell: |
-              # Use the environment variables input below to pass secret variables to this script.
-              $splitFirst = "$(Build.BuildNumber)".Split("+")[0]
-              Write-Host "##vso[task.setvariable variable=Build.Version]" $splitFirst
-            displayName: 'PowerShell Script'
-
-          - task: NuGetCommand@2
-            displayName: 'NuGet push'
-            inputs:
-              command: push
-              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
-              nuGetFeedType: external
-              publishFeedCredentials: MinoriEditorShell
-
-          - task: GitHubRelease@0
-            displayName: 'GitHub release (create)'
-            inputs:
-              gitHubConnection: TorisanKitsune
-              tagSource: manual
-              tag: '$(Build.Version)'
-              isPreRelease: true
-              changeLogCompareToRelease: lastNonDraftRelease
-
-  - deployment: TestReleaseJob
-    condition: and(succeeded(), ne(variables['build.sourceBranch'], 'refs/heads/master'))
-    pool:
-      vmImage: 'windows-latest'
-    environment: 'MinoriShell'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-          - task: NuGetCommand@2
-            displayName: 'NuGet push'
-            inputs:
-              command: push
-              packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
-              nuGetFeedType: external
-              publishFeedCredentials: GitHub-Nuget
