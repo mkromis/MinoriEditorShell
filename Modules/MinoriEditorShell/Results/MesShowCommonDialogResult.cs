@@ -9,12 +9,13 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
 #warning ResultCompletionEventArgs
         public event EventHandler</*ResultCompletionEventArgs*/ Object> Completed;
 
-		private readonly CommonDialog _commonDialog;
+#warning fix commmon dialog
+        //private readonly CommonDialog _commonDialog;
 
-		public MesShowCommonDialogResult(CommonDialog commonDialog)
-		{
-			_commonDialog = commonDialog;
-		}
+  //      public MesShowCommonDialogResult(CommonDialog commonDialog)
+		//{
+		//	_commonDialog = commonDialog;
+		//}
 
 #warning CoroutineExecutionContext
         public void Execute(/*CoroutineExecutionContext*/Object context)

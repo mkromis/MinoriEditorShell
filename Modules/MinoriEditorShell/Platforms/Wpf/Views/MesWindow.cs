@@ -12,7 +12,7 @@ using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
-    public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView, IDisposable
+    public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView
     {
         private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
@@ -71,6 +71,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
 
                 // Init mes setup
                 Mvx.IoCProvider.Resolve<IMesThemeManager>();
+
+#warning fix style
+                //WindowCloseButtonStyle = Application.Current.Resources.MergedDictionaries
+                //WindowCloseButtonStyle = "{DynamicResource MetroWindowButtonStyle}"
+                //WindowMinButtonStyle = "{DynamicResource MetroWindowButtonStyle}"
+                //WindowMaxButtonStyle = "{DynamicResource MetroWindowButtonStyle}"
             }
         }
 
@@ -91,31 +97,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~MesWindow()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(Boolean disposing)
-        {
-            if (disposing)
-            {
-                Unloaded -= MesWindow_Unloaded;
-                Loaded -= MesWindow_Loaded;
-            }
-        }
     }
 
-    public class MesWindow<TViewModel>
-        : MesWindow
-          , IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
+    public class MesWindow<TViewModel> : MesWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel
         {
