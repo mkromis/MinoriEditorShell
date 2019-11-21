@@ -7,7 +7,7 @@ namespace MinoriEditorShell.Services
 	{
         String DisplayName { get; }
         IMvxView View { get; set; }
-        IMesUndoRedoManager UndoRedoManager { get; }
+        //IMesUndoRedoManager UndoRedoManager { get; }
         Boolean CanClose { get; }
 	}
 }

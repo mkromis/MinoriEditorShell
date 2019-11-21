@@ -13,7 +13,7 @@ using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
 namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
 {
-    public class MesRibbonWindow : MesWindow, IMvxWindow, IMvxWpfView, IRibbonWindow, IDisposable
+    public class MesRibbonWindow : MesWindow, IMvxWindow, IMvxWpfView, IRibbonWindow
     {
         #region TitelBar
         /// <summary>
