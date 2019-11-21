@@ -19,6 +19,12 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
+## Breaking Changes
+
+The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
+* Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
+* Undo - Redo interface was moved to MinoriEditorShell.History -- This is currently un-tested and no nuget yet.
+
 ## What is this
 
 MinoriEditorShell is a IDE framework designed specifically for building multi document editor applications with MvvmCross. It builds on some excellent libraries:
