@@ -15,7 +15,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
-        <PackageLicenseExpression></PackageLicenseExpression>
+        <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,7 +39,6 @@
         <Compile Include="Platforms\NetStandard\**\*.cs" />
 
         <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-        <!--<PackageReference Include="System.ComponentModel.Composition" Version="4.6.0" />-->
         <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
     </ItemGroup>
 
@@ -57,7 +56,6 @@
 
         <Reference Include="PresentationCore" />
         <Reference Include="PresentationFramework" />
-        <!--<Reference Include="System.ComponentModel.Composition" />-->
         <Reference Include="System.Drawing" />
         <Reference Include="System.Xaml" />
         <Reference Include="WindowsBase" />
