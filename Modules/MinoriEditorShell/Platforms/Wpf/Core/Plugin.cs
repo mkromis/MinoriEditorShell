@@ -20,8 +20,7 @@ namespace MinoriEditorShell.Platforms.Wpf
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesSettingsManager, MesSettingsViewModel>();
+            Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsViewModel>();
 
             // Register themes
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();

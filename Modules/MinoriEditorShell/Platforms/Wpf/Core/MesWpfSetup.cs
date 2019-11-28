@@ -47,20 +47,15 @@ namespace MinoriEditorShell.Platforms.Wpf
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
+            pluginManager.EnsurePluginLoaded<MinoriEditorShell.Platforms.Wpf.Plugin>();
             base.LoadPlugins(pluginManager);
         }
 
         protected override IDictionary<Type, Type> InitializeLookupDictionary()
         {
-            IMvxViewsContainer container = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
-            if (container != null)
-            {
-#warning MesMainMenuSettingsView
-                //container.Add<MesMainMenuSettingsViewModel, MesMainMenuSettingsView>();
-                container.Add<MesSettingsViewModel, MesSettingsView>();
-            }
-
-            return base.InitializeLookupDictionary();
+            IDictionary<Type, Type> container = base.InitializeLookupDictionary();
+            container.Add(typeof(MesSettingsViewModel), typeof(MesSettingsView));
+            return container;
         }
 
         //public class AppBootstrapper : BootstrapperBase
