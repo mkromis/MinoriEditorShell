@@ -1,13 +1,17 @@
 using MinoriEditorShell.Messages;
+using MinoriEditorShell.Modules.Services;
 using MinoriEditorShell.Platforms.Wpf.Presenters;
+using MinoriEditorShell.Platforms.Wpf.Services;
 using MinoriEditorShell.Platforms.Wpf.ViewModels;
 using MinoriEditorShell.Platforms.Wpf.Views;
+using MinoriEditorShell.Services;
+using MinoriEditorShell.ViewModels;
 using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Plugin;
-using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
 using System;
@@ -18,8 +22,14 @@ namespace MinoriEditorShell.Platforms.Wpf
 {
     public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
-        private IMvxMessenger _messenger;
+        // To handle messages between classes
+        private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
 
+        /// <summary>
+        /// Creates the inital view for the setup
+        /// </summary>
+        /// <param name="root">Control of the main windows for wpf</param>
+        /// <returns></returns>
         protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
         {
             // This handles main window.
@@ -32,7 +42,7 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// <returns>An instance of MvxApplication</returns>
         protected override IMvxApplication CreateApp()
         {
-            _messenger = Mvx.IoCProvider.Resolve<IMvxMessenger>();
+            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
             {
                 MesSettingsChangedMessage message = new MesSettingsChangedMessage(
@@ -47,7 +57,6 @@ namespace MinoriEditorShell.Platforms.Wpf
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
-            pluginManager.EnsurePluginLoaded<MinoriEditorShell.Platforms.Wpf.Plugin>();
             base.LoadPlugins(pluginManager);
         }
 
@@ -55,12 +64,23 @@ namespace MinoriEditorShell.Platforms.Wpf
         {
             IDictionary<Type, Type> container = base.InitializeLookupDictionary();
             container.Add(typeof(MesSettingsViewModel), typeof(MesSettingsView));
+            container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
         }
 
-        //public class AppBootstrapper : BootstrapperBase
-        //{
-        //      private List<Assembly> _priorityAssemblies;
+        protected override void InitializeLastChance()
+        {
+            base.InitializeLastChance();
+
+            // register necessary interfaces
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
+            Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsViewModel>();
+
+            // Register themes
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
+        }
 
         //protected CompositionContainer Container { get; set; }
 
