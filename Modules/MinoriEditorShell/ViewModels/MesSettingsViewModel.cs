@@ -26,9 +26,6 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         public MesSettingsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            CancelCommand = new MvxCommand(() => NavigationService.Close(this));
-            OkCommand = new MvxCommand(SaveChanges);
-
             DisplayName = Resources.SettingsDisplayName;
         }
 
@@ -45,9 +42,14 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         }
 
 
-        public ICommand CancelCommand { get; private set; }
-        public ICommand OkCommand { get; private set; }
+        public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
+        public ICommand OkCommand => new MvxCommand(SaveChanges);
         public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
+        public IMvxCommand ShowCommand => new MvxCommand(() =>
+        {
+            IMesSettingsManager settingsManager = Mvx.IoCProvider.Resolve<IMesSettingsManager>();
+            NavigationService.Navigate(settingsManager);
+        });
 
         public override async Task Initialize()
         {
