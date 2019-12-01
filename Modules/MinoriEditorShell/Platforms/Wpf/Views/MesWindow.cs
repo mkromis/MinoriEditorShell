@@ -3,6 +3,7 @@ using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
@@ -87,11 +88,26 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             ViewModel?.ViewDestroy();
         }
 
+        /// <summary>
+        /// Load inital settings if possible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
         {
-            // Set theme
+            String blueTheme = "MesBlueTheme";
+
+            // Get main theme property if possible
+            String themeName = Properties.Settings.Default.ThemeName;
+            if (String.IsNullOrEmpty(themeName)) themeName = blueTheme;
+
+            // Set theme from name
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
-            IMesTheme theme = manager.Themes.Single(x => x is MesBlueTheme);
+            IMesTheme theme = manager.Themes.FirstOrDefault(x => x.GetType().Name == themeName);
+
+            // Set to defualt if missing or error
+            if (theme == null) theme = manager.Themes.First(x => x.GetType().Name == themeName);
+
             manager.SetCurrentTheme(theme.Name);
 
             ViewModel?.ViewAppearing();
