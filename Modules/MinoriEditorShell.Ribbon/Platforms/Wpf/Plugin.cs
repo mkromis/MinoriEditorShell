@@ -14,7 +14,6 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
         public void Load()
         {
             IMvxPluginManager manager = Mvx.IoCProvider.Resolve<IMvxPluginManager>();
-            manager.EnsurePluginLoaded<MinoriEditorShell.Platforms.Wpf.Plugin>();
 
             // for repeatable ribbon items
             Uri[] mainribbon = new Uri[]

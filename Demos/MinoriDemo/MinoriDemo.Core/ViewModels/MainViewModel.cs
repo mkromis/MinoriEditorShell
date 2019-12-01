@@ -20,7 +20,6 @@ namespace MinoriDemo.Core.ViewModels
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
         private Color _testcolor = Color.CornflowerBlue;
-        private readonly IMesSettingsManager _settingsManager;
         private readonly IMesManager _manager;
         private readonly IMesStatusBar _statusBar;
 
@@ -53,7 +52,7 @@ namespace MinoriDemo.Core.ViewModels
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
         //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
 
-        public ICommand SettingsCommand =>  new MvxCommand(() =>  NavigationService.Navigate(_settingsManager));
+        public ICommand SettingsCommand => Mvx.IoCProvider.Resolve<IMesSettingsManager>().ShowCommand;
 
         private T OpenAndFocus<T>() where T : MesDocument
         {
@@ -71,11 +70,9 @@ namespace MinoriDemo.Core.ViewModels
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IMesManager manager, IMesSettingsManager settingsManager,
-            IMesStatusBar statusBar)
+            IMesManager manager, IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {
-            _settingsManager = settingsManager;
             _manager = manager;
 
             _statusBar = statusBar;

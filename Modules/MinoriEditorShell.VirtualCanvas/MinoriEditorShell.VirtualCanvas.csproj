@@ -11,7 +11,7 @@
         <RepositoryType>Git</RepositoryType>
         <PackageTags>IDE VirtualCanvas Module</PackageTags>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <DocumentationFile>MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+        <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
