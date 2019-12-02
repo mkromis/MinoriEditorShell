@@ -86,7 +86,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
                 if (applySetting)
                 {
-                    Properties.Settings.Default.ThemeName = CurrentTheme.Name;
+                    Properties.Settings.Default.ThemeName = CurrentTheme.GetType().Name;
+                    Properties.Settings.Default.Save();
                 }
 
                 return true;
