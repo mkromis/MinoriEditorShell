@@ -82,9 +82,23 @@ namespace MinoriEditorShell.Platforms.Wpf
             return container;
         }
 
-        protected override void InitializeLastChance()
+        /// <summary>
+        /// Used to ensure plugins are loaded.
+        /// </summary>
+        /// <returns>returns base manager</returns>
+        protected override IMvxPluginManager CreatePluginManager()
         {
-            base.InitializeLastChance();
+            IMvxPluginManager manager = base.CreatePluginManager();
+            manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
+            return manager;
+        }
+
+        /// <summary>
+        /// Sets up initial connected types and setup
+        /// </summary>
+        public override void InitializePrimary()
+        {
+            base.InitializePrimary();
 
             // register necessary interfaces
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
@@ -94,17 +108,13 @@ namespace MinoriEditorShell.Platforms.Wpf
 
             // Register themes
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
-        }
 
-        public override void InitializePrimary()
-        {
-            base.InitializePrimary();
-
+            // try to setup culture info
             String code = Properties.Settings.Default.LanguageCode;
 
             if (!String.IsNullOrWhiteSpace(code))
             {
-                var culture = CultureInfo.GetCultureInfo(code);
+                CultureInfo culture = CultureInfo.GetCultureInfo(code);
                 // If code == "en", force to use default resource (Resources.resx)
                 // See PO #243
 #warning fix translator depends
@@ -114,6 +124,7 @@ namespace MinoriEditorShell.Platforms.Wpf
                 Thread.CurrentThread.CurrentUICulture = culture;
                 Thread.CurrentThread.CurrentCulture = culture;
             }
+
         }
     }
 
