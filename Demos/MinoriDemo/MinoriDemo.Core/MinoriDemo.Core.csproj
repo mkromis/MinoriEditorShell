@@ -17,7 +17,7 @@
     </PackageReference>
     <PackageReference Include="MvvmCross" Version="6.4.1" />
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />
-    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
 

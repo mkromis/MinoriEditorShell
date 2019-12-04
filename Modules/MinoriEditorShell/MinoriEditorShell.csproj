@@ -25,21 +25,20 @@
 
         <PackageReference Include="MvvmCross" Version="6.4.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />
-        <PackageReference Include="GitVersionTask" Version="5.0.1">
+        <PackageReference Include="GitVersionTask" Version="5.1.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.1" />
-        <PackageReference Include="System.ComponentModel.Composition" Version="4.6.0" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+        <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
         <Compile Include="Platforms\NetStandard\**\*.cs" />
 
         <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
@@ -48,9 +47,9 @@
         </Page>
         <Compile Include="Platforms\Wpf\**\*.cs" />
 
-        <PackageReference Include="Dirkster.AvalonDock" Version="3.6.0" />
-        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="3.6.0" />
-        <PackageReference Include="MahApps.Metro" Version="1.6.5" />
+        <PackageReference Include="Dirkster.AvalonDock" Version="3.6.2" />
+        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="3.6.2" />
+        <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0605" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
 
