@@ -25,8 +25,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
             _resources = new List<Uri> {
                 new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"),
                 new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml"),
             };
         }
     }

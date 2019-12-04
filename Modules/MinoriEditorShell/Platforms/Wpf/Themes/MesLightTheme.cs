@@ -15,9 +15,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         public MesLightTheme() : base()
         {
             AddRange(new List<Uri> {
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"),
+                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml"),
                 new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml"),
-
                 //new Uri("pack://application:,,,/MinoriEditorShell;component/Themes/VS2013/LightTheme.xaml");
             });
         }

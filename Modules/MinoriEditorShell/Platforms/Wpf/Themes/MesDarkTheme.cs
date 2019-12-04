@@ -12,8 +12,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         public MesDarkTheme()
         {
             AddRange( new List<Uri> {
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml"),
-
+                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml"),
                 new Uri("pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/DarkTheme.xaml"),
                 
                 //yield return new Uri("pack://application:,,,/MinoriEditorShell;component/Themes/VS2013/DarkTheme.xaml");
