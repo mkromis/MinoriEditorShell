@@ -25,8 +25,12 @@ namespace MinoriEditorShell.Extensions
                 Type[] types = assembly.GetTypes();
                 foreach(Type type in types)
                 {
-                    if (type.GetInterfaces().Contains(typeof(T))) { 
-                        results.Add((T)Activator.CreateInstance(type));
+                    if (type.GetInterfaces().Contains(typeof(T))) {
+                        try
+                        {
+                            results.Add((T)Activator.CreateInstance(type));
+                        }
+                        catch (MissingMethodException) { }
                     }
                 }
             }
