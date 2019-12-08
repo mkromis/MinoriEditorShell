@@ -25,6 +25,8 @@ The goal is to minimize the main library into a more consice library. Thus the f
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
 * Undo - Redo interface was moved to MinoriEditorShell.History -- This is currently un-tested and no nuget yet.
 
+* IMesManager renamed to IMesDocumentManager to clarify what the manager does, manages documents/persistant documents and tools.
+
 ## What is this
 
 MinoriEditorShell is a IDE framework designed specifically for building multi document editor applications with MvvmCross. It builds on some excellent libraries:
