@@ -9,11 +9,11 @@ namespace MinoriEditorShell.ViewModels
         public MesSettingsPageViewModel()
         {
             Children = new List<MesSettingsPageViewModel>();
-            Editors = new List<IMesSettingsEditor>();
+            Editors = new List<IMesSettings>();
         }
 
         public String Name { get; set; }
-        public List<IMesSettingsEditor> Editors { get; private set; }
+        public List<IMesSettings> Editors { get; private set; }
         public List<MesSettingsPageViewModel> Children { get; private set; }
     }
 }

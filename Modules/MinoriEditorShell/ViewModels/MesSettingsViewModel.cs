@@ -19,7 +19,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     public class MesSettingsViewModel : MvxNavigationViewModel, IMesSettingsManager
     {
-        private IEnumerable<IMesSettingsEditor> _settingsEditors;
+        private IEnumerable<IMesSettings> _settingsEditors;
         private MesSettingsPageViewModel _selectedPage;
         private String displayName;
 
@@ -57,9 +57,9 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             await base.Initialize();
 
             List<MesSettingsPageViewModel> pages = new List<MesSettingsPageViewModel>();
-            _settingsEditors = Mvx.IoCProvider.GetAll<IMesSettingsEditor>();
+            _settingsEditors = Mvx.IoCProvider.GetAll<IMesSettings>();
 
-            foreach (IMesSettingsEditor settingsEditor in _settingsEditors)
+            foreach (IMesSettings settingsEditor in _settingsEditors)
             {
                 if (settingsEditor == null) { throw new InvalidProgramException("ISettingsEditor Missing"); }
                 List<MesSettingsPageViewModel> parentCollection = GetParentCollection(settingsEditor, pages);
@@ -104,7 +104,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         }
 
         private List<MesSettingsPageViewModel> GetParentCollection(
-            IMesSettingsEditor settingsEditor,
+            IMesSettings settingsEditor,
             List<MesSettingsPageViewModel> pages)
         {
             if (String.IsNullOrEmpty(settingsEditor.SettingsPagePath))
@@ -132,7 +132,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
         private void SaveChanges()
         {
-            foreach (IMesSettingsEditor settingsEditor in _settingsEditors)
+            foreach (IMesSettings settingsEditor in _settingsEditors)
             {
                 settingsEditor.ApplyChanges();
             }

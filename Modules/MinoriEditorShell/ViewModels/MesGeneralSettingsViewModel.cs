@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
-    public class MesGeneralSettingsViewModel : MvxViewModel, IMesSettingsEditor
+    public class MesGeneralSettingsViewModel : MvxViewModel, IMesSettings
     {
         private readonly IMesThemeManager _themeManager;
 

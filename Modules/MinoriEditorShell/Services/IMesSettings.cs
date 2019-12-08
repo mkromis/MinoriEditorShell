@@ -4,7 +4,7 @@ using System;
 
 namespace MinoriEditorShell.Services
 {
-    public interface IMesSettingsEditor : IMvxViewModel
+    public interface IMesSettings : IMvxViewModel
     {
         String SettingsPageName { get; }
         String SettingsPagePath { get; }
