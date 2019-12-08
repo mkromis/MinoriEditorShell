@@ -20,6 +20,6 @@
         </fluent:Ribbon>
 
         <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
-        <mes:MesManagerView />
+        <mes:MesDocumentManagerView />
     </DockPanel>
 </views:MvxWpfView>

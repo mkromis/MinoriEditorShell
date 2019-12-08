@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MinoriEditorShell.DataClasses;
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Properties;
 using MinoriEditorShell.Services;
@@ -20,7 +21,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
     public class MesSettingsManagerViewModel : MvxNavigationViewModel, IMesSettingsManager
     {
         private IEnumerable<IMesSettings> _settingsEditors;
-        private MesSettingsViewModel _selectedPage;
+        private MesSettingsTreeItem _selectedPage;
         private String displayName;
 
         public MesSettingsManagerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
@@ -29,9 +30,9 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             DisplayName = Resources.SettingsDisplayName;
         }
 
-        public List<MesSettingsViewModel> Pages { get; private set; }
+        public List<MesSettingsTreeItem> Pages { get; private set; }
 
-        public MesSettingsViewModel SelectedPage
+        public MesSettingsTreeItem SelectedPage
         {
             get => _selectedPage;
             set
@@ -56,20 +57,20 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             IMvxViewsContainer viewFinder = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             await base.Initialize();
 
-            List<MesSettingsViewModel> pages = new List<MesSettingsViewModel>();
+            List<MesSettingsTreeItem> pages = new List<MesSettingsTreeItem>();
             _settingsEditors = Mvx.IoCProvider.GetAll<IMesSettings>();
 
             foreach (IMesSettings settingsEditor in _settingsEditors)
             {
                 if (settingsEditor == null) { throw new InvalidProgramException("ISettingsEditor Missing"); }
-                List<MesSettingsViewModel> parentCollection = GetParentCollection(settingsEditor, pages);
+                List<MesSettingsTreeItem> parentCollection = GetParentCollection(settingsEditor, pages);
 
-                MesSettingsViewModel page =
+                MesSettingsTreeItem page =
                     parentCollection.FirstOrDefault(m => m.Name == settingsEditor.SettingsPageName);
 
                 if (page == null)
                 {
-                    page = new MesSettingsViewModel
+                    page = new MesSettingsTreeItem
                     {
                         Name = settingsEditor.SettingsPageName,
                     };
@@ -92,20 +93,20 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             SelectedPage = GetFirstLeafPageRecursive(pages);
         }
 
-        private static MesSettingsViewModel GetFirstLeafPageRecursive(List<MesSettingsViewModel> pages)
+        private static MesSettingsTreeItem GetFirstLeafPageRecursive(List<MesSettingsTreeItem> pages)
         {
             if (!pages.Any())
             {
                 return null;
             }
 
-            MesSettingsViewModel firstPage = pages.First();
+            MesSettingsTreeItem firstPage = pages.First();
             return !firstPage.Children.Any() ? firstPage : GetFirstLeafPageRecursive(firstPage.Children);
         }
 
-        private List<MesSettingsViewModel> GetParentCollection(
+        private List<MesSettingsTreeItem> GetParentCollection(
             IMesSettings settingsEditor,
-            List<MesSettingsViewModel> pages)
+            List<MesSettingsTreeItem> pages)
         {
             if (String.IsNullOrEmpty(settingsEditor.SettingsPagePath))
             {
@@ -116,11 +117,11 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
             foreach (String pathElement in path)
             {
-                MesSettingsViewModel page = pages.FirstOrDefault(s => s.Name == pathElement);
+                MesSettingsTreeItem page = pages.FirstOrDefault(s => s.Name == pathElement);
 
                 if (page == null)
                 {
-                    page = new MesSettingsViewModel { Name = pathElement };
+                    page = new MesSettingsTreeItem { Name = pathElement };
                     pages.Add(page);
                 }
 
