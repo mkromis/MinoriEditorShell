@@ -6,12 +6,12 @@ using System.IO;
 
 namespace MinoriEditorShell.ViewModels
 {
-    public class MesManagerViewModel : MvxViewModel, IMesManager
+    public class MesDocumentManagerViewModel : MvxViewModel, IMesDocumentManager
     {
         public event EventHandler ActiveDocumentChanging;
         public event EventHandler ActiveDocumentChanged;
 
-        public IMesManagerView ManagerView { get; set; }
+        public IMesDocumentManagerView ManagerView { get; set; }
 	    private readonly Boolean _closing;
 
         private IMesLayoutItem _activeItem;
@@ -55,7 +55,7 @@ namespace MinoriEditorShell.ViewModels
 
         public IMesLayoutItemStatePersister LayoutItemStatePersister { get; private set; }
 
-        public MesManagerViewModel()
+        public MesDocumentManagerViewModel()
         {
             LayoutItemStatePersister = Mvx.IoCProvider.Resolve<IMesLayoutItemStatePersister>();
 

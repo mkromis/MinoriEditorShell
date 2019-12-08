@@ -11,8 +11,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
         double Height { get; set; }
 
         string Title { get; set; }
-        ImageSource Icon { get; set; } 
+        ImageSource Icon { get; set; }
 
-        IMesManager Shell { get; }
+        IMesDocumentManager Shell { get; }
     }
 }

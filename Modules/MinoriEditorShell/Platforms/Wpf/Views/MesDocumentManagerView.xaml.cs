@@ -10,15 +10,15 @@ using Xceed.Wpf.AvalonDock.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
-    public partial class MesManagerView : IMesManagerView
+    public partial class MesDocumentManagerView : IMesDocumentManagerView
 	{
-        public MesManagerView()
+        public MesDocumentManagerView()
         {
             InitializeComponent();
 
             try
             {
-                IMesManager manager = Mvx.IoCProvider.Resolve<IMesManager>();
+                IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
                 manager.ManagerView = this;
                 DataContext = manager;
             } catch { }
@@ -41,7 +41,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             if (mainWindow != null)
             {
                 ImageSource mainWindowIcon = mainWindow.Icon;
-                Boolean showFloatingWindowsInTaskbar = ((MesManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
+                Boolean showFloatingWindowsInTaskbar = ((MesDocumentManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
                 foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
                 {
                     window.Icon = mainWindowIcon;

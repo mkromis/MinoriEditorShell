@@ -101,7 +101,7 @@ namespace MinoriEditorShell.Platforms.Wpf
             base.InitializePrimary();
 
             // register necessary interfaces
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesDocumentManager, MesDocumentManagerViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
             Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsViewModel>();
