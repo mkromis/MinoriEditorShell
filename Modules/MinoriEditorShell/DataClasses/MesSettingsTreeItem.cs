@@ -2,18 +2,19 @@ using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorShell.ViewModels
+namespace MinoriEditorShell.DataClasses
+
 {
-    public class MesSettingsPageViewModel
+    public class MesSettingsTreeItem
     {
-        public MesSettingsPageViewModel()
+        public MesSettingsTreeItem()
         {
-            Children = new List<MesSettingsPageViewModel>();
+            Children = new List<MesSettingsTreeItem>();
             Editors = new List<IMesSettings>();
         }
 
         public String Name { get; set; }
         public List<IMesSettings> Editors { get; private set; }
-        public List<MesSettingsPageViewModel> Children { get; private set; }
+        public List<MesSettingsTreeItem> Children { get; private set; }
     }
 }

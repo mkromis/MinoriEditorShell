@@ -23,7 +23,6 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
         private IMesTheme _selectedTheme;
         private String _selectedLanguage;
-        private Boolean _autoHideMainMenu;
 
         public MesGeneralSettingsViewModel()
         {
