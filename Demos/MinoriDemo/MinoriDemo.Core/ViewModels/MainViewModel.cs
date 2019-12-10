@@ -20,7 +20,7 @@ namespace MinoriDemo.Core.ViewModels
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
         private Color _testcolor = Color.CornflowerBlue;
-        private readonly IMesManager _manager;
+        private readonly IMesDocumentManager _manager;
         private readonly IMesStatusBar _statusBar;
 
         public VirtualCanvasViewModel CanvasModel
@@ -70,7 +70,7 @@ namespace MinoriDemo.Core.ViewModels
 
         public MainViewModel(
             IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IMesManager manager, IMesStatusBar statusBar)
+            IMesDocumentManager manager, IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {
             _manager = manager;

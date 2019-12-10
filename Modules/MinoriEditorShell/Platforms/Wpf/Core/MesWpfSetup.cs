@@ -77,7 +77,7 @@ namespace MinoriEditorShell.Platforms.Wpf
         protected override IDictionary<Type, Type> InitializeLookupDictionary()
         {
             IDictionary<Type, Type> container = base.InitializeLookupDictionary();
-            container.Add(typeof(MesSettingsViewModel), typeof(MesSettingsView));
+            container.Add(typeof(MesSettingsManagerViewModel), typeof(MesSettingsView));
             container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
         }
@@ -101,10 +101,10 @@ namespace MinoriEditorShell.Platforms.Wpf
             base.InitializePrimary();
 
             // register necessary interfaces
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesManager, MesManagerViewModel>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesDocumentManager, MesDocumentManagerViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
-            Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsViewModel>();
+            Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsManagerViewModel>();
 
             // Register themes
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();

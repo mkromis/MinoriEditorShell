@@ -4,7 +4,7 @@ using System.IO;
 
 namespace MinoriEditorShell.Services
 {
-    public interface IMesManagerView
+    public interface IMesDocumentManagerView
     {
         void LoadLayout(
             Stream stream, Action<IMesTool> addToolCallback, 

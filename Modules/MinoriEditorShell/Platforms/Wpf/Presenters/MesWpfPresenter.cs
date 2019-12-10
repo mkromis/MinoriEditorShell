@@ -37,7 +37,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
             {
                 // Everything that passes here should be a view
                 IMvxView view = element as IMvxView;
-                IMesManager manager = Mvx.IoCProvider.Resolve<IMesManager>();
+                IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
 
                 // from which we can now get the view model.
                 switch(view.ViewModel) {
@@ -49,7 +49,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
-                        _log.Trace($"Add {document.ToString()} to IManager.Documents");
+                        _log.Trace($"Add {document.ToString()} to IMesDocumentManager.Documents");
                         return true;
 
                     case IMesTool tool:
@@ -59,7 +59,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log.Trace($"Add {tool.ToString()} to IManager.Tools");
+                        _log.Trace($"Add {tool.ToString()} to IDocumentManager.Tools");
                         return true;
 
                     default:

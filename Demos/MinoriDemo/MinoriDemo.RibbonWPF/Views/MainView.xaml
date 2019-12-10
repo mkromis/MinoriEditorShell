@@ -163,6 +163,6 @@
         </fluent:Ribbon>
 
         <mes:MesStatusBarView DockPanel.Dock="Bottom"/>
-        <mes:MesManagerView />
+        <mes:MesDocumentManagerView />
     </DockPanel>
 </views:MvxWpfView>
