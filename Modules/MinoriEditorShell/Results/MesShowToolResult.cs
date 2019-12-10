@@ -12,7 +12,7 @@ namespace MinoriEditorShell.Results
 
 #pragma warning disable 649
         [Import]
-		private IMesManager _shell;
+		private IMesDocumentManager _shell;
 #pragma warning restore 649
 
         public MesShowToolResult()

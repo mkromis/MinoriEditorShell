@@ -24,7 +24,7 @@ namespace MinoriEditorShell.Services
         /// <summary>
         /// Removes the document from manager
         /// </summary>
-        public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IMesManager>().Documents.Remove(this));
+        public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IMesDocumentManager>().Documents.Remove(this));
 
 #warning Fix Toolbar
 #if false

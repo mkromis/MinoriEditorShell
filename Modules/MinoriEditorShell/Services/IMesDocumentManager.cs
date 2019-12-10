@@ -3,14 +3,14 @@ using System;
 
 namespace MinoriEditorShell.Services
 {
-    public interface IMesManager
+    public interface IMesDocumentManager
     {
         event EventHandler ActiveDocumentChanging;
         event EventHandler ActiveDocumentChanged;
 
         Boolean ShowFloatingWindowsInTaskbar { get; set; }
 
-        IMesManagerView ManagerView { get; set; }
+        IMesDocumentManagerView ManagerView { get; set; }
 
         IMesLayoutItem ActiveItem { get; set; }
 
