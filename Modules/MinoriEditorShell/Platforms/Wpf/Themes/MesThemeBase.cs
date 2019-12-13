@@ -22,13 +22,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         public MesThemeBase()
         {
             // Initialize the base Mahapps.Metro resources.
-            _resources = new List<Uri> {
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml"),
-
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"),
-            };
+            _resources = new List<Uri>();
         }
     }
 }
