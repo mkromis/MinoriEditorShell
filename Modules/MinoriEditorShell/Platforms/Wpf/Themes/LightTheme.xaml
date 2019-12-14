@@ -10,7 +10,6 @@
 
         <ResourceDictionary Source="pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml" />
 
-        <ResourceDictionary Source="../Generic.xaml" />
         <ResourceDictionary Source="Controls/Merged.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
