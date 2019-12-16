@@ -13,10 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
     <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
     <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
@@ -37,10 +33,6 @@
       <Reference Include="System.Drawing" />
       <Reference Include="System.Xaml" />
       <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup>
