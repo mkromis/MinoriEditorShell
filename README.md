@@ -28,6 +28,10 @@ The goal is to minimize the main library into a more consice library. Thus the f
 * IMesSettings is for custom setting view models in the settings manager, (Still need to have a view for them in platform target).
 * IMesSettingsManger is for managaing all of the settings view models. 
 
+## Build environmant
+
+For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platfom development**, and **.Net Desktop Envirionment**
+This project depends on netstandard library for its core build. Future plans involves targeting other platforms.
 
 ## What is this
 
