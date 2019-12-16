@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modules\Themes\CyberTheme.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -78,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\Themes\CyberTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
