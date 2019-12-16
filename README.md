@@ -6,8 +6,7 @@
 
 ## Status
 
-[![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/MinoriEditorShell)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=3)
-[![NuGet](https://img.shields.io/nuget/v/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
+[![Build Status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/TorisanKitsune.MinoriEditorShell?branchName=develop)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=4&branchName=develop)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
 [![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
@@ -19,7 +18,7 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
-## Breaking Changes
+## Breaking Changes (For Develop pre-release)
 
 The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
