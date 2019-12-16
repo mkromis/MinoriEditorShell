@@ -1,5 +1,6 @@
 ﻿using MvvmCross;
 using MvvmCross.IoC;
+using MvvmCross.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,29 @@ namespace MinoriEditorShell.Extensions
             List<T> results = new List<T>();
 
             // Get all assemblies
-            AssemblyName[] assyArray = Assembly.GetEntryAssembly().GetReferencedAssemblies();
+            List<AssemblyName> assyArray = Assembly.GetEntryAssembly().GetReferencedAssemblies().ToList();
+            
+            // add executing assembly
+            assyArray.Add(Assembly.GetEntryAssembly().GetName());
+
             foreach (AssemblyName assy in assyArray)
             {
                 Assembly assembly = Assembly.Load(assy);
                 Type[] types = assembly.GetTypes();
                 foreach(Type type in types)
                 {
-                    if (type.GetInterfaces().Contains(typeof(T))) { 
-                        results.Add((T)Activator.CreateInstance(type));
+                    if (type.GetInterfaces().Contains(typeof(T))) {
+                        try
+                        {
+                            results.Add((T)Activator.CreateInstance(type));
+                        }
+                        catch (MissingMethodException e)
+                        {
+                            Mvx.IoCProvider
+                                .Resolve<IMvxLogProvider>()
+                                .GetLogFor("IocProviderExtensions")
+                                .DebugException(typeof(T).ToString(), e);
+                        }
                     }
                 }
             }

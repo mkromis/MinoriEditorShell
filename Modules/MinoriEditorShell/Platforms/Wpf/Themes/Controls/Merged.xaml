@@ -8,12 +8,15 @@
         <ResourceDictionary Source="ColorPicker.xaml" />
         <ResourceDictionary Source="ComboBox.xaml" />
         <ResourceDictionary Source="Focus.xaml" />
+        <ResourceDictionary Source="Generic.xaml" />
         <ResourceDictionary Source="Label.xaml" />
         <ResourceDictionary Source="Menu.xaml" />
         <ResourceDictionary Source="ScrollBar.xaml" />
         <ResourceDictionary Source="Slider.xaml" />
+        <ResourceDictionary Source="Styles.xaml" />
         <ResourceDictionary Source="TextBox.xaml" />
         <ResourceDictionary Source="Toolbar.xaml" />
+        <ResourceDictionary Source="ToolBarStyles.xaml" />
         <ResourceDictionary Source="Tooltip.xaml" />
         <ResourceDictionary Source="TreeView.xaml" />
         <ResourceDictionary Source="Window.xaml" />

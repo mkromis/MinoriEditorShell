@@ -8,7 +8,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
     /// <summary>
     /// Base theme to initilizer
     /// </summary>
-    public class MesThemeBase : IMesTheme
+    public abstract class MesThemeBase : IMesTheme
     {
         readonly List<Uri> _resources;
 
@@ -22,12 +22,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         public MesThemeBase()
         {
             // Initialize the base Mahapps.Metro resources.
-            _resources = new List<Uri> {
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml"),
-                new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml"),
-            };
+            _resources = new List<Uri>();
         }
     }
 }
