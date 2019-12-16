@@ -59,7 +59,6 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
             }
         }
 
-
         /// <summary>
         /// Initial Metro setup
         /// </summary>
