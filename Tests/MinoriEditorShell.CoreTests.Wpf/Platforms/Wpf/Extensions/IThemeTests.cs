@@ -21,7 +21,7 @@ namespace MinoriEditorShell.CoreTests.Wpf.Platforms.Wpf.Extensions
             Setup();
 
             MesBlueTheme blue = new MesBlueTheme();
-            Assert.AreEqual(7, blue.ApplicationResources.Count());
+            Assert.AreEqual(1, blue.ApplicationResources.Count());
         }
     }
 }

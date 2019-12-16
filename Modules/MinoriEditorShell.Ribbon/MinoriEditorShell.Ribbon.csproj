@@ -13,22 +13,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
     <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
     <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
-    <PackageReference Include="GitVersionTask" Version="5.0.1">
+    <PackageReference Include="Fluent.Ribbon" Version="7.0.1" />
+    <PackageReference Include="GitVersionTask" Version="5.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MvvmCross" Version="6.4.1" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
 
@@ -38,10 +33,6 @@
       <Reference Include="System.Drawing" />
       <Reference Include="System.Xaml" />
       <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup>
