@@ -10,6 +10,30 @@
     </ResourceDictionary.MergedDictionaries>
     <!-- COLORS -->
 
+    <!--"CustomBaseColorSchemeName": "Colorful",
+      "BaseColorSchemeReference": "Light",
+      "Name": "Blue",
+      "Values": {
+        "WhiteColor": "#FFF0F0F0",
+    -->
+    <!--"Name": "Light",
+      "Values": {
+        "BlackColor": "#FF000000",
+        "BlackColor20": "#51000000",
+        "WhiteColor": "#FFFFFFFF",
+        "WhiteColor20": "#51FFFFFF",
+        "Gray1": "#FF333333",
+        "Gray2": "#FF7F7F7F",
+        "Gray3": "#FF9D9D9D",
+        "Gray4": "#FFA59F93",
+        "Gray5": "#FFB9B9B9",
+        "Gray6": "#FFCCCCCC",
+        "Gray7": "#FFD8D8D9",
+        "Gray8": "#FFE0E0E0",
+        "Gray9": "#5EC9C9C9",
+        "Gray10": "#FFF7F7F7",
+    -->
+
     <!-- Accent colors -->
     <Color x:Key="Fluent.Ribbon.Colors.AccentBaseColor">#FF2B579A</Color>
     <!--80%-->
@@ -24,7 +48,7 @@
     <Color x:Key="Fluent.Ribbon.Colors.HighlightColor">#FF086F9E</Color>
 
     <!-- Foreground -->
-    <Color x:Key="Fluent.Ribbon.Colors.IdealForegroundColor">White</Color>
+    <Color x:Key="Fluent.Ribbon.Colors.IdealForegroundColor">Black</Color>
     <Color x:Key="Fluent.Ribbon.Colors.DarkIdealForegroundDisabledColor">#ADADAD</Color>
 
     <!-- Misc colors -->
@@ -78,77 +102,42 @@
     <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FFCCD5F0" />-->
     <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonWindow.TitleBackground" Color="#FFCCD5F0" />
 
+    <SolidColorBrush x:Key="Fluent.Ribbon.Colors.Images.DefaultColor"  Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background"  Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" options:Freeze="True" />-->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground"  Color="{StaticResource Gray1}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground"  Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground"  Color="{StaticResource Gray1}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Foreground"  Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background"  Color="#44FFFFFF" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground"  Color="{StaticResource WhiteColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground"  Color="{StaticResource Gray1}" options:Freeze="True" />
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonWindow.TitleBackground"  Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" options:Freeze="True" />-->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonWindow.TitleForeground"  Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Foreground"  Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
+    
+    <!-- Backstage -->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Background"  Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Foreground"  Color="White" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Background"  Color="Transparent" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Foreground"  Color="White" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.Button.MouseOver.Background"  Color="{StaticResource BlackColor20}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.ItemsPanelBackground"  Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground"  Color="White" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.MouseOver.Background"  Color="{StaticResource BlackColor20}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Selected.Background"  Color="{StaticResource WhiteColor20}" options:Freeze="True" />
+
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.LabelTextBrush"  Color="{StaticResource BlackColor}" options:Freeze="True" />
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground"  Color="{StaticResource BlackColor}" options:Freeze="True" />-->
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground"  Color="{StaticResource Fluent.Ribbon.Colors.HighlightColor}" options:Freeze="True" />-->
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground"  Color="{StaticResource Fluent.Ribbon.Colors.HighlightColor}" options:Freeze="True" />-->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonGroupBox.Header.Foreground"  Color="{StaticResource Gray2}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background"  Color="{StaticResource WhiteColor}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Foreground"  Color="{StaticResource BlackColor}" options:Freeze="True" />
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Foreground"  Color="{StaticResource BlackColor}" options:Freeze="True" />-->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background"  Color="{StaticResource WhiteColor}" options:Freeze="True" />
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background"  Color="Transparent" options:Freeze="True" />-->
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground"  Color="{StaticResource Fluent.Ribbon.Colors.HighlightColor}" options:Freeze="True" />-->
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground"  Color="{StaticResource Fluent.Ribbon.Colors.HighlightColor}" options:Freeze="True" />-->
+
 </ResourceDictionary>
 
-<!--"CustomBaseColorSchemeName": "Colorful",
-      "BaseColorSchemeReference": "Light",
-      "Name": "Blue",
-      "Values": {
-        "WhiteColor": "#FFF0F0F0",
-        "Fluent.Ribbon.Colors.AccentBaseColor": "#FF0173C7",
-        "Fluent.Ribbon.Colors.AccentColor80": "#CC2B579A",
-        "Fluent.Ribbon.Colors.AccentColor60": "#992B579A",
-        "Fluent.Ribbon.Colors.AccentColor40": "#662B579A",
-        "Fluent.Ribbon.Colors.AccentColor20": "#332B579A",
-        "Fluent.Ribbon.Colors.HighlightColor": "#FF086F9E",
-        "Fluent.Ribbon.Colors.Images.DefaultColor": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabControl.Background": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground": "{StaticResource Gray1}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground": "{StaticResource Gray1}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Foreground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background": "#44FFFFFF",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground": "{StaticResource WhiteColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground": "{StaticResource Gray1}",
-        "Fluent.Ribbon.Brushes.RibbonWindow.TitleBackground": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}",
-        "Fluent.Ribbon.Brushes.RibbonWindow.TitleForeground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Foreground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}"-->
-
-<!--"Name": "Light",
-      "Values": {
-        "BlackColor": "#FF000000",
-        "BlackColor20": "#51000000",
-        "WhiteColor": "#FFFFFFFF",
-        "WhiteColor20": "#51FFFFFF",
-        "Gray1": "#FF333333",
-        "Gray2": "#FF7F7F7F",
-        "Gray3": "#FF9D9D9D",
-        "Gray4": "#FFA59F93",
-        "Gray5": "#FFB9B9B9",
-        "Gray6": "#FFCCCCCC",
-        "Gray7": "#FFD8D8D9",
-        "Gray8": "#FFE0E0E0",
-        "Gray9": "#5EC9C9C9",
-        "Gray10": "#FFF7F7F7",
-        "Fluent.Ribbon.Brushes.Backstage.Background": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}",
-        "Fluent.Ribbon.Brushes.Backstage.Foreground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.Backstage.BackButton.Background": "Transparent", 
-        "Fluent.Ribbon.Brushes.Backstage.BackButton.Foreground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabControl.Button.MouseOver.Background": "{StaticResource BlackColor20}",
-        "Fluent.Ribbon.Brushes.BackstageTabControl.ItemsPanelBackground": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}", 
-        "Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground": "{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabItem.MouseOver.Background": "{StaticResource BlackColor20}",
-        "Fluent.Ribbon.Brushes.BackstageTabItem.Selected.Background": "{StaticResource WhiteColor20}",
-        "Fluent.Ribbon.Brushes.LabelTextBrush": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground": "{StaticResource BlackColor}", 
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground": "{StaticResource Fluent.Ribbon.Colors.HighlightColor}", 
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground": "{StaticResource Fluent.Ribbon.Colors.HighlightColor}",
-        "Fluent.Ribbon.Brushes.RibbonGroupBox.Header.Foreground": "{StaticResource Gray2}",
-        "Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background":  "{StaticResource WhiteColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabControl.Content.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background": "{StaticResource WhiteColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background": "Transparent",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground": "{StaticResource Fluent.Ribbon.Colors.HighlightColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground": "{StaticResource Fluent.Ribbon.Colors.HighlightColor}"        
-      }-->
-
-<!--"Name": "Blue",
-      "Values": {
-        "Fluent.Ribbon.Colors.AccentBaseColor": "#FF2B579A",
-        "Fluent.Ribbon.Colors.AccentColor80": "#CC2B579A",
-        "Fluent.Ribbon.Colors.AccentColor60": "#992B579A",
-        "Fluent.Ribbon.Colors.AccentColor40": "#662B579A",
-        "Fluent.Ribbon.Colors.AccentColor20": "#332B579A",
-        "Fluent.Ribbon.Colors.HighlightColor": "#FF086F9E"
-      }-->
