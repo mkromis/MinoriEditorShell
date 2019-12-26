@@ -66,9 +66,9 @@
     <SolidColorBrush x:Key="MahApps.Brushes.WhiteColor" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.BlackColor" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
 
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="#808080" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#808080" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="#FF6CA1FF" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="#FF99FDFB" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#FF7BFFB4" options:Freeze="True" />
 
     <SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="{StaticResource MahApps.Colors.Highlight}" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.DisabledWhite" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
@@ -238,7 +238,7 @@
 
     <!--  Foreground  -->
     <SolidColorBrush x:Key="MahApps.Brushes.Foreground" Color="#FFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.Foreground" Color="#999988" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.Foreground" Color="#FF1A1A1A" options:Freeze="True" />
 
     <!--  General  -->
     <SolidColorBrush x:Key="MahApps.Brushes.BackgroundHighlighted" Color="#54545C" options:Freeze="True" />
@@ -247,7 +247,7 @@
     <SolidColorBrush x:Key="MahApps.Brushes.Border.Selected" Color="#1C97EA" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Background.Normal" Color="#3F3F46" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#54545C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Window.Glow" Color="#017ACC" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Window.Glow" Color="#FF17F8F4" options:Freeze="True" />
 
     <!--  Text Box  -->
     <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Background" Color="#333337" options:Freeze="True" />
@@ -261,10 +261,10 @@
     <SolidColorBrush x:Key="MahApps.Brushes.LinkButton.ForegroundHighlighted" Color="#55AAFF" options:Freeze="True" />
 
     <!--  Close Button  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundHighlighted" Color="#39ADFB" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundPressed" Color="#084E7D" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.Stroke" Color="#AAFFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="#FFFFFF" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundHighlighted" Color="#FFFF0101" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundPressed" Color="#FFFF831F" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.Stroke" Color="#77FFFFFF" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="#AAFFFF" options:Freeze="True" />
 
     <!--  Menu  -->
     <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Fill" Color="#FF999999" options:Freeze="True" />
@@ -299,13 +299,9 @@
 
     <!-- Accent colors -->
     <Color x:Key="Fluent.Ribbon.Colors.AccentBaseColor">#FF2B579A</Color>
-    <!--80%-->
     <Color x:Key="Fluent.Ribbon.Colors.AccentColor80">#CC2B579A</Color>
-    <!--60%-->
     <Color x:Key="Fluent.Ribbon.Colors.AccentColor60">#992B579A</Color>
-    <!--40%-->
     <Color x:Key="Fluent.Ribbon.Colors.AccentColor40">#662B579A</Color>
-    <!--20%-->
     <Color x:Key="Fluent.Ribbon.Colors.AccentColor20">#332B579A</Color>
 
     <Color x:Key="Fluent.Ribbon.Colors.HighlightColor">#FF086F9E</Color>
@@ -355,6 +351,39 @@
     <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.ApplicationMenuItem.CheckBox.Background" Color="#FFFCF1C2" options:Freeze="True" />
     <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.ApplicationMenuItem.CheckBox.BorderBrush" Color="#FFF29536" options:Freeze="True" />
 
+
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground" Color="#FF7FFFAA" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Background" Color="#FF78AAFF" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Foreground" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Foreground" Color="{StaticResource BlackColor}"/>
+    
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.Button.MouseOver.Background" Color="#FFB6E8FF"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.ItemsPanelBackground" Color="#363636"/>
+    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground" Color="{StaticResource BlackColor}"/>-->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.MouseOver.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Selected.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor20}"/>
+    
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.LabelTextBrush" Color="White"/>
+    
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonGroupBox.Header.Foreground" Color="{StaticResource Gray6}"/>
+
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonWindow.TitleBackground" Color="#FF4BFF8B" />
+    
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background" Color="Black" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.TabsGrid.Background" Color="Black" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FF202020" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Foreground" Color="{StaticResource Gray6}"/>
+    
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Foreground" Color="#FF7FFFAA"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="Black"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background" Color="#444444"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground" Color="{StaticResource BlackColor}"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground" Color="{StaticResource BlackColor}"/>
+
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground" Color="{StaticResource Gray5}"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground" Color="{StaticResource BlackColor}"/>
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground" Color="{StaticResource BlackColor}"/>
     <!-- END BRUSHES -->
 </ResourceDictionary>
 
@@ -375,34 +404,4 @@
         "Gray8": "#FF454545",
         "Gray9": "#5EC9C9C9",
         "Gray10": "#FF2F2F2F",
-        "Fluent.Ribbon.Brushes.Backstage.Background": "{StaticResource WhiteColor}",
-        "Fluent.Ribbon.Brushes.Backstage.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.Backstage.BackButton.Background": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}", 
-        "Fluent.Ribbon.Brushes.Backstage.BackButton.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabControl.Button.MouseOver.Background": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabControl.ItemsPanelBackground": "#363636", 
-        "Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabItem.MouseOver.Background": "{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}",
-        "Fluent.Ribbon.Brushes.BackstageTabItem.Selected.Background": "{StaticResource Fluent.Ribbon.Colors.AccentColor20}",
-        "Fluent.Ribbon.Brushes.LabelTextBrush": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground": "{StaticResource Gray5}", 
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonGroupBox.Header.Foreground": "{StaticResource Gray6}",
-        "Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background":  "#363636",
-        "Fluent.Ribbon.Brushes.RibbonTabControl.Content.Foreground": "{StaticResource Gray6}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Foreground": "{StaticResource Gray5}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background": "#363636",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background": "#444444",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground": "{StaticResource BlackColor}",
-        "Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground": "{StaticResource BlackColor}"-->
-
-<!--"Name": "Blue",
-      "Values": {
-        "Fluent.Ribbon.Colors.AccentBaseColor": "#FF2B579A",
-        "Fluent.Ribbon.Colors.AccentColor80": "#CC2B579A",
-        "Fluent.Ribbon.Colors.AccentColor60": "#992B579A",
-        "Fluent.Ribbon.Colors.AccentColor40": "#662B579A",
-        "Fluent.Ribbon.Colors.AccentColor20": "#332B579A",
-        "Fluent.Ribbon.Colors.HighlightColor": "#FF086F9E"
-      }-->
+-->
