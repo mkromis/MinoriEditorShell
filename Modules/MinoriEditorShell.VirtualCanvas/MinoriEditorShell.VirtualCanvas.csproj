@@ -18,7 +18,7 @@
         <Compile Remove="Platforms\**\*.cs" />
         <None Include="Platforms\**\*.cs" />
 
-        <PackageReference Include="GitVersionTask" Version="5.1.2">
+        <PackageReference Include="GitVersionTask" Version="5.2.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
