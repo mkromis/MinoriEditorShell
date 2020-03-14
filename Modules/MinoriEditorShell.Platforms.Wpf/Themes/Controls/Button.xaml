@@ -1,7 +1,6 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:MinoriEditorStudio.Platforms.Wpf.Controls">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="MesButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Background" Value="{DynamicResource Button.Static.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource EnvironmentToolWindowText}" />

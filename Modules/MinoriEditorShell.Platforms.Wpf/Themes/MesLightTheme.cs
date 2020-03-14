@@ -11,7 +11,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
 
         public MesLightTheme() : base()
         {
-            Add(new Uri("pack://application:,,,/MinoriEditorShell;component/Platforms/Wpf/Themes/LightTheme.xaml"));
+            Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/LightTheme.xaml"));
         }
     }
 }

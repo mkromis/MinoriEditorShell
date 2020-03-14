@@ -11,7 +11,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
 
         public MesBlueTheme() : base()
         {
-            Add(new Uri("pack://application:,,,/MinoriEditorShell;component/Platforms/Wpf/Themes/BlueTheme.xaml"));
+            Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/BlueTheme.xaml"));
         }
     }
 }
