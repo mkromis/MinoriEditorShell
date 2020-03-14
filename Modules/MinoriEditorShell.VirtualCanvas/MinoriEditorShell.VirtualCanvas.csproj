@@ -22,6 +22,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+
+        <ProjectReference Include="..\..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
     </ItemGroup>

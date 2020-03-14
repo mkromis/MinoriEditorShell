@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:viewModels="clr-namespace:MinoriEditorShell.Platforms.Wpf.ViewModels"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:resx="clr-namespace:MinoriEditorShell.Properties"
-    xmlns:converters="clr-namespace:MinoriEditorShell.Converters"
+    xmlns:resx="clr-namespace:MinoriEditorShell.Properties;assembly=MinoriEditorShell"
+    xmlns:converters="clr-namespace:MinoriEditorShell.Converters;assembly=MinoriEditorShell"
     mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" 
     IsTabStop="False">
     <UserControl.Resources>

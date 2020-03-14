@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net461</TargetFrameworks>
+        <Description>
+            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+            It uses AvalonDock and has an MVVM architecture based on MvvmCross.
+        </Description>
+        <Copyright>Copyright 2019</Copyright>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+        <PackageIconUrl></PackageIconUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mark Kromis</Authors>
+        <Company>Mark Kromis</Company>
+        <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+        
+        <PackageReference Include="MvvmCross" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
+        <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+
+        <PackageReference Include="Dirkster.AvalonDock" Version="4.0.0" />
+        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.0.0" />
+        <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0660" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="WindowsBase" />
+
+        <None Remove="**\*.xaml" />
+        <Page Include="**\*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+
+    </ItemGroup>
+
+</Project>
