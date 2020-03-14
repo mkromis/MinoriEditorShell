@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="7.0.1" />
-    <PackageReference Include="GitVersionTask" Version="5.2.3">
+    <PackageReference Include="GitVersionTask" Version="5.2.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+    <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
 

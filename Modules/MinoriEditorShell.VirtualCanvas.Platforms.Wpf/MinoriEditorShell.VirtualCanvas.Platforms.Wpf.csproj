@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net461</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
@@ -15,14 +15,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-
         <PackageReference Include="GitVersionTask" Version="5.2.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+
+    </ItemGroup>
+
+    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+        <Page Include="Platforms\Wpf\**\*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Compile Include="Platforms\Wpf\**\*.cs" />
+
+        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="WindowsBase" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+      <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
       <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
     </ItemGroup>
 </Project>

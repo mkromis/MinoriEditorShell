@@ -18,7 +18,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
     /// The object does not need to implement any special interface because the Rect Bounds
     /// of those objects is handled as a separate argument to Insert.
     /// </summary>
-    internal partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
+    public partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
     {
         RectangleF _bounds; // overall bounds we are indexing.
         public IMesQuadrant<T> Root { get; private set; }
