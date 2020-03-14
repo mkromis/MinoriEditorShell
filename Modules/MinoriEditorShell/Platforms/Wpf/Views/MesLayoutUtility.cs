@@ -2,9 +2,9 @@ using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Xceed.Wpf.AvalonDock;
-using Xceed.Wpf.AvalonDock.Layout;
-using Xceed.Wpf.AvalonDock.Layout.Serialization;
+using AvalonDock;
+using AvalonDock.Layout;
+using AvalonDock.Layout.Serialization;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
