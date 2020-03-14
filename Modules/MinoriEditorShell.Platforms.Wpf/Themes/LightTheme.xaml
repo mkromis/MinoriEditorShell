@@ -12,7 +12,7 @@
 
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightTheme.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/AvalonDock.Themes.VS2013;component/LightTheme.xaml" />
 
         <!--<ResourceDictionary Source="Controls/Merged.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
