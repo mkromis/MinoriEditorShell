@@ -12,7 +12,7 @@ namespace MinoriEditorShell.ViewModels
     /// <summary>
     /// Class Wider Status bar
     /// </summary>
-    internal class MesStatusBarViewModel : MvxViewModel, IMesStatusBar
+    public class MesStatusBarViewModel : MvxViewModel, IMesStatusBar
     {
         #region Fields
         /// <summary>
