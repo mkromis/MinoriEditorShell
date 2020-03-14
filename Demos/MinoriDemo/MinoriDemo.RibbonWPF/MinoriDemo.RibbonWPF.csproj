@@ -123,9 +123,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj">
+      <Project>{79572320-e719-4053-a12a-9d74e111fc5e}</Project>
+      <Name>MinoriEditorShell.Platforms.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
       <Name>MinoriEditorShell.Ribbon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas.Platforms.Wpf\MinoriEditorShell.VirtualCanvas.Platforms.Wpf.csproj">
+      <Project>{acd61563-7365-4287-8fe8-6b0c38c5e8e3}</Project>
+      <Name>MinoriEditorShell.VirtualCanvas.Platforms.Wpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj">
       <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
