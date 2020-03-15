@@ -2,10 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net461</TargetFrameworks>
-        <Description>
-            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
-            It uses AvalonDock and has an MVVM architecture based on MvvmCross.
-        </Description>
+        <Description></Description>
         <Copyright>Copyright 2019</Copyright>
         <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
