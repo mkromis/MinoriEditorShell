@@ -40,10 +40,10 @@ steps:
         command: test
         arguments: '--collect:"XPlat Code Coverage"'
 
-     - task: PublishCodeCoverageResults@1
-       inputs:
-         #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
-         summaryFileLocation: '**.*.xml'
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
+        summaryFileLocation: '**.*.xml'
 
     # copy the Nuget to compression folder
     - task: CopyFiles@2
