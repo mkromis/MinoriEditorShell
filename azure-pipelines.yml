@@ -35,15 +35,15 @@ steps:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    - task: VisualStudioTestPlatformInstaller@1
+    - task: DotNetCoreCLI@2
       inputs:
-        packageFeedSelector: 'nugetOrg'
-        versionSelector: 'latestStable'
+        command: test
+        arguments: '--collect:"XPlat Code Coverage"'
 
-    - task: VSTest@2
-      inputs:
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+     - task: PublishCodeCoverageResults@1
+       inputs:
+         #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
+         summaryFileLocation: '**.*.xml'
 
     # copy the Nuget to compression folder
     - task: CopyFiles@2
