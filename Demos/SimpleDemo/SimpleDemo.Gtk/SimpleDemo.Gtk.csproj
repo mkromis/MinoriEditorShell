@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Gtk\MinoriEditorShell.Platforms.Gtk.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
+</Project>
