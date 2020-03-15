@@ -1,14 +1,16 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MinoriEditorShell.Platforms.Wpf.Extensions;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MinoriEditorShell.Platforms.Wpf.Themes;
-using MinoriEditorShell.Services;
+using MvvmCross.Tests;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MinoriEditorShell.CoreTests.Wpf.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
 {
-    [TestClass]
-    public class IThemeTests : MvvmCross.Tests.MvxIoCSupportingTest
+    [TestClass()]
+    public class MesThemeBaseTests : MvxIoCSupportingTest
     {
         protected override void AdditionalSetup()
         {

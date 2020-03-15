@@ -102,6 +102,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj">
+      <Project>{79572320-e719-4053-a12a-9d74e111fc5e}</Project>
+      <Name>MinoriEditorShell.Platforms.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas.Platforms.Wpf\MinoriEditorShell.VirtualCanvas.Platforms.Wpf.csproj">
+      <Project>{acd61563-7365-4287-8fe8-6b0c38c5e8e3}</Project>
+      <Name>MinoriEditorShell.VirtualCanvas.Platforms.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj">
+      <Project>{b8ba7a12-25b1-445d-93b8-d0f34226d053}</Project>
+      <Name>MinoriEditorShell.VirtualCanvas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj">
       <Project>{320b6932-9c96-4a1c-a2fc-f393516ae13f}</Project>
       <Name>MinoriEditorShell</Name>
@@ -113,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.4.1</Version>
+      <Version>6.4.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

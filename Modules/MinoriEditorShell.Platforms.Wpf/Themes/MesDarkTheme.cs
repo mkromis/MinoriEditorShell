@@ -11,7 +11,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
 
         public MesDarkTheme()
         {
-            Add(new Uri("pack://application:,,,/MinoriEditorShell;component/Platforms/Wpf/Themes/DarkTheme.xaml"));
+            Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/DarkTheme.xaml"));
         }
     }
 }

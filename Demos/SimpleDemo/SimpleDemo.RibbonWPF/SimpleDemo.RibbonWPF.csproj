@@ -109,6 +109,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj">
+      <Project>{79572320-e719-4053-a12a-9d74e111fc5e}</Project>
+      <Name>MinoriEditorShell.Platforms.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
       <Name>MinoriEditorShell.Ribbon</Name>
@@ -127,7 +131,7 @@
       <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.4.1</Version>
+      <Version>6.4.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

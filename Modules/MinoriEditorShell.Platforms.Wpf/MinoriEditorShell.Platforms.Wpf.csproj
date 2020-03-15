@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net461</TargetFrameworks>
         <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
 This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
         <Copyright>Copyright 2019</Copyright>
@@ -17,12 +17,12 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     </PropertyGroup>
 
     <ItemGroup>
-
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.2.2">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-
+        
         <PackageReference Include="MvvmCross" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
@@ -30,42 +30,23 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
         <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
 
-        <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+        <PackageReference Include="Dirkster.AvalonDock" Version="4.0.0" />
+        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.0.0" />
+        <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0660" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="WindowsBase" />
+
+        <None Remove="**\*.xaml" />
+        <Page Include="**\*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+
     </ItemGroup>
 
-    <ItemGroup>
-        <None Update="Properties\Settings.settings">
-            <Generator>PublicSettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-        </None>
-        <Compile Update="Properties\Settings.Designer.cs">
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Properties\Resources.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
-        <EmbeddedResource Update="Properties\Resources.de.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\Resources.ko.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\Resources.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\Resources.ru.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-    </ItemGroup>
 </Project>
