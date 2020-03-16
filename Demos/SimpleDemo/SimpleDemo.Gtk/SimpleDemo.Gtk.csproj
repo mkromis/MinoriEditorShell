@@ -10,4 +10,7 @@
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Gtk\MinoriEditorShell.Platforms.Gtk.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="MainWindow.xml" />
+  </ItemGroup>
 </Project>

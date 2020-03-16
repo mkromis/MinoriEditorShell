@@ -7,8 +7,13 @@
 
   <ItemGroup>
     <PackageReference Include="GtkSharp" Version="3.22.25.56" />
+    <PackageReference Include="MvvmCross" Version="6.4.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
 </Project>

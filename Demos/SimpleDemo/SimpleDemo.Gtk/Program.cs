@@ -1,4 +1,7 @@
 ﻿using System;
+using MinoriEditorShell.Platforms.Gtk.Core;
+using MinoriEditorShell.Platforms.Gtk.Views;
+using SimpleDemo.Core;
 
 namespace SimpleDemo.Gtk
 {
@@ -6,7 +9,8 @@ namespace SimpleDemo.Gtk
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var app = new MesGtkApplication<MesGtkSetup<App>, App, MainWindow>();
+            app.Run();
         }
     }
 }
