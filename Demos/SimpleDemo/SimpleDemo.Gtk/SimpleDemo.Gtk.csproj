@@ -9,8 +9,15 @@
     <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Gtk\MinoriEditorShell.Platforms.Gtk.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+
+    <PackageReference Include="GtkSharp" Version="3.22.25.56" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="MainWindow.xml" />
+    <None Remove="MainWindow.glade" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWindow.glade">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
