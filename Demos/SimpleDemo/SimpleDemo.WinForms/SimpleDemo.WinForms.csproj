@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD0785D3-5459-40BD-B74F-FBADDC81BFAD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SimpleDemo.WinForms</RootNamespace>
+    <AssemblyName>SimpleDemo.WinForms</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Console">
+      <HintPath>..\..\..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="MvvmCross">
+      <HintPath>..\..\..\packages\MvvmCross.6.4.2\lib\net461\MvvmCross.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj">
+      <Project>{320B6932-9C96-4A1C-A2FC-F393516AE13F}</Project>
+      <Name>MinoriEditorShell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj">
+      <Project>{1BE23C45-838B-47E7-8437-90493CBEA59A}</Project>
+      <Name>SimpleDemo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.WinForms\MinoriEditorShell.Platforms.WinForms.csproj">
+      <Project>{1F5D4481-1597-4397-8126-59FAC9D0E12E}</Project>
+      <Name>MinoriEditorShell.Platforms.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
