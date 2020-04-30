@@ -19,13 +19,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluent.Ribbon" Version="7.0.1" />
-    <PackageReference Include="GitVersionTask" Version="5.2.2">
+    <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
+    <PackageReference Include="GitVersionTask" Version="5.2.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MvvmCross" Version="6.4.2" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 
       <Reference Include="PresentationCore" />
       <Reference Include="PresentationFramework" />
@@ -36,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
