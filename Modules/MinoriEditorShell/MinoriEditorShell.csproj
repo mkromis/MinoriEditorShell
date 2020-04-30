@@ -18,7 +18,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
     <ItemGroup>
 
-        <PackageReference Include="GitVersionTask" Version="5.2.2">
+        <PackageReference Include="GitVersionTask" Version="5.2.4">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -26,6 +26,10 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MvvmCross" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
         <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
