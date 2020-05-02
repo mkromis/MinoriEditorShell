@@ -3,6 +3,7 @@
 ## Contact
 
  [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_shield)
 
 ## Status
 
@@ -77,3 +78,7 @@ MinoriEditorShell is not the only WPF framework for building IDE-like applicatio
 * [Wide](https://github.com/chandramouleswaran/Wide/) - looks promising, and has a 
   [CodeProject article](http://www.codeproject.com/Articles/551885/How-to-create-a-VS-2012-like-application-Wide-IDE).
 * [Wider](https://github.com/TorisanKitsune/Wider) - Based on project wide with update Prism and Fluent.Ribbon
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_large)
