@@ -1,59 +1,48 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>Ribbon Mahapp IDE</PackageTags>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mark Kromis</Authors>
+        <Company>Mark Kromis</Company>
+        <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>Ribbon Mahapp IDE</PackageTags>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
-    <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
-    <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-  <ItemGroup>
-    <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
-    <PackageReference Include="GitVersionTask" Version="5.3.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MvvmCross" Version="6.4.2" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+        <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
+        <PackageReference Include="GitVersionTask" Version="5.3.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MvvmCross" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
 
-      <Reference Include="PresentationCore" />
-      <Reference Include="PresentationFramework" />
-      <!--<Reference Include="System.ComponentModel.Composition" />-->
-      <Reference Include="System.Drawing" />
-      <Reference Include="System.Xaml" />
-      <Reference Include="WindowsBase" />
-  </ItemGroup>
+        <None Remove="**/*.xaml" />
+        <Page Include="**/*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Platforms\Wpf\Themes\BlueTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Platforms\Wpf\Themes\DarkTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Platforms\Wpf\Themes\LightTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
+    <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <!--<Reference Include="System.ComponentModel.Composition" />-->
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="WindowsBase" />
+    </ItemGroup>
 </Project>
