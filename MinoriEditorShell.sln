@@ -52,6 +52,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDemo.WpfCore", "Demos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.RibbonWpfCore", "Demos\SimpleDemo\SimpleDemo.RibbonWpfCore\SimpleDemo.RibbonWpfCore.csproj", "{25F62AFA-DB2E-4561-9EA3-2B7764D197A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoriDemo.RibbonWpfCore", "Demos\MinoriDemo\MinoriDemo.RibbonWpfCore\MinoriDemo.RibbonWpfCore.csproj", "{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,10 @@ Global
 		{25F62AFA-DB2E-4561-9EA3-2B7764D197A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25F62AFA-DB2E-4561-9EA3-2B7764D197A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25F62AFA-DB2E-4561-9EA3-2B7764D197A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{F23310EF-CC43-41C1-9C80-82B881764AC5} = {D96C6D53-E9ED-4E32-9856-B858A63C9D9E}
 		{C962A9DC-6215-48E2-B2FD-D77B7D0C6D3A} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 		{25F62AFA-DB2E-4561-9EA3-2B7764D197A4} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
+		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311} = {0D78D57D-5ED4-4898-A3E5-39C7B5ECEF0C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4DE08D7-0160-4FCF-876A-904438A56A8A}
