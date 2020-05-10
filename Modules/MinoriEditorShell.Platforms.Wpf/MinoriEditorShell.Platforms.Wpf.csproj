@@ -15,8 +15,6 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <Company>Mark Kromis</Company>
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
@@ -43,19 +41,5 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0748" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-        
-        <None Remove="**/*.xaml" />
-        <Page Include="**/*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
     </ItemGroup>
-    
-    <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Xaml" />
-        <Reference Include="WindowsBase" />
-    </ItemGroup>
-
 </Project>
