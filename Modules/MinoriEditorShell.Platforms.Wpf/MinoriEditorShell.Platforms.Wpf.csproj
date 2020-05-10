@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+    
     <PropertyGroup>
-        <TargetFrameworks>net461</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
         <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
 This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
         <Copyright>Copyright 2019</Copyright>
@@ -9,11 +9,15 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
         <PackageIconUrl></PackageIconUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+        <PackageTags>.net40 netcoreapp WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
+        <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+        <UseWPF>true</UseWPF>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,18 +43,19 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0748" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-
+        
+        <None Remove="**/Views/*.xaml" />
+        <Page Include="**/Views/*.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    
+    <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
         <Reference Include="PresentationCore" />
         <Reference Include="PresentationFramework" />
         <Reference Include="System.Drawing" />
         <Reference Include="System.Xaml" />
         <Reference Include="WindowsBase" />
-
-        <None Remove="**\*.xaml" />
-        <Page Include="**\*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-
     </ItemGroup>
 
 </Project>
