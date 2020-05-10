@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj" />
-    <ProjectReference Include="..\..\..\Tests\MinoriEditorShell.RibbonTests.Wpf\MinoriEditorShell.RibbonTests.Wpf.csproj" />
     <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj" />
   </ItemGroup>
 
