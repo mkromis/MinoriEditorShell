@@ -10,8 +10,6 @@
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>Ribbon Mahapp IDE</PackageTags>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
@@ -30,19 +28,5 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-
-        <None Remove="**/*.xaml" />
-        <Page Include="**/*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-        <!--<Reference Include="System.ComponentModel.Composition" />-->
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Xaml" />
-        <Reference Include="WindowsBase" />
     </ItemGroup>
 </Project>

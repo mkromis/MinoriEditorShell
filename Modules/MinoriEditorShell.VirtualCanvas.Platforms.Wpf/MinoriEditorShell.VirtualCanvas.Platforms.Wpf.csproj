@@ -12,9 +12,6 @@
         <PackageTags>IDE VirtualCanvas Module</PackageTags>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-    </PropertyGroup>
-    
-    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
@@ -32,20 +29,5 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-
-        <None Remove="**/*.xaml" />
-        <Page Include="**/*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-
-    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-        <Reference Include="System.ComponentModel.Composition" />
-        <Reference Include="WindowsBase" />
-    </ItemGroup>
-
-    <ItemGroup>
     </ItemGroup>
 </Project>
