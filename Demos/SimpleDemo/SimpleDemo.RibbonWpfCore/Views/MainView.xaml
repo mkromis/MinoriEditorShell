@@ -5,7 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:fluent="urn:fluent-ribbon"
-    xmlns:local="clr-namespace:SimpleDemo.RibbonWPF.Views"
     xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     mc:Ignorable="d" 
