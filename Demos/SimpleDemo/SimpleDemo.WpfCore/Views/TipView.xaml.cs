@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmCross.Platforms.Wpf.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace SimpleDemo.WpfCore.Views
     /// <summary>
     /// Interaction logic for TipView.xaml
     /// </summary>
-    public partial class TipView : UserControl
+    public partial class TipView : MvxWpfView
     {
         public TipView()
         {
