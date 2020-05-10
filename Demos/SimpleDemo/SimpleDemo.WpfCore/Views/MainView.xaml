@@ -1,4 +1,4 @@
-﻿<UserControl 
+﻿<mvx:MvxWpfView 
     x:Class="SimpleDemo.WpfCore.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,4 +26,4 @@
         <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
         <mes:MesDocumentManagerView />
     </DockPanel>
-</UserControl>
+</mvx:MvxWpfView>
