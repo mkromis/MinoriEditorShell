@@ -1,9 +1,11 @@
-﻿<Application x:Class="SimpleDemo.WpfCore.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SimpleDemo.WpfCore"
-             StartupUri="MainWindow.xaml">
+﻿<mvx:MvxApplication 
+    x:Class="SimpleDemo.WpfCore.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SimpleDemo.WpfCore"
+    xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>
-</Application>
+</mvx:MvxApplication>
