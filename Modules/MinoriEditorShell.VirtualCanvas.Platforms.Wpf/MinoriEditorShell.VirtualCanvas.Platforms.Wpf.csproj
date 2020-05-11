@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
     <PropertyGroup>
-        <TargetFrameworks>net461</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
@@ -12,33 +12,22 @@
         <PackageTags>IDE VirtualCanvas Module</PackageTags>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+        <UseWPF>true</UseWPF>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="GitVersionTask" Version="5.2.2">
+        <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+
+        <PackageReference Include="GitVersionTask" Version="5.3.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-
-    </ItemGroup>
-
-    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
-        <Page Include="Platforms\Wpf\**\*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Compile Include="Platforms\Wpf\**\*.cs" />
-
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-        <Reference Include="System.ComponentModel.Composition" />
-        <Reference Include="WindowsBase" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-      <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
-      <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
     </ItemGroup>
 </Project>
