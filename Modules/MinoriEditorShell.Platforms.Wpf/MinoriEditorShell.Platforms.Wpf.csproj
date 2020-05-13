@@ -20,7 +20,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-        <PackageReference Include="GitVersionTask" Version="5.3.2">
+        <PackageReference Include="GitVersionTask" Version="5.3.3">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -28,7 +28,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MvvmCross" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.7.0.17535">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
