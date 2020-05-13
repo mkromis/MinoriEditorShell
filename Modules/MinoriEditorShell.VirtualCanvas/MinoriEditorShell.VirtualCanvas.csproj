@@ -16,9 +16,14 @@
 
     <ItemGroup>
 
-        <PackageReference Include="GitVersionTask" Version="5.2.2">
+        <PackageReference Include="GitVersionTask" Version="5.3.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
