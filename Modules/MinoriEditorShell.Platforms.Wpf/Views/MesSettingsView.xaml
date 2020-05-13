@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:behaviors="clr-namespace:MinoriEditorShell.Platforms.Wpf.Behaviors"
     mc:Ignorable="d" 
@@ -14,9 +13,9 @@
     <!--d:DataContext="{d:DesignData Source=../SampleData/SettingsViewModelSampleData.xaml}"-->
     <!--Background="{DynamicResource EnvironmentWindowBackground}"-->
     <!--Foreground="{DynamicResource EnvironmentWindowText}"-->
-    <i:Interaction.Behaviors>
+    <!--<i:Interaction.Behaviors>-->
         <!--<behaviors:WindowOptionsBehavior ShowIcon="False" ShowMinimizeBox="False" ShowMaximizeBox="False" />-->
-    </i:Interaction.Behaviors>
+    <!--</i:Interaction.Behaviors>-->
     <Grid Margin="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" />
@@ -30,9 +29,9 @@
         </Grid.RowDefinitions>
 
         <TreeView x:Name="TreeView" ItemsSource="{Binding Pages}" SelectedValuePath="Editors">
-            <i:Interaction.Behaviors>
+            <!--<i:Interaction.Behaviors>-->
                 <!--<behaviors:BindableTreeViewSelectedItemBehavior SelectedItem="{Binding SelectedPage, Mode=TwoWay}" />-->
-            </i:Interaction.Behaviors>
+            <!--</i:Interaction.Behaviors>-->
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding Name}" />
