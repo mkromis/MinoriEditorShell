@@ -30,18 +30,8 @@ namespace MinoriEditorShell.Extensions
                 Type[] types = assembly.GetTypes();
                 foreach(Type type in types)
                 {
-                    if (type.GetInterfaces().Contains(typeof(T))) {
-                        try
-                        {
-                            results.Add((T)Activator.CreateInstance(type));
-                        }
-                        catch (MissingMethodException e)
-                        {
-                            Mvx.IoCProvider
-                                .Resolve<IMvxLogProvider>()
-                                .GetLogFor("IocProviderExtensions")
-                                .DebugException(typeof(T).ToString(), e);
-                        }
+                    if (type.GetInterfaces().Contains(typeof(T)) && !type.Attributes.HasFlag(TypeAttributes.Abstract)) {
+                        results.Add((T)Activator.CreateInstance(type));
                     }
                 }
             }
