@@ -11,9 +11,18 @@ using System.Windows;
 
 namespace MinoriEditorShell.Extensions
 {
+    /// <summary>
+    /// Helper classes to IocProvider
+    /// </summary>
     public static class IocProviderExtensions
     {
-        public static IEnumerable<T> GetAll<T>(this IMvxIoCProvider provider) where T : class
+        /// <summary>
+        /// Try to instantiate all non-abstract classes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAll<T>(this IMvxIoCProvider _) where T : class
         {
             // Setup results
             List<T> results = new List<T>();
