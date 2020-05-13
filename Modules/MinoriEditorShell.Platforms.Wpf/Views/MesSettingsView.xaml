@@ -5,11 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:behaviors="clr-namespace:MinoriEditorShell.Platforms.Wpf.Behaviors"
     mc:Ignorable="d" 
     Width="760" Height="500" MinWidth="512" MinHeight="300" 
     WindowStartupLocation="CenterOwner"
     ShowInTaskbar="False" Title="{Binding DisplayName}">
+    <!--xmlns:behaviors="clr-namespace:MinoriEditorShell.Platforms.Wpf.Behaviors"-->
     <!--d:DataContext="{d:DesignData Source=../SampleData/SettingsViewModelSampleData.xaml}"-->
     <!--Background="{DynamicResource EnvironmentWindowBackground}"-->
     <!--Foreground="{DynamicResource EnvironmentWindowText}"-->
