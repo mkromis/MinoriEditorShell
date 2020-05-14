@@ -3,11 +3,18 @@ using System;
 
 namespace MinoriEditorShell.Services
 {
+    /// <summary>
+    /// Document interface
+    /// </summary>
     public interface IMesDocument : IMesLayoutItem
     {
-        //String DisplayName { get; }
+        /// <summary>
+        /// View attached to view model
+        /// </summary>
         IMvxView View { get; set; }
-        //IMesUndoRedoManager UndoRedoManager { get; }
+        /// <summary>
+        /// Determines 
+        /// </summary>
         Boolean CanClose { get; }
     }
 }
