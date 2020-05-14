@@ -1,5 +1,5 @@
-namespace MinoriEditorShell.Platforms.Wpf.Behaviors
-{
+//namespace MinoriEditorShell.Platforms.Wpf.Behaviors
+//{
     // Copied from MahApp's GlowWindowBehavior, because that one has a bug if GlowBrush is set in a style, rather than directly.
     //public class CustomGlowWindowBehavior : Behavior<MesWindow>
     //{
@@ -108,4 +108,4 @@ namespace MinoriEditorShell.Platforms.Wpf.Behaviors
     //    //    this.bottom.Show();
     //    //}
     //}
-}
+//}

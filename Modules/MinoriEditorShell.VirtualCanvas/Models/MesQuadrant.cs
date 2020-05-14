@@ -36,7 +36,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <summary>
         /// Statictial information for rendering use.
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="o"></param>
         public void ShowQuadTree(Object o)
         {
             //if (o is Canvas c)
