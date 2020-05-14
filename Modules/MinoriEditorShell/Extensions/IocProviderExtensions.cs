@@ -1,13 +1,8 @@
-﻿using MvvmCross;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
+﻿using MvvmCross.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace MinoriEditorShell.Extensions
 {
@@ -36,19 +31,13 @@ namespace MinoriEditorShell.Extensions
             foreach (AssemblyName assy in assyArray)
             {
                 Assembly assembly = Assembly.Load(assy);
-                Type[] types = assembly.GetTypes();
-                foreach(Type type in types)
+                foreach(Type type in assembly.GetTypes()
+                    .Where(x => x.GetInterfaces().Contains(typeof(T)))
+                    .Where(x => !x.Attributes.HasFlag(TypeAttributes.Abstract)))
                 {
-                    if (type.GetInterfaces().Contains(typeof(T)) && !type.Attributes.HasFlag(TypeAttributes.Abstract)) {
-                        results.Add((T)Activator.CreateInstance(type));
-                    }
+                    results.Add((T)Activator.CreateInstance(type));
                 }
             }
-            //IEnumerable<Type> result = Application.Current.GetType().Assembly.CreatableTypes();
-
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
-
-            //return result.Select(x => x.GetType() as T).Where(x => x != null);
             return results;
         }
     }
