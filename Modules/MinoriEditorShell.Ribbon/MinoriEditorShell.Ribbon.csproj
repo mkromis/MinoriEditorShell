@@ -18,7 +18,7 @@
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
         <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
-        <PackageReference Include="GitVersionTask" Version="5.3.3">
+        <PackageReference Include="GitVersionTask" Version="5.3.5">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
