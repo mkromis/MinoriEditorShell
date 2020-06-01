@@ -5,7 +5,6 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
-
     public interface IMesLayoutItem : IMvxViewModel
     {
         Guid Id { get; }
