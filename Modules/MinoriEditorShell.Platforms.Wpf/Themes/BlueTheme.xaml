@@ -10,7 +10,7 @@
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/AvalonDock.Themes.VS2013;component/BlueTheme.xaml" />
 
@@ -249,7 +249,7 @@
     <SolidColorBrush x:Key="MahApps.Brushes.Border.Highlighted" Color="#6A6A75" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.BackgroundSelected" Color="#007ACC" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Border.Selected" Color="#1C97EA" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Background.Normal" Color="#3F3F46" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Background.Normal" Color="{StaticResource MahApps.Colors.GrayNormal}" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#54545C" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Window.Glow" Color="#017ACC" options:Freeze="True" />
 
