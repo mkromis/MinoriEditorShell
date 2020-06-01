@@ -125,11 +125,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 target.RenderTransform = g;
             }
 
-            _value = _newZoom = _scale.ScaleX;
+            _value = _newZoom = _scale?.ScaleX ?? 0;
 
             // track changes made by the ScrolLViewer.
-            _translate.Changed += new EventHandler(OnTranslateChanged);
-            _scale.Changed += new EventHandler(OnScaleChanged);
+            if (_translate != null) _translate.Changed += new EventHandler(OnTranslateChanged);
+            if (_scale != null) _scale.Changed += new EventHandler(OnScaleChanged);
         }
 
         /// <summary>
@@ -375,6 +375,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 StopAnimations();
                 Translate(value.X, value.Y);
+                _offset = value;
+                OnTranslateChanged(this, EventArgs.Empty);
             }
         }
 
