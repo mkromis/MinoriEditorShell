@@ -67,7 +67,7 @@ namespace MinoriEditorShell.ViewModels
 
         #region CTOR
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatusbarService"/> class.
+        /// Initializes a new instance of the <see cref="IMesStatusbarService"/> class.
         /// </summary>
         public MesStatusBarViewModel() => Clear();
         #endregion

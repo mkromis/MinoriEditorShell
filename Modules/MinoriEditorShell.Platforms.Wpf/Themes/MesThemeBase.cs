@@ -1,4 +1,3 @@
-using MinoriEditorShell.Platforms.Wpf.Extensions;
 using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
@@ -12,14 +11,32 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
     {
         readonly List<Uri> _resources;
 
+        /// <summary>
+        /// Name of theme
+        /// </summary>
         public virtual String Name => null;
 
+        /// <summary>
+        /// Add resources to themes
+        /// </summary>
+        /// <param name="uri"></param>
         public void Add(Uri uri) => _resources.Add(uri);
+
+        /// <summary>
+        ///  Add multiple resources Uri
+        /// </summary>
+        /// <param name="uri"></param>
         public void AddRange(IEnumerable<Uri> uri) => _resources.AddRange(uri);
 
+        /// <summary>
+        /// Get resources for application (All Resources)
+        /// </summary>
         public IEnumerable<Uri> ApplicationResources => _resources;
 
-        public MesThemeBase()
+        /// <summary>
+        /// Setup base load definition
+        /// </summary>
+        protected MesThemeBase()
         {
             // Initialize the base Mahapps.Metro resources.
             _resources = new List<Uri>();
