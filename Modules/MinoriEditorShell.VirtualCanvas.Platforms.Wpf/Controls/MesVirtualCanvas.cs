@@ -287,7 +287,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 
             // Make sure the backdrop covers the ViewPort bounds.
             Double zoom = Scale.ScaleX;
-            if (!Double.IsInfinity(ViewportHeight) &&
+            if (!Double.IsInfinity(ViewportWidth) &&
                 !Double.IsInfinity(ViewportHeight))
             {
                 w = Math.Max(w, ViewportWidth / zoom);
