@@ -1,19 +1,23 @@
-﻿using MvvmCross;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
+﻿using MvvmCross.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace MinoriEditorShell.Extensions
 {
+    /// <summary>
+    /// Helper classes to IocProvider
+    /// </summary>
     public static class IocProviderExtensions
     {
-        public static IEnumerable<T> GetAll<T>(this IMvxIoCProvider provider) where T : class
+        /// <summary>
+        /// Try to instantiate all non-abstract classes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAll<T>(this IMvxIoCProvider _) where T : class
         {
             // Setup results
             List<T> results = new List<T>();
@@ -27,29 +31,13 @@ namespace MinoriEditorShell.Extensions
             foreach (AssemblyName assy in assyArray)
             {
                 Assembly assembly = Assembly.Load(assy);
-                Type[] types = assembly.GetTypes();
-                foreach(Type type in types)
+                foreach(Type type in assembly.GetTypes()
+                    .Where(x => x.GetInterfaces().Contains(typeof(T)))
+                    .Where(x => !x.Attributes.HasFlag(TypeAttributes.Abstract)))
                 {
-                    if (type.GetInterfaces().Contains(typeof(T))) {
-                        try
-                        {
-                            results.Add((T)Activator.CreateInstance(type));
-                        }
-                        catch (MissingMethodException e)
-                        {
-                            Mvx.IoCProvider
-                                .Resolve<IMvxLogProvider>()
-                                .GetLogFor("IocProviderExtensions")
-                                .DebugException(typeof(T).ToString(), e);
-                        }
-                    }
+                    results.Add((T)Activator.CreateInstance(type));
                 }
             }
-            //IEnumerable<Type> result = Application.Current.GetType().Assembly.CreatableTypes();
-
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettingsEditor, MainMenuSettingsViewModel>();
-
-            //return result.Select(x => x.GetType() as T).Where(x => x != null);
             return results;
         }
     }

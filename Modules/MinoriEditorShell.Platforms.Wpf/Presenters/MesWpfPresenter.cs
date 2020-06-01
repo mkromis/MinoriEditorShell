@@ -13,10 +13,17 @@ using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Presenters
 {
+    /// <summary>
+    /// Main presenter that allows document and tools to naviage to MesDocumentController
+    /// </summary>
     public class MesWpfPresenter : MvxWpfViewPresenter
     {
         private IMvxLog _log;
 
+        /// <summary>
+        /// Main constructor for the presenter, this gets the main window.
+        /// </summary>
+        /// <param name="mainWindow"></param>
         public MesWpfPresenter(ContentControl mainWindow) : base(mainWindow)
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
@@ -31,6 +38,15 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
             }
         }
 
+        /// <summary>
+        /// This gets called when navigation to view model happens.
+        /// Depending on what the type is, will define where the class goes.
+        /// Either to MesDocumentManager or main view if not a IMesDocument or IMesTool
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="attribute"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
         {
             try
@@ -49,7 +65,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
-                        _log.Trace($"Add {document.ToString()} to IMesDocumentManager.Documents");
+                        _log.Trace($"Add {document} to IMesDocumentManager.Documents");
                         return true;
 
                     case IMesTool tool:
@@ -59,7 +75,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log.Trace($"Add {tool.ToString()} to IDocumentManager.Tools");
+                        _log.Trace($"Add {tool} to IDocumentManager.Tools");
                         return true;
 
                     default:
@@ -75,7 +91,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                 }
                 _log.ErrorException("Error seen during navigation request to {0} - error {1}",
                     exception, request.ViewModelType.Name, exception.ToLongString());
-                throw exception;
+                throw;
             }
         }
     }
