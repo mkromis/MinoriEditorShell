@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinoriDemo.RibbonWPF.DataClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,33 @@ namespace MinoriDemo.RibbonWPF.Views
         public ToolSampleView()
         {
             InitializeComponent();
+
+            var resources = Application.Current.Resources;
+            var appDictionary = resources.MergedDictionaries[0]; // should always be true if theme applied
+            var mainTheme = appDictionary.MergedDictionaries[0]; // MainTheme
+
+            List<ThemeItem> items = new List<ThemeItem>();
+            foreach (Object key in mainTheme.Keys)
+            {
+                var value = mainTheme[key];
+                //if (value is Color color)
+                //{
+                //    items.Add(new ThemeItem { 
+                //        Key = key.ToString(), 
+                //        Color = color,
+                //        Resource = mainTheme,
+                //    });
+                //}
+                if (value is SolidColorBrush brush)
+                {
+                    items.Add(new ThemeItem { 
+                        Key = key.ToString(), 
+                        Color = ((SolidColorBrush)brush).Color,
+                        Resource = mainTheme,
+                    });
+                }
+            }
+            MainResourceList.ItemsSource = items.OrderBy(x=> x.Key);
         }
     }
 }

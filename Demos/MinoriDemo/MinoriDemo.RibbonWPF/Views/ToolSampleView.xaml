@@ -6,9 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:MinoriDemo.RibbonWPF.Views"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="LightBlue">
-            
+        <ListView x:Name="MainResourceList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
+                        <TextBlock Text="{Binding Key}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </views:MvxWpfView>
