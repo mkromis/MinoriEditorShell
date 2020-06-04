@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataClasses\ThemeItem.cs" />
     <Compile Include="Modules\Themes\CyberTheme.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
     <Compile Include="Setup.cs" />

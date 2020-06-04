@@ -17,6 +17,13 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
         <UseWPF>true</UseWPF>
     </PropertyGroup>
+    
+    <ItemGroup>
+      <Compile Remove="Themes\Controls\**" />
+      <EmbeddedResource Remove="Themes\Controls\**" />
+      <None Remove="Themes\Controls\**" />
+      <Page Remove="Themes\Controls\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
