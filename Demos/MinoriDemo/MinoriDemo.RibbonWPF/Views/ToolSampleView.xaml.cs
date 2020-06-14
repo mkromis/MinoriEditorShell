@@ -25,9 +25,11 @@ namespace MinoriDemo.RibbonWPF.Views
         {
             InitializeComponent();
 
-            var resources = Application.Current.Resources;
-            var appDictionary = resources.MergedDictionaries[0]; // should always be true if theme applied
-            var mainTheme = appDictionary.MergedDictionaries[0]; // MainTheme
+            ResourceDictionary resources = Application.Current.Resources;
+            ResourceDictionary appDictionary = resources.MergedDictionaries[0]; // should always be true if theme applied (App Theme)
+            ResourceDictionary mainTheme = appDictionary.MergedDictionaries[0]; // MainTheme blue theme etc.
+            FileName.Text = System.IO.Path.GetFileName(mainTheme.Source.ToString());
+            Export.Click += Export_Click;
 
             List<ThemeItem> items = new List<ThemeItem>();
             foreach (Object key in mainTheme.Keys)
@@ -51,6 +53,11 @@ namespace MinoriDemo.RibbonWPF.Views
                 }
             }
             MainResourceList.ItemsSource = items.OrderBy(x=> x.Key);
+        }
+
+        private void Export_Click(Object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
