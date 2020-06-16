@@ -9,20 +9,6 @@
     xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="LightBlue">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="FileName" />
-            <Button x:Name="Export" Content="Export" Width="50" Height="30" />
-        </StackPanel>
-        <ListView x:Name="MainResourceList">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
-                        <TextBlock Text="{Binding Key}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
+    <Grid Background="LightBlue">
+    </Grid>
 </views:MvxWpfView>

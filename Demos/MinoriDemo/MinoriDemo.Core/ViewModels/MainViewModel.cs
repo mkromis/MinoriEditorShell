@@ -1,13 +1,9 @@
-using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriEditorShell.Services;
-using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -40,7 +36,6 @@ namespace MinoriDemo.Core.ViewModels
             {
                 _manager.ActiveItem = CanvasModel;
             }
-            //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
 
         public Color TestColor
@@ -50,13 +45,13 @@ namespace MinoriDemo.Core.ViewModels
         }
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
-        //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
+        public ICommand ThemeEditorCommand => new MvxCommand(() => NavigationService.Navigate<ThemeEditorViewModel>());
 
         public ICommand SettingsCommand => Mvx.IoCProvider.Resolve<IMesSettingsManager>().ShowCommand;
 
         private T OpenAndFocus<T>() where T : MesDocument
         {
-            T vm = (T)_manager.Documents.Where(x => x is T).FirstOrDefault();
+            T vm = (T)_manager.Documents.FirstOrDefault(x => x is T);
             if (vm == null)
             {
                 vm = Mvx.IoCProvider.Resolve<T>();

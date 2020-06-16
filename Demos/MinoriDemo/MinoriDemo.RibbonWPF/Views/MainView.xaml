@@ -56,8 +56,8 @@
             <fluent:RibbonTabItem Header="Samples">
                 <fluent:RibbonGroupBox Header="Content ">
                     <fluent:Button Header="Virtual Content" Size="Middle" Command="{Binding OpenCanvasCommand}"/>
+                    <fluent:Button Header="ThemeEditor" Size="Middle" Command="{Binding ThemeEditorCommand}"/>
                     <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}"/>
-                    <fluent:Button Header="Settings" Size="Middle" Command="{Binding SettingsCommand}"/>
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="DrawingColorTest">
                     <picker:ColorPicker 

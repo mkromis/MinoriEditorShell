@@ -1,10 +1,6 @@
 ﻿using MvvmCross;
 using MvvmCross.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -30,14 +26,8 @@ namespace MinoriDemo.RibbonWPF.DataClasses
                 Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
                 .ExecuteOnMainThreadAsync(() =>
                 {
-                    String test = Resource.ToString();
-                    var test2 = Application.Current.MainWindow.Resources;
-
                     // Setup app style
-                    ResourceDictionary appTheme =
-                        Application.Current.Resources.MergedDictionaries.Count > 0
-                        ? Application.Current.Resources.MergedDictionaries[0] : null;
-
+                    ResourceDictionary appTheme = Application.Current.Resources.MergedDictionaries[0];
                     appTheme.BeginInit();
 
                     // Object type not known at this point
