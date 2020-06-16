@@ -15,10 +15,19 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Height="35" Orientation="Horizontal">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
             <TextBlock VerticalAlignment="Center" x:Name="FileName" />
-            <Button x:Name="Export" Content="Export" Width="50" Height="30" />
-        </StackPanel>
+            <Button Grid.Column="1" x:Name="Export" Content="Export" Width="50" Height="30" Margin="3"/>
+            <TextBox Grid.Column="3" Margin="3" x:Name="search"/>
+            <Button Grid.Column="4" Margin="4" Content="Search"  Click="Search_Click"/>
+        </Grid>
         <ScrollViewer Grid.Row="1">
             <ListView x:Name="MainResourceList">
                 <ListView.ItemTemplate>

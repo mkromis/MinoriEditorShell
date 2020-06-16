@@ -24,13 +24,19 @@ namespace MinoriDemo.RibbonWPF.Views
             ResourceDictionary resources = Application.Current.Resources;
             ResourceDictionary appDictionary = resources.MergedDictionaries[0]; // should always be true if theme applied (App Theme)
             _mainTheme = appDictionary.MergedDictionaries[0]; // MainTheme blue theme etc.
-            FileName.Text = System.IO.Path.GetFileName(_mainTheme.Source.ToString());
+            FileName.Text = Path.GetFileName(_mainTheme.Source.ToString());
             Export.Click += Export_Click;
 
+            IEnumerable<String> keys = GetKeys();
+            UpdateList(keys);
+        }
+
+        private void UpdateList(IEnumerable<String> keys)
+        {
             List<ThemeItem> items = new List<ThemeItem>();
-            foreach (Object key in _mainTheme.Keys)
+            foreach (String key in keys)
             {
-                var value = _mainTheme[key];
+                Object value = _mainTheme[key];
                 //if (value is Color color)
                 //{
                 //    items.Add(new ThemeItem { 
@@ -41,14 +47,15 @@ namespace MinoriDemo.RibbonWPF.Views
                 //}
                 if (value is SolidColorBrush brush)
                 {
-                    items.Add(new ThemeItem { 
-                        Key = key.ToString(), 
-                        Color = ((SolidColorBrush)brush).Color,
+                    items.Add(new ThemeItem
+                    {
+                        Key = key.ToString(),
+                        Color = brush.Color,
                         Resource = _mainTheme,
                     });
                 }
             }
-            MainResourceList.ItemsSource = items.OrderBy(x=> x.Key);
+            MainResourceList.ItemsSource = items.OrderBy(x => x.Key);
         }
 
         private void Export_Click(Object sender, RoutedEventArgs e)
@@ -85,12 +92,7 @@ namespace MinoriDemo.RibbonWPF.Views
             export.AppendLine("");
             export.AppendLine("    <!-- Begin SolidColor Export -->");
 
-            List<String> keys = new List<String>();
-            foreach (object key in _mainTheme.Keys)
-            {
-                keys.Add(key.ToString());
-            }
-
+            IEnumerable<String> keys = GetKeys();
             foreach (String key in keys.OrderBy(x => x))
             {
                 switch (_mainTheme[key])
@@ -106,6 +108,29 @@ namespace MinoriDemo.RibbonWPF.Views
             export.AppendLine("    <!-- End SolidColor Export -->");
             export.AppendLine("</ResourceDictionary>");
             return export.ToString();
+        }
+
+        private IEnumerable<String> GetKeys()
+        {
+            List<String> keys = new List<String>();
+            foreach (object key in _mainTheme.Keys)
+            {
+                keys.Add(key.ToString());
+            }
+
+            return keys;
+        }
+
+        private void Search_Click(Object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(search.Text))
+            {
+                var keys = GetKeys().Where(x => x.ToLower().Contains(search.Text.ToLower()));
+                UpdateList(keys);
+            } else
+            {
+                UpdateList(GetKeys());
+            }
         }
     }
 }
