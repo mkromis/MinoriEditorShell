@@ -269,7 +269,7 @@
     <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundHighlighted" Color="#FFFF0101" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundPressed" Color="#FFFF831F" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.Stroke" Color="Transparent" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="#Transparent" options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="Transparent" options:Freeze="True" />
 
     <!--  Menu  -->
     <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Fill" Color="#FF999999" options:Freeze="True" />
