@@ -16,6 +16,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
         <UseWPF>true</UseWPF>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     
     <ItemGroup>
@@ -23,6 +24,10 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
       <EmbeddedResource Remove="Themes\Controls\**" />
       <None Remove="Themes\Controls\**" />
       <Page Remove="Themes\Controls\**" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
