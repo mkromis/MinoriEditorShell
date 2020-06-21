@@ -4,6 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -43,10 +44,10 @@ namespace MinoriDemo.Core.ViewModels
             get => _testcolor;
             set => SetProperty(ref _testcolor, value);
         }
+        public Double ZoomValue { get; set; }
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
         public ICommand ThemeEditorCommand => new MvxCommand(() => NavigationService.Navigate<ThemeEditorViewModel>());
-
         public ICommand SettingsCommand => Mvx.IoCProvider.Resolve<IMesSettingsManager>().ShowCommand;
 
         private T OpenAndFocus<T>() where T : MesDocument
