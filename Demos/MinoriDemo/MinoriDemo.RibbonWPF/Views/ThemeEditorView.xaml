@@ -19,26 +19,27 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <TextBlock VerticalAlignment="Center" x:Name="FileName" />
-            <Button Grid.Column="1" x:Name="Export" Content="Export" Width="50" Height="30" Margin="3"/>
-            <TextBox Grid.Column="3" Margin="3" x:Name="search"/>
-            <Button Grid.Column="4" Margin="4" Content="Search"  Click="Search_Click"/>
+            <Button Grid.Column="1" Content="Export" Width="50" Height="30" Margin="3" Click="Export_Click"/>
+            <Button Grid.Column="2" Content="Add" Width="50" Height="30" Margin="3" Click="Add_Click"/>
+            <TextBox x:Name="search" Grid.Column="4" Margin="3"/>
+            <Button Grid.Column="5" Margin="3" Content="Search" Click="Search_Click"/>
         </Grid>
-        <ScrollViewer Grid.Row="1">
-            <ListView x:Name="MainResourceList">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
-                            <TextBlock Text="{Binding Key}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollViewer>
+        <ListView x:Name="MainResourceList" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="25">
+                        <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
+                        <TextBox Text="{Binding Key}" IsEnabled="{Binding CanEdit}" Height="25"/>
+                        <Button Content="{Binding ModeText}" Command="{Binding EditCommand}" Height="25" Width="50"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </views:MvxWpfView>
