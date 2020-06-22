@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:MinoriDemo.RibbonWPF.Views"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
-    mc:Ignorable="d" 
+    mc:Ignorable="d" x:Name="root"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -36,7 +36,15 @@
                     <StackPanel Orientation="Horizontal" Height="25">
                         <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
                         <TextBox Text="{Binding Key}" IsEnabled="{Binding CanEdit}" Height="25"/>
-                        <Button Content="{Binding ModeText}" Command="{Binding EditCommand}" Height="25" Width="50"/>
+                        <Button 
+                            Click="RenameClick"
+                            Content="{Binding ModeText}" 
+                            CommandParameter="{Binding}"
+                            Height="25" Width="50"/>
+                        <Button 
+                            Content="X" 
+                            Click="RemoveClick"
+                            Height="25" Width="25"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
