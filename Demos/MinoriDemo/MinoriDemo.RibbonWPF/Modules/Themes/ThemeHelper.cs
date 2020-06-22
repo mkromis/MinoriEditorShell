@@ -36,6 +36,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <param name="brushes"></param>
         public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
+            Dictionary = Application.Current.Resources.MergedDictionaries[0];
             // Reset visuals
             // Setup app style
             Dictionary.BeginInit();
