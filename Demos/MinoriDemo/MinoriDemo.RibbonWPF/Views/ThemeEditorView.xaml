@@ -1,0 +1,53 @@
+﻿<views:MvxWpfView
+    x:Class="MinoriDemo.RibbonWPF.Views.ThemeEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:MinoriDemo.RibbonWPF.Views"
+    xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+    mc:Ignorable="d" x:Name="root"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" x:Name="FileName" />
+            <Button Grid.Column="1" Content="Export" Width="50" Height="30" Margin="3" Click="Export_Click"/>
+            <Button Grid.Column="2" Content="Add" Width="50" Height="30" Margin="3" Click="Add_Click"/>
+            <TextBox x:Name="search" Grid.Column="4" Margin="3"/>
+            <Button Grid.Column="5" Margin="3" Content="Search" Click="Search_Click"/>
+        </Grid>
+        <ListView x:Name="MainResourceList" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="25">
+                        <picker:ColorPicker Width="50" Height="25" SelectedColor="{Binding Color}" />
+                        <TextBox Text="{Binding Key}" IsEnabled="{Binding CanEdit}" Height="25"/>
+                        <Button 
+                            Click="RenameClick"
+                            Content="{Binding ModeText}" 
+                            CommandParameter="{Binding}"
+                            Height="25" Width="50"/>
+                        <Button 
+                            Content="X" 
+                            Click="RemoveClick"
+                            Height="25" Width="25"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</views:MvxWpfView>

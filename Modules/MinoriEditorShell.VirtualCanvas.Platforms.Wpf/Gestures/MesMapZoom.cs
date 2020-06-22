@@ -3,17 +3,14 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Windows.Media.Animation;
-using System.Text;
-using System.Windows.Input;
 using System.Windows.Controls.Primitives;
-using MinoriEditorShell.VirtualCanvas.Services;
-using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 {
@@ -81,14 +78,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// The target object must have a parent container.
         /// </summary>
         /// <param name="target">The target object we will be zooming.</param>
-        public MesMapZoom(IMesContentCanvas target)
-        {
-            Initialize((MesContentCanvas)target);
-        }
-        public MesMapZoom(FrameworkElement target)
-        {
-            Initialize(target);
-        }
+        public MesMapZoom(IMesContentCanvas target) => Initialize((MesContentCanvas)target);
+        /// <summary>
+        /// Construct new MapZoom object that manages the RenderTransform of the given target object.
+        /// The target object must have a parent container.
+        /// </summary>
+        /// <param name="target">The target object we will be zooming.</param>
+        public MesMapZoom(FrameworkElement target) => Initialize(target);
 
         private void Initialize (FrameworkElement target)
         { 
@@ -109,13 +105,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 _scale = g.Children.Count > 1 ? g.Children[0] as ScaleTransform : null;
                 _translate = g.Children.Count > 0 ? g.Children[1] as TranslateTransform : null;
-                if (_scale == null || _translate == null)
-                {
-                    g = null; // then the TransformGroup cannot be re-used
-                }
             }
             else
-            //if (g == null)
             {
                 g = new TransformGroup();
                 _scale = new ScaleTransform(1, 1);
@@ -125,11 +116,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 target.RenderTransform = g;
             }
 
-            _value = _newZoom = _scale.ScaleX;
+            _value = _newZoom = _scale?.ScaleX ?? 0;
 
             // track changes made by the ScrolLViewer.
-            _translate.Changed += new EventHandler(OnTranslateChanged);
-            _scale.Changed += new EventHandler(OnScaleChanged);
+            if (_translate != null) _translate.Changed += new EventHandler(OnTranslateChanged);
+            if (_scale != null) _scale.Changed += new EventHandler(OnScaleChanged);
         }
 
         /// <summary>
@@ -153,13 +144,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">The ScaleTransform object</param>
         /// <param name="e">noop</param>
-        void OnScaleChanged(Object sender, EventArgs e)
-        {
-            if (_value != _scale.ScaleX)
-            {
-                _value = _scale.ScaleX;
-            }
-        }
+        void OnScaleChanged(Object sender, EventArgs e) => _value = _scale.ScaleX;
 
         /// <summary>
         /// Handle the key down event and show special cursor when control key is pressed to
@@ -203,8 +188,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             // that band, then that edge stays pinned on screen and doesn't slide off the edge as we zoom in.
             if (_onTarget.X < 50 / _value) { _onTarget.X = 0; }
             if (_onTarget.Y < 50 / _value) { _onTarget.Y = 0; }
-            if (_onTarget.X + 50 / _value > _target.ActualWidth) { _onTarget.X = _target.ActualWidth; }
-            if (_onTarget.Y + 50 / _value > _target.ActualHeight) { _onTarget.Y = _target.ActualHeight; }
+            if (_onTarget.X + (50 / _value) > _target.ActualWidth) { _onTarget.X = _target.ActualWidth; }
+            if (_onTarget.Y + (50 / _value) > _target.ActualHeight) { _onTarget.Y = _target.ActualHeight; }
         }
 
         /// <summary>
@@ -292,13 +277,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Double right = (_target.ActualWidth * _value) + x;
             if (right < width && x < 0)
             {
-                x += (width - right);
+                x += width - right;
             }
 
             Double bottom = (_target.ActualHeight * _value) + y;
             if (bottom < height && y < 0)
             {
-                y += (height - bottom);
+                y += height - bottom;
             }
             Translate(x, y);
 
@@ -375,6 +360,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 StopAnimations();
                 Translate(value.X, value.Y);
+                _offset = value;
+                OnTranslateChanged(this, EventArgs.Empty);
             }
         }
 
@@ -399,10 +386,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Overload to assist in platform interface
         /// </summary>
-        /// <param name="rectf"></param>
-        public void ZoomToRect(System.Drawing.RectangleF rectf)
+        /// <param name="rectangle"></param>
+        public void ZoomToRect(System.Drawing.RectangleF rectangle)
         {
-            Rect r = new Rect(rectf.X, rectf.Y, rectf.Width, rectf.Height);
+            Rect r = new Rect(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
             ZoomToRect(r);
         }
 
@@ -453,7 +440,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// Animate the actual zoom by the given amount.  The amount is a measure of how much zoom the
         /// user wants - for example, how hard did they spin the mouse.
         /// </summary>
-        /// <param name="amount">Value between -1 and 1</param>
+        /// <param name="clicks">Value between -1 and 1</param>
         void HandleZoom(Double clicks)
         {
             Double amount = clicks;
@@ -462,7 +449,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             if (amount < -1) { amount = -1; }
 
             // If we've changed direction since the last animation then stop animations.
-            Boolean sameSign = (Math.Sign(amount) == Math.Sign(_lastAmount));
+            Boolean sameSign = Math.Sign(amount) == Math.Sign(_lastAmount);
             if (!sameSign || _startTime == 0)
             {
                 StopAnimations();
@@ -496,7 +483,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             if (sameSign && _startTime != 0 && _startTime + _zoomTime > tick)
             {
                 // then make the time cumulative so you get nice smooth animation when you flick the wheel.
-                _zoomTime += (_startTime + _zoomTime - tick);
+                _zoomTime += _startTime + _zoomTime - tick;
                 if (_zoomTime > _maxZoomTime) { _zoomTime = _maxZoomTime; }
             }
             else
@@ -590,7 +577,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             // Get the bounds of the container so we can see if the selected node is inside these bounds right now.
             Rect window = new Rect(0, 0, width, height);
 
-            if ((rect.Width > width || rect.Height > height))
+            if (rect.Width > width || rect.Height > height)
             {
                 Rect tr = _container.TransformToDescendant(_target).TransformBounds(rect);
                 if (zoom)

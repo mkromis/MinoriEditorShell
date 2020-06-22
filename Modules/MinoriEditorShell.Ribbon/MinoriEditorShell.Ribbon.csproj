@@ -11,7 +11,12 @@
         <RepositoryType>Git</RepositoryType>
         <PackageTags>Ribbon Mahapp IDE</PackageTags>
         <UseWPF>true</UseWPF>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
@@ -24,7 +29,7 @@
         </PackageReference>
         <PackageReference Include="MvvmCross" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.7.0.17535">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.8.0.18411">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
