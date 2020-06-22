@@ -5,7 +5,12 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <UseWPF>true</UseWPF>
+        <CodeAnalysisRuleSet>..\..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.0" />
