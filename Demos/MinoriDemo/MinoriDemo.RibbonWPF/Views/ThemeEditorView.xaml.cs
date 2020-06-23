@@ -32,15 +32,14 @@ namespace MinoriDemo.RibbonWPF.Views
             ResourceDictionary appDictionary = resources.MergedDictionaries[0];
             FileName.Text = Path.GetFileName(appDictionary.Source.ToString());
 
-            UpdateList();
+            UpdateList(_themeHelper.GetBrushes());
         }
 
         /// <summary>
         /// Updates list from 
         /// </summary>
-        private void UpdateList()
+        private void UpdateList(IDictionary<String, SolidColorBrush> brushes)
         {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
             MainResourceList.ItemsSource = 
                 brushes.Select(x => new ThemeItem
                 {
@@ -67,14 +66,21 @@ namespace MinoriDemo.RibbonWPF.Views
 
         private void Search_Click(Object sender, RoutedEventArgs e)
         {
-            //if (!String.IsNullOrWhiteSpace(search.Text))
-            //{
-            //    IEnumerable<String> keys = GetBrushes().Where(x => x.ToLower().Contains(search.Text.ToLower()));
-            //    UpdateList(keys);
-            //} else
-            //{
-            //    UpdateList(GetBrushes());
-            //}
+            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            if (!String.IsNullOrWhiteSpace(search.Text))
+            {
+                IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
+                    .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
+
+                SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
+                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; };
+
+                UpdateList(result);
+            }
+            else
+            {
+                UpdateList(brushes);
+            }
         }
 
         /// <summary>
@@ -93,7 +99,7 @@ namespace MinoriDemo.RibbonWPF.Views
             brushes[_newKey] = new SolidColorBrush();
             _themeHelper.SetBrushes(brushes);
 
-            UpdateList();
+            UpdateList(brushes);
         }
 
         private void RemoveClick(Object sender, RoutedEventArgs e)
@@ -104,7 +110,7 @@ namespace MinoriDemo.RibbonWPF.Views
                 brushes.Remove(item.Key);
                 _themeHelper.SetBrushes(brushes);
 
-                UpdateList();
+                UpdateList(brushes);
             }
         }
 
@@ -135,7 +141,7 @@ namespace MinoriDemo.RibbonWPF.Views
                         _themeHelper.SetBrushes(brushes);
 
                         // update
-                        UpdateList();
+                        UpdateList(brushes);
                     }
                 }
             }
