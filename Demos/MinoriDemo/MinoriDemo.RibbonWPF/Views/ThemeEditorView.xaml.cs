@@ -25,17 +25,12 @@ namespace MinoriDemo.RibbonWPF.Views
         {
             InitializeComponent();
 
-            ResourceDictionary resources = Application.Current.Resources;
-
+            _themeHelper = new ThemeHelper();
+            
             // should always be true if theme applied (App Theme)
+            ResourceDictionary resources = Application.Current.Resources;
             ResourceDictionary appDictionary = resources.MergedDictionaries[0];
-
-            _themeHelper = new ThemeHelper
-            {
-                Dictionary = appDictionary.MergedDictionaries[0],
-            };
-
-            FileName.Text = Path.GetFileName(_themeHelper.Dictionary.Source.ToString());
+            FileName.Text = Path.GetFileName(appDictionary.Source.ToString());
 
             UpdateList();
         }
@@ -45,15 +40,14 @@ namespace MinoriDemo.RibbonWPF.Views
         /// </summary>
         private void UpdateList()
         {
-            MainResourceList.ItemsSource =
-                _themeHelper
-                    .GetBrushes()
-                    .Select(x => new ThemeItem
-                    {
-                        Key = x.Key,
-                        Color = x.Value.Color,
-                        ThemeHelper = _themeHelper,
-                    });
+            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            MainResourceList.ItemsSource = 
+                brushes.Select(x => new ThemeItem
+                {
+                    Key = x.Key,
+                    Color = x.Value.Color,
+                    ThemeHelper = _themeHelper,
+                });
         }
 
         private void Export_Click(Object sender, RoutedEventArgs e)

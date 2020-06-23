@@ -10,21 +10,22 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
     class ThemeHelper
     {
-        public ResourceDictionary Dictionary { get; set; }
-
         /// <summary>
         /// Gets all of the brushes in a dictionary format
         /// </summary>
         /// <returns></returns>
         public IDictionary<String, SolidColorBrush> GetBrushes()
         {
+            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary appDict = resource.MergedDictionaries[0];
             SortedDictionary<String, SolidColorBrush> brushes = new SortedDictionary<String, SolidColorBrush>();
-            foreach (String item in Dictionary.Keys)
+            foreach (Object item in appDict.Keys)
             {
-                Object current = Dictionary[item];
+                String newItem = item.ToString();
+                Object current = resource[newItem];
                 if (current is SolidColorBrush brush)
                 {
-                    brushes[item] = brush;
+                    brushes[newItem] = brush;
                 }
             }
             return brushes;
@@ -36,19 +37,19 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <param name="brushes"></param>
         public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
-            Dictionary = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
             // Reset visuals
             // Setup app style
-            Dictionary.BeginInit();
-            Dictionary.Clear();
+            resource.BeginInit();
+            resource.Clear();
 
             // Object type not known at this point
             foreach (String key in brushes.Keys)
             {
-                Dictionary[key] = brushes[key];
+                resource[key] = brushes[key];
             }
 
-            Dictionary.EndInit();
+            resource.EndInit();
         }
 
         public String ExportString(Boolean core, Boolean ribbon)
@@ -87,15 +88,12 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
                 keys = keys.Where(x => x.StartsWith("Fluent"));
             }
 
+            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
             foreach (String key in keys)
             {
-                switch (Dictionary[key])
+                if (resource[key] is SolidColorBrush solidColor)
                 {
-                    case SolidColorBrush solidColor:
-                        export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{solidColor.Color}\"  options:Freeze=\"True\" />");
-                        break;
-                    default:
-                        break;
+                    export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{solidColor.Color}\"  options:Freeze=\"True\" />");
                 }
             }
 
