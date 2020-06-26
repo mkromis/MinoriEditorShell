@@ -38,22 +38,25 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
             ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary appDict = resource.MergedDictionaries[0];
+
             // Reset visuals
             // Setup app style
-            resource.BeginInit();
-            resource.Clear();
+            appDict.BeginInit();
+            appDict.Clear();
 
             // Object type not known at this point
             foreach (String key in brushes.Keys)
             {
-                resource[key] = brushes[key];
+                appDict[key] = brushes[key];
             }
 
-            resource.EndInit();
+            appDict.EndInit();
         }
 
         public String ExportString(Boolean core, Boolean ribbon)
         {
+            Boolean generic = false; // <-- Want this to be generic but its style is based on a static class
             StringBuilder export = new StringBuilder();
             export.AppendLine("<ResourceDictionary");
             export.AppendLine("    xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
@@ -68,17 +71,30 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
                 export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml\" />");
                 export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml\" />");
                 export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml\" />");
+            }
+            if (generic) 
+            { 
                 export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/AvalonDock.Themes.VS2013;component/Themes/Generic.xaml\" />");
+            } else
+            {
+                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/AvalonDock.Themes.VS2013;component/BlueTheme.xaml\" />"); 
             }
             if (ribbon)
             {
                 export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/Fluent;Component/Themes/Generic.xaml\" />");
             }
+
+            //if (colorpicker)
+            {
+                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/ColorPickerLib;component/Themes/Generic.xaml\" />");
+            }
             export.AppendLine("    </ResourceDictionary.MergedDictionaries>");
             export.AppendLine("");
             export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
 
-            IEnumerable<String> keys = GetBrushes().Keys.OrderBy(x => x);
+            IDictionary<String, SolidColorBrush> brushes = GetBrushes();
+
+            IEnumerable<String> keys = brushes.Keys.OrderBy(x => x);
             if (core && !ribbon)
             {
                 keys = keys.Where(x => !x.StartsWith("Fluent"));
@@ -88,19 +104,14 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
                 keys = keys.Where(x => x.StartsWith("Fluent"));
             }
 
-            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
             foreach (String key in keys)
             {
-                if (resource[key] is SolidColorBrush solidColor)
-                {
-                    export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{solidColor.Color}\"  options:Freeze=\"True\" />");
-                }
+                export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{brushes[key].Color}\"  options:Freeze=\"True\" />");
             }
 
             export.AppendLine("    <!-- End SolidColorBrush Export -->");
             export.AppendLine("</ResourceDictionary>");
             return export.ToString();
         }
-
     }
 }

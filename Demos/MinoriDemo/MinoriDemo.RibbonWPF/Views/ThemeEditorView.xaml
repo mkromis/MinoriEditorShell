@@ -27,7 +27,7 @@
             <TextBlock VerticalAlignment="Center" x:Name="FileName" />
             <Button Grid.Column="1" Content="Export" Width="50" Height="30" Margin="3" Click="Export_Click"/>
             <Button Grid.Column="2" Content="Add" Width="50" Height="30" Margin="3" Click="Add_Click"/>
-            <TextBox x:Name="search" Grid.Column="4" Margin="3"/>
+            <TextBox x:Name="search" Grid.Column="4" Margin="3" KeyDown="search_KeyDown" />
             <Button Grid.Column="5" Margin="3" Content="Search" Click="Search_Click"/>
         </Grid>
         <ListView x:Name="MainResourceList" Grid.Row="1">
