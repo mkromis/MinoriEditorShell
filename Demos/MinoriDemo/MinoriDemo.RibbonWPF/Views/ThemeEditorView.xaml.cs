@@ -136,14 +136,29 @@ namespace MinoriDemo.RibbonWPF.Views
                         IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
 
                         // add new key
-                        brushes[item.Key] = brushes[item.OriginalKey];
-                        brushes.Remove(item.OriginalKey);
+                        if (brushes.ContainsKey(item.OriginalKey))
+                        {
+                            brushes[item.Key] = brushes[item.OriginalKey];
+                            brushes.Remove(item.OriginalKey);
+                        } else
+                        {
+                            brushes[item.Key] = new SolidColorBrush();
+                        }
                         _themeHelper.SetBrushes(brushes);
 
                         // update
                         UpdateList(brushes);
                     }
                 }
+            }
+        }
+
+        private void search_KeyDown(Object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true;
+                Search_Click(sender, e);
             }
         }
     }
