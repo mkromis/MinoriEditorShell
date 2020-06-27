@@ -32,7 +32,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-        <PackageReference Include="GitVersionTask" Version="5.3.5">
+        <PackageReference Include="GitVersionTask" Version="5.3.6">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -40,7 +40,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MvvmCross" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.8.0.18411">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -50,7 +50,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
         <PackageReference Include="Dirkster.AvalonDock" Version="4.20.0" />
         <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.20.0" />
-        <PackageReference Include="MahApps.Metro" Version="2.0.1" />
+        <PackageReference Include="MahApps.Metro" Version="2.1.0" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
     </ItemGroup>
 </Project>
