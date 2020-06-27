@@ -10,11 +10,14 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
     public static class ThemeHelper
     {
-        public static ResourceDictionary GetThemeDictionary ()
+        public static ResourceDictionary GetAppDictionary ()
         {
-            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
-            ResourceDictionary appDict = resource.MergedDictionaries[0];
-            return appDict;
+            return Application.Current.Resources.MergedDictionaries[0];
+        }
+
+        public static ResourceDictionary GetThemeDictionary()
+        {
+            return GetAppDictionary().MergedDictionaries[0];
         }
 
         /// <summary>
@@ -45,7 +48,8 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <param name="brushes"></param>
         public static void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
-            var appDict = GetThemeDictionary();
+            ResourceDictionary appDict = GetAppDictionary();
+            ResourceDictionary themeDict = GetThemeDictionary();
 
             // Reset visuals
             // Setup app style
@@ -55,7 +59,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             // Object type not known at this point
             foreach (String key in brushes.Keys)
             {
-                appDict[key] = brushes[key];
+                themeDict[key] = brushes[key];
             }
 
             appDict.EndInit();
