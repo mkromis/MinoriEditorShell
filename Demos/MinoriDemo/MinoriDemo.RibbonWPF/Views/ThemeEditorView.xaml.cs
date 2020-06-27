@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using AvalonDock.Themes;
+using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.DataClasses;
 using MinoriDemo.RibbonWPF.Modules.Themes;
 using System;
@@ -19,20 +20,16 @@ namespace MinoriDemo.RibbonWPF.Views
     {
         const String _newKey = "Un-named";
 
-        private ThemeHelper _themeHelper { get; }
 
         public ThemeEditorView()
         {
             InitializeComponent();
 
-            _themeHelper = new ThemeHelper();
-            
             // should always be true if theme applied (App Theme)
-            ResourceDictionary resources = Application.Current.Resources;
-            ResourceDictionary appDictionary = resources.MergedDictionaries[0];
-            FileName.Text = Path.GetFileName(appDictionary.Source.ToString());
+            ResourceDictionary dict = ThemeHelper.GetThemeDictionary();
+            FileName.Text = Path.GetFileName(dict.Source.ToString());
 
-            UpdateList(_themeHelper.GetBrushes());
+            UpdateList(ThemeHelper.GetBrushes());
         }
 
         /// <summary>
@@ -45,7 +42,6 @@ namespace MinoriDemo.RibbonWPF.Views
                 {
                     Key = x.Key,
                     Color = x.Value.Color,
-                    ThemeHelper = _themeHelper,
                 });
         }
 
@@ -60,13 +56,13 @@ namespace MinoriDemo.RibbonWPF.Views
             };
             if (saveFile.ShowDialog() == true)
             {
-                File.WriteAllText(saveFile.FileName, _themeHelper.ExportString(true, true));
+                File.WriteAllText(saveFile.FileName, ThemeHelper.ExportString(true, true));
             }
         }
 
         private void Search_Click(Object sender, RoutedEventArgs e)
         {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
             if (!String.IsNullOrWhiteSpace(search.Text))
             {
                 IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
@@ -90,14 +86,14 @@ namespace MinoriDemo.RibbonWPF.Views
         /// <param name="e"></param>
         private void Add_Click(Object sender, RoutedEventArgs e)
         {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
             if (brushes.Keys.Contains(_newKey))
             {
                 MessageBox.Show($"{_newKey} already exists, please rename key before adding a new one", "Duplicate key");
                 return;
             }
             brushes[_newKey] = new SolidColorBrush();
-            _themeHelper.SetBrushes(brushes);
+            ThemeHelper.SetBrushes(brushes);
 
             UpdateList(brushes);
         }
@@ -106,9 +102,9 @@ namespace MinoriDemo.RibbonWPF.Views
         {
             if (sender is Button button && button.DataContext is ThemeItem item)
             {
-                IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+                IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
                 brushes.Remove(item.Key);
-                _themeHelper.SetBrushes(brushes);
+                ThemeHelper.SetBrushes(brushes);
 
                 UpdateList(brushes);
             }
@@ -133,7 +129,7 @@ namespace MinoriDemo.RibbonWPF.Views
                     if (!String.IsNullOrEmpty(newKey) && newKey != item.OriginalKey)
                     {
                         // Get list
-                        IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+                        IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
 
                         // add new key
                         if (brushes.ContainsKey(item.OriginalKey))
@@ -144,7 +140,7 @@ namespace MinoriDemo.RibbonWPF.Views
                         {
                             brushes[item.Key] = new SolidColorBrush();
                         }
-                        _themeHelper.SetBrushes(brushes);
+                        ThemeHelper.SetBrushes(brushes);
 
                         // update
                         UpdateList(brushes);

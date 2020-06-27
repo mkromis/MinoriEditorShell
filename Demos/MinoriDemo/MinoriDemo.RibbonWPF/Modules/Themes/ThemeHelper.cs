@@ -8,21 +8,29 @@ using System.Windows.Media;
 
 namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
-    class ThemeHelper
+    public static class ThemeHelper
     {
+        public static ResourceDictionary GetThemeDictionary ()
+        {
+            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary appDict = resource.MergedDictionaries[0];
+            return appDict;
+        }
+
         /// <summary>
         /// Gets all of the brushes in a dictionary format
         /// </summary>
         /// <returns></returns>
-        public IDictionary<String, SolidColorBrush> GetBrushes()
+        public static IDictionary<String, SolidColorBrush> GetBrushes()
         {
-            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
-            ResourceDictionary appDict = resource.MergedDictionaries[0];
+            // Get theme dict
+            var theme = GetThemeDictionary();
+
             SortedDictionary<String, SolidColorBrush> brushes = new SortedDictionary<String, SolidColorBrush>();
-            foreach (Object item in appDict.Keys)
+            foreach (Object item in theme.Keys)
             {
                 String newItem = item.ToString();
-                Object current = resource[newItem];
+                Object current = theme[newItem]; // <-- Is this right?
                 if (current is SolidColorBrush brush)
                 {
                     brushes[newItem] = brush;
@@ -35,10 +43,9 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// Convert dictionary to resources
         /// </summary>
         /// <param name="brushes"></param>
-        public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
+        public static void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
-            ResourceDictionary resource = Application.Current.Resources.MergedDictionaries[0];
-            ResourceDictionary appDict = resource.MergedDictionaries[0];
+            var appDict = GetThemeDictionary();
 
             // Reset visuals
             // Setup app style
@@ -54,7 +61,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             appDict.EndInit();
         }
 
-        public String ExportString(Boolean core, Boolean ribbon)
+        public static String ExportString(Boolean core, Boolean ribbon)
         {
             Boolean generic = false; // <-- Want this to be generic but its style is based on a static class
             StringBuilder export = new StringBuilder();
