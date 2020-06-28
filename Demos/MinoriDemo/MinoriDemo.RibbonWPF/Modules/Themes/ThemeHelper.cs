@@ -15,10 +15,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             return Application.Current.Resources.MergedDictionaries[0];
         }
 
-        public static ResourceDictionary GetThemeDictionary()
-        {
-            return GetAppDictionary().MergedDictionaries[0];
-        }
+        public static ResourceDictionary CurrentThemeDictionary { get; set; }
 
         /// <summary>
         /// Gets all of the brushes in a dictionary format
@@ -26,20 +23,26 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <returns></returns>
         public static IDictionary<String, SolidColorBrush> GetBrushes()
         {
+            SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
+            
             // Get theme dict
-            var theme = GetThemeDictionary();
+            var theme = CurrentThemeDictionary;
 
-            SortedDictionary<String, SolidColorBrush> brushes = new SortedDictionary<String, SolidColorBrush>();
-            foreach (Object item in theme.Keys)
+            // if theme is not selected yet, don't process
+            if (theme != null)
             {
-                String newItem = item.ToString();
-                Object current = theme[newItem]; // <-- Is this right?
-                if (current is SolidColorBrush brush)
+                foreach (Object item in theme.Keys)
                 {
-                    brushes[newItem] = brush;
+                    // Construct solid color brush
+                    String newItem = item.ToString();
+                    Object current = theme[newItem];
+                    if (current is SolidColorBrush brush)
+                    {
+                        results[newItem] = brush;
+                    }
                 }
             }
-            return brushes;
+            return results;
         }
 
         /// <summary>
@@ -49,7 +52,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         public static void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
             ResourceDictionary appDict = GetAppDictionary();
-            ResourceDictionary themeDict = GetThemeDictionary();
+            ResourceDictionary themeDict = CurrentThemeDictionary;
 
             // Reset visuals
             // Setup app style
@@ -65,8 +68,11 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             appDict.EndInit();
         }
 
-        public static String ExportString(Boolean core, Boolean ribbon)
+        public static String ExportString()
         {
+            var theme = CurrentThemeDictionary;
+            if (theme == null) throw new ArgumentNullException("CurrentThemeDictionary");
+
             Boolean generic = false; // <-- Want this to be generic but its style is based on a static class
             StringBuilder export = new StringBuilder();
             export.AppendLine("<ResourceDictionary");
@@ -77,45 +83,18 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             export.AppendLine("    xmlns:options=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation/options\"");
             export.AppendLine("    mc:Ignorable=\"options\">");
             export.AppendLine("    <ResourceDictionary.MergedDictionaries>");
-            if (core)
+            foreach (var dictionary in theme.MergedDictionaries)
             {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml\" />");
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml\" />");
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml\" />");
-            }
-            if (generic) 
-            { 
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/AvalonDock.Themes.VS2013;component/Themes/Generic.xaml\" />");
-            } else
-            {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/AvalonDock.Themes.VS2013;component/BlueTheme.xaml\" />"); 
-            }
-            if (ribbon)
-            {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/Fluent;Component/Themes/Generic.xaml\" />");
+
+                //export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml\" />");
             }
 
-            //if (colorpicker)
-            {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/ColorPickerLib;component/Themes/Generic.xaml\" />");
-            }
             export.AppendLine("    </ResourceDictionary.MergedDictionaries>");
             export.AppendLine("");
             export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
 
             IDictionary<String, SolidColorBrush> brushes = GetBrushes();
-
-            IEnumerable<String> keys = brushes.Keys.OrderBy(x => x);
-            if (core && !ribbon)
-            {
-                keys = keys.Where(x => !x.StartsWith("Fluent"));
-            }
-            if (!core && ribbon)
-            {
-                keys = keys.Where(x => x.StartsWith("Fluent"));
-            }
-
-            foreach (String key in keys)
+            foreach (String key in brushes.Keys)
             {
                 export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{brushes[key].Color}\"  options:Freeze=\"True\" />");
             }
