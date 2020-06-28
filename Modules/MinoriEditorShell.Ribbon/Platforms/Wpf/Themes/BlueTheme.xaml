@@ -7,7 +7,13 @@
     mc:Ignorable="options d">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Blue.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <!-- COLORS -->
+    
+    <!-- Begin SolidColorBrush Export -->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background" Color="#FFCCD5F0"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FFF2F4FE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="#FFF2F4FE"  options:Freeze="True" />
+    <!-- End SolidColorBrush Export -->
 </ResourceDictionary>
 

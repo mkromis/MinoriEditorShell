@@ -15,20 +15,7 @@ namespace MinoriDemo.RibbonWPF
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
             foreach (IMesTheme theme in manager.Themes)
             {
-                switch (theme)
-                {
-                    case MesBlueTheme blue:
-                        blue.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
-                        break;
-                    case MesLightTheme light:
-                        light.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
-                        break;
-                    case MesDarkTheme dark:
-                        dark.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/DarkBrushs.xaml"));
-                        break;
-                    default:
-                        break;
-                }
+                theme.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/Generic.xaml"));
             }
         }
     }
