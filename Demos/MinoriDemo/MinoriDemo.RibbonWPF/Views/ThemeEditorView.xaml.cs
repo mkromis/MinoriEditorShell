@@ -25,13 +25,9 @@ namespace MinoriDemo.RibbonWPF.Views
         {
             InitializeComponent();
 
-            // should always be true if theme applied (App Theme)
+            // Setup selection drop down item.
             ThemeSelection.ItemsSource = ThemeHelper.GetAppDictionary().MergedDictionaries;
-
-            //ResourceDictionary dict = ThemeHelper.GetThemeDictionary();
-            //FileName.Text = Path.GetFileName(dict.Source.ToString());
-
-            UpdateList(ThemeHelper.GetBrushes());
+            ThemeSelection.SelectedItem = ThemeSelection.Items[0];
         }
 
         /// <summary>
@@ -49,6 +45,11 @@ namespace MinoriDemo.RibbonWPF.Views
 
         private void Export_Click(Object sender, RoutedEventArgs e)
         {
+            if (ThemeSelection == null)
+            {
+                MessageBox.Show("Select a theme to export");
+                return;
+            }
             SaveFileDialog saveFile = new SaveFileDialog
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),

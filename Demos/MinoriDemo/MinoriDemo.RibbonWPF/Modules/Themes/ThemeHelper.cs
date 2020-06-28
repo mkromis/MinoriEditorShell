@@ -10,10 +10,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
     public static class ThemeHelper
     {
-        public static ResourceDictionary GetAppDictionary ()
-        {
-            return Application.Current.Resources.MergedDictionaries[0];
-        }
+        public static ResourceDictionary GetAppDictionary() => Application.Current.Resources.MergedDictionaries[0];
 
         public static ResourceDictionary CurrentThemeDictionary { get; set; }
 
@@ -24,9 +21,9 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         public static IDictionary<String, SolidColorBrush> GetBrushes()
         {
             SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
-            
+
             // Get theme dict
-            var theme = CurrentThemeDictionary;
+            ResourceDictionary theme = CurrentThemeDictionary;
 
             // if theme is not selected yet, don't process
             if (theme != null)
@@ -70,10 +67,12 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
 
         public static String ExportString()
         {
-            var theme = CurrentThemeDictionary;
-            if (theme == null) throw new ArgumentNullException("CurrentThemeDictionary");
+            ResourceDictionary theme = CurrentThemeDictionary;
+            if (theme == null)
+            {
+                throw new InvalidOperationException("CurrentThemeDictionary");
+            }
 
-            Boolean generic = false; // <-- Want this to be generic but its style is based on a static class
             StringBuilder export = new StringBuilder();
             export.AppendLine("<ResourceDictionary");
             export.AppendLine("    xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
@@ -82,24 +81,25 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             export.AppendLine("    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\"");
             export.AppendLine("    xmlns:options=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation/options\"");
             export.AppendLine("    mc:Ignorable=\"options\">");
+
+            // Export dictionary
             export.AppendLine("    <ResourceDictionary.MergedDictionaries>");
-            foreach (var dictionary in theme.MergedDictionaries)
+            foreach (ResourceDictionary dictionary in theme.MergedDictionaries)
             {
-
-                //export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml\" />");
+                export.AppendLine($"        <ResourceDictionary Source=\"{dictionary.Source}\" />");
             }
-
             export.AppendLine("    </ResourceDictionary.MergedDictionaries>");
-            export.AppendLine("");
-            export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
 
+            // Export colors
+            export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
             IDictionary<String, SolidColorBrush> brushes = GetBrushes();
             foreach (String key in brushes.Keys)
             {
                 export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{brushes[key].Color}\"  options:Freeze=\"True\" />");
             }
-
             export.AppendLine("    <!-- End SolidColorBrush Export -->");
+
+            // End
             export.AppendLine("</ResourceDictionary>");
             return export.ToString();
         }
