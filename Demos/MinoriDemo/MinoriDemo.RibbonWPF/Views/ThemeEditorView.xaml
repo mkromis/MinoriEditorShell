@@ -15,19 +15,34 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="82" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="244" />
+                <ColumnDefinition Width="56" />
             </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" x:Name="FileName" />
-            <Button Grid.Column="1" Content="Export" Width="50" Height="30" Margin="3" Click="Export_Click"/>
-            <Button Grid.Column="2" Content="Add" Width="50" Height="30" Margin="3" Click="Add_Click"/>
-            <TextBox x:Name="search" Grid.Column="4" Margin="3"/>
+            <ComboBox 
+                IsReadOnly="True" 
+                VerticalAlignment="Center" 
+                x:Name="ThemeSelection" SelectionChanged="ThemeChanged" Height="25">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Source}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button 
+                Grid.Column="1" Content="Export" 
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Height="25" Margin="3,5" 
+                Click="Export_Click" Width="38"/>
+            <Button 
+                Grid.Column="2" Content="Add Color" Margin="3,5" 
+                Click="Add_Click"/>
+            <TextBox x:Name="search" Grid.Column="4" Margin="3" KeyDown="search_KeyDown" />
             <Button Grid.Column="5" Margin="3" Content="Search" Click="Search_Click"/>
         </Grid>
         <ListView x:Name="MainResourceList" Grid.Row="1">
