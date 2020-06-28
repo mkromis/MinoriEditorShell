@@ -42,11 +42,6 @@ namespace MinoriDemo.RibbonWPF.DataClasses
             {
                 _color = value;
 
-                if (ThemeHelper == null)
-                {
-                    return;
-                }
-
                 Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
                 .ExecuteOnMainThreadAsync(() =>
                 {
@@ -57,7 +52,6 @@ namespace MinoriDemo.RibbonWPF.DataClasses
             }
         }
 
-        public ThemeHelper ThemeHelper { get; internal set; }
         public String OriginalKey { get; internal set; }
     }
 }

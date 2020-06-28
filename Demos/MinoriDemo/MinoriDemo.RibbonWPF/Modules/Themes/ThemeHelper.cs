@@ -8,51 +8,71 @@ using System.Windows.Media;
 
 namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
-    class ThemeHelper
+    public static class ThemeHelper
     {
-        public ResourceDictionary Dictionary { get; set; }
+        public static ResourceDictionary GetAppDictionary() => Application.Current.Resources.MergedDictionaries[0];
+
+        public static ResourceDictionary CurrentThemeDictionary { get; set; }
 
         /// <summary>
         /// Gets all of the brushes in a dictionary format
         /// </summary>
         /// <returns></returns>
-        public IDictionary<String, SolidColorBrush> GetBrushes()
+        public static IDictionary<String, SolidColorBrush> GetBrushes()
         {
-            SortedDictionary<String, SolidColorBrush> brushes = new SortedDictionary<String, SolidColorBrush>();
-            foreach (String item in Dictionary.Keys)
+            SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
+
+            // Get theme dict
+            ResourceDictionary theme = CurrentThemeDictionary;
+
+            // if theme is not selected yet, don't process
+            if (theme != null)
             {
-                Object current = Dictionary[item];
-                if (current is SolidColorBrush brush)
+                foreach (Object item in theme.Keys)
                 {
-                    brushes[item] = brush;
+                    // Construct solid color brush
+                    String newItem = item.ToString();
+                    Object current = theme[newItem];
+                    if (current is SolidColorBrush brush)
+                    {
+                        results[newItem] = brush;
+                    }
                 }
             }
-            return brushes;
+            return results;
         }
 
         /// <summary>
         /// Convert dictionary to resources
         /// </summary>
         /// <param name="brushes"></param>
-        public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
+        public static void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
-            Dictionary = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary appDict = GetAppDictionary();
+            ResourceDictionary themeDict = CurrentThemeDictionary;
+
             // Reset visuals
             // Setup app style
-            Dictionary.BeginInit();
-            Dictionary.Clear();
+            appDict.BeginInit();
+            themeDict.Clear();
 
             // Object type not known at this point
             foreach (String key in brushes.Keys)
             {
-                Dictionary[key] = brushes[key];
+                themeDict[key] = brushes[key];
             }
 
-            Dictionary.EndInit();
+            appDict.EndInit();
         }
 
-        public String ExportString(Boolean core, Boolean ribbon)
+        public static String ExportString()
         {
+            ResourceDictionary theme = CurrentThemeDictionary;
+            if (theme == null)
+            {
+                throw new InvalidOperationException("CurrentThemeDictionary");
+            }
+
             StringBuilder export = new StringBuilder();
             export.AppendLine("<ResourceDictionary");
             export.AppendLine("    xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
@@ -61,48 +81,27 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             export.AppendLine("    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\"");
             export.AppendLine("    xmlns:options=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation/options\"");
             export.AppendLine("    mc:Ignorable=\"options\">");
+
+            // Export dictionary
             export.AppendLine("    <ResourceDictionary.MergedDictionaries>");
-            if (core)
+            foreach (ResourceDictionary dictionary in theme.MergedDictionaries)
             {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml\" />");
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml\" />");
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml\" />");
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/AvalonDock.Themes.VS2013;component/Themes/Generic.xaml\" />");
-            }
-            if (ribbon)
-            {
-                export.AppendLine("        <ResourceDictionary Source=\"pack://application:,,,/Fluent;Component/Themes/Generic.xaml\" />");
+                export.AppendLine($"        <ResourceDictionary Source=\"{dictionary.Source}\" />");
             }
             export.AppendLine("    </ResourceDictionary.MergedDictionaries>");
-            export.AppendLine("");
+
+            // Export colors
             export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
-
-            IEnumerable<String> keys = GetBrushes().Keys.OrderBy(x => x);
-            if (core && !ribbon)
+            IDictionary<String, SolidColorBrush> brushes = GetBrushes();
+            foreach (String key in brushes.Keys)
             {
-                keys = keys.Where(x => !x.StartsWith("Fluent"));
+                export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{brushes[key].Color}\"  options:Freeze=\"True\" />");
             }
-            if (!core && ribbon)
-            {
-                keys = keys.Where(x => x.StartsWith("Fluent"));
-            }
-
-            foreach (String key in keys)
-            {
-                switch (Dictionary[key])
-                {
-                    case SolidColorBrush solidColor:
-                        export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{solidColor.Color}\"  options:Freeze=\"True\" />");
-                        break;
-                    default:
-                        break;
-                }
-            }
-
             export.AppendLine("    <!-- End SolidColorBrush Export -->");
+
+            // End
             export.AppendLine("</ResourceDictionary>");
             return export.ToString();
         }
-
     }
 }

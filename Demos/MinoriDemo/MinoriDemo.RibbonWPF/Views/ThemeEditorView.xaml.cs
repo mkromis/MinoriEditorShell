@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using AvalonDock.Themes;
+using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.DataClasses;
 using MinoriDemo.RibbonWPF.Modules.Themes;
 using System;
@@ -17,47 +18,38 @@ namespace MinoriDemo.RibbonWPF.Views
     /// </summary>
     public partial class ThemeEditorView
     {
-        const String _newKey = "Un-named";
-
-        private ThemeHelper _themeHelper { get; }
+        // TODO: I18n
+        const String _newKey = "Unnamed";
 
         public ThemeEditorView()
         {
             InitializeComponent();
 
-            ResourceDictionary resources = Application.Current.Resources;
-
-            // should always be true if theme applied (App Theme)
-            ResourceDictionary appDictionary = resources.MergedDictionaries[0];
-
-            _themeHelper = new ThemeHelper
-            {
-                Dictionary = appDictionary.MergedDictionaries[0],
-            };
-
-            FileName.Text = Path.GetFileName(_themeHelper.Dictionary.Source.ToString());
-
-            UpdateList();
+            // Setup selection drop down item.
+            ThemeSelection.ItemsSource = ThemeHelper.GetAppDictionary().MergedDictionaries;
+            ThemeSelection.SelectedItem = ThemeSelection.Items[0];
         }
 
         /// <summary>
         /// Updates list from 
         /// </summary>
-        private void UpdateList()
+        private void UpdateList(IDictionary<String, SolidColorBrush> brushes)
         {
-            MainResourceList.ItemsSource =
-                _themeHelper
-                    .GetBrushes()
-                    .Select(x => new ThemeItem
-                    {
-                        Key = x.Key,
-                        Color = x.Value.Color,
-                        ThemeHelper = _themeHelper,
-                    });
+            MainResourceList.ItemsSource = 
+                brushes.Select(x => new ThemeItem
+                {
+                    Key = x.Key,
+                    Color = x.Value.Color,
+                });
         }
 
         private void Export_Click(Object sender, RoutedEventArgs e)
         {
+            if (ThemeSelection == null)
+            {
+                MessageBox.Show("Select a theme to export");
+                return;
+            }
             SaveFileDialog saveFile = new SaveFileDialog
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -67,20 +59,27 @@ namespace MinoriDemo.RibbonWPF.Views
             };
             if (saveFile.ShowDialog() == true)
             {
-                File.WriteAllText(saveFile.FileName, _themeHelper.ExportString(true, true));
+                File.WriteAllText(saveFile.FileName, ThemeHelper.ExportString());
             }
         }
 
         private void Search_Click(Object sender, RoutedEventArgs e)
         {
-            //if (!String.IsNullOrWhiteSpace(search.Text))
-            //{
-            //    IEnumerable<String> keys = GetBrushes().Where(x => x.ToLower().Contains(search.Text.ToLower()));
-            //    UpdateList(keys);
-            //} else
-            //{
-            //    UpdateList(GetBrushes());
-            //}
+            IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
+            if (!String.IsNullOrWhiteSpace(search.Text))
+            {
+                IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
+                    .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
+
+                SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
+                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; }
+
+                UpdateList(result);
+            }
+            else
+            {
+                UpdateList(brushes);
+            }
         }
 
         /// <summary>
@@ -90,27 +89,27 @@ namespace MinoriDemo.RibbonWPF.Views
         /// <param name="e"></param>
         private void Add_Click(Object sender, RoutedEventArgs e)
         {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
             if (brushes.Keys.Contains(_newKey))
             {
                 MessageBox.Show($"{_newKey} already exists, please rename key before adding a new one", "Duplicate key");
                 return;
             }
             brushes[_newKey] = new SolidColorBrush();
-            _themeHelper.SetBrushes(brushes);
+            ThemeHelper.SetBrushes(brushes);
 
-            UpdateList();
+            UpdateList(brushes);
         }
 
         private void RemoveClick(Object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.DataContext is ThemeItem item)
             {
-                IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+                IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
                 brushes.Remove(item.Key);
-                _themeHelper.SetBrushes(brushes);
+                ThemeHelper.SetBrushes(brushes);
 
-                UpdateList();
+                UpdateList(brushes);
             }
         }
 
@@ -133,17 +132,41 @@ namespace MinoriDemo.RibbonWPF.Views
                     if (!String.IsNullOrEmpty(newKey) && newKey != item.OriginalKey)
                     {
                         // Get list
-                        IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+                        IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
 
                         // add new key
-                        brushes[item.Key] = brushes[item.OriginalKey];
-                        brushes.Remove(item.OriginalKey);
-                        _themeHelper.SetBrushes(brushes);
+                        if (brushes.ContainsKey(item.OriginalKey))
+                        {
+                            brushes[item.Key] = brushes[item.OriginalKey];
+                            brushes.Remove(item.OriginalKey);
+                        } else
+                        {
+                            brushes[item.Key] = new SolidColorBrush();
+                        }
+                        ThemeHelper.SetBrushes(brushes);
 
                         // update
-                        UpdateList();
+                        UpdateList(brushes);
                     }
                 }
+            }
+        }
+
+        private void search_KeyDown(Object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true;
+                Search_Click(sender, e);
+            }
+        }
+
+        private void ThemeChanged(Object sender, SelectionChangedEventArgs e)
+        {
+            ThemeHelper.CurrentThemeDictionary = ThemeSelection.SelectedItem as ResourceDictionary;
+            if (ThemeHelper.CurrentThemeDictionary != null)
+            {
+                UpdateList(ThemeHelper.GetBrushes());
             }
         }
     }
