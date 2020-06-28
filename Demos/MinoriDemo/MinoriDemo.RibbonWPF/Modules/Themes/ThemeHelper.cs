@@ -54,7 +54,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             // Reset visuals
             // Setup app style
             appDict.BeginInit();
-            appDict.Clear();
+            themeDict.Clear();
 
             // Object type not known at this point
             foreach (String key in brushes.Keys)
