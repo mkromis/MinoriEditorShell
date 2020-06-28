@@ -18,16 +18,18 @@ namespace MinoriDemo.RibbonWPF.Views
     /// </summary>
     public partial class ThemeEditorView
     {
-        const String _newKey = "Un-named";
-
+        // TODO: I18n
+        const String _newKey = "Unnamed";
 
         public ThemeEditorView()
         {
             InitializeComponent();
 
             // should always be true if theme applied (App Theme)
-            ResourceDictionary dict = ThemeHelper.GetThemeDictionary();
-            FileName.Text = Path.GetFileName(dict.Source.ToString());
+            ThemeSelection.ItemsSource = ThemeHelper.GetAppDictionary().MergedDictionaries;
+
+            //ResourceDictionary dict = ThemeHelper.GetThemeDictionary();
+            //FileName.Text = Path.GetFileName(dict.Source.ToString());
 
             UpdateList(ThemeHelper.GetBrushes());
         }
@@ -56,7 +58,7 @@ namespace MinoriDemo.RibbonWPF.Views
             };
             if (saveFile.ShowDialog() == true)
             {
-                File.WriteAllText(saveFile.FileName, ThemeHelper.ExportString(true, true));
+                File.WriteAllText(saveFile.FileName, ThemeHelper.ExportString());
             }
         }
 
@@ -155,6 +157,15 @@ namespace MinoriDemo.RibbonWPF.Views
             {
                 e.Handled = true;
                 Search_Click(sender, e);
+            }
+        }
+
+        private void ThemeChanged(Object sender, SelectionChangedEventArgs e)
+        {
+            ThemeHelper.CurrentThemeDictionary = ThemeSelection.SelectedItem as ResourceDictionary;
+            if (ThemeHelper.CurrentThemeDictionary != null)
+            {
+                UpdateList(ThemeHelper.GetBrushes());
             }
         }
     }
