@@ -72,7 +72,7 @@ namespace MinoriDemo.RibbonWPF.Views
                     .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
 
                 SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
-                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; };
+                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; }
 
                 UpdateList(result);
             }
