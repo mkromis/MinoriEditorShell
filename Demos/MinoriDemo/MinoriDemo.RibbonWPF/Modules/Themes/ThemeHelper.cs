@@ -8,17 +8,17 @@ using System.Windows.Media;
 
 namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
-    public static class ThemeHelper
+    public class ThemeHelper
     {
-        public static ResourceDictionary GetAppDictionary() => Application.Current.Resources.MergedDictionaries[0];
+        public ResourceDictionary GetAppDictionary() => Application.Current.Resources.MergedDictionaries[0];
 
-        public static ResourceDictionary CurrentThemeDictionary { get; set; }
+        public ResourceDictionary CurrentThemeDictionary { get; set; }
 
         /// <summary>
         /// Gets all of the brushes in a dictionary format
         /// </summary>
         /// <returns></returns>
-        public static IDictionary<String, SolidColorBrush> GetBrushes()
+        public IDictionary<String, SolidColorBrush> GetBrushes()
         {
             SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
 
@@ -46,7 +46,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// Convert dictionary to resources
         /// </summary>
         /// <param name="brushes"></param>
-        public static void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
+        public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
         {
             ResourceDictionary appDict = GetAppDictionary();
             ResourceDictionary themeDict = CurrentThemeDictionary;
@@ -65,7 +65,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             appDict.EndInit();
         }
 
-        public static String ExportString()
+        public String ExportString()
         {
             ResourceDictionary theme = CurrentThemeDictionary;
             if (theme == null)

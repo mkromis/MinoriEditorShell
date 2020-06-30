@@ -15,6 +15,8 @@ namespace MinoriDemo.RibbonWPF.DataClasses
         private Boolean _canEdit = false;
         private String _modeText = "Edit";
 
+        public ThemeHelper ThemeHelper { get; set; }
+
         public String ModeText { 
             get => _modeText; 
             set => SetProperty(ref _modeText, value); 
