@@ -11,7 +11,6 @@
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/AvalonDock.Themes.VS2013;component/BlueTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
     <!-- Begin SolidColorBrush Export -->
     <SolidColorBrush x:Key="MahApps.Brushes.Accent" Color="#CC0078D7"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Accent2" Color="#990078D7"  options:Freeze="True" />
@@ -23,8 +22,8 @@
     <SolidColorBrush x:Key="MahApps.Brushes.Badged.Background.Disabled" Color="#FF999999"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground" Color="#FFFFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground.Disabled" Color="#99000000"  options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#FFCCCEDB"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#FF808080"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#FFCCCEDB"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Background.MouseOver" Color="#66000000"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Foreground.MouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="#FFCCCCCC"  options:Freeze="True" />
@@ -41,7 +40,7 @@
     <SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Background.MouseOver" Color="#FFE0E0E0"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Foreground.MouseOver" Color="#FF000000"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CheckBox" Color="#FFB9B9B9"  options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundChecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundChecked" Color="#FFFEFEFE"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
