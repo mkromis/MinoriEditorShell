@@ -25,7 +25,7 @@
         <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-        <PackageReference Include="GitVersionTask" Version="5.3.6">
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
