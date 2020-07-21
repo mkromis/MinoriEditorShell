@@ -22,8 +22,8 @@
         <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-        <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
-        <PackageReference Include="GitVersionTask" Version="5.3.6">
+        <PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
