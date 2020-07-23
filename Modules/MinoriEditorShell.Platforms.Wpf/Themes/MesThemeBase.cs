@@ -9,7 +9,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
     /// </summary>
     public abstract class MesThemeBase : IMesTheme
     {
-        readonly List<Uri> _resources;
+        private readonly List<Uri> _resources;
 
         /// <summary>
         /// Name of theme

@@ -4,7 +4,6 @@ using MvvmCross.ViewModels;
 using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
@@ -36,8 +35,9 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         public IMesTheme SelectedTheme
         {
             get => _selectedTheme;
-            set {
-                if(SetProperty(ref _selectedTheme, value))
+            set
+            {
+                if (SetProperty(ref _selectedTheme, value))
                 {
                     _themeManager.SetCurrentTheme(_selectedTheme.Name);
                 }

@@ -1,9 +1,9 @@
+using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using MinoriEditorShell.Services;
 
 namespace MinoriEditorShell.Modules.Services
 {

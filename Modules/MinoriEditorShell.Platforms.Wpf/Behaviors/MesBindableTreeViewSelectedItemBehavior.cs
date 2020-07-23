@@ -1,199 +1,194 @@
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
 namespace MinoriEditorShell.Platforms.Wpf.Behaviors
 {
     // From http://stackoverflow.com/a/20636049/208817
-//    public class MesBindableTreeViewSelectedItemBehavior : Behavior<TreeView>
-//    {
-//        #region SelectedItem Property
+    //    public class MesBindableTreeViewSelectedItemBehavior : Behavior<TreeView>
+    //    {
+    //        #region SelectedItem Property
 
-//        public object SelectedItem
-//        {
-//            get { return GetValue(SelectedItemProperty); }
-//            set { SetValue(SelectedItemProperty, value); }
-//        }
+    //        public object SelectedItem
+    //        {
+    //            get { return GetValue(SelectedItemProperty); }
+    //            set { SetValue(SelectedItemProperty, value); }
+    //        }
 
-//        public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(
-//            "SelectedItem", typeof(object), typeof(MesBindableTreeViewSelectedItemBehavior), 
-//            new UIPropertyMetadata(null, OnSelectedItemChanged));
+    //        public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(
+    //            "SelectedItem", typeof(object), typeof(MesBindableTreeViewSelectedItemBehavior),
+    //            new UIPropertyMetadata(null, OnSelectedItemChanged));
 
-//        private static void OnSelectedItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-//        {
-//            Action<TreeViewItem> selectTreeViewItem = tvi2 =>
-//            {
-//                if (tvi2 != null)
-//                {
-//                    tvi2.IsSelected = true;
-//                    tvi2.Focus();
-//                }
-//            };
+    //        private static void OnSelectedItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+    //        {
+    //            Action<TreeViewItem> selectTreeViewItem = tvi2 =>
+    //            {
+    //                if (tvi2 != null)
+    //                {
+    //                    tvi2.IsSelected = true;
+    //                    tvi2.Focus();
+    //                }
+    //            };
 
-//            var tvi = e.NewValue as TreeViewItem;
+    //            var tvi = e.NewValue as TreeViewItem;
 
-//            if (tvi == null)
-//            {
-//                var tree = ((MesBindableTreeViewSelectedItemBehavior) sender).AssociatedObject;
-//                if (tree == null)
-//                    return;
+    //            if (tvi == null)
+    //            {
+    //                var tree = ((MesBindableTreeViewSelectedItemBehavior) sender).AssociatedObject;
+    //                if (tree == null)
+    //                    return;
 
-//                if (!tree.IsLoaded)
-//                {
-//                    RoutedEventHandler handler = null;
-//                    handler = (sender2, e2) =>
-//                    {
-//                        tvi = GetTreeViewItem(tree, e.NewValue);
-//                        selectTreeViewItem(tvi);
-//                        tree.Loaded -= handler;
-//                    };
-//                    tree.Loaded += handler;
-                    
-//                    return;
-//                }
-//                tvi = GetTreeViewItem(tree, e.NewValue);
-//            }
+    //                if (!tree.IsLoaded)
+    //                {
+    //                    RoutedEventHandler handler = null;
+    //                    handler = (sender2, e2) =>
+    //                    {
+    //                        tvi = GetTreeViewItem(tree, e.NewValue);
+    //                        selectTreeViewItem(tvi);
+    //                        tree.Loaded -= handler;
+    //                    };
+    //                    tree.Loaded += handler;
 
-//            selectTreeViewItem(tvi);
-//        }
+    //                    return;
+    //                }
+    //                tvi = GetTreeViewItem(tree, e.NewValue);
+    //            }
 
-//        #endregion
+    //            selectTreeViewItem(tvi);
+    //        }
 
-//        #region Private
+    //        #endregion
 
-//        private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-//        {
-//            SelectedItem = e.NewValue;
-//        }
+    //        #region Private
 
-//        private static TreeViewItem GetTreeViewItem(ItemsControl container, object item)
-//        {
-//            if (container != null)
-//            {
-//                if (container.DataContext == item)
-//                {
-//                    return container as TreeViewItem;
-//                }
+    //        private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+    //        {
+    //            SelectedItem = e.NewValue;
+    //        }
 
-//                // Expand the current container
-//                if (container is TreeViewItem && !((TreeViewItem) container).IsExpanded)
-//                {
-//                    container.SetValue(TreeViewItem.IsExpandedProperty, true);
-//                }
+    //        private static TreeViewItem GetTreeViewItem(ItemsControl container, object item)
+    //        {
+    //            if (container != null)
+    //            {
+    //                if (container.DataContext == item)
+    //                {
+    //                    return container as TreeViewItem;
+    //                }
 
-//                // Try to generate the ItemsPresenter and the ItemsPanel.
-//                // by calling ApplyTemplate.  Note that in the 
-//                // virtualizing case even if the item is marked 
-//                // expanded we still need to do this step in order to 
-//                // regenerate the visuals because they may have been virtualized away.
+    //                // Expand the current container
+    //                if (container is TreeViewItem && !((TreeViewItem) container).IsExpanded)
+    //                {
+    //                    container.SetValue(TreeViewItem.IsExpandedProperty, true);
+    //                }
 
-//                container.ApplyTemplate();
-//                var itemsPresenter =
-//                    (ItemsPresenter) container.Template.FindName("ItemsHost", container);
-//                if (itemsPresenter != null)
-//                {
-//                    itemsPresenter.ApplyTemplate();
-//                }
-//                else
-//                {
-//                    // The Tree template has not named the ItemsPresenter, 
-//                    // so walk the descendents and find the child.
-//                    itemsPresenter = FindVisualChild<ItemsPresenter>(container);
-//                    if (itemsPresenter == null)
-//                    {
-//                        container.UpdateLayout();
-//                        itemsPresenter = FindVisualChild<ItemsPresenter>(container);
-//                    }
-//                }
+    //                // Try to generate the ItemsPresenter and the ItemsPanel.
+    //                // by calling ApplyTemplate.  Note that in the
+    //                // virtualizing case even if the item is marked
+    //                // expanded we still need to do this step in order to
+    //                // regenerate the visuals because they may have been virtualized away.
 
-//                var itemsHostPanel = (Panel) VisualTreeHelper.GetChild(itemsPresenter, 0);
+    //                container.ApplyTemplate();
+    //                var itemsPresenter =
+    //                    (ItemsPresenter) container.Template.FindName("ItemsHost", container);
+    //                if (itemsPresenter != null)
+    //                {
+    //                    itemsPresenter.ApplyTemplate();
+    //                }
+    //                else
+    //                {
+    //                    // The Tree template has not named the ItemsPresenter,
+    //                    // so walk the descendents and find the child.
+    //                    itemsPresenter = FindVisualChild<ItemsPresenter>(container);
+    //                    if (itemsPresenter == null)
+    //                    {
+    //                        container.UpdateLayout();
+    //                        itemsPresenter = FindVisualChild<ItemsPresenter>(container);
+    //                    }
+    //                }
 
-//                // Ensure that the generator for this panel has been created.
-//#pragma warning disable 168
-//                var children = itemsHostPanel.Children;
-//#pragma warning restore 168
+    //                var itemsHostPanel = (Panel) VisualTreeHelper.GetChild(itemsPresenter, 0);
 
-//                for (int i = 0, count = container.Items.Count; i < count; i++)
-//                {
-//                    var subContainer = (TreeViewItem) container.ItemContainerGenerator.
-//                                                          ContainerFromIndex(i);
-//                    if (subContainer == null)
-//                    {
-//                        continue;
-//                    }
+    //                // Ensure that the generator for this panel has been created.
+    //#pragma warning disable 168
+    //                var children = itemsHostPanel.Children;
+    //#pragma warning restore 168
 
-//                    subContainer.BringIntoView();
+    //                for (int i = 0, count = container.Items.Count; i < count; i++)
+    //                {
+    //                    var subContainer = (TreeViewItem) container.ItemContainerGenerator.
+    //                                                          ContainerFromIndex(i);
+    //                    if (subContainer == null)
+    //                    {
+    //                        continue;
+    //                    }
 
-//                    // Search the next level for the object.
-//                    var resultContainer = GetTreeViewItem(subContainer, item);
-//                    if (resultContainer != null)
-//                    {
-//                        return resultContainer;
-//                    }
-//                    else
-//                    {
-//                        // The object is not under this TreeViewItem
-//                        // so collapse it.
-//                        //subContainer.IsExpanded = false;
-//                    }
-//                }
-//            }
+    //                    subContainer.BringIntoView();
 
-//            return null;
-//        }
+    //                    // Search the next level for the object.
+    //                    var resultContainer = GetTreeViewItem(subContainer, item);
+    //                    if (resultContainer != null)
+    //                    {
+    //                        return resultContainer;
+    //                    }
+    //                    else
+    //                    {
+    //                        // The object is not under this TreeViewItem
+    //                        // so collapse it.
+    //                        //subContainer.IsExpanded = false;
+    //                    }
+    //                }
+    //            }
 
-//        /// <summary>
-//        /// Search for an element of a certain type in the visual tree.
-//        /// </summary>
-//        /// <typeparam name="T">The type of element to find.</typeparam>
-//        /// <param name="visual">The parent element.</param>
-//        /// <returns></returns>
-//        private static T FindVisualChild<T>(Visual visual) where T : Visual
-//        {
-//            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(visual); i++)
-//            {
-//                Visual child = (Visual) VisualTreeHelper.GetChild(visual, i);
-//                if (child != null)
-//                {
-//                    T correctlyTyped = child as T;
-//                    if (correctlyTyped != null)
-//                    {
-//                        return correctlyTyped;
-//                    }
+    //            return null;
+    //        }
 
-//                    T descendent = FindVisualChild<T>(child);
-//                    if (descendent != null)
-//                    {
-//                        return descendent;
-//                    }
-//                }
-//            }
+    //        /// <summary>
+    //        /// Search for an element of a certain type in the visual tree.
+    //        /// </summary>
+    //        /// <typeparam name="T">The type of element to find.</typeparam>
+    //        /// <param name="visual">The parent element.</param>
+    //        /// <returns></returns>
+    //        private static T FindVisualChild<T>(Visual visual) where T : Visual
+    //        {
+    //            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(visual); i++)
+    //            {
+    //                Visual child = (Visual) VisualTreeHelper.GetChild(visual, i);
+    //                if (child != null)
+    //                {
+    //                    T correctlyTyped = child as T;
+    //                    if (correctlyTyped != null)
+    //                    {
+    //                        return correctlyTyped;
+    //                    }
 
-//            return null;
-//        }
+    //                    T descendent = FindVisualChild<T>(child);
+    //                    if (descendent != null)
+    //                    {
+    //                        return descendent;
+    //                    }
+    //                }
+    //            }
 
-//        #endregion
+    //            return null;
+    //        }
 
-//        #region Protected
+    //        #endregion
 
-//        protected override void OnAttached()
-//        {
-//            base.OnAttached();
+    //        #region Protected
 
-//            AssociatedObject.SelectedItemChanged += OnTreeViewSelectedItemChanged;
-//        }
+    //        protected override void OnAttached()
+    //        {
+    //            base.OnAttached();
 
-//        protected override void OnDetaching()
-//        {
-//            base.OnDetaching();
+    //            AssociatedObject.SelectedItemChanged += OnTreeViewSelectedItemChanged;
+    //        }
 
-//            if (AssociatedObject != null)
-//            {
-//                AssociatedObject.SelectedItemChanged -= OnTreeViewSelectedItemChanged;
-//            }
-//        }
+    //        protected override void OnDetaching()
+    //        {
+    //            base.OnDetaching();
 
-//        #endregion
-//    }
+    //            if (AssociatedObject != null)
+    //            {
+    //                AssociatedObject.SelectedItemChanged -= OnTreeViewSelectedItemChanged;
+    //            }
+    //        }
+
+    //        #endregion
+    //    }
 }

@@ -4,12 +4,9 @@ using MinoriEditorShell.VirtualCanvas.Extensions;
 using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
-using MvvmCross.ViewModels;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.IO;
 using System.Windows.Input;
 
 namespace MinoriDemo.Core.ViewModels
@@ -133,10 +130,10 @@ namespace MinoriDemo.Core.ViewModels
             // Origianlly 100 x 100 nodes
             //AllocateNodes();
 
-            // Update info 
+            // Update info
             _statusbar.Text = "Ready";
         }
-        
+
         private void AllocateNodes()
         {
             Zoom.ResetTranslate();
@@ -176,7 +173,6 @@ namespace MinoriDemo.Core.ViewModels
             {
                 Color color = Color.FromArgb((Byte)r.Next(0, 255), (Byte)r.Next(0, 255), (Byte)r.Next(0, 255));
 
-
                 _colorNames[i] = "#" + color.R.ToString("X2", CultureInfo.InvariantCulture) +
                     color.G.ToString("X2", CultureInfo.InvariantCulture) +
                     color.B.ToString("X2", CultureInfo.InvariantCulture);
@@ -201,35 +197,35 @@ namespace MinoriDemo.Core.ViewModels
 
         //void OnVisualsChanged(Object sender, VisualChangeEventArgs e)
         //{
-            //if (_animateStatus)
-            //{
-            //    StatusText.Text = string.Format(CultureInfo.InvariantCulture, "{0} live visuals of {1} total", grid.LiveVisualCount, _totalVisuals);
+        //if (_animateStatus)
+        //{
+        //    StatusText.Text = string.Format(CultureInfo.InvariantCulture, "{0} live visuals of {1} total", grid.LiveVisualCount, _totalVisuals);
 
-            //    int tick = Environment.TickCount;
-            //    if (e.Added != 0 || e.Removed != 0)
-            //    {
-            //        addedPerSecond += e.Added;
-            //        removedPerSecond += e.Removed;
-            //        if (tick > lastTick + 100)
-            //        {
-            //            Created.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
-            //                Math.Min(addedPerSecond, 450),
-            //                new Duration(TimeSpan.FromMilliseconds(100))));
-            //            CreatedLabel.Text = addedPerSecond.ToString(CultureInfo.InvariantCulture) + " created";
-            //            addedPerSecond = 0;
+        //    int tick = Environment.TickCount;
+        //    if (e.Added != 0 || e.Removed != 0)
+        //    {
+        //        addedPerSecond += e.Added;
+        //        removedPerSecond += e.Removed;
+        //        if (tick > lastTick + 100)
+        //        {
+        //            Created.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
+        //                Math.Min(addedPerSecond, 450),
+        //                new Duration(TimeSpan.FromMilliseconds(100))));
+        //            CreatedLabel.Text = addedPerSecond.ToString(CultureInfo.InvariantCulture) + " created";
+        //            addedPerSecond = 0;
 
-            //            Destroyed.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
-            //                Math.Min(removedPerSecond, 450),
-            //                new Duration(TimeSpan.FromMilliseconds(100))));
-            //            DestroyedLabel.Text = removedPerSecond.ToString(CultureInfo.InvariantCulture) + " disposed";
-            //            removedPerSecond = 0;
-            //        }
-            //    }
-            //    if (tick > lastTick + 1000)
-            //    {
-            //        lastTick = tick;
-            //    }
-            //}
+        //            Destroyed.BeginAnimation(Rectangle.WidthProperty, new DoubleAnimation(
+        //                Math.Min(removedPerSecond, 450),
+        //                new Duration(TimeSpan.FromMilliseconds(100))));
+        //            DestroyedLabel.Text = removedPerSecond.ToString(CultureInfo.InvariantCulture) + " disposed";
+        //            removedPerSecond = 0;
+        //        }
+        //    }
+        //    if (tick > lastTick + 1000)
+        //    {
+        //        lastTick = tick;
+        //    }
+        //}
         //}
 
         //void OnAnimateStatus(Object sender, RoutedEventArgs e)
@@ -255,48 +251,48 @@ namespace MinoriDemo.Core.ViewModels
                 {
                     if (value)
                     {
-                    Double width = _tileWidth + _tileMargin;
-                    Double height = _tileHeight + _tileMargin;
+                        Double width = _tileWidth + _tileMargin;
+                        Double height = _tileHeight + _tileMargin;
 
-                    Double numTileToAccumulate = 16;
+                        Double numTileToAccumulate = 16;
 
-                    //            Polyline gridCell = _gridLines;
-                    //            gridCell.Margin = new Thickness(_tileMargin);
-                    //            gridCell.Stroke = Brushes.Blue;
-                    //            gridCell.StrokeThickness = 0.1;
-                    //            gridCell.Points = new PointCollection(new Point[] { new Point(0, height-0.1),
-                    //                new Point(width-0.1, height-0.1), new Point(width-0.1, 0) });
-                    //            VisualBrush gridLines = new VisualBrush(gridCell)
-                    //            {
-                    //                TileMode = TileMode.Tile,
-                    //                Viewport = new Rect(0, 0, 1.0 / numTileToAccumulate, 1.0 / numTileToAccumulate),
-                    //                AlignmentX = AlignmentX.Center,
-                    //                AlignmentY = AlignmentY.Center
-                    //            };
+                        //            Polyline gridCell = _gridLines;
+                        //            gridCell.Margin = new Thickness(_tileMargin);
+                        //            gridCell.Stroke = Brushes.Blue;
+                        //            gridCell.StrokeThickness = 0.1;
+                        //            gridCell.Points = new PointCollection(new Point[] { new Point(0, height-0.1),
+                        //                new Point(width-0.1, height-0.1), new Point(width-0.1, 0) });
+                        //            VisualBrush gridLines = new VisualBrush(gridCell)
+                        //            {
+                        //                TileMode = TileMode.Tile,
+                        //                Viewport = new Rect(0, 0, 1.0 / numTileToAccumulate, 1.0 / numTileToAccumulate),
+                        //                AlignmentX = AlignmentX.Center,
+                        //                AlignmentY = AlignmentY.Center
+                        //            };
 
-                    //            VisualBrush outerVB = new VisualBrush();
-                    //            Rectangle outerRect = new Rectangle
-                    //            {
-                    //                Width = 10.0,  //can be any size
-                    //                Height = 10.0,
-                    //                Fill = gridLines
-                    //            };
-                    //            outerVB.Visual = outerRect;
-                    //            outerVB.Viewport = new Rect(0, 0,
-                    //                width * numTileToAccumulate, height * numTileToAccumulate);
-                    //            outerVB.ViewportUnits = BrushMappingMode.Absolute;
-                    //            outerVB.TileMode = TileMode.Tile;
+                        //            VisualBrush outerVB = new VisualBrush();
+                        //            Rectangle outerRect = new Rectangle
+                        //            {
+                        //                Width = 10.0,  //can be any size
+                        //                Height = 10.0,
+                        //                Fill = gridLines
+                        //            };
+                        //            outerVB.Visual = outerRect;
+                        //            outerVB.Viewport = new Rect(0, 0,
+                        //                width * numTileToAccumulate, height * numTileToAccumulate);
+                        //            outerVB.ViewportUnits = BrushMappingMode.Absolute;
+                        //            outerVB.TileMode = TileMode.Tile;
 
-                    //            graph.Backdrop.Background = outerVB;
+                        //            graph.Backdrop.Background = outerVB;
 
-                    //            Border border = graph.Backdrop;
-                    //            border.BorderBrush = Brushes.Blue;
-                    //            border.BorderThickness = new Thickness(0.1);
-                    //            graph.InvalidateVisual();
+                        //            Border border = graph.Backdrop;
+                        //            border.BorderBrush = Brushes.Blue;
+                        //            border.BorderThickness = new Thickness(0.1);
+                        //            graph.InvalidateVisual();
                     }
                     else
                     {
-                    //            graph.Backdrop.Background = null;
+                        //            graph.Backdrop.Background = null;
                     }
                 }
             }

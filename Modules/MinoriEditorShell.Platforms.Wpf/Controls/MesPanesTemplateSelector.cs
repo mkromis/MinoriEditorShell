@@ -14,10 +14,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             switch (item)
             {
                 case IMesTool _:
-                   return ToolTemplate;
+                    return ToolTemplate;
+
                 case IMesDocument _:
                     return DocumentTemplate;
-                default: 
+
+                default:
                     return base.SelectTemplate(item, container);
             }
         }

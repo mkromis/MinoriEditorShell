@@ -4,10 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
@@ -15,15 +12,16 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// <summary>
     /// EdgeBehavior defines what type of exponential animation to do.
     /// </summary>
-    public enum EdgeBehavior {
+    public enum EdgeBehavior
+    {
         EaseIn, EaseOut, EaseInOut
     }
 
     /// <summary>
     /// This class provides a non-linear DoubleAnimation.
     /// </summary>
-    public class MesExponentialDoubleAnimation : DoubleAnimation {
-
+    public class MesExponentialDoubleAnimation : DoubleAnimation
+    {
         /// <summary>
         /// The property for defining an EdgeBehavior value.
         /// </summary>
@@ -39,7 +37,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Construct new empty ExponentialDoubleAnimation object.
         /// </summary>
-        public MesExponentialDoubleAnimation() {
+        public MesExponentialDoubleAnimation()
+        {
         }
 
         /// <summary>
@@ -50,7 +49,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="power">With this exponential power</param>
         /// <param name="behavior">Using this type of behavior</param>
         /// <param name="duration">For this long</param>
-        public MesExponentialDoubleAnimation(Double from, Double to, Double power, EdgeBehavior behavior, Duration duration) {
+        public MesExponentialDoubleAnimation(Double from, Double to, Double power, EdgeBehavior behavior, Duration duration)
+        {
             EdgeBehavior = behavior;
             Duration = duration;
             Power = power;
@@ -88,14 +88,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         }
 
         /// <summary>
-        /// This method is called by WPF to implement the actual animation, so this method calculates 
+        /// This method is called by WPF to implement the actual animation, so this method calculates
         /// the exponential value based on how long we've been running so far.
         /// </summary>
         /// <param name="defaultOriginValue"></param>
         /// <param name="defaultDestinationValue"></param>
         /// <param name="clock"></param>
         /// <returns></returns>
-        protected override Double GetCurrentValueCore(Double defaultOriginValue, Double defaultDestinationValue, AnimationClock animationClock) {
+        protected override Double GetCurrentValueCore(Double defaultOriginValue, Double defaultDestinationValue, AnimationClock animationClock)
+        {
             Double returnValue;
             Double start = (Double)From;
             Double delta = (Double)To - start;
@@ -104,13 +105,16 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 return (Double)To;
             }
-            switch (EdgeBehavior) {
+            switch (EdgeBehavior)
+            {
                 case EdgeBehavior.EaseIn:
                     returnValue = EaseIn(timeFraction, start, delta, Power);
                     break;
+
                 case EdgeBehavior.EaseOut:
                     returnValue = EaseOut(timeFraction, start, delta, Power);
                     break;
+
                 case EdgeBehavior.EaseInOut:
                 default:
                     returnValue = EaseInOut(timeFraction, start, delta, Power);
@@ -133,7 +137,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="delta">Delta between start value and the end value we want</param>
         /// <param name="power">The rate of exponental growth</param>
         /// <returns></returns>
-        private static Double EaseIn(Double timeFraction, Double start, Double delta, Double power) {
+        private static Double EaseIn(Double timeFraction, Double start, Double delta, Double power)
+        {
             // math magic: simple exponential growth
             Double returnValue = Math.Pow(timeFraction, power);
             returnValue *= delta;
@@ -172,9 +177,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Double returnValue;
 
             // we cut each effect in half by multiplying the time fraction by two and halving the distance.
-            if (timeFraction <= 0.5) {
+            if (timeFraction <= 0.5)
+            {
                 returnValue = EaseOut(timeFraction * 2, start, delta / 2, power);
-            } else {
+            }
+            else
+            {
                 returnValue = EaseIn((timeFraction - 0.5) * 2, start, delta / 2, power);
                 returnValue += (delta / 2);
             }

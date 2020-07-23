@@ -1,5 +1,4 @@
 ﻿using MinoriEditorShell.Platforms.Wpf;
-using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using System;

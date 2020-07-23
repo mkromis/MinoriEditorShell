@@ -24,6 +24,7 @@ namespace MinoriEditorShell.Messages
         /// Name of settings that changed
         /// </summary>
         public String Name { get; }
+
         /// <summary>
         /// New value
         /// </summary>

@@ -3,25 +3,20 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Controls;
-using MinoriEditorShell.VirtualCanvas.Services;
 using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls;
+using MinoriEditorShell.VirtualCanvas.Services;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 {
-
     /// <summary>
-    /// This class provides the ability to pan the target object when dragging the mouse 
+    /// This class provides the ability to pan the target object when dragging the mouse
     /// </summary>
     public class MesPan : IMesPan
     {
-
         private Boolean _dragging;
         private readonly FrameworkElement _target;
         private readonly MesMapZoom _zoom;
@@ -36,10 +31,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="target">The target to be panned, must live inside a container Panel</param>
         /// <param name="zoom"></param>
-        public MesPan(IMesContentCanvas target, IMesMapZoom zoom) {
+        public MesPan(IMesContentCanvas target, IMesMapZoom zoom)
+        {
             _target = (MesContentCanvas)target;
             _container = _target.Parent as Panel;
-            if (_container == null) {
+            if (_container == null)
+            {
                 // todo: localization
                 throw new ArgumentException("Target object must live in a Panel");
             }
@@ -55,8 +52,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Container</param>
         /// <param name="e">Mouse information</param>
-        void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e) {
-
+        private void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
+        {
             ModifierKeys mask = Keyboard.Modifiers & _mods;
             if (!e.Handled && mask == _mods && mask == Keyboard.Modifiers)
             {
@@ -75,9 +72,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Move information</param>
-        void OnMouseMove(Object sender, MouseEventArgs e) {
-            if (_dragging) {
-                if (!_captured) {
+        private void OnMouseMove(Object sender, MouseEventArgs e)
+        {
+            if (_dragging)
+            {
+                if (!_captured)
+                {
                     _captured = true;
                     _target.Cursor = Cursors.Hand;
                     Mouse.Capture(_target, CaptureMode.SubTree);
@@ -91,13 +91,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e) {
-
-            if (_captured) {
+        private void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
+        {
+            if (_captured)
+            {
                 Mouse.Capture(_target, CaptureMode.None);
                 e.Handled = true;
                 _target.Cursor = Cursors.Arrow; ;
-                _captured = false;   
+                _captured = false;
             }
 
             _dragging = false;
@@ -107,11 +108,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// Move the target object by the given delta delative to the start scroll position we recorded in mouse down event.
         /// </summary>
         /// <param name="v">A vector containing the delta from recorded mouse down position and current mouse position</param>
-        public void MoveBy(Vector v) {
+        public void MoveBy(Vector v)
+        {
             _zoom.Offset = new Point(_startTranslate.X - v.X, _startTranslate.Y - v.Y);
             _target.InvalidateVisual();
         }
-
-
     }
 }

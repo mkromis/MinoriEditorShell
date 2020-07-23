@@ -1,10 +1,8 @@
-﻿using MinoriEditorShell.Extensions;
-using MinoriEditorShell.Platforms.Wpf.Themes;
+﻿using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Plugin;
 using System;
-using System.Collections.Generic;
 
 namespace MinoriEditorShell.Ribbon.Platforms.Wpf
 {

@@ -12,12 +12,12 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:NullableValueConverter x:Key="NullableValueConverter" />
-            <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
 
     <xcad:DockingManager
-        x:Name="Manager" 
+        x:Name="Manager"
         DocumentsSource="{Binding Documents}"
         AnchorablesSource="{Binding Tools}"
         ActiveContent="{Binding ActiveItem, Mode=TwoWay}"
@@ -32,7 +32,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <!--<controls:ToolPaneToolBar ItemsSource="{Binding ToolBar}" />-->
-                            <ContentControl 
+                            <ContentControl
                                 Grid.Row="1"
                                 Content="{Binding View}"
                                 IsTabStop="False" />
@@ -47,7 +47,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <!--<controls:ToolPaneToolBar ItemsSource="{Binding ToolBar}" />-->
-                            <ContentControl 
+                            <ContentControl
                                 Grid.Row="1"
                                 Content="{Binding View}"
                                 IsTabStop="False" />
@@ -75,7 +75,7 @@
                         <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
                         <Setter Property="IconSource" Value="{Binding Model.IconSource, Converter={StaticResource NullableValueConverter}}" />
                         <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
-                        <Setter Property="Visibility" Value="{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}"/>
+                        <Setter Property="Visibility" Value="{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}" />
                         <Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=OneWay}" />
                     </Style>
                 </controls:MesPanesStyleSelector.ToolStyle>

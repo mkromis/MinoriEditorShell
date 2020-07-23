@@ -1,11 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MinoriEditorShell.Platforms.Wpf.Themes;
 using MvvmCross.Tests;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
 {

@@ -1,10 +1,10 @@
+using AvalonDock;
+using AvalonDock.Layout;
+using AvalonDock.Layout.Serialization;
 using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using AvalonDock;
-using AvalonDock.Layout;
-using AvalonDock.Layout.Serialization;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
@@ -27,8 +27,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
                     if (items.TryGetValue(e.Model.ContentId, out IMesLayoutItem item))
                     {
                         e.Content = item;
-
-
 
                         if (item is IMesTool tool && e.Model is LayoutAnchorable anchorable)
                         {

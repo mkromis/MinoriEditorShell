@@ -14,7 +14,9 @@ namespace MinoriEditorShell.Services
         Uri IconSource { get; }
         bool IsSelected { get; set; }
         bool ShouldReopenOnStart { get; }
+
         void LoadState(BinaryReader reader);
+
         void SaveState(BinaryWriter writer);
     }
 }

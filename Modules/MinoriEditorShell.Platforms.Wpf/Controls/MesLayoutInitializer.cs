@@ -1,16 +1,16 @@
+using AvalonDock.Layout;
+using MinoriEditorShell.Services;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MinoriEditorShell.Services;
-using AvalonDock.Layout;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
-	public class MesLayoutInitializer : ILayoutUpdateStrategy
-	{
-		public Boolean BeforeInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableToShow, ILayoutContainer destinationContainer)
-		{
+    public class MesLayoutInitializer : ILayoutUpdateStrategy
+    {
+        public Boolean BeforeInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableToShow, ILayoutContainer destinationContainer)
+        {
             if (anchorableToShow.Content is IMesTool tool)
             {
                 MesPaneLocation preferredLocation = tool.PreferredLocation;
@@ -23,12 +23,15 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                         case MesPaneLocation.Left:
                             toolsPane = CreateAnchorablePane(layout, Orientation.Horizontal, paneName, InsertPosition.Start);
                             break;
+
                         case MesPaneLocation.Right:
                             toolsPane = CreateAnchorablePane(layout, Orientation.Horizontal, paneName, InsertPosition.End);
                             break;
+
                         case MesPaneLocation.Bottom:
                             toolsPane = CreateAnchorablePane(layout, Orientation.Vertical, paneName, InsertPosition.End);
                             break;
+
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
@@ -38,22 +41,25 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             }
 
             return false;
-		}
+        }
 
-		private static String GetPaneName(MesPaneLocation location)
-		{
-			switch (location)
-			{
-				case MesPaneLocation.Left:
-					return "LeftPane";
-				case MesPaneLocation.Right:
-					return "RightPane";
-				case MesPaneLocation.Bottom:
-					return "BottomPane";
-				default:
-					throw new ArgumentOutOfRangeException("location");
-			}
-		}
+        private static String GetPaneName(MesPaneLocation location)
+        {
+            switch (location)
+            {
+                case MesPaneLocation.Left:
+                    return "LeftPane";
+
+                case MesPaneLocation.Right:
+                    return "RightPane";
+
+                case MesPaneLocation.Bottom:
+                    return "BottomPane";
+
+                default:
+                    throw new ArgumentOutOfRangeException("location");
+            }
+        }
 
         private static LayoutAnchorablePane CreateAnchorablePane(LayoutRoot layout, Orientation orientation,
             String paneName, InsertPosition position)
@@ -78,8 +84,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             End
         }
 
-		public void AfterInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableShown)
-		{
+        public void AfterInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableShown)
+        {
             // If this is the first anchorable added to this pane, then use the preferred size.
             if (anchorableShown.Content is IMesTool tool)
             {
@@ -91,9 +97,11 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                         case MesPaneLocation.Right:
                             anchorablePane.DockWidth = new GridLength(tool.PreferredWidth, GridUnitType.Pixel);
                             break;
+
                         case MesPaneLocation.Bottom:
                             anchorablePane.DockHeight = new GridLength(tool.PreferredHeight, GridUnitType.Pixel);
                             break;
+
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
@@ -104,8 +112,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         public Boolean BeforeInsertDocument(LayoutRoot layout, LayoutDocument anchorableToShow, ILayoutContainer destinationContainer) => false;
 
         public void AfterInsertDocument(LayoutRoot layout, LayoutDocument anchorableShown)
-	    {
-	        
-	    }
-	}
+        {
+        }
+    }
 }

@@ -6,8 +6,8 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
-	public abstract class MesLayoutItemBase : MvxViewModel, IMesLayoutItem
-	{
+    public abstract class MesLayoutItemBase : MvxViewModel, IMesLayoutItem
+    {
         private bool _isSelected;
 
         public abstract ICommand CloseCommand { get; }
@@ -30,7 +30,7 @@ namespace MinoriEditorShell.Services
         }
 
         [Browsable(false)]
-		public bool IsSelected
+        public bool IsSelected
         {
             get => _isSelected;
             set => SetProperty(ref _isSelected, value);
@@ -40,11 +40,11 @@ namespace MinoriEditorShell.Services
         public virtual bool ShouldReopenOnStart => false;
 
         public virtual void LoadState(BinaryReader reader)
-		{
-		}
+        {
+        }
 
-		public virtual void SaveState(BinaryWriter writer)
-		{
-		}
-	}
+        public virtual void SaveState(BinaryWriter writer)
+        {
+        }
+    }
 }

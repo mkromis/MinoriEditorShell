@@ -1,10 +1,12 @@
 #region File Description
+
 //-----------------------------------------------------------------------------
 // Copyright 2011, Nick Gravelyn.
-// Licensed under the terms of the Ms-PL: 
+// Licensed under the terms of the Ms-PL:
 // http://www.microsoft.com/opensource/licenses.mspx#Ms-PL
 //-----------------------------------------------------------------------------
-#endregion
+
+#endregion File Description
 
 using MinoriEditorShell.Platforms.Wpf.Win32;
 using System;
@@ -49,7 +51,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         // Tracking whether we've "capture" the mouse
         private bool _isMouseCaptured;
 
-        #endregion
+        #endregion Fields
 
         #region Events
 
@@ -148,7 +150,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         /// </summary>
         public event EventHandler<MesHwndMouseEventArgs> HwndMouseWheel;
 
-        #endregion
+        #endregion Events
 
         #region Properties
 
@@ -157,7 +159,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             get { return _isMouseCaptured; }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Construction and Disposal
 
@@ -188,7 +190,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             base.Dispose(disposing);
         }
 
-        #endregion
+        #endregion Construction and Disposal
 
         #region Public Methods
 
@@ -224,15 +226,15 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             _isMouseCaptured = false;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Graphics Device Control Implementation
 
         private void OnCompositionTargetRendering(object sender, EventArgs e)
         {
             // Get the current width and height of the control
-            var width = (int) ActualWidth;
-            var height = (int) ActualHeight;
+            var width = (int)ActualWidth;
+            var height = (int)ActualHeight;
 
             // If the control has no width or no height, skip drawing since it's not visible
             if (width < 1 || height < 1)
@@ -295,7 +297,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             _mouseInWindow = false;
         }
 
-        #endregion
+        #endregion Graphics Device Control Implementation
 
         #region HWND Management
 
@@ -324,7 +326,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             // Create the window
             return NativeMethods.CreateWindowEx(0, WindowClass, "",
                NativeMethods.WS_CHILD | NativeMethods.WS_VISIBLE,
-               0, 0, (int) Width, (int) Height, hWndParent, IntPtr.Zero, IntPtr.Zero, 0);
+               0, 0, (int)Width, (int)Height, hWndParent, IntPtr.Zero, IntPtr.Zero, 0);
         }
 
         /// <summary>
@@ -333,7 +335,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         private void RegisterWindowClass()
         {
             var wndClass = new NativeMethods.WNDCLASSEX();
-            wndClass.cbSize = (uint) Marshal.SizeOf(wndClass);
+            wndClass.cbSize = (uint)Marshal.SizeOf(wndClass);
             wndClass.hInstance = NativeMethods.GetModuleHandle(null);
             wndClass.lpfnWndProc = NativeMethods.DefaultWindowProc;
             wndClass.lpszClassName = WindowClass;
@@ -342,7 +344,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             NativeMethods.RegisterClassEx(ref wndClass);
         }
 
-        #endregion
+        #endregion HWND Management
 
         #region WndProc Implementation
 
@@ -357,69 +359,82 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                         RaiseHwndMouseWheel(new MesHwndMouseEventArgs(_mouseState, delta, 0));
                     }
                     break;
+
                 case NativeMethods.WM_LBUTTONDOWN:
                     _mouseState.LeftButton = MouseButtonState.Pressed;
                     RaiseHwndLButtonDown(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_LBUTTONUP:
                     _mouseState.LeftButton = MouseButtonState.Released;
                     RaiseHwndLButtonUp(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_LBUTTONDBLCLK:
                     RaiseHwndLButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Left));
                     break;
+
                 case NativeMethods.WM_RBUTTONDOWN:
                     _mouseState.RightButton = MouseButtonState.Pressed;
                     RaiseHwndRButtonDown(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_RBUTTONUP:
                     _mouseState.RightButton = MouseButtonState.Released;
                     RaiseHwndRButtonUp(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_RBUTTONDBLCLK:
                     RaiseHwndRButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Right));
                     break;
+
                 case NativeMethods.WM_MBUTTONDOWN:
                     _mouseState.MiddleButton = MouseButtonState.Pressed;
                     RaiseHwndMButtonDown(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_MBUTTONUP:
                     _mouseState.MiddleButton = MouseButtonState.Released;
                     RaiseHwndMButtonUp(new MesHwndMouseEventArgs(_mouseState));
                     break;
+
                 case NativeMethods.WM_MBUTTONDBLCLK:
                     RaiseHwndMButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Middle));
                     break;
+
                 case NativeMethods.WM_XBUTTONDOWN:
-                    if (((int) wParam & NativeMethods.MK_XBUTTON1) != 0)
+                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
                     {
                         _mouseState.X1Button = MouseButtonState.Pressed;
                         RaiseHwndX1ButtonDown(new MesHwndMouseEventArgs(_mouseState));
                     }
-                    else if (((int) wParam & NativeMethods.MK_XBUTTON2) != 0)
+                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
                     {
                         _mouseState.X2Button = MouseButtonState.Pressed;
                         RaiseHwndX2ButtonDown(new MesHwndMouseEventArgs(_mouseState));
                     }
                     break;
+
                 case NativeMethods.WM_XBUTTONUP:
-                    if (((int) wParam & NativeMethods.MK_XBUTTON1) != 0)
+                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
                     {
                         _mouseState.X1Button = MouseButtonState.Released;
                         RaiseHwndX1ButtonUp(new MesHwndMouseEventArgs(_mouseState));
                     }
-                    else if (((int) wParam & NativeMethods.MK_XBUTTON2) != 0)
+                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
                     {
                         _mouseState.X2Button = MouseButtonState.Released;
                         RaiseHwndX2ButtonUp(new MesHwndMouseEventArgs(_mouseState));
                     }
                     break;
+
                 case NativeMethods.WM_XBUTTONDBLCLK:
-                    if (((int) wParam & NativeMethods.MK_XBUTTON1) != 0)
+                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
                         RaiseHwndX1ButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton1));
-                    else if (((int) wParam & NativeMethods.MK_XBUTTON2) != 0)
+                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
                         RaiseHwndX2ButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton2));
                     break;
+
                 case NativeMethods.WM_MOUSEMOVE:
                     // If the application isn't in focus, we don't handle this message
                     if (!_applicationHasFocus)
@@ -427,8 +442,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
                     // record the prevous and new position of the mouse
                     _mouseState.ScreenPosition = PointToScreen(new Point(
-                        NativeMethods.GetXLParam((int) lParam),
-                        NativeMethods.GetYLParam((int) lParam)));
+                        NativeMethods.GetXLParam((int)lParam),
+                        NativeMethods.GetYLParam((int)lParam)));
 
                     if (!_mouseInWindow)
                     {
@@ -443,7 +458,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                         // send the track mouse event so that we get the WM_MOUSELEAVE message
                         var tme = new NativeMethods.TRACKMOUSEEVENT
                         {
-                            cbSize = Marshal.SizeOf(typeof (NativeMethods.TRACKMOUSEEVENT)),
+                            cbSize = Marshal.SizeOf(typeof(NativeMethods.TRACKMOUSEEVENT)),
                             dwFlags = NativeMethods.TME_LEAVE,
                             hWnd = hwnd
                         };
@@ -456,6 +471,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     _previousPosition = _mouseState.ScreenPosition;
 
                     break;
+
                 case NativeMethods.WM_MOUSELEAVE:
 
                     // If we have capture, we ignore this message because we're just
@@ -463,7 +479,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     if (_isMouseCaptured)
                         break;
 
-                    // Reset the state which releases all buttons and 
+                    // Reset the state which releases all buttons and
                     // marks the mouse as not being in the window.
                     ResetMouseState();
 
@@ -610,6 +626,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                 handler(this, args);
         }
 
-        #endregion
+        #endregion WndProc Implementation
     }
 }

@@ -1,12 +1,10 @@
-﻿using AvalonDock.Themes;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.DataClasses;
 using MinoriDemo.RibbonWPF.Modules.Themes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -19,7 +17,8 @@ namespace MinoriDemo.RibbonWPF.Views
     public partial class ThemeEditorView
     {
         // TODO: I18n
-        const String _newKey = "Unnamed";
+        private const String _newKey = "Unnamed";
+
         public ThemeHelper _themeHelper;
 
         public ThemeEditorView()
@@ -33,7 +32,7 @@ namespace MinoriDemo.RibbonWPF.Views
         }
 
         /// <summary>
-        /// Updates list from 
+        /// Updates list from
         /// </summary>
         private void UpdateList(IDictionary<String, SolidColorBrush> brushes)
         {
@@ -131,7 +130,7 @@ namespace MinoriDemo.RibbonWPF.Views
 
                     // Set new name here
                     String newKey = item.Key;
-                    // where !old key 
+                    // where !old key
                     if (!String.IsNullOrEmpty(newKey) && newKey != item.OriginalKey)
                     {
                         // Get list
@@ -142,7 +141,8 @@ namespace MinoriDemo.RibbonWPF.Views
                         {
                             brushes[item.Key] = brushes[item.OriginalKey];
                             brushes.Remove(item.OriginalKey);
-                        } else
+                        }
+                        else
                         {
                             brushes[item.Key] = new SolidColorBrush();
                         }

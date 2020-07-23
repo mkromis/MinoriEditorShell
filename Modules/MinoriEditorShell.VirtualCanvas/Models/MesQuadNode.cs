@@ -13,7 +13,6 @@ namespace MinoriEditorShell.VirtualCanvas.Models
     /// </summary>
     internal class MesQuadNode<T> : IMesQuadNode<T>
     {
-
         /// <summary>
         /// Construct new QuadNode to wrap the given node with given bounds
         /// </summary>

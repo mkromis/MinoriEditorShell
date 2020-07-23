@@ -14,9 +14,9 @@ namespace MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models
     {
         private IMesVirtualCanvasControl _parent;
         private Typeface _typeface;
-        Double _fontSize;
+        private Double _fontSize;
         private System.Drawing.Color baseColor;
-        RectangleF _bounds;
+        private RectangleF _bounds;
         private TestShapeType _shape;
         private Point[] _points;
         private LinearGradientBrush _fill;
@@ -26,7 +26,8 @@ namespace MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models
 
         public String Label { get; set; }
 
-        public System.Drawing.Color BaseColor {
+        public System.Drawing.Color BaseColor
+        {
             get => baseColor;
             set
             {
@@ -68,36 +69,43 @@ namespace MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models
                         _points[1] = new Point(bounds.Right, bounds.Top);
                         _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
+
                     case 1:
                         _points[0] = new Point(bounds.Right, bounds.Top);
                         _points[1] = new Point(bounds.Right, bounds.Bottom);
                         _points[2] = new Point(bounds.Left, bounds.Right);
                         break;
+
                     case 2:
                         _points[0] = new Point(bounds.Right, bounds.Bottom);
                         _points[1] = new Point(bounds.Left, bounds.Bottom);
                         _points[2] = new Point(bounds.Left, bounds.Top);
                         break;
+
                     case 3:
                         _points[0] = new Point(bounds.Left, bounds.Bottom);
                         _points[1] = new Point(bounds.Left, bounds.Top);
                         _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
+
                     case 4:
                         _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Right, bounds.Height / 2);
                         _points[2] = new Point(bounds.Left, bounds.Bottom);
                         break;
+
                     case 5:
                         _points[0] = new Point(bounds.Right, bounds.Top);
                         _points[1] = new Point(bounds.Left, bounds.Height / 2);
                         _points[2] = new Point(bounds.Right, bounds.Bottom);
                         break;
+
                     case 6:
                         _points[0] = new Point(bounds.Left, bounds.Top);
                         _points[1] = new Point(bounds.Width / 2, bounds.Bottom);
                         _points[2] = new Point(bounds.Right, bounds.Top);
                         break;
+
                     case 7:
                         _points[0] = new Point(bounds.Left, bounds.Bottom);
                         _points[1] = new Point(bounds.Width / 2, bounds.Top);
@@ -237,7 +245,5 @@ namespace MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models
                 FlowDirection.LeftToRight, _typeface, _fontSize, Brushes.Black);
             return new Size(ft.Width, ft.Height);
         }
-
-
     }
 }

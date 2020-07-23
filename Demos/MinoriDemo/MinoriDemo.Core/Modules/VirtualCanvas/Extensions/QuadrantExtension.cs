@@ -25,7 +25,6 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions
             DumpQuadrant("TopRight", source.TopRight, w);
             DumpQuadrant("BottomLeft", source.BottomLeft, w);
             DumpQuadrant("BottomRight", source.BottomRight, w);
-
         }
 
         private static void DumpQuadrant<T>(String label, IMesQuadrant<T> q, LogWriter w) where T : class

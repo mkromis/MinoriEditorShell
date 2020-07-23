@@ -1,11 +1,7 @@
 using MinoriEditorShell.Services;
-using MvvmCross.UI;
 using MvvmCross.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Drawing;
-using System.Windows;
 
 namespace MinoriEditorShell.ViewModels
 {
@@ -15,64 +11,80 @@ namespace MinoriEditorShell.ViewModels
     public class MesStatusBarViewModel : MvxViewModel, IMesStatusBar
     {
         #region Fields
+
         /// <summary>
         /// The line number
         /// </summary>
         private Int32? _lineNumber;
+
         /// <summary>
         /// The insert mode
         /// </summary>
         private Boolean? _insertMode;
+
         /// <summary>
         /// The col position
         /// </summary>
         private Int32? _colPosition;
+
         /// <summary>
         /// The char position
         /// </summary>
         private Int32? _charPosition;
+
         /// <summary>
         /// The p max
         /// </summary>
         private UInt32 _pMax;
+
         /// <summary>
         /// The _p val
         /// </summary>
         private UInt32 _pVal;
+
         /// <summary>
         /// The _foreground
         /// </summary>
         private Color _foreground;
+
         /// <summary>
         /// The _background
         /// </summary>
         private Color _background;
+
         /// <summary>
         /// The _show progress
         /// </summary>
         private Boolean _showProgress;
+
         /// <summary>
         /// The _anim image
         /// </summary>
         private Image _animImage;
+
         /// <summary>
         /// The _is frozen
         /// </summary>
         private Boolean _isFrozen;
+
         /// <summary>
         /// The _text
         /// </summary>
         private String _text;
-        #endregion
+
+        #endregion Fields
 
         #region CTOR
+
         /// <summary>
         /// Initializes a new instance of the <see cref="IMesStatusbarService"/> class.
         /// </summary>
         public MesStatusBarViewModel() => Clear();
-        #endregion
+
+        #endregion CTOR
 
         #region IStatusbarService members
+
         /// <summary>
         /// Animations the specified image.
         /// </summary>
@@ -91,7 +103,7 @@ namespace MinoriEditorShell.ViewModels
         public Boolean Clear()
         {
             Foreground = Color.White;
-            Background = Color.FromArgb(0,122,204);
+            Background = Color.FromArgb(0, 122, 204);
             Text = "Ready";
             IsFrozen = false;
             ShowProgressBar = false;
@@ -224,7 +236,6 @@ namespace MinoriEditorShell.ViewModels
             set => SetProperty(ref _pVal, value);
         }
 
-
         /// <summary>
         /// Gets or sets a value indicating whether [show progress bar].
         /// </summary>
@@ -244,7 +255,7 @@ namespace MinoriEditorShell.ViewModels
             get => _animImage;
             set => SetProperty(ref _animImage, value);
         }
-        #endregion
 
+        #endregion IStatusbarService members
     }
 }

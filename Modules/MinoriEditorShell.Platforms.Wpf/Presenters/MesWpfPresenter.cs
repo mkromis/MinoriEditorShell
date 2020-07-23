@@ -56,7 +56,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
                 IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
 
                 // from which we can now get the view model.
-                switch(view.ViewModel) {
+                switch (view.ViewModel)
+                {
                     case IMesDocument document:
 
                         // Try to set view, this is needed for DocumentManager

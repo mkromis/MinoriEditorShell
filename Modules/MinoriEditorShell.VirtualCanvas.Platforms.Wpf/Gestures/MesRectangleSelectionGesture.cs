@@ -28,6 +28,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         private readonly Int32 _selectionThreshold = 5; // allow some mouse wiggle on mouse down without actually selecting stuff!
 
         public event EventHandler Selected;
+
         public event EventHandler ZoomReset;
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse down information</param>
-        void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
             ModifierKeys modifier = ConsoleModifiers.ToModifierKeys();
             if (!e.Handled && (Keyboard.Modifiers & modifier) == modifier)
@@ -93,7 +94,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse move information.</param>
-        void OnMouseMove(Object sender, MouseEventArgs e)
+        private void OnMouseMove(Object sender, MouseEventArgs e)
         {
             if (_watching)
             {
@@ -123,7 +124,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse button information</param>
-        void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
         {
             _watching = false;
             if (_selectionRectVisual != null)
@@ -136,7 +137,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 
                 Selected?.Invoke(this, EventArgs.Empty);
 
-                if (ZoomSelection && f > ZoomSizeThreshold )
+                if (ZoomSelection && f > ZoomSizeThreshold)
                 {
                     _zoom.ZoomToRect(r);
                 }
@@ -151,7 +152,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                     ZoomReset?.Invoke(this, EventArgs.Empty);
                 }
             }
-
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        Rect GetSelectionRect(Point p)
+        private Rect GetSelectionRect(Point p)
         {
             Rect r = new Rect(_start, p);
             return _container.TransformToDescendant(_target).TransformBounds(r);

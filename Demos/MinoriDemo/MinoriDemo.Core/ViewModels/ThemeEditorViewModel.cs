@@ -2,7 +2,7 @@
 
 namespace MinoriDemo.Core.ViewModels
 {
-    class ThemeEditorViewModel : MesDocument
+    internal class ThemeEditorViewModel : MesDocument
     {
         public ThemeEditorViewModel()
         {

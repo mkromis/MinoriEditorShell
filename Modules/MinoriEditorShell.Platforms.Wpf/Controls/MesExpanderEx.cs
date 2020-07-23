@@ -9,6 +9,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MesExpanderEx),
                 new FrameworkPropertyMetadata(typeof(MesExpanderEx)));
-        } 
+        }
     }
 }

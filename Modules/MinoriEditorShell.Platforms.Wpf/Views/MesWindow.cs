@@ -1,9 +1,7 @@
 ﻿using MahApps.Metro.Controls;
-using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;

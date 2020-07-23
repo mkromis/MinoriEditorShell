@@ -1,12 +1,10 @@
-using Microsoft.Win32;
 using MinoriEditorShell.Results;
 using MinoriEditorShell.Services;
-using System;
 
 namespace MinoriEditorShell.Platforms.Wpf.Results
 {
-	public static class MesShow
-	{
+    public static class MesShow
+    {
 #warning fix common dialog
         //public static MesShowCommonDialogResult CommonDialog(CommonDialog commonDialog) => new MesShowCommonDialogResult(commonDialog);
 

@@ -7,7 +7,7 @@ namespace MinoriEditorShell.Services
     public interface IMesDocumentManagerView
     {
         void LoadLayout(
-            Stream stream, Action<IMesTool> addToolCallback, 
+            Stream stream, Action<IMesTool> addToolCallback,
             Action<IMesDocument> addDocumentCallback,
             Dictionary<String, IMesLayoutItem> itemsState);
 

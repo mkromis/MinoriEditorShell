@@ -23,10 +23,12 @@ namespace MinoriEditorShell.DataClasses
         /// Name of setting
         /// </summary>
         public String Name { get; set; }
+
         /// <summary>
         /// Holds the editor viewmodel
         /// </summary>
         public List<IMesSettings> Editors { get; private set; }
+
         /// <summary>
         /// Children contains more views
         /// </summary>

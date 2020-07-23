@@ -8,12 +8,10 @@ using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Plugin;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -124,7 +122,6 @@ namespace MinoriEditorShell.Platforms.Wpf
                 Thread.CurrentThread.CurrentUICulture = culture;
                 Thread.CurrentThread.CurrentCulture = culture;
             }
-
         }
     }
 

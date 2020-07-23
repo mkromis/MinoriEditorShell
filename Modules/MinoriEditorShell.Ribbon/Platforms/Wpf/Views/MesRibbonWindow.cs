@@ -1,21 +1,18 @@
 ﻿using Fluent;
 using MahApps.Metro.Controls;
 using MinoriEditorShell.Platforms.Wpf.Views;
-using MvvmCross;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Markup;
-using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
 namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
 {
     public class MesRibbonWindow : MesWindow, IMvxWindow, IMvxWpfView, IRibbonWindow
     {
         #region TitelBar
+
         /// <summary>
         /// Gets ribbon titlebar
         /// </summary>
@@ -33,7 +30,8 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
         /// <see cref="DependencyProperty"/> for <see cref="TitleBar"/>.
         /// </summary>
         public static readonly DependencyProperty TitleBarProperty = TitleBarPropertyKey.DependencyProperty;
-        #endregion
+
+        #endregion TitelBar
 
         public MesRibbonWindow() : base()
         {

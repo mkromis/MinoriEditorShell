@@ -12,8 +12,9 @@ namespace MinoriEditorShell.Services
         /// View attached to view model
         /// </summary>
         IMvxView View { get; set; }
+
         /// <summary>
-        /// Determines 
+        /// Determines
         /// </summary>
         Boolean CanClose { get; }
     }

@@ -9,13 +9,15 @@ namespace MinoriEditorShell.ViewModels
     public class MesDocumentManagerViewModel : MvxViewModel, IMesDocumentManager
     {
         public event EventHandler ActiveDocumentChanging;
+
         public event EventHandler ActiveDocumentChanged;
 
         public IMesDocumentManagerView ManagerView { get; set; }
-	    private readonly Boolean _closing;
+        private readonly Boolean _closing;
 
         private IMesLayoutItem _activeItem;
-	    public IMesLayoutItem ActiveItem
+
+        public IMesLayoutItem ActiveItem
         {
             get => _activeItem;
             set
@@ -108,16 +110,16 @@ namespace MinoriEditorShell.ViewModels
         }
 #endif
 
-	    public void ShowTool<TTool>()
+        public void ShowTool<TTool>()
             where TTool : IMesTool
-	    {
+        {
 #warning ShowTool<TTool>
             //ShowTool(Mvx.IoCProvider.Resolve<TTool>());
         }
 
-	    public void ShowTool(IMesTool model)
-		{
-		    if (Tools.Contains(model))
+        public void ShowTool(IMesTool model)
+        {
+            if (Tools.Contains(model))
             {
                 model.IsVisible = true;
             }
@@ -127,17 +129,17 @@ namespace MinoriEditorShell.ViewModels
             }
 
             model.IsSelected = true;
-	        ActiveItem = model;
-		}
+            ActiveItem = model;
+        }
 
-		public void OpenDocument(IMesDocument model)
-		{
+        public void OpenDocument(IMesDocument model)
+        {
 #warning OpenDocument(IDocument model)
             //ActivateItem(model);
-		}
+        }
 
-		public void CloseDocument(IMesDocument document)
-		{
+        public void CloseDocument(IMesDocument document)
+        {
 #warning CloseDocument(IDocument document)
             //DeactivateItem(document, true);
         }
@@ -201,7 +203,6 @@ namespace MinoriEditorShell.ViewModels
 	    }
 #endif
 
-
 #warning OnDeactivate(bool close)
 #if false
         protected override void OnDeactivate(bool close)
@@ -209,12 +210,12 @@ namespace MinoriEditorShell.ViewModels
             // Workaround for a complex bug that occurs when
             // (a) the window has multiple documents open, and
             // (b) the last document is NOT active
-            // 
+            //
             // The issue manifests itself with a crash in
             // the call to base.ActivateItem(item), above,
             // saying that the collection can't be changed
             // in a CollectionChanged event handler.
-            // 
+            //
             // The issue occurs because:
             // - Caliburn.Micro sees the window is closing, and calls Items.Clear()
             // - AvalonDock handles the CollectionChanged event, and calls Remove()

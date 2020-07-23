@@ -10,7 +10,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         {
             var parentObject = VisualTreeHelper.GetParent(child);
 
-            if (parentObject == null) 
+            if (parentObject == null)
                 return null;
 
             var parent = parentObject as T;

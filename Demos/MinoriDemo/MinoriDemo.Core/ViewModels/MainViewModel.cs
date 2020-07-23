@@ -16,6 +16,7 @@ namespace MinoriDemo.Core.ViewModels
     {
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
+
         private Color _testcolor = Color.CornflowerBlue;
         private readonly IMesDocumentManager _manager;
         private readonly IMesStatusBar _statusBar;
@@ -26,7 +27,7 @@ namespace MinoriDemo.Core.ViewModels
             set => SetProperty(ref _canvasModel, value);
         }
 
-        public ICommand OpenCanvasCommand => new MvxAsyncCommand(async() =>
+        public ICommand OpenCanvasCommand => new MvxAsyncCommand(async () =>
         {
             if (CanvasModel == null)
             {
@@ -44,6 +45,7 @@ namespace MinoriDemo.Core.ViewModels
             get => _testcolor;
             set => SetProperty(ref _testcolor, value);
         }
+
         public Double ZoomValue { get; set; }
 
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
@@ -65,7 +67,7 @@ namespace MinoriDemo.Core.ViewModels
         }
 
         public MainViewModel(
-            IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
+            IMvxLogProvider logProvider, IMvxNavigationService navigationService,
             IMesDocumentManager manager, IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {

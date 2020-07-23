@@ -24,16 +24,16 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// </summary>
     internal class MesPerfTimer
     {
-        Int64 _start;
-        Int64 _end;
-        readonly Int64 _freq;
-        Int64 _min;
-        Int64 _max;
-        Int64 _count;
-        Int64 _sum;
+        private Int64 _start;
+        private Int64 _end;
+        private readonly Int64 _freq;
+        private Int64 _min;
+        private Int64 _max;
+        private Int64 _count;
+        private Int64 _sum;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MesPerfTimer()
         {
@@ -77,7 +77,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         public Int64 GetDurationInTicks() => (_end - _start);
 
         /// <summary>
-        /// Get current time in ighest fidelity possible as defined by Windows QueryPerformanceCounter.  
+        /// Get current time in ighest fidelity possible as defined by Windows QueryPerformanceCounter.
         /// Usually this is nanoseconds.
         /// </summary>
         /// <returns>High fidelity tick count</returns>
@@ -152,13 +152,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         [DllImport("KERNEL32.DLL", EntryPoint = "QueryPerformanceCounter", SetLastError = true,
                     CharSet = CharSet.Unicode, ExactSpelling = true,
                     CallingConvention = CallingConvention.StdCall)]
-        static extern Int32 QueryPerformanceCounter(ref Int64 time);
+        private static extern Int32 QueryPerformanceCounter(ref Int64 time);
 
         [DllImport("KERNEL32.DLL", EntryPoint = "QueryPerformanceFrequency", SetLastError = true,
              CharSet = CharSet.Unicode, ExactSpelling = true,
              CallingConvention = CallingConvention.StdCall)]
-        static extern Int32 QueryPerformanceFrequency(ref Int64 freq);
-
-
+        private static extern Int32 QueryPerformanceFrequency(ref Int64 freq);
     }
 }

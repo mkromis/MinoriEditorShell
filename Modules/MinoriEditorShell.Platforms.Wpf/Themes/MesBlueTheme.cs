@@ -3,7 +3,7 @@ using System;
 namespace MinoriEditorShell.Platforms.Wpf.Themes
 {
     /// <summary>
-    /// Blue Theme 
+    /// Blue Theme
     /// </summary>
     public class MesBlueTheme : MesThemeBase
     {

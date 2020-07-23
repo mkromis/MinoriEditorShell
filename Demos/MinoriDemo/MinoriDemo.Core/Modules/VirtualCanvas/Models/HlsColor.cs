@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 {
@@ -175,7 +171,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             Int32 magic1, magic2;       /* calculated magic numbers (really!) */
 
             if (saturation == 0)
-            {                
+            {
                 /* achromatic case */
                 r = g = b = (Byte)(luminosity * RGBMax / HLSMax);
                 if (hue != Undefined)

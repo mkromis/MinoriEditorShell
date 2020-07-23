@@ -1,6 +1,5 @@
 using MinoriEditorShell.Services;
 using System;
-using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Results
 {
@@ -24,6 +23,7 @@ namespace MinoriEditorShell.Results
         //public IWindowManager WindowManager { get; set; }
 
 #warning Coroutine
+
         public override void Execute(/*CoroutineExecutionContext*/Object context)
         {
             throw new NotImplementedException();
