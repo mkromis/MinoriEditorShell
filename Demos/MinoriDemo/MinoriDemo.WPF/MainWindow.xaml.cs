@@ -1,5 +1,3 @@
-using MvvmCross.Platforms.Wpf.Views;
-
 namespace MinoriDemo.WPF
 {
     /// <summary>

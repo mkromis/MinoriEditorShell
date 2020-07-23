@@ -1,8 +1,5 @@
 ﻿using MinoriEditorShell.VirtualCanvas.Services;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Windows.Controls;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
@@ -18,7 +15,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <param name="color"></param>
         public void SetCanvasBackgroundColor(Color color)
         {
-            System.Windows.Media.Color newcolor = 
+            System.Windows.Media.Color newcolor =
                 System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
             System.Windows.Media.Brush brush = new System.Windows.Media.SolidColorBrush(newcolor);
             Background = brush;

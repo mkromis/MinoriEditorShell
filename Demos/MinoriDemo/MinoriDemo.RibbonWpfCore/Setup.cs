@@ -20,12 +20,15 @@ namespace MinoriDemo.RibbonWpfCore
                     case MesBlueTheme blue:
                         blue.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
                         break;
+
                     case MesLightTheme light:
                         light.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/LightBrushs.xaml"));
                         break;
+
                     case MesDarkTheme dark:
                         dark.Add(new Uri("pack://application:,,,/ColorPickerLib;component/Themes/DarkBrushs.xaml"));
                         break;
+
                     default:
                         break;
                 }

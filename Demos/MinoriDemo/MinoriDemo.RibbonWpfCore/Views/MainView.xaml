@@ -2,39 +2,39 @@
     x:Class="MinoriDemo.RibbonWpfCore.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fluent="urn:fluent-ribbon"
     xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
     xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:Converters="clr-namespace:MinoriEditorShell.Platforms.Wpf.Converters;assembly=MinoriEditorShell.Platforms.Wpf"
-    mc:Ignorable="d" 
+    mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <views:MvxWpfView.Resources>
         <ResourceDictionary>
-            <Converters:DrawingColorToMediaBrushConverter x:Key="DrawingColorToMediaBrushConverter"/>
-            <Converters:DrawingColorToMediaColorConverter x:Key="DrawingColorToMediaColorConverter"/>
+            <Converters:DrawingColorToMediaBrushConverter x:Key="DrawingColorToMediaBrushConverter" />
+            <Converters:DrawingColorToMediaColorConverter x:Key="DrawingColorToMediaColorConverter" />
             <!--http://modernuiicons.com/-->
             <Canvas x:Key="appbar_save" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
-                <Path 
-                    Width="30" Height="30" Stretch="Fill" Fill="#FF0000FF" 
+                <Path
+                    Width="30" Height="30" Stretch="Fill" Fill="#FF0000FF"
                      Data="F1 M 20.5833,20.5833L 55.4167,20.5833L 55.4167,55.4167L 45.9167,55.4167L 45.9167,44.3333L 30.0833,
-                    44.3333L 30.0833,55.4167L 20.5833,55.4167L 20.5833,20.5833 Z M 33.25,55.4167L 
+                    44.3333L 30.0833,55.4167L 20.5833,55.4167L 20.5833,20.5833 Z M 33.25,55.4167L
                     33.25,50.6667L 39.5833,50.6667L 39.5833,55.4167L 33.25,55.4167 Z M 26.9167,23.75L 26.9167,
-                    33.25L 49.0833,33.25L 49.0833,23.75L 26.9167,23.75 Z "/>
+                    33.25L 49.0833,33.25L 49.0833,23.75L 26.9167,23.75 Z " />
             </Canvas>
 
             <Canvas x:Key="appbar_question" Width="32" Height="32" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
 
-                <Path Width="30" Height="30" Stretch="Fill" Fill="#FF000077" 
+                <Path Width="30" Height="30" Stretch="Fill" Fill="#FF000077"
                        Data="F1 M 37.2083,49.0833C 39.3945,49.0833 41.1667,50.8555 41.1667,53.0417C 41.1667,55.2278 39.3945,
-                      57 37.2083,57C 35.0222,57 33.25,55.2278 33.25,53.0417C 33.25,50.8555 35.0222,49.0833 
+                      57 37.2083,57C 35.0222,57 33.25,55.2278 33.25,53.0417C 33.25,50.8555 35.0222,49.0833
                       37.2083,49.0833 Z M 38,17.4167C 44.9956,17.4167 50.6666,21.9416 50.6666,28.5C 50.6666,
-                      30.875 49.0833,34.8333 45.9167,36.4167C 42.75,38 41.1667,40.1267 41.1667,42.75L 41.1667,45.9167L 
+                      30.875 49.0833,34.8333 45.9167,36.4167C 42.75,38 41.1667,40.1267 41.1667,42.75L 41.1667,45.9167L
                       33.25,45.9167L 33.25,43.5417C 33.25,38.1571 38,34.8333 39.5833,33.25C 42.75,30.0833 42.75,
-                      29.644 42.75,28.5C 42.75,25.8767 40.6233,23.75 38,23.75C 35.3766,23.75 33.25,25.8767 33.25,28.5L 
-                      33.25,30.875L 25.3333,30.875L 25.3333,29.2917C 25.3333,22.7333 31.0044,17.4167 38,17.4167 Z "/>
+                      29.644 42.75,28.5C 42.75,25.8767 40.6233,23.75 38,23.75C 35.3766,23.75 33.25,25.8767 33.25,28.5L
+                      33.25,30.875L 25.3333,30.875L 25.3333,29.2917C 25.3333,22.7333 31.0044,17.4167 38,17.4167 Z " />
             </Canvas>
         </ResourceDictionary>
     </views:MvxWpfView.Resources>
@@ -43,7 +43,7 @@
             <fluent:Ribbon.Menu>
                 <fluent:Backstage>
                     <fluent:BackstageTabControl>
-                        <fluent:Button Header="Settings" Command="{Binding SettingsCommand}"/>
+                        <fluent:Button Header="Settings" Command="{Binding SettingsCommand}" />
                     </fluent:BackstageTabControl>
                 </fluent:Backstage>
             </fluent:Ribbon.Menu>
@@ -54,38 +54,37 @@
 
             <fluent:RibbonTabItem Header="Samples">
                 <fluent:RibbonGroupBox Header="Content ">
-                    <fluent:Button Header="Virtual Content" Size="Middle" Command="{Binding OpenCanvasCommand}"/>
-                    <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}"/>
-                    <fluent:Button Header="Settings" Size="Middle" Command="{Binding SettingsCommand}"/>
+                    <fluent:Button Header="Virtual Content" Size="Middle" Command="{Binding OpenCanvasCommand}" />
+                    <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}" />
+                    <fluent:Button Header="Settings" Size="Middle" Command="{Binding SettingsCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="DrawingColorTest">
-                    <picker:ColorPicker 
-                        Height="20" Width="100" UsingAlphaChannel="False" 
-                        SelectedColor="{Binding TestColor, Converter={StaticResource DrawingColorToMediaColorConverter}}"
-                        />
-                    <Rectangle 
-                        Fill="{Binding TestColor, Converter={StaticResource DrawingColorToMediaBrushConverter}}" 
-                        Height="20" Width="75" Margin="3"/>
+                    <picker:ColorPicker
+                        Height="20" Width="100" UsingAlphaChannel="False"
+                        SelectedColor="{Binding TestColor, Converter={StaticResource DrawingColorToMediaColorConverter}}" />
+                    <Rectangle
+                        Fill="{Binding TestColor, Converter={StaticResource DrawingColorToMediaBrushConverter}}"
+                        Height="20" Width="75" Margin="3" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
             <!-- Bind context group to tab item -->
             <fluent:RibbonTabItem Header="Canvas">
-                <!--Group="{Binding Source={x:Reference canvasGroup}}"--> 
+                <!--Group="{Binding Source={x:Reference canvasGroup}}"-->
                 <!--<fluent:RibbonTabItem.Style>
                     <Style TargetType="{x:Type fluent:RibbonTabItem}">
-                        <Setter Property="Visibility" Value="Visible"/>
+                        <Setter Property="Visibility" Value="Visible" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ShowContextRibbon}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </fluent:RibbonTabItem.Style>-->
                 <fluent:RibbonGroupBox Header="File">
-                    <fluent:Button 
+                    <fluent:Button
                     Header="Dump QuadTree Log..."
                     LargeIcon="{DynamicResource appbar_save}"
-                    Command="{Binding CanvasModel.DumpQuadTreeCommand}"/>
+                    Command="{Binding CanvasModel.DumpQuadTreeCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Dimension">
                     <!-- Click=OnRowColChange -->
@@ -97,44 +96,44 @@
                     <fluent:Button Header="500" Size="Middle" CommandParameter="500" Command="{Binding CanvasModel.RowColChange}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="View">
-                    <fluent:CheckBox Header="Show Grid Lines" IsChecked="{Binding CanvasModel.ShowGridLines}"/>
-                    <fluent:CheckBox Header="Show Quad Tree" IsChecked="{Binding CanvasModel.ShowQuadTree}"/>
+                    <fluent:CheckBox Header="Show Grid Lines" IsChecked="{Binding CanvasModel.ShowGridLines}" />
+                    <fluent:CheckBox Header="Show Quad Tree" IsChecked="{Binding CanvasModel.ShowQuadTree}" />
                     <fluent:CheckBox Header="Animate Status" IsChecked="True" />
                     <!-- OnAnimateStatus -->
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Zoom">
                     <!-- OnZoom -->
-                    <fluent:Button Header="500%" CommandParameter="500" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="200%" CommandParameter="200" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="100%" CommandParameter="100" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="75%" CommandParameter="75" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="50%" CommandParameter="50" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="25%" CommandParameter="25" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="10%" CommandParameter="10" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
-                    <fluent:Button Header="Fit" CommandParameter="Fit" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}"/>
+                    <fluent:Button Header="500%" CommandParameter="500" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="200%" CommandParameter="200" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="100%" CommandParameter="100" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="75%" CommandParameter="75" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="50%" CommandParameter="50" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="25%" CommandParameter="25" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="10%" CommandParameter="10" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
+                    <fluent:Button Header="Fit" CommandParameter="Fit" Size="Middle" Command="{Binding CanvasModel.ZoomCommand}" />
                     <Slider Minimum=".01" Maximum="5" Value="{Binding ZoomValue}" Width="80" Height="30" AutoToolTipPrecision="3" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
-            <fluent:RibbonTabItem 
-            Header="Status Info" Group="{Binding Source={x:Reference canvasGroup}}" 
+            <fluent:RibbonTabItem
+            Header="Status Info" Group="{Binding Source={x:Reference canvasGroup}}"
             DataContext="{Binding CanvasModel}">
                 <fluent:RibbonTabItem.Style>
                     <Style TargetType="{x:Type fluent:RibbonTabItem}">
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ShowContextRibbon}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </fluent:RibbonTabItem.Style>
                 <fluent:RibbonGroupBox>
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" >
-                        <Rectangle Fill="Green" x:Name="Created" Height="5" Width="0" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Rectangle Fill="Green" x:Name="Created" Height="5" Width="0" HorizontalAlignment="Left" />
                         <TextBlock x:Name="CreatedLabel" FontSize="9" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="2">
-                        <Rectangle Fill="Red" x:Name="Destroyed" Height="5" Width="0"  HorizontalAlignment="Left"/>
+                        <Rectangle Fill="Red" x:Name="Destroyed" Height="5" Width="0"  HorizontalAlignment="Left" />
                         <TextBlock x:Name="DestroyedLabel" FontSize="9" />
                     </StackPanel>
                 </fluent:RibbonGroupBox>
@@ -145,23 +144,23 @@
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ShowContextRibbon}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </fluent:RibbonTabItem.Style>
                 <fluent:RibbonGroupBox Header="Help">
                     <TextBlock>
-                    Note if you hold down the Control key, <LineBreak/>
-                    you can also spin the mouse wheel to <LineBreak/>
-                    zoom in and out around the mouse position.<LineBreak/>
+                    Note if you hold down the Control key, <LineBreak />
+                    you can also spin the mouse wheel to <LineBreak />
+                    zoom in and out around the mouse position.<LineBreak />
                     </TextBlock>
-                    <fluent:Button Header="User Interface" Command="{Binding CanvasModel.OnHelpCommand}" LargeIcon="{StaticResource appbar_question}"/>
+                    <fluent:Button Header="User Interface" Command="{Binding CanvasModel.OnHelpCommand}" LargeIcon="{StaticResource appbar_question}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
 
-        <mes:MesStatusBarView DockPanel.Dock="Bottom"/>
+        <mes:MesStatusBarView DockPanel.Dock="Bottom" />
         <mes:MesDocumentManagerView />
     </DockPanel>
 </views:MvxWpfView>

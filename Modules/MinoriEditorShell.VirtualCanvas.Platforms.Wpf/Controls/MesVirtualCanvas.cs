@@ -3,9 +3,9 @@
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using MinoriEditorShell.VirtualCanvas.Models;
 using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures;
 using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models;
-using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls;
 using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
@@ -19,12 +19,11 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
-using MinoriEditorShell.VirtualCanvas.Models;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 {
     /// <summary>
-    /// VirtualCanvas dynamically figures out which children are visible and creates their visuals 
+    /// VirtualCanvas dynamically figures out which children are visible and creates their visuals
     /// and which children are no longer visible (due to scrolling or zooming) and destroys their
     /// visuals.  This helps manage the memory consumption when you have so many objects that creating
     /// all the WPF visuals would take too much memory.
@@ -43,7 +42,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 
         public event EventHandler<VisualChangeEventArgs> VisualsChanged;
 
-        delegate void UpdateHandler();
+        private delegate void UpdateHandler();
 
         /// <summary>
         /// Construct empty virtual canvas.
@@ -94,7 +93,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="sender">This</param>
         /// <param name="e">noop</param>
-        void OnChildrenCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
+        private void OnChildrenCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
 
         /// <summary>
         /// Returns true if all Visuals have been created for the current scroll position
@@ -195,14 +194,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="sender">TranslateTransform</param>
         /// <param name="e">noop</param>
-        void OnTranslateChanged(Object sender, EventArgs e) => OnScrollChanged();
+        private void OnTranslateChanged(Object sender, EventArgs e) => OnScrollChanged();
 
         /// <summary>
         /// Callback whenever the current ScaleTransform is changed.
         /// </summary>
         /// <param name="sender">ScaleTransform</param>
         /// <param name="e">noop</param>
-        void OnScaleChanged(Object sender, EventArgs e) => OnScrollChanged();
+        private void OnScaleChanged(Object sender, EventArgs e) => OnScrollChanged();
 
         /// <summary>
         /// The ContentCanvas that is actually the parent of all the VirtualChildren Visuals.
@@ -218,7 +217,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <summary>
         /// Calculate the size needed to display all the virtual children.
         /// </summary>
-        void CalculateExtent()
+        private void CalculateExtent()
         {
             if (_children.Count() == 0)
             {
@@ -307,7 +306,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             }
         }
 
-
         /// <summary>
         /// WPF Measure override for measuring the control
         /// </summary>
@@ -369,12 +367,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             return finalSize;
         }
 
-        DispatcherTimer _timer;
+        private DispatcherTimer _timer;
 
         /// <summary>
         /// Begin a timer for lazily creating IVirtualChildren visuals
         /// </summary>
-        void StartLazyUpdate()
+        private void StartLazyUpdate()
         {
             if (_timer == null)
             {
@@ -389,7 +387,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="sender">DispatchTimer </param>
         /// <param name="args">noop</param>
-        void OnStartLazyUpdate(Object sender, EventArgs args)
+        private void OnStartLazyUpdate(Object sender, EventArgs args)
         {
             _timer.Stop();
             LazyUpdateVisuals();
@@ -399,7 +397,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// Set the viewport size and raize a scroll changed event.
         /// </summary>
         /// <param name="s">The new size</param>
-        void SetViewportSize(System.Windows.Size s)
+        private void SetViewportSize(System.Windows.Size s)
         {
             if (s != _viewPortSize)
             {
@@ -408,21 +406,21 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             }
         }
 
-        Int32 _createQuanta = 1000;
-        Int32 _removeQuanta = 2000;
-        Int32 _gcQuanta = 5000;
-        readonly Int32 _idealDuration = 50; // 50 milliseconds.
+        private Int32 _createQuanta = 1000;
+        private Int32 _removeQuanta = 2000;
+        private Int32 _gcQuanta = 5000;
+        private readonly Int32 _idealDuration = 50; // 50 milliseconds.
         private readonly MesContentCanvas _contentCanvas;
-        Int32 _added;
-        RectangleF _visible = RectangleF.Empty;
+        private Int32 _added;
+        private RectangleF _visible = RectangleF.Empty;
 
-        delegate Int32 QuantizedWorkHandler(Int32 quantum);
+        private delegate Int32 QuantizedWorkHandler(Int32 quantum);
 
         /// <summary>
         /// Do a quantized unit of work for creating newly visible visuals, and cleaning up visuals that are no
         /// longer needed.
         /// </summary>
-        void LazyUpdateVisuals()
+        private void LazyUpdateVisuals()
         {
             if (Index == null)
             {
@@ -484,7 +482,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <returns>Amount of work we did</returns>
         private Int32 LazyCreateNodes(Int32 quantum)
         {
-
             if (_visible == RectangleF.Empty)
             {
                 _visible = GetVisibleRect();
@@ -535,20 +532,20 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         }
 
         /// <summary>
-        /// Insert the visual for the child in the same order as is is defined in the 
+        /// Insert the visual for the child in the same order as is is defined in the
         /// VirtualChildren collection so the visuals draw on top of each other in the expected order.
-        /// The trick is that GetNodesIntersecting returns the nodes in pretty much random order depending 
-        /// on how the QuadTree decides to break up the canvas.  
-        /// 
-        /// The thing we should avoid is a linear search through the potentially large collection of 
-        /// IVirtualChildren to compute its visible index which is why we have the _visualPositions map.  
-        /// We should also avoid a N*M algorithm where N is the number of nodes returned from GetNodesIntersecting 
-        /// and M is the number of children already visible.  For example, Page down in a zoomed out situation 
-        /// gives potentially high N and and M which would basically be an O(n2) algorithm.  
-        /// 
+        /// The trick is that GetNodesIntersecting returns the nodes in pretty much random order depending
+        /// on how the QuadTree decides to break up the canvas.
+        ///
+        /// The thing we should avoid is a linear search through the potentially large collection of
+        /// IVirtualChildren to compute its visible index which is why we have the _visualPositions map.
+        /// We should also avoid a N*M algorithm where N is the number of nodes returned from GetNodesIntersecting
+        /// and M is the number of children already visible.  For example, Page down in a zoomed out situation
+        /// gives potentially high N and and M which would basically be an O(n2) algorithm.
+        ///
         /// So the solution is to use the _visualPositions map to get the expected visual position index
         /// of a given IVirtualChild, then do a binary search through existing visible children to find the
-        /// insertion point of the new child.  So this is O(Log M).  
+        /// insertion point of the new child.  So this is O(Log M).
         /// </summary>
         /// <param name="child">The IVirtualChild to add visual for</param>
         public void EnsureVisual(IMesVirtualChild child)
@@ -614,7 +611,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                 c.Insert(max, e);
             }
         }
-
 
         /// <summary>
         /// Split a rectangle into 2 and add them to the regions list.
@@ -708,9 +704,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="quantum">Amount of work we can do here</param>
         /// <returns>The amount of work we did</returns>
-        Int32 LazyGarbageCollectNodes(Int32 quantum)
+        private Int32 LazyGarbageCollectNodes(Int32 quantum)
         {
-
             Int32 count = 0;
             // Now after every update also do a full incremental scan over all the children
             // to make sure we didn't leak any nodes that need to be removed.
@@ -893,15 +888,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         public SizeF SmallScrollIncrement1 { get; set; } = new SizeF(10, 10);
         public Int32 Removed { get; set; }
 
-
-        #endregion
+        #endregion IScrollInfo Members
 
         /// <summary>
         /// Get the currently visible rectangle according to current scroll position and zoom factor and
         /// size of scroller viewport.
         /// </summary>
         /// <returns>A rectangle</returns>
-        RectangleF GetVisibleRect()
+        private RectangleF GetVisibleRect()
         {
             // Add a bit of extra around the edges so we are sure to create nodes that have a tiny bit showing.
             Single xstart = (Single)((HorizontalOffset - SmallScrollIncrement1.Width) / Scale.ScaleX);
@@ -915,7 +909,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// The visible region has changed, so we need to queue up work for dirty regions and new visible regions
         /// then start asynchronously building new visuals via StartLazyUpdate.
         /// </summary>
-        void OnScrollChanged()
+        private void OnScrollChanged()
         {
             RectangleF dirty = _visible;
             AddVisibleRegion();
@@ -975,7 +969,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             _visibleRegions.Clear();
             _visibleRegions.Add(_visible);
         }
-
 
         /// <summary>
         /// A simple helper to use default implementation

@@ -1,10 +1,12 @@
 #region File Description
+
 //-----------------------------------------------------------------------------
 // Copyright 2011, Nick Gravelyn.
-// Licensed under the terms of the Ms-PL: 
+// Licensed under the terms of the Ms-PL:
 // http://www.microsoft.com/opensource/licenses.mspx#Ms-PL
 //-----------------------------------------------------------------------------
-#endregion
+
+#endregion File Description
 
 using System.Windows;
 using System.Windows.Input;
@@ -37,7 +39,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         /// The current state of the second extra mouse button.
         /// </summary>
         public MouseButtonState X2Button;
-        
+
         /// <summary>
         /// The current position of the mouse in screen coordinates.
         /// </summary>

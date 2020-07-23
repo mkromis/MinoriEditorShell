@@ -1,10 +1,12 @@
 #region File Description
+
 //-----------------------------------------------------------------------------
 // Copyright 2011, Nick Gravelyn.
 // Licensed under the terms of the Ms-PL:
 // http://www.microsoft.com/opensource/licenses.mspx#Ms-PL
 //-----------------------------------------------------------------------------
-#endregion
+
+#endregion File Description
 
 using System;
 using System.Windows;
@@ -60,7 +62,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         public Point ScreenPosition { get; private set; }
 
         /// <summary>
-        ///  Calculates the position of the mouse relative to a particular element. 
+        ///  Calculates the position of the mouse relative to a particular element.
         /// </summary>
         public Point GetPosition(UIElement relativeTo)
         {
@@ -93,7 +95,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             WheelDelta = mouseWheelDelta;
             HorizontalWheelDelta = mouseHWheelDelta;
         }
-        
+
         /// <summary>
         /// Initializes a new HwndMouseEventArgs.
         /// </summary>

@@ -1,8 +1,5 @@
 ﻿using MinoriEditorShell.VirtualCanvas.Services;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace MinoriEditorShell.VirtualCanvas.Extensions
 {
@@ -15,6 +12,7 @@ namespace MinoriEditorShell.VirtualCanvas.Extensions
         /// User definded size
         /// </summary>
         Manual = 0,
+
         /// <summary>
         /// request zoom by width
         /// </summary>
@@ -49,12 +47,15 @@ namespace MinoriEditorShell.VirtualCanvas.Extensions
                 case Extensions.ZoomToContent.Manual:
                     zoom = null;
                     break;
+
                 case Extensions.ZoomToContent.Width:
                     zoom = canvas.Graph.ViewportWidth / canvas.Graph.Extent.Width;
                     break;
+
                 case Extensions.ZoomToContent.Height:
                     zoom = canvas.Graph.ViewportHeight / canvas.Graph.Extent.Width;
                     break;
+
                 case Extensions.ZoomToContent.WidthAndHeight:
                     Double scaleX = canvas.Graph.ViewportWidth / canvas.Graph.Extent.Width;
                     Double scaleY = canvas.Graph.ViewportHeight / canvas.Graph.Extent.Height;

@@ -1,15 +1,11 @@
-using MinoriEditorShell.Platforms.Wpf.Win32;
-using System;
-using System.Windows;
 //using System.Windows.Interactivity;
-using System.Windows.Interop;
 
 namespace MinoriEditorShell.Platforms.Wpf.Behaviors
 {
     //public class MesWindowOptionsBehavior : Behavior<Window>
     //{
     //    public static readonly DependencyProperty ShowIconProperty = DependencyProperty.Register(
-    //        "ShowIcon", typeof(Boolean), typeof(MesWindowOptionsBehavior), 
+    //        "ShowIcon", typeof(Boolean), typeof(MesWindowOptionsBehavior),
     //        new PropertyMetadata(true, OnWindowOptionChanged));
 
     //    public Boolean ShowIcon

@@ -1,10 +1,5 @@
 using MinoriDemo.Core.ViewModels;
-using MinoriEditorShell.Services;
-using MvvmCross;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MinoriDemo.Core
 {

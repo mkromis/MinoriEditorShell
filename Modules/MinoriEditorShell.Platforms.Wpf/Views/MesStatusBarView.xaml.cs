@@ -1,6 +1,6 @@
-using System.Windows.Controls;
 using MinoriEditorShell.Services;
 using MvvmCross;
+using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
@@ -18,7 +18,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             {
                 IMesStatusBar statusBar = Mvx.IoCProvider.Resolve<IMesStatusBar>();
                 DataContext = statusBar;
-            } catch { }
+            }
+            catch { }
         }
     }
 }

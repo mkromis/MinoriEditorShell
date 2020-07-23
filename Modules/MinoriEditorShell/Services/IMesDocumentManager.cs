@@ -6,6 +6,7 @@ namespace MinoriEditorShell.Services
     public interface IMesDocumentManager
     {
         event EventHandler ActiveDocumentChanging;
+
         event EventHandler ActiveDocumentChanged;
 
         Boolean ShowFloatingWindowsInTaskbar { get; set; }
@@ -20,9 +21,11 @@ namespace MinoriEditorShell.Services
         MvxObservableCollection<IMesTool> Tools { get; }
 
         void ShowTool<TTool>() where TTool : IMesTool;
+
         void ShowTool(IMesTool model);
 
         void OpenDocument(IMesDocument model);
+
         void CloseDocument(IMesDocument document);
 
         void Close();

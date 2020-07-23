@@ -24,10 +24,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
 
         // Define the window styles we use
         public const int WS_CHILD = 0x40000000;
+
         public const int WS_VISIBLE = 0x10000000;
 
         // Define the Windows messages we will handle
         public const int WM_MOUSEMOVE = 0x0200;
+
         public const int WM_LBUTTONDOWN = 0x0201;
         public const int WM_LBUTTONUP = 0x0202;
         public const int WM_LBUTTONDBLCLK = 0x0203;
@@ -45,6 +47,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
 
         // Define the values that let us differentiate between the two extra mouse buttons
         public const int MK_XBUTTON1 = 0x020;
+
         public const int MK_XBUTTON2 = 0x040;
 
         // Define the cursor icons we use
@@ -53,7 +56,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
         // Define the TME_LEAVE value so we can register for WM_MOUSELEAVE messages
         public const uint TME_LEAVE = 0x00000002;
 
-        #endregion
+        #endregion Constants
 
         #region Delegates and Structs
 
@@ -75,8 +78,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
         {
             public uint cbSize;
             public uint style;
+
             [MarshalAs(UnmanagedType.FunctionPtr)]
             public WndProc lpfnWndProc;
+
             public int cbClsExtra;
             public int cbWndExtra;
             public IntPtr hInstance;
@@ -95,7 +100,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
             public int Y;
         }
 
-        #endregion
+        #endregion Delegates and Structs
 
         #region DllImports
 
@@ -169,7 +174,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
         [DllImport("user32.dll")]
         public static extern int ShowCursor(bool bShow);
 
-        #endregion
+        #endregion DllImports
 
         #region Helpers
 
@@ -190,14 +195,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
 
         public static int LowWord(int input)
         {
-            return (short) (input & 0xffff);
+            return (short)(input & 0xffff);
         }
 
         public static int HighWord(int input)
         {
-            return (short) (input >> 16);
+            return (short)(input >> 16);
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

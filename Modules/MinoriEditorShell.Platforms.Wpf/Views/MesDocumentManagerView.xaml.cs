@@ -1,3 +1,4 @@
+using AvalonDock.Controls;
 using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
 using MvvmCross;
@@ -6,12 +7,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
-using AvalonDock.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     public partial class MesDocumentManagerView : IMesDocumentManagerView
-	{
+    {
         public MesDocumentManagerView()
         {
             InitializeComponent();
@@ -21,7 +21,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
                 IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
                 manager.ManagerView = this;
                 DataContext = manager;
-            } catch { }
+            }
+            catch { }
         }
 
         public void LoadLayout(

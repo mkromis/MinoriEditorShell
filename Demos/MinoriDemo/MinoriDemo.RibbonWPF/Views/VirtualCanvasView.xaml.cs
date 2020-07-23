@@ -1,5 +1,4 @@
-﻿
-using MinoriEditorShell.VirtualCanvas.Services;
+﻿using MinoriEditorShell.VirtualCanvas.Services;
 
 namespace MinoriDemo.RibbonWPF.Views
 {

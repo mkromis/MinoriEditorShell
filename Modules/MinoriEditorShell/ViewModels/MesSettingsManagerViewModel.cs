@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using MinoriEditorShell.DataClasses;
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Properties;
 using MinoriEditorShell.Services;
-using MinoriEditorShell.ViewModels;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
@@ -42,10 +40,10 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             }
         }
 
-
         public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
         public ICommand OkCommand => new MvxCommand(SaveChanges);
         public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
+
         public IMvxCommand ShowCommand => new MvxCommand(() =>
         {
             IMesSettingsManager settingsManager = Mvx.IoCProvider.Resolve<IMesSettingsManager>();

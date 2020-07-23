@@ -8,6 +8,7 @@ namespace MinoriEditorShell.VirtualCanvas.Services
     {
         public Int32 Added { get; set; }
         public Int32 Removed { get; set; }
+
         public VisualChangeEventArgs(Int32 added, Int32 removed)
         {
             Added = added;

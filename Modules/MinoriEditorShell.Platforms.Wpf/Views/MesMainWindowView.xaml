@@ -5,17 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
     xmlns:behaviors="clr-namespace:MinoriEditorShell.Platforms.Wpf.Behaviors"
-    Title="{Binding Title}" 
-    Icon="{Binding Icon}" 
-    Width="{Binding Width, Mode=TwoWay}" 
-    Height="{Binding Height, Mode=TwoWay}" 
+    Title="{Binding Title}"
+    Icon="{Binding Icon}"
+    Width="{Binding Width, Mode=TwoWay}"
+    Height="{Binding Height, Mode=TwoWay}"
     WindowStartupLocation="CenterScreen"
     WindowState="{Binding WindowState}"
     ResizeMode="CanResizeWithGrip"
-    UseLayoutRounding="True"
-    >
+    UseLayoutRounding="True">
     <!--Style="{DynamicResource MainWindowStyle}"-->
-    <!--WindowTransitionsEnabled="False"--> 
+    <!--WindowTransitionsEnabled="False"-->
     <!--WindowCloseButtonStyle="{DynamicResource MetroWindowButtonStyle}"
     WindowMinButtonStyle="{DynamicResource MetroWindowButtonStyle}"
     WindowMaxButtonStyle="{DynamicResource MetroWindowButtonStyle}"-->

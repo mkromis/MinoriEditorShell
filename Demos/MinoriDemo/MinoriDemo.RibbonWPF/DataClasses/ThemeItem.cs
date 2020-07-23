@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace MinoriDemo.RibbonWPF.DataClasses
 {
-    class ThemeItem : MvxNotifyPropertyChanged
+    internal class ThemeItem : MvxNotifyPropertyChanged
     {
         private Color _color;
         private String _key;
@@ -17,26 +17,30 @@ namespace MinoriDemo.RibbonWPF.DataClasses
 
         public ThemeHelper ThemeHelper { get; set; }
 
-        public String ModeText { 
-            get => _modeText; 
-            set => SetProperty(ref _modeText, value); 
+        public String ModeText
+        {
+            get => _modeText;
+            set => SetProperty(ref _modeText, value);
         }
+
         public Boolean CanEdit
         {
             get => _canEdit;
             set
             {
-                if(SetProperty(ref _canEdit, value))
+                if (SetProperty(ref _canEdit, value))
                 {
                     ModeText = value ? "Done" : "Edit";
                 }
             }
         }
+
         public String Key
         {
             get => _key;
             set => SetProperty(ref _key, value);
         }
+
         public Color Color
         {
             get => _color;

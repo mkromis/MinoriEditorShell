@@ -24,14 +24,14 @@ namespace MinoriEditorShell.Extensions
 
             // Get all assemblies
             List<AssemblyName> assyArray = Assembly.GetEntryAssembly().GetReferencedAssemblies().ToList();
-            
+
             // add executing assembly
             assyArray.Add(Assembly.GetEntryAssembly().GetName());
 
             foreach (AssemblyName assy in assyArray)
             {
                 Assembly assembly = Assembly.Load(assy);
-                foreach(Type type in assembly.GetTypes()
+                foreach (Type type in assembly.GetTypes()
                     .Where(x => x.GetInterfaces().Contains(typeof(T)))
                     .Where(x => !x.Attributes.HasFlag(TypeAttributes.Abstract)))
                 {

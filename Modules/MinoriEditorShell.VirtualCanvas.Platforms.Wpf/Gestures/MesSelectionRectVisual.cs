@@ -4,12 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Diagnostics;
+using System.Windows;
+using System.Windows.Media;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 {
@@ -19,7 +16,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// </summary>
     internal class MesSelectionRectVisual : FrameworkElement
     {
-
         private const Double _dashRepeatLength = 8;
         private readonly TileBrush _horizontalDashBrush;
         private readonly TileBrush _verticalDashBrush;
@@ -61,7 +57,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Zoom = zoomP;
             _visualForRect = new DrawingVisual();
             AddVisualChild(_visualForRect);
-            AddLogicalChild(_visualForRect);      
+            AddLogicalChild(_visualForRect);
         }
 
         /// <summary>
@@ -90,7 +86,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Actually draw the rubber band
         /// </summary>
-        void DrawOnTheContext()
+        private void DrawOnTheContext()
         {
             Rect bounds = SelectedRect;
             Point topLeftCorner = bounds.TopLeft;
@@ -102,7 +98,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 using (DrawingContext drawingContext = _visualForRect.RenderOpen())
                 {
-
                     // Calculate line thickness.
                     Double thickness = 1;
                     Vector cornerSize = new Vector(thickness, thickness);
@@ -127,7 +122,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 }
             }
         }
-
 
         /// <summary>
         /// Provide a required override for the VisualChildrenCount property

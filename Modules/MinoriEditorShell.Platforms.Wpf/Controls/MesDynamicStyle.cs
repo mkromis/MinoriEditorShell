@@ -13,7 +13,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         public static Style GetBaseStyle(DependencyObject obj)
         {
-            return (Style) obj.GetValue(BaseStyleProperty);
+            return (Style)obj.GetValue(BaseStyleProperty);
         }
 
         public static void SetBaseStyle(DependencyObject obj, Style value)
@@ -27,7 +27,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         public static Style GetDerivedStyle(DependencyObject obj)
         {
-            return (Style) obj.GetValue(DerivedStyleProperty);
+            return (Style)obj.GetValue(DerivedStyleProperty);
         }
 
         public static void SetDerivedStyle(DependencyObject obj, Style value)
@@ -38,7 +38,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         private static void OnStylesChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
             var mergedStyles = GetMergedStyles<FrameworkElement>(target, GetBaseStyle(target), GetDerivedStyle(target));
-            var element = (FrameworkElement) target;
+            var element = (FrameworkElement)target;
             element.Style = mergedStyles;
         }
 
@@ -48,7 +48,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         public static Style GetItemContainerBaseStyle(DependencyObject obj)
         {
-            return (Style) obj.GetValue(ItemContainerBaseStyleProperty);
+            return (Style)obj.GetValue(ItemContainerBaseStyleProperty);
         }
 
         public static void SetItemContainerBaseStyle(DependencyObject obj, Style value)
@@ -62,7 +62,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         public static Style GetItemContainerDerivedStyle(DependencyObject obj)
         {
-            return (Style) obj.GetValue(ItemContainerDerivedStyleProperty);
+            return (Style)obj.GetValue(ItemContainerDerivedStyleProperty);
         }
 
         public static void SetItemContainerDerivedStyle(DependencyObject obj, Style value)
@@ -73,9 +73,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         private static void OnItemContainerStylesChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
             var mergedStyles = GetMergedStyles<ItemsControl>(target,
-                GetItemContainerBaseStyle(target), 
+                GetItemContainerBaseStyle(target),
                 GetItemContainerDerivedStyle(target));
-            var element = (ItemsControl) target;
+            var element = (ItemsControl)target;
             element.ItemContainerStyle = mergedStyles;
         }
 
@@ -83,12 +83,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             where T : DependencyObject
         {
             if (!(target is T))
-                throw new InvalidCastException("Target must be " + typeof (T));
+                throw new InvalidCastException("Target must be " + typeof(T));
 
             if (derivedStyle == null) return baseStyle;
             if (baseStyle == null) return derivedStyle;
 
-            var newStyle = new Style {BasedOn = baseStyle, TargetType = derivedStyle.TargetType};
+            var newStyle = new Style { BasedOn = baseStyle, TargetType = derivedStyle.TargetType };
             foreach (var setter in derivedStyle.Setters) newStyle.Setters.Add(setter);
             foreach (var trigger in derivedStyle.Triggers) newStyle.Triggers.Add(trigger);
             return newStyle;

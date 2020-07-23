@@ -1,4 +1,4 @@
-﻿<mes:MesWindow 
+﻿<mes:MesWindow
     x:Class="SimpleDemo.WpfCore.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,6 +9,5 @@
     mc:Ignorable="d"
     Title="MainWindow" Height="450" Width="800">
     <Grid>
-
     </Grid>
 </mes:MesWindow>

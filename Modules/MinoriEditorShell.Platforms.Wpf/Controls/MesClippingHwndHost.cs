@@ -18,7 +18,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MesClippingHwndHost hwndHost = (MesClippingHwndHost) d;
+            MesClippingHwndHost hwndHost = (MesClippingHwndHost)d;
 
             if (e.OldValue != null)
             {
@@ -35,7 +35,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                 hwndHost.AddLogicalChild(e.NewValue);
                 if (hwndHost._source != null)
                 {
-                    hwndHost._source.RootVisual = (Visual) e.NewValue;
+                    hwndHost._source.RootVisual = (Visual)e.NewValue;
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
-            HwndSourceParameters param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (Int32) Width, (Int32) Height)
+            HwndSourceParameters param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (Int32)Width, (Int32)Height)
             {
                 ParentWindow = hwndParent.Handle,
                 WindowStyle = NativeMethods.WS_VISIBLE | NativeMethods.WS_CHILD,

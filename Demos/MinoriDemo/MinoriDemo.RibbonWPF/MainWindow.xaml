@@ -8,6 +8,5 @@
     mc:Ignorable="d"
     Title="Minori Demo App" Height="450" Width="800">
     <Grid>
-        
     </Grid>
 </ribbon:MesRibbonWindow>

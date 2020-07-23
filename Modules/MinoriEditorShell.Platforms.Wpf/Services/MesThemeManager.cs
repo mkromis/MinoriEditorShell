@@ -1,6 +1,5 @@
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Messages;
-using MinoriEditorShell.Platforms.Wpf.Extensions;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Base;
@@ -8,9 +7,7 @@ using MvvmCross.Logging;
 using MvvmCross.Plugin.Messenger;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MinoriEditorShell.Platforms.Wpf.Services
@@ -19,6 +16,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
     {
         // IOC
         private readonly IMvxMessenger _messenger;
+
         private readonly IMvxLog _log;
 
         public IEnumerable<IMesTheme> Themes { get; private set; }
@@ -70,7 +68,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
                     appTheme.BeginInit();
 
-                    appTheme.MergedDictionaries.Clear(); 
+                    appTheme.MergedDictionaries.Clear();
                     foreach (Uri uri in theme.ApplicationResources)
                     {
                         ResourceDictionary newDict = new ResourceDictionary { Source = uri };
@@ -91,13 +89,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 }
 
                 return true;
-
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _log.InfoException("Log Theme Setting", e);
                 return false;
             }
         }
-
     }
 }

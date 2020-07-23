@@ -1,23 +1,24 @@
-using System;
-using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.Views;
+using System;
+using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
     public abstract class MesTool : MesLayoutItemBase, IMesTool
-	{
-		private readonly ICommand _closeCommand;
+    {
+        private readonly ICommand _closeCommand;
         public override ICommand CloseCommand => new MvxCommand(() => IsVisible = false);
 
-	    public abstract MesPaneLocation PreferredLocation { get; }
+        public abstract MesPaneLocation PreferredLocation { get; }
 
         public virtual Double PreferredWidth => 200;
 
         public virtual Double PreferredHeight => 200;
 
         private Boolean _isVisible;
-		public Boolean IsVisible
+
+        public Boolean IsVisible
         {
             get => _isVisible;
             set
@@ -27,7 +28,7 @@ namespace MinoriEditorShell.Services
             }
         }
 
-        #warning Fix toolbar
+#warning Fix toolbar
 #if false
         private ToolBarDefinition _toolBarDefinition;
         public ToolBarDefinition ToolBarDefinition
