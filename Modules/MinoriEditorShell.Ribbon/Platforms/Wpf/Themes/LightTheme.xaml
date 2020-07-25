@@ -11,7 +11,7 @@
     </ResourceDictionary.MergedDictionaries>
     <!-- Begin SolidColorBrush Export -->
     <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background" Color="#FFEEEEF2"  options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FFF6F6F6"  options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="#FFF6F6F6"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FFE7E8EC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="#FFE7E8EC"  options:Freeze="True" />
     <!-- End SolidColorBrush Export -->
 </ResourceDictionary>
