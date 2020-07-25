@@ -185,7 +185,7 @@
     <SolidColorBrush x:Key="MahApps.Brushes.GrayHover" Color="#FFFFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.GrayNormal" Color="#FFFFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="#FF00589F"  options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="#FF293955"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="#FF000000"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.IdealForegroundDisabled" Color="#FFADADAD"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Label.Text" Color="#FFFFFFFF"  options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.LightBackground" Color="#FFA2A4A5"  options:Freeze="True" />
