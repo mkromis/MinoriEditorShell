@@ -23,7 +23,26 @@ namespace MinoriEditorShell.Extensions
             List<T> results = new List<T>();
 
             // Get all assemblies
-            List<AssemblyName> assyArray = Assembly.GetEntryAssembly().GetReferencedAssemblies().ToList();
+            IOrderedEnumerable<AssemblyName> assemblies = Assembly.GetEntryAssembly()
+                .GetReferencedAssemblies()
+                .OrderBy(x => x.FullName);
+
+            List<AssemblyName> assyArray = assemblies.ToList();
+
+            // Make sure we get all of Minori, found a condition to where the
+            // base assembly was not being loaded resulting in
+            // missing general settings item.
+            foreach (AssemblyName assy in assemblies.Where(x => x.Name.Contains("Minori")))
+            {
+                Assembly load = Assembly.ReflectionOnlyLoad(assy.FullName);
+                foreach (AssemblyName name in load.GetReferencedAssemblies())
+                {
+                    if (assyArray.FirstOrDefault(x => x.FullName == name.FullName) == null)
+                    {
+                        assyArray.Add(name);
+                    }
+                }
+            }
 
             // add executing assembly
             assyArray.Add(Assembly.GetEntryAssembly().GetName());
@@ -31,9 +50,11 @@ namespace MinoriEditorShell.Extensions
             foreach (AssemblyName assy in assyArray)
             {
                 Assembly assembly = Assembly.Load(assy);
-                foreach (Type type in assembly.GetTypes()
-                    .Where(x => x.GetInterfaces().Contains(typeof(T)))
-                    .Where(x => !x.Attributes.HasFlag(TypeAttributes.Abstract)))
+                Type[] types = assembly.GetTypes();
+                IEnumerable<Type> interfaces = types.Where(x => x.GetInterfaces().Contains(typeof(T)));
+                IEnumerable<Type> hasFlags = interfaces.Where(x => !x.Attributes.HasFlag(TypeAttributes.Abstract));
+
+                foreach (Type type in hasFlags)
                 {
                     results.Add((T)Activator.CreateInstance(type));
                 }
