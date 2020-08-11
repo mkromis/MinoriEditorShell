@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="44" />
