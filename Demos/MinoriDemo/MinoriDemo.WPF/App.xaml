@@ -6,6 +6,5 @@
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </views:MvxApplication>

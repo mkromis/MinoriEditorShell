@@ -14,10 +14,15 @@ namespace MinoriEditorShell.VirtualCanvas.Services
         IMesQuadrant<T> TopRight { get; }
 
         void ShowQuadTree(Object c);
+
         Boolean HasIntersectingNodes(RectangleF bounds);
+
         void GetIntersectingNodes(IList<IMesQuadNode<T>> nodes, RectangleF bounds);
+
         void GetIntersectingNodes(IMesQuadNode<T> last, IList<IMesQuadNode<T>> nodes, RectangleF bounds);
+
         IMesQuadrant<T> Insert(T node, RectangleF bounds);
+
         Boolean RemoveNode(T node);
     }
 }

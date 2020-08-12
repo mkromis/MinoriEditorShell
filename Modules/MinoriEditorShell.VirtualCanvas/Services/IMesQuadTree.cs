@@ -10,9 +10,13 @@ namespace MinoriEditorShell.VirtualCanvas.Services
         IMesQuadrant<T> Root { get; }
 
         IEnumerable<T> GetNodesInside(RectangleF bounds);
+
         Boolean HasNodesInside(RectangleF bounds);
+
         void Insert(T node, RectangleF bounds);
+
         System.Boolean Remove(T node);
+
         void ShowQuadTree(Object container);
     }
 }

@@ -13,7 +13,6 @@ namespace MinoriEditorShell.Services
 
         public MesEditorFileType()
         {
-            
         }
     }
 }

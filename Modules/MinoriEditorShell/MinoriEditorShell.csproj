@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-        <Description>
-            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
-            It uses AvalonDock and has an MVVM architecture based on MvvmCross.
-        </Description>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
         <Copyright>Copyright 2019</Copyright>
         <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
@@ -16,54 +14,37 @@
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Platforms\**\*.cs" />
-        <None Include="Platforms\**\*" />
-        <None Remove="Platforms\Wpf\Themes\MesThemeBase.cs" />
-
-        <PackageReference Include="MvvmCross" Version="6.4.1" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.1" />
-        <PackageReference Include="GitVersionTask" Version="5.0.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.1" />
-        <PackageReference Include="System.ComponentModel.Composition" Version="4.6.0" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
-    <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-        <Compile Include="Platforms\NetStandard\**\*.cs" />
+    <ItemGroup>
+
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+        <PackageReference Include="MvvmCross" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
 
         <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
-    </ItemGroup>
-
-    <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
-        <Page Include="Platforms\Wpf\**\*.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Compile Include="Platforms\Wpf\**\*.cs" />
-
-        <PackageReference Include="Dirkster.AvalonDock" Version="3.6.0" />
-        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="3.6.0" />
-        <PackageReference Include="MahApps.Metro" Version="1.6.5" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
-        <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
-
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Xaml" />
-        <Reference Include="WindowsBase" />
     </ItemGroup>
 
     <ItemGroup>
         <None Update="Properties\Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
+            <Generator>PublicSettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
         <Compile Update="Properties\Settings.Designer.cs">

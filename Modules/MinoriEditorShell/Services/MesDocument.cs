@@ -1,19 +1,19 @@
-using System.Windows.Input;
-using MvvmCross.Commands;
 using MvvmCross;
-using System;
+using MvvmCross.Commands;
 using MvvmCross.Views;
+using System;
+using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
     public abstract class MesDocument : MesLayoutItemBase, IMesDocument
 #warning fix command handler inherit.
-        //ICommandHandler<UndoCommandDefinition>,
-        //ICommandHandler<RedoCommandDefinition>,
-        //ICommandHandler<SaveFileCommandDefinition>,
-        //ICommandHandler<SaveFileAsCommandDefinition>
-	{
-	    //private IMesUndoRedoManager _undoRedoManager;
+    //ICommandHandler<UndoCommandDefinition>,
+    //ICommandHandler<RedoCommandDefinition>,
+    //ICommandHandler<SaveFileCommandDefinition>,
+    //ICommandHandler<SaveFileAsCommandDefinition>
+    {
+        //private IMesUndoRedoManager _undoRedoManager;
         //public IMesUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new MesUndoRedoManager());
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace MinoriEditorShell.Services
         /// <summary>
         /// Removes the document from manager
         /// </summary>
-        public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IMesManager>().Documents.Remove(this));
+        public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IMesDocumentManager>().Documents.Remove(this));
 
 #warning Fix Toolbar
 #if false
@@ -153,5 +153,5 @@ namespace MinoriEditorShell.Services
             await persistedDocument.Save(filePath);
 	    }
 #endif
-	}
+    }
 }

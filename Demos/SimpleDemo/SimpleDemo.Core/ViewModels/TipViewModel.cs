@@ -6,7 +6,7 @@ namespace SimpleDemo.Core.ViewModels
 {
     public class TipViewModel : MesDocument
     {
-        readonly ICalculationService _calculationService;
+        private readonly ICalculationService _calculationService;
 
         public TipViewModel(ICalculationService calculationService)
         {
@@ -26,6 +26,7 @@ namespace SimpleDemo.Core.ViewModels
         }
 
         private double _subTotal;
+
         public double SubTotal
         {
             get => _subTotal;
@@ -39,6 +40,7 @@ namespace SimpleDemo.Core.ViewModels
         }
 
         private int _generosity;
+
         public int Generosity
         {
             get => _generosity;
@@ -52,6 +54,7 @@ namespace SimpleDemo.Core.ViewModels
         }
 
         private double _tip;
+
         public double Tip
         {
             get => _tip;

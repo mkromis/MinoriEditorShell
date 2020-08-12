@@ -1,11 +1,7 @@
-using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using SimpleDemo.Core.Services;
 using SimpleDemo.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleDemo.Core
 {
