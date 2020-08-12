@@ -1,20 +1,30 @@
-assembly-versioning-scheme: Major
-assembly-file-versioning-scheme: MajorMinorPatchTag
-mode: ContinuousDeployment
 next-version: 0.3.0
+mode: Mainline
+legacy-semver-padding: 0
+build-metadata-padding: 0
+commits-since-version-source-padding: 0
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatchTag
+assembly-informational-format: '{LegacySemVer}'
+
 branches:
   stable:
-    mode: ContinuousDeployment
-    tag: rc
-    increment: Minor
+    regex: stable
+    increment: Patch
     prevent-increment-of-merged-branch-version: true
+    tag: ''
     track-merge-target: false
-    is-release-branch: true
+    tracks-release-branches: false
+    is-release-branch: false
   develop:
-    mode: ContinuousDeployment
-    tag: alpha
+    regex: develop
+    source-branches: ['stable']
+    increment: Patch
     prevent-increment-of-merged-branch-version: true
-    track-merge-target: true
+    tag: alpha
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch:  true
   pull-request:
     mode: ContinuousDelivery
 ignore:
