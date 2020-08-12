@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <CodeAnalysisRuleSet>..\..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,10 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataClasses\ThemeItem.cs" />
+    <Compile Include="Modules\Themes\CyberTheme.cs" />
+    <Compile Include="Modules\Themes\ThemeHelper.cs" />
     <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThemeEditorView.xaml.cs">
+      <DependentUpon>ThemeEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToolSampleView.xaml.cs">
       <DependentUpon>ToolSampleView.xaml</DependentUpon>
@@ -78,13 +87,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\Themes\CyberTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ToolSampleView.xaml">
+    <Page Include="Views\ThemeEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VirtualCanvasView.xaml">
       <SubType>Designer</SubType>
@@ -109,6 +126,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\..\..\.sonarlint\minorieditorshellcsharp.ruleset">
+      <Link>minorieditorshellcsharp.ruleset</Link>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,9 +138,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj">
+      <Project>{79572320-e719-4053-a12a-9d74e111fc5e}</Project>
+      <Name>MinoriEditorShell.Platforms.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj">
       <Project>{ed2e6a4c-fe20-4cb8-953e-880c1ee31ae6}</Project>
       <Name>MinoriEditorShell.Ribbon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas.Platforms.Wpf\MinoriEditorShell.VirtualCanvas.Platforms.Wpf.csproj">
+      <Project>{acd61563-7365-4287-8fe8-6b0c38c5e8e3}</Project>
+      <Name>MinoriEditorShell.VirtualCanvas.Platforms.Wpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj">
       <Project>{B8BA7A12-25B1-445D-93B8-D0F34226D053}</Project>
@@ -140,18 +168,30 @@
       <Version>1.6.0</Version>
     </PackageReference>
     <PackageReference Include="Fluent.Ribbon">
-      <Version>6.1.0.326</Version>
+      <Version>8.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="GitVersionTask">
+      <Version>5.3.7</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>6.4.1</Version>
+      <Version>6.4.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platforms.Wpf">
-      <Version>6.4.1</Version>
+      <Version>6.4.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Color">
-      <Version>6.4.1</Version>
+      <Version>6.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsAPICodePack-Shell">
+      <Version>1.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

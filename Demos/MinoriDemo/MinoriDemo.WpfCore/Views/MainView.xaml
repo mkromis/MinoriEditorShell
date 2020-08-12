@@ -1,0 +1,22 @@
+<views:MvxWpfView
+    x:Class="MinoriDemo.WpfCore.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MinoriDemo.WpfCore.Views"
+    xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
+    xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <Button Content="TipCalc" Command="{Binding TipCalcCommand}" />
+            <!--<ContentControl cal:View.Model="{Binding MainMenu}" />-->
+            <!--<ContentControl cal:View.Model="{Binding ToolBars}" />-->
+        </StackPanel>
+
+        <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
+        <mes:MesDocumentManagerView />
+    </DockPanel>
+</views:MvxWpfView>

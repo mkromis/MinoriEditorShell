@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("MinoriEditorStudio.RibbonTests.Wpf")]
@@ -10,9 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 [assembly: ComVisible(false)]
-
 [assembly: Guid("ab42b92d-2fa1-4d09-a6c4-5d8614b793a2")]
 
 // [assembly: AssemblyVersion("1.0.*")]

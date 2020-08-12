@@ -18,6 +18,7 @@ steps:
       displayName: 'Use NuGet > 5.0.0'
       inputs:
         versionSpec: '> 5.0.0'
+        checkLatest: true
 
     - task: GitVersion@5
       displayName: GitVersion
@@ -35,15 +36,10 @@ steps:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    - task: VisualStudioTestPlatformInstaller@1
+    - task: DotNetCoreCLI@2
       inputs:
-        packageFeedSelector: 'nugetOrg'
-        versionSelector: 'latestStable'
-
-    - task: VSTest@2
-      inputs:
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+        command: 'test'
+        arguments: '--collect "XPlat Code Coverage"'
 
     # copy the Nuget to compression folder
     - task: CopyFiles@2

@@ -1,9 +1,9 @@
+using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using MinoriEditorShell.Services;
 
 namespace MinoriEditorShell.Modules.Services
 {
@@ -12,7 +12,7 @@ namespace MinoriEditorShell.Modules.Services
     {
         private static readonly Type LayoutBaseType = typeof(IMesLayoutItem);
 
-        public Boolean SaveState(IMesManager shell, IMesManagerView shellView, String fileName)
+        public Boolean SaveState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName)
         {
             try
             {
@@ -151,7 +151,7 @@ namespace MinoriEditorShell.Modules.Services
             return typeof(IMesLayoutItem).IsAssignableFrom(type) ? type : null;
         }
 
-        public Boolean LoadState(IMesManager shell, IMesManagerView shellView, String fileName)
+        public Boolean LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName)
         {
             Dictionary<String, IMesLayoutItem> layoutItems = new Dictionary<String, IMesLayoutItem>();
 

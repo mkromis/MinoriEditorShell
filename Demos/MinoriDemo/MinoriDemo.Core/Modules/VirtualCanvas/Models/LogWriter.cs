@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 {
     public class LogWriter : IDisposable
     {
-        XmlWriter _xw;
-        Int32 _indent;
+        private XmlWriter _xw;
+        private Int32 _indent;
 
         public LogWriter(TextWriter w)
         {
@@ -29,16 +25,18 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             _xw.WriteStartElement(label);
             _indent++;
             if (_indent > MaxDepth) { MaxDepth = _indent; }
-
         }
+
         public void Close()
         {
             _indent--;
             _xw.WriteEndElement();
         }
+
         public void WriteAttribute(String name, String value) => _xw.WriteAttributeString(name, value);
 
         #region IDisposable Members
+
         public void Dispose()
         {
             Dispose(true);
@@ -56,6 +54,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 _xw = null;
             }
         }
-        #endregion
+
+        #endregion IDisposable Members
     }
 }

@@ -1,13 +1,10 @@
-using MinoriDemo.Core.Modules.VirtualCanvas.Models;
 using MinoriEditorShell.Services;
-using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -19,8 +16,9 @@ namespace MinoriDemo.Core.ViewModels
     {
         // Handles data context for ribbon.
         private VirtualCanvasViewModel _canvasModel;
+
         private Color _testcolor = Color.CornflowerBlue;
-        private readonly IMesManager _manager;
+        private readonly IMesDocumentManager _manager;
         private readonly IMesStatusBar _statusBar;
 
         public VirtualCanvasViewModel CanvasModel
@@ -29,7 +27,7 @@ namespace MinoriDemo.Core.ViewModels
             set => SetProperty(ref _canvasModel, value);
         }
 
-        public ICommand OpenCanvasCommand => new MvxAsyncCommand(async() =>
+        public ICommand OpenCanvasCommand => new MvxAsyncCommand(async () =>
         {
             if (CanvasModel == null)
             {
@@ -40,7 +38,6 @@ namespace MinoriDemo.Core.ViewModels
             {
                 _manager.ActiveItem = CanvasModel;
             }
-            //CanvasViewModel.IsClosing += (s, e) => CanvasViewModel = null;
         });
 
         public Color TestColor
@@ -49,14 +46,15 @@ namespace MinoriDemo.Core.ViewModels
             set => SetProperty(ref _testcolor, value);
         }
 
-        public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
-        //public ICommand TaskRunCommand => new MvxCommand(() => OpenAndFocus<TaskRunTestsViewModel>());
+        public Double ZoomValue { get; set; }
 
+        public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
+        public ICommand ThemeEditorCommand => new MvxCommand(() => NavigationService.Navigate<ThemeEditorViewModel>());
         public ICommand SettingsCommand => Mvx.IoCProvider.Resolve<IMesSettingsManager>().ShowCommand;
 
         private T OpenAndFocus<T>() where T : MesDocument
         {
-            T vm = (T)_manager.Documents.Where(x => x is T).FirstOrDefault();
+            T vm = (T)_manager.Documents.FirstOrDefault(x => x is T);
             if (vm == null)
             {
                 vm = Mvx.IoCProvider.Resolve<T>();
@@ -69,8 +67,8 @@ namespace MinoriDemo.Core.ViewModels
         }
 
         public MainViewModel(
-            IMvxLogProvider logProvider, IMvxNavigationService navigationService, 
-            IMesManager manager, IMesStatusBar statusBar)
+            IMvxLogProvider logProvider, IMvxNavigationService navigationService,
+            IMesDocumentManager manager, IMesStatusBar statusBar)
             : base(logProvider, navigationService)
         {
             _manager = manager;

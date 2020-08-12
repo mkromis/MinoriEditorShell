@@ -9,7 +9,9 @@ namespace MinoriEditorShell.Services
         string FilePath { get; }
 
         Task New(string fileName);
+
         Task Load(string filePath);
+
         Task Save(string filePath);
     }
 }

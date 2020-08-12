@@ -4,11 +4,10 @@ using MvvmCross.ViewModels;
 using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
-    public class MesGeneralSettingsViewModel : MvxViewModel, IMesSettingsEditor
+    public class MesGeneralSettingsViewModel : MvxViewModel, IMesSettings
     {
         private readonly IMesThemeManager _themeManager;
 
@@ -23,7 +22,6 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
         private IMesTheme _selectedTheme;
         private String _selectedLanguage;
-        private Boolean _autoHideMainMenu;
 
         public MesGeneralSettingsViewModel()
         {
@@ -37,8 +35,9 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         public IMesTheme SelectedTheme
         {
             get => _selectedTheme;
-            set {
-                if(SetProperty(ref _selectedTheme, value))
+            set
+            {
+                if (SetProperty(ref _selectedTheme, value))
                 {
                     _themeManager.SetCurrentTheme(_selectedTheme.Name);
                 }

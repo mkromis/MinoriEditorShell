@@ -10,7 +10,6 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
-
     /// <summary>
     /// This class efficiently stores and retrieves arbitrarily sized and positioned
     /// objects in a quad-tree data structure.  This can be used to do efficient hit
@@ -18,11 +17,11 @@ namespace MinoriEditorShell.VirtualCanvas.Models
     /// The object does not need to implement any special interface because the Rect Bounds
     /// of those objects is handled as a separate argument to Insert.
     /// </summary>
-    internal partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
+    public partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
     {
-        RectangleF _bounds; // overall bounds we are indexing.
+        private RectangleF _bounds; // overall bounds we are indexing.
         public IMesQuadrant<T> Root { get; private set; }
-        IDictionary<T, IMesQuadrant<T>> _table;
+        private IDictionary<T, IMesQuadrant<T>> _table;
 
         /// <summary>
         /// This determines the overall quad-tree indexing strategy, changing this bounds
@@ -63,8 +62,6 @@ namespace MinoriEditorShell.VirtualCanvas.Models
                 _table = new Dictionary<T, IMesQuadrant<T>>();
             }
             _table[node] = parent;
-
-
         }
 
         /// <summary>
@@ -131,7 +128,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <summary>
         /// Rebuild all the Quadrants according to the current QuadTree Bounds.
         /// </summary>
-        void ReIndex()
+        private void ReIndex()
         {
             Root = null;
             foreach (IMesQuadNode<T> n in GetNodes(_bounds))

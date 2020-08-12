@@ -6,10 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:fluent="urn:fluent-ribbon"
     xmlns:local="clr-namespace:MinoriDemo.WPF"
-    xmlns:views="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell"
+    xmlns:views="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
     mc:Ignorable="d"
     Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
     </Grid>
 </views:MesWindow>

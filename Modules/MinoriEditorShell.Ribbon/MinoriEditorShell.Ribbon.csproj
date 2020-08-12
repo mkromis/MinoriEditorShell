@@ -1,63 +1,37 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>Ribbon Mahapp IDE</PackageTags>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mark Kromis</Authors>
+        <Company>Mark Kromis</Company>
+        <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>Ribbon Mahapp IDE</PackageTags>
+        <UseWPF>true</UseWPF>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
-  </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Platforms\Wpf\Themes\BlueTheme.xaml" />
-    <None Remove="Platforms\Wpf\Themes\DarkTheme.xaml" />
-    <None Remove="Platforms\Wpf\Themes\LightTheme.xaml" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-  <ItemGroup>
-    <PackageReference Include="Fluent.Ribbon" Version="6.1.0.326" />
-    <PackageReference Include="GitVersionTask" Version="5.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
-    <PackageReference Include="MvvmCross" Version="6.4.1" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.1" />
-
-      <Reference Include="PresentationCore" />
-      <Reference Include="PresentationFramework" />
-      <!--<Reference Include="System.ComponentModel.Composition" />-->
-      <Reference Include="System.Drawing" />
-      <Reference Include="System.Xaml" />
-      <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Platforms\Wpf\Behaviors\CustomGlowWindowBehavior.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Platforms\Wpf\Themes\BlueTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Platforms\Wpf\Themes\DarkTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Platforms\Wpf\Themes\LightTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
+        <PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MvvmCross" Version="6.4.2" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

@@ -2,12 +2,13 @@
 
 ## Contact
 
- [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Status
 
-[![Build status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/MinoriEditorShell)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=3)
-[![NuGet](https://img.shields.io/nuget/v/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
+[![Build Status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/TorisanKitsune.MinoriEditorShell?branchName=develop)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=4&branchName=develop)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_shield)
+[![CodeFactor](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/badge/develop)](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/overview/develop)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
 [![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
@@ -19,11 +20,20 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
-## Breaking Changes
+## Breaking Changes (For Develop pre-release)
 
 The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
 * Undo - Redo interface was moved to MinoriEditorShell.History -- This is currently un-tested and no nuget yet.
+
+* IMesManager renamed to IMesDocumentManager to clarify what the manager does, manages documents/persistant documents and tools.
+* IMesSettings is for custom setting view models in the settings manager, (Still need to have a view for them in platform target).
+* IMesSettingsManger is for managaing all of the settings view models. 
+
+## Build environmant
+
+For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platfom development**, and **.Net Desktop Envirionment**
+This project depends on netstandard library for its core build. Future plans involves targeting other platforms.
 
 ## What is this
 
@@ -34,7 +44,7 @@ MinoriEditorShell is a IDE framework designed specifically for building multi do
 
 MinoriEditorShell ships with three themes: a Blue theme(Default), a Light theme, and a Dark theme.
 
-![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/master/Images/BlueDemoApp.png)
+![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/develop/Images/BlueDemoApp.png)
 
 ## Modules used
 
@@ -69,3 +79,7 @@ MinoriEditorShell is not the only WPF framework for building IDE-like applicatio
 * [Wide](https://github.com/chandramouleswaran/Wide/) - looks promising, and has a 
   [CodeProject article](http://www.codeproject.com/Articles/551885/How-to-create-a-VS-2012-like-application-Wide-IDE).
 * [Wider](https://github.com/TorisanKitsune/Wider) - Based on project wide with update Prism and Fluent.Ribbon
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_large)

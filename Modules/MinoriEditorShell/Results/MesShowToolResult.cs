@@ -1,33 +1,35 @@
+using MinoriEditorShell.Services;
 using System;
 using System.ComponentModel.Composition;
-using MinoriEditorShell.Services;
 
 namespace MinoriEditorShell.Results
 {
     public class MesShowToolResult<TTool> : MesOpenResultBase<TTool>
-		where TTool : IMesTool
-	{
+        where TTool : IMesTool
+    {
 #warning ToolLocator
         private readonly Func<TTool> _toolLocator = null; //() => Mvx.IoCProvider.Resolve<TTool>();
 
 #pragma warning disable 649
+
         [Import]
-		private IMesManager _shell;
+        private IMesDocumentManager _shell;
+
 #pragma warning restore 649
 
         public MesShowToolResult()
-		{
-			
-		}
+        {
+        }
 
-		public MesShowToolResult(TTool tool)
-		{
-			_toolLocator = () => tool;
-		}
+        public MesShowToolResult(TTool tool)
+        {
+            _toolLocator = () => tool;
+        }
 
 #warning CoroutineExecutionContext
+
         public override void Execute(/*CoroutineExecutionContext*/Object context)
-		{
+        {
             throw new NotImplementedException();
 #if false
             var tool = _toolLocator();
@@ -51,6 +53,6 @@ namespace MinoriEditorShell.Results
 
 			_shell.ShowTool(tool);
 #endif
-		}
-	}
+        }
+    }
 }

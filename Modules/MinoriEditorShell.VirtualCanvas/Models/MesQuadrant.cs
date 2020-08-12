@@ -11,7 +11,6 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
-
     /// <summary>
     /// The canvas is split up into four Quadrants and objects are stored in the quadrant that contains them
     /// and each quadrant is split up into four child Quadrants recurrsively.  Objects that overlap more than
@@ -26,9 +25,10 @@ namespace MinoriEditorShell.VirtualCanvas.Models
 
         public IMesQuadNode<T> Nodes { get; private set; } // nodes that overlap the sub quadrant boundaries.
 
-        // The quadrant is subdivided when nodes are inserted that are 
+        // The quadrant is subdivided when nodes are inserted that are
         // completely contained within those subdivisions.
         public IMesQuadrant<T> TopLeft { get; private set; }
+
         public IMesQuadrant<T> TopRight { get; private set; }
         public IMesQuadrant<T> BottomLeft { get; private set; }
         public IMesQuadrant<T> BottomRight { get; private set; }
@@ -36,7 +36,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <summary>
         /// Statictial information for rendering use.
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="o"></param>
         public void ShowQuadTree(Object o)
         {
             //if (o is Canvas c)
@@ -64,7 +64,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
 
         /// <summary>
         /// Construct new Quadrant with a given bounds all nodes stored inside this quadrant
-        /// will fit inside this bounds.  
+        /// will fit inside this bounds.
         /// </summary>
         /// <param name="parent">The parent quadrant (if any)</param>
         /// <param name="bounds">The bounds of this quadrant</param>
@@ -349,7 +349,5 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             }
             return rc;
         }
-
     }
 }
-

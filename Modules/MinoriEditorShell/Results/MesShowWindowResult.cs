@@ -1,6 +1,5 @@
 using MinoriEditorShell.Services;
 using System;
-using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Results
 {
@@ -16,7 +15,6 @@ namespace MinoriEditorShell.Results
 
         public MesShowWindowResult()
         {
-            
         }
 
         public MesShowWindowResult(TWindow window)
@@ -26,6 +24,7 @@ namespace MinoriEditorShell.Results
         }
 
 #warning CoroutineExecutionContext
+
         public override void Execute(/*CoroutineExecutionContext*/Object context)
         {
 #if false

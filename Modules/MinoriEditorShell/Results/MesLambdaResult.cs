@@ -1,8 +1,7 @@
-using System;
-
 namespace MinoriEditorShell.Results
 {
 #warning CoRoutine
+
     public class MesLambdaResult /*: IResult*/
     {
         //private readonly Action<CoroutineExecutionContext> _lambda;
