@@ -10,6 +10,7 @@ branches:
   stable:
     regex: stable
     increment: Patch
+    source-branches: [ '' ]
     prevent-increment-of-merged-branch-version: true
     tag: ''
     track-merge-target: false
