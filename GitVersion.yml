@@ -1,4 +1,4 @@
-next-version: 0.3.0
+next-version: 0.3
 mode: Mainline
 legacy-semver-padding: 0
 build-metadata-padding: 0
@@ -6,7 +6,6 @@ commits-since-version-source-padding: 0
 assembly-versioning-scheme: MajorMinorPatch
 assembly-file-versioning-scheme: MajorMinorPatchTag
 assembly-informational-format: '{LegacySemVer}'
-
 branches:
   stable:
     regex: stable
@@ -21,11 +20,7 @@ branches:
     source-branches: ['stable']
     increment: Patch
     prevent-increment-of-merged-branch-version: true
-    tag: alpha
+    tag: beta
     track-merge-target: false
     tracks-release-branches: false
     is-release-branch:  true
-  pull-request:
-    mode: ContinuousDelivery
-ignore:
-  sha: []
