@@ -58,6 +58,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriDemo.RibbonWpfCore", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriDemo.WpfCore", "Demos\MinoriDemo\MinoriDemo.WpfCore\MinoriDemo.WpfCore.csproj", "{31D34D4B-888E-4667-82CE-C9599FD4A974}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4AECF4-649F-45C0-B260-419F68EB5707}"
+	ProjectSection(SolutionItems) = preProject
+		Images\BlueDemoApp.png = Images\BlueDemoApp.png
+		Images\Ribbon-Demo.png = Images\Ribbon-Demo.png
+		Images\VirtualCanvasModule.png = Images\VirtualCanvasModule.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,6 +163,7 @@ Global
 		{25F62AFA-DB2E-4561-9EA3-2B7764D197A4} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 		{47BC0DF9-FFD4-468F-8A98-E24F4D5DA311} = {0D78D57D-5ED4-4898-A3E5-39C7B5ECEF0C}
 		{31D34D4B-888E-4667-82CE-C9599FD4A974} = {0D78D57D-5ED4-4898-A3E5-39C7B5ECEF0C}
+		{DE4AECF4-649F-45C0-B260-419F68EB5707} = {748FD7C1-877B-451D-809A-68E032C39B34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4DE08D7-0160-4FCF-876A-904438A56A8A}
