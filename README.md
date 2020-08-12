@@ -44,7 +44,7 @@ MinoriEditorShell is a IDE framework designed specifically for building multi do
 
 MinoriEditorShell ships with three themes: a Blue theme(Default), a Light theme, and a Dark theme.
 
-![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/master/Images/BlueDemoApp.png)
+![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/develop/Images/BlueDemoApp.png)
 
 ## Modules used
 
