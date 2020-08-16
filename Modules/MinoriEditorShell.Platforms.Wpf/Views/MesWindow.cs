@@ -120,5 +120,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             get => (TViewModel)base.ViewModel;
             set => base.ViewModel = value;
         }
+
+        MvxFluentBindingDescriptionSet<IMvxWpfView<TViewModel>, TViewModel> IMvxWpfView<TViewModel>.CreateBindingSet()
+        {
+            return this.CreateBindingSet<IMvxWpfView<TViewModel>, TViewModel>();
+        }
     }
 }
