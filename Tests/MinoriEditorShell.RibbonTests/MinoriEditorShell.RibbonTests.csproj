@@ -21,6 +21,11 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+        <ProjectReference Include="..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj" />
         <ProjectReference Include="..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Properties\" />
     </ItemGroup>
 </Project>

@@ -1,15 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MinoriEditorShell.Platforms.Wpf.Services;
 using MinoriEditorShell.Services;
+using MvvmCross.Binding.Extensions;
 using MvvmCross.IoC;
-using MvvmCross.Tests;
 using System;
 using System.Linq;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
+namespace MinoriEditorShell.RibbonTests.Wpf.Platforms.Wpf.Extensions
 {
-    [TestClass()]
-    public class IThemeTests : MvxIoCSupportingTest
+    [TestClass]
+    public class IThemeTests : MvvmCross.Tests.MvxIoCSupportingTest
     {
         protected override void AdditionalSetup()
         {
@@ -19,19 +19,13 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
             // register necessary interfaces
 
             Ioc.ConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
+
+            // Register themes
+            new Ribbon.Platforms.Wpf.Plugin().Load();
         }
 
         [TestMethod]
-        public void NoRibbonTest()
-        {
-            Setup();
-
-            MesBlueTheme blue = new MesBlueTheme();
-            Assert.AreEqual(1, blue.ApplicationResources.Count());
-        }
-
-        [TestMethod]
-        public void GetAllThemesTest()
+        public void RibbonTest()
         {
             Setup();
 
@@ -41,7 +35,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
             Assert.AreEqual(3, themes.Count());
 
             var blue = themes.First(x => x.Name.Contains("Blue"));
-            Assert.AreEqual(1, blue.ApplicationResources.Count());
+            Assert.AreEqual(2, blue.ApplicationResources.Count());
         }
     }
 }
