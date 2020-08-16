@@ -37,10 +37,10 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         
-        <PackageReference Include="MvvmCross" Version="6.4.2" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.4.2" />
-        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135">
+        <PackageReference Include="MvvmCross" Version="7.0.0" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="7.0.0" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="7.0.0" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -50,7 +50,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
         <PackageReference Include="Dirkster.AvalonDock" Version="4.30.0" />
         <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.30.0" />
-        <PackageReference Include="MahApps.Metro" Version="2.1.1" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
+        <PackageReference Include="MahApps.Metro" Version="2.2.0" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.0.0" />
     </ItemGroup>
 </Project>
