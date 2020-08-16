@@ -54,84 +54,87 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\App.xaml.cs">
+      <Link>App.xaml.cs</Link>
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\DataClasses\ThemeItem.cs">
+      <Link>DataClasses\ThemeItem.cs</Link>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\MainWindow.xaml.cs">
+      <Link>MainWindow.xaml.cs</Link>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\Themes\CyberTheme.cs">
+      <Link>Modules\Themes\CyberTheme.cs</Link>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\Themes\ThemeHelper.cs">
+      <Link>Modules\Themes\ThemeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\VirtualCanvas\Models\TestShape.cs">
+      <Link>Modules\VirtualCanvas\Models\TestShape.cs</Link>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Setup.cs">
+      <Link>Setup.cs</Link>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Views\MainView.xaml.cs">
+      <Link>Views\MainView.xaml.cs</Link>
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Views\ThemeEditorView.xaml.cs">
+      <Link>Views\ThemeEditorView.xaml.cs</Link>
+      <DependentUpon>ThemeEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Views\ToolSampleView.xaml.cs">
+      <Link>Views\ToolSampleView.xaml.cs</Link>
+      <DependentUpon>ToolSampleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MinoriDemo.RibbonWpfCore\Views\VirtualCanvasView.xaml.cs">
+      <Link>Views\VirtualCanvasView.xaml.cs</Link>
+      <DependentUpon>VirtualCanvasView.xaml</DependentUpon>
+    </Compile>
+    <ApplicationDefinition Include="..\MinoriDemo.RibbonWpfCore\App.xaml">
+      <Link>App.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataClasses\ThemeItem.cs" />
-    <Compile Include="Modules\Themes\CyberTheme.cs" />
-    <Compile Include="Modules\Themes\ThemeHelper.cs" />
-    <Compile Include="Modules\VirtualCanvas\Models\TestShape.cs" />
-    <Compile Include="Setup.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ThemeEditorView.xaml.cs">
-      <DependentUpon>ThemeEditorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ToolSampleView.xaml.cs">
-      <DependentUpon>ToolSampleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VirtualCanvasView.xaml.cs">
-      <DependentUpon>VirtualCanvasView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="..\MinoriDemo.RibbonWpfCore\MainWindow.xaml">
+      <Link>MainWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Modules\Themes\CyberTheme.xaml">
+    <Page Include="..\MinoriDemo.RibbonWpfCore\Modules\Themes\CyberTheme.xaml">
+      <Link>Modules\Themes\CyberTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ThemeEditorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ToolSampleView.xaml">
+    <Page Include="..\MinoriDemo.RibbonWpfCore\Views\MainView.xaml">
+      <Link>Views\MainView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VirtualCanvasView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="..\MinoriDemo.RibbonWpfCore\Views\ThemeEditorView.xaml">
+      <Link>Views\ThemeEditorView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\MinoriDemo.RibbonWpfCore\Views\ToolSampleView.xaml">
+      <Link>Views\ToolSampleView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\MinoriDemo.RibbonWpfCore\Views\VirtualCanvasView.xaml">
+      <Link>Views\VirtualCanvasView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="..\..\..\.sonarlint\minorieditorshellcsharp.ruleset">
       <Link>minorieditorshellcsharp.ruleset</Link>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 using MvvmCross.Platforms.Wpf.Views;
 
-namespace MinoriDemo.RibbonWpfCore.Views
+namespace MinoriDemo.RibbonWPF.Views
 {
     /// <summary>
     /// Interaction logic for MainView.xaml
