@@ -1,10 +1,10 @@
 using MinoriDemo.Core.Modules.VirtualCanvas.Models;
-using MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models;
+using MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models;
 using MvvmCross;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 
-namespace MinoriDemo.RibbonWpfCore
+namespace MinoriDemo.RibbonWPF
 {
     /// <summary>
     /// Interaction logic for App.xaml
