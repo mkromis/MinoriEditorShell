@@ -18,10 +18,6 @@
 
     <ItemGroup>
         <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.0" />
-        <PackageReference Include="GitVersionTask" Version="5.3.7">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
