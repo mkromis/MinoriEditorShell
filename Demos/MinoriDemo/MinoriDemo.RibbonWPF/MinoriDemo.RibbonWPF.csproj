@@ -196,5 +196,8 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Splash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
