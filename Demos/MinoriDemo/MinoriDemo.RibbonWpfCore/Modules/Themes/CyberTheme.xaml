@@ -1,404 +1,455 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-    xmlns:System="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="options">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml" />
-
         <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Dark.Blue.xaml" />
         <ResourceDictionary Source="pack://application:,,,/AvalonDock.Themes.VS2013;component/DarkTheme.xaml" />
         <!--<ResourceDictionary Source="Controls/Merged.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
-
-    <!--  ACCENT COLORS  -->
-    <Color x:Key="MahApps.Colors.Highlight">#FF086F9E</Color>
-    <Color x:Key="MahApps.Colors.AccentBase">#FF119EDA</Color>
-    <!--  80%  -->
-    <Color x:Key="MahApps.Colors.Accent">#CC119EDA</Color>
-    <!--  60%  -->
-    <Color x:Key="MahApps.Colors.Accent2">#99119EDA</Color>
-    <!--  40%  -->
-    <Color x:Key="MahApps.Colors.Accent3">#66119EDA</Color>
-    <!--  20%  -->
-    <Color x:Key="MahApps.Colors.Accent4">#33119EDA</Color>
-
-    <!--  BASE COLORS  -->
-    <Color x:Key="MahApps.Colors.Black">#FFFFFFFF</Color>
-    <Color x:Key="MahApps.Colors.White">#FF252525</Color>
-    <Color x:Key="MahApps.Colors.Gray1">#FFF9F9F9</Color>
-    <Color x:Key="MahApps.Colors.Gray2">#FF7F7F7F</Color>
-    <Color x:Key="MahApps.Colors.Gray3">#FF9D9D9D</Color>
-    <Color x:Key="MahApps.Colors.Gray4">#FFA59F93</Color>
-    <Color x:Key="MahApps.Colors.Gray5">#FFB9B9B9</Color>
-    <Color x:Key="MahApps.Colors.Gray6">#FFCCCCCC</Color>
-    <Color x:Key="MahApps.Colors.Gray7">#FF7E7E7E</Color>
-    <Color x:Key="MahApps.Colors.Gray8">#FF454545</Color>
-    <Color x:Key="MahApps.Colors.Gray9">#5EC9C9C9</Color>
-    <Color x:Key="MahApps.Colors.Gray10">#FF2F2F2F</Color>
-
-    <Color x:Key="MahApps.Colors.GrayNormal">#FF7D7D7D</Color>
-    <Color x:Key="MahApps.Colors.GrayHover">#FFAAAAAA</Color>
-
-    <Color x:Key="MahApps.Colors.Flyout">#FF2B2B2B</Color>
-
-    <!--  CORE CONTROL COLORS  -->
-    <Color x:Key="MahApps.Colors.ProgressIndeterminate1">#33878787</Color>
-    <Color x:Key="MahApps.Colors.ProgressIndeterminate2">#33959595</Color>
-    <Color x:Key="MahApps.Colors.ProgressIndeterminate3">#4C000000</Color>
-    <Color x:Key="MahApps.Colors.ProgressIndeterminate4">#4C000000</Color>
-
-    <!--  *************BRUSHES START*************  -->
-    <!--  PROJECT TEMPLATE BRUSHES  -->
-
-    <!--  UNIVERSAL CONTROL BRUSHES  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Control.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.White" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Black" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Text" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Label.Text" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.WhiteColor" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.BlackColor" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="#FF6CA1FF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="#FF99FDFB" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#FF7BFFB4" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="{StaticResource MahApps.Colors.Highlight}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DisabledWhite" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.TransparentWhite" Color="#00FFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SemiTransparentWhite" Color="#55FFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SemiTransparentGray" Color="#40808080" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Controls.Disabled" Color="#A5FFFFFF" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.AccentBase" Color="{StaticResource MahApps.Colors.AccentBase}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Accent" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Accent2" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Accent3" Color="{StaticResource MahApps.Colors.Accent3}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Accent4" Color="{StaticResource MahApps.Colors.Accent4}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray1" Color="{StaticResource MahApps.Colors.Gray1}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray2" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{StaticResource MahApps.Colors.Gray3}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray4" Color="{StaticResource MahApps.Colors.Gray4}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray5" Color="{StaticResource MahApps.Colors.Gray5}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray6" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray7" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray8" Color="{StaticResource MahApps.Colors.Gray8}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray9" Color="{StaticResource MahApps.Colors.Gray9}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Gray10" Color="{StaticResource MahApps.Colors.Gray10}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.GrayNormal" Color="{StaticResource MahApps.Colors.GrayNormal}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.GrayHover" Color="{StaticResource MahApps.Colors.GrayHover}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Controls.Border" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.MouseOverInnerBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.FocusBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.MouseOverBorder" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Button.MouseOverBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Button.MouseOverInnerBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.MouseOverBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.MouseOverInnerBorder" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.PopupBorder" Color="{StaticResource MahApps.Colors.Gray4}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.MouseOver" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" />
-    <LinearGradientBrush x:Key="MahApps.Brushes.CheckBox.Background" StartPoint="0.5,0" EndPoint="0.5,1" options:Freeze="True">
-        <GradientStop Offset="0" Color="{StaticResource MahApps.Colors.Gray7}" />
-        <GradientStop Offset="1" Color="{StaticResource MahApps.Colors.White}" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{StaticResource MahApps.Colors.Gray5}" options:Freeze="True" />
-
-    <LinearGradientBrush x:Key="MahApps.Brushes.Progress" StartPoint="1.002,0.5" EndPoint="0.001,0.5" options:Freeze="True">
-        <GradientStop Offset="0" Color="{StaticResource MahApps.Colors.Highlight}" />
-        <GradientStop Offset="1" Color="{StaticResource MahApps.Colors.Accent3}" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="MahApps.Brushes.SliderValue.Disabled" Color="#FF535353" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Disabled" Color="#FF383838" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SliderThumb.Disabled" Color="#FF7E7E7E" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Hover" Color="#FF737373" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Normal" Color="#FF6C6C6C" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Flyout.Background" Color="{StaticResource MahApps.Colors.Flyout}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Flyout.Foreground" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Window.FlyoutOverlay" Opacity="0.5" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Window.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Separator" Color="#FFC4C4C5" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.Background" Color="#D5D5D5" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.Foreground" Color="#222222" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.PressedBackground" Color="#444444" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.PressedForeground" Color="White" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.DarkIdealForegroundDisabled" Color="#ADADAD" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CleanWindowCloseButton.Background" Color="#EB2F2F" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CleanWindowCloseButton.PressedBackground" Color="#7C0000" options:Freeze="True" />
-
-    <!--  CONTROL VALIDATION BRUSHES  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Controls.Validation" Color="#FFDB000C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Validation1" Color="#052A2E31" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Validation2" Color="#152A2E31" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Validation3" Color="#252A2E31" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Validation4" Color="#352A2E31" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Validation5" Color="#FFDC000C" options:Freeze="True" />
-    <!--  unused  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary1" Color="#FFDC020D" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary2" Color="#FFCA000C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary3" Color="#FFFF9298" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary4" Color="#FFFDC8C8" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary5" Color="#DDD43940" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill1" Color="#59F7D8DB" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill2" Color="#FFF7D8DB" options:Freeze="True" />
-    <!--  validation text foreground always white  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Text.Validation" Color="White" options:Freeze="True" />
-
-    <!--  WPF default colors  -->
-    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-
-    <!--  menu default colors  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Border" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Border" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionFill" Color="#313131" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionStroke" Color="#313131" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedFill" Color="#313131" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedStroke" Color="#E0717070" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.SelectionStroke" Color="#90717070" options:Freeze="True" />
-
-    <!--  original #FF9A9A9A"  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.DisabledForeground" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.DisabledGlyphPanel" Color="#848589" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.CheckmarkFill" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.RightArrowFill" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-
-    <Color x:Key="MahApps.Colors.MenuShadow">#FFFFFFFF</Color>
-
-    <Color x:Key="MahApps.Colors.IdealForeground">White</Color>
-
-    <SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.IdealForegroundDisabled" Opacity="0.4" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.AccentSelectedColor" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowButtonCommands.HoverBackground" Color="#66DCDCDC" options:Freeze="True" />
-
-    <!--  DataGrid brushes  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Highlight" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.DisabledHighlight" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.HighlightText" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.MouseOverHighlight" Color="{StaticResource MahApps.Colors.Accent3}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.FocusBorder" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.InactiveSelectionHighlight" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.InactiveSelectionHighlightText" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.Pressed.Win10" Color="#FF999999" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffBorder.Win10" Color="#FFCCCCCC" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffMouseOverBorder.Win10" Color="#FFFFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffDisabledBorder.Win10" Color="#FF666666" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffSwitch.Win10" Color="Transparent" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OnSwitch.Win10" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OnSwitchDisabled.Win10" Color="#FF444444" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OnSwitchMouseOver.Win10" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicator.Win10" Color="#FFCCCCCC" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10" Color="#FFFFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorChecked.Win10" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorPressed.Win10" Color="#FFFFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorDisabled.Win10" Color="#FF666666" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="MahApps.Brushes.Badged.DisabledBackground" Color="#FF666666" options:Freeze="True" />
-
-    <!--  HamburgerMenu  -->
-    <SolidColorBrush x:Key="MahApps.HamburgerMenu.PaneBackground" Color="#FF444444" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.HamburgerMenu.PaneForeground" Color="#FFFFFFFF" options:Freeze="True" />
-
-    <!--  Background  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Background" Color="#1C1C1C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.LightBackground" Color="#2D2D30" options:Freeze="True" />
-
-    <!--  Foreground  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Foreground" Color="#FFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.Foreground" Color="#FF1A1A1A" options:Freeze="True" />
-
-    <!--  General  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.BackgroundHighlighted" Color="#54545C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.Highlighted" Color="#6A6A75" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.BackgroundSelected" Color="#007ACC" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.Selected" Color="#1C97EA" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Background.Normal" Color="#3F3F46" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#54545C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Window.Glow" Color="#FF17F8F4" options:Freeze="True" />
-
-    <!--  Text Box  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Background" Color="#333337" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.BackgroundSelected" Color="#3F3F46" options:Freeze="True" />
-
-    <!--  Search Text Box  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.SearchTextBox.Foreground" Color="#999999" options:Freeze="True" />
-
-    <!--  Link Button  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.LinkButton.Foreground" Color="#1297FB" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.LinkButton.ForegroundHighlighted" Color="#55AAFF" options:Freeze="True" />
-
-    <!--  Close Button  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundHighlighted" Color="#FFFF0101" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundPressed" Color="#FFFF831F" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.Stroke" Color="#77FFFFFF" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="#AAFFFF" options:Freeze="True" />
-
-    <!--  Menu  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Fill" Color="#FF999999" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Background" Color="#FF2D2D30" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuSeparator.Border" Color="#333337" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.BackgroundHighlighted" Color="#3E3E40" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SubmenuItem.Background" Color="#1B1B1C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.SubmenuItem.BackgroundHighlighted" Color="#333334" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.Menu.ForegroundDisabled" Color="#656565" options:Freeze="True" />
-    <!--<SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Background" Color="#1B1B1C" options:Freeze="True" />
-    <SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Border" Color="#333337" options:Freeze="True" />-->
-    <!--<SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="#FFFFFF" options:Freeze="True" />-->
-
-    <System:Double x:Key="MahApps.Font.Size.ContextMenu">12</System:Double>
-
-    <!--  Scroll Bar  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.ScrollBar.PageButtonBackgroundHighlighted" Color="#05FFFFFF" options:Freeze="True" />
-
-    <!--  Notification Button  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.Foreground" Color="#000000" />
-    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.Background" Color="#FFCC00" />
-    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.BackgroundOver" Color="#FFDF66" />
-    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.BackgroundPressed" Color="#C59E00" />
-
-    <!--  Quick Launch TextBox  -->
-    <SolidColorBrush x:Key="MahApps.Brushes.QuickLaunchTextBox.Border" Color="#3F3F46" />
-    <SolidColorBrush x:Key="MahApps.Brushes.QuickLaunchTextBox.FocusedBorder" Color="#007ACC" />
-
-    <!-- Ribbon Theme Resources -->
-    <!-- COLORS -->
-
-    <!-- Accent colors -->
-    <Color x:Key="Fluent.Ribbon.Colors.AccentBaseColor">#FF2B579A</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.AccentColor80">#CC2B579A</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.AccentColor60">#992B579A</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.AccentColor40">#662B579A</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.AccentColor20">#332B579A</Color>
-
-    <Color x:Key="Fluent.Ribbon.Colors.HighlightColor">#FF086F9E</Color>
-
-    <!-- Foreground -->
-    <Color x:Key="Fluent.Ribbon.Colors.IdealForegroundColor">White</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.DarkIdealForegroundDisabledColor">#ADADAD</Color>
-
-    <!-- Misc colors -->
-    <Color x:Key="Fluent.Ribbon.Colors.ExtremeHighlightColor">#FFFFD232</Color>
-    <Color x:Key="Fluent.Ribbon.Colors.DarkExtremeHighlightColor">#FFF29536</Color>
-
-    <!-- END COLORS -->
-
-    <!-- BRUSHES -->
-
-    <!-- Accent brushes -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.AccentBaseColorBrush" Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.AccentColorBrush80" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor80}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.AccentColorBrush60" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor60}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.AccentColorBrush40" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor40}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.AccentColorBrush20" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor20}" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.HighlightBrush" Color="{StaticResource Fluent.Ribbon.Colors.HighlightColor}" options:Freeze="True" />
-
-    <!-- Misc brushes -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.ExtremeHighlightBrush" Color="{StaticResource Fluent.Ribbon.Colors.ExtremeHighlightColor}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.DarkExtremeHighlightBrush" Color="{StaticResource Fluent.Ribbon.Colors.DarkExtremeHighlightColor}" options:Freeze="True" />
-
-    <!-- Foreground -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.IdealForegroundColorBrush" Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.IdealForegroundDisabledBrush" Color="{StaticResource Fluent.Ribbon.Colors.IdealForegroundColor}" Opacity="0.4" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.DarkIdealForegroundDisabledBrush" Color="{StaticResource Fluent.Ribbon.Colors.DarkIdealForegroundDisabledColor}" options:Freeze="True" />
-
-    <!-- Button -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Button.MouseOver.BorderBrush" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor40}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Button.MouseOver.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor20}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Button.Pressed.BorderBrush" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor60}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Button.Pressed.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor40}" options:Freeze="True" />
-
-    <!-- GalleryItem -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.GalleryItem.MouseOver" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor20}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.GalleryItem.Selected" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor40}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.GalleryItem.Pressed" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor60}" options:Freeze="True" />
-
-    <!-- MenuItem -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.ApplicationMenuItem.CheckBox.Background" Color="#FFFCF1C2" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.ApplicationMenuItem.CheckBox.BorderBrush" Color="#FFF29536" options:Freeze="True" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground" Color="#FF7FFFAA" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Background" Color="#FF78AAFF" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.Foreground" Color="{StaticResource BlackColor}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.Backstage.BackButton.Foreground" Color="{StaticResource BlackColor}" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.Button.MouseOver.Background" Color="#FFB6E8FF" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabControl.ItemsPanelBackground" Color="#363636" />
-    <!--<SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Header.Foreground" Color="{StaticResource BlackColor}" />-->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.MouseOver.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentBaseColor}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.BackstageTabItem.Selected.Background" Color="{StaticResource Fluent.Ribbon.Colors.AccentColor20}" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.LabelTextBrush" Color="White" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonGroupBox.Header.Foreground" Color="{StaticResource Gray6}" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonWindow.TitleBackground" Color="#FF4BFF8B" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background" Color="Black" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.TabsGrid.Background" Color="Black" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FF202020" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Foreground" Color="{StaticResource Gray6}" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Foreground" Color="#FF7FFFAA" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="Black" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Background" Color="#444444" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.MouseOver.Foreground" Color="{StaticResource BlackColor}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Selected.MouseOver.Foreground" Color="{StaticResource BlackColor}" />
-
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedForeground" Color="{StaticResource Gray5}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemMouseOverForeground" Color="{StaticResource BlackColor}" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonContextualTabGroup.TabItemSelectedMouseOverForeground" Color="{StaticResource BlackColor}" />
-    <!-- END BRUSHES -->
+    <!-- Begin SolidColorBrush Export -->
+    <SolidColorBrush x:Key="MahApps.Brushes.Accent" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Accent2" Color="#990078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Accent3" Color="#660078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Accent4" Color="#330078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.AccentBase" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Background" Color="#FF1C1C1C"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Background.Normal" Color="#FFECECF0"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.BackgroundHighlighted" Color="#FFC9DEF5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.BackgroundSelected" Color="#FF007ACC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Badged.Background" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Badged.Background.Disabled" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Badged.DisabledBackground" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground.Disabled" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Black" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.BlackColor" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.Highlighted" Color="#FF6A6A75"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#FF808080"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.Normal" Color="#FFCCCEDB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Border.Selected" Color="#FF1C97EA"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Background.MouseOver" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Foreground.MouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Background.MouseOver" Color="#FFEB2F2F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Background.Pressed" Color="#FF7C0000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Foreground.MouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background" Color="#FFD5D5D5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background.MouseOver" Color="#FFA9A9A9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background.Pressed" Color="#FFF5F5F5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Foreground" Color="#FF222222"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Foreground.Pressed" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.MouseOverBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.MouseOverInnerBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Background.MouseOver" Color="#FFC9DEF5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Foreground.MouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox" Color="#FFB9B9B9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundChecked" Color="#FFFEFEFE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminate" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminateDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminateMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminatePressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundUnchecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushChecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminate" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminateDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminateMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminatePressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushUnchecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillChecked" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedMouseOver" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminate" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminatePressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUnchecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedMouseOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeChecked" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminate" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateMouseOver" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminatePressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUnchecked" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundChecked" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedMouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedPressed" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminate" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminatePressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUnchecked" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedDisabled" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedMouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedPressed" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundChecked" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedPressed" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminate" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminateDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminateMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminatePressed" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundUnchecked" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedMouseOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedPressed" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckBox.MouseOver" Color="#FF7F7F7F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CheckmarkFill" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CleanWindowCloseButton.Background" Color="#FFEB2F2F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CleanWindowCloseButton.PressedBackground" Color="#FF7C0000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundHighlighted" Color="#FF39ADFB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.BackgroundPressed" Color="#FF084E7D"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.Stroke" Color="#AAFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.CloseButton.StrokeHighlighted" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.Focus" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.MouseOver" Color="#FF7F7F7F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.MouseOverBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.MouseOverInnerBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.PopupBorder" Color="#FFA59F93"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Border" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Control.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Control.Border" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Control.Disabled" Color="#A5FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Control.Validation" Color="#FFDB000C"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DarkIdealForegroundDisabled" Color="#FFADADAD"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.DisabledHighlight" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.FocusBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Highlight" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.HighlightText" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.InactiveSelectionHighlight" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.InactiveSelectionHighlightText" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.MouseOverHighlight" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.Disabled" Color="#FFD8D8D9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.Inactive" Color="#660078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.MouseOver" Color="#990078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Disabled" Color="#FFD8D8D9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Focus" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Inactive" Color="#660078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.MouseOver" Color="#990078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.Disabled" Color="#FF333333"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.Inactive" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.MouseOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.DisabledWhite" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.Background" Color="#FFD5D5D5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.Foreground" Color="#FF222222"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.FlatButton.PressedBackground" Color="#FF444444"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Flyout.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Flyout.Foreground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Foreground" Color="#FF1E1E1E"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray" Color="#FFBEBEBE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray.MouseOver" Color="#FF333333"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray.SemiTransparent" Color="#40808080"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray1" Color="#FF333333"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray10" Color="#FFF7F7F7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray2" Color="#FF7F7F7F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="#FF9D9D9D"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray4" Color="#FFA59F93"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray5" Color="#FFB9B9B9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray6" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray7" Color="#FFD8D8D9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray8" Color="#FFE0E0E0"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Gray9" Color="#5EC9C9C9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.GrayHover" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.GrayNormal" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="#FF00589F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.IdealForegroundDisabled" Color="#FFADADAD"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Label.Text" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.LightBackground" Color="#FFA2A4A5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.LinkButton.Foreground" Color="#FF1297FB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.LinkButton.ForegroundHighlighted" Color="#FF55AAFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Background" Color="#FF2D2D30"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Menu.Checkmark.Fill" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Menu.ForegroundDisabled" Color="#FF656565"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.BackgroundHighlighted" Color="#FF3E3E40"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.Foreground.Disabled" Color="#FF7F7F7F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.GlyphPanel.Disabled" Color="#FF848589"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionFill" Color="#FFDEDEDE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionStroke" Color="#FFDEDEDE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.MenuSeparator.Border" Color="#FF333337"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.Background" Color="#FFFFCC00"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.BackgroundOver" Color="#FFFFDF66"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.BackgroundPressed" Color="#FFC59E00"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.NotificationButton.Foreground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.QuickLaunchTextBox.Border" Color="#FF3F3F46"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.QuickLaunchTextBox.FocusedBorder" Color="#FF007ACC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.Background" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BackgroundDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BackgroundPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BackgroundPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BorderBrush" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BorderBrushDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BorderBrushPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.BorderBrushPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphFill" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillPointerOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphStroke" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokeDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokePointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokePressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.Foreground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.ForegroundDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.ForegroundPointerOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.ForegroundPressed" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFill" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStroke" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokeDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePointerOver" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseFill" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseStroke" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokeDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokePointerOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokePressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.RightArrowFill" Color="#CC0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ScrollBar.PageButtonBackgroundHighlighted" Color="#05FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SearchTextBox.Foreground" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Selected.Foreground" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SemiTransparent" Color="#C8FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SemiTransparentGray" Color="#40808080"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SemiTransparentWhite" Color="#55FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Separator" Color="#FFC4C4C5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SliderThumb.Disabled" Color="#FFA0A0A0"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Disabled" Color="#FFDBDBDB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Hover" Color="#FFD0D0D0"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Normal" Color="#FFC6C6C6"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SliderValue.Disabled" Color="#FFBABABA"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Border" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SubmenuItem.Background" Color="#FFA2A4A5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SubmenuItem.BackgroundHighlighted" Color="#FF333334"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAccent" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltHigh" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMedium" Color="#99FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMediumHigh" Color="#CCFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMediumLow" Color="#66FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseHigh" Color="#FFA2A4A5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMediumHigh" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackMedium" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeMedium" Color="#FFE6E6E6"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeMediumLow" Color="#FFF2F2F2"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeWhite" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundListLow" Color="#19000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundListMedium" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDescriptionTextForeground" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledAccent" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeDisabledHigh" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeDisabledLow" Color="#FF7A7A7A"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeHigh" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeMediumLow" Color="#FFF2F2F2"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledListMedium" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlErrorTextForeground" Color="#FFC50500"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlFocusVisualPrimary" Color="#FFA2A4A5"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlFocusVisualSecondary" Color="#99FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAccent" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAltHigh" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAltMediumHigh" Color="#CCFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackMedium" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeDisabledLow" Color="#FF7A7A7A"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeGray" Color="#FF767676"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeHigh" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeMedium" Color="#FFE6E6E6"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeWhite" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundListLow" Color="#19000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundListMedium" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAccent" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAccent" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAltHigh" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAltMediumHigh" Color="#CCFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMediumHigh" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltChromeWhite" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentHigh" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentLow" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentMedium" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMediumHigh" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeAltLow" Color="#FF171717"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeHigh" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeWhite" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentHigh" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentLow" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentMedium" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListLow" Color="#19000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListMedium" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseMediumHigh" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkText" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundAltHigh" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundAltMedium" Color="#99FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundBaseLow" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundChromeLow" Color="#FFF2F2F2"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundChromeMediumLow" Color="#FFF2F2F2"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundListLow" Color="#19000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundMediumAltMedium" Color="#99FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextBaseHigh" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextBaseMedium" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextChromeBlackMediumLow" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlRevealFocusVisual" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlTransientBorder" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.SystemControlTransparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Text" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Text.Validation" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Background" Color="#FFFCFCFC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.BackgroundSelected" Color="#FFFDF4BF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border.Focus" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border.MouseOver" Color="#FF7F7F7F"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.FocusBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.MouseOverBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TextBox.MouseOverInnerBorder" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ThemeBackground" Color="#FFEEEEF2"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ThemeForeground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="#FFB9B9B9"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackground" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundPressed" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContentForeground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.ContentForegroundDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOff" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOffDisabled" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOffPointerOver" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOffPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOn" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOnDisabled" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOnPointerOver" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOnPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.HeaderForeground" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.HeaderForegroundDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOff" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffPointerOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffPressed" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOn" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnDisabled" Color="#33000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPointerOver" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPressed" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOff" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffPointerOver" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffPressed" Color="#CC000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOn" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnDisabled" Color="#66000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnPointerOver" Color="#FF0078D7"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnPressed" Color="#99000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffBorder.Win10" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffDisabledBorder.Win10" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffMouseOverBorder.Win10" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.OffSwitch.Win10" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicator.Win10" Color="#FFCCCCCC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorChecked.Win10" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorDisabled.Win10" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorPressed.Win10" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedFill" Color="#FFDEDEDE"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedStroke" Color="#E0717070"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.SelectionStroke" Color="#90717070"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Transparent" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.TransparentWhite" Color="#00FFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Validation1" Color="#052A2E31"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Validation2" Color="#152A2E31"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Validation3" Color="#252A2E31"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Validation4" Color="#352A2E31"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Validation5" Color="#FFDC000C"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary1" Color="#FFDC020D"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary2" Color="#FFCA000C"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary3" Color="#FFFF9298"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary4" Color="#FFFDC8C8"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary5" Color="#DDD43940"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill1" Color="#59F7D8DB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill2" Color="#FFF7D8DB"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.White" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WhiteColor" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Window.Background" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Window.FlyoutOverlay" Color="#FF000000"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.Window.Glow" Color="#FF017ACC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowButtonCommands.Background.MouseOver" Color="#66DCDCDC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowButtonCommands.HoverBackground" Color="#66DCDCDC"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="#FF2D2D30"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.Foreground" Color="#FF999999"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="#FF2D2D30"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Background" Color="#FF444444"  options:Freeze="True" />
+    <SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Foreground" Color="#FFFFFFFF"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Theme.ShowcaseBrush" Color="#FF0078D7"  options:Freeze="True" />
+    <!-- Begin SolidColorBrush Export -->
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Background" Color="#FF2D2D30"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabControl.Content.Background" Color="#FF1B1B1C"  options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.RibbonTabItem.Active.Background" Color="#FF1B1B1C"  options:Freeze="True" />
+    <!-- End SolidColorBrush Export -->
 </ResourceDictionary>
-
-<!--"Name": "Dark",
-      "Values": {
-        "BlackColor": "#FFFFFFFF",
-        "BlackColor20": "#51FFFFFF",
-        "WhiteColor": "#FF252525",
-        "WhiteColor20": "#51252525",
-        "Gray1": "#FFF9F9F9",
-        "Gray2": "#FF7F7F7F",
-        "Gray3": "#FF9D9D9D",
-        "Gray4": "#FFA59F93",
-        "Gray5": "#FFB9B9B9",
-        "Gray6": "#FFCCCCCC",
-        "Gray7": "#FF7E7E7E",
-        "Gray8": "#FF454545",
-        "Gray9": "#5EC9C9C9",
-        "Gray10": "#FF2F2F2F",
--->

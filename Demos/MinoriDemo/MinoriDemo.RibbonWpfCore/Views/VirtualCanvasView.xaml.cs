@@ -1,6 +1,6 @@
 ﻿using MinoriEditorShell.VirtualCanvas.Services;
 
-namespace MinoriDemo.RibbonWpfCore.Views
+namespace MinoriDemo.RibbonWPF.Views
 {
     /// <summary>
     /// Interaction logic for VirtualCanvasView.xaml

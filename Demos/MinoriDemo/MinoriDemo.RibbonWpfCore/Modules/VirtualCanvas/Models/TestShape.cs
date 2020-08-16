@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using RectangleF = System.Drawing.RectangleF;
 
-namespace MinoriDemo.RibbonWpfCore.Modules.VirtualCanvas.Models
+namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
 {
     public class TestShape : ITestShape
     {
