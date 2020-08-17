@@ -7,7 +7,7 @@ namespace MinoriEditorShell.Converters
     /// <summary>
     /// Language converter from resources
     /// </summary>
-    public class CultureInfoNameConverter : IMvxValueConverter
+    public class CultureInfoNameConverter : MvxValueConverter<String, String>
     {
         /// <summary>
         /// Convert from resource file to xaml bindings
@@ -17,7 +17,7 @@ namespace MinoriEditorShell.Converters
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
+        protected override String Convert(String value, Type targetType, Object parameter, CultureInfo culture)
         {
             if (value == null)
             {
@@ -37,8 +37,7 @@ namespace MinoriEditorShell.Converters
                     );
             }
 
-            String cn = value as String;
-            CultureInfo ci = CultureInfo.GetCultureInfo(cn);
+            CultureInfo ci = CultureInfo.GetCultureInfo(value);
 
             if (Equals(ci.NativeName, ci.EnglishName))
             {
@@ -56,6 +55,7 @@ namespace MinoriEditorShell.Converters
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) => throw new NotSupportedException();
+        protected override String ConvertBack(String value, Type targetType, Object parameter, CultureInfo culture)
+            => throw new NotSupportedException();
     }
 }
