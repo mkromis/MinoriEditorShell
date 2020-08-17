@@ -23,6 +23,11 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
 
     <ItemGroup>
 
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
         <PackageReference Include="MvvmCross" Version="7.0.0" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="7.0.0" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="7.0.0" />

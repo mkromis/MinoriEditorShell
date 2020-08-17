@@ -13,6 +13,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="GitVersionTask" Version="5.3.7">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj" />
         <ProjectReference Include="..\SimpleDemo.Core\SimpleDemo.Core.csproj" />
