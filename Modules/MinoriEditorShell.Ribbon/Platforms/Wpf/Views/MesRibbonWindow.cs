@@ -1,6 +1,7 @@
 ﻿using Fluent;
 using MahApps.Metro.Controls;
 using MinoriEditorShell.Platforms.Wpf.Views;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
@@ -77,6 +78,11 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
         {
             get => (TViewModel)base.ViewModel;
             set => base.ViewModel = value;
+        }
+
+        public MvxFluentBindingDescriptionSet<IMvxWpfView<TViewModel>, TViewModel> CreateBindingSet()
+        {
+            return this.CreateBindingSet<IMvxWpfView<TViewModel>, TViewModel>();
         }
     }
 }
