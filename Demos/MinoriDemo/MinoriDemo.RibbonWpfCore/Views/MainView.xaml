@@ -1,14 +1,15 @@
 <views:MvxWpfView
-    x:Class="MinoriDemo.RibbonWpfCore.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fluent="urn:fluent-ribbon"
+    xmlns:local="clr-namespace:MinoriDemo.RibbonWPF.Views"
     xmlns:picker="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
     xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:Converters="clr-namespace:MinoriEditorShell.Platforms.Wpf.Converters;assembly=MinoriEditorShell.Platforms.Wpf"
+    x:Class="MinoriDemo.RibbonWPF.Views.MainView"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <views:MvxWpfView.Resources>
@@ -54,9 +55,9 @@
 
             <fluent:RibbonTabItem Header="Samples">
                 <fluent:RibbonGroupBox Header="Content ">
-                    <fluent:Button Header="Virtual Content" Size="Middle" Command="{Binding OpenCanvasCommand}" />
-                    <fluent:Button Header="Show Tool" Size="Middle" Command="{Binding ToolTestCommand}" />
-                    <fluent:Button Header="Settings" Size="Middle" Command="{Binding SettingsCommand}" />
+                    <fluent:Button Header="Show Sample Tool" Size="Middle" Command="{Binding ToolTestCommand}" />
+                    <fluent:Button Header="ThemeEditor" Size="Middle" Command="{Binding ThemeEditorCommand}" />
+                    <fluent:Button Header="Virtual Canvas" Size="Middle" Command="{Binding OpenCanvasCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="DrawingColorTest">
                     <picker:ColorPicker

@@ -23,13 +23,14 @@
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
         <PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
+
         <PackageReference Include="GitVersionTask" Version="5.3.7">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MvvmCross" Version="6.4.2" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="6.4.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135">
+        <PackageReference Include="MvvmCross" Version="7.0.0" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.0.0" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

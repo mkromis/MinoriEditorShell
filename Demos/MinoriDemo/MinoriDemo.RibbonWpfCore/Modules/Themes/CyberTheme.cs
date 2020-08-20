@@ -1,7 +1,7 @@
 ﻿using MinoriEditorShell.Platforms.Wpf.Themes;
 using System;
 
-namespace MinoriDemo.RibbonWpfCore.Modules.Themes
+namespace MinoriDemo.RibbonWPF.Modules.Themes
 {
     internal class CyberTheme : MesThemeBase
     {
@@ -10,6 +10,9 @@ namespace MinoriDemo.RibbonWpfCore.Modules.Themes
         /// </summary>
         public override String Name => "CyberTheme";
 
-        public CyberTheme() : base() => Add(new Uri("pack://application:,,,/MinoriDemo.RibbonWpfCore;component/Modules/Themes/CyberTheme.xaml"));
+        public CyberTheme() : base()
+        {
+            Add(new Uri("pack://application:,,,/MinoriDemo.RibbonWPF;component/Modules/Themes/CyberTheme.xaml"));
+        }
     }
 }

@@ -9,14 +9,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Splash.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <AdditionalFiles Include="..\..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.0" />
         <PackageReference Include="GitVersionTask" Version="5.3.7">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
@@ -27,6 +31,10 @@
         <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
         <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
         <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <SplashScreen Include="Resources\Splash.png" />
     </ItemGroup>
 
 </Project>
