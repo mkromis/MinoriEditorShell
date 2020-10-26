@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using MinoriEditorShell.Platforms.Avalonia.ViewModels;
+using MinoriEditorShell.Platforms.Avalonia.Views;
 
 namespace SimpleDemo.Avalonia
 {
@@ -11,6 +11,8 @@ namespace SimpleDemo.Avalonia
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        protected override void RegisterSetup() { } //this.RegisterSetupType<MesAvaSetup<Core.App>>();
         
         public override void OnFrameworkInitializationCompleted()
         {

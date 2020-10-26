@@ -1,7 +1,7 @@
 <mes:MesApplication 
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Avalonia;assembly=MinoriEditorShell.Platforms.Avalonia"
+    xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Avalonia.Views;assembly=MinoriEditorShell.Platforms.Avalonia"
 
     x:Class="SimpleDemo.Avalonia.App">
     <Application.Styles>
