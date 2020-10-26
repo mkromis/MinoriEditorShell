@@ -1,10 +1,11 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 
 namespace SimpleDemo.Avalonia
 {
-    public class App : Application
+    public class App : MesApplication
     {
         public override void Initialize()
         {
