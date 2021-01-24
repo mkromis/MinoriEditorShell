@@ -23,11 +23,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public virtual void ApplicationInitialized()
         {
-            // if (MainWindow == null) return;
+            if (MainWindow == null) return;
 
             // MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
 
-            // RunAppStart();
+            RunAppStart();
         }
 
         protected virtual void RunAppStart(object hint = null)
