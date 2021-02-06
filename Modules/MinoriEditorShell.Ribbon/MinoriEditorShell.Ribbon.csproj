@@ -22,15 +22,15 @@
         <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-        <PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
+        <PackageReference Include="Fluent.Ribbon" Version="8.0.3" />
 
-        <PackageReference Include="GitVersionTask" Version="5.3.7">
+        <PackageReference Include="GitVersionTask" Version="5.5.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MvvmCross" Version="7.0.0" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.0.0" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529">
+        <PackageReference Include="MvvmCross" Version="7.1.2" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

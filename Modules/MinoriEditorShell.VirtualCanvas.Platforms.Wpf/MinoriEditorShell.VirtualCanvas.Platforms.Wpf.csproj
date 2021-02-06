@@ -24,11 +24,11 @@
         <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-        <PackageReference Include="GitVersionTask" Version="5.3.7">
+        <PackageReference Include="GitVersionTask" Version="5.5.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
