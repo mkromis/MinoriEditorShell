@@ -30,9 +30,5 @@
         </PackageReference>
         <PackageReference Include="MvvmCross" Version="7.1.2" />
         <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.18.0.27296">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 </Project>
