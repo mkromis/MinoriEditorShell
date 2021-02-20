@@ -40,10 +40,6 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="MvvmCross" Version="7.1.2" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="7.1.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="7.1.2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.18.0.27296">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.1" />
