@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MinoriEditorShell.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Avalonia
 {
     public abstract class MesPersistedDocument : MesDocument, IMesPersistedDocument
     {

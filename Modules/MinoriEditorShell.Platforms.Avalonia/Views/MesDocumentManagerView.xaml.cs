@@ -8,7 +8,7 @@ using System.IO;
 using System.Windows;
 // using System.Windows.Media;
 
-namespace MinoriEditorShell.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
     // public partial class MesDocumentManagerView : IMesDocumentManagerView
     // {

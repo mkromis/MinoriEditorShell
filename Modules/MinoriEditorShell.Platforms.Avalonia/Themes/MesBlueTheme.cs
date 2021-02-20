@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes
+namespace MinoriEditorShell.Platforms.Avalonia.Themes
 {
     /// <summary>
     /// Blue Theme
@@ -15,6 +15,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Blue theme constructor
         /// </summary>
-        public MesBlueTheme() : base() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/BlueTheme.xaml"));
+        public MesBlueTheme() : base() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/BlueTheme.xaml"));
     }
 }

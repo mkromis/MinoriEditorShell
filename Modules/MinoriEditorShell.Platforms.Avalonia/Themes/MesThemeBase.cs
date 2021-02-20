@@ -2,7 +2,7 @@ using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes
+namespace MinoriEditorShell.Platforms.Avalonia.Themes
 {
     /// <summary>
     /// Base theme to initilizer

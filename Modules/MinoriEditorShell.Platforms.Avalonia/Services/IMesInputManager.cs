@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     // public interface IMesInputManager
     // {

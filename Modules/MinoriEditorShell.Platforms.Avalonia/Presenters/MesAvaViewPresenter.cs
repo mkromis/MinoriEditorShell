@@ -28,7 +28,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         public MesAvaViewPresenter(ContentControl mainWindow) : base(mainWindow)
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
-            _log = provider.GetLogFor<MesWpfPresenter>();
+            _log = provider.GetLogFor<MesAvnPresenter>();
             _log.Trace("Setup: Creating Presenter");
 
             // Setup main window as singleton

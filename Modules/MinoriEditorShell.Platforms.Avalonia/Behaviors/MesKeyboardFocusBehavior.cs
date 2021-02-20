@@ -1,6 +1,6 @@
 //using System.Windows.Interactivity;
 
-namespace MinoriEditorShell.Platforms.Wpf.Behaviors
+namespace MinoriEditorShell.Platforms.Avalonia.Behaviors
 {
     //public class MesKeyboardFocusBehavior : Behavior<FrameworkElement>
     //{

@@ -6,7 +6,7 @@ using System.Windows;
 // using System.Windows.Media.Imaging;
 // using System.Windows.Resources;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     // [Export(typeof(IMesResourceManager))]
     // public class MesResourceManager : IMesResourceManager

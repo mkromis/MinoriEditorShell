@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 //using System.Windows.Controls;
 
-namespace MinoriEditorShell.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Avalonia.Controls
 {
     // public class MesPanesStyleSelector : StyleSelector
     // {

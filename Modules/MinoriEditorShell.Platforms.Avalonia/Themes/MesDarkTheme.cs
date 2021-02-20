@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes
+namespace MinoriEditorShell.Platforms.Avalonia.Themes
 {
     /// <summary>
     /// Dark theme definition
@@ -15,6 +15,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Constructor for theme
         /// </summary>
-        public MesDarkTheme() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/DarkTheme.xaml"));
+        public MesDarkTheme() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/DarkTheme.xaml"));
     }
 }

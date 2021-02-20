@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="MinoriEditorShell.Platforms.Wpf.Views.MesDocumentManagerView"
+    x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesDocumentManagerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:xcad="https://github.com/Dirkster99/AvalonDock"

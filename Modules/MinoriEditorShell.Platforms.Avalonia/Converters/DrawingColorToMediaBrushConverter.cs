@@ -3,7 +3,7 @@ using System.Globalization;
 //using System.Windows.Data;
 //using System.Windows.Media;
 
-namespace MinoriEditorShell.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Avalonia.Converters
 {
     // public class DrawingColorToMediaBrushConverter : IValueConverter
     // {

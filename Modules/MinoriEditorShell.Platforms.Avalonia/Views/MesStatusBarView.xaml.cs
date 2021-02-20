@@ -2,7 +2,7 @@ using MinoriEditorShell.Services;
 using MvvmCross;
 // using System.Windows.Controls;
 
-namespace MinoriEditorShell.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
     /// <summary>
     /// Interaction logic for StatusBarView.xaml

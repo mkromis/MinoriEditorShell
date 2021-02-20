@@ -1,4 +1,4 @@
-namespace MinoriEditorShell.Platforms.Wpf.Behaviors
+namespace MinoriEditorShell.Platforms.Avalonia.Behaviors
 {
     // From http://stackoverflow.com/a/20636049/208817
     //    public class MesBindableTreeViewSelectedItemBehavior : Behavior<TreeView>

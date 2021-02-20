@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MinoriEditorShell.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
     internal static class MesLayoutUtility
     {

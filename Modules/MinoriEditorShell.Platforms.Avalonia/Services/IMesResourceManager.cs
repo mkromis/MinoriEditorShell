@@ -1,7 +1,7 @@
 using System.IO;
 // using System.Windows.Media.Imaging;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     public interface IMesResourceManager
     {
