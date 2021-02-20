@@ -5,7 +5,7 @@ using System.Windows;
 // using System.Windows.Data;
 // using System.Windows.Media;
 
-namespace MinoriEditorShell.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Avalonia.Converters
 {
     // public class TreeViewIndentConverter : IValueConverter
     // {

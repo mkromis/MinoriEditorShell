@@ -14,7 +14,7 @@
 using System;
 //using System.Windows.Data;
 
-namespace MinoriEditorShell.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Avalonia.Converters
 {
     // public class BoolToInsertModeConverter : IValueConverter
     // {

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Windows;
 // using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
-namespace MinoriEditorShell.Platforms.Wpf.Views
+namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
 //     public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView
 //     {

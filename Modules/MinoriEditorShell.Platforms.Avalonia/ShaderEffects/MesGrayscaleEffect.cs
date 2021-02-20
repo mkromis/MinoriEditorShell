@@ -1,7 +1,7 @@
 using System.Windows;
 // using System.Windows.Media;
 
-namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
+namespace MinoriEditorShell.Platforms.Avalonia.ShaderEffects
 {
     // public class MesGrayscaleEffect : MesShaderEffectBase<MesGrayscaleEffect>
     // {

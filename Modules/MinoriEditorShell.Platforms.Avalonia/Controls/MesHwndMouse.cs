@@ -1,8 +1,8 @@
-using MinoriEditorShell.Platforms.Wpf.Win32;
+using MinoriEditorShell.Platforms.Avalonia.Win32;
 using System;
 using System.Windows;
 
-namespace MinoriEditorShell.Platforms.Wpf.Controls
+namespace MinoriEditorShell.Platforms.Avalonia.Controls
 {
     public static class MesHwndMouse
     {

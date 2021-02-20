@@ -1,7 +1,7 @@
 using System;
 // using System.Windows.Media.Effects;
 
-namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
+namespace MinoriEditorShell.Platforms.Avalonia.ShaderEffects
 {
     internal static class MesShaderEffectUtility
     {

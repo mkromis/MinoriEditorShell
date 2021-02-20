@@ -1,4 +1,4 @@
-//namespace MinoriEditorShell.Platforms.Wpf.Behaviors
+//namespace MinoriEditorShell.Platforms.Avalonia.Behaviors
 //{
 // Copied from MahApp's GlowWindowBehavior, because that one has a bug if GlowBrush is set in a style, rather than directly.
 //public class CustomGlowWindowBehavior : Behavior<MesWindow>

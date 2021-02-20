@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MinoriEditorShell.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.Platforms.Avalonia.Extensions
 {
     public static class ConsoleModifiersExtension
     {

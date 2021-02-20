@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MinoriEditorShell.Platforms.Wpf.Views.MesStatusBarView"
+    x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesStatusBarView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

@@ -1,9 +1,13 @@
 using Avalonia;
+using Avalonia.Controls;
 using MinoriEditorShell.Messages;
 using MinoriEditorShell.Modules.Services;
 using MinoriEditorShell.Platforms.Avalonia.Presenters;
 //using MinoriEditorShell.Platforms.Avalonia.Services;
 //using MinoriEditorShell.Platforms.Avalonia.ViewModels;
+using MinoriEditorShell.Platforms.Avalonia.Views;
+using MinoriEditorShell.Platforms.Avalonia.Services;
+using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
@@ -17,12 +21,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 
-namespace MinoriEditorShell.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Avalonia
 {
     /// <summary>
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
-     public class MesAvaSetup : MvxSetup
+     public class MesAvnSetup : MvxSetup
      {
          // To handle messages between classes
          private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
@@ -32,11 +36,11 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// </summary>
         /// <param name="root">Control of the main windows for wpf</param>
         /// <returns></returns>
-        // protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
-        // {
-        //     // This handles main window.
-        //     return new MesWpfPresenter(root);
-        // }
+        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
+        {
+            // This handles main window.
+            return new MesWpfPresenter(root);
+        }
 
         /// <summary>
         /// Creates the app.

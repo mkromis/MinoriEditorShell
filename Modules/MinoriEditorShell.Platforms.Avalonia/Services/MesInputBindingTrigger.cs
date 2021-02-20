@@ -1,6 +1,6 @@
 //using System.Windows.Interactivity;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     //public class MesInputBindingTrigger : TriggerBase<FrameworkElement>, ICommand
     //{

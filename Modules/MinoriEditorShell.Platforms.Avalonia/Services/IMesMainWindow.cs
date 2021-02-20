@@ -2,7 +2,7 @@ using MinoriEditorShell.Services;
 using System.Windows;
 // using System.Windows.Media;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     public interface IMesMainWindow
     {

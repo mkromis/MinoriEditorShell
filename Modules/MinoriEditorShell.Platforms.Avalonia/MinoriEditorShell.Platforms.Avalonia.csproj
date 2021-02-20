@@ -9,7 +9,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
         <PackageIconUrl></PackageIconUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>.net40 netcoreapp WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+        <PackageTags>.net40 netcoreapp AvaloniaUI MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>

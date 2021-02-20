@@ -1,6 +1,6 @@
 using System;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes
+namespace MinoriEditorShell.Platforms.Avalonia.Themes
 {
     /// <summary>
     /// Light theme definition

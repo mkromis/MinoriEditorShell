@@ -2,7 +2,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Windows;
 
-namespace MinoriEditorShell.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 {
     public class MesStatusBarItemViewModel : MvxNotifyPropertyChanged
     {

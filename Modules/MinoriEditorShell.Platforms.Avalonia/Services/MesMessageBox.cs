@@ -1,7 +1,7 @@
 ﻿using MinoriEditorShell.Services;
 using System;
 
-namespace MinoriEditorShell.Platforms.Wpf.Services
+namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     // internal class MesMessageBox : IMesMessageBox
     // {

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 //using System.Windows.Data;
 
-namespace MinoriEditorShell.Platforms.Wpf.Converters
+namespace MinoriEditorShell.Platforms.Avalonia.Converters
 {
     // public class NullableValueConverter : IValueConverter
     // {
