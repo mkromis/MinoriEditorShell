@@ -1,12 +1,15 @@
 {
-  "ServerUri": "http://localhost:9000",
-  "Organization": null,
-  "ProjectKey": "MinoriEditorShell",
+  "ServerUri": "https://sonarcloud.io/",
+  "Organization": {
+    "Key": "torisankitsune-1",
+    "Name": "torisankitsune-1"
+  },
+  "ProjectKey": "TorisanKitsune_MinoriEditorShell2",
   "ProjectName": "MinoriEditorShell",
   "Profiles": {
     "CSharp": {
-      "ProfileKey": "AXJr3KqQtbcUywwuo8zS",
-      "ProfileTimestamp": "2020-05-31T17:52:03Z"
+      "ProfileKey": "AXfBiG4ncmi_3V30EHaZ",
+      "ProfileTimestamp": "2021-02-15T09:35:56Z"
     }
   }
 }
