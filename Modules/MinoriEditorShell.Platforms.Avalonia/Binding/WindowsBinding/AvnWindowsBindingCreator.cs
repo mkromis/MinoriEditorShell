@@ -10,31 +10,34 @@ using MinoriEditorShell.Platforms.Avalonia.Binding;
 using Avalonia.Data.Core;
 using Avalonia.Data.Converters;
 using MinoriEditorShell.Platforms.Avalonia.Converters;
+using Avalonia;
+using MvvmCross;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
 {
     public class AvnWindowsBindingCreator : MesBindingCreator
     {
         protected virtual void ApplyBinding(MvxBindingDescription bindingDescription, Type actualType,
-                                            FrameworkElement attachedObject)
+                                            StyledElement attachedObject)
         {
+            IMvxLog log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<AvnWindowsBindingCreator>();
             DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
             if (dependencyProperty == null)
             {
-                MvxLog.Instance.Warn("Dependency property not found for {0}", bindingDescription.TargetName);
+                log.Warn("Dependency property not found for {0}", bindingDescription.TargetName);
                 return;
             }
 
             var property = actualType.FindActualProperty(bindingDescription.TargetName);
             if (property == null)
             {
-                MvxLog.Instance.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
+                log.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
             }
 
             var sourceStep = bindingDescription.Source as MvxPathSourceStepDescription;
             if (sourceStep == null)
             {
-                MvxLog.Instance.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
+                log.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
             }
 
@@ -49,7 +52,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
             BindingOperations.SetBinding(attachedObject, dependencyProperty, newBinding);
         }
 
-        protected override void ApplyBindings(FrameworkElement attachedObject,
+        protected override void ApplyBindings(StyledElement attachedObject,
                                               IEnumerable<MvxBindingDescription> bindingDescriptions)
         {
             var actualType = attachedObject.GetType();
@@ -92,7 +95,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
                     return BindingMode.OneTime;
 
                 case MvxBindingMode.OneWayToSource:
-                    MvxLog.Instance.Warn("WinPhone doesn't support OneWayToSource");
+                    IMvxLog log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<AvnWindowsBindingCreator>();
+                    log.Warn("WinPhone doesn't support OneWayToSource");
                     return BindingMode.TwoWay;
 
                 default:

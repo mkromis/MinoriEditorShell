@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Avalonia;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings;
 
@@ -8,7 +9,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
 {
     public class MesMvvmCrossBindingCreator : MesBindingCreator
     {
-        protected override void ApplyBindings(FrameworkElement attachedObject,
+        protected override void ApplyBindings(StyledElement attachedObject,
                                               IEnumerable<MvxBindingDescription> bindingDescriptions)
         {
             var binder = MvxBindingSingletonCache.Instance.Binder;
@@ -17,7 +18,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
             RegisterBindingsForUpdates(attachedObject, bindings);
         }
 
-        private void RegisterBindingsForUpdates(FrameworkElement attachedObject,
+        private void RegisterBindingsForUpdates(AvaloniaObject attachedObject,
                                                 IEnumerable<IMvxUpdateableBinding> bindings)
         {
             if (bindings == null)
@@ -30,7 +31,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
             }
         }
 
-        private IList<IMvxUpdateableBinding> GetOrCreateBindingsList(FrameworkElement attachedObject)
+        private IList<IMvxUpdateableBinding> GetOrCreateBindingsList(AvaloniaObject attachedObject)
         {
             var existing = attachedObject.GetValue(BindingsListProperty) as IList<IMvxUpdateableBinding>;
             if (existing != null)
@@ -75,7 +76,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
         public static readonly DependencyProperty DataContextWatcherProperty = DependencyProperty.Register(
             "DataContextWatcher",
             typeof(object),
-            typeof(FrameworkElement),
+            typeof(AvaloniaObject),
             new PropertyMetadata(null, DataContext_Changed));
 
         public static object GetDataContextWatcher(DependencyObject d)
@@ -91,7 +92,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
         public static readonly DependencyProperty BindingsListProperty = DependencyProperty.Register(
             "BindingsList",
             typeof(IList<IMvxUpdateableBinding>),
-            typeof(FrameworkElement),
+            typeof(AvaloniaObject),
             new PropertyMetadata(null));
 
         public static IList<IMvxUpdateableBinding> GetBindingsList(DependencyObject d)
@@ -106,7 +107,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
 
         private static void DataContext_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var frameworkElement = d as FrameworkElement;
+            var frameworkElement = d as AvaloniaObject;
 
             var bindings = frameworkElement?.GetValue(BindingsListProperty) as IList<IMvxUpdateableBinding>;
             if (bindings == null)

@@ -43,6 +43,33 @@ namespace MinoriEditorShell.Platforms.Avalonia
         private IMesAvnViewPresenter _presenter;
         private ContentControl _root;
         private Dispatcher _uiThreadDispatcher;
+        protected IMesAvnViewPresenter Presenter
+        {
+            get
+            {
+                _presenter = CreateViewPresenter(_root);
+                return _presenter;
+            }
+        }
+
+        protected virtual IEnumerable<Assembly> ValueConverterAssemblies
+        {
+            get
+            {
+                var toReturn = new List<Assembly>();
+                toReturn.AddRange(GetViewModelAssemblies());
+                toReturn.AddRange(GetViewAssemblies());
+                return toReturn;
+            }
+        }
+
+        protected virtual List<Type> ValueConverterHolders => new List<Type>();
+
+        public override IEnumerable<Assembly> GetViewAssemblies()
+        {
+            return base.GetViewAssemblies().Union(new[] { Assembly.GetEntryAssembly() });
+        }
+
         /// <summary>
         /// Sets up initial connected types and setup
         /// </summary>
@@ -97,12 +124,6 @@ namespace MinoriEditorShell.Platforms.Avalonia
             _uiThreadDispatcher = uiThreadDispatcher;
             _root = root;
         }
-
-        public override IEnumerable<Assembly> GetViewAssemblies()
-        {
-            return base.GetViewAssemblies().Union(new[] { Assembly.GetEntryAssembly() });
-        }
-
         /// <summary>
         /// Creates the app.
         /// </summary>
@@ -122,18 +143,15 @@ namespace MinoriEditorShell.Platforms.Avalonia
             //return new TApplication();
         }
 
-        protected sealed override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
-
-            var toReturn = CreateAvnViewsContainer();
-            iocProvider.RegisterSingleton<IMesAvnViewLoader>(toReturn);
-            return toReturn;
-        }
-
         protected virtual IMesAvnViewsContainer CreateAvnViewsContainer()
         {
             return new MesAvnViewsContainer();
+        }
+
+        protected virtual MvxBindingBuilder CreateBindingBuilder()
+        {
+            throw new NotImplementedException();
+            //return new MvxWindowsBindingBuilder();
         }
 
         /// <summary>
@@ -147,16 +165,67 @@ namespace MinoriEditorShell.Platforms.Avalonia
             return manager;
         }
 
+        protected override IMvxViewDispatcher CreateViewDispatcher()
+        {
+            return new MesAvnViewDispatcher(_uiThreadDispatcher, Presenter);
+        }
+
         /// <summary>
         /// Creates the inital view for the setup
         /// </summary>
         /// <param name="root">Control of the main windows for wpf</param>
         /// <returns></returns>
-        protected override IMvxViewPresenter CreateViewPresenter(ContentControl root)
+        protected virtual IMesAvnViewPresenter CreateViewPresenter(ContentControl root)
         {
-            // This handles main window.
             return new MesAvnViewPresenter(root);
         }
+
+        protected IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var toReturn = CreateAvnViewsContainer();
+            iocProvider.RegisterSingleton<IMesAvnViewLoader>(toReturn);
+            return toReturn;
+        }
+        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        {
+            return new MvxPostfixAwareViewToViewModelNameMapping("View", "Control");
+        }
+
+        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
+        {
+            // this base class does nothing
+        }
+
+        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            // this base class does nothing
+        }
+
+        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        {
+            registry.Fill(ValueConverterAssemblies);
+            registry.Fill(ValueConverterHolders);
+        }
+
+        protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+        {
+            RegisterBindingBuilderCallbacks(iocProvider);
+            var bindingBuilder = CreateBindingBuilder();
+            bindingBuilder.DoRegistration();
+        }
+
+        protected void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        {
+            RegisterPresenter(iocProvider);
+        }
+
+        protected void InitializeLastChance(IMvxIoCProvider iocProvider)
+        {
+            InitializeBindingBuilder(iocProvider);
+        }
+
         /// <summary>
         /// Sets up the dictionary that connects the viewmodel to the view.
         /// </summary>
@@ -168,25 +237,13 @@ namespace MinoriEditorShell.Platforms.Avalonia
             container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
         }
-
-
-        protected IMesAvnViewPresenter Presenter
+        protected virtual void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
         {
-            get
-            {
-                _presenter = CreateViewPresenter(_root);
-                return _presenter;
-            }
-        }
+            ValidateArguments(iocProvider);
 
-        protected virtual IMesAvnViewPresenter CreateViewPresenter(ContentControl root)
-        {
-            return new MesAvnViewPresenter(root);
-        }
-
-        protected override IMvxViewDispatcher CreateViewDispatcher()
-        {
-            return new MesAvnViewDispatcher(_uiThreadDispatcher, Presenter);
+            iocProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(FillValueConverters);
+            iocProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(FillTargetFactories);
+            iocProvider.CallbackWhenRegistered<IMvxBindingNameRegistry>(FillBindingNames);
         }
 
         protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
@@ -197,88 +254,19 @@ namespace MinoriEditorShell.Platforms.Avalonia
             iocProvider.RegisterSingleton(presenter);
             iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
         }
-
-        protected override IMvxNameMapping CreateViewToViewModelNaming()
-        {
-            return new MvxPostfixAwareViewToViewModelNameMapping("View", "Control");
-        }
-
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
-        {
-            RegisterPresenter(iocProvider);
-            base.InitializeFirstChance(iocProvider);
-        }
-
-        protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
-        {
-            InitializeBindingBuilder(iocProvider);
-            base.InitializeLastChance(iocProvider);
-        }
-
-        protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
-        {
-            RegisterBindingBuilderCallbacks(iocProvider);
-            var bindingBuilder = CreateBindingBuilder();
-            bindingBuilder.DoRegistration();
-        }
-
-        protected virtual void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
-
-            iocProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(FillValueConverters);
-            iocProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(FillTargetFactories);
-            iocProvider.CallbackWhenRegistered<IMvxBindingNameRegistry>(FillBindingNames);
-        }
-
-        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
-        {
-            // this base class does nothing
-        }
-
-        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
-        {
-            registry.Fill(ValueConverterAssemblies);
-            registry.Fill(ValueConverterHolders);
-        }
-
-        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
-        {
-            // this base class does nothing
-        }
-
-        protected virtual List<Type> ValueConverterHolders => new List<Type>();
-
-        protected virtual IEnumerable<Assembly> ValueConverterAssemblies
-        {
-            get
-            {
-                var toReturn = new List<Assembly>();
-                toReturn.AddRange(GetViewModelAssemblies());
-                toReturn.AddRange(GetViewAssemblies());
-                return toReturn;
-            }
-        }
-
-
-        protected virtual MvxBindingBuilder CreateBindingBuilder()
-        {
-            throw new NotImplementedException();
-            //return new MvxWindowsBindingBuilder();
-        }
     }
 
     /// <summary>
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
     /// <typeparam name="TApplication"></typeparam>
-    // public class MesAvaSetup<TApplication> : MvxAvaSetup where TApplication : class, IMvxApplication, new()
-    // {
-    //     protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+    public class MesAvnSetup<TApplication> : MesAvnSetup where TApplication : class, IMvxApplication, new()
+    {
+        public override IEnumerable<Assembly> GetViewModelAssemblies()
+        {
+            return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
 
-    //     public override IEnumerable<Assembly> GetViewModelAssemblies()
-    //     {
-    //         return new[] { typeof(TApplication).GetTypeInfo().Assembly };
-    //     }
-    // }
+        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+    }
 }

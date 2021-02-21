@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows;
 using MvvmCross.Logging;
 using MvvmCross.Binding.Bindings;
+using Avalonia;
+using MvvmCross;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
@@ -11,10 +13,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
         public void CreateBindings(object sender, DependencyPropertyChangedEventArgs args,
                                    Func<string, IEnumerable<MvxBindingDescription>> parseBindingDescriptions)
         {
-            var attachedObject = sender as FrameworkElement;
+            var attachedObject = sender as StyledElement;
             if (attachedObject == null)
             {
-                MvxLog.Instance.Warn("Null attached FrameworkElement seen in Bi.nd binding");
+                IMvxLog _log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MesBindingCreator>();
+                _log.Warn("Null attached StyledElement seen in Bi.nd binding");
                 return;
             }
 
@@ -29,7 +32,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
             ApplyBindings(attachedObject, bindingDescriptions);
         }
 
-        protected abstract void ApplyBindings(FrameworkElement attachedObject,
+        protected abstract void ApplyBindings(StyledElement attachedObject,
                                               IEnumerable<MvxBindingDescription> bindingDescriptions);
     }
 }
