@@ -12,10 +12,10 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
     {
     }
 
-    public interface IMvxWpfView<TViewModel>
+    public interface IMesAvnView<TViewModel>
         : IMesAvnView
         , IMvxView<TViewModel> where TViewModel : class, IMvxViewModel
     {
-        MvxFluentBindingDescriptionSet<IMvxWpfView<TViewModel>, TViewModel> CreateBindingSet();
+        MvxFluentBindingDescriptionSet<IMesAvnView<TViewModel>, TViewModel> CreateBindingSet();
     }
 }

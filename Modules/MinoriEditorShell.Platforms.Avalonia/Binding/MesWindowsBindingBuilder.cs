@@ -5,9 +5,6 @@ using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Binding.Combiners;
-using MvvmCross.Platforms.Wpf.Binding.MvxBinding;
-using MvvmCross.Platforms.Wpf.Binding.MvxBinding.Target;
-using MvvmCross.Platforms.Wpf.Binding.WindowsBinding;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
