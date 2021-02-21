@@ -14,15 +14,14 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
-
         <PackageReference Include="GitVersionTask" Version="5.5.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
