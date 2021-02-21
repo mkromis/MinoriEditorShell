@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using MinoriEditorShell.Messages;
 using MinoriEditorShell.Modules.Services;
 using MinoriEditorShell.Platforms.Avalonia.Presenters;
-//using MinoriEditorShell.Platforms.Avalonia.Services;
-//using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Platforms.Avalonia.Services;
 using MinoriEditorShell.Platforms.Avalonia.ViewModels;
@@ -20,79 +18,31 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using MvvmCross.Presenters;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
+using Avalonia.Threading;
+using System.Reflection;
+using System.Linq;
+using MvvmCross.Views;
+using MvvmCross.Binding;
+using MvvmCross.Converters;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Binding.Binders;
 
+// Portions of this was barrowed from MvvmCross.
 namespace MinoriEditorShell.Platforms.Avalonia
 {
     /// <summary>
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
-     public class MesAvnSetup : MvxSetup
-     {
-         // To handle messages between classes
-         private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
-
-        /// <summary>
-        /// Creates the inital view for the setup
-        /// </summary>
-        /// <param name="root">Control of the main windows for wpf</param>
-        /// <returns></returns>
-        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
-        {
-            // This handles main window.
-            return new MesWpfPresenter(root);
-        }
-
-        /// <summary>
-        /// Creates the app.
-        /// </summary>
-        /// <returns>An instance of MvxApplication</returns>
-        protected override IMvxApplication CreateApp()
-        {
-            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
-            Properties.Settings.Default.PropertyChanged += (s, e) =>
-            {
-                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
-                    s, e.PropertyName,
-                    Properties.Settings.Default.PropertyValues[e.PropertyName]);
-                _messenger.Publish(message);
-            };
-
-            return new TApplication();
-        }
-
-        /// <summary>
-        /// Load any additional plugins, calling parent
-        /// </summary>
-        /// <param name="pluginManager"></param>
-        public override void LoadPlugins(IMvxPluginManager pluginManager)
-        {
-            base.LoadPlugins(pluginManager);
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
-        }
-
-        /// <summary>
-        /// Sets up the dictionary that connects the viewmodel to the view.
-        /// </summary>
-        /// <returns></returns>
-        protected override IDictionary<Type, Type> InitializeLookupDictionary()
-        {
-            IDictionary<Type, Type> container = base.InitializeLookupDictionary();
-            container.Add(typeof(MesSettingsManagerViewModel), typeof(MesSettingsView));
-            container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
-            return container;
-        }
-
-        /// <summary>
-        /// Used to ensure plugins are loaded.
-        /// </summary>
-        /// <returns>returns base manager</returns>
-        protected override IMvxPluginManager CreatePluginManager()
-        {
-            IMvxPluginManager manager = base.CreatePluginManager();
-            manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
-            return manager;
-        }
-
+    public abstract class MesAvnSetup : MvxSetup, IMvxAvnSetup
+    {
+        // To handle messages between classes
+        private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
+        private IMesAvnViewPresenter _presenter;
+        private ContentControl _root;
+        private Dispatcher _uiThreadDispatcher;
         /// <summary>
         /// Sets up initial connected types and setup
         /// </summary>
@@ -125,79 +75,198 @@ namespace MinoriEditorShell.Platforms.Avalonia
                 Thread.CurrentThread.CurrentCulture = culture;
             }
         }
-   }
 
-    ///// <summary>
-    ///// By default, we are configured to use MEF
-    ///// </summary>
-    //protected override void Configure()
-    //{
-    //          // Add all assemblies to AssemblySource (using a temporary DirectoryCatalog).
-    //          var directoryCatalog = new DirectoryCatalog(@"./");
-    //          AssemblySource.Instance.AddRange(
-    //              directoryCatalog.Parts
-    //                  .Select(part => ReflectionModelServices.GetPartType(part).Value.Assembly)
-    //                  .Where(assembly => !AssemblySource.Instance.Contains(assembly)));
+        /// <summary>
+        /// Load any additional plugins, calling parent
+        /// </summary>
+        /// <param name="pluginManager"></param>
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
+        }
 
-    //          // Prioritise the executable assembly. This allows the client project to override exports, including IShell.
-    //          // The client project can override SelectAssemblies to choose which assemblies are prioritised.
-    //          _priorityAssemblies = SelectAssemblies().ToList();
-    //    var priorityCatalog = new AggregateCatalog(_priorityAssemblies.Select(x => new AssemblyCatalog(x)));
-    //    var priorityProvider = new CatalogExportProvider(priorityCatalog);
+        public void PlatformInitialize(Dispatcher uiThreadDispatcher, IMesAvnViewPresenter presenter)
+        {
+            _uiThreadDispatcher = uiThreadDispatcher;
+            _presenter = presenter;
+        }
 
-    //          // Now get all other assemblies (excluding the priority assemblies).
-    //	var mainCatalog = new AggregateCatalog(
-    //              AssemblySource.Instance
-    //                  .Where(assembly => !_priorityAssemblies.Contains(assembly))
-    //                  .Select(x => new AssemblyCatalog(x)));
-    //    var mainProvider = new CatalogExportProvider(mainCatalog);
+        public void PlatformInitialize(Dispatcher uiThreadDispatcher, ContentControl root)
+        {
+            _uiThreadDispatcher = uiThreadDispatcher;
+            _root = root;
+        }
 
-    //	Container = new CompositionContainer(priorityProvider, mainProvider);
-    //    priorityProvider.SourceProvider = Container;
-    //    mainProvider.SourceProvider = Container;
+        public override IEnumerable<Assembly> GetViewAssemblies()
+        {
+            return base.GetViewAssemblies().Union(new[] { Assembly.GetEntryAssembly() });
+        }
 
-    //	var batch = new CompositionBatch();
+        /// <summary>
+        /// Creates the app.
+        /// </summary>
+        /// <returns>An instance of MvxApplication</returns>
+        protected override IMvxApplication CreateApp()
+        {
+            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
+            Properties.Settings.Default.PropertyChanged += (s, e) =>
+            {
+                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
+                    s, e.PropertyName,
+                    Properties.Settings.Default.PropertyValues[e.PropertyName]);
+                _messenger.Publish(message);
+            };
 
-    //    BindServices(batch);
-    //          batch.AddExportedValue(mainCatalog);
+            throw new NotImplementedException();
+            //return new TApplication();
+        }
 
-    //	Container.Compose(batch);
-    //}
+        protected sealed override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
 
-    //   protected virtual void BindServices(CompositionBatch batch)
-    //      {
-    //          batch.AddExportedValue<IWindowManager>(new WindowManager());
-    //          batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-    //          batch.AddExportedValue(Container);
-    //       batch.AddExportedValue(this);
-    //      }
+            var toReturn = CreateAvnViewsContainer();
+            iocProvider.RegisterSingleton<IMesAvnViewLoader>(toReturn);
+            return toReturn;
+        }
 
-    //protected override object GetInstance(Type serviceType, string key)
-    //{
-    //	string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
-    //	var exports = Container.GetExports<object>(contract);
+        protected virtual IMesAvnViewsContainer CreateAvnViewsContainer()
+        {
+            return new MesAvnViewsContainer();
+        }
 
-    //	if (exports.Any())
-    //		return exports.First().Value;
+        /// <summary>
+        /// Used to ensure plugins are loaded.
+        /// </summary>
+        /// <returns>returns base manager</returns>
+        protected override IMvxPluginManager CreatePluginManager()
+        {
+            IMvxPluginManager manager = base.CreatePluginManager();
+            manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
+            return manager;
+        }
 
-    //	throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
-    //}
+        /// <summary>
+        /// Creates the inital view for the setup
+        /// </summary>
+        /// <param name="root">Control of the main windows for wpf</param>
+        /// <returns></returns>
+        protected override IMvxViewPresenter CreateViewPresenter(ContentControl root)
+        {
+            // This handles main window.
+            return new MesAvnViewPresenter(root);
+        }
+        /// <summary>
+        /// Sets up the dictionary that connects the viewmodel to the view.
+        /// </summary>
+        /// <returns></returns>
+        protected override IDictionary<Type, Type> InitializeLookupDictionary()
+        {
+            IDictionary<Type, Type> container = base.InitializeLookupDictionary();
+            container.Add(typeof(MesSettingsManagerViewModel), typeof(MesSettingsView));
+            container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
+            return container;
+        }
 
-    //protected override IEnumerable<object> GetAllInstances(Type serviceType)
-    //{
-    //	return Container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
-    //}
 
-    //protected override void BuildUp(object instance)
-    //{
-    //	Container.SatisfyImportsOnce(instance);
-    //}
+        protected IMesAvnViewPresenter Presenter
+        {
+            get
+            {
+                _presenter = CreateViewPresenter(_root);
+                return _presenter;
+            }
+        }
 
-    //      protected override IEnumerable<Assembly> SelectAssemblies()
-    //      {
-    //          return new[] { Assembly.GetEntryAssembly() };
-    //      }
-    // }
+        protected virtual IMesAvnViewPresenter CreateViewPresenter(ContentControl root)
+        {
+            return new MesAvnViewPresenter(root);
+        }
+
+        protected override IMvxViewDispatcher CreateViewDispatcher()
+        {
+            return new MesAvnViewDispatcher(_uiThreadDispatcher, Presenter);
+        }
+
+        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var presenter = Presenter;
+            iocProvider.RegisterSingleton(presenter);
+            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+        }
+
+        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        {
+            return new MvxPostfixAwareViewToViewModelNameMapping("View", "Control");
+        }
+
+        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        {
+            RegisterPresenter(iocProvider);
+            base.InitializeFirstChance(iocProvider);
+        }
+
+        protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
+        {
+            InitializeBindingBuilder(iocProvider);
+            base.InitializeLastChance(iocProvider);
+        }
+
+        protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+        {
+            RegisterBindingBuilderCallbacks(iocProvider);
+            var bindingBuilder = CreateBindingBuilder();
+            bindingBuilder.DoRegistration();
+        }
+
+        protected virtual void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            iocProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(FillValueConverters);
+            iocProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(FillTargetFactories);
+            iocProvider.CallbackWhenRegistered<IMvxBindingNameRegistry>(FillBindingNames);
+        }
+
+        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
+        {
+            // this base class does nothing
+        }
+
+        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        {
+            registry.Fill(ValueConverterAssemblies);
+            registry.Fill(ValueConverterHolders);
+        }
+
+        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            // this base class does nothing
+        }
+
+        protected virtual List<Type> ValueConverterHolders => new List<Type>();
+
+        protected virtual IEnumerable<Assembly> ValueConverterAssemblies
+        {
+            get
+            {
+                var toReturn = new List<Assembly>();
+                toReturn.AddRange(GetViewModelAssemblies());
+                toReturn.AddRange(GetViewAssemblies());
+                return toReturn;
+            }
+        }
+
+
+        protected virtual MvxBindingBuilder CreateBindingBuilder()
+        {
+            throw new NotImplementedException();
+            //return new MvxWindowsBindingBuilder();
+        }
+    }
 
     /// <summary>
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup

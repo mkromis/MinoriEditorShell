@@ -1,19 +1,14 @@
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia;
+using Avalonia.Threading;
 using MvvmCross;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-using MvvmCross.Plugin;
+using MvvmCross.Core;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
-    ///<summary>This is a bridge between MvvmCross and Avalonia project
     public abstract class MesApplication : Application
     {
         public MesApplication() : base()
@@ -23,9 +18,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public virtual void ApplicationInitialized()
         {
-            if (MainWindow == null) return;
-
-            // MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
+            //if (MainWindow == null) return;
+            //MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
 
             RunAppStart();
         }
@@ -48,13 +42,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         }
     }
 
-    // public class MvxApplication<TMvxWpfSetup, TApplication> : MvxApplication
-    //    where TMvxWpfSetup : MvxWpfSetup<TApplication>, new()
-    //    where TApplication : class, IMvxApplication, new()
-    // {
-    //     protected override void RegisterSetup()
-    //     {
-    //         this.RegisterSetupType<TMvxWpfSetup>();
-    //     }
-    // }
+    public class MvxApplication<TMvxWpfSetup, TApplication> : MvxApplication
+       where TMvxWpfSetup : MesAvnSetup<TApplication>, new()
+       where TApplication : class, IMvxApplication, new()
+    {
+        protected override void RegisterSetup()
+        {
+            this.RegisterSetupType<TMvxWpfSetup>();
+        }
+    }
 }
