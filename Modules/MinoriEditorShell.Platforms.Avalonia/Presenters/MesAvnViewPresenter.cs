@@ -17,7 +17,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
     /// <summary>
     /// Main presenter that allows document and tools to naviage to MesDocumentController
     /// </summary>
-    public class MesAvaViewPresenter : MvxAttributeViewPresenter, IMesAvaViewPresenter
+    public class MesAvnViewPresenter : MvxAttributeViewPresenter, IMesAvnViewPresenter
     {
         private IMvxLog _log;
 
@@ -25,10 +25,10 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         /// Main constructor for the presenter, this gets the main window.
         /// </summary>
         /// <param name="mainWindow"></param>
-        public MesAvaViewPresenter(ContentControl mainWindow) : base(mainWindow)
+        public MesAvnViewPresenter(ContentControl mainWindow) : base(mainWindow)
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
-            _log = provider.GetLogFor<MesAvnPresenter>();
+            _log = provider.GetLogFor<MesAvnViewPresenter>();
             _log.Trace("Setup: Creating Presenter");
 
             // Setup main window as singleton
@@ -43,31 +43,31 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         {
             if (viewType.IsSubclassOf(typeof(Window)))
             {
-                MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
+                _log.Trace($"PresentationAttribute not found for {viewType.Name}. " +
                     $"Assuming window presentation");
                 return new MvxWindowPresentationAttribute();
             }
 
-            MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
+            _log.Trace($"PresentationAttribute not found for {viewType.Name}. " +
                     $"Assuming content presentation");
             return new MvxContentPresentationAttribute();
         }
 
         public override void RegisterAttributeTypes()
         {
-            AttributeTypesToActionsDictionary.Register<MvxWindowPresentationAttribute>(
+            AttributeTypesToActionsDictionary.Register<MesWindowPresentationAttribute>(
                     (viewType, attribute, request) =>
                     {
-                        var view = WpfViewLoader.CreateView(request);
-                        return ShowWindow(view, (MvxWindowPresentationAttribute)attribute, request);
+                        var view = AvnViewLoader.CreateView(request);
+                        return ShowWindow(view, (MesWindowPresentationAttribute)attribute, request);
                     },
                     (viewModel, attribute) => CloseWindow(viewModel));
 
-            AttributeTypesToActionsDictionary.Register<MvxContentPresentationAttribute>(
+            AttributeTypesToActionsDictionary.Register<MesContentPresentationAttribute>(
                     (viewType, attribute, request) =>
                     {
-                        var view = WpfViewLoader.CreateView(request);
-                        return ShowContentView(view, (MvxContentPresentationAttribute)attribute, request);
+                        var view = AvnViewLoader.CreateView(request);
+                        return ShowContentView(view, (MesContentPresentationAttribute)attribute, request);
                     },
                     (viewModel, attribute) => CloseContentView(viewModel));
         }

@@ -5,9 +5,9 @@ using MvvmCross.Core;
 
 namespace MinoriEditorShell.Platforms.Avalonia
 {
-    public interface IMvxWpfSetup : IMvxSetup
+    public interface IMvxAvnSetup : IMvxSetup
     {
-        void PlatformInitialize(Dispatcher uiThreadDispatcher, IMesAvaViewPresenter presenter);
+        void PlatformInitialize(Dispatcher uiThreadDispatcher, IMesAvnViewPresenter presenter);
         void PlatformInitialize(Dispatcher uiThreadDispatcher, ContentControl root);
     }
 }
