@@ -15,7 +15,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <Company>Mark Kromis</Company>
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.Platforms.Avalonia.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     
     <ItemGroup>
@@ -26,9 +26,9 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     </ItemGroup>
     
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
-
+    
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
