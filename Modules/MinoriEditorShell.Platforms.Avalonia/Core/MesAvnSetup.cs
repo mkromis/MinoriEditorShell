@@ -1,12 +1,9 @@
-using Avalonia;
 using Avalonia.Controls;
 using MinoriEditorShell.Messages;
 using MinoriEditorShell.Modules.Services;
 using MinoriEditorShell.Platforms.Avalonia.Presenters;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Platforms.Avalonia.Services;
-using MinoriEditorShell.Platforms.Avalonia.ViewModels;
-using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
 using MvvmCross;
@@ -56,7 +53,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
         {
             get
             {
-                var toReturn = new List<Assembly>();
+                List<Assembly> toReturn = new List<Assembly>();
                 toReturn.AddRange(GetViewModelAssemblies());
                 toReturn.AddRange(GetViewAssemblies());
                 return toReturn;
@@ -180,11 +177,11 @@ namespace MinoriEditorShell.Platforms.Avalonia
             return new MesAvnViewPresenter(root);
         }
 
-        protected IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected virtual IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
+            if (iocProvider is null) throw new ArgumentNullException(nameof(iocProvider));
 
-            var toReturn = CreateAvnViewsContainer();
+            IMesAvnViewsContainer toReturn = CreateAvnViewsContainer();
             iocProvider.RegisterSingleton<IMesAvnViewLoader>(toReturn);
             return toReturn;
         }
@@ -239,7 +236,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
         }
         protected virtual void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
+            if (iocProvider is null) throw new ArgumentNullException(nameof(iocProvider));
 
             iocProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(FillValueConverters);
             iocProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(FillTargetFactories);
@@ -248,7 +245,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
 
         protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
+            if (iocProvider is null) throw new ArgumentNullException(nameof(iocProvider));
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
@@ -267,6 +264,9 @@ namespace MinoriEditorShell.Platforms.Avalonia
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
         }
 
+
+
         protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+        protected override IMvxViewsContainer CreateViewsContainer() => base.CreateViewsContainer(Mvx.IoCProvider);
     }
 }

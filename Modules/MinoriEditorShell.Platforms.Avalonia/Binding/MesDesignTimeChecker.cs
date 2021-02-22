@@ -1,3 +1,4 @@
+using MvvmCross;
 using MvvmCross.Binding.Parse.Binding;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding

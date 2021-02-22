@@ -42,8 +42,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public MesAvnView()
         {
-            Unloaded += MvxWpfView_Unloaded;
-            Loaded += MvxWpfView_Loaded;
+#warning fix MesAvnView ctor
+            //Unloaded += MvxWpfView_Unloaded;
+            //Loaded += MvxWpfView_Loaded;
         }
 
         private void MvxWpfView_Unloaded(object sender, RoutedEventArgs e)
@@ -74,8 +75,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         {
             if (disposing)
             {
-                Unloaded -= MvxWpfView_Unloaded;
-                Loaded -= MvxWpfView_Loaded;
+#warning fix MesAvnView Dispose
+                //Unloaded -= MvxWpfView_Unloaded;
+                //Loaded -= MvxWpfView_Loaded;
             }
         }
     }

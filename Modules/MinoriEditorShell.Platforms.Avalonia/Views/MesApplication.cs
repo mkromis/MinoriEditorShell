@@ -42,7 +42,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         }
     }
 
-    public class MvxApplication<TMvxWpfSetup, TApplication> : MvxApplication
+    public class MesApplication<TMvxWpfSetup, TApplication> : MesApplication
        where TMvxWpfSetup : MesAvnSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
