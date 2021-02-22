@@ -16,22 +16,20 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
     public class MesWindow : Window, IMesWindow, IMesAvnView, IDisposable
     {
-        private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
         private bool _unloaded = false;
-
-        public IMvxViewModel ViewModel
+        private IMvxViewModel _viewModel;
+        public MesWindow()
         {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                DataContext = value;
-                BindingContext.DataContext = value;
-            }
+            Closed += MvxWindow_Closed;
+            Opened += MvxWindow_Opened;
+            Initialized += MvxWindow_Initialized;
         }
 
-        public string Identifier { get; set; }
+        ~MesWindow()
+        {
+            Dispose(false);
+        }
 
         public IMvxBindingContext BindingContext
         {
@@ -50,32 +48,51 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public String DisplayName { get; set; }
 
-        public MesWindow()
+        public string Identifier { get; set; }
+
+        public IMvxViewModel ViewModel
         {
-            Closed += MvxWindow_Closed;
-            Unloaded += MvxWindow_Unloaded;
-            Loaded += MvxWindow_Loaded;
-            Initialized += MvxWindow_Initialized;
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                DataContext = value;
+                BindingContext.DataContext = value;
+            }
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        private void MvxWindow_Initialized(object sender, EventArgs e)
+        protected virtual void Dispose(bool disposing)
         {
-            if (this == Application.Current.MainWindow)
+            if (disposing)
             {
-                (Application.Current as MvxApplication).ApplicationInitialized();
+                Opened -= MvxWindow_Opened;
+                Closed -= MvxWindow_Closed;
             }
         }
 
         private void MvxWindow_Closed(object sender, EventArgs e) => Unload();
 
-        private void MvxWindow_Unloaded(object sender, RoutedEventArgs e) => Unload();
+        private void MvxWindow_Initialized(object sender, EventArgs e)
+        {
+#warning Fix MesWindow AVN Init
+            //if (this == Application.Current.MainWindow)
+            //{
+            //    (Application.Current as MvxApplication).ApplicationInitialized();
+            //}
+        }
 
-        private void MvxWindow_Loaded(object sender, RoutedEventArgs e)
+
+        private void MvxWindow_Opened(Object sender, EventArgs e)
         {
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
         }
-
+        private void MvxWindow_Unloaded(object sender, RoutedEventArgs e) => Unload();
         private void Unload()
         {
             if (!_unloaded)
@@ -84,27 +101,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
                 ViewModel?.ViewDisappeared();
                 ViewModel?.ViewDestroy();
                 _unloaded = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~MesWindow()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Unloaded -= MvxWindow_Unloaded;
-                Loaded -= MvxWindow_Loaded;
-                Closed -= MvxWindow_Closed;
             }
         }
     }
@@ -120,7 +116,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public MvxFluentBindingDescriptionSet<IMesAvnView<TViewModel>, TViewModel> CreateBindingSet()
         {
-            return this.CreateBindingSet<IMesAvnfView<TViewModel>, TViewModel>();
+            //return this.CreateBindingSet<IMesAvnfView<TViewModel>, TViewModel>();
+            throw new NotImplementedException();
         }
     }
     //     public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView

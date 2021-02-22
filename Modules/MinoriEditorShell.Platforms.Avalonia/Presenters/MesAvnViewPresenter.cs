@@ -25,7 +25,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         /// Main constructor for the presenter, this gets the main window.
         /// </summary>
         /// <param name="mainWindow"></param>
-        public MesAvnViewPresenter(ContentControl mainWindow) : base(mainWindow)
+        public MesAvnViewPresenter(ContentControl mainWindow) : base()
         {
             IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
             _log = provider.GetLogFor<MesAvnViewPresenter>();
@@ -43,33 +43,32 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         {
             if (viewType.IsSubclassOf(typeof(Window)))
             {
-                _log.Trace($"PresentationAttribute not found for {viewType.Name}. " +
-                    $"Assuming window presentation");
-                return new MvxWindowPresentationAttribute();
+                _log.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming window presentation");
+                return new MesWindowPresentationAttribute();
             }
 
-            _log.Trace($"PresentationAttribute not found for {viewType.Name}. " +
-                    $"Assuming content presentation");
-            return new MvxContentPresentationAttribute();
+            _log.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming content presentation");
+            return new MesContentPresentationAttribute();
         }
 
         public override void RegisterAttributeTypes()
         {
-            AttributeTypesToActionsDictionary.Register<MesWindowPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var view = AvnViewLoader.CreateView(request);
-                        return ShowWindow(view, (MesWindowPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => CloseWindow(viewModel));
+            throw new NotImplementedException();
+            //AttributeTypesToActionsDictionary.Register<MesWindowPresentationAttribute>(
+            //        (viewType, attribute, request) =>
+            //        {
+            //            var view = AvnViewLoader.CreateView(request);
+            //            return ShowWindow(view, (MesWindowPresentationAttribute)attribute, request);
+            //        },
+            //        (viewModel, attribute) => CloseWindow(viewModel));
 
-            AttributeTypesToActionsDictionary.Register<MesContentPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var view = AvnViewLoader.CreateView(request);
-                        return ShowContentView(view, (MesContentPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => CloseContentView(viewModel));
+            //AttributeTypesToActionsDictionary.Register<MesContentPresentationAttribute>(
+            //        (viewType, attribute, request) =>
+            //        {
+            //            var view = AvnViewLoader.CreateView(request);
+            //            return ShowContentView(view, (MesContentPresentationAttribute)attribute, request);
+            //        },
+            //        (viewModel, attribute) => CloseContentView(viewModel));
         }
         
         /// <summary>
@@ -116,7 +115,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                     default:
                         _log.Trace($"Passing to parent {view.ViewModel.ToString()}");
-                        return await base.ShowContentView(element, attribute, request);
+                        //return await base.ShowContentView(element, attribute, request);
+                        throw new NotImplementedException();
                 }
             }
             catch (Exception exception)

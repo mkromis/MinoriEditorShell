@@ -4,6 +4,7 @@ using MvvmCross.Converters;
 using MvvmCross.IoC;
 using MvvmCross.Binding.Combiners;
 using MvvmCross;
+using System;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
@@ -11,7 +12,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
     {
         static Import()
         {
-            MesDesignTimeChecker.Check();
+            //MesDesignTimeChecker.Check();
+            throw new NotImplementedException();
         }
 
         private object _from;

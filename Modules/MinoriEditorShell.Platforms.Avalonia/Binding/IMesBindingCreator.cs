@@ -7,9 +7,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
     public interface IMesBindingCreator
     {
-        void CreateBindings(
-            object sender,
-            DependencyPropertyChangedEventArgs args,
-            Func<string, IEnumerable<MvxBindingDescription>> parseBindingDescriptions);
+        //void CreateBindings(
+        //    object sender,
+        //    DependencyPropertyChangedEventArgs args,
+        //    Func<string, IEnumerable<MvxBindingDescription>> parseBindingDescriptions);
     }
 }

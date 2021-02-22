@@ -26,6 +26,20 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     </ItemGroup>
     
     <ItemGroup>
+      <Compile Remove="Binding\Bi.n.d.cs" />
+      <Compile Remove="Binding\La.n.g.cs" />
+      <Compile Remove="Binding\MesBinding\MesMvvmCrossBindingCreator.cs" />
+      <Compile Remove="Binding\MesBinding\MesWindowsTargetBindingFactoryRegistry.cs" />
+      <Compile Remove="Binding\MesBinding\Target\MesCollapsedTargetBinding.cs" />
+      <Compile Remove="Binding\MesBinding\Target\MesDependencyPropertyTargetBinding.cs" />
+      <Compile Remove="Binding\MesBinding\Target\MesVisibleTargetBinding.cs" />
+      <Compile Remove="Binding\MesDependencyPropertyExtensions.cs" />
+      <Compile Remove="Binding\MesDesignTimeChecker.cs" />
+      <Compile Remove="Binding\MesWindowsBindingBuilder.cs" />
+      <Compile Remove="Binding\WindowsBinding\AvnWindowsBindingCreator.cs" />
+    </ItemGroup>
+    
+    <ItemGroup>
       <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
     
@@ -43,5 +57,10 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Binding\MesBinding\Target\" />
+      <Folder Include="Binding\WindowsBinding\" />
     </ItemGroup>
 </Project>
