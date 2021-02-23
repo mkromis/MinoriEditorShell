@@ -103,9 +103,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="..\..\..\.sonarlint\minorieditorshellcsharp.ruleset">
-      <Link>minorieditorshellcsharp.ruleset</Link>
-    </None>
     <None Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset">
       <Link>torisankitsune_minorieditorshell2csharp.ruleset</Link>
     </None>
