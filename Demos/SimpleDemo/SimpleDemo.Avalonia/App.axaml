@@ -1,9 +1,9 @@
-<Application 
+<views:MesApplication
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:views="clr-namespace:MvvmCross.Platforms.Avalonia.Views;assembly=MvvmCross.Platforms.Avalonia"
+    xmlns:views="clr-namespace:MinoriEditorShell.Platforms.Avalonia.Views;assembly=MinoriEditorShell.Platforms.Avalonia"
     x:Class="SimpleDemo.Avalonia.App">
     <Application.Styles>
         <FluentTheme Mode="Light"/>
     </Application.Styles>
-</Application>
+</views:MesApplication>
