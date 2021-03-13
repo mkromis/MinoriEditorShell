@@ -9,7 +9,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
     public interface IMesAvnViewsContainer : IMvxViewsContainer, IMesAvnViewLoader
     {
-        StyledElement CreateView(MvxViewModelRequest request);
-        StyledElement CreateView(Type viewType);
+        IMesAvnView CreateView(MvxViewModelRequest request);
+        IMesAvnView CreateView(Type viewType);
     }
 }

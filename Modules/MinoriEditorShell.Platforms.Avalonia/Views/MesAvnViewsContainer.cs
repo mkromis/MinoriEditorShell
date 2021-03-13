@@ -13,13 +13,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         : MvxViewsContainer
         , IMesAvnViewsContainer
     {
-        public virtual StyledElement CreateView(MvxViewModelRequest request)
+        public virtual IMesAvnView CreateView(MvxViewModelRequest request)
         {
             var viewType = GetViewType(request.ViewModelType);
             if (viewType == null)
                 throw new MvxException("View Type not found for " + request.ViewModelType);
 
-            var wpfView = CreateView(viewType) as IMesAvnView;
+            IMesAvnView wpfView = CreateView(viewType) as IMesAvnView;
 
             if (request is MvxViewModelInstanceRequest instanceRequest)
             {
@@ -31,24 +31,21 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
                 wpfView.ViewModel = viewModelLoader.LoadViewModel(request, null);
             }
 
-            return wpfView as StyledElement;
+            return wpfView;
         }
 
-        public StyledElement CreateView(Type viewType)
+        public IMesAvnView CreateView(Type viewType)
         {
             var viewObject = Activator.CreateInstance(viewType);
             if (viewObject == null)
                 throw new MvxException("View not loaded for " + viewType);
 
-            var wpfView = viewObject as IMesAvnView;
-            if (wpfView == null)
+            if (!(viewObject is IMesAvnView wpfView))
                 throw new MvxException("Loaded View does not have IMvxWpfView interface " + viewType);
 
-            var viewControl = viewObject as StyledElement;
-            if (viewControl == null)
-                throw new MvxException("Loaded View is not a FrameworkElement " + viewType);
-
-            return viewControl;
+            return !(viewObject is IStyledElement viewControl)
+                ? throw new MvxException("Loaded View is not a FrameworkElement " + viewType)
+                : wpfView;
         }
     }
 }

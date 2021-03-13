@@ -1,4 +1,6 @@
-﻿using MvvmCross.Binding.BindingContext;
+﻿using Avalonia;
+using Avalonia.Controls;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
 using System;
@@ -7,8 +9,7 @@ using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
-    public interface IMesAvnView
-        : IMvxView, IMvxBindingContextOwner
+    public interface IMesAvnView : IMvxView, IMvxBindingContextOwner, IControl, IStyledElement
     {
     }
 

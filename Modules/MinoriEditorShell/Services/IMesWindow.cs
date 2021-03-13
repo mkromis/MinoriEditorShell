@@ -6,5 +6,6 @@ namespace MinoriEditorShell.Services
     {
         String DisplayName { get; set; }
         String Title { get; set; }
+        String Identifier { get; set; }
     }
 }
