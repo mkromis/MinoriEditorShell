@@ -259,13 +259,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
     /// <typeparam name="TApplication"></typeparam>
     public class MesAvnSetup<TApplication> : MesAvnSetup where TApplication : class, IMvxApplication, new()
     {
-        public override IEnumerable<Assembly> GetViewModelAssemblies()
-        {
-            return new[] { typeof(TApplication).GetTypeInfo().Assembly };
-        }
-
-
-
+        public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
         protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
         protected override IMvxViewsContainer CreateViewsContainer() => base.CreateViewsContainer(Mvx.IoCProvider);
     }
