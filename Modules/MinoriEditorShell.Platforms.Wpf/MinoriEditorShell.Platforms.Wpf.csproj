@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
     
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
         <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
 This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
         <Copyright>Copyright 2019</Copyright>
