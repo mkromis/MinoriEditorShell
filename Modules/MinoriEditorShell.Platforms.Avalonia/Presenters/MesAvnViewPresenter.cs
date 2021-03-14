@@ -30,7 +30,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         /// <summary>
         /// Main constructor for the presenter, this gets the main window.
         /// </summary>
-        /// <param name="mainWindow"></param>
+        /// <param name="contentControl"></param>
         public MesAvnViewPresenter(ContentControl contentControl) : base()
         {
             if (contentControl is Window window)
