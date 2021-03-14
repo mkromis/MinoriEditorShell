@@ -1,38 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <CodeAnalysisRuleSet>..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MinoriDemo.RibbonWpfCore\DataClasses\ThemeItem.cs">
-      <Link>DataClasses\ThemeItem.cs</Link>
-    </Compile>
-    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\Themes\CyberTheme.cs">
-      <Link>Modules\Themes\CyberTheme.cs</Link>
-    </Compile>
-    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\Themes\ThemeHelper.cs">
-      <Link>Modules\Themes\ThemeHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\MinoriDemo.RibbonWpfCore\Modules\VirtualCanvas\Models\TestShape.cs">
-      <Link>Modules\VirtualCanvas\Models\TestShape.cs</Link>
-    </Compile>
-    <Compile Include="..\MinoriDemo.RibbonWpfCore\Setup.cs">
-      <Link>Setup.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\.sonarlint\minorieditorshellcsharp.ruleset">
-      <Link>minorieditorshellcsharp.ruleset</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset">
-      <Link>torisankitsune_minorieditorshell2csharp.ruleset</Link>
-    </None>
+    <None Remove="Resources\Splash.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
@@ -61,11 +36,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Resources\Splash.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml">
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Splash.png" />
   </ItemGroup>
 </Project>
