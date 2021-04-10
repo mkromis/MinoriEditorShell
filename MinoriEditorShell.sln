@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4AEC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShell.RibbonTests", "Tests\MinoriEditorShell.RibbonTests\MinoriEditorShell.RibbonTests.csproj", "{7A48AD22-69BF-49A7-8988-E163F779997E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.BlazorWebAssembly", "Demos\SimpleDemo\SimpleDemo.BlazorWebAssembly\SimpleDemo.BlazorWebAssembly.csproj", "{A492CC04-A92C-4410-8149-87BE6EFB4CBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,10 @@ Global
 		{7A48AD22-69BF-49A7-8988-E163F779997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A48AD22-69BF-49A7-8988-E163F779997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A48AD22-69BF-49A7-8988-E163F779997E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A492CC04-A92C-4410-8149-87BE6EFB4CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A492CC04-A92C-4410-8149-87BE6EFB4CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A492CC04-A92C-4410-8149-87BE6EFB4CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A492CC04-A92C-4410-8149-87BE6EFB4CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +170,7 @@ Global
 		{31D34D4B-888E-4667-82CE-C9599FD4A974} = {0D78D57D-5ED4-4898-A3E5-39C7B5ECEF0C}
 		{DE4AECF4-649F-45C0-B260-419F68EB5707} = {748FD7C1-877B-451D-809A-68E032C39B34}
 		{7A48AD22-69BF-49A7-8988-E163F779997E} = {D96C6D53-E9ED-4E32-9856-B858A63C9D9E}
+		{A492CC04-A92C-4410-8149-87BE6EFB4CBB} = {F8E17C87-3554-4E81-9FB6-0BC0939EDA6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4DE08D7-0160-4FCF-876A-904438A56A8A}
