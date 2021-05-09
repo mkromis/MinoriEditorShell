@@ -65,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4AEC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShell.RibbonTests", "Tests\MinoriEditorShell.RibbonTests\MinoriEditorShell.RibbonTests.csproj", "{7A48AD22-69BF-49A7-8988-E163F779997E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDemo.BlazorServer", "Demos\SimpleDemo\SimpleDemo.BlazorServer\SimpleDemo.BlazorServer.csproj", "{82E6ECCF-F2A0-4B6C-AC86-B0C6099FE29A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDemo.BlazorServer", "Demos\SimpleDemo\SimpleDemo.BlazorServer\SimpleDemo.BlazorServer.csproj", "{82E6ECCF-F2A0-4B6C-AC86-B0C6099FE29A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleDemo.BlazorServer.Data;
+using SimpleDemo.BlazorServer.Pages;
+using SimpleDemo.Core.Services;
+using SimpleDemo.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +31,13 @@ namespace SimpleDemo.BlazorServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            // Test Serivce
             services.AddSingleton<WeatherForecastService>();
+
+            // SimpleDemo injection
+            services.AddSingleton<ICalculationService, CalculationService>();
+            services.AddScoped<TipViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
