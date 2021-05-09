@@ -1,7 +1,14 @@
 ﻿@page "/tipview"
 
+
 @using SimpleDemo.BlazorServer.Services
 @using SimpleDemo.Core.ViewModels 
 @inherits ViewModelComponent<TipViewModel>
 
-<h3>Test</h3>
+<h3>TipView</h3>
+
+<p>
+    Subtotal: <input class="input is-medium" type="number" @bind="this.ViewModel.SubTotal" />
+    Generosity: <input class="input is-medium" type="number" @bind="this.ViewModel.Generosity" />
+    TipTotal: @this.ViewModel.Tip
+</p>
