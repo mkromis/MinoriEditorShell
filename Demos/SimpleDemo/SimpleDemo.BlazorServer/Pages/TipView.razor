@@ -1,6 +1,5 @@
 ﻿@page "/tipview"
 
-
 @using SimpleDemo.BlazorServer.Services
 @using SimpleDemo.Core.ViewModels 
 @inherits ViewModelComponent<TipViewModel>
@@ -8,7 +7,11 @@
 <h3>TipView</h3>
 
 <p>
-    Subtotal: <input class="input is-medium" type="number" @bind="this.ViewModel.SubTotal" />
-    Generosity: <input class="input is-medium" type="number" @bind="this.ViewModel.Generosity" />
-    TipTotal: @this.ViewModel.Tip
+    Subtotal: <input class="input is-medium" type="number" @bind="ViewModel.SubTotal" /><br />
+    Generosity: <input class="input is-medium" type="number" @bind="ViewModel.Generosity" /><br />
+    TipTotal: @String.Format("{0:C}", ViewModel.Tip) <br />
 </p>
+
+@code {
+    // See https://bartecki.me/blog/mvvm-in-blazor for getting this to work.
+}
