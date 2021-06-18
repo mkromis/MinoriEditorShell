@@ -19,7 +19,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
     /// </summary>
     public class MesWpfPresenter : MvxWpfViewPresenter
     {
-        private ILogger<MesWpfPresenter> _log;
+        private readonly ILogger<MesWpfPresenter> _log;
 
         /// <summary>
         /// Main constructor for the presenter, this gets the main window.

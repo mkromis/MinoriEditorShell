@@ -5,7 +5,13 @@ namespace SimpleDemo.WpfCore
 {
     internal class Setup : MesWpfSetup<Core.App>
     {
-        protected override ILoggerFactory CreateLogFactory() =>  null;
+        protected override ILoggerFactory CreateLogFactory()
+        {
+            return LoggerFactory.Create((builder) => 
+                builder
+                    .SetMinimumLevel(0)
+                    .AddDebug());
+        }
         protected override ILoggerProvider CreateLogProvider() => null;
     }
 }

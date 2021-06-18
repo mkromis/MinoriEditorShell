@@ -77,10 +77,11 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// <summary>
         /// Sets up initial connected types and setup
         /// </summary>
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider) {
-            base.InitializeFirstChance(iocProvider);
+        public override void InitializePrimary() {
+            base.InitializePrimary();
 
             // register necessary interfaces
+            IMvxIoCProvider iocProvider = Mvx.IoCProvider;
             iocProvider.LazyConstructAndRegisterSingleton<IMesDocumentManager, MesDocumentManagerViewModel>();
             iocProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
             iocProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
@@ -110,8 +111,8 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
-        protected override void InitializeLastChance(IMvxIoCProvider iocProvider) {
-            base.InitializeLastChance(iocProvider);
+        public override void InitializeSecondary() {
+            base.InitializeSecondary();
 
             _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
@@ -123,7 +124,7 @@ namespace MinoriEditorShell.Platforms.Wpf
             };
         }
     }
-    public abstract class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
+    public abstract class MesWpfSetup<TApplication> : MesWpfSetup where TApplication : class, IMvxApplication, new()
     {
         protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => iocProvider.IoCConstruct<TApplication>();
         public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
