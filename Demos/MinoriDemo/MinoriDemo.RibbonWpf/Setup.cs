@@ -1,12 +1,19 @@
-﻿using MinoriEditorShell.Platforms.Wpf;
+﻿using Microsoft.Extensions.Logging;
+using MinoriEditorShell.Platforms.Wpf;
 using MinoriEditorShell.Services;
 using MvvmCross;
+using MvvmCross.IoC;
+using MvvmCross.ViewModels;
 using System;
 
 namespace MinoriDemo.RibbonWPF
 {
     internal class Setup : MesWpfSetup<Core.App>
     {
+        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => throw new NotImplementedException();
+        protected override ILoggerFactory CreateLogFactory() => throw new NotImplementedException();
+        protected override ILoggerProvider CreateLogProvider() => throw new NotImplementedException();
+
         protected override void InitializeLastChance()
         {
             base.InitializeLastChance();

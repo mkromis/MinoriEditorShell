@@ -2,7 +2,7 @@ using MinoriEditorShell.Platforms.Wpf;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 
-namespace MinoriDemo.WPF
+namespace MinoriDemo.WpfCore
 {
     /// <summary>
     /// Interaction logic for App.xaml

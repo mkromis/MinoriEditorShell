@@ -1,6 +1,6 @@
 using MvvmCross.Platforms.Wpf.Views;
 
-namespace SimpleDemo.RibbonWPF.Views
+namespace SimpleDemo.RibbonWpfCore.Views
 {
     /// <summary>
     /// Interaction logic for TipView.xaml

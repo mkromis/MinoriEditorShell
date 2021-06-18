@@ -1,8 +1,8 @@
-using MinoriEditorShell.Platforms.Wpf;
+﻿using MinoriEditorShell.Platforms.Wpf;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 
-namespace SimpleDemo.WPF
+namespace SimpleDemo.WpfCore
 {
     /// <summary>
     /// Interaction logic for App.xaml

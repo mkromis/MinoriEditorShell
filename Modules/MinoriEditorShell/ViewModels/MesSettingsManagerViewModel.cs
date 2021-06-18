@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.DataClasses;
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Properties;
@@ -22,8 +23,8 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         private MesSettingsTreeItem _selectedPage;
         private String displayName;
 
-        public MesSettingsManagerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public MesSettingsManagerViewModel(ILoggerFactory logger, IMvxNavigationService navigationService)
+            : base(logger, navigationService)
         {
             DisplayName = Resources.SettingsDisplayName;
         }

@@ -24,7 +24,7 @@ namespace MinoriEditorShell.Platforms.Wpf
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
     /// <typeparam name="TApplication"></typeparam>
-    public class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
+    public abstract class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
     {
         // To handle messages between classes
         private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
