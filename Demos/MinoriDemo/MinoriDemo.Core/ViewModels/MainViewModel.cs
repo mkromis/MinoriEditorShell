@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Commands;
@@ -67,9 +68,9 @@ namespace MinoriDemo.Core.ViewModels
         }
 
         public MainViewModel(
-            IMvxLogProvider logProvider, IMvxNavigationService navigationService,
+            ILoggerFactory logFactory, IMvxNavigationService navigationService,
             IMesDocumentManager manager, IMesStatusBar statusBar)
-            : base(logProvider, navigationService)
+            : base(logFactory, navigationService)
         {
             _manager = manager;
 

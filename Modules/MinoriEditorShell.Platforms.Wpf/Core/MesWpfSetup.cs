@@ -15,6 +15,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Controls;
 
@@ -24,7 +25,7 @@ namespace MinoriEditorShell.Platforms.Wpf
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
     /// <typeparam name="TApplication"></typeparam>
-    public abstract class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
+    public abstract class MesWpfSetup : MvxWpfSetup
     {
         // To handle messages between classes
         private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
@@ -41,24 +42,6 @@ namespace MinoriEditorShell.Platforms.Wpf
         }
 
         /// <summary>
-        /// Creates the app.
-        /// </summary>
-        /// <returns>An instance of MvxApplication</returns>
-        protected override IMvxApplication CreateApp()
-        {
-            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
-            Properties.Settings.Default.PropertyChanged += (s, e) =>
-            {
-                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
-                    s, e.PropertyName,
-                    Properties.Settings.Default.PropertyValues[e.PropertyName]);
-                _messenger.Publish(message);
-            };
-
-            return new TApplication();
-        }
-
-        /// <summary>
         /// Load any additional plugins, calling parent
         /// </summary>
         /// <param name="pluginManager"></param>
@@ -72,9 +55,9 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// Sets up the dictionary that connects the viewmodel to the view.
         /// </summary>
         /// <returns></returns>
-        protected override IDictionary<Type, Type> InitializeLookupDictionary()
+        protected override IDictionary<Type, Type> InitializeLookupDictionary(IMvxIoCProvider iocProvider)
         {
-            IDictionary<Type, Type> container = base.InitializeLookupDictionary();
+            IDictionary<Type, Type> container = base.InitializeLookupDictionary(iocProvider);
             container.Add(typeof(MesSettingsManagerViewModel), typeof(MesSettingsView));
             container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
@@ -84,9 +67,9 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// Used to ensure plugins are loaded.
         /// </summary>
         /// <returns>returns base manager</returns>
-        protected override IMvxPluginManager CreatePluginManager()
+        protected override IMvxPluginManager CreatePluginManager(IMvxIoCProvider iocProvider)
         {
-            IMvxPluginManager manager = base.CreatePluginManager();
+            IMvxPluginManager manager = base.CreatePluginManager(iocProvider);
             manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
             return manager;
         }
@@ -94,18 +77,17 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// <summary>
         /// Sets up initial connected types and setup
         /// </summary>
-        public override void InitializePrimary()
-        {
-            base.InitializePrimary();
+        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider) {
+            base.InitializeFirstChance(iocProvider);
 
             // register necessary interfaces
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesDocumentManager, MesDocumentManagerViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
-            Mvx.IoCProvider.RegisterType<IMesSettingsManager, MesSettingsManagerViewModel>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMesDocumentManager, MesDocumentManagerViewModel>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMesStatusBar, MesStatusBarViewModel>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMesLayoutItemStatePersister, MesLayoutItemStatePersister>();
+            iocProvider.RegisterType<IMesSettingsManager, MesSettingsManagerViewModel>();
 
             // Register themes
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
 
             // try to setup culture info
             String code = Properties.Settings.Default.LanguageCode;
@@ -123,6 +105,28 @@ namespace MinoriEditorShell.Platforms.Wpf
                 Thread.CurrentThread.CurrentCulture = culture;
             }
         }
+
+        /// <summary>
+        /// Creates the app.
+        /// </summary>
+        /// <returns>An instance of MvxApplication</returns>
+        protected override void InitializeLastChance(IMvxIoCProvider iocProvider) {
+            base.InitializeLastChance(iocProvider);
+
+            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
+            Properties.Settings.Default.PropertyChanged += (s, e) =>
+            {
+                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
+                    s, e.PropertyName,
+                    Properties.Settings.Default.PropertyValues[e.PropertyName]);
+                _messenger.Publish(message);
+            };
+        }
+    }
+    public abstract class MesWpfSetup<TApplication> : MvxWpfSetup where TApplication : class, IMvxApplication, new()
+    {
+        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => iocProvider.IoCConstruct<TApplication>();
+        public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
     }
 
     ///// <summary>

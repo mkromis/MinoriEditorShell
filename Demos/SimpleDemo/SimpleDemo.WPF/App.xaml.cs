@@ -9,6 +9,6 @@ namespace SimpleDemo.WpfCore
     /// </summary>
     public partial class App : MvxApplication
     {
-        protected override void RegisterSetup() => this.RegisterSetupType<MesWpfSetup<Core.App>>();
+        protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
     }
 }

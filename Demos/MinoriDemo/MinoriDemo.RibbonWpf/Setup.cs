@@ -14,9 +14,9 @@ namespace MinoriDemo.RibbonWPF
         protected override ILoggerFactory CreateLogFactory() => throw new NotImplementedException();
         protected override ILoggerProvider CreateLogProvider() => throw new NotImplementedException();
 
-        protected override void InitializeLastChance()
+        protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
         {
-            base.InitializeLastChance();
+            base.InitializeLastChance(iocProvider);
 
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
             foreach (IMesTheme theme in manager.Themes)
