@@ -1,10 +1,10 @@
 ﻿<mvx:MvxWpfView
-    x:Class="SimpleDemo.WpfCore.Views.MainView"
+    x:Class="SimpleDemo.Wpf.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SimpleDemo.WpfCore.Views"
+    xmlns:local="clr-namespace:SimpleDemo.Wpf.Views"
     xmlns:mes="clr-namespace:MinoriEditorShell.Platforms.Wpf.Views;assembly=MinoriEditorShell.Platforms.Wpf"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
 

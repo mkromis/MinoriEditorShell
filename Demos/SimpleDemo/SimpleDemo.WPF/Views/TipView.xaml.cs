@@ -1,11 +1,12 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Platforms.Wpf.Views;
+using MvvmCross.ViewModels;
+using SimpleDemo.Core.ViewModels;
 
-namespace SimpleDemo.WpfCore.Views
+namespace SimpleDemo.Wpf.Views
 {
-    /// <summary>
-    /// Interaction logic for TipView.xaml
-    /// </summary>
-    public partial class TipView : MvxWpfView
+    [MvxContentPresentation]
+    public partial class TipView
     {
         public TipView()
         {

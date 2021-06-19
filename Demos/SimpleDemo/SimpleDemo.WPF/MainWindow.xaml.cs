@@ -1,6 +1,6 @@
 ﻿using MinoriEditorShell.Platforms.Wpf.Views;
 
-namespace SimpleDemo.WpfCore
+namespace SimpleDemo.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
