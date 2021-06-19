@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Exceptions;
@@ -18,7 +19,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
     /// </summary>
     public class MesWpfPresenter : MvxWpfViewPresenter
     {
-        private IMvxLog _log;
+        private readonly ILogger<MesWpfPresenter> _log;
 
         /// <summary>
         /// Main constructor for the presenter, this gets the main window.
@@ -26,14 +27,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
         /// <param name="mainWindow"></param>
         public MesWpfPresenter(ContentControl mainWindow) : base(mainWindow)
         {
-            IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
-            _log = provider.GetLogFor<MesWpfPresenter>();
-            _log.Trace("Setup: Creating Presenter");
+            // New style logging can return nulls
+            _log = MvxLogHost.GetLog<MesWpfPresenter>();
+            _log?.LogTrace("Setup: Creating Presenter");
 
             // Setup main window as singleton
             if (mainWindow is IMesWindow mesWindow)
             {
-                _log.Trace("Setting IMesWindow to main window");
+                _log?.LogTrace("Setting IMesWindow to main window");
                 Mvx.IoCProvider.RegisterSingleton<IMesWindow>(mesWindow);
             }
         }
@@ -66,7 +67,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
-                        _log.Trace($"Add {document} to IMesDocumentManager.Documents");
+                        _log?.LogTrace($"Add {document} to IMesDocumentManager.Documents");
                         return true;
 
                     case IMesTool tool:
@@ -76,22 +77,17 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log.Trace($"Add {tool} to IDocumentManager.Tools");
+                        _log?.LogTrace($"Add {tool} to IDocumentManager.Tools");
                         return true;
 
                     default:
-                        _log.Trace($"Passing to parent {view.ViewModel.ToString()}");
+                        _log?.LogTrace($"Passing to parent {view.ViewModel.ToString()}");
                         return await base.ShowContentView(element, attribute, request);
                 }
             }
             catch (Exception exception)
             {
-                if (_log == null)
-                {
-                    _log = Mvx.IoCProvider.Resolve<IMvxLog>();
-                }
-                _log.ErrorException("Error seen during navigation request to {0} - error {1}",
-                    exception, request.ViewModelType.Name, exception.ToLongString());
+                _log?.LogError(exception, $"Error seen during navigation request to {request.ViewModelType.Name} - error {exception.ToLongString()}");
                 throw;
             }
         }
