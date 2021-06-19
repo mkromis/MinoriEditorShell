@@ -22,9 +22,9 @@ Dual-Licensed with either
 
 ## MvvmCross 8 troubleshooting / Known Issues
 
-* If view does not showing add `[MvxContentPresentation]` to code behind class.
+* If view does not showing add `[MvxContentPresentation]` for MesDocuments or Main Content view .i.e. MainView.
+* Add`[MvxWindowPresentation]` for windows.
 * If using logging you only need `ILoggerFactory`, otherwise return null.
-
 
 ## Breaking Changes (For Develop pre-release
 

@@ -3,24 +3,23 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0-windows</TargetFramework>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <UseWPF>true</UseWPF>
         <CodeAnalysisRuleSet>..\..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\Splash.png" />
+        <None Remove="Resources\Splash.png" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     </ItemGroup>
@@ -35,7 +34,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <SplashScreen Include="Resources\Splash.png" />
+        <SplashScreen Include="Resources\Splash.png" />
     </ItemGroup>
-
 </Project>
