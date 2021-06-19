@@ -1,15 +1,14 @@
 ﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
 
-namespace SimpleDemo.Wpf.Views
+namespace MinoriDemo.RibbonWPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for ToolSampleView.xaml
     /// </summary>
     [MvxContentPresentation]
-    public partial class MainView : MvxWpfView
+    public partial class ToolSampleView
     {
-        public MainView()
+        public ToolSampleView()
         {
             InitializeComponent();
         }

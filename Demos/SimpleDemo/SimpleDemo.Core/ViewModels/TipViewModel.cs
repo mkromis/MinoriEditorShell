@@ -7,6 +7,9 @@ namespace SimpleDemo.Core.ViewModels
     public class TipViewModel : MesDocument
     {
         private readonly ICalculationService _calculationService;
+        private int _generosity;
+        private double _subTotal;
+        private double _tip;
 
         public TipViewModel(ICalculationService calculationService)
         {
@@ -14,32 +17,6 @@ namespace SimpleDemo.Core.ViewModels
 
             DisplayName = "TipCalc Sample";
         }
-
-        public override async Task Initialize()
-        {
-            await base.Initialize();
-
-            _subTotal = 100;
-            _generosity = 10;
-
-            Recalculate();
-        }
-
-        private double _subTotal;
-
-        public double SubTotal
-        {
-            get => _subTotal;
-            set
-            {
-                _subTotal = value;
-                RaisePropertyChanged(() => SubTotal);
-
-                Recalculate();
-            }
-        }
-
-        private int _generosity;
 
         public int Generosity
         {
@@ -53,7 +30,17 @@ namespace SimpleDemo.Core.ViewModels
             }
         }
 
-        private double _tip;
+        public double SubTotal
+        {
+            get => _subTotal;
+            set
+            {
+                _subTotal = value;
+                RaisePropertyChanged(() => SubTotal);
+
+                Recalculate();
+            }
+        }
 
         public double Tip
         {
@@ -63,6 +50,16 @@ namespace SimpleDemo.Core.ViewModels
                 _tip = value;
                 RaisePropertyChanged(() => Tip);
             }
+        }
+
+        public override async Task Initialize()
+        {
+            await base.Initialize();
+
+            _subTotal = 100;
+            _generosity = 10;
+
+            Recalculate();
         }
 
         private void Recalculate()
