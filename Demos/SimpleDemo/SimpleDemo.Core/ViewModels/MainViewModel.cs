@@ -9,16 +9,18 @@ using System.Windows.Input;
 
 namespace SimpleDemo.Core.ViewModels
 {
-    public class MainViewModel : MvxNavigationViewModel
+    public class MainViewModel : MvxViewModel
     {
-        public MainViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
+        public MainViewModel(IMvxNavigationService navigationService)
         {
+            NavigationService = navigationService;
+
             Mvx.IoCProvider.Resolve<IMesWindow>().Title =
                 $"Simple Demo v{typeof(App).Assembly.GetName().Version.ToString(3)}";
         }
 
-        public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
-
+        public IMvxNavigationService NavigationService { get; }
         public ICommand SettingsCommand => Mvx.IoCProvider.Resolve<IMesSettingsManager>().ShowCommand;
+        public ICommand TipCalcCommand => new MvxCommand(() => NavigationService.Navigate<TipViewModel>());
     }
 }

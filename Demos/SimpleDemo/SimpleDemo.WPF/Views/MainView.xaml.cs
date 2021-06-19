@@ -1,9 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using SimpleDemo.Core.ViewModels;
 
 namespace SimpleDemo.Wpf.Views
 {
@@ -15,8 +11,6 @@ namespace SimpleDemo.Wpf.Views
     {
         public MainView()
         {
-            ILogger<MainView> log = MvxLogHost.GetLog<MainView>();
-            log.LogDebug("View Init");
             InitializeComponent();
         }
     }

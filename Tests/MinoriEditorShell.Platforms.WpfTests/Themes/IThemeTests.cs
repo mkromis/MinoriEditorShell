@@ -11,25 +11,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
     [TestClass()]
     public class IThemeTests : MvxIoCSupportingTest
     {
-        protected override void AdditionalSetup()
-        {
-            String _ = System.IO.Packaging.PackUriHelper.UriSchemePack;
-            new MvvmCross.Plugin.Messenger.Plugin().Load();
-
-            // register necessary interfaces
-
-            Ioc.ConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
-        }
-
-        [TestMethod]
-        public void NoRibbonTest()
-        {
-            Setup();
-
-            MesBlueTheme blue = new MesBlueTheme();
-            Assert.AreEqual(1, blue.ApplicationResources.Count());
-        }
-
         [TestMethod]
         public void GetAllThemesTest()
         {
@@ -42,6 +23,24 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
 
             var blue = themes.First(x => x.Name.Contains("Blue"));
             Assert.AreEqual(1, blue.ApplicationResources.Count());
+        }
+
+        [TestMethod]
+        public void NoRibbonTest()
+        {
+            Setup();
+
+            MesBlueTheme blue = new MesBlueTheme();
+            Assert.AreEqual(1, blue.ApplicationResources.Count());
+        }
+
+        protected override void AdditionalSetup()
+        {
+            String _ = System.IO.Packaging.PackUriHelper.UriSchemePack;
+            new MvvmCross.Plugin.Messenger.Plugin().Load();
+
+            // register necessary interfaces
+            Ioc.ConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
         }
     }
 }

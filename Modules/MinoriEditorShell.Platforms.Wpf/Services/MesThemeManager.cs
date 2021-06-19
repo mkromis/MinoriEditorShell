@@ -15,18 +15,19 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     public class MesThemeManager : IMesThemeManager
     {
+        private readonly ILogger<MesThemeManager> _log;
+
         // IOC
         private readonly IMvxMessenger _messenger;
 
-        private readonly ILogger<MesThemeManager> _log;
-
-        public IEnumerable<IMesTheme> Themes { get; private set; }
-
-        public IMesTheme CurrentTheme { get; private set; }
-
-        public MesThemeManager(IMvxMessenger messenger, ILogger<MesThemeManager> log)
+        /// <summary>
+        /// Local theme menager
+        /// </summary>
+        /// <param name="messenger"></param>
+        public MesThemeManager(IMvxMessenger messenger)
         {
-            _log = log;
+            // Resolve logger manually, Don't force user to have logger
+            _log = MvxLogHost.GetLog<MesThemeManager>();
             _messenger = messenger;
 
             Themes = Mvx.IoCProvider.GetAll<IMesTheme>();
@@ -39,6 +40,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 }
             });
         }
+
+        public IMesTheme CurrentTheme { get; private set; }
+        public IEnumerable<IMesTheme> Themes { get; private set; }
 
         // Needed for Interface
         public Boolean SetCurrentTheme(String name) => SetCurrentTheme(name, true);

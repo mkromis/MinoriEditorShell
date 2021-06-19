@@ -17,18 +17,21 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
-    public class MesSettingsManagerViewModel : MvxNavigationViewModel, IMesSettingsManager
+    public class MesSettingsManagerViewModel : MvxViewModel, IMesSettingsManager
     {
-        private IEnumerable<IMesSettings> _settingsEditors;
         private MesSettingsTreeItem _selectedPage;
+        private IEnumerable<IMesSettings> _settingsEditors;
         private String displayName;
 
-        public MesSettingsManagerViewModel(ILoggerFactory logger, IMvxNavigationService navigationService)
-            : base(logger, navigationService)
+        public MesSettingsManagerViewModel(IMvxNavigationService navigationService)
         {
+            NavigationService = navigationService;
             DisplayName = Resources.SettingsDisplayName;
         }
 
+        public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
+        public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
+        public ICommand OkCommand => new MvxCommand(SaveChanges);
         public List<MesSettingsTreeItem> Pages { get; private set; }
 
         public MesSettingsTreeItem SelectedPage
@@ -41,15 +44,13 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             }
         }
 
-        public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
-        public ICommand OkCommand => new MvxCommand(SaveChanges);
-        public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
-
         public IMvxCommand ShowCommand => new MvxCommand(() =>
         {
             IMesSettingsManager settingsManager = Mvx.IoCProvider.Resolve<IMesSettingsManager>();
             NavigationService.Navigate(settingsManager);
         });
+
+        private IMvxNavigationService NavigationService { get; }
 
         public override async Task Initialize()
         {
@@ -76,8 +77,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
                     parentCollection.Add(page);
                 }
 
-                // Try to create view/viewmodel
-                // we already have viewmodel, go get view type
+                // Try to create view/viewmodel we already have viewmodel, go get view type
                 Type type = viewFinder.GetViewType(settingsEditor.GetType());
                 IMvxView view = (IMvxView)Activator.CreateInstance(type);
 
