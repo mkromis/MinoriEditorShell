@@ -16,23 +16,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
 
-        <PackageReference Include="GitVersionTask" Version="5.3.7">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PackageReference Include="GitVersionTask" Version="5.5.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
     </ItemGroup>
 </Project>
