@@ -2,8 +2,10 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0</TargetFrameworks>
-        <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
-This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
+        <Description>
+            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+            This uses AvalonDock and has an MVVM architecture based on MvvmCross.
+        </Description>
         <Copyright>Copyright 2019</Copyright>
         <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
@@ -18,23 +20,19 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
 
         <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
 
         <PackageReference Include="MvvmCross" Version="8.0.1" />
         <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.1" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.1" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.24.0.32949">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
