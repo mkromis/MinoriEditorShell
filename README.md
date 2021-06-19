@@ -22,7 +22,9 @@ Dual-Licensed with either
 
 ## MvvmCross 8 troubleshooting / Known Issues
 
-* If view are not showing try adding ```[MvxContentPresentation]``` to code behind class.
+* If view does not showing add `[MvxContentPresentation]` to code behind class.
+* If using logging you only need `ILoggerFactory`, otherwise return null.
+
 
 ## Breaking Changes (For Develop pre-release
 

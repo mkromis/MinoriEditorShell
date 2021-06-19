@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MinoriDemo.RibbonWPF.DataClasses;
 using MinoriDemo.RibbonWPF.Modules.Themes;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,12 +15,13 @@ namespace MinoriDemo.RibbonWPF.Views
     /// <summary>
     /// Interaction logic for ToolSampleView.xaml
     /// </summary>
+    [MvxContentPresentation]
     public partial class ThemeEditorView
     {
+        public ThemeHelper _themeHelper;
+
         // TODO: I18n
         private const String _newKey = "Unnamed";
-
-        public ThemeHelper _themeHelper;
 
         public ThemeEditorView()
         {
@@ -32,17 +34,22 @@ namespace MinoriDemo.RibbonWPF.Views
         }
 
         /// <summary>
-        /// Updates list from
+        /// Add new item to list.
         /// </summary>
-        private void UpdateList(IDictionary<String, SolidColorBrush> brushes)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Add_Click(Object sender, RoutedEventArgs e)
         {
-            MainResourceList.ItemsSource =
-                brushes.Select(x => new ThemeItem
-                {
-                    ThemeHelper = _themeHelper,
-                    Key = x.Key,
-                    Color = x.Value.Color,
-                });
+            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            if (brushes.Keys.Contains(_newKey))
+            {
+                MessageBox.Show($"{_newKey} already exists, please rename key before adding a new one", "Duplicate key");
+                return;
+            }
+            brushes[_newKey] = new SolidColorBrush();
+            _themeHelper.SetBrushes(brushes);
+
+            UpdateList(brushes);
         }
 
         private void Export_Click(Object sender, RoutedEventArgs e)
@@ -63,44 +70,6 @@ namespace MinoriDemo.RibbonWPF.Views
             {
                 File.WriteAllText(saveFile.FileName, _themeHelper.ExportString());
             }
-        }
-
-        private void Search_Click(Object sender, RoutedEventArgs e)
-        {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
-            if (!String.IsNullOrWhiteSpace(search.Text))
-            {
-                IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
-                    .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
-
-                SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
-                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; }
-
-                UpdateList(result);
-            }
-            else
-            {
-                UpdateList(brushes);
-            }
-        }
-
-        /// <summary>
-        /// Add new item to list.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Add_Click(Object sender, RoutedEventArgs e)
-        {
-            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
-            if (brushes.Keys.Contains(_newKey))
-            {
-                MessageBox.Show($"{_newKey} already exists, please rename key before adding a new one", "Duplicate key");
-                return;
-            }
-            brushes[_newKey] = new SolidColorBrush();
-            _themeHelper.SetBrushes(brushes);
-
-            UpdateList(brushes);
         }
 
         private void RemoveClick(Object sender, RoutedEventArgs e)
@@ -155,6 +124,25 @@ namespace MinoriDemo.RibbonWPF.Views
             }
         }
 
+        private void Search_Click(Object sender, RoutedEventArgs e)
+        {
+            IDictionary<String, SolidColorBrush> brushes = _themeHelper.GetBrushes();
+            if (!String.IsNullOrWhiteSpace(search.Text))
+            {
+                IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
+                    .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
+
+                SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
+                foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; }
+
+                UpdateList(result);
+            }
+            else
+            {
+                UpdateList(brushes);
+            }
+        }
+
         private void search_KeyDown(Object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -171,6 +159,20 @@ namespace MinoriDemo.RibbonWPF.Views
             {
                 UpdateList(_themeHelper.GetBrushes());
             }
+        }
+
+        /// <summary>
+        /// Updates list from
+        /// </summary>
+        private void UpdateList(IDictionary<String, SolidColorBrush> brushes)
+        {
+            MainResourceList.ItemsSource =
+                brushes.Select(x => new ThemeItem
+                {
+                    ThemeHelper = _themeHelper,
+                    Key = x.Key,
+                    Color = x.Value.Color,
+                });
         }
     }
 }
