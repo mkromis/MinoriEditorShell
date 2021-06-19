@@ -51,11 +51,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShell.RibbonTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriEditorShellTests", "Tests\MinoriEditorShellTests\MinoriEditorShellTests.csproj", "{45823E3D-C3E2-4DFF-8952-1C5B52B3F950}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B8C2E779-B501-4237-AECE-BD144CEB0A68}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriDemo.RibbonWpf", "Demos\MinoriDemo\MinoriDemo.RibbonWpf\MinoriDemo.RibbonWpf.csproj", "{1E99AC6C-40A7-418B-95E4-CA72D4A257CD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinoriDemo.Wpf", "Demos\MinoriDemo\MinoriDemo.Wpf\MinoriDemo.Wpf.csproj", "{0E0460C0-BA5B-44D7-815B-592C42505D7D}"
