@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Threading;
 using MvvmCross;
 using MvvmCross.Core;
@@ -18,8 +19,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         public virtual void ApplicationInitialized()
         {
-            //if (MainWindow == null) return;
-            //MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
+            if (Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                if (desktop.MainWindow == null) return;
+                //MvxWpfSetupSingleton.EnsureSingletonAvailable(this.Dispatcher, desktop.MainWindow).EnsureInitialized();
+            }
 
             RunAppStart();
         }
