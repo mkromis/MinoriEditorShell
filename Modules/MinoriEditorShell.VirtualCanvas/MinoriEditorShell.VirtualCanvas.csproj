@@ -12,21 +12,22 @@
         <PackageTags>IDE VirtualCanvas Module</PackageTags>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
+
         <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
     </ItemGroup>
 </Project>

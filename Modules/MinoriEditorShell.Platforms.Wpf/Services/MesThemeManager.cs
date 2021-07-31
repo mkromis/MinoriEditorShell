@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Messages;
 using MinoriEditorShell.Services;
@@ -14,18 +15,19 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 {
     public class MesThemeManager : IMesThemeManager
     {
+        private readonly ILogger<MesThemeManager> _log;
+
         // IOC
         private readonly IMvxMessenger _messenger;
 
-        private readonly IMvxLog _log;
-
-        public IEnumerable<IMesTheme> Themes { get; private set; }
-
-        public IMesTheme CurrentTheme { get; private set; }
-
-        public MesThemeManager(IMvxMessenger messenger, IMvxLogProvider provider)
+        /// <summary>
+        /// Local theme menager
+        /// </summary>
+        /// <param name="messenger"></param>
+        public MesThemeManager(IMvxMessenger messenger)
         {
-            _log = provider.GetLogFor<MesThemeManager>();
+            // Resolve logger manually, Don't force user to have logger
+            _log = MvxLogHost.GetLog<MesThemeManager>();
             _messenger = messenger;
 
             Themes = Mvx.IoCProvider.GetAll<IMesTheme>();
@@ -38,6 +40,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 }
             });
         }
+
+        public IMesTheme CurrentTheme { get; private set; }
+        public IEnumerable<IMesTheme> Themes { get; private set; }
 
         // Needed for Interface
         public Boolean SetCurrentTheme(String name) => SetCurrentTheme(name, true);
@@ -77,7 +82,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                     appTheme.EndInit();
                 });
 
-                _log.Info($"Theme set to {name}");
+                _log?.LogInformation($"Theme set to {name}");
 
                 // publish event
                 _messenger.Publish(new MesThemeChangeMessage(this, CurrentTheme.Name));
@@ -92,7 +97,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
             }
             catch (Exception e)
             {
-                _log.InfoException("Log Theme Setting", e);
+                _log?.LogInformation(e, "Log Theme Setting");
                 return false;
             }
         }

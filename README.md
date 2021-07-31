@@ -20,7 +20,13 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
-## Breaking Changes (For Develop pre-release)
+## MvvmCross 8 troubleshooting / Known Issues
+
+* If view does not showing add `[MvxContentPresentation]` for MesDocuments or Main Content view .i.e. MainView.
+* Add`[MvxWindowPresentation]` for windows.
+* If using logging you only need `ILoggerFactory`, otherwise return null.
+
+## Breaking Changes (For Develop pre-release
 
 The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
