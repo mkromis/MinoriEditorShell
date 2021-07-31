@@ -1,10 +1,11 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using MinoriEditorShell.Platforms.Avalonia.Views;
 
 namespace SimpleDemo.Avalonia
 {
-    public class MainWindow : Window
+    public class MainWindow : MesWindow
     {
         public MainWindow()
         {

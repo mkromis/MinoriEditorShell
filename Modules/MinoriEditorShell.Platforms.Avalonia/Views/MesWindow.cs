@@ -1,6 +1,7 @@
 ﻿// using MahApps.Metro.Controls;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using MinoriEditorShell.Services;
 using MvvmCross;
@@ -79,10 +80,12 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
         private void MvxWindow_Initialized(object sender, EventArgs e)
         {
-#warning Fix MesWindow AVN Init
-            //if (this == Application.Current.MainWindow)
+            //if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             //{
-            //    (Application.Current as MvxApplication).ApplicationInitialized();
+                //if (this == desktop.MainWindow)
+                //{
+                (Application.Current as MesApplication).ApplicationInitialized();
+                //}
             //}
         }
 
