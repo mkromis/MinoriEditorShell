@@ -1,4 +1,4 @@
-namespace MinoriDemo.WPF
+namespace MinoriDemo.WpfCore
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

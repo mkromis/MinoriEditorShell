@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
@@ -13,11 +13,11 @@
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
         <UseWPF>true</UseWPF>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,8 +25,8 @@
         <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 </Project>

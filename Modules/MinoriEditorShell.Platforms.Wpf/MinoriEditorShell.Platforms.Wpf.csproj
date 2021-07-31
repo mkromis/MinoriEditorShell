@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-    
+
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
-        <Description>MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
-This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Description>
+        <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
+        <Description>
+            MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+            This uses AvalonDock and has an MVVM architecture based on MvvmCross.
+        </Description>
         <Copyright>Copyright 2019</Copyright>
         <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
         <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
@@ -16,37 +18,37 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
         <UseWPF>true</UseWPF>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
-    
+
     <ItemGroup>
-      <Compile Remove="Themes\Controls\**" />
-      <EmbeddedResource Remove="Themes\Controls\**" />
-      <None Remove="Themes\Controls\**" />
-      <Page Remove="Themes\Controls\**" />
+        <Compile Remove="Themes\Controls\**" />
+        <EmbeddedResource Remove="Themes\Controls\**" />
+        <None Remove="Themes\Controls\**" />
+        <Page Remove="Themes\Controls\**" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        
-        <PackageReference Include="MvvmCross" Version="7.1.2" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="7.1.2" />
-        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="7.1.2" />
+
+        <PackageReference Include="MvvmCross" Version="8.0.1" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.1" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.1" />
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
 
-        <PackageReference Include="Dirkster.AvalonDock" Version="4.50.2" />
-        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.50.2" />
-        <PackageReference Include="MahApps.Metro" Version="2.4.4" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
+        <PackageReference Include="Dirkster.AvalonDock" Version="4.51.1" />
+        <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.51.1" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.6" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.1" />
     </ItemGroup>
 </Project>

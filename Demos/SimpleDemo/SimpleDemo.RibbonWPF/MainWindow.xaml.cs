@@ -1,7 +1,7 @@
 using MinoriEditorShell.Services;
 using MvvmCross;
 
-namespace SimpleDemo.RibbonWPF
+namespace SimpleDemo.RibbonWpfCore
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
