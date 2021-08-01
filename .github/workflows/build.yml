@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  solution: '**/*.sln'
+  solution: 'MinoriEditorShell.sln'
   buildPlatform: Any CPU
   buildConfiguration: Release
 
