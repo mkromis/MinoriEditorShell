@@ -1,10 +1,17 @@
-name: Build
+name: ${{ env.GitVersion.NuGetVersion }}
+
+env:
+  solution: '**/*.sln'
+  buildPlatform: Any CPU
+  buildConfiguration: Release
+
 on:
   push:
     branches:
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: Build
@@ -21,8 +28,12 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Use NuGet > 5.0.0
+        uses: nuget/setup-nuget@v1
       - name: Restore dependencies
-        run: dotnet restore .\MinoriEditorShell.sln
+        run: dotnet restore ${{env.solution}}
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -52,9 +63,9 @@ jobs:
             begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
       - name: Build
-        run: dotnet build  .\MinoriEditorShell.sln --no-restore
+        run: dotnet build  ${{env.solution}} --no-restore
       - name: Test
-        run: dotnet test  .\MinoriEditorShell.sln --no-build --verbosity normal
+        run: dotnet test  ${{env.solution}} --no-build --verbosity normal
       - name: Analyze build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
