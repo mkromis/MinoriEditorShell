@@ -16,8 +16,12 @@
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>MinoriEditorShell.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
 

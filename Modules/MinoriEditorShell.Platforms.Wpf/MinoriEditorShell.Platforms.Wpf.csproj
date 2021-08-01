@@ -18,7 +18,7 @@
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
         <UseWPF>true</UseWPF>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>MinoriEditorShell.Platforms.Wpf.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,6 +26,10 @@
         <EmbeddedResource Remove="Themes\Controls\**" />
         <None Remove="Themes\Controls\**" />
         <Page Remove="Themes\Controls\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>

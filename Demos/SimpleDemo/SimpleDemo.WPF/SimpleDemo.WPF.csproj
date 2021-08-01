@@ -5,7 +5,11 @@
         <UseWPF>true</UseWPF>
         <ApplicationIcon />
         <StartupObject />
+        <CodeAnalysisRuleSet>..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="GitVersionTask" Version="5.5.1">
