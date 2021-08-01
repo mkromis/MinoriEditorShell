@@ -15,10 +15,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
