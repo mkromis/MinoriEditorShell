@@ -26,6 +26,7 @@ using MvvmCross.Converters;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Binding.Binders;
+using Microsoft.Extensions.Logging;
 
 // Portions of this was barrowed from MvvmCross.
 namespace MinoriEditorShell.Platforms.Avalonia
@@ -125,9 +126,9 @@ namespace MinoriEditorShell.Platforms.Avalonia
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
-        protected override IMvxApplication CreateApp()
+        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) 
         {
-            _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
+            _messenger = iocProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
             {
                 MesSettingsChangedMessage message = new MesSettingsChangedMessage(
@@ -155,9 +156,9 @@ namespace MinoriEditorShell.Platforms.Avalonia
         /// Used to ensure plugins are loaded.
         /// </summary>
         /// <returns>returns base manager</returns>
-        protected override IMvxPluginManager CreatePluginManager()
+        protected override IMvxPluginManager CreatePluginManager(IMvxIoCProvider iocProvider) 
         {
-            IMvxPluginManager manager = base.CreatePluginManager();
+            IMvxPluginManager manager = base.CreatePluginManager(iocProvider);
             manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
             return manager;
         }
@@ -177,7 +178,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
             return new MesAvnViewPresenter(root);
         }
 
-        protected virtual IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
         {
             if (iocProvider is null) throw new ArgumentNullException(nameof(iocProvider));
 
@@ -210,7 +211,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
         {
             RegisterBindingBuilderCallbacks(iocProvider);
             var bindingBuilder = CreateBindingBuilder();
-            bindingBuilder.DoRegistration();
+            bindingBuilder.DoRegistration(iocProvider);
         }
 
         protected void InitializeFirstChance(IMvxIoCProvider iocProvider)
@@ -227,9 +228,9 @@ namespace MinoriEditorShell.Platforms.Avalonia
         /// Sets up the dictionary that connects the viewmodel to the view.
         /// </summary>
         /// <returns></returns>
-        protected override IDictionary<Type, Type> InitializeLookupDictionary()
+        protected override IDictionary<Type, Type> InitializeLookupDictionary(IMvxIoCProvider iocProvider)
         {
-            IDictionary<Type, Type> container = base.InitializeLookupDictionary();
+            IDictionary<Type, Type> container = base.InitializeLookupDictionary(iocProvider);
             container.Add(typeof(MesSettingsManagerViewModel), typeof(MesSettingsView));
             container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
@@ -257,10 +258,10 @@ namespace MinoriEditorShell.Platforms.Avalonia
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
     /// </summary>
     /// <typeparam name="TApplication"></typeparam>
-    public class MesAvnSetup<TApplication> : MesAvnSetup where TApplication : class, IMvxApplication, new()
+    public abstract class MesAvnSetup<TApplication> : MesAvnSetup where TApplication : class, IMvxApplication, new()
     {
         public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
-        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
-        protected override IMvxViewsContainer CreateViewsContainer() => base.CreateViewsContainer(Mvx.IoCProvider);
+        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => iocProvider.IoCConstruct<TApplication>();
+        protected override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider) => base.CreateViewsContainer(iocProvider);
     }
 }

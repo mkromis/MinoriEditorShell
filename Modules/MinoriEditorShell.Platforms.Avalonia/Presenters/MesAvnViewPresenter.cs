@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Platforms.Avalonia.Presenters.Attributes;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Services;
@@ -22,8 +23,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
     /// </summary>
     public class MesAvnViewPresenter : MvxAttributeViewPresenter, IMesAvnViewPresenter
     {
+        private static readonly ILogger<MesAvnViewPresenter> _log = MvxLogHost.GetLog<MesAvnViewPresenter>();
         private Dictionary<ContentControl, Stack<Control>> _frameworkElementsDictionary;
-        private IMvxLog _log;
 
         private IMesAvnViewLoader _wpfViewLoader;
 

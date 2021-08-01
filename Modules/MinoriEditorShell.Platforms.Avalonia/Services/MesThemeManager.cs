@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Extensions;
 using MinoriEditorShell.Messages;
 using MinoriEditorShell.Services;
@@ -14,18 +15,17 @@ namespace MinoriEditorShell.Platforms.Avalonia.Services
 {
     public class MesThemeManager : IMesThemeManager
     {
+        private static readonly ILogger<MesThemeManager> _log = MvxLogHost.GetLog<MesThemeManager>();
         // IOC
         private readonly IMvxMessenger _messenger;
 
-        private readonly IMvxLog _log;
 
         public IEnumerable<IMesTheme> Themes { get; private set; }
 
         public IMesTheme CurrentTheme { get; private set; }
 
-        public MesThemeManager(IMvxMessenger messenger, IMvxLogProvider provider)
+        public MesThemeManager(IMvxMessenger messenger)
         {
-            _log = provider.GetLogFor<MesThemeManager>();
             _messenger = messenger;
 
             Themes = Mvx.IoCProvider.GetAll<IMesTheme>();
@@ -77,7 +77,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Services
                     // appTheme.EndInit();
                 });
 
-                _log.Info($"Theme set to {name}");
+                _log.LogInformation($"Theme set to {name}");
 
                 // publish event
                 _messenger.Publish(new MesThemeChangeMessage(this, CurrentTheme.Name));
@@ -92,7 +92,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Services
             }
             catch (Exception e)
             {
-                _log.InfoException("Log Theme Setting", e);
+                _log.LogInformation(e, "Log Theme Setting");
                 return false;
             }
         }

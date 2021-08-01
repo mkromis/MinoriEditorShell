@@ -38,7 +38,7 @@ namespace MinoriEditorShell.Platforms.Wpf
         protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
         {
             // This handles main window.
-            return new MesWpfViewPresenter(root);
+            return new  MesWpfViewPresenter(root);
         }
 
         /// <summary>
