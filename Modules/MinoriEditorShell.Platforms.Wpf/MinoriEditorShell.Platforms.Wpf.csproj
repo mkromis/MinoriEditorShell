@@ -35,16 +35,16 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
 
-        <PackageReference Include="MvvmCross" Version="8.0.1" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.1" />
-        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.1" />
+        <PackageReference Include="MvvmCross" Version="8.0.2" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.2" />
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
 
         <PackageReference Include="Dirkster.AvalonDock" Version="4.51.1" />
         <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.51.1" />
-        <PackageReference Include="MahApps.Metro" Version="2.4.6" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.1" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.7" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
     </ItemGroup>
 </Project>
