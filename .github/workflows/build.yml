@@ -42,13 +42,22 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Build and analyze
+      - name: Prepare Scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build  .\MinoriEditorShell.sln --no-restore
-          dotnet test  .\MinoriEditorShell.sln --no-build --verbosity normal
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: > 
+            .\.sonar\scanner\dotnet-sonarscanner 
+            begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
+            /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+      - name: Build
+        run: dotnet build  .\MinoriEditorShell.sln --no-restore
+      - name: Test
+        run: dotnet test  .\MinoriEditorShell.sln --no-build --verbosity normal
+      - name: Analyze build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
