@@ -5,9 +5,6 @@
     <CodeAnalysisRuleSet>..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.6" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.6" />

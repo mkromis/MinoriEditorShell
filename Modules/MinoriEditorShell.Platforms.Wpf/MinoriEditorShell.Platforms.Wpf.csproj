@@ -29,10 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
             <PrivateAssets>all</PrivateAssets>

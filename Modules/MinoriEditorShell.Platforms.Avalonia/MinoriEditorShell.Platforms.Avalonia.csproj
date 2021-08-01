@@ -40,10 +40,6 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     </ItemGroup>
     
     <ItemGroup>
-      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
-    
-    <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
         <PackageReference Include="GitVersionTask" Version="5.5.1">
           <PrivateAssets>all</PrivateAssets>
