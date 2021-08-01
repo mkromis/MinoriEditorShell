@@ -12,7 +12,6 @@ env:
   buildPlatform: Any CPU
   buildConfiguration: Release
 
-
 jobs:
   build:
     name: Build
@@ -67,8 +66,7 @@ jobs:
         run: dotnet build  ${{env.solution}} --no-restore
       - name: Test
         run: dotnet test  ${{env.solution}} --verbosity normal
-        with:
-          dotnet-version: 5.0.x
+        continue-on-error: true
       - name: Analyze build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
