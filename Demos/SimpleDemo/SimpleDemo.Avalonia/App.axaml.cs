@@ -10,7 +10,7 @@ namespace SimpleDemo.Avalonia
     public class App : MesApplication
     {
         public override void Initialize() => AvaloniaXamlLoader.Load(this);
-        protected override void RegisterSetup() => this.RegisterSetupType<MesAvnSetup<Core.App>>();
+        protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
 
         public override void OnFrameworkInitializationCompleted()
         {

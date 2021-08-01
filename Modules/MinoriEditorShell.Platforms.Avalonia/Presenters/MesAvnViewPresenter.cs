@@ -39,14 +39,12 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
             FrameworkElementsDictionary.Add(contentControl, new Stack<Control>());
 
-            IMvxLogProvider provider = Mvx.IoCProvider.Resolve<IMvxLogProvider>();
-            _log = provider.GetLogFor<MesAvnViewPresenter>();
-            _log.Trace("Setup: Creating Presenter");
+            _log.LogTrace("Setup: Creating Presenter");
 
             // Setup main window as singleton
             if (contentControl is IMesWindow mesWindow)
             {
-                _log.Trace("Setting IMesWindow to main window");
+                _log.LogTrace("Setting IMesWindow to main window");
                 Mvx.IoCProvider.RegisterSingleton<IMesWindow>(mesWindow);
             }
         }
@@ -86,7 +84,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
             if (FrameworkElementsDictionary.Any(i => i.Value.Any() && (i.Value.Peek() as IMesAvnView)?.ViewModel == toClose) && await CloseContentView(toClose))
                 return true;
 
-            _log.Warn($"Could not close ViewModel type {toClose.GetType().Name}");
+            _log.LogWarning($"Could not close ViewModel type {toClose.GetType().Name}");
             return false;
         }
 
@@ -94,11 +92,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         {
             if (viewType.IsSubclassOf(typeof(Window)))
             {
-                _log.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming window presentation");
+                _log.LogTrace($"PresentationAttribute not found for {viewType.Name}. Assuming window presentation");
                 return new MesWindowPresentationAttribute();
             }
 
-            _log.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming content presentation");
+            _log.LogTrace($"PresentationAttribute not found for {viewType.Name}. Assuming content presentation");
             return new MesContentPresentationAttribute();
         }
 
@@ -115,7 +113,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                     if (presentationAttribute == null)
                     {
-                        _log.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
+                        _log.LogWarning("Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {
@@ -221,7 +219,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
-                        _log.Trace($"Add {document} to IMesDocumentManager.Documents");
+                        _log.LogTrace($"Add {document} to IMesDocumentManager.Documents");
                         return true;
 
                     case IMesTool tool:
@@ -231,11 +229,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log.Trace($"Add {tool} to IDocumentManager.Tools");
+                        _log.LogTrace($"Add {tool} to IDocumentManager.Tools");
                         return true;
 
                     default:
-                        _log.Trace($"Passing to parent {view.ViewModel}");
+                        _log.LogTrace($"Passing to parent {view.ViewModel}");
                         var contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier) 
                             ?? FrameworkElementsDictionary.Keys.Last();
 
@@ -249,12 +247,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
             }
             catch (Exception exception)
             {
-                if (_log == null)
-                {
-                    _log = Mvx.IoCProvider.Resolve<IMvxLog>();
-                }
-                _log.ErrorException("Error seen during navigation request to {0} - error {1}",
-                    exception, request.ViewModelType.Name, exception.ToLongString());
+
+                _log.LogError(exception, "Error seen during navigation request to {0} - error {1}",
+                    request.ViewModelType.Name, exception.ToLongString());
                 throw;
             }
         }
