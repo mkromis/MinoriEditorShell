@@ -1,4 +1,4 @@
-namespace MinoriDemo.RibbonWPF
+﻿namespace MinoriDemo.RibbonWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
