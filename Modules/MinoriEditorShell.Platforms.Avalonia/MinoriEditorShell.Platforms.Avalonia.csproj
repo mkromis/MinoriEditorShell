@@ -15,7 +15,7 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
         <Company>Mark Kromis</Company>
         <OutputType>Library</OutputType>
         <DocumentationFile>bin\MinoriEditorShell.Platforms.Avalonia.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>MinoriEditorShell.Platforms.Avalonia.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     
     <ItemGroup>
@@ -37,6 +37,10 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
       <Compile Remove="Binding\MesDesignTimeChecker.cs" />
       <Compile Remove="Binding\MesWindowsBindingBuilder.cs" />
       <Compile Remove="Binding\WindowsBinding\AvnWindowsBindingCreator.cs" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
     
     <ItemGroup>
