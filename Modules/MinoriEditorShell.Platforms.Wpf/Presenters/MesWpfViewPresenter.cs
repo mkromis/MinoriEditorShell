@@ -17,18 +17,18 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
     /// <summary>
     /// Main presenter that allows document and tools to naviage to MesDocumentController
     /// </summary>
-    public class MesWpfPresenter : MvxWpfViewPresenter
+    public class MesWpfViewPresenter : MvxWpfViewPresenter
     {
-        private readonly ILogger<MesWpfPresenter> _log;
+        private readonly ILogger<MesWpfViewPresenter> _log;
 
         /// <summary>
         /// Main constructor for the presenter, this gets the main window.
         /// </summary>
         /// <param name="mainWindow"></param>
-        public MesWpfPresenter(ContentControl mainWindow) : base(mainWindow)
+        public MesWpfViewPresenter(ContentControl mainWindow) : base(mainWindow)
         {
             // New style logging can return nulls
-            _log = MvxLogHost.GetLog<MesWpfPresenter>();
+            _log = MvxLogHost.GetLog<MesWpfViewPresenter>();
             _log?.LogTrace("Setup: Creating Presenter");
 
             // Setup main window as singleton
