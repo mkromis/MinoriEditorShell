@@ -66,7 +66,6 @@ jobs:
         run: dotnet build  ${{env.solution}} --no-restore
       - name: Test
         run: dotnet test  ${{env.solution}} --verbosity normal
-        continue-on-error: true
       - name: Analyze build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
