@@ -16,11 +16,11 @@
         <Authors>Mark Kromis</Authors>
         <Company>Mark Kromis</Company>
         <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>MinoriEditorShell.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+      <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -30,9 +30,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
 
-        <PackageReference Include="MvvmCross" Version="8.0.1" />
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.1" />
-        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.1" />
+        <PackageReference Include="MvvmCross" Version="8.0.2" />
+        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
+        <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.2" />
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
         <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
