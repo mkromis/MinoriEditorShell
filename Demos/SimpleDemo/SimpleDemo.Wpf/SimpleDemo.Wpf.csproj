@@ -5,7 +5,11 @@
         <UseWPF>true</UseWPF>
         <ApplicationIcon />
         <StartupObject />
+        <CodeAnalysisRuleSet>..\..\..\.sonarlint\torisankitsune_minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="GitVersionTask" Version="5.5.1">
@@ -13,7 +17,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
-        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.1" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
