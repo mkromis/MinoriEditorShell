@@ -9,8 +9,6 @@
 [![Build Status](https://img.shields.io/github/workflow/status/TorisanKitsune/MinoriEditorShell/Verification%20Build/develop)](https://github.com/TorisanKitsune/MinoriEditorShell)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TorisanKitsune_MinoriEditorShell&metric=alert_status)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
 [![Build Coverage](https://img.shields.io/sonar/coverage/TorisanKitsune_MinoriEditorShell?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_shield)
-[![CodeFactor](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/badge/develop)](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/overview/develop)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
 [![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)

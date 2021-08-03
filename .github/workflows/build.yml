@@ -79,10 +79,10 @@ jobs:
         run: dotnet build  ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
 
       - name: Test
-        run: dotnet test  ${{env.solution}} --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory $GITHUB_WORKSPACE/testresults
+        run: dotnet test  ${{env.solution}} --collect:"XPlat Code Coverage" --logger trx --results-directory $GITHUB_WORKSPACE/Tests/testresults
 
       - name: Generate Coverage
-        run: reportgenerator -reports:$GITHUB_WORKSPACE/testresults/**/coverage.cobertura.xml -targetdir:$GITHUB_WORKSPACE/coverlet/reports -reporttypes:"SonarQube"
+        run: reportgenerator -reports:$GITHUB_WORKSPACE/Tests/testresults/**/coverage.cobertura.xml -targetdir:$GITHUB_WORKSPACE/Tests/coverlet/reports -reporttypes:"SonarQube"
 
       - name: Analyze build
         env:
