@@ -5,8 +5,7 @@
 [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Status
-
-[![Build Status](https://img.shields.io/github/workflow/status/TorisanKitsune/MinoriEditorShell/Verification%20Build/develop)](https://github.com/TorisanKitsune/MinoriEditorShell)
+[![Verification Build](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml/badge.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TorisanKitsune_MinoriEditorShell&metric=alert_status)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
 [![Build Coverage](https://img.shields.io/sonar/coverage/TorisanKitsune_MinoriEditorShell?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
