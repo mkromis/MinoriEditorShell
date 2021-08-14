@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+  <PropertyGroup>
+    <TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+    <LangVersion>9.0</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.5" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.5" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Tests" Version="8.0.2" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
-        <PackageReference Include="Moq" Version="4.16.1" />
-        <PackageReference Include="MSTest.TestAdapter" Version="2.2.5" />
-        <PackageReference Include="MSTest.TestFramework" Version="2.2.5" />
-        <PackageReference Include="coverlet.collector" Version="3.1.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
-        <PackageReference Include="MvvmCross.Tests" Version="8.0.2" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+    <ProjectReference Include="..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj" />
+    <ProjectReference Include="..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-        <ProjectReference Include="..\..\Modules\MinoriEditorShell.Ribbon\MinoriEditorShell.Ribbon.csproj" />
-        <ProjectReference Include="..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Properties\" />
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>
