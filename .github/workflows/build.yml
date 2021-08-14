@@ -71,18 +71,13 @@ jobs:
             .\.sonar\scanner\dotnet-sonarscanner 
             begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
             /d:sonar.login="${{secrets.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
-    
-      - name: (CI/CD) Install Test Reporting Tool
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+            /d:sonar.cs.opencover.reportsPaths=**/sonar.cs.opencover.reportsPaths
 
       - name: Build
         run: dotnet build ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
 
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
-
-      #- name: Generate Coverage
-      #  run: reportgenerator -reports:$GITHUB_WORKSPACE/Tests/testresults/**/coverage.cobertura.xml -targetdir:$GITHUB_WORKSPACE/Tests/coverlet/reports -reporttypes:"SonarQube"
 
       - name: Analyze build
         env:
