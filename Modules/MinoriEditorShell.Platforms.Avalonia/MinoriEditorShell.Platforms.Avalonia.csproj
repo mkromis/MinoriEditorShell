@@ -45,13 +45,13 @@ This uses AvalonDock and has an MVVM architecture based on MvvmCross.</Descripti
     
     <ItemGroup>
         <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-        <PackageReference Include="GitVersionTask" Version="5.5.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         
         <PackageReference Include="Avalonia" Version="0.10.6" />
         <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
+        <PackageReference Include="GitVersion.MsBuild" Version="5.6.11">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="MvvmCross" Version="8.0.2" />        <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.2" />
         <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
