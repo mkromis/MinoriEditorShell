@@ -94,6 +94,7 @@ jobs:
             /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             /v:${{steps.gitversion.outputs.semVer}}
 
+      # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
         run: dotnet build ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
 
