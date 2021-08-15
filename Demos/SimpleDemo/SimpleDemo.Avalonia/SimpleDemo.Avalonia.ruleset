@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="SonarQube - MinoriEditorShell Sonar way" ToolsVersion="16.0">
-  <Include Path="..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset" Action="Default" />
-  <Include Path="..\..\..\.sonarlint\torisankitsune_minorieditorshell2csharp.ruleset" Action="Default" />
+  <Include Path="..\..\..\.sonarlint\torisankitsune_minorieditorshellcsharp.ruleset" Action="Default" />
 </RuleSet>
