@@ -2,10 +2,10 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <CodeAnalysisRuleSet>SimpleDemo.Avalonia.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\..\.sonarlint\torisankitsune_minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell2\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.6" />
