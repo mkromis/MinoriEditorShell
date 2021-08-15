@@ -1,63 +1,110 @@
-name: Build
+name: Verification Build
+
 on:
   push:
     branches:
-      - stable
+      - develop
   pull_request:
     types: [opened, synchronize, reopened]
+
+env:
+  solution: 'MinoriEditorShell.sln'
+  buildPlatform: Any CPU
+  buildConfiguration: Release
+
 jobs:
   build:
     name: Build
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      # Needed for sonar analysis
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
-      - uses: actions/checkout@v2
+
+      # Needed for gitversion tools
+      - name: 'Setup .NET Core SDK 3.1'
+        uses: actions/setup-dotnet@v1
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          dotnet-version: '3.1.x'
+
+      # Install GitVersion
+      # Requires .NET Core 3.1
+      # https://github.com/marketplace/actions/gittools
+      - name: 'Install GitVersion'
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+            useConfigFile: true
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Use NuGet > 5.0.0
+        uses: nuget/setup-nuget@v1
+
       - name: Restore dependencies
-        run: dotnet restore .\MinoriEditorShell.sln
+        run: dotnet restore ${{env.solution}}
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
           path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+          key: ${{runner.os}}-sonar
+          restore-keys: ${{runner.os}}-sonar
+
       - name: Cache SonarCloud scanner
         id: cache-sonar-scanner
         uses: actions/cache@v1
         with:
           path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
+          key: ${{runner.os}}-sonar-scanner
+          restore-keys: ${{runner.os}}-sonar-scanner
+
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+
       - name: Prepare Scanner
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
         run: > 
             .\.sonar\scanner\dotnet-sonarscanner 
             begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
-            /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+            /d:sonar.login="${{secrets.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
+            /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+            /v:${{steps.gitversion.outputs.semVer}}
+
+      # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
-        run: dotnet build  .\MinoriEditorShell.sln --no-restore
+        run: dotnet build ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
+
       - name: Test
-        run: dotnet test  .\MinoriEditorShell.sln --no-build --verbosity normal
+        run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+
       - name: Analyze build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
-        run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"

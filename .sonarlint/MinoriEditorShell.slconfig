@@ -1,14 +1,14 @@
 {
   "ServerUri": "https://sonarcloud.io/",
   "Organization": {
-    "Key": "torisankitsune-1",
-    "Name": "torisankitsune-1"
+    "Key": "torisankitsune",
+    "Name": "Mark Kromis"
   },
-  "ProjectKey": "TorisanKitsune_MinoriEditorShell2",
+  "ProjectKey": "TorisanKitsune_MinoriEditorShell",
   "ProjectName": "MinoriEditorShell",
   "Profiles": {
     "CSharp": {
-      "ProfileKey": "AXfBiG4ncmi_3V30EHaZ",
+      "ProfileKey": "AXHDDFLUVHc24qBALL5K",
       "ProfileTimestamp": "2021-05-05T07:40:20Z"
     }
   }
