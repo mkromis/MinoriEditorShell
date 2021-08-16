@@ -111,17 +111,28 @@ namespace MinoriEditorShell.Platforms.Avalonia
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
         }
 
+        /// <summary>
+        /// Setup class based on presenter
+        /// </summary>
+        /// <param name="uiThreadDispatcher"></param>
+        /// <param name="presenter"></param>
         public void PlatformInitialize(Dispatcher uiThreadDispatcher, IMesAvnViewPresenter presenter)
         {
             _uiThreadDispatcher = uiThreadDispatcher;
             _presenter = presenter;
         }
 
+        /// <summary>
+        /// Setup presenter based on content
+        /// </summary>
+        /// <param name="uiThreadDispatcher"></param>
+        /// <param name="root"></param>
         public void PlatformInitialize(Dispatcher uiThreadDispatcher, ContentControl root)
         {
             _uiThreadDispatcher = uiThreadDispatcher;
             _root = root;
         }
+
         /// <summary>
         /// Creates the app.
         /// </summary>
