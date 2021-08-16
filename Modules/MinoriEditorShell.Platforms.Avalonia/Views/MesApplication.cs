@@ -10,21 +10,19 @@ using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
+    /// <summary>
+    /// Main application helper to help setup IoC
+    /// </summary>
     public abstract class MesApplication : Application
     {
-        public MesApplication() : base()
-        {
-            RegisterSetup();
-        }
+
+        /// <summary>
+        /// Main application class interface
+        /// </summary>
+        protected MesApplication() : base() => RegisterSetup();
 
         public virtual void ApplicationInitialized()
         {
-            if (Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                if (desktop.MainWindow == null) return;
-                //MvxWpfSetupSingleton.EnsureSingletonAvailable(this.Dispatcher, desktop.MainWindow).EnsureInitialized();
-            }
-
             RunAppStart();
         }
 
@@ -41,18 +39,22 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             return hint;
         }
 
-        protected virtual void RegisterSetup()
-        {
-        }
+        protected abstract void RegisterSetup();
     }
 
+    /// <summary>
+    /// This is an Generics helper for MesApplication for 
+    /// </summary>
+    /// <typeparam name="TMvxWpfSetup"></typeparam>
+    /// <typeparam name="TApplication"></typeparam>
     public class MesApplication<TMvxWpfSetup, TApplication> : MesApplication
        where TMvxWpfSetup : MesAvnSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxWpfSetup>();
-        }
+
+        /// <summary>
+        /// Register setup based on template
+        /// </summary>
+        protected override void RegisterSetup() => this.RegisterSetupType<TMvxWpfSetup>();
     }
 }

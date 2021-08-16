@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using MinoriEditorShell.Platforms.Avalonia;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MvvmCross.Core;
+using System.Diagnostics;
 
 namespace SimpleDemo.Avalonia
 {
@@ -14,6 +15,7 @@ namespace SimpleDemo.Avalonia
 
         public override void OnFrameworkInitializationCompleted()
         {
+            Debug.WriteLine("InitTest");
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow();
