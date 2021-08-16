@@ -1,13 +1,14 @@
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using MinoriEditorShell.Platforms.Avalonia.Presenters.Attributes;
-using MinoriEditorShell.Platforms.Avalonia.Views;
 
 namespace SimpleDemo.Avalonia.Views
 {
     [MesContentPresentation]
-    public partial class MainView : MesAvnView
+    public partial class TipView : UserControl
     {
-        public MainView() => InitializeComponent();
+        public TipView() => InitializeComponent();
 
         private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
     }
