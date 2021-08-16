@@ -1,12 +1,12 @@
-﻿// using MahApps.Metro.Controls;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
+using MinoriEditorShell.Platforms.Avalonia.Core;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
-// using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
 using System.Linq;
@@ -15,11 +15,19 @@ using System.Windows;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
+    /// <summary>
+    /// MesWindow is a interface for windows based views.
+    /// This will give extra properties to access extra properties such as titlebar.
+    /// </summary>
     public class MesWindow : Window, IMesWindow, IMesAvnView, IDisposable
     {
         private IMvxBindingContext _bindingContext;
-        private bool _unloaded = false;
+        private Boolean _unloaded = false;
         private IMvxViewModel _viewModel;
+
+        /// <summary>
+        /// Basic constructor for window views.
+        /// </summary>
         public MesWindow()
         {
             Closed += MvxWindow_Closed;
@@ -27,11 +35,17 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             Initialized += MvxWindow_Initialized;
         }
 
+        /// <summary>
+        /// basic dtor for window class
+        /// </summary>
         ~MesWindow()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Gets a binding context
+        /// </summary>
         public IMvxBindingContext BindingContext
         {
             get
@@ -47,10 +61,19 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             set => _bindingContext = value;
         }
 
+        /// <summary>
+        /// Title of the window, Legacy use.
+        /// </summary>
         public String DisplayName { get; set; }
 
-        public string Identifier { get; set; }
+        /// <summary>
+        /// Unique identifier for window
+        /// </summary>
+        public String Identifier { get; set; }
 
+        /// <summary>
+        /// Sets the view model
+        /// </summary>
         public IMvxViewModel ViewModel
         {
             get => _viewModel;
@@ -61,12 +84,20 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
                 BindingContext.DataContext = value;
             }
         }
+
+        /// <summary>
+        /// Dispose current object
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose pattern
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -76,17 +107,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             }
         }
 
+
         private void MvxWindow_Closed(object sender, EventArgs e) => Unload();
 
         private void MvxWindow_Initialized(object sender, EventArgs e)
         {
-            //if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            //{
-                //if (this == desktop.MainWindow)
-                //{
-                (Application.Current as MesApplication).ApplicationInitialized();
-                //}
-            //}
+            MvxAvnSetupSingleton.EnsureSingletonAvailable(Dispatcher.UIThread, this).EnsureInitialized();
+            (Application.Current as MesApplication).ApplicationInitialized();
         }
 
 
@@ -95,7 +122,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
         }
-        private void MvxWindow_Unloaded(object sender, RoutedEventArgs e) => Unload();
+
         private void Unload()
         {
             if (!_unloaded)

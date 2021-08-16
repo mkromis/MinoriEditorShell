@@ -5,7 +5,7 @@ using MinoriEditorShell.Platforms.Avalonia.Views;
 
 namespace SimpleDemo.Avalonia.Views
 {
-    public class MainView : MesAvnView
+    public partial class MainView : MesAvnView
     {
         public MainView()
         {

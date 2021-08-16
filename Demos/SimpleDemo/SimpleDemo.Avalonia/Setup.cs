@@ -5,7 +5,7 @@ namespace SimpleDemo.Avalonia
 {
     internal class Setup : MesAvnSetup<Core.App>
     {
-        protected override ILoggerFactory CreateLogFactory() => LoggerFactory.Create(b => b.SetMinimumLevel(0).AddSimpleConsole(o => o.SingleLine = true));
+        protected override ILoggerFactory CreateLogFactory() => LoggerFactory.Create(b => b.SetMinimumLevel(0).AddDebug());
         protected override ILoggerProvider CreateLogProvider() => null;
     }
 }
