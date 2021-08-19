@@ -97,7 +97,7 @@ jobs:
 
       # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
-        run: <
+        run: >
             dotnet build ${{env.solution}} 
             --configuration ${{env.buildConfiguration}}  --no-restore
             -p:Version=${{steps.gitversion.outputs.AssemblySemVer}}
