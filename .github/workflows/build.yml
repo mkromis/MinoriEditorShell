@@ -93,7 +93,7 @@ jobs:
             begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
             /d:sonar.login="${{secrets.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
             /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-            /d:sonar.projectVersion=${{steps.gitversion.outputs.semVer}}
+            /v:${{steps.gitversion.outputs.semVer}}
 
       # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
@@ -115,3 +115,4 @@ jobs:
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"
 
       - run: ls -Recurse
+      
