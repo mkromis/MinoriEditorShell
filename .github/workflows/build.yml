@@ -28,10 +28,16 @@ jobs:
           java-version: 1.11
 
       # Needed for gitversion tools
-      - name: 'Setup .NET Core SDK 3.1'
+      - name: Setup .NET Core 3.1
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
+          
+      # Setup net 5 for build
+      - name: Setup .NET 5
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
 
       # Install GitVersion
       # Requires .NET Core 3.1
@@ -46,12 +52,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0
         with:
             useConfigFile: true
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
+            
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
 
@@ -114,5 +115,5 @@ jobs:
         shell: powershell
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"
 
-      - run: ls -Recurse
+      - run: ls *.nuget -Recurse
       
