@@ -93,11 +93,16 @@ jobs:
             begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
             /d:sonar.login="${{secrets.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
             /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-            /v:${{steps.gitversion.outputs.semVer}}
+            /d:sonar.projectVersion=${{steps.gitversion.outputs.semVer}}
 
       # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
-        run: dotnet build ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
+        run: <
+            dotnet build ${{env.solution}} 
+            --configuration ${{env.buildConfiguration}}  --no-restore
+            -p:Version=${{steps.gitversion.outputs.AssemblySemVer}}
+            -p:FileVersion=${{steps.gitversion.outputs.AssemblySemFileVer}}
+            -p:InformationalVersion=${{steps.gitversion.outputs.InformationalVersion}}
 
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
@@ -108,3 +113,5 @@ jobs:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"
+
+      - run: ls -Recurse
