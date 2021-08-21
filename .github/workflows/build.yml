@@ -100,8 +100,7 @@ jobs:
             -p:InformationalVersion=${{steps.gitversion.outputs.InformationalVersion}}
 
       - name: Create Artifacts
-        run: CreateArtifacts.ps1
-        shell: pwsh
+        run:  pwsh -command ".\CreateArtifacts.ps1"
 
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
