@@ -116,4 +116,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: my-artifact
-            path: Artifact/*.7z
+            path: Artifacts/*.7z
