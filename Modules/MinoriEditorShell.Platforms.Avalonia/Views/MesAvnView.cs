@@ -93,7 +93,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         /// Standard disposable pattern
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(Boolean disposing)
         {
             if (disposing)
             {
