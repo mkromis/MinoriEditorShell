@@ -99,6 +99,10 @@ jobs:
             -p:FileVersion=${{steps.gitversion.outputs.AssemblySemFileVer}}
             -p:InformationalVersion=${{steps.gitversion.outputs.InformationalVersion}}
 
+      - name: Create Artifacts
+        run: CreateArtifacts.ps1
+        shell: pwsh
+
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
 
@@ -109,5 +113,8 @@ jobs:
         shell: powershell
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"
 
-      - run: ls * -Recurse
-      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: my-artifact
+            path: Artifact/*.7z
