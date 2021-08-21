@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using MvvmCross;
 using MvvmCross.Binding.BindingContext;
@@ -9,11 +10,17 @@ using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
+    /// <summary>
+    /// Mes Avalonia helper class
+    /// </summary>
     public class MesAvnView : UserControl, IMesAvnView, IDisposable
     {
         private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
 
+        /// <summary>
+        /// Interface to view model.
+        /// </summary>
         public IMvxViewModel ViewModel
         {
             get => _viewModel;
@@ -25,6 +32,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             }
         }
 
+        /// <summary>
+        /// Get binding context
+        /// </summary>
         public IMvxBindingContext BindingContext
         {
             get
@@ -40,60 +50,80 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             set => _bindingContext = value;
         }
 
+        /// <summary>
+        /// Default constructor for class
+        /// </summary>
         public MesAvnView()
         {
-#warning fix MesAvnView ctor
-            //Unloaded += MvxWpfView_Unloaded;
-            //Loaded += MvxWpfView_Loaded;
+            DetachedFromVisualTree += MvxWpfView_Unloaded;
+            AttachedToVisualTree += MvxWpfView_Loaded;
         }
 
-        private void MvxWpfView_Unloaded(object sender, RoutedEventArgs e)
+        private void MvxWpfView_Unloaded(Object sender, VisualTreeAttachmentEventArgs e) 
         {
             ViewModel?.ViewDisappearing();
             ViewModel?.ViewDisappeared();
             ViewModel?.ViewDestroy();
         }
 
-        private void MvxWpfView_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void MvxWpfView_Loaded(Object sender, VisualTreeAttachmentEventArgs e)
+        { 
             ViewModel?.ViewAppearing();
             ViewModel?.ViewAppeared();
         }
 
+        /// <summary>
+        /// Standard dispose pattern.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// deconstructor
+        /// </summary>
         ~MesAvnView()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Standard disposable pattern
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-#warning fix MesAvnView Dispose
-                //Unloaded -= MvxWpfView_Unloaded;
-                //Loaded -= MvxWpfView_Loaded;
+                DetachedFromVisualTree -= MvxWpfView_Unloaded;
+                AttachedToVisualTree -= MvxWpfView_Loaded;
             }
         }
     }
 
+    /// <summary>
+    /// Helper class for 
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
     public class MesAvnView<TViewModel> : MesAvnView, IMesAvnView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
+        /// <summary>
+        /// View model interface
+        /// </summary>
         public new TViewModel ViewModel
         {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
+            get => (TViewModel)base.ViewModel;
+            set => base.ViewModel = value;
         }
 
-        public MvxFluentBindingDescriptionSet<IMesAvnView<TViewModel>, TViewModel> CreateBindingSet()
-        {
-            return this.CreateBindingSet<IMesAvnView<TViewModel>, TViewModel>();
-        }
+        /// <summary>
+        /// Helper to create binding set
+        /// </summary>
+        /// <returns></returns>
+        public MvxFluentBindingDescriptionSet<IMesAvnView<TViewModel>, TViewModel> CreateBindingSet() => 
+            this.CreateBindingSet<IMesAvnView<TViewModel>, TViewModel>();
     }
 }
