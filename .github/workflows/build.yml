@@ -21,17 +21,17 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      # Needed for sonar analysis
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
+      # if trying to build locally, make sure you have dotnet 3.1, 5.0 installed
+      # this container should have them pre-installed
 
-      # Needed for gitversion tools
-      - name: 'Setup .NET Core SDK 3.1'
-        uses: actions/setup-dotnet@v1
+      # Needed for sonar analysis, even though java is installed
+      # sonar will not pick up version 11, so state specifically
+      # adopt is in tool cache so install should be quidker with it.
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
         with:
-          dotnet-version: '3.1.x'
+            distribution: 'adopt-hotspot' # Cached java
+            java-version: '11'
 
       # Install GitVersion
       # Requires .NET Core 3.1
@@ -46,11 +46,6 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0
         with:
             useConfigFile: true
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
@@ -97,7 +92,15 @@ jobs:
 
       # projects uses GitVersion.MsBuild, so don't neeed to pass version
       - name: Build
-        run: dotnet build ${{env.solution}} --configuration ${{env.buildConfiguration}}  --no-restore
+        run: >
+            dotnet build ${{env.solution}}
+            --configuration ${{env.buildConfiguration}}  --no-restore
+            -p:Version=${{steps.gitversion.outputs.FullSemVer}}
+            -p:FileVersion=${{steps.gitversion.outputs.AssemblySemFileVer}}
+            -p:InformationalVersion=${{steps.gitversion.outputs.InformationalVersion}}
+
+      - name: Create Artifacts
+        run:  pwsh -command ".\CreateArtifacts.ps1"
 
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
@@ -108,3 +111,10 @@ jobs:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{secrets.SONAR_TOKEN}}"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: MinoriEditorShell
+            path: Artifacts/*.7z
+            if-no-files-found: error

@@ -23,11 +23,6 @@
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
     <PackageReference Include="Fluent.Ribbon" Version="8.0.3" />
-
-    <PackageReference Include="GitVersion.MsBuild" Version="5.6.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="MvvmCross" Version="8.0.2" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
   </ItemGroup>
