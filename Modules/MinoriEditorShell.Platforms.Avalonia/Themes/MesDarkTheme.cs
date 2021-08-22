@@ -15,6 +15,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Themes
         /// <summary>
         /// Constructor for theme
         /// </summary>
-        public MesDarkTheme() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/DarkTheme.xaml"));
+        public MesDarkTheme()
+        { }
+            //=> Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/DarkTheme.xaml"));
     }
 }

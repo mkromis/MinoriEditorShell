@@ -83,9 +83,9 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
-        run: > 
-            .\.sonar\scanner\dotnet-sonarscanner 
-            begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune" 
+        run: >
+            .\.sonar\scanner\dotnet-sonarscanner
+            begin /k:"TorisanKitsune_MinoriEditorShell" /o:"torisankitsune"
             /d:sonar.login="${{secrets.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
             /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             /v:${{steps.gitversion.outputs.semVer}}

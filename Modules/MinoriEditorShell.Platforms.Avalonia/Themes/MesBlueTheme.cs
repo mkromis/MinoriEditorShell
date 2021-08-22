@@ -15,6 +15,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Themes
         /// <summary>
         /// Blue theme constructor
         /// </summary>
-        public MesBlueTheme() : base() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/BlueTheme.xaml"));
+        public MesBlueTheme() : base()
+        { }
+            //=> Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Avalonia;component/Themes/BlueTheme.xaml"));
     }
 }

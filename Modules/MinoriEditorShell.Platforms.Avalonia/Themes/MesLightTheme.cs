@@ -15,6 +15,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Themes
         /// <summary>
         /// Light theme constructor
         /// </summary>
-        public MesLightTheme() : base() => Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/LightTheme.xaml"));
+        public MesLightTheme() : base()
+        { }
+            //=> Add(new Uri("pack://application:,,,/MinoriEditorShell.Platforms.Wpf;component/Themes/LightTheme.xaml"));
     }
 }

@@ -49,7 +49,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
             }
         }
 
-
+        /// <summary>
+        /// View presenter that helpds dock control
+        /// </summary>
         protected MesAvnViewPresenter()
         {
         }
@@ -234,7 +236,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                     default:
                         _log.LogTrace($"Passing to parent {view.ViewModel}");
-                        var contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier) 
+                        ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier) 
                             ?? FrameworkElementsDictionary.Keys.Last();
 
                         if (!attribute.StackNavigation && FrameworkElementsDictionary[contentControl].Any())
@@ -247,7 +249,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
             }
             catch (Exception exception)
             {
-
                 _log.LogError(exception, "Error seen during navigation request to {0} - error {1}",
                     request.ViewModelType.Name, exception.ToLongString());
                 throw;

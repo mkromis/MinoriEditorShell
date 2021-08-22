@@ -15,7 +15,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
     /// </summary>
     public abstract class MesApplication : Application
     {
-
         /// <summary>
         /// Main application class interface
         /// </summary>
@@ -51,7 +50,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
        where TMvxWpfSetup : MesAvnSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
-
         /// <summary>
         /// Register setup based on template
         /// </summary>
