@@ -7,5 +7,24 @@
   mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
   Background="LightGreen"
   x:Class="SimpleDemo.Avalonia.Views.MainView">
-  Welcome to MainView
+  <DockPanel>
+    <!--<StackPanel DockPanel.Dock="Top" Orientation="Vertical">-->
+      <Menu DockPanel.Dock="Top" Background="Aquamarine">
+        <MenuItem Header="Samples">
+          <MenuItem Header="TipCalc" Command="{Binding TipCalcCommand}" />
+          <MenuItem Header="Settings" Command="{Binding SettingsCommand}" />
+        </MenuItem>
+      </Menu>
+      <!--<ToolBar>
+        <Button Content="TipCalc" Command="{Binding TipCalcCommand}" />
+      </ToolBar>-->
+    <!--</StackPanel>-->
+  
+    
+    <Rectangle />
+    
+    <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
+    <!--<mes:MesDocumentManagerView />-->
+    <!--Welcome to MainView-->
+  </DockPanel>
 </views:MesAvnView>
