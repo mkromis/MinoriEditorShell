@@ -225,14 +225,16 @@ namespace MinoriEditorShell.Platforms.Avalonia
             bindingBuilder.DoRegistration(iocProvider);
         }
 
-        protected void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
         {
             RegisterPresenter(iocProvider);
+            base.InitializeFirstChance(iocProvider);
         }
 
-        protected void InitializeLastChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
         {
             InitializeBindingBuilder(iocProvider);
+            base.InitializeLastChance(iocProvider);
         }
 
         /// <summary>

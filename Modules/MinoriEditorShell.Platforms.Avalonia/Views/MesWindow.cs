@@ -168,7 +168,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
 
     //         public String Identifier { get; set; }
 
-    //         public IMvxBindingContext BindingContext
+    //         public   BindingContext
     //         {
     //             get
     //             {
