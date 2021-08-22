@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Platforms.Wpf;
 
-namespace MinoriDemo.WpfCore
+namespace MinoriDemo.RibbonWPF
 {
     internal class Setup : MesWpfSetup<Core.App>
     {

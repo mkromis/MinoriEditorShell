@@ -1,8 +1,6 @@
-using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
