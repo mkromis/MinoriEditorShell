@@ -27,6 +27,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Binding.Binders;
 using Microsoft.Extensions.Logging;
+using MinoriEditorShell.Platforms.Avalonia.Binding;
 
 // Portions of this was barrowed from MvvmCross.
 namespace MinoriEditorShell.Platforms.Avalonia
@@ -159,8 +160,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
 
         protected virtual MvxBindingBuilder CreateBindingBuilder()
         {
-            throw new NotImplementedException();
-            //return new MvxWindowsBindingBuilder();
+            return new MesWindowsBindingBuilder();
         }
 
         /// <summary>

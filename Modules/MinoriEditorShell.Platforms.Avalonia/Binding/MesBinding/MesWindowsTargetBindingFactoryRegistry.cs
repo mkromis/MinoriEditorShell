@@ -1,3 +1,4 @@
+using MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding.Target;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Binding.Bindings.Target.Construction;
@@ -44,7 +45,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.MesBinding
             var actualProperty = target.GetType().FindActualProperty(targetName);
             var actualPropertyType = actualProperty?.PropertyType ?? typeof(object);
 
-            binding = new MvxDependencyPropertyTargetBinding(target, targetName, dependencyProperty, actualPropertyType);
+            binding = new MesDependencyPropertyTargetBinding(target, targetName, dependencyProperty, actualPropertyType);
             return true;
         }
     }

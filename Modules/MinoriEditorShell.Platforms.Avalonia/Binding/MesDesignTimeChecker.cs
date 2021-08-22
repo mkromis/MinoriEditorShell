@@ -1,5 +1,6 @@
 using MvvmCross;
 using MvvmCross.Binding.Parse.Binding;
+using System;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
@@ -9,20 +10,21 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
 
         public static void Check()
         {
-            if (_checked)
-                return;
+            //if (_checked)
+            //    return;
 
-            _checked = true;
-            if (!MvxDesignTimeHelper.IsInDesignTime)
-                return;
+            //_checked = true;
+            //if (!MvxDesignTimeHelper.IsInDesignTime)
+            //    return;
 
-            MvxDesignTimeHelper.Initialize();
+            //MvxDesignTimeHelper.Initialize();
 
-            if (!Mvx.IoCProvider.CanResolve<IMvxBindingParser>())
-            {
-                var builder = new MesWindowsBindingBuilder(MesWindowsBindingBuilder.BindingType.MvvmCross);
-                builder.DoRegistration();
-            }
+            //if (!Mvx.IoCProvider.CanResolve<IMvxBindingParser>())
+            //{
+            //    var builder = new MesWindowsBindingBuilder(MesWindowsBindingBuilder.BindingType.MvvmCross);
+            //    builder.DoRegistration();
+            //}
+            throw new NotImplementedException();
         }
     }
 }

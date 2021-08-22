@@ -5,6 +5,8 @@ using MvvmCross.Binding.Bindings;
 using MvvmCross.Base;
 using MvvmCross.Binding;
 using MvvmCross.Core;
+using Avalonia;
+using MvvmCross;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
@@ -18,23 +20,26 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
         }
 
         // ReSharper disable InconsistentNaming
-        public static readonly DependencyProperty ngProperty =
-            // ReSharper restore InconsistentNaming
-            DependencyProperty.RegisterAttached("ng",
-                                                typeof(string),
-                                                typeof(La),
-                                                new PropertyMetadata(null, CallBackWhenngIsChanged));
+#warning fix ngProperty
+        //public static readonly AvaloniaProperty ngProperty =
+        //    // ReSharper restore InconsistentNaming
+        //    AvaloniaProperty.RegisterAttached("ng",
+        //                                        typeof(string),
+        //                                        typeof(La),
+        //                                        new AvaloniaPropertyMetadata()); //null, CallBackWhenngIsChanged));
 
-        public static string Getng(DependencyObject obj)
+        public static string Getng(AvaloniaObject obj)
         {
-            return obj.GetValue(ngProperty) as string;
+            //return obj.GetValue(ngProperty) as string;
+            throw new NotImplementedException();
         }
 
         public static void Setng(
-            DependencyObject obj,
+            AvaloniaObject obj,
             string value)
         {
-            obj.SetValue(ngProperty, value);
+            //obj.SetValue(ngProperty, value);
+            throw new NotImplementedException();
         }
 
         private static IMesBindingCreator _bindingCreator;
@@ -48,17 +53,18 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
             }
         }
 
-        private static void CallBackWhenngIsChanged(
-            object sender,
-            DependencyPropertyChangedEventArgs args)
-        {
-            // bindingCreator may be null in the designer currently
-            var bindingCreator = BindingCreator;
-            if (bindingCreator == null)
-                return;
+#warning fix CallBackWhenngIsChanged
+        //private static void CallBackWhenngIsChanged(
+        //    object sender,
+        //    DependencyPropertyChangedEventArgs args)
+        //{
+        //    // bindingCreator may be null in the designer currently
+        //    var bindingCreator = BindingCreator;
+        //    if (bindingCreator == null)
+        //        return;
 
-            bindingCreator.CreateBindings(sender, args, ParseBindingDescriptions);
-        }
+        //    bindingCreator.CreateBindings(sender, args, ParseBindingDescriptions);
+        //}
 
         private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string languageText)
         {
