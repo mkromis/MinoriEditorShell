@@ -76,10 +76,10 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
             switch (_bindingType)
             {
                 //case BindingType.Windows:
-                //    return new MvxWindowsBindingCreator();
+                //    return new MesWindowsBindingCreator();
 
-                //case BindingType.MvvmCross:
-                //    return new MvxMvvmCrossBindingCreator();
+                case BindingType.MvvmCross:
+                    return new MesMvvmCrossBindingCreator();
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -114,7 +114,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
 
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
-            throw new NotImplementedException();
+#warning fix FillTargetFactories
             //registry.RegisterCustomBindingFactory<FrameworkElement>(
             //    MesWindowsPropertyBinding.FrameworkElement_Visible,
             //    view => new MvxVisibleTargetBinding(view));
@@ -127,7 +127,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
             //    MesWindowsPropertyBinding.FrameworkElement_Hidden,
             //    view => new MvxCollapsedTargetBinding(view));
 
-            //base.FillTargetFactories(registry);
+            base.FillTargetFactories(registry);
         }
     }
 }
