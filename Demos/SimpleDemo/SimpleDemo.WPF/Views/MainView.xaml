@@ -23,7 +23,7 @@
             </ToolBar>
         </StackPanel>
 
-        <!--<ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBar}" IsTabStop="False" />-->
+        <mes:MesStatusBarView DockPanel.Dock="Bottom" />
         <mes:MesDocumentManagerView />
     </DockPanel>
 </mvx:MvxWpfView>
