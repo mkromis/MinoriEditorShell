@@ -1,3 +1,4 @@
+using Avalonia;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -54,14 +55,14 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
             return null;
         }
 
-        public static DependencyProperty FindDependencyProperty(this Type type, string name)
+        public static AvaloniaProperty FindDependencyProperty(this Type type, string name)
         {
             if (string.IsNullOrEmpty(name))
                 return null;
 
             var propertyInfo = FindDependencyPropertyInfo(type, name);
 
-            return propertyInfo?.GetValue(null) as DependencyProperty;
+            return propertyInfo?.GetValue(null) as AvaloniaProperty;
         }
 
         private static bool EnsureIsDependencyPropertyName(ref string dependencyPropertyName)

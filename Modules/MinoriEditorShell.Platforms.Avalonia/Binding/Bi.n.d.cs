@@ -5,6 +5,8 @@ using MvvmCross.Exceptions;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings;
 using MvvmCross;
+using Avalonia;
+using System;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding
 {
@@ -18,24 +20,27 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
         }
 
         // ReSharper disable InconsistentNaming
-        public static readonly DependencyProperty ndProperty =
-            // ReSharper restore InconsistentNaming
-            DependencyProperty.RegisterAttached("nd",
-                                                typeof(string),
-                                                typeof(Bi),
-                                                new PropertyMetadata(null, CallBackWhenndIsChanged));
+#warning fix ndProperty
+        //public static readonly AvaloniaProperty ndProperty =
+        //    // ReSharper restore InconsistentNaming
+        //    AvaloniaProperty.RegisterAttached("nd",
+        //                                        typeof(string),
+        //                                        typeof(Bi),
+        //                                        new AvaloniaProperty(null, CallBackWhenndIsChanged));
 
-        public static string Getnd(DependencyObject obj)
+        public static string Getnd(AvaloniaProperty obj)
         {
-            return obj.GetValue(ndProperty) as string;
+            //return obj.GetValue(ndProperty) as string;
+            throw new NotImplementedException();
         }
 
-        public static void Setnd(
-            DependencyObject obj,
-            string value)
-        {
-            obj.SetValue(ndProperty, value);
-        }
+#warning fix Setnd
+        //public static void Setnd(
+        //    StyledProperty obj,
+        //    string value)
+        //{
+        //    obj.SetValue(ndProperty, value);
+        //}
 
         private static IMesBindingCreator _bindingCreator;
 
@@ -61,19 +66,22 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding
 
         private static void CallBackWhenndIsChanged(
             object sender,
-            DependencyPropertyChangedEventArgs args)
+            object args)
+            //StyledPropertyChangedEventArgs args)
         {
-            var bindingCreator = BindingCreator;
+            //var bindingCreator = BindingCreator;
 
-            bindingCreator?.CreateBindings(sender, args, ParseBindingDescriptions);
+            //bindingCreator?.CreateBindings(sender, args, ParseBindingDescriptions);
+            throw new NotImplementedException();
         }
 
         private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string bindingText)
         {
-            if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
-                return null;
+            throw new NotImplementedException();
+            //if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
+            //    return null;
 
-            return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
+            //return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
         }
     }
 }

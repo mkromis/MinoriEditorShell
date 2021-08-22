@@ -12,6 +12,7 @@ using Avalonia.Data.Converters;
 using MinoriEditorShell.Platforms.Avalonia.Converters;
 using Avalonia;
 using MvvmCross;
+using Microsoft.Extensions.Logging;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
 {
@@ -20,36 +21,37 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
         protected virtual void ApplyBinding(MvxBindingDescription bindingDescription, Type actualType,
                                             StyledElement attachedObject)
         {
-            IMvxLog log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<AvnWindowsBindingCreator>();
-            DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
+            ILogger<AvnWindowsBindingCreator> log = MvxLogHost.GetLog<AvnWindowsBindingCreator>();
+            AvaloniaProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
             if (dependencyProperty == null)
             {
-                log.Warn("Dependency property not found for {0}", bindingDescription.TargetName);
+                log.LogWarning("Dependency property not found for {0}", bindingDescription.TargetName);
                 return;
             }
 
             var property = actualType.FindActualProperty(bindingDescription.TargetName);
             if (property == null)
             {
-                log.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
+                log.LogWarning("Property not returned {0} - may cause issues", bindingDescription.TargetName);
             }
 
             var sourceStep = bindingDescription.Source as MvxPathSourceStepDescription;
             if (sourceStep == null)
             {
-                log.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
+                log.LogWarning("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
             }
 
-            var newBinding = new System.Windows.Data.Binding
-            {
-                Path = new PropertyPath(sourceStep.SourcePropertyPath),
-                Mode = ConvertMode(bindingDescription.Mode, property?.PropertyType ?? typeof(object)),
-                Converter = GetConverter(sourceStep.Converter),
-                ConverterParameter = sourceStep.ConverterParameter,
-            };
+            throw new NotImplementedException();
+            //var newBinding = new
+            //{
+            //    Path = new PropertyPath(sourceStep.SourcePropertyPath),
+            //    Mode = ConvertMode(bindingDescription.Mode, property?.PropertyType ?? typeof(object)),
+            //    Converter = GetConverter(sourceStep.Converter),
+            //    ConverterParameter = sourceStep.ConverterParameter,
+            //};
 
-            BindingOperations.SetBinding(attachedObject, dependencyProperty, newBinding);
+            //BindingOperations.Apply(attachedObject, dependencyProperty, newBinding);
         }
 
         protected override void ApplyBindings(StyledElement attachedObject,
@@ -80,8 +82,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
                     // problems with WP7 not doing the auto-conversion
                     // see some of my angst in http://stackoverflow.com/questions/16752242/how-does-xaml-create-the-string-to-bitmapimage-value-conversion-when-binding-to/16753488#16753488
                     // Note: if we discover other issues here, then we should make a more flexible solution
-                    if (propertyType == typeof(ImageSource))
-                        return BindingMode.OneWay;
+#warning fix ImageSource
+                    //if (propertyType == typeof(ImageSource))
+                    //    return BindingMode.OneWay;
 
                     return BindingMode.TwoWay;
 
@@ -95,8 +98,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.Binding.WindowsBinding
                     return BindingMode.OneTime;
 
                 case MvxBindingMode.OneWayToSource:
-                    IMvxLog log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<AvnWindowsBindingCreator>();
-                    log.Warn("WinPhone doesn't support OneWayToSource");
+                    ILogger log = MvxLogHost.GetLog<AvnWindowsBindingCreator>();
+                    log.LogWarning("WinPhone doesn't support OneWayToSource");
                     return BindingMode.TwoWay;
 
                 default:
