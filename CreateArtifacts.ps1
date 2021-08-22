@@ -19,6 +19,7 @@ foreach ($nupkg in $nupkgs) {
 #mkdir Artifacts\$basedir\Demos
 cp Demos\SimpleDemo\SimpleDemo.WPF\bin\Release\net5.0-windows Artifacts\$basedir\Demos\SimpleDemo.WPF -Recurse
 cp Demos\SimpleDemo\SimpleDemo.RibbonWPF\bin\Release\net5.0-windows Artifacts\$basedir\Demos\SimpleDemo.RibbonWPF -Recurse
+cp Demos\SimpleDemo\SimpleDemo.Avalonia\bin\Release\net5.0-windows Artifacts\$basedir\Demos\SimpleDemo.Avalonia -Recurse
 cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net5.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
 cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net5.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
 
