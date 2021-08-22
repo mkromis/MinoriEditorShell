@@ -107,7 +107,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             }
         }
 
-
         private void MvxWindow_Closed(object sender, EventArgs e) => Unload();
 
         private void MvxWindow_Initialized(object sender, EventArgs e)
@@ -115,7 +114,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             MvxAvnSetupSingleton.EnsureSingletonAvailable(Dispatcher.UIThread, this).EnsureInitialized();
             (Application.Current as MesApplication).ApplicationInitialized();
         }
-
 
         private void MvxWindow_Opened(Object sender, EventArgs e)
         {
