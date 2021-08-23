@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesSettingsView"
+        Title="MesSettingsView">
+  <!--Width="760" Height="500" MinWidth="512" MinHeight="300"-->
+  <!--WindowStartupLocation="CenterOwner"-->
+  <!--ShowInTaskbar="False" Title="{Binding DisplayName}">-->
+  <!--<Grid Margin="12">-->
+  <!--<Grid.ColumnDefinitions>-->
+  <!--<ColumnDefinition Width="250" />-->
+  <!--<ColumnDefinition Width="12" />-->
+  <!--<ColumnDefinition Width="*" MinWidth="230" />-->
+  <!--</Grid.ColumnDefinitions>-->
+
+  <!--<Grid.RowDefinitions>-->
+  <!--<RowDefinition Height="*" />-->
+  <!--<RowDefinition Height="Auto" />-->
+  <!--</Grid.RowDefinitions>-->
+
+  <!--<TreeView x:Name="TreeView" ItemsSource="{Binding Pages}" SelectedValuePath="Editors">-->
+  <!--<TreeView.ItemTemplate>-->
+  <!--<HierarchicalDataTemplate ItemsSource="{Binding Children}">-->
+  <!--<TextBlock Text="{Binding Name}" />-->
+  <!--</HierarchicalDataTemplate>-->
+  <!--</TreeView.ItemTemplate>-->
+  <!--</TreeView>-->
+
+  <!--<Grid Grid.Row="0" Grid.Column="2">-->
+  <!--<Grid.RowDefinitions>-->
+  <!--<RowDefinition Height="*" />-->
+  <!--<RowDefinition Height="10" />-->
+  <!--</Grid.RowDefinitions>-->
+
+  <!--<ScrollViewer IsTabStop="False" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">-->
+  <!--<ItemsControl IsTabStop="False" HorizontalContentAlignment="Stretch"-->
+  <!--ItemsSource="{Binding ElementName=TreeView, Path=SelectedValue}"-->
+  <!--ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"-->
+  <!--BorderBrush="{x:Null}">-->
+  <!--<ItemsControl.ItemTemplate>-->
+  <!--<DataTemplate>-->
+  <!--<ContentControl IsTabStop="False" Content="{Binding View}" />-->
+  <!--</DataTemplate>-->
+  <!--</ItemsControl.ItemTemplate>-->
+  <!--</ItemsControl>-->
+  <!--</ScrollViewer>-->
+
+  <!--<Rectangle Grid.Row="1" Height="1" Fill="{x:Static SystemColors.ActiveBorderBrush}"-->
+  <!--VerticalAlignment="Bottom" />-->
+  <!--</Grid>-->
+
+  <!--<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Right"-->
+  <!--IsSharedSizeScope="True">-->
+  <!--<Grid.Resources>-->
+  <!--<Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">-->
+  <!--<Setter Property="Margin" Value="12 0 0 0" />-->
+  <!--<Setter Property="Padding" Value="4" />-->
+  <!--</Style>-->
+  <!--</Grid.Resources>-->
+
+  <!--<Grid.ColumnDefinitions>-->
+  <!--<ColumnDefinition SharedSizeGroup="WindowButtons" />-->
+  <!--<ColumnDefinition SharedSizeGroup="WindowButtons" />-->
+  <!--</Grid.ColumnDefinitions>-->
+
+  <!--<Button Grid.Column="0" IsDefault="True" Command="{Binding OkCommand}">OK</Button>-->
+  <!--<Button Grid.Column="1" IsCancel="True" MinWidth="80" Command="{Binding CancelCommand}">Cancel</Button>-->
+  <!--</Grid>-->
+  <!--</Grid>-->
+</Window>
