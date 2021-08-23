@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <Description>
+      MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+      This uses AvalonDock and has an MVVM architecture based on MvvmCross.
+    </Description>
+    <Copyright>Copyright 2019</Copyright>
+    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>.net40 netcoreapp AvaloniaUI MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mark Kromis</Authors>
+    <Company>Mark Kromis</Company>
+    <OutputType>Library</OutputType>
+    <DocumentationFile>bin\MinoriEditorShell.Platforms.Avalonia.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Themes\Controls\**" />
+    <EmbeddedResource Remove="Themes\Controls\**" />
+    <Page Remove="Themes\Controls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+
+    <PackageReference Include="Avalonia" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
+    <PackageReference Include="Dock.Avalonia" Version="0.10.7" />
+    <PackageReference Include="MvvmCross" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.2" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+</Project>
