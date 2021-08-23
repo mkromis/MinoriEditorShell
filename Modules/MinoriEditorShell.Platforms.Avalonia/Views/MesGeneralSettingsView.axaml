@@ -1,0 +1,39 @@
+<UserControl
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+  x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesGeneralSettingsView">
+  <!-- this should be MesAvnView -->
+
+  <!--<mvx:MvxWpfView.Resources>-->
+  <!--<converters:CultureInfoNameConverter x:Key="CultureInfoNameConverter" />-->
+  <!--</mvx:MvxWpfView.Resources>-->
+  <!--<StackPanel>-->
+  <!--<StackPanel Orientation="Horizontal" Margin="0,3,0,0">-->
+  <!--<Label Width="100" x:Name="ColorThemeLabel" Content="{x:Static resx:Resources.MainMenuSettingsColorTheme}" />-->
+  <!--<ComboBox ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}">-->
+  <!--<ComboBox.ItemTemplate>-->
+  <!--<DataTemplate>-->
+  <!--<TextBlock Text="{Binding Name}" />-->
+  <!--</DataTemplate>-->
+  <!--</ComboBox.ItemTemplate>-->
+  <!--</ComboBox>-->
+  <!--</StackPanel>-->
+  <!--<StackPanel Orientation="Horizontal" Margin="0,3,0,0">-->
+  <!--<Label Width="100" Content="{x:Static resx:Resources.MainMenuSettingsLanguage}" />-->
+  <!--<ComboBox ItemsSource="{Binding Languages}"-->
+  <!--SelectedItem="{Binding SelectedLanguage}">-->
+  <!--<ComboBox.ItemTemplate>-->
+  <!--<DataTemplate>-->
+  <!--<StackPanel Orientation="Horizontal">-->
+  <!--<TextBlock Text="{Binding Converter={StaticResource CultureInfoNameConverter}, Mode=OneWay}" />-->
+  <!--</StackPanel>-->
+  <!--</DataTemplate>-->
+  <!--</ComboBox.ItemTemplate>-->
+  <!--</ComboBox>-->
+  <!--<Label Content="{x:Static resx:Resources.MainMenuSettingsLanguageRestart}" />-->
+  <!--</StackPanel>-->
+  <!--</StackPanel>-->
+</UserControl>
