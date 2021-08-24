@@ -12,7 +12,7 @@
       <MenuItem Header="Settings" Command="{Binding SettingsCommand}" />
     </Menu>
 
-    <!--<mes:MesStatusBarView DockPanel.Dock="Bottom" />-->
+    <mes:MesStatusBarView DockPanel.Dock="Bottom" />
     <mes:MesDocumentManagerView />
   </DockPanel>
 </mes:MesAvnView>

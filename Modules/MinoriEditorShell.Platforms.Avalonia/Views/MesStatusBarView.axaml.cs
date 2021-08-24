@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using MinoriEditorShell.Services;
+using MvvmCross;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Views
 {
@@ -10,14 +12,12 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         {
             InitializeComponent();
 
-            //         // for Design Editor
-            //         try
-            //         {
-            //             IMesStatusBar statusBar = Mvx.IoCProvider.Resolve<IMesStatusBar>();
-            //             DataContext = statusBar;
-            //         }
-            //         catch { }
-            //     }
+            // for Design Editor
+            try
+            {
+                DataContext = Mvx.IoCProvider.Resolve<IMesStatusBar>();
+            }
+            catch { }
         }
 
         private void InitializeComponent()
