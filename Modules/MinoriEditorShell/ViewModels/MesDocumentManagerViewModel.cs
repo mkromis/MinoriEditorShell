@@ -12,7 +12,8 @@ namespace MinoriEditorShell.ViewModels
 
         public event EventHandler ActiveDocumentChanged;
 
-        public IMesDocumentManagerView ManagerView { get; set; }
+        public event EventHandler UpdateFloatingWindows;
+
         private readonly Boolean _closing;
 
         private IMesLayoutItem _activeItem;
@@ -42,10 +43,7 @@ namespace MinoriEditorShell.ViewModels
             {
                 _showFloatingWindowsInTaskbar = value;
                 RaisePropertyChanged(() => ShowFloatingWindowsInTaskbar);
-                if (ManagerView != null)
-                {
-                    ManagerView.UpdateFloatingWindows();
-                }
+                UpdateFloatingWindows?.Invoke(this, EventArgs.Empty);
             }
         }
 

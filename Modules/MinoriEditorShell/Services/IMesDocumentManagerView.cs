@@ -12,7 +12,5 @@ namespace MinoriEditorShell.Services
             Dictionary<String, IMesLayoutItem> itemsState);
 
         void SaveLayout(Stream stream);
-
-        void UpdateFloatingWindows();
     }
 }

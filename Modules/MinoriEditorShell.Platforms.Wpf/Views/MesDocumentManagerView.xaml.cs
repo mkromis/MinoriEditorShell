@@ -19,7 +19,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             try
             {
                 IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
-                manager.ManagerView = this;
+                manager.UpdateFloatingWindows += UpdateFloatingWindows;
                 DataContext = manager;
             }
             catch { }
@@ -34,9 +34,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
 
         public void SaveLayout(Stream stream) => MesLayoutUtility.SaveLayout(Manager, stream);
 
-        private void OnManagerLayoutUpdated(Object sender, EventArgs e) => UpdateFloatingWindows();
+        private void OnManagerLayoutUpdated(Object sender, EventArgs e) => UpdateFloatingWindows(sender, e);
 
-        public void UpdateFloatingWindows()
+        private void UpdateFloatingWindows(Object sender, EventArgs e)
         {
             Window mainWindow = Window.GetWindow(this);
             if (mainWindow != null)

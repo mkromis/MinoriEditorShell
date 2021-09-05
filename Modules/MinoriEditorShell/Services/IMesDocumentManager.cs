@@ -9,9 +9,9 @@ namespace MinoriEditorShell.Services
 
         event EventHandler ActiveDocumentChanged;
 
-        Boolean ShowFloatingWindowsInTaskbar { get; set; }
+        event EventHandler UpdateFloatingWindows;
 
-        IMesDocumentManagerView ManagerView { get; set; }
+        Boolean ShowFloatingWindowsInTaskbar { get; set; }
 
         IMesLayoutItem ActiveItem { get; set; }
 
