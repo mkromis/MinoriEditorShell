@@ -18,6 +18,7 @@
     <OutputType>Library</OutputType>
     <DocumentationFile>bin\MinoriEditorShell.Platforms.Avalonia.xml</DocumentationFile>
     <CodeAnalysisRuleSet>..\..\.sonarlint\torisankitsune_minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

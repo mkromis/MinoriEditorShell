@@ -1,4 +1,5 @@
 using AvalonDock.Controls;
+using MinoriEditorShell.Platforms.Wpf.ViewModels;
 using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
 using MvvmCross;
@@ -19,7 +20,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             try
             {
                 IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
-                manager.UpdateFloatingWindows += UpdateFloatingWindows;
+                if (manager is MesDocumentManagerViewModel model)
+                {
+                    model.UpdateFloatingWindows += UpdateFloatingWindows;
+                }
                 DataContext = manager;
             }
             catch { }

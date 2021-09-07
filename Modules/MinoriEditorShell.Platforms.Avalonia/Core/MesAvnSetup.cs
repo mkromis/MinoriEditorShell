@@ -28,6 +28,7 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Binding.Binders;
 using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Platforms.Avalonia.Binding;
+using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 
 // Portions of this was barrowed from MvvmCross.
 namespace MinoriEditorShell.Platforms.Avalonia
@@ -39,9 +40,11 @@ namespace MinoriEditorShell.Platforms.Avalonia
     {
         // To handle messages between classes
         private MvvmCross.Plugin.Messenger.IMvxMessenger _messenger;
+
         private IMesAvnViewPresenter _presenter;
         private ContentControl _root;
         private Dispatcher _uiThreadDispatcher;
+
         protected IMesAvnViewPresenter Presenter
         {
             get
@@ -138,7 +141,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
-        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) 
+        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider)
         {
             _messenger = iocProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
@@ -167,7 +170,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
         /// Used to ensure plugins are loaded.
         /// </summary>
         /// <returns>returns base manager</returns>
-        protected override IMvxPluginManager CreatePluginManager(IMvxIoCProvider iocProvider) 
+        protected override IMvxPluginManager CreatePluginManager(IMvxIoCProvider iocProvider)
         {
             IMvxPluginManager manager = base.CreatePluginManager(iocProvider);
             manager.EnsurePluginLoaded<MvvmCross.Plugin.Messenger.Plugin>();
@@ -197,6 +200,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
             iocProvider.RegisterSingleton<IMesAvnViewLoader>(toReturn);
             return toReturn;
         }
+
         protected override IMvxNameMapping CreateViewToViewModelNaming()
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "Control");
@@ -248,6 +252,7 @@ namespace MinoriEditorShell.Platforms.Avalonia
             container.Add(typeof(MesGeneralSettingsViewModel), typeof(MesGeneralSettingsView));
             return container;
         }
+
         protected virtual void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
         {
             if (iocProvider is null) throw new ArgumentNullException(nameof(iocProvider));
@@ -274,7 +279,9 @@ namespace MinoriEditorShell.Platforms.Avalonia
     public abstract class MesAvnSetup<TApplication> : MesAvnSetup where TApplication : class, IMvxApplication, new()
     {
         public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
+
         protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => iocProvider.IoCConstruct<TApplication>();
+
         protected override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider) => base.CreateViewsContainer(iocProvider);
     }
 }

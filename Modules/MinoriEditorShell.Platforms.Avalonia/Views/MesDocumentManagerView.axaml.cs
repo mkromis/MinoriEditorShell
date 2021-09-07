@@ -1,8 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Dock.Model.Core;
+using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 using MinoriEditorShell.Services;
 using MvvmCross;
 using System;
@@ -16,14 +18,28 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         public MesDocumentManagerView()
         {
             InitializeComponent();
+            AddHandler(DragDrop.DropEvent, Drop);
+            AddHandler(DragDrop.DragOverEvent, DragOver);
 
-            try
+            IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
+            //manager.UpdateFloatingWindows += Manager_UpdateFloatingWindows;
+            DataContext = (MesDocumentManagerViewModel)manager;
+        }
+
+        private void DragOver(Object sender, DragEventArgs e)
+        {
+            if (DataContext is IDropTarget dropTarget)
             {
-                IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
-                manager.UpdateFloatingWindows += Manager_UpdateFloatingWindows;
-                DataContext = manager;
+                dropTarget.DragOver(sender, e);
             }
-            catch { }
+        }
+
+        private void Drop(Object sender, DragEventArgs e)
+        {
+            if (DataContext is IDropTarget dropTarget)
+            {
+                dropTarget.Drop(sender, e);
+            }
         }
 
         public void LoadLayout(Stream stream, Action<IMesTool> addToolCallback, Action<IMesDocument> addDocumentCallback, Dictionary<String, IMesLayoutItem> itemsState)

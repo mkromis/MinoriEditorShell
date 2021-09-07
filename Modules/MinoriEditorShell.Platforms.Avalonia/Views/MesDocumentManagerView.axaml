@@ -9,5 +9,5 @@
   x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesDocumentManagerView">
   <!--Background="{DynamicResource ThemeBackgroundBrush}"-->
 
-  <idc:DockControl x:Name="Manager" />
+  <idc:DockControl />
 </UserControl>

@@ -4,7 +4,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.IO;
 
-namespace MinoriEditorShell.ViewModels
+namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     public class MesDocumentManagerViewModel : MvxViewModel, IMesDocumentManager
     {
