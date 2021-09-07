@@ -127,7 +127,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
         /// <summary>
         /// Initializes the new instance of <see cref="Factory"/> class.
         /// </summary>
-        protected MesDocumentManagerViewModel()
+        public MesDocumentManagerViewModel()
         {
             VisibleDockableControls = new Dictionary<IDockable, IDockableControl>();
             PinnedDockableControls = new Dictionary<IDockable, IDockableControl>();
@@ -190,7 +190,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
         public MvxObservableCollection<IMesTool> Tools { get; }
         public IDictionary<IDockable, IDockableControl> VisibleDockableControls { get; }
 
-        public virtual void AddDockable(IDock dock, IDockable dockable)
+        public void AddDockable(IDock dock, IDockable dockable)
         {
             UpdateDockable(dockable, dock);
             dock.VisibleDockables ??= CreateList<IDockable>();
@@ -198,7 +198,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             OnDockableAdded(dockable);
         }
 
-        public virtual void AddWindow(IRootDock rootDock, IDockWindow window)
+        public void AddWindow(IRootDock rootDock, IDockWindow window)
         {
             rootDock.Windows ??= CreateList<IDockWindow>();
             rootDock.Windows.Add(window);

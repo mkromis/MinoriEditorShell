@@ -1,6 +1,8 @@
 using Avalonia.Controls;
+using Dock.Model.Controls;
 using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Platforms.Avalonia.Presenters.Attributes;
+using MinoriEditorShell.Platforms.Avalonia.ViewModels;
 using MinoriEditorShell.Platforms.Avalonia.Views;
 using MinoriEditorShell.Services;
 using MvvmCross;
@@ -56,16 +58,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         {
         }
 
-        protected Dictionary<ContentControl, Stack<Control>> FrameworkElementsDictionary
-        {
-            get
-            {
-                if (_frameworkElementsDictionary == null)
-                    _frameworkElementsDictionary = new Dictionary<ContentControl, Stack<Control>>();
-                return _frameworkElementsDictionary;
-            }
-        }
-
         protected IMesAvnViewLoader AvnViewLoader
         {
             get
@@ -73,6 +65,16 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
                 if (_wpfViewLoader == null)
                     _wpfViewLoader = Mvx.IoCProvider.Resolve<IMesAvnViewLoader>();
                 return _wpfViewLoader;
+            }
+        }
+
+        protected Dictionary<ContentControl, Stack<Control>> FrameworkElementsDictionary
+        {
+            get
+            {
+                if (_frameworkElementsDictionary == null)
+                    _frameworkElementsDictionary = new Dictionary<ContentControl, Stack<Control>>();
+                return _frameworkElementsDictionary;
             }
         }
 
@@ -208,7 +210,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
             {
                 // Everything that passes here should be a view
                 IMvxView view = element as IMvxView;
-                IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
+                MesDocumentManagerViewModel manager = (MesDocumentManagerViewModel)Mvx.IoCProvider.Resolve<IMesDocumentManager>();
 
                 // from which we can now get the view model.
                 switch (view.ViewModel)
@@ -219,8 +221,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
                         IMesDocument docViewModel = (IMesDocument)view.ViewModel;
                         docViewModel.View = view; // Needed for Binding with AvalonDock
 
+                        MesDocumentWrapper documentWrapper = new(docViewModel);
+
                         // Add to manager model
-                        manager.Documents.Add(docViewModel);
+                        //manager.Documents.Add(docViewModel);
+                        manager.AddDockable(manager.GetDockable<IDocumentDock>("Files"), documentWrapper);
                         _log.LogTrace($"Add {document} to IMesDocumentManager.Documents");
                         return true;
 
@@ -236,7 +241,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
                     default:
                         _log.LogTrace($"Passing to parent {view.ViewModel}");
-                        ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier) 
+                        ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier)
                             ?? FrameworkElementsDictionary.Keys.Last();
 
                         if (!attribute.StackNavigation && FrameworkElementsDictionary[contentControl].Any())
@@ -287,7 +292,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
 
             if (attribute.Modal)
                 throw new NotImplementedException();
-                //window.ShowDialog();
+            //window.ShowDialog();
             else
                 window.Show();
             return Task.FromResult(true);
