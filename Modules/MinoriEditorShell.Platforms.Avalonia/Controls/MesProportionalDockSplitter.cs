@@ -3,7 +3,7 @@ using MinoriEditorShell.Platforms.Avalonia.Core;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Controls
 {
-    internal class MesSplitterDockable : MesDockableBase, ISplitterDockable
+    public class MesProportionalDockSplitter : MesDockableBase, IProportionalDockSplitter
     {
     }
 }
