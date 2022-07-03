@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Templates;
 using Avalonia.Threading;
 using MvvmCross;
 using MvvmCross.Core;
@@ -18,14 +19,15 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
         /// <summary>
         /// Main application class interface
         /// </summary>
-        protected MesApplication() : base() => RegisterSetup();
-
-        public virtual void ApplicationInitialized()
+        protected MesApplication() : base()
         {
-            RunAppStart();
+            DataTemplates.Add(new ViewTemplate());
+            RegisterSetup();
         }
 
-        protected virtual void RunAppStart(object hint = null)
+        public virtual void ApplicationInitialized() => RunAppStart();
+
+        protected virtual void RunAppStart(Object hint = null)
         {
             if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
             {
@@ -33,16 +35,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
-        {
-            return hint;
-        }
+        protected virtual Object GetAppStartHint(Object hint = null) => hint;
 
         protected abstract void RegisterSetup();
     }
 
     /// <summary>
-    /// This is an Generics helper for MesApplication for 
+    /// This is an Generics helper for MesApplication for
     /// </summary>
     /// <typeparam name="TMvxWpfSetup"></typeparam>
     /// <typeparam name="TApplication"></typeparam>

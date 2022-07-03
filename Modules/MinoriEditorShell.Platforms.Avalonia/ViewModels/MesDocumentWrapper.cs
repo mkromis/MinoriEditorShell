@@ -9,10 +9,12 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 {
     internal class MesDocumentWrapper : MesDockableBase, IDocument
     {
-        private IMesDocument docViewModel;
+        private IMesDocument _docViewModel;
 
-        public MesDocumentWrapper(IMesDocument docViewModel) => this.docViewModel = docViewModel;
-
-        public IMesDocument ViewModel { get; set; }
+        public MesDocumentWrapper(IMesDocument docViewModel)
+        {
+            _docViewModel = docViewModel;
+            Context = _docViewModel.View;
+        }
     }
 }

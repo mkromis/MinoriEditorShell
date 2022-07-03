@@ -1,4 +1,5 @@
-﻿using Dock.Avalonia.Controls;
+﻿using Avalonia.Controls.Templates;
+using Dock.Avalonia.Controls;
 using Dock.Model.Controls;
 using Dock.Model.Core;
 using Dock.Model.Core.Events;
@@ -9,6 +10,7 @@ using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
@@ -16,8 +18,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
     public class MesDocumentManagerViewModel : MvxViewModel, IFactory, IMesDocumentManager
     {
         private IDocumentDock _documentDock;
-        private ITool _findTool;
-        private ITool _replaceTool;
+
+        //private ITool _findTool;
+        private IRootDock _layout;
+
+        //private ITool _replaceTool;
         private IRootDock _rootDock;
 
         /// <summary>
@@ -25,104 +30,6 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
         /// </summary>
         /// <returns></returns>
         //public IDocumentDock CreateDocumentDock() => new FilesDocumentDock();
-
-        //public IRootDock CreateLayout()
-        //{
-        //    var untitledFileViewModel = new FileViewModel()
-        //    {
-        //        Path = string.Empty,
-        //        Title = "Untitled",
-        //        Text = "",
-        //        Encoding = Encoding.Default.WebName
-        //    };
-
-        //    var findViewModel = new FindViewModel()
-        //    {
-        //        Id = "Find",
-        //        Title = "Find"
-        //    };
-
-        //    var replaceViewModel = new ReplaceViewModel()
-        //    {
-        //        Id = "Replace",
-        //        Title = "Replace"
-        //    };
-
-        //    var documentDock = new FilesDocumentDock()
-        //    {
-        //        Id = "Files",
-        //        Title = "Files",
-        //        IsCollapsable = false,
-        //        Proportion = double.NaN,
-        //        ActiveDockable = untitledFileViewModel,
-        //        VisibleDockables = CreateList<IDockable>
-        //        (
-        //            untitledFileViewModel
-        //        ),
-        //        CanCreateDocument = true
-        //    };
-
-        //    MesProportionalDock tools = new()
-        //    {
-        //        Proportion = 0.2,
-        //        Orientation = Orientation.Vertical,
-        //        VisibleDockables = CreateList<IDockable>
-        //        (
-        //            new MesToolDock
-        //            {
-        //                ActiveDockable = findViewModel,
-        //                VisibleDockables = CreateList<IDockable>
-        //                (
-        //                    findViewModel
-        //                ),
-        //                Alignment = Alignment.Right,
-        //                GripMode = GripMode.Visible
-        //            },
-        //            new MesSplitterDockable(),
-        //            new MesToolDock
-        //            {
-        //                ActiveDockable = replaceViewModel,
-        //                VisibleDockables = CreateList<IDockable>
-        //                (
-        //                    replaceViewModel
-        //                ),
-        //                Alignment = Alignment.Right,
-        //                GripMode = GripMode.Visible
-        //            }
-        //        )
-        //    };
-
-        //    IRootDock windowLayout = CreateRootDock();
-        //    windowLayout.Title = "Default";
-        //    MesProportionalDock windowLayoutContent = new()
-        //    {
-        //        Orientation = Orientation.Horizontal,
-        //        IsCollapsable = false,
-        //        VisibleDockables = CreateList<IDockable>
-        //        (
-        //            documentDock,
-        //            new MesSplitterDockable(),
-        //            tools
-        //        )
-        //    };
-        //    windowLayout.IsCollapsable = false;
-        //    windowLayout.VisibleDockables = CreateList<IDockable>(windowLayoutContent);
-        //    windowLayout.ActiveDockable = windowLayoutContent;
-
-        //    IRootDock rootDock = CreateRootDock();
-
-        //    rootDock.IsCollapsable = false;
-        //    rootDock.VisibleDockables = CreateList<IDockable>(windowLayout);
-        //    rootDock.ActiveDockable = windowLayout;
-        //    rootDock.DefaultDockable = windowLayout;
-
-        //    _documentDock = documentDock;
-        //    _rootDock = rootDock;
-        //    _findTool = findViewModel;
-        //    _replaceTool = replaceViewModel;
-
-        //    return rootDock;
-        //}
 
         /// <summary>
         /// Initializes the new instance of <see cref="Factory"/> class.
@@ -132,8 +39,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             VisibleDockableControls = new Dictionary<IDockable, IDockableControl>();
             PinnedDockableControls = new Dictionary<IDockable, IDockableControl>();
             TabDockableControls = new Dictionary<IDockable, IDockableControl>();
-            DockControls = new ObservableCollection<IDockControl>();
-            HostWindows = new ObservableCollection<IHostWindow>();
+            DockControls = new MvxObservableCollection<IDockControl>();
+            HostWindows = new MvxObservableCollection<IHostWindow>();
         }
 
         public event EventHandler<ActiveDockableChangedEventArgs> ActiveDockableChanged;
@@ -177,17 +84,54 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
         public event EventHandler<WindowRemovedEventArgs> WindowRemoved;
 
         public IMesLayoutItem ActiveItem { get; set; }
+
         public IDictionary<String, Func<Object>> ContextLocator { get; set; }
+        public Func<Object> DefaultContextLocator { get; set; }
+
         public IDictionary<String, Func<IDockable>> DockableLocator { get; set; }
+
         public IList<IDockControl> DockControls { get; }
+
+        public IDocumentDock DocumentDock { get; internal set; }
+
         public MvxObservableCollection<IMesDocument> Documents { get; }
+
         public IDictionary<String, Func<IHostWindow>> HostWindowLocator { get; set; }
+        public Func<IHostWindow> DefaultHostWindowLocator { get; set; }
+
         public IList<IHostWindow> HostWindows { get; }
+
+        public Boolean IsDataTemplatesInitialized { get; }
+
+        /// <summary>
+        /// Get initial layout
+        /// </summary>
+        public IRootDock Layout
+        {
+            get
+            {
+                if (_layout == null)
+                {
+                    _layout = CreateLayout();
+                    if (_layout is { })
+                    {
+                        InitLayout(_layout);
+                    }
+                }
+                return _layout;
+            }
+        }
+
         public IDictionary<IDockable, IDockableControl> PinnedDockableControls { get; }
+
         public IMesDocument SelectedDocument { get; }
+
         public Boolean ShowFloatingWindowsInTaskbar { get; set; }
+
         public IDictionary<IDockable, IDockableControl> TabDockableControls { get; }
+
         public MvxObservableCollection<IMesTool> Tools { get; }
+
         public IDictionary<IDockable, IDockableControl> VisibleDockableControls { get; }
 
         public void AddDockable(IDock dock, IDockable dockable)
@@ -217,6 +161,14 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             }
         }
 
+        public virtual void CloseAllDockables(IDockable dockable) => throw new NotImplementedException();
+
+        public virtual void CloseLeftDockables(IDockable dockable) => throw new NotImplementedException();
+
+        public virtual void CloseRightDockables(IDockable dockable) => throw new NotImplementedException();
+
+        public virtual void CloseOtherDockables(IDockable dockable) => throw new NotImplementedException();
+
         public void CloseDocument(IMesDocument document) => throw new NotImplementedException();
 
         public void CollapseDock(IDock dock)
@@ -233,32 +185,32 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
             if (dock.Owner is IDock ownerDock && ownerDock.VisibleDockables is { })
             {
-                var toRemove = new List<IDockable>();
-                var dockIndex = ownerDock.VisibleDockables.IndexOf(dock);
+                List<IDockable> toRemove = new();
+                Int32 dockIndex = ownerDock.VisibleDockables.IndexOf(dock);
 
                 if (dockIndex >= 0)
                 {
-                    var indexSplitterPrevious = dockIndex - 1;
+                    Int32 indexSplitterPrevious = dockIndex - 1;
                     if (dockIndex > 0 && indexSplitterPrevious >= 0)
                     {
-                        var previousVisible = ownerDock.VisibleDockables[indexSplitterPrevious];
-                        if (previousVisible is ISplitterDockable splitterPrevious)
+                        IDockable previousVisible = ownerDock.VisibleDockables[indexSplitterPrevious];
+                        if (previousVisible is IProportionalDockSplitter splitterPrevious)
                         {
                             toRemove.Add(splitterPrevious);
                         }
                     }
 
-                    var indexSplitterNext = dockIndex + 1;
+                    Int32 indexSplitterNext = dockIndex + 1;
                     if (dockIndex < ownerDock.VisibleDockables.Count - 1 && indexSplitterNext >= 0)
                     {
-                        var nextVisible = ownerDock.VisibleDockables[indexSplitterNext];
-                        if (nextVisible is ISplitterDockable splitterNext)
+                        IDockable nextVisible = ownerDock.VisibleDockables[indexSplitterNext];
+                        if (nextVisible is IProportionalDockSplitter splitterNext)
                         {
                             toRemove.Add(splitterNext);
                         }
                     }
 
-                    foreach (var removeVisible in toRemove)
+                    foreach (IDockable removeVisible in toRemove)
                     {
                         RemoveDockable(removeVisible, true);
                     }
@@ -281,7 +233,107 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
         public IDocumentDock CreateDocumentDock() => new MesDocumentDock();
 
-        public IRootDock CreateLayout() => CreateRootDock();
+        public virtual IRootDock CreateLayout()
+        {
+            //var untitledFileViewModel = new FileViewModel()
+            //{
+            //    Path = string.Empty,
+            //    Title = "Untitled",
+            //    Text = "",
+            //    Encoding = Encoding.Default.WebName
+            //};
+
+            //var findViewModel = new FindViewModel()
+            //{
+            //    Id = "Find",
+            //    Title = "Find"
+            //};
+
+            //var replaceViewModel = new ReplaceViewModel()
+            //{
+            //    Id = "Replace",
+            //    Title = "Replace"
+            //};
+
+            MesDocumentDock documentDock = new()
+            {
+                Id = "Files",
+                Title = "Files",
+                IsCollapsable = false,
+                Proportion = Double.NaN,
+                //ActiveDockable = untitledFileViewModel,
+                VisibleDockables = CreateList<IDockable>
+                (
+                //untitledFileViewModel
+                ),
+                CanCreateDocument = true
+            };
+
+            MesProportionalDock tools = new()
+            {
+                Proportion = 0.2,
+                Orientation = Orientation.Vertical,
+                VisibleDockables = CreateList<IDockable>
+                (
+                    new MesToolDock
+                    {
+                        //ActiveDockable = findViewModel,
+                        VisibleDockables = CreateList<IDockable>
+                        (
+                        //findViewModel
+                        ),
+                        Alignment = Alignment.Right,
+                        GripMode = GripMode.Visible
+                    },
+                    new MesProportionalDockSplitter(),
+                    new MesToolDock
+                    {
+                        //ActiveDockable = replaceViewModel,
+                        VisibleDockables = CreateList<IDockable>
+                        (
+                        //replaceViewModel
+                        ),
+                        Alignment = Alignment.Right,
+                        GripMode = GripMode.Visible
+                    }
+                )
+            };
+
+            IRootDock windowLayout = CreateRootDock();
+            windowLayout.Title = "Default";
+            MesProportionalDock windowLayoutContent = new()
+            {
+                Orientation = Orientation.Horizontal,
+                IsCollapsable = false,
+                VisibleDockables = CreateList<IDockable>
+                (
+                    documentDock,
+                    new MesProportionalDockSplitter(),
+                    tools
+                )
+            };
+            windowLayout.IsCollapsable = false;
+            windowLayout.VisibleDockables = CreateList<IDockable>(windowLayoutContent);
+            windowLayout.ActiveDockable = windowLayoutContent;
+
+            IRootDock rootDock = CreateRootDock();
+
+            rootDock.IsCollapsable = false;
+            rootDock.VisibleDockables = CreateList<IDockable>(windowLayout);
+            rootDock.ActiveDockable = windowLayout;
+            rootDock.DefaultDockable = windowLayout;
+
+            _documentDock = documentDock;
+            DocumentDock = documentDock;
+            _rootDock = rootDock;
+            //_findTool = findViewModel;
+            //_replaceTool = replaceViewModel;
+
+            return rootDock;
+        }
+
+#warning disable CreateLayout
+        //public IRootDock CreateLayout() => CreateRootDock();
 
         public IList<T> CreateList<T>(params T[] items) => new ObservableCollection<T>(items);
 
@@ -311,18 +363,18 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 }
             }
 
-            var containerProportion = dock.Proportion;
-            dock.Proportion = double.NaN;
+            Double containerProportion = dock.Proportion;
+            dock.Proportion = Double.NaN;
 
-            var layout = CreateProportionalDock();
+            IProportionalDock layout = CreateProportionalDock();
             layout.Id = nameof(IProportionalDock);
             layout.Title = nameof(IProportionalDock);
             layout.VisibleDockables = CreateList<IDockable>();
             layout.Proportion = containerProportion;
 
-            var splitter = CreateSplitterDockable();
-            splitter.Id = nameof(ISplitterDockable);
-            splitter.Title = nameof(ISplitterDockable);
+            IProportionalDockSplitter splitter = CreateProportionalDockSplitter();
+            splitter.Id = nameof(IProportionalDockSplitter);
+            splitter.Title = nameof(IProportionalDockSplitter);
 
             switch (operation)
             {
@@ -389,14 +441,14 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             return layout;
         }
 
-        public ISplitterDockable CreateSplitterDockable() => new MesSplitterDockable();
+        public IProportionalDockSplitter CreateProportionalDockSplitter() => new MesProportionalDockSplitter();
 
         public IToolDock CreateToolDock() => new MesToolDock();
 
         public IDockWindow CreateWindowFrom(IDockable dockable)
         {
             IDockable? target;
-            bool topmost;
+            Boolean topmost;
 
             switch (dockable)
             {
@@ -483,7 +535,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                     }
             }
 
-            var root = CreateRootDock();
+            IRootDock root = CreateRootDock();
             root.Id = nameof(IRootDock);
             root.Title = nameof(IRootDock);
             root.VisibleDockables = CreateList<IDockable>();
@@ -496,11 +548,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             }
             root.Owner = null;
 
-            var window = CreateDockWindow();
+            IDockWindow window = CreateDockWindow();
             window.Id = nameof(IDockWindow);
             window.Title = "";
-            window.Width = double.NaN;
-            window.Height = double.NaN;
+            window.Width = Double.NaN;
+            window.Height = Double.NaN;
             window.Topmost = topmost;
             window.Layout = root;
 
@@ -518,7 +570,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
             if (dock.VisibleDockables is not null)
             {
-                foreach (var dockable in dock.VisibleDockables)
+                foreach (IDockable dockable in dock.VisibleDockables)
                 {
                     if (predicate(dockable))
                     {
@@ -527,7 +579,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
                     if (dockable is IDock childDock)
                     {
-                        var result = FindDockable(childDock, predicate);
+                        IDockable result = FindDockable(childDock, predicate);
                         if (result is not null)
                         {
                             return result;
@@ -550,7 +602,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                         return window.Layout;
                     }
 
-                    var result = FindDockable(window.Layout, predicate);
+                    IDockable result = FindDockable(window.Layout, predicate);
                     if (result is not null)
                     {
                         return result;
@@ -567,11 +619,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             {
                 return null;
             }
-            if (dockable.Owner is IRootDock rootDock && predicate(rootDock))
-            {
-                return rootDock;
-            }
-            return FindRoot(dockable.Owner, predicate);
+            return dockable.Owner is IRootDock rootDock && predicate(rootDock)
+                ? rootDock
+                : FindRoot(dockable.Owner, predicate);
         }
 
         public void FloatDockable(IDockable dockable)
@@ -581,8 +631,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 return;
             }
 
-            dock.GetPointerScreenPosition(out var dockPointerScreenX, out Double dockPointerScreenY);
-            dockable.GetPointerScreenPosition(out var dockablePointerScreenX, out Double dockablePointerScreenY);
+            dock.GetPointerScreenPosition(out Double dockPointerScreenX, out Double dockPointerScreenY);
+            dockable.GetPointerScreenPosition(out Double dockablePointerScreenX, out Double dockablePointerScreenY);
 
             if (Double.IsNaN(dockablePointerScreenX))
             {
@@ -593,8 +643,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 dockablePointerScreenY = dockPointerScreenY;
             }
 
-            dock.GetVisibleBounds(out var ownerX, out var ownerY, out var ownerWidth, out var ownerHeight);
-            dockable.GetVisibleBounds(out var dockableX, out var dockableY, out var dockableWidth, out var dockableHeight);
+            dock.GetVisibleBounds(out Double ownerX, out Double ownerY, out Double ownerWidth, out Double ownerHeight);
+            dockable.GetVisibleBounds(out Double dockableX, out Double dockableY, out Double dockableWidth, out Double dockableHeight);
 
             if (Double.IsNaN(dockablePointerScreenX))
             {
@@ -618,10 +668,9 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
         public Object GetContext(String id)
         {
-            if (!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(id) && ContextLocator != null)
             {
-                Func<Object> locator = null;
-                if (ContextLocator.TryGetValue(id, out locator) == true)
+                if (ContextLocator.TryGetValue(id, out Func<Object> locator))
                 {
                     return locator.Invoke();
                 }
@@ -631,7 +680,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
         public virtual T GetDockable<T>(String id) where T : class, IDockable
         {
-            if (!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(id) && DockableLocator != null)
             {
                 if (DockableLocator.TryGetValue(id, out Func<IDockable> locator))
                 {
@@ -645,8 +694,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
         {
             if (!String.IsNullOrEmpty(id))
             {
-                Func<IHostWindow> locator = null;
-                if (HostWindowLocator.TryGetValue(id, out locator) == true)
+                if (HostWindowLocator.TryGetValue(id, out Func<IHostWindow> locator))
                 {
                     return locator.Invoke();
                 }
@@ -654,7 +702,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             return null;
         }
 
-        public void InitLayout(IDockable layout)
+        public virtual void InitLayout(IDockable layout)
         {
             UpdateDockable(layout, null);
 
@@ -674,27 +722,27 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 }
             }
 
-            ContextLocator = new Dictionary<string, Func<object>>
+            ContextLocator = new Dictionary<String, Func<Object>>
             {
-                ["Find"] = () => layout,
-                ["Replace"] = () => layout
+                //["Find"] = () => layout,
+                //["Replace"] = () => layout
             };
 
-            DockableLocator = new Dictionary<string, Func<IDockable?>>()
+            DockableLocator = new Dictionary<String, Func<IDockable?>>()
             {
                 ["Root"] = () => _rootDock,
                 ["Files"] = () => _documentDock,
-                ["Find"] = () => _findTool,
-                ["Replace"] = () => _replaceTool
+                //["Find"] = () => _findTool,
+                //["Replace"] = () => _replaceTool
             };
 
-            HostWindowLocator = new Dictionary<string, Func<IHostWindow>>
+            HostWindowLocator = new Dictionary<String, Func<IHostWindow>>
             {
                 [nameof(IDockWindow)] = () => new HostWindow()
             };
         }
 
-        public virtual void InsertDockable(IDock dock, IDockable dockable, int index)
+        public virtual void InsertDockable(IDock dock, IDockable dockable, Int32 index)
         {
             if (index >= 0)
             {
@@ -712,7 +760,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 return;
             }
 
-            var sourceIndex = dock.VisibleDockables.IndexOf(sourceDockable);
+            Int32 sourceIndex = dock.VisibleDockables.IndexOf(sourceDockable);
             Int32 targetIndex = dock.VisibleDockables.IndexOf(targetDockable);
 
             if (sourceIndex >= 0 && targetIndex >= 0 && sourceIndex != targetIndex)
@@ -737,15 +785,15 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 }
             }
 
-            var isSameOwner = sourceDock == targetDock;
+            Boolean isSameOwner = sourceDock == targetDock;
 
-            var targetIndex = 0;
+            Int32 targetIndex = 0;
 
             if (sourceDock.VisibleDockables is not null && targetDock.VisibleDockables is not null && targetDock.VisibleDockables.Count > 0)
             {
                 if (isSameOwner)
                 {
-                    var sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
+                    Int32 sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
 
                     if (targetDockable is not null)
                     {
@@ -786,7 +834,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             {
                 if (isSameOwner)
                 {
-                    var sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
+                    Int32 sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
                     if (sourceIndex < targetIndex)
                     {
                         targetDock.VisibleDockables.Insert(targetIndex + 1, sourceDockable);
@@ -797,7 +845,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                     }
                     else
                     {
-                        var removeIndex = sourceIndex + 1;
+                        Int32 removeIndex = sourceIndex + 1;
                         if (targetDock.VisibleDockables.Count + 1 > removeIndex)
                         {
                             targetDock.VisibleDockables.Insert(targetIndex, sourceDockable);
@@ -907,8 +955,8 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             {
                 case IToolDock toolDock:
                     {
-                        var isVisible = false;
-                        var isPinned = false;
+                        Boolean isVisible = false;
+                        Boolean isPinned = false;
 
                         if (toolDock.VisibleDockables is not null)
                         {
@@ -966,14 +1014,14 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             }
         }
 
-        public void RemoveDockable(IDockable dockable, bool collapse)
+        public void RemoveDockable(IDockable dockable, Boolean collapse)
         {
             if (dockable.Owner is not IDock dock || dock.VisibleDockables is null)
             {
                 return;
             }
 
-            var index = dock.VisibleDockables.IndexOf(dockable);
+            Int32 index = dock.VisibleDockables.IndexOf(dockable);
             if (index < 0)
             {
                 return;
@@ -982,11 +1030,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             dock.VisibleDockables.Remove(dockable);
             OnDockableRemoved(dockable);
 
-            var indexActiveDockable = index > 0 ? index - 1 : 0;
+            Int32 indexActiveDockable = index > 0 ? index - 1 : 0;
             if (dock.VisibleDockables.Count > 0)
             {
-                var nextActiveDockable = dock.VisibleDockables[indexActiveDockable];
-                dock.ActiveDockable = nextActiveDockable is not ISplitterDockable ? nextActiveDockable : null;
+                IDockable nextActiveDockable = dock.VisibleDockables[indexActiveDockable];
+                dock.ActiveDockable = nextActiveDockable is not IProportionalDockSplitter ? nextActiveDockable : null;
             }
             else
             {
@@ -996,7 +1044,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             if (dock.VisibleDockables.Count == 1)
             {
                 IDockable dockable0 = dock.VisibleDockables[0];
-                if (dockable0 is ISplitterDockable splitter0)
+                if (dockable0 is IProportionalDockSplitter splitter0)
                 {
                     RemoveDockable(splitter0, false);
                 }
@@ -1006,11 +1054,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             {
                 IDockable dockable0 = dock.VisibleDockables[0];
                 IDockable dockable1 = dock.VisibleDockables[1];
-                if (dockable0 is ISplitterDockable splitter0)
+                if (dockable0 is IProportionalDockSplitter splitter0)
                 {
                     RemoveDockable(splitter0, false);
                 }
-                if (dockable1 is ISplitterDockable splitter1)
+                if (dockable1 is IProportionalDockSplitter splitter1)
                 {
                     RemoveDockable(splitter1, false);
                 }
@@ -1079,10 +1127,10 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                     {
                         if (dock.Owner is IDock ownerDock && ownerDock.VisibleDockables is { })
                         {
-                            var index = ownerDock.VisibleDockables.IndexOf(dock);
+                            Int32 index = ownerDock.VisibleDockables.IndexOf(dock);
                             if (index >= 0)
                             {
-                                var layout = CreateSplitLayout(dock, dockable, operation);
+                                IDock layout = CreateSplitLayout(dock, dockable, operation);
                                 ownerDock.VisibleDockables.RemoveAt(index);
                                 OnDockableRemoved(dockable);
                                 ownerDock.VisibleDockables.Insert(index, layout);
@@ -1109,7 +1157,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
             RemoveDockable(dockable, true);
 
-            var window = CreateWindowFrom(dockable);
+            IDockWindow window = CreateWindowFrom(dockable);
             if (window is not null)
             {
                 AddWindow(rootDock, window);
@@ -1154,13 +1202,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
                 return;
             }
 
-            var sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
-            var targetIndex = targetDock.VisibleDockables.IndexOf(targetDockable);
+            Int32 sourceIndex = sourceDock.VisibleDockables.IndexOf(sourceDockable);
+            Int32 targetIndex = targetDock.VisibleDockables.IndexOf(targetDockable);
 
             if (sourceIndex >= 0 && targetIndex >= 0)
             {
-                var originalSourceDockable = sourceDock.VisibleDockables[sourceIndex];
-                var originalTargetDockable = targetDock.VisibleDockables[targetIndex];
+                IDockable originalSourceDockable = sourceDock.VisibleDockables[sourceIndex];
+                IDockable originalTargetDockable = targetDock.VisibleDockables[targetIndex];
                 sourceDock.VisibleDockables[sourceIndex] = originalTargetDockable;
                 targetDock.VisibleDockables[targetIndex] = originalSourceDockable;
 
@@ -1190,7 +1238,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
                 if (dock.VisibleDockables is not null)
                 {
-                    foreach (var child in dock.VisibleDockables)
+                    foreach (IDockable child in dock.VisibleDockables)
                     {
                         UpdateDockable(child, dockable);
                     }
@@ -1199,9 +1247,10 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
 
             if (dockable is IRootDock rootDock)
             {
+                rootDock.Factory = this;
                 if (rootDock.Windows is not null)
                 {
-                    foreach (var child in rootDock.Windows)
+                    foreach (IDockWindow child in rootDock.Windows)
                     {
                         UpdateDockWindow(child, dockable);
                     }
@@ -1226,10 +1275,11 @@ namespace MinoriEditorShell.Platforms.Avalonia.ViewModels
             }
         }
 
-        private void SetIsActive(IDockable dockable, bool active)
+        private void SetIsActive(IDockable dockable, Boolean active)
         {
             if (dockable is IDock dock)
             {
+                dock.Factory = this;
                 dock.IsActive = active;
             }
         }

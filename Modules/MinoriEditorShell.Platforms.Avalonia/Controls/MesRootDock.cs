@@ -13,7 +13,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Controls
     /// <summary>
     /// Main root dock
     /// </summary>
-    internal class MesRootDock : MesDockBase, IRootDock
+    public class MesRootDock : MesDockBase, IRootDock
     {
         private Boolean _isFocusableRoot = true;
         private IDockWindow _window;

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Controls
 {
-    internal class MesDocumentDock : MesDockBase, IDocumentDock
+    public class MesDocumentDock : MesDockBase, IDocumentDock
     {
         private Boolean _canCreateDocument;
 

@@ -4,10 +4,13 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:idc="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
+  xmlns:views="using:MinoriEditorShell.Platforms.Avalonia.Views"
   mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
   Background="LightBlue"
   x:Class="MinoriEditorShell.Platforms.Avalonia.Views.MesDocumentManagerView">
   <!--Background="{DynamicResource ThemeBackgroundBrush}"-->
-
-  <idc:DockControl />
+  <UserControl.DataTemplates>
+    <views:ViewTemplate />
+  </UserControl.DataTemplates>
+  <idc:DockControl Layout="{Binding Layout}" />
 </UserControl>

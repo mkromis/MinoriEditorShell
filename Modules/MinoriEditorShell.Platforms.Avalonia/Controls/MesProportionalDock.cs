@@ -12,7 +12,7 @@ namespace MinoriEditorShell.Platforms.Avalonia.Controls
     /// Proportional dock.
     /// </summary>
     [DataContract(IsReference = true)]
-    internal class MesProportionalDock : MesDockBase, IProportionalDock
+    public class MesProportionalDock : MesDockBase, IProportionalDock
     {
         private Orientation _orientation;
 

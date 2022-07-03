@@ -32,15 +32,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross.Plugins\Messenger\MvvmCross.Plugin.Messenger.csproj" />
+    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross\MvvmCross.csproj" />
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
     <PackageReference Include="Avalonia" Version="0.10.10" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
     <PackageReference Include="Dock.Avalonia" Version="0.10.8" />
     <PackageReference Include="Dock.Model" Version="0.10.8" />
-    <PackageReference Include="MvvmCross" Version="8.0.2" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="8.0.2" />
     <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />

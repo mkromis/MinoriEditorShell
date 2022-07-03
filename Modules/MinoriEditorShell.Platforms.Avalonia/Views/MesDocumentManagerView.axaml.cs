@@ -17,13 +17,13 @@ namespace MinoriEditorShell.Platforms.Avalonia.Views
     {
         public MesDocumentManagerView()
         {
-            InitializeComponent();
-            AddHandler(DragDrop.DropEvent, Drop);
-            AddHandler(DragDrop.DragOverEvent, DragOver);
-
             IMesDocumentManager manager = Mvx.IoCProvider.Resolve<IMesDocumentManager>();
             //manager.UpdateFloatingWindows += Manager_UpdateFloatingWindows;
             DataContext = (MesDocumentManagerViewModel)manager;
+
+            InitializeComponent();
+            AddHandler(DragDrop.DropEvent, Drop);
+            AddHandler(DragDrop.DragOverEvent, DragOver);
         }
 
         private void DragOver(Object sender, DragEventArgs e)

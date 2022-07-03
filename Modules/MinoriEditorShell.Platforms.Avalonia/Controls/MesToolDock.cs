@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MinoriEditorShell.Platforms.Avalonia.Controls
 {
-    internal class MesToolDock : MesDockBase, IToolDock
+    public class MesToolDock : MesDockBase, IToolDock
     {
         private Alignment _alignment = Alignment.Unset;
         private Boolean _isExpanded;

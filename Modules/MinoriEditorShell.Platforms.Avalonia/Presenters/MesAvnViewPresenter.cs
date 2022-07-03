@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Dock.Model.Controls;
+using Dock.Model.Core;
 using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Platforms.Avalonia.Presenters.Attributes;
 using MinoriEditorShell.Platforms.Avalonia.ViewModels;
@@ -199,35 +200,59 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
         /// Depending on what the type is, will define where the class goes.
         /// Either to MesDocumentManager or main view if not a IMesDocument or IMesTool
         /// </summary>
-        /// <param name="element"></param>
+        /// <param name="view"></param>
         /// <param name="attribute"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        protected async Task<Boolean> ShowContentView(
-            IMvxView element, MesContentPresentationAttribute attribute, MvxViewModelRequest request)
+        protected async Task<Boolean> ShowContentView(IMvxView view, MesContentPresentationAttribute attribute, MvxViewModelRequest request)
         {
             try
             {
                 // Everything that passes here should be a view
-                IMvxView view = element as IMvxView;
                 MesDocumentManagerViewModel manager = (MesDocumentManagerViewModel)Mvx.IoCProvider.Resolve<IMesDocumentManager>();
 
                 // from which we can now get the view model.
                 switch (view.ViewModel)
                 {
                     case IMesDocument document:
+                        {
+                            // Try to set view, this is needed for DocumentManager
+                            IMesDocument docViewModel = (IMesDocument)view.ViewModel;
+                            docViewModel.View = view; // Needed for Binding with AvalonDock
 
-                        // Try to set view, this is needed for DocumentManager
-                        IMesDocument docViewModel = (IMesDocument)view.ViewModel;
-                        docViewModel.View = view; // Needed for Binding with AvalonDock
+                            MesDocumentWrapper documentWrapper = new(docViewModel);
 
-                        MesDocumentWrapper documentWrapper = new(docViewModel);
+                            // Add to manager model
+                            IDocumentDock docdock = manager.DocumentDock;
+                            IRootDock layout = manager.Layout;
 
-                        // Add to manager model
-                        //manager.Documents.Add(docViewModel);
-                        manager.AddDockable(manager.GetDockable<IDocumentDock>("Files"), documentWrapper);
-                        _log.LogTrace($"Add {document} to IMesDocumentManager.Documents");
-                        return true;
+                            if (layout is { } && docdock is { })
+                            {
+                                manager.DocumentDock.VisibleDockables.Add(documentWrapper);
+                                manager.AddDockable(docdock, documentWrapper);
+                                manager.SetActiveDockable(documentWrapper);
+                                manager.SetFocusedDockable(layout, documentWrapper);
+
+                                _log.LogTrace($"Add {document} to IMesDocumentManager.Documents");
+                            }
+                            else
+                            {
+                                _log.LogTrace("There was an error attaching to layout");
+                            }
+
+                            // ---------- remove after test
+                            ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier)
+                                ?? FrameworkElementsDictionary.Keys.Last();
+
+                            if (!attribute.StackNavigation && FrameworkElementsDictionary[contentControl].Any())
+                                FrameworkElementsDictionary[contentControl].Pop(); // Close previous view
+
+                            FrameworkElementsDictionary[contentControl].Push((Control)view);
+                            contentControl.Content = documentWrapper;
+                            _log.LogTrace($"Passing to parent {view.ViewModel}");
+
+                            return true;
+                        }
 
                     case IMesTool tool:
                         // Try to set view, this is needed for DocumentManager
@@ -240,16 +265,18 @@ namespace MinoriEditorShell.Platforms.Avalonia.Presenters
                         return true;
 
                     default:
-                        _log.LogTrace($"Passing to parent {view.ViewModel}");
-                        ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier)
-                            ?? FrameworkElementsDictionary.Keys.Last();
+                        {
+                            _log.LogTrace($"Passing to parent {view.ViewModel}");
+                            ContentControl contentControl = FrameworkElementsDictionary.Keys.FirstOrDefault(w => (w as MesWindow)?.Identifier == attribute.WindowIdentifier)
+                                ?? FrameworkElementsDictionary.Keys.Last();
 
-                        if (!attribute.StackNavigation && FrameworkElementsDictionary[contentControl].Any())
-                            FrameworkElementsDictionary[contentControl].Pop(); // Close previous view
+                            if (!attribute.StackNavigation && FrameworkElementsDictionary[contentControl].Any())
+                                FrameworkElementsDictionary[contentControl].Pop(); // Close previous view
 
-                        FrameworkElementsDictionary[contentControl].Push((Control)element);
-                        contentControl.Content = element;
-                        return true;
+                            FrameworkElementsDictionary[contentControl].Push((Control)view);
+                            contentControl.Content = view;
+                            return true;
+                        }
                 }
             }
             catch (Exception exception)
