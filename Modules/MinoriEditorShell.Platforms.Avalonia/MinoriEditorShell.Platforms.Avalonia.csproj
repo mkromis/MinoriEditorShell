@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>
       MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
       This uses AvalonDock and has an MVVM architecture based on MvvmCross.
@@ -9,7 +9,6 @@
     <Copyright>Copyright 2019</Copyright>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <PackageIconUrl></PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>.net40 netcoreapp AvaloniaUI MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,18 +29,20 @@
   <ItemGroup>
     <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross.Plugins\Messenger\MvvmCross.Plugin.Messenger.csproj" />
-    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross\MvvmCross.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-
-    <PackageReference Include="Avalonia" Version="0.10.10" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
-    <PackageReference Include="Dock.Avalonia" Version="0.10.8" />
-    <PackageReference Include="Dock.Model" Version="0.10.8" />
+    <PackageReference Include="Avalonia" Version="0.10.15" />
+    <PackageReference Include="Dock.Avalonia" Version="0.10.14" />
+    <PackageReference Include="Dock.Model.Avalonia" Version="0.10.14" />
+    <PackageReference Include="MvvmCross" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
     <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
+
 </Project>

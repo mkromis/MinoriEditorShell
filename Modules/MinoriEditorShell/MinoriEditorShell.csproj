@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>
       MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
       This uses AvalonDock and has an MVVM architecture based on MvvmCross.
@@ -9,7 +9,6 @@
     <Copyright>Copyright 2019</Copyright>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <PackageIconUrl></PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,14 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="8.0.2" />
     <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross.Plugins\Messenger\MvvmCross.Plugin.Messenger.csproj" />
-    <ProjectReference Include="..\..\..\..\MvvmCross\MvvmCross\MvvmCross.csproj" />
   </ItemGroup>
 
   <ItemGroup>
