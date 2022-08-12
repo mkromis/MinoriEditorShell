@@ -1,29 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>Ribbon Mahapp IDE</PackageTags>
-    <UseWPF>true</UseWPF>
-    <CodeAnalysisRuleSet>MinoriEditorShell.Ribbon.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Mark Kromis</Authors>
+		<Company>Mark Kromis</Company>
+		<Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+		<PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>Ribbon Mahapp IDE</PackageTags>
+		<UseWPF>true</UseWPF>
+		<CodeAnalysisRuleSet>MinoriEditorShell.Ribbon.ruleset</CodeAnalysisRuleSet>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<langver>latest</langver>
+		<PackageLicenseExpression>Apache-2.0 OR MS-PL</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+	<ItemGroup>
+		<ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+		<ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-    <PackageReference Include="Fluent.Ribbon" Version="9.0.4" />
-    <PackageReference Include="MvvmCross" Version="8.0.2" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
-  </ItemGroup>
+		<PackageReference Include="Fluent.Ribbon" Version="9.0.4" />
+		<PackageReference Include="MvvmCross" Version="8.0.2" />
+		<PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
+	</ItemGroup>
 </Project>

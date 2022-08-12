@@ -1,28 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <Description>Easy Virtual Canvas with zoom</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>IDE VirtualCanvas Module</PackageTags>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-    <UseWPF>true</UseWPF>
-    <CodeAnalysisRuleSet>MinoriEditorShell.VirtualCanvas.Platforms.Wpf.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Mark Kromis</Authors>
+		<Company>Mark Kromis</Company>
+		<Description>Easy Virtual Canvas with zoom</Description>
+		<PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>IDE VirtualCanvas Module</PackageTags>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+		<UseWPF>true</UseWPF>
+		<CodeAnalysisRuleSet>MinoriEditorShell.VirtualCanvas.Platforms.Wpf.ruleset</CodeAnalysisRuleSet>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<LangVersion>latest</LangVersion>
+		<PackageLicenseExpression>Apache-2.0 OR MS-PL</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+		<ProjectReference Include="..\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
+		<ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+	</ItemGroup>
 </Project>
