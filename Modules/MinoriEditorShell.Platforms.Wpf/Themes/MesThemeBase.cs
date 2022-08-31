@@ -14,7 +14,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Name of theme
         /// </summary>
-        public virtual String Name => null;
+        public virtual string Name => null;
 
         /// <summary>
         /// Add resources to themes

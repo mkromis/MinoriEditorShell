@@ -15,32 +15,32 @@ namespace MinoriEditorShell.ViewModels
         /// <summary>
         /// The line number
         /// </summary>
-        private Int32? _lineNumber;
+        private int? _lineNumber;
 
         /// <summary>
         /// The insert mode
         /// </summary>
-        private Boolean? _insertMode;
+        private bool? _insertMode;
 
         /// <summary>
         /// The col position
         /// </summary>
-        private Int32? _colPosition;
+        private int? _colPosition;
 
         /// <summary>
         /// The char position
         /// </summary>
-        private Int32? _charPosition;
+        private int? _charPosition;
 
         /// <summary>
         /// The p max
         /// </summary>
-        private UInt32 _pMax;
+        private uint _pMax;
 
         /// <summary>
         /// The _p val
         /// </summary>
-        private UInt32 _pVal;
+        private uint _pVal;
 
         /// <summary>
         /// The _foreground
@@ -55,7 +55,7 @@ namespace MinoriEditorShell.ViewModels
         /// <summary>
         /// The _show progress
         /// </summary>
-        private Boolean _showProgress;
+        private bool _showProgress;
 
         /// <summary>
         /// The _anim image
@@ -65,12 +65,12 @@ namespace MinoriEditorShell.ViewModels
         /// <summary>
         /// The _is frozen
         /// </summary>
-        private Boolean _isFrozen;
+        private bool _isFrozen;
 
         /// <summary>
         /// The _text
         /// </summary>
-        private String _text;
+        private string _text;
 
         #endregion Fields
 
@@ -90,7 +90,7 @@ namespace MinoriEditorShell.ViewModels
         /// </summary>
         /// <param name="image">The image.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
-        public Boolean Animation(Image image)
+        public bool Animation(Image image)
         {
             AnimationImage = image;
             return true;
@@ -100,7 +100,7 @@ namespace MinoriEditorShell.ViewModels
         /// Clears this status bar.
         /// </summary>
         /// <returns><c>true</c> if successfully, <c>false</c> otherwise</returns>
-        public Boolean Clear()
+        public bool Clear()
         {
             Foreground = Color.White;
             Background = Color.FromArgb(0, 122, 204);
@@ -119,13 +119,13 @@ namespace MinoriEditorShell.ViewModels
         /// Freezes the output.
         /// </summary>
         /// <returns><c>true</c> if frozen, <c>false</c> otherwise</returns>
-        public Boolean FreezeOutput() => IsFrozen;
+        public bool FreezeOutput() => IsFrozen;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is frozen.
         /// </summary>
         /// <value><c>true</c> if this instance is frozen; otherwise, <c>false</c>.</value>
-        public Boolean IsFrozen
+        public bool IsFrozen
         {
             get => _isFrozen;
             set => SetProperty(ref _isFrozen, value);
@@ -135,7 +135,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
-        public String Text
+        public string Text
         {
             get => _text;
             set => SetProperty(ref _text, value);
@@ -165,7 +165,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets a value indicating whether [insert mode].
         /// </summary>
         /// <value><c>null</c> if [insert mode] contains no value, <c>true</c> if [insert mode]; otherwise, <c>false</c>.</value>
-        public Boolean? InsertMode
+        public bool? InsertMode
         {
             get => _insertMode;
             set => SetProperty(ref _insertMode, value);
@@ -175,7 +175,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the line number.
         /// </summary>
         /// <value>The line number.</value>
-        public Int32? LineNumber
+        public int? LineNumber
         {
             get => _lineNumber;
             set => SetProperty(ref _lineNumber, value);
@@ -185,7 +185,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the char position.
         /// </summary>
         /// <value>The char position.</value>
-        public Int32? CharPosition
+        public int? CharPosition
         {
             get => _charPosition;
             set => SetProperty(ref _charPosition, value);
@@ -195,7 +195,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the col position.
         /// </summary>
         /// <value>The col position.</value>
-        public Int32? ColPosition
+        public int? ColPosition
         {
             get => _colPosition;
             set => SetProperty(ref _colPosition, value);
@@ -208,7 +208,7 @@ namespace MinoriEditorShell.ViewModels
         /// <param name="current">The current.</param>
         /// <param name="total">The total.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
-        public Boolean Progress(Boolean On, UInt32 current, UInt32 total)
+        public bool Progress(bool On, uint current, uint total)
         {
             ShowProgressBar = On;
             ProgressMaximum = total;
@@ -220,7 +220,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the progress maximum.
         /// </summary>
         /// <value>The progress maximum.</value>
-        public UInt32 ProgressMaximum
+        public uint ProgressMaximum
         {
             get => _pMax;
             set => SetProperty(ref _pMax, value);
@@ -230,7 +230,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets the progress value.
         /// </summary>
         /// <value>The progress value.</value>
-        public UInt32 ProgressValue
+        public uint ProgressValue
         {
             get => _pVal;
             set => SetProperty(ref _pVal, value);
@@ -240,7 +240,7 @@ namespace MinoriEditorShell.ViewModels
         /// Gets or sets a value indicating whether [show progress bar].
         /// </summary>
         /// <value><c>true</c> if [show progress bar]; otherwise, <c>false</c>.</value>
-        public Boolean ShowProgressBar
+        public bool ShowProgressBar
         {
             get => _showProgress;
             set => SetProperty(ref _showProgress, value);

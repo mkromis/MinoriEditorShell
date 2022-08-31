@@ -11,19 +11,19 @@ namespace MinoriDemo.RibbonWPF.DataClasses
     internal class ThemeItem : MvxNotifyPropertyChanged
     {
         private Color _color;
-        private String _key;
-        private Boolean _canEdit = false;
-        private String _modeText = "Edit";
+        private string _key;
+        private bool _canEdit = false;
+        private string _modeText = "Edit";
 
         public ThemeHelper ThemeHelper { get; set; }
 
-        public String ModeText
+        public string ModeText
         {
             get => _modeText;
             set => SetProperty(ref _modeText, value);
         }
 
-        public Boolean CanEdit
+        public bool CanEdit
         {
             get => _canEdit;
             set
@@ -35,7 +35,7 @@ namespace MinoriDemo.RibbonWPF.DataClasses
             }
         }
 
-        public String Key
+        public string Key
         {
             get => _key;
             set => SetProperty(ref _key, value);
@@ -51,13 +51,13 @@ namespace MinoriDemo.RibbonWPF.DataClasses
                 Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
                 .ExecuteOnMainThreadAsync(() =>
                 {
-                    IDictionary<String, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
+                    IDictionary<string, SolidColorBrush> brushes = ThemeHelper.GetBrushes();
                     brushes[Key] = new SolidColorBrush(value);
                     ThemeHelper.SetBrushes(brushes);
                 });
             }
         }
 
-        public String OriginalKey { get; internal set; }
+        public string OriginalKey { get; internal set; }
     }
 }

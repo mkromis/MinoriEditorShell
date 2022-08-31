@@ -21,7 +21,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
     {
         private MesSettingsTreeItem _selectedPage;
         private IEnumerable<IMesSettings> _settingsEditors;
-        private String displayName;
+        private string displayName;
 
         public MesSettingsManagerViewModel(IMvxNavigationService navigationService)
         {
@@ -30,7 +30,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         }
 
         public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
-        public String DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
+        public string DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
         public ICommand OkCommand => new MvxCommand(SaveChanges);
         public List<MesSettingsTreeItem> Pages { get; private set; }
 
@@ -107,14 +107,14 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             IMesSettings settingsEditor,
             List<MesSettingsTreeItem> pages)
         {
-            if (String.IsNullOrEmpty(settingsEditor.SettingsPagePath))
+            if (string.IsNullOrEmpty(settingsEditor.SettingsPagePath))
             {
                 return pages;
             }
 
-            String[] path = settingsEditor.SettingsPagePath.Split(new[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] path = settingsEditor.SettingsPagePath.Split(new[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (String pathElement in path)
+            foreach (string pathElement in path)
             {
                 MesSettingsTreeItem page = pages.FirstOrDefault(s => s.Name == pathElement);
 

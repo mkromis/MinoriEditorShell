@@ -8,7 +8,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <summary>
         /// When doing this in your own project, try to localize if if necessary
         /// </summary>
-        public override String Name => "CyberTheme";
+        public override string Name => "CyberTheme";
 
         public CyberTheme() : base()
         {

@@ -11,7 +11,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
     [Export(typeof(IMesResourceManager))]
     public class MesResourceManager : IMesResourceManager
     {
-        public Stream GetStream(String relativeUri, String assemblyName)
+        public Stream GetStream(string relativeUri, string assemblyName)
         {
             try
             {

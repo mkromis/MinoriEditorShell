@@ -32,7 +32,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// Property for defining the exponential power of the animation.
         /// </summary>
         public static readonly DependencyProperty PowerProperty =
-            DependencyProperty.Register("Power", typeof(Double), typeof(MesExponentialDoubleAnimation), new PropertyMetadata(2.0));
+            DependencyProperty.Register("Power", typeof(double), typeof(MesExponentialDoubleAnimation), new PropertyMetadata(2.0));
 
         /// <summary>
         /// Construct new empty ExponentialDoubleAnimation object.
@@ -49,7 +49,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="power">With this exponential power</param>
         /// <param name="behavior">Using this type of behavior</param>
         /// <param name="duration">For this long</param>
-        public MesExponentialDoubleAnimation(Double from, Double to, Double power, EdgeBehavior behavior, Duration duration)
+        public MesExponentialDoubleAnimation(double from, double to, double power, EdgeBehavior behavior, Duration duration)
         {
             EdgeBehavior = behavior;
             Duration = duration;
@@ -71,9 +71,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Get/Set the power of the exponential.  The default is 2.
         /// </summary>
-        public Double Power
+        public double Power
         {
-            get => (Double)GetValue(PowerProperty);
+            get => (double)GetValue(PowerProperty);
             set
             {
                 if (value > 0.0)
@@ -95,15 +95,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="defaultDestinationValue"></param>
         /// <param name="clock"></param>
         /// <returns></returns>
-        protected override Double GetCurrentValueCore(Double defaultOriginValue, Double defaultDestinationValue, AnimationClock animationClock)
+        protected override double GetCurrentValueCore(double defaultOriginValue, double defaultDestinationValue, AnimationClock animationClock)
         {
-            Double returnValue;
-            Double start = (Double)From;
-            Double delta = (Double)To - start;
-            Double timeFraction = animationClock.CurrentProgress.Value;
+            double returnValue;
+            double start = (double)From;
+            double delta = (double)To - start;
+            double timeFraction = animationClock.CurrentProgress.Value;
             if (timeFraction == 1)
             {
-                return (Double)To;
+                return (double)To;
             }
             switch (EdgeBehavior)
             {
@@ -137,10 +137,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="delta">Delta between start value and the end value we want</param>
         /// <param name="power">The rate of exponental growth</param>
         /// <returns></returns>
-        private static Double EaseIn(Double timeFraction, Double start, Double delta, Double power)
+        private static double EaseIn(double timeFraction, double start, double delta, double power)
         {
             // math magic: simple exponential growth
-            Double returnValue = Math.Pow(timeFraction, power);
+            double returnValue = Math.Pow(timeFraction, power);
             returnValue *= delta;
             returnValue += start;
             return returnValue;
@@ -154,10 +154,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="delta">Delta between start value and the end value we want</param>
         /// <param name="power">The rate of exponental decay</param>
         /// <returns></returns>
-        private static Double EaseOut(Double timeFraction, Double start, Double delta, Double power)
+        private static double EaseOut(double timeFraction, double start, double delta, double power)
         {
             // math magic: simple exponential decay
-            Double returnValue = Math.Pow(timeFraction, 1 / power);
+            double returnValue = Math.Pow(timeFraction, 1 / power);
             returnValue *= delta;
             returnValue += start;
             return returnValue;
@@ -172,9 +172,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="delta">Delta between start value and the end value we want</param>
         /// <param name="power">The rate of exponental growth/decay</param>
         /// <returns></returns>
-        private static Double EaseInOut(Double timeFraction, Double start, Double delta, Double power)
+        private static double EaseInOut(double timeFraction, double start, double delta, double power)
         {
-            Double returnValue;
+            double returnValue;
 
             // we cut each effect in half by multiplying the time fraction by two and halving the distance.
             if (timeFraction <= 0.5)

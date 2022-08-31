@@ -6,36 +6,51 @@ using System.IO;
 
 namespace MinoriEditorShell.ViewModels
 {
+    /// <summary>
+    /// View model for custom views. This is instantiated with IoC methods.
+    /// </summary>
     public class MesDocumentManagerViewModel : MvxViewModel, IMesDocumentManager
     {
-        public event EventHandler ActiveDocumentChanging;
-
-        public event EventHandler ActiveDocumentChanged;
-
-        public IMesDocumentManagerView ManagerView { get; set; }
-        private readonly Boolean _closing;
-
+        // Determine if we are in a closing event
+        // private readonly bool _closing;
         private IMesLayoutItem _activeItem;
 
+        /// <summary>
+        /// Event on active document about to be changed.
+        /// </summary>
+        public event EventHandler ActiveDocumentChanging;
+        /// <summary>
+        /// Event that document has been changed.
+        /// </summary>
+        public event EventHandler ActiveDocumentChanged;
+        /// <summary>
+        /// This contains the platform implementation view
+        /// </summary>
+        public IMesDocumentManagerView ManagerView { get; set; }
+        /// <summary>
+        /// This contains the active view
+        /// </summary>
         public IMesLayoutItem ActiveItem
         {
             get => _activeItem;
             set
             {
-                if (SetProperty(ref _activeItem, value))
+                if (SetProperty(ref _activeItem, value) && value is IMesDocument document)
                 {
-                    if (value is IMesDocument document)
-                    {
-                        SelectedDocument = document;
-                    }
+                    SelectedDocument = document;
                 }
             }
         }
-
+        /// <summary>
+        /// This contains all of the tool (side) windows
+        /// </summary>
         public MvxObservableCollection<IMesTool> Tools { get; }
+        /// <summary>
+        /// This contains all of the content (main) windows
+        /// </summary>
         public MvxObservableCollection<IMesDocument> Documents { get; }
 
-        public Boolean ShowFloatingWindowsInTaskbar
+        public bool ShowFloatingWindowsInTaskbar
         {
             get => _showFloatingWindowsInTaskbar;
             set
@@ -49,9 +64,9 @@ namespace MinoriEditorShell.ViewModels
             }
         }
 
-        public virtual String StateFile => @".\ApplicationState.bin";
+        public virtual string StateFile => @".\ApplicationState.bin";
 
-        public Boolean HasPersistedState => File.Exists(StateFile);
+        public bool HasPersistedState => File.Exists(StateFile);
 
         public IMesDocument SelectedDocument { get; private set; }
 

@@ -16,9 +16,9 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// Gets all of the brushes in a dictionary format
         /// </summary>
         /// <returns></returns>
-        public IDictionary<String, SolidColorBrush> GetBrushes()
+        public IDictionary<string, SolidColorBrush> GetBrushes()
         {
-            SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
+            SortedDictionary<string, SolidColorBrush> results = new SortedDictionary<string, SolidColorBrush>();
 
             // Get theme dict
             ResourceDictionary theme = CurrentThemeDictionary;
@@ -26,11 +26,11 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             // if theme is not selected yet, don't process
             if (theme != null)
             {
-                foreach (Object item in theme.Keys)
+                foreach (object item in theme.Keys)
                 {
                     // Construct solid color brush
-                    String newItem = item.ToString();
-                    Object current = theme[newItem];
+                    string newItem = item.ToString();
+                    object current = theme[newItem];
                     if (current is SolidColorBrush brush)
                     {
                         results[newItem] = brush;
@@ -44,7 +44,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// Convert dictionary to resources
         /// </summary>
         /// <param name="brushes"></param>
-        public void SetBrushes(IDictionary<String, SolidColorBrush> brushes)
+        public void SetBrushes(IDictionary<string, SolidColorBrush> brushes)
         {
             ResourceDictionary appDict = GetAppDictionary();
             ResourceDictionary themeDict = CurrentThemeDictionary;
@@ -55,7 +55,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             themeDict.Clear();
 
             // Object type not known at this point
-            foreach (String key in brushes.Keys)
+            foreach (string key in brushes.Keys)
             {
                 themeDict[key] = brushes[key];
             }
@@ -63,7 +63,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
             appDict.EndInit();
         }
 
-        public String ExportString()
+        public string ExportString()
         {
             ResourceDictionary theme = CurrentThemeDictionary;
             if (theme == null)
@@ -90,8 +90,8 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
 
             // Export colors
             export.AppendLine("    <!-- Begin SolidColorBrush Export -->");
-            IDictionary<String, SolidColorBrush> brushes = GetBrushes();
-            foreach (String key in brushes.Keys)
+            IDictionary<string, SolidColorBrush> brushes = GetBrushes();
+            foreach (string key in brushes.Keys)
             {
                 export.AppendLine($"    <SolidColorBrush x:Key=\"{key}\" Color=\"{brushes[key].Color}\"  options:Freeze=\"True\" />");
             }

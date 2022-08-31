@@ -4,6 +4,6 @@ namespace MinoriEditorShell.Services
 {
     public interface IMesMessageBox
     {
-        void Alert(String text, String caption);
+        void Alert(string text, string caption);
     }
 }

@@ -37,7 +37,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// Statictial information for rendering use.
         /// </summary>
         /// <param name="o"></param>
-        public void ShowQuadTree(Object o)
+        public void ShowQuadTree(object o)
         {
             //if (o is Canvas c)
             //{
@@ -100,12 +100,12 @@ namespace MinoriEditorShell.VirtualCanvas.Models
                 throw new ArgumentException("Bounds of quadrant cannot be zero width or height");
             }
 
-            Single w = Bounds.Width / 2;
+            float w = Bounds.Width / 2;
             if (w == 0)
             {
                 w = 1;
             }
-            Single h = Bounds.Height / 2;
+            float h = Bounds.Height / 2;
             if (h == 0)
             {
                 h = 1;
@@ -187,8 +187,8 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         public void GetIntersectingNodes(IList<IMesQuadNode<T>> nodes, RectangleF bounds)
         {
             if (bounds.IsEmpty) { return; }
-            Single w = Bounds.Width / 2;
-            Single h = Bounds.Height / 2;
+            float w = Bounds.Width / 2;
+            float h = Bounds.Height / 2;
 
             // assumption that the Rect struct is almost as fast as doing the operations
             // manually since Rect is a value type.
@@ -250,11 +250,11 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>boolean</returns>
-        public Boolean HasIntersectingNodes(RectangleF bounds)
+        public bool HasIntersectingNodes(RectangleF bounds)
         {
             if (bounds.IsEmpty) { return false; }
-            Single w = Bounds.Width / 2;
-            Single h = Bounds.Height / 2;
+            float w = Bounds.Width / 2;
+            float h = Bounds.Height / 2;
 
             // assumption that the Rect struct is almost as fast as doing the operations
             // manually since Rect is a value type.
@@ -264,7 +264,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             RectangleF bottomLeft = new RectangleF(Bounds.Left, Bounds.Top + h, w, h);
             RectangleF bottomRight = new RectangleF(Bounds.Left + w, Bounds.Top + h, w, h);
 
-            Boolean found = false;
+            bool found = false;
 
             // See if any child quadrants completely contain this node.
             if (topLeft.IntersectsWith(bounds) && TopLeft != null)
@@ -299,7 +299,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <param name="last">The last node in the circularly linked list.</param>
         /// <param name="bounds">Bounds to test</param>
         /// <returns>Return true if a node in the list intersects the bounds</returns>
-        public Boolean HasIntersectingNodes(IMesQuadNode<T> last, RectangleF bounds)
+        public bool HasIntersectingNodes(IMesQuadNode<T> last, RectangleF bounds)
         {
             if (last != null)
             {
@@ -321,9 +321,9 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// </summary>
         /// <param name="node">The node to remove</param>
         /// <returns>Returns true if the node was found and removed.</returns>
-        public Boolean RemoveNode(T node)
+        public bool RemoveNode(T node)
         {
-            Boolean rc = false;
+            bool rc = false;
             if (Nodes != null)
             {
                 IMesQuadNode<T> p = Nodes;

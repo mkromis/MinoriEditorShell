@@ -7,7 +7,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
     public class LogWriter : IDisposable
     {
         private XmlWriter _xw;
-        private Int32 _indent;
+        private int _indent;
 
         public LogWriter(TextWriter w)
         {
@@ -18,9 +18,9 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             _xw = XmlWriter.Create(w, s);
         }
 
-        public Int32 MaxDepth { get; private set; }
+        public int MaxDepth { get; private set; }
 
-        public void Open(String label)
+        public void Open(string label)
         {
             _xw.WriteStartElement(label);
             _indent++;
@@ -33,7 +33,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             _xw.WriteEndElement();
         }
 
-        public void WriteAttribute(String name, String value) => _xw.WriteAttributeString(name, value);
+        public void WriteAttribute(string name, string value) => _xw.WriteAttributeString(name, value);
 
         #region IDisposable Members
 
@@ -43,7 +43,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(Boolean disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing && _xw != null)
             {

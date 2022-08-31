@@ -27,7 +27,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             }
         }
 
-        public String Identifier { get; set; }
+        public string Identifier { get; set; }
 
         public IMvxBindingContext BindingContext
         {
@@ -48,7 +48,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             set => _bindingContext = value;
         }
 
-        public String DisplayName
+        public string DisplayName
         {
             get => Title;
             set => Title = value;
@@ -61,7 +61,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             Initialized += MesWindow_Initialized;
         }
 
-        private void MesWindow_Initialized(Object sender, EventArgs e)
+        private void MesWindow_Initialized(object sender, EventArgs e)
         {
             if (this == Application.Current.MainWindow)
             {
@@ -79,7 +79,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             }
         }
 
-        private void MesWindow_Unloaded(Object sender, RoutedEventArgs e)
+        private void MesWindow_Unloaded(object sender, RoutedEventArgs e)
         {
             ViewModel?.ViewDisappearing();
             ViewModel?.ViewDisappeared();
@@ -91,13 +91,13 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MesWindow_Loaded(Object sender, RoutedEventArgs e)
+        private void MesWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            String blueTheme = "MesBlueTheme";
+            string blueTheme = "MesBlueTheme";
 
             // Get main theme property if possible
-            String themeName = Properties.Settings.Default.ThemeName;
-            if (String.IsNullOrEmpty(themeName)) themeName = blueTheme;
+            string themeName = Properties.Settings.Default.ThemeName;
+            if (string.IsNullOrEmpty(themeName)) themeName = blueTheme;
 
             // Set theme from name
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();

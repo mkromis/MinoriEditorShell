@@ -26,13 +26,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         // multiple mouse clicks when you flick the mouse wheel accumulate so it can be more than this.
         // 0.10 feels about right, but you can increase the number if you feel you have to work the
         // mouse wheel to hard to zoom in as fast as you want to.
-        private const Double _sensitivity = .10;
+        private const double _sensitivity = .10;
 
         // defaultZoomTime is the amount of time in milliseconds the zoom animation takes to give
         // a smooth zoom in behavior.  This time increases when you flick the mouse wheel up to maxZoomTime.
-        private const Double _defaultZoomTime = 100;
+        private const double _defaultZoomTime = 100;
 
-        private const Double _maxZoomTime = 300;
+        private const double _maxZoomTime = 300;
 
         private FrameworkElement _container;
         private FrameworkElement _target;
@@ -48,14 +48,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         private ScaleTransform _scale;
 
         private TranslateTransform _translate;
-        private Double _value = 1;
-        private Double _newZoom = 1;
+        private double _value = 1;
+        private double _newZoom = 1;
         private Point _offset;
         private Point _mouse;
         private Point _onTarget;
-        private Double _zoomTime = _defaultZoomTime;
-        private Int64 _startTime;
-        private Double _lastAmount;
+        private double _zoomTime = _defaultZoomTime;
+        private long _startTime;
+        private double _lastAmount;
         private Rect _targetRect;
 
         /// <summary>
@@ -66,17 +66,17 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// When we are zooming to a point this property can be animated
         /// </summary>
-        public static readonly DependencyProperty ZoomToPointProperty = DependencyProperty.Register("ZoomToPoint", typeof(Double), typeof(MesMapZoom));
+        public static readonly DependencyProperty ZoomToPointProperty = DependencyProperty.Register("ZoomToPoint", typeof(double), typeof(MesMapZoom));
 
         /// <summary>
         /// When we are zooming to a rectangle this property can be animated.
         /// </summary>
-        public static readonly DependencyProperty ZoomToRectProperty = DependencyProperty.Register("ZoomToRect", typeof(Double), typeof(MesMapZoom));
+        public static readonly DependencyProperty ZoomToRectProperty = DependencyProperty.Register("ZoomToRect", typeof(double), typeof(MesMapZoom));
 
         /// <summary>
         /// This event is raised when the scale or translation is changed.
         /// </summary>
-        public event EventHandler<Double> ValueChanged;
+        public event EventHandler<double> ValueChanged;
 
         /// <summary>
         /// Construct new MapZoom object that manages the RenderTransform of the given target object.
@@ -135,7 +135,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">The TranslateTransform object</param>
         /// <param name="e">noop</param>
-        private void OnTranslateChanged(Object sender, EventArgs e)
+        private void OnTranslateChanged(object sender, EventArgs e)
         {
             if (_offset.X != _translate.X || _offset.Y != _translate.Y)
             {
@@ -150,7 +150,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">The ScaleTransform object</param>
         /// <param name="e">noop</param>
-        private void OnScaleChanged(Object sender, EventArgs e) => _value = _scale.ScaleX;
+        private void OnScaleChanged(object sender, EventArgs e) => _value = _scale.ScaleX;
 
         /// <summary>
         /// Handle the key down event and show special cursor when control key is pressed to
@@ -158,7 +158,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Keyboard</param>
         /// <param name="e">Key information</param>
-        private void OnKeyDown(Object sender, KeyEventArgs e)
+        private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.RightCtrl || e.Key == Key.LeftCtrl)
             {
@@ -171,7 +171,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Keyboard</param>
         /// <param name="e">Key information</param>
-        private void OnKeyUp(Object sender, KeyEventArgs e)
+        private void OnKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.RightCtrl || e.Key == Key.LeftCtrl)
             {
@@ -185,7 +185,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse move information</param>
-        private void OnMouseMove(Object sender, System.Windows.Input.MouseEventArgs e)
+        private void OnMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             _mouse = _container.PointToScreen(e.GetPosition(_container));
             _onTarget = e.GetPosition(_target);
@@ -203,11 +203,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse wheel information</param>
-        public void OnMouseWheel(Object sender, MouseWheelEventArgs e)
+        public void OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta != 0 && (Keyboard.Modifiers & ModifierKeys.Control) != 0)
             {
-                HandleZoom(e.Delta / (Double)Mouse.MouseWheelDeltaForOneLine);
+                HandleZoom(e.Delta / (double)Mouse.MouseWheelDeltaForOneLine);
                 e.Handled = true;
             }
         }
@@ -272,20 +272,20 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 
             Point delta = new Point(moved.X - _onTarget.X, moved.Y - _onTarget.Y);
 
-            Double x = _translate.X + (delta.X * _value);
-            Double y = _translate.Y + (delta.Y * _value);
+            double x = _translate.X + (delta.X * _value);
+            double y = _translate.Y + (delta.Y * _value);
 
             Size containerSize = ContainerSize;
-            Double width = containerSize.Width;
-            Double height = containerSize.Height;
+            double width = containerSize.Width;
+            double height = containerSize.Height;
 
-            Double right = (_target.ActualWidth * _value) + x;
+            double right = (_target.ActualWidth * _value) + x;
             if (right < width && x < 0)
             {
                 x += width - right;
             }
 
-            Double bottom = (_target.ActualHeight * _value) + y;
+            double bottom = (_target.ActualHeight * _value) + y;
             if (bottom < height && y < 0)
             {
                 y += height - bottom;
@@ -303,13 +303,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Rect cr = _target.TransformToAncestor(_container).TransformBounds(_targetRect);
             // Keep it centered.
             Size containerSize = ContainerSize;
-            Double width = containerSize.Width;
-            Double height = containerSize.Height;
+            double width = containerSize.Width;
+            double height = containerSize.Height;
 
-            Double cx = (width - cr.Width) / 2;
-            Double cy = (height - cr.Height) / 2;
-            Double dx = _translate.X + cx - cr.X;
-            Double dy = _translate.Y + cy - cr.Y;
+            double cx = (width - cr.Width) / 2;
+            double cy = (height - cr.Height) / 2;
+            double dx = _translate.X + cx - cr.X;
+            double dy = _translate.Y + cy - cr.Y;
             Translate(dx, dy);
         }
 
@@ -318,7 +318,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="x">The x-cordinate</param>
         /// <param name="y">The y-coordinate</param>
-        private void Translate(Double x, Double y)
+        private void Translate(double x, double y)
         {
             if (_target is IScrollInfo)
             {
@@ -343,7 +343,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// Get/set the current zoom level - this is a scale factor, 0.5 means zoom out so everything is half
         /// the normal size.  A value of 2 means zoom in so everything on the target object is twice the normal size.
         /// </summary>
-        public Double Value
+        public double Value
         {
             get => _value;
             set
@@ -408,14 +408,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Rect cr = _target.TransformToAncestor(_container).TransformBounds(r);
 
             Size containerSize = ContainerSize;
-            Double width = containerSize.Width;
-            Double height = containerSize.Height;
+            double width = containerSize.Width;
+            double height = containerSize.Height;
 
-            Double xzoom = width / cr.Width;
-            Double yzoom = height / cr.Height;
-            Double zoom = _value * Math.Min(xzoom, yzoom);
+            double xzoom = width / cr.Width;
+            double yzoom = height / cr.Height;
+            double zoom = _value * Math.Min(xzoom, yzoom);
 
-            Double oldZoom = _value;
+            double oldZoom = _value;
 
             _targetRect = r;
             _startTime = 0;
@@ -445,15 +445,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// user wants - for example, how hard did they spin the mouse.
         /// </summary>
         /// <param name="clicks">Value between -1 and 1</param>
-        private void HandleZoom(Double clicks)
+        private void HandleZoom(double clicks)
         {
-            Double amount = clicks;
-            Double oldZoom = _value;
+            double amount = clicks;
+            double oldZoom = _value;
             if (amount > 1) { amount = 1; }
             if (amount < -1) { amount = -1; }
 
             // If we've changed direction since the last animation then stop animations.
-            Boolean sameSign = Math.Sign(amount) == Math.Sign(_lastAmount);
+            bool sameSign = Math.Sign(amount) == Math.Sign(_lastAmount);
             if (!sameSign || _startTime == 0)
             {
                 StopAnimations();
@@ -461,14 +461,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 
             // Accumulate the desired _newZoom amount as this method is called while the
             // user is repeatedly spinning the mouse.
-            Double sensitivity = _sensitivity;
-            Double extra = Math.Abs(clicks);
+            double sensitivity = _sensitivity;
+            double extra = Math.Abs(clicks);
             if (extra > 1)
             {
                 // mouse wheel is spinning fast.
                 sensitivity = Math.Min(0.5, sensitivity * extra);
             }
-            Double delta = 1 - (Math.Abs(amount) * sensitivity);
+            double delta = 1 - (Math.Abs(amount) * sensitivity);
             if (amount < 0)
             {
                 // zoom in
@@ -482,7 +482,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 
             // Calculate how long we want to keep zooming (_zoomTime) and increase this time
             // if the user keeps spinning the mouse so we get a nice momentum effect.
-            Int64 tick = Environment.TickCount;
+            long tick = Environment.TickCount;
 
             if (sameSign && _startTime != 0 && _startTime + _zoomTime > tick)
             {
@@ -508,7 +508,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="oldZoom">The old zoom value</param>
         /// <param name="newZoom">The new value we want to be at</param>
         /// <param name="d">The amound of time we can take to do the animation</param>
-        private void AnimateZoom(DependencyProperty property, Double oldZoom, Double newZoom, Duration d)
+        private void AnimateZoom(DependencyProperty property, double oldZoom, double newZoom, Duration d)
         {
             MesExponentialDoubleAnimation a = new MesExponentialDoubleAnimation(oldZoom, newZoom, 2, EdgeBehavior.EaseOut, d);
             BeginAnimation(property, a);
@@ -564,7 +564,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// The margin around the rectangle that we zoom into view so it doesn't take up all the visible space.
         /// </summary>
-        private const Double margin = 20;
+        private const double margin = 20;
 
         /// <summary>
         /// Start the zoom/scroll animation
@@ -572,11 +572,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="rect">Rect is in 'container' coordinates.</param>
         /// <param name="duration">Time allowed for the animation</param>
         /// <param name="zoom">Whether we can zoom or not</param>
-        private void ScrollIntoView(Rect rect, Duration duration, Boolean zoom)
+        private void ScrollIntoView(Rect rect, Duration duration, bool zoom)
         {
             Size containerSize = ContainerSize;
-            Double width = containerSize.Width;
-            Double height = containerSize.Height;
+            double width = containerSize.Width;
+            double height = containerSize.Height;
 
             // Get the bounds of the container so we can see if the selected node is inside these bounds right now.
             Rect window = new Rect(0, 0, width, height);
@@ -616,9 +616,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 // amount.
 
                 Point startPos = new Point(_translate.X, _translate.Y);
-                Double x = startPos.X + delta.X;
+                double x = startPos.X + delta.X;
                 if (x > 0) { x = 0; }
-                Double y = startPos.Y + delta.Y;
+                double y = startPos.Y + delta.Y;
                 if (y > 0) { y = 0; }
 
                 Point newPos = new Point(x, y);
@@ -635,8 +635,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         {
             if (e.Property == ZoomToPointProperty)
             {
-                Double o = (Double)e.OldValue;
-                Double v = (Double)e.NewValue;
+                double o = (double)e.OldValue;
+                double v = (double)e.NewValue;
                 if (v != 0 && v != o)
                 {
                     _value = v;
@@ -646,8 +646,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             }
             else if (e.Property == ZoomToRectProperty)
             {
-                Double o = (Double)e.OldValue;
-                Double v = (Double)e.NewValue;
+                double o = (double)e.OldValue;
+                double v = (double)e.NewValue;
                 if (v != 0 && v != o)
                 {
                     _value = v;

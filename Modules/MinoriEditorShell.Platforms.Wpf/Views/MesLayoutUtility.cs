@@ -18,7 +18,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
 
         public static void LoadLayout(
             DockingManager manager, Stream stream, Action<IMesDocument> addDocumentCallback,
-            Action<IMesTool> addToolCallback, Dictionary<String, IMesLayoutItem> items)
+            Action<IMesTool> addToolCallback, Dictionary<string, IMesLayoutItem> items)
         {
             XmlLayoutSerializer layoutSerializer = new XmlLayoutSerializer(manager);
 

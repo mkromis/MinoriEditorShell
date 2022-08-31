@@ -6,11 +6,11 @@ namespace MinoriEditorShell.Services
     public interface IMesTool : IMesLayoutItem
     {
         MesPaneLocation PreferredLocation { get; }
-        Double PreferredWidth { get; }
-        Double PreferredHeight { get; }
+        double PreferredWidth { get; }
+        double PreferredHeight { get; }
         IMvxView View { get; set; }
-        Boolean IsVisible { get; set; }
+        bool IsVisible { get; set; }
 
-        Boolean CanClose { get; }
+        bool CanClose { get; }
     }
 }

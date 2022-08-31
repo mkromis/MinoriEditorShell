@@ -10,25 +10,25 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
     /// </devdoc>
     public struct HlsColor
     {
-        private const Int32 ShadowAdj = -333;
-        private const Int32 HilightAdj = 500;
+        private const int ShadowAdj = -333;
+        private const int HilightAdj = 500;
 
-        private const Int32 Range = 240;
-        private const Int32 HLSMax = Range;
-        private const Int32 RGBMax = 255;
-        private const Int32 Undefined = HLSMax * 2 / 3;
+        private const int Range = 240;
+        private const int HLSMax = Range;
+        private const int RGBMax = 255;
+        private const int Undefined = HLSMax * 2 / 3;
 
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.HLSColor"]/*' />
         /// <devdoc>
         /// </devdoc>
         public HlsColor(Color color)
         {
-            Int32 r = color.R;
-            Int32 g = color.G;
-            Int32 b = color.B;
-            Int32 max, min;        /* max and min RGB values */
-            Int32 sum, dif;
-            Int32 Rdelta, Gdelta, Bdelta;  /* intermediate value: % of spread from max */
+            int r = color.R;
+            int g = color.G;
+            int b = color.B;
+            int max, min;        /* max and min RGB values */
+            int sum, dif;
+            int Rdelta, Gdelta, Bdelta;  /* intermediate value: % of spread from max */
 
             /* calculate lightness */
             max = Math.Max(Math.Max(r, g), b);
@@ -80,30 +80,30 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.Hue"]/*' />
         /// <devdoc>
         /// </devdoc>
-        public Int32 Hue { get; }
+        public int Hue { get; }
 
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.Luminosity"]/*' />
         /// <devdoc>
         /// </devdoc>
-        public Int32 Luminosity { get; }
+        public int Luminosity { get; }
 
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.Saturation"]/*' />
         /// <devdoc>
         /// </devdoc>
-        public Int32 Saturation { get; }
+        public int Saturation { get; }
 
-        public Color Darker(Single percDarker)
+        public Color Darker(float percDarker)
         {
-            Int32 oneLum = 0;
-            Int32 zeroLum = NewLuma(ShadowAdj, true);
-            return ColorFromHLS(Hue, zeroLum - (Int32)((zeroLum - oneLum) * percDarker), Saturation);
+            int oneLum = 0;
+            int zeroLum = NewLuma(ShadowAdj, true);
+            return ColorFromHLS(Hue, zeroLum - (int)((zeroLum - oneLum) * percDarker), Saturation);
         }
 
-        public static Boolean operator ==(HlsColor a, HlsColor b) => a.Equals(b);
+        public static bool operator ==(HlsColor a, HlsColor b) => a.Equals(b);
 
-        public static Boolean operator !=(HlsColor a, HlsColor b) => !a.Equals(b);
+        public static bool operator !=(HlsColor a, HlsColor b) => !a.Equals(b);
 
-        public override Boolean Equals(Object o)
+        public override bool Equals(object o)
         {
             if (!(o is HlsColor))
             {
@@ -116,18 +116,18 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 Luminosity == c.Luminosity;
         }
 
-        public override Int32 GetHashCode() => Hue << 6 | Saturation << 2 | Luminosity;
+        public override int GetHashCode() => Hue << 6 | Saturation << 2 | Luminosity;
 
-        public Color Lighter(Single percLighter)
+        public Color Lighter(float percLighter)
         {
-            Int32 zeroLum = Luminosity;
-            Int32 oneLum = NewLuma(HilightAdj, true);
-            return ColorFromHLS(Hue, zeroLum + (Int32)((oneLum - zeroLum) * percLighter), Saturation);
+            int zeroLum = Luminosity;
+            int oneLum = NewLuma(HilightAdj, true);
+            return ColorFromHLS(Hue, zeroLum + (int)((oneLum - zeroLum) * percLighter), Saturation);
         }
 
-        private Int32 NewLuma(Int32 n, Boolean scale) => NewLuma(Luminosity, n, scale);
+        private int NewLuma(int n, bool scale) => NewLuma(Luminosity, n, scale);
 
-        private static Int32 NewLuma(Int32 luminosity, Int32 n, Boolean scale)
+        private static int NewLuma(int luminosity, int n, bool scale)
         {
             if (n == 0)
             {
@@ -138,7 +138,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             {
                 if (n > 0)
                 {
-                    return (Int32)(((luminosity * (1000 - n)) + ((Range + 1L) * n)) / 1000);
+                    return (int)(((luminosity * (1000 - n)) + ((Range + 1L) * n)) / 1000);
                 }
                 else
                 {
@@ -146,8 +146,8 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 }
             }
 
-            Int32 newLum = luminosity;
-            newLum += (Int32)((Int64)n * Range / 1000);
+            int newLum = luminosity;
+            newLum += (int)((long)n * Range / 1000);
 
             if (newLum < 0)
             {
@@ -165,15 +165,15 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.ColorFromHLS"]/*' />
         /// <devdoc>
         /// </devdoc>
-        public static Color ColorFromHLS(Int32 hue, Int32 luminosity, Int32 saturation)
+        public static Color ColorFromHLS(int hue, int luminosity, int saturation)
         {
-            Byte r, g, b;                      /* RGB component values */
-            Int32 magic1, magic2;       /* calculated magic numbers (really!) */
+            byte r, g, b;                      /* RGB component values */
+            int magic1, magic2;       /* calculated magic numbers (really!) */
 
             if (saturation == 0)
             {
                 /* achromatic case */
-                r = g = b = (Byte)(luminosity * RGBMax / HLSMax);
+                r = g = b = (byte)(luminosity * RGBMax / HLSMax);
                 if (hue != Undefined)
                 {
                     /* ERROR */
@@ -194,9 +194,9 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 magic1 = (2 * luminosity) - magic2;
 
                 /* get RGB, change units from HLSMax to RGBMax */
-                r = (Byte)(((HueToRGB(magic1, magic2, hue + (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
-                g = (Byte)(((HueToRGB(magic1, magic2, hue) * RGBMax) + (HLSMax / 2)) / HLSMax);
-                b = (Byte)(((HueToRGB(magic1, magic2, hue - (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
+                r = (byte)(((HueToRGB(magic1, magic2, hue + (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
+                g = (byte)(((HueToRGB(magic1, magic2, hue) * RGBMax) + (HLSMax / 2)) / HLSMax);
+                b = (byte)(((HueToRGB(magic1, magic2, hue - (HLSMax / 3)) * RGBMax) + (HLSMax / 2)) / HLSMax);
             }
             return Color.FromArgb(r, g, b);
         }
@@ -204,7 +204,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
         /// <include file='doc\ControlPaint.uex' path='docs/doc[@for="ControlPaint.HLSColor.HueToRGB"]/*' />
         /// <devdoc>
         /// </devdoc>
-        private static Int32 HueToRGB(Int32 n1, Int32 n2, Int32 hue)
+        private static int HueToRGB(int n1, int n2, int hue)
         {
             /* range check: note values passed add/subtract thirds of range */
 
@@ -240,6 +240,6 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             }
         }
 
-        public override String ToString() => $"{Hue}, {Luminosity}, {Saturation}";
+        public override string ToString() => $"{Hue}, {Luminosity}, {Saturation}";
     }
 }

@@ -10,7 +10,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         public Style ToolStyle { get; set; }
         public Style DocumentStyle { get; set; }
 
-        public override Style SelectStyle(Object item, DependencyObject container)
+        public override Style SelectStyle(object item, DependencyObject container)
         {
             switch (item)
             {

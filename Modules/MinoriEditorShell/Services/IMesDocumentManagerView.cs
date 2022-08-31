@@ -9,7 +9,7 @@ namespace MinoriEditorShell.Services
         void LoadLayout(
             Stream stream, Action<IMesTool> addToolCallback,
             Action<IMesDocument> addDocumentCallback,
-            Dictionary<String, IMesLayoutItem> itemsState);
+            Dictionary<string, IMesLayoutItem> itemsState);
 
         void SaveLayout(Stream stream);
 

@@ -11,12 +11,12 @@ namespace MinoriEditorShell.VirtualCanvas.Services
 
         IEnumerable<T> GetNodesInside(RectangleF bounds);
 
-        Boolean HasNodesInside(RectangleF bounds);
+        bool HasNodesInside(RectangleF bounds);
 
         void Insert(T node, RectangleF bounds);
 
-        System.Boolean Remove(T node);
+        bool Remove(T node);
 
-        void ShowQuadTree(Object container);
+        void ShowQuadTree(object container);
     }
 }

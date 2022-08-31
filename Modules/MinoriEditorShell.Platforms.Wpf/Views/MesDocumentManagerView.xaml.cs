@@ -29,12 +29,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             Stream stream,
             Action<IMesTool> addToolCallback,
             Action<IMesDocument> addDocumentCallback,
-            Dictionary<String, IMesLayoutItem> itemsState) =>
+            Dictionary<string, IMesLayoutItem> itemsState) =>
             MesLayoutUtility.LoadLayout(Manager, stream, addDocumentCallback, addToolCallback, itemsState);
 
         public void SaveLayout(Stream stream) => MesLayoutUtility.SaveLayout(Manager, stream);
 
-        private void OnManagerLayoutUpdated(Object sender, EventArgs e) => UpdateFloatingWindows();
+        private void OnManagerLayoutUpdated(object sender, EventArgs e) => UpdateFloatingWindows();
 
         public void UpdateFloatingWindows()
         {
@@ -42,7 +42,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             if (mainWindow != null)
             {
                 ImageSource mainWindowIcon = mainWindow.Icon;
-                Boolean showFloatingWindowsInTaskbar = ((MesDocumentManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
+                bool showFloatingWindowsInTaskbar = ((MesDocumentManagerViewModel)DataContext).ShowFloatingWindowsInTaskbar;
                 foreach (LayoutFloatingWindowControl window in Manager?.FloatingWindows)
                 {
                     window.Icon = mainWindowIcon;

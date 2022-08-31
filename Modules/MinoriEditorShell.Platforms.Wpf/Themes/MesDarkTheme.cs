@@ -10,7 +10,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Name of dark theme
         /// </summary>
-        public override String Name => Properties.Resources.ThemeDarkName;
+        public override string Name => Properties.Resources.ThemeDarkName;
 
         /// <summary>
         /// Constructor for theme

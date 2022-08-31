@@ -6,10 +6,10 @@ namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public class VisualChangeEventArgs : EventArgs
     {
-        public Int32 Added { get; set; }
-        public Int32 Removed { get; set; }
+        public int Added { get; set; }
+        public int Removed { get; set; }
 
-        public VisualChangeEventArgs(Int32 added, Int32 removed)
+        public VisualChangeEventArgs(int added, int removed)
         {
             Added = added;
             Removed = removed;
@@ -19,14 +19,14 @@ namespace MinoriEditorShell.VirtualCanvas.Services
     public interface IMesVirtualCanvasControl
     {
         IMesContentCanvas ContentCanvas { get; }
-        Double ExtentWidth { get; }
-        Double ExtentHeight { get; }
-        Double ViewportWidth { get; }
-        Double ViewportHeight { get; }
+        double ExtentWidth { get; }
+        double ExtentHeight { get; }
+        double ViewportWidth { get; }
+        double ViewportHeight { get; }
 
         ObservableCollection<IMesVirtualChild> VirtualChildren { get; }
         SizeF Extent { get; }
-        Int32 LiveVisualCount { get; }
+        int LiveVisualCount { get; }
 
         event EventHandler<VisualChangeEventArgs> VisualsChanged;
 

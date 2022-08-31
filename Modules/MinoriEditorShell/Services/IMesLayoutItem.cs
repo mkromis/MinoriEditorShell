@@ -8,9 +8,9 @@ namespace MinoriEditorShell.Services
     public interface IMesLayoutItem : IMvxViewModel
     {
         Guid Id { get; }
-        String ContentId { get; }
+        string ContentId { get; }
         ICommand CloseCommand { get; }
-        String DisplayName { get; }
+        string DisplayName { get; }
         Uri IconSource { get; }
         bool IsSelected { get; set; }
         bool ShouldReopenOnStart { get; }

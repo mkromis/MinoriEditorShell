@@ -7,13 +7,13 @@ namespace MinoriEditorShell.Platforms.Wpf
 {
     public abstract class MesPersistedDocument : MesDocument, IMesPersistedDocument
     {
-        private Boolean _isDirty;
+        private bool _isDirty;
 
-        public Boolean IsNew { get; private set; }
-        public String FileName { get; private set; }
-        public String FilePath { get; private set; }
+        public bool IsNew { get; private set; }
+        public string FileName { get; private set; }
+        public string FilePath { get; private set; }
 
-        public Boolean IsDirty
+        public bool IsDirty
         {
             get => _isDirty;
             set
@@ -40,7 +40,7 @@ namespace MinoriEditorShell.Platforms.Wpf
 
         private void UpdateDisplayName() => DisplayName = (IsDirty) ? FileName + "*" : FileName;
 
-        public async Task New(String fileName)
+        public async Task New(string fileName)
         {
             FileName = fileName;
             UpdateDisplayName();
@@ -53,7 +53,7 @@ namespace MinoriEditorShell.Platforms.Wpf
 
         protected abstract Task DoNew();
 
-        public async Task Load(String filePath)
+        public async Task Load(string filePath)
         {
             FilePath = filePath;
             FileName = Path.GetFileName(filePath);
@@ -65,9 +65,9 @@ namespace MinoriEditorShell.Platforms.Wpf
             await DoLoad(filePath);
         }
 
-        protected abstract Task DoLoad(String filePath);
+        protected abstract Task DoLoad(string filePath);
 
-        public async Task Save(String filePath)
+        public async Task Save(string filePath)
         {
             FilePath = filePath;
             FileName = Path.GetFileName(filePath);
@@ -79,6 +79,6 @@ namespace MinoriEditorShell.Platforms.Wpf
             IsNew = false;
         }
 
-        protected abstract Task DoSave(String filePath);
+        protected abstract Task DoSave(string filePath);
     }
 }

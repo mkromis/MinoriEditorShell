@@ -24,13 +24,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
     /// </summary>
     internal class MesPerfTimer
     {
-        private Int64 _start;
-        private Int64 _end;
-        private readonly Int64 _freq;
-        private Int64 _min;
-        private Int64 _max;
-        private Int64 _count;
-        private Int64 _sum;
+        private long _start;
+        private long _end;
+        private readonly long _freq;
+        private long _min;
+        private long _max;
+        private long _count;
+        private long _sum;
 
         /// <summary>
         ///
@@ -60,30 +60,30 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// Get the time in milliseconds between Start() and Stop().
         /// </summary>
         /// <returns>Milliseconds</returns>
-        public Int64 GetDuration() => GetMilliseconds(GetDurationInTicks());
+        public long GetDuration() => GetMilliseconds(GetDurationInTicks());
 
         /// <summary>
         /// Convert the given argument from "ticks" to milliseconds.
         /// </summary>
         /// <param name="ticks">Number of ticks returned from GetTicks()</param>
         /// <returns>Milliseconds</returns>
-        public Int64 GetMilliseconds(Int64 ticks) => (ticks * (Int64)1000) / _freq;
+        public long GetMilliseconds(long ticks) => (ticks * (long)1000) / _freq;
 
         /// <summary>
         /// Get the time between Start() and Stop() in the highest fidelity possible
         /// as defined by Windows QueryPerformanceFrequency.  Usually this is nanoseconds.
         /// </summary>
         /// <returns>High fidelity tick count</returns>
-        public Int64 GetDurationInTicks() => (_end - _start);
+        public long GetDurationInTicks() => (_end - _start);
 
         /// <summary>
         /// Get current time in ighest fidelity possible as defined by Windows QueryPerformanceCounter.
         /// Usually this is nanoseconds.
         /// </summary>
         /// <returns>High fidelity tick count</returns>
-        public static Int64 GetCurrentTime()
+        public static long GetCurrentTime()
         { // in nanoseconds.
-            Int64 i = 0;
+            long i = 0;
             QueryPerformanceCounter(ref i);
             return i;
         }
@@ -95,7 +95,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// Add the given time to a running total so we can compute minimum, maximum and average.
         /// </summary>
         /// <param name="time">The time to record</param>
-        public void Count(Int64 time)
+        public void Count(long time)
         {
             if (_min == 0) { _min = time; }
             if (time < _min) { _min = time; }
@@ -109,28 +109,28 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// Return the minimum time recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>The minimum value</returns>
-        public Int64 Minimum() => _min;
+        public long Minimum() => _min;
 
         /// <summary>
         /// Return the maximum time recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>The maximum value</returns>
-        public Int64 Max() => _max;
+        public long Max() => _max;
 
         /// <summary>
         /// Return the median of the values recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>The median value</returns>
-        public Double Median() => (_min + ((_max - _min) / 2.0));
+        public double Median() => (_min + ((_max - _min) / 2.0));
 
         /// <summary>
         /// Return the variance in the numbers recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>Percentage between 0 and 100</returns>
-        public Double PercentError()
+        public double PercentError()
         {
-            Double spread = (_max - _min) / 2.0;
-            Double percent = ((Double)(spread * 100.0) / _min);
+            double spread = (_max - _min) / 2.0;
+            double percent = ((double)(spread * 100.0) / _min);
             return percent;
         }
 
@@ -138,7 +138,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// Return the avergae of the values recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>The average value</returns>
-        public Int64 Average()
+        public long Average()
         {
             if (_count == 0) { return 0; }
             return _sum / _count;
@@ -152,11 +152,11 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         [DllImport("KERNEL32.DLL", EntryPoint = "QueryPerformanceCounter", SetLastError = true,
                     CharSet = CharSet.Unicode, ExactSpelling = true,
                     CallingConvention = CallingConvention.StdCall)]
-        private static extern Int32 QueryPerformanceCounter(ref Int64 time);
+        private static extern int QueryPerformanceCounter(ref long time);
 
         [DllImport("KERNEL32.DLL", EntryPoint = "QueryPerformanceFrequency", SetLastError = true,
              CharSet = CharSet.Unicode, ExactSpelling = true,
              CallingConvention = CallingConvention.StdCall)]
-        private static extern Int32 QueryPerformanceFrequency(ref Int64 freq);
+        private static extern int QueryPerformanceFrequency(ref long freq);
     }
 }

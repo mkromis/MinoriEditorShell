@@ -17,10 +17,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// </summary>
     public class MesPan : IMesPan
     {
-        private Boolean _dragging;
+        private bool _dragging;
         private readonly FrameworkElement _target;
         private readonly MesMapZoom _zoom;
-        private Boolean _captured;
+        private bool _captured;
         private readonly Panel _container;
         private Point _mouseDownPoint;
         private Point _startTranslate;
@@ -52,7 +52,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Container</param>
         /// <param name="e">Mouse information</param>
-        private void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ModifierKeys mask = Keyboard.Modifiers & _mods;
             if (!e.Handled && mask == _mods && mask == Keyboard.Modifiers)
@@ -72,7 +72,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Move information</param>
-        private void OnMouseMove(Object sender, MouseEventArgs e)
+        private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (_dragging)
             {
@@ -91,7 +91,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (_captured)
             {

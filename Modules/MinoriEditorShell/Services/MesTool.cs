@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
+    /// <summary>
+    /// Abstract tool window. This is the dockable window on side of main window.
+    /// </summary>
     public abstract class MesTool : MesLayoutItemBase, IMesTool
     {
         private readonly ICommand _closeCommand;
@@ -12,13 +15,13 @@ namespace MinoriEditorShell.Services
 
         public abstract MesPaneLocation PreferredLocation { get; }
 
-        public virtual Double PreferredWidth => 200;
+        public virtual double PreferredWidth => 200;
 
-        public virtual Double PreferredHeight => 200;
+        public virtual double PreferredHeight => 200;
 
-        private Boolean _isVisible;
+        private bool _isVisible;
 
-        public Boolean IsVisible
+        public bool IsVisible
         {
             get => _isVisible;
             set
@@ -61,10 +64,10 @@ namespace MinoriEditorShell.Services
         }
 #endif
 
-        public override Boolean ShouldReopenOnStart => true;
+        public override bool ShouldReopenOnStart => true;
 
         public IMvxView View { get; set; }
-        public Boolean CanClose { get; }
+        public bool CanClose { get; }
 
         protected MesTool() => IsVisible = true;
     }

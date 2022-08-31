@@ -14,7 +14,7 @@ namespace MinoriEditorShell.Messages
         /// <param name="sender"></param>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        public MesSettingsChangedMessage(Object sender, String name, Object value) : base(sender)
+        public MesSettingsChangedMessage(object sender, string name, object value) : base(sender)
         {
             Name = name;
             Value = value;
@@ -23,11 +23,11 @@ namespace MinoriEditorShell.Messages
         /// <summary>
         /// Name of settings that changed
         /// </summary>
-        public String Name { get; }
+        public string Name { get; }
 
         /// <summary>
         /// New value
         /// </summary>
-        public Object Value { get; }
+        public object Value { get; }
     }
 }

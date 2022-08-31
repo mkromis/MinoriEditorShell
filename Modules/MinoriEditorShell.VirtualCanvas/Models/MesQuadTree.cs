@@ -82,7 +82,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>List of zero or mode nodes found inside the given bounds</returns>
-        public Boolean HasNodesInside(RectangleF bounds)
+        public bool HasNodesInside(RectangleF bounds)
         {
             if (Root != null)
             {
@@ -111,7 +111,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// </summary>
         /// <param name="node">The node to remove</param>
         /// <returns>True if the node was found and removed.</returns>
-        public Boolean Remove(T node)
+        public bool Remove(T node)
         {
             if (_table != null)
             {
@@ -143,6 +143,6 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// Staticail visual information
         /// </summary>
         /// <param name="container"></param>
-        public void ShowQuadTree(Object container) => Root?.ShowQuadTree(container);
+        public void ShowQuadTree(object container) => Root?.ShowQuadTree(container);
     }
 }

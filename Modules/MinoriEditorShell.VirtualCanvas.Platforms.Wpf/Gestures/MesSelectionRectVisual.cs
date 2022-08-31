@@ -16,7 +16,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     /// </summary>
     internal class MesSelectionRectVisual : FrameworkElement
     {
-        private const Double _dashRepeatLength = 8;
+        private const double _dashRepeatLength = 8;
         private readonly TileBrush _horizontalDashBrush;
         private readonly TileBrush _verticalDashBrush;
         private Point _secondPoint;
@@ -25,7 +25,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Construct new SelectionRectVisual object for the given rectangle
         /// </summary>
-        public MesSelectionRectVisual(Point firstPointP, Point secondPointP, Double zoomP)
+        public MesSelectionRectVisual(Point firstPointP, Point secondPointP, double zoomP)
         {
             DrawingGroup drawing = new DrawingGroup();
             DrawingContext context = drawing.Open();
@@ -81,7 +81,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Get/Set the current Zoom level.
         /// </summary>
-        public Double Zoom { get; set; }
+        public double Zoom { get; set; }
 
         /// <summary>
         /// Actually draw the rubber band
@@ -99,7 +99,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 using (DrawingContext drawingContext = _visualForRect.RenderOpen())
                 {
                     // Calculate line thickness.
-                    Double thickness = 1;
+                    double thickness = 1;
                     Vector cornerSize = new Vector(thickness, thickness);
                     Vector lineOffset = cornerSize / 2;
 
@@ -126,14 +126,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Provide a required override for the VisualChildrenCount property
         /// </summary>
-        protected override Int32 VisualChildrenCount => 1;
+        protected override int VisualChildrenCount => 1;
 
         /// <summary>
         /// Provide a required override for the GetVisualChild method.
         /// </summary>
         /// <param name="index">Index of the child</param>
         /// <returns>The child visual</returns>
-        protected override Visual GetVisualChild(Int32 index)
+        protected override Visual GetVisualChild(int index)
         {
             Debug.Assert(index == 0);
             return _visualForRect;

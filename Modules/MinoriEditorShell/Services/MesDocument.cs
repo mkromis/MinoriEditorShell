@@ -19,7 +19,7 @@ namespace MinoriEditorShell.Services
         /// <summary>
         /// Sets weather a document can be closed by close button
         /// </summary>
-        public Boolean CanClose { get; protected set; } = true;
+        public bool CanClose { get; protected set; } = true;
 
         /// <summary>
         /// Removes the document from manager

@@ -4,8 +4,8 @@ namespace MinoriEditorShell.Services
 {
     public interface IMesLayoutItemStatePersister
     {
-        Boolean SaveState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName);
+        bool SaveState(IMesDocumentManager shell, IMesDocumentManagerView shellView, string fileName);
 
-        Boolean LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName);
+        bool LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, string fileName);
     }
 }

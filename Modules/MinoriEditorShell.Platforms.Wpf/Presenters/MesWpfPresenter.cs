@@ -48,7 +48,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
         /// <param name="attribute"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        protected override async Task<Boolean> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
+        protected override async Task<bool> ShowContentView(FrameworkElement element, MvxContentPresentationAttribute attribute, MvxViewModelRequest request)
         {
             try
             {

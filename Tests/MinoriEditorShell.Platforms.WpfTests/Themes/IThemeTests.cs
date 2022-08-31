@@ -36,7 +36,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
 
         protected override void AdditionalSetup()
         {
-            String _ = System.IO.Packaging.PackUriHelper.UriSchemePack;
+            string _ = System.IO.Packaging.PackUriHelper.UriSchemePack;
             new MvvmCross.Plugin.Messenger.Plugin().Load();
 
             // register necessary interfaces

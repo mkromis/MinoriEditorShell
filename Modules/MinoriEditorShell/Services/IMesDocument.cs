@@ -16,6 +16,6 @@ namespace MinoriEditorShell.Services
         /// <summary>
         /// Determines
         /// </summary>
-        Boolean CanClose { get; }
+        bool CanClose { get; }
     }
 }

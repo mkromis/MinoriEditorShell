@@ -69,7 +69,7 @@ namespace MinoriDemo.Core.ViewModels
 
         public ICommand ThemeEditorCommand => new MvxCommand(() => NavigationService.Navigate<ThemeEditorViewModel>());
         public ICommand ToolTestCommand => new MvxCommand(() => NavigationService.Navigate<ToolSampleViewModel>());
-        public Double ZoomValue { get; set; }
+        public double ZoomValue { get; set; }
 
         private T OpenAndFocus<T>() where T : MesDocument
         {

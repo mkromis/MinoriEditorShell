@@ -22,7 +22,7 @@ namespace MinoriEditorShell.DataClasses
         /// <summary>
         /// Name of setting
         /// </summary>
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Holds the editor viewmodel

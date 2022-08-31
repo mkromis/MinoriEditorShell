@@ -10,7 +10,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Name of theme
         /// </summary>
-        public override String Name => Properties.Resources.ThemeBlueName;
+        public override string Name => Properties.Resources.ThemeBlueName;
 
         /// <summary>
         /// Blue theme constructor

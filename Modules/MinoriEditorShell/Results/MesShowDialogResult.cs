@@ -24,7 +24,7 @@ namespace MinoriEditorShell.Results
 
 #warning Coroutine
 
-        public override void Execute(/*CoroutineExecutionContext*/Object context)
+        public override void Execute(/*CoroutineExecutionContext*/object context)
         {
             throw new NotImplementedException();
 #if false

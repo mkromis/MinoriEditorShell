@@ -31,15 +31,26 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
     public class MesVirtualCanvas : VirtualizingPanel, IScrollInfo, IMesVirtualCanvasControl
     {
         private System.Windows.Size _viewPortSize;
-        public IMesQuadTree<IMesVirtualChild> Index { get; private set; }
         private ObservableCollection<IMesVirtualChild> _children;
         private readonly IList<RectangleF> _dirtyRegions = new List<RectangleF>();
         private readonly IList<RectangleF> _visibleRegions = new List<RectangleF>();
-        private IDictionary<IMesVirtualChild, Int32> _visualPositions;
-        private Int32 _nodeCollectCycle;
+        private IDictionary<IMesVirtualChild, int> _visualPositions;
+        private int _nodeCollectCycle;
 
-        public static DependencyProperty VirtualChildProperty = DependencyProperty.Register("VirtualChild", typeof(IMesVirtualChild), typeof(MesVirtualCanvas));
+        /// <summary>
+        /// Index of children for rendering
+        /// </summary>
+        public IMesQuadTree<IMesVirtualChild> Index { get; private set; }
 
+        /// <summary>
+        /// View property dependency
+        /// </summary>
+        public static DependencyProperty VirtualChildProperty =
+            DependencyProperty.Register("VirtualChild", typeof(IMesVirtualChild), typeof(MesVirtualCanvas));
+
+        /// <summary>
+        /// Event to notify of changed Visuals
+        /// </summary>
         public event EventHandler<VisualChangeEventArgs> VisualsChanged;
 
         private delegate void UpdateHandler();
@@ -54,8 +65,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             _children.CollectionChanged += new NotifyCollectionChangedEventHandler(OnChildrenCollectionChanged);
 
             // Set default back color
-            _contentCanvas = new MesContentCanvas();
-            _contentCanvas.Background = System.Windows.Media.Brushes.White;
+            _contentCanvas = new MesContentCanvas { Background = System.Windows.Media.Brushes.White };
 
             // Setup boarder
             Backdrop = new Border();
@@ -76,7 +86,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <summary>
         /// Statitics for internal rendering.
         /// </summary>
-        public void ShowQuadTree(Boolean drawing)
+        public void ShowQuadTree(bool drawing)
         {
             if (drawing)
             {
@@ -93,13 +103,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="sender">This</param>
         /// <param name="e">noop</param>
-        private void OnChildrenCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
+        private void OnChildrenCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => RebuildVisuals();
 
         /// <summary>
         /// Returns true if all Visuals have been created for the current scroll position
         /// and there is no more idle processing needed.
         /// </summary>
-        public Boolean IsDone { get; private set; } = true;
+        public bool IsDone { get; private set; } = true;
 
         /// <summary>
         /// Resets the state so there is no Visuals associated with this canvas.
@@ -148,7 +158,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                 {
                     _children.CollectionChanged -= new NotifyCollectionChangedEventHandler(OnChildrenCollectionChanged);
                 }
-                _children = value ?? throw new ArgumentNullException("value");
+                _children = value ?? throw new ArgumentNullException(nameof(value));
                 _children.CollectionChanged += new NotifyCollectionChangedEventHandler(OnChildrenCollectionChanged);
                 RebuildVisuals();
             }
@@ -182,26 +192,26 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="bounds">The bounds to test</param>
         /// <returns>True if a node is found whose bounds intersect the given bounds</returns>
-        public Boolean HasChildrenIntersecting(RectangleF bounds) => Index != null ? Index.HasNodesInside(bounds) : false;
+        public bool HasChildrenIntersecting(RectangleF bounds) => Index != null ? Index.HasNodesInside(bounds) : false;
 
         /// <summary>
         /// The number of visual children that are visible right now.
         /// </summary>
-        public Int32 LiveVisualCount => _contentCanvas.Children.Count - 1;
+        public int LiveVisualCount => _contentCanvas.Children.Count - 1;
 
         /// <summary>
         /// Callback whenever the current TranslateTransform is changed.
         /// </summary>
         /// <param name="sender">TranslateTransform</param>
         /// <param name="e">noop</param>
-        private void OnTranslateChanged(Object sender, EventArgs e) => OnScrollChanged();
+        private void OnTranslateChanged(object sender, EventArgs e) => OnScrollChanged();
 
         /// <summary>
         /// Callback whenever the current ScaleTransform is changed.
         /// </summary>
         /// <param name="sender">ScaleTransform</param>
         /// <param name="e">noop</param>
-        private void OnScaleChanged(Object sender, EventArgs e) => OnScrollChanged();
+        private void OnScaleChanged(object sender, EventArgs e) => OnScrollChanged();
 
         /// <summary>
         /// The ContentCanvas that is actually the parent of all the VirtualChildren Visuals.
@@ -209,8 +219,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         public IMesContentCanvas ContentCanvas => _contentCanvas;
 
         /// <summary>
-        /// The backgrop is the back most child of the ContentCanvas used for drawing any sort
-        /// of background that is guarenteed to fill the ViewPort.
+        /// The backdrop is the back most child of the ContentCanvas used for drawing any sort
+        /// of background that is guaranteed to fill the ViewPort.
         /// </summary>
         public Border Backdrop { get; }
 
@@ -219,7 +229,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         private void CalculateExtent()
         {
-            if (_children.Count() == 0)
+            if (_children.Count == 0)
             {
                 _contentCanvas.Width = 0;
                 _contentCanvas.Height = 0;
@@ -228,15 +238,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                 return;
             }
 
-            Boolean rebuild = false;
+            bool rebuild = false;
             if (Index == null || Extent.Width == 0 || Extent.Height == 0 ||
-                Double.IsNaN(Extent.Width) || Double.IsNaN(Extent.Height))
+                double.IsNaN(Extent.Width) || double.IsNaN(Extent.Height))
             {
                 rebuild = true;
-                _visualPositions = new Dictionary<IMesVirtualChild, Int32>();
+                _visualPositions = new Dictionary<IMesVirtualChild, int>();
 
                 //Boolean first = true;
-                Int32 index = 0;
+                int index = 0;
                 foreach (IMesVirtualChild c in _children)
                 {
                     _visualPositions[c] = index++;
@@ -245,9 +255,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                     RectangleF childBounds = c.Bounds;
                     if (childBounds.Width != 0 && childBounds.Height != 0)
                     {
-                        if (Double.IsNaN(childBounds.Width) || Double.IsNaN(childBounds.Height))
+                        if (double.IsNaN(childBounds.Width) || double.IsNaN(childBounds.Height))
                         {
-                            throw new InvalidOperationException(String.Format(CultureInfo.CurrentUICulture,
+                            throw new InvalidOperationException(string.Format(CultureInfo.CurrentUICulture,
                                 "Child type '{0}' returned NaN bounds", c.GetType().Name));
                         }
                     }
@@ -279,15 +289,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             }
 
             // Make sure we honor the min width & height.
-            Double w = Math.Max(_contentCanvas.MinWidth, Extent.Width);
-            Double h = Math.Max(_contentCanvas.MinHeight, Extent.Height);
+            double w = Math.Max(_contentCanvas.MinWidth, Extent.Width);
+            double h = Math.Max(_contentCanvas.MinHeight, Extent.Height);
             _contentCanvas.Width = w;
             _contentCanvas.Height = h;
 
             // Make sure the backdrop covers the ViewPort bounds.
-            Double zoom = Scale.ScaleX;
-            if (!Double.IsInfinity(ViewportWidth) &&
-                !Double.IsInfinity(ViewportHeight))
+            double zoom = Scale.ScaleX;
+            if (!double.IsInfinity(ViewportWidth) &&
+                !double.IsInfinity(ViewportHeight))
             {
                 w = Math.Max(w, ViewportWidth / zoom);
                 h = Math.Max(h, ViewportHeight / zoom);
@@ -331,7 +341,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                     child.Measure(new System.Windows.Size(boundSize.Width, boundSize.Height));
                 }
             }
-            if (Double.IsInfinity(availableSize.Width))
+            if (double.IsInfinity(availableSize.Width))
             {
                 return new System.Windows.Size(Extent.Width, Extent.Height);
             }
@@ -387,7 +397,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="sender">DispatchTimer </param>
         /// <param name="args">noop</param>
-        private void OnStartLazyUpdate(Object sender, EventArgs args)
+        private void OnStartLazyUpdate(object sender, EventArgs args)
         {
             _timer.Stop();
             LazyUpdateVisuals();
@@ -406,15 +416,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             }
         }
 
-        private Int32 _createQuanta = 1000;
-        private Int32 _removeQuanta = 2000;
-        private Int32 _gcQuanta = 5000;
-        private readonly Int32 _idealDuration = 50; // 50 milliseconds.
+        private int _createQuanta = 1000;
+        private int _removeQuanta = 2000;
+        private int _gcQuanta = 5000;
+        private const int _idealDuration = 50; // 50 milliseconds.
         private readonly MesContentCanvas _contentCanvas;
-        private Int32 _added;
+        private int _added;
         private RectangleF _visible = RectangleF.Empty;
 
-        private delegate Int32 QuantizedWorkHandler(Int32 quantum);
+        private delegate int QuantizedWorkHandler(int quantum);
 
         /// <summary>
         /// Do a quantized unit of work for creating newly visible visuals, and cleaning up visuals that are no
@@ -456,20 +466,20 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <param name="idealDuration">The time in milliseconds we want to take</param>
         /// <param name="handler">The handler to call that does the work being throttled</param>
         /// <returns>Returns the new quantum to use next time that will more likely hit the ideal time</returns>
-        private static Int32 SelfThrottlingWorker(Int32 quantum, Int32 idealDuration, QuantizedWorkHandler handler)
+        private static int SelfThrottlingWorker(int quantum, int idealDuration, QuantizedWorkHandler handler)
         {
-            MesPerfTimer timer = new MesPerfTimer();
+            MesPerfTimer timer = new ();
             timer.Start();
-            Int32 count = handler(quantum);
+            int count = handler(quantum);
 
             timer.Stop();
-            Int64 duration = timer.GetDuration();
+            long duration = timer.GetDuration();
 
             if (duration > 0 && count > 0)
             {
-                Int64 estimatedFullDuration = duration * (quantum / count);
-                Int64 newQuanta = (quantum * idealDuration) / estimatedFullDuration;
-                quantum = Math.Max(100, (Int32)Math.Min(newQuanta, Int32.MaxValue));
+                long estimatedFullDuration = duration * (quantum / count);
+                long newQuanta = quantum * idealDuration / estimatedFullDuration;
+                quantum = Math.Max(100, (int)Math.Min(newQuanta, int.MaxValue));
             }
 
             return quantum;
@@ -480,7 +490,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="quantum">Amount of work we can do here</param>
         /// <returns>Amount of work we did</returns>
-        private Int32 LazyCreateNodes(Int32 quantum)
+        private int LazyCreateNodes(int quantum)
         {
             if (_visible == RectangleF.Empty)
             {
@@ -489,15 +499,15 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                 IsDone = false;
             }
 
-            Int32 count = 0;
-            Int32 regionCount = 0;
+            int count = 0;
+            int regionCount = 0;
             while (_visibleRegions.Count > 0 && count < quantum)
             {
                 RectangleF r = _visibleRegions[0];
                 _visibleRegions.RemoveAt(0);
                 regionCount++;
 
-                if (Index != null && Index.Root != null)
+                if (Index is { Root: { } })
                 {
                     // Iterate over the visible range of nodes and make sure they have visuals.
                     foreach (IMesVirtualChild n in Index.GetNodesInside(r))
@@ -510,21 +520,23 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
 
                         count++;
 
-                        if (count >= quantum)
+                        if (count < quantum)
                         {
-                            // This region is too big, so subdivide it into smaller slices.
-                            if (regionCount == 1)
-                            {
-                                // We didn't even complete 1 region, so we better split it.
-                                SplitRegion(r, _visibleRegions);
-                            }
-                            else
-                            {
-                                _visibleRegions.Add(r); // put it back since we're not done!
-                            }
-                            IsDone = false;
-                            break;
+                            continue;
                         }
+
+                        // This region is too big, so subdivide it into smaller slices.
+                        if (regionCount == 1)
+                        {
+                            // We didn't even complete 1 region, so we better split it.
+                            SplitRegion(r, _visibleRegions);
+                        }
+                        else
+                        {
+                            _visibleRegions.Add(r); // put it back since we're not done!
+                        }
+                        IsDone = false;
+                        break;
                     }
                 }
             }
@@ -563,20 +575,20 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
                 Canvas.SetTop(e, bounds.Top);
 
                 // Get the correct absolute position of this child.
-                Int32 position = _visualPositions[child];
+                int position = _visualPositions[child];
 
                 // Now do a binary search for the correct insertion position based
                 // on the visual positions of the existing visible children.
                 UIElementCollection c = _contentCanvas.Children;
-                Int32 min = 0;
-                Int32 max = c.Count - 1;
+                int min = 0;
+                int max = c.Count - 1;
                 while (max > min + 1)
                 {
-                    Int32 i = (min + max) / 2;
+                    int i = (min + max) / 2;
                     UIElement v = _contentCanvas.Children[i];
                     if (v.GetValue(VirtualChildProperty) is IMesVirtualChild n)
                     {
-                        Int32 index = _visualPositions[n];
+                        int index = _visualPositions[n];
                         if (index > position)
                         {
                             // search from min to i.
@@ -619,20 +631,20 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <param name="regions">List to add to</param>
         private void SplitRegion(RectangleF r, IList<RectangleF> regions)
         {
-            Double minWidth = SmallScrollIncrement.Width * 2;
-            Double minHeight = SmallScrollIncrement.Height * 2;
+            double minWidth = SmallScrollIncrement.Width * 2;
+            double minHeight = SmallScrollIncrement.Height * 2;
 
             if (r.Width > r.Height && r.Height > minHeight)
             {
                 // horizontal slices
-                Single h = r.Height / 2;
+                float h = r.Height / 2;
                 regions.Add(new RectangleF(r.Left, r.Top, r.Width, h + 10));
                 regions.Add(new RectangleF(r.Left, r.Top + h, r.Width, h + 10));
             }
             else if (r.Width < r.Height && r.Width > minWidth)
             {
                 // vertical slices
-                Single w = r.Width / 2;
+                float w = r.Width / 2;
                 regions.Add(new RectangleF(r.Left, r.Top, w + 10, r.Height));
                 regions.Add(new RectangleF(r.Left + w, r.Top, w + 10, r.Height));
             }
@@ -647,16 +659,16 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="quantum">Amount of work we can do here</param>
         /// <returns>Amount of work we did</returns>
-        private Int32 LazyRemoveNodes(Int32 quantum)
+        private int LazyRemoveNodes(int quantum)
         {
             RectangleF visible = GetVisibleRect();
-            Int32 count = 0;
+            int count = 0;
 
             // Also remove nodes that are no longer visible.
-            Int32 regionCount = 0;
+            int regionCount = 0;
             while (_dirtyRegions.Count > 0 && count < quantum)
             {
-                Int32 last = _dirtyRegions.Count - 1;
+                int last = _dirtyRegions.Count - 1;
                 RectangleF dirty = _dirtyRegions[last];
                 _dirtyRegions.RemoveAt(last);
                 regionCount++;
@@ -704,9 +716,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// </summary>
         /// <param name="quantum">Amount of work we can do here</param>
         /// <returns>The amount of work we did</returns>
-        private Int32 LazyGarbageCollectNodes(Int32 quantum)
+        private int LazyGarbageCollectNodes(int quantum)
         {
-            Int32 count = 0;
+            int count = 0;
             // Now after every update also do a full incremental scan over all the children
             // to make sure we didn't leak any nodes that need to be removed.
             while (count < quantum && _nodeCollectCycle < _contentCanvas.Children.Count)
@@ -745,22 +757,22 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <summary>
         /// Return whether we are allowed to scroll horizontally.
         /// </summary>
-        public Boolean CanHorizontallyScroll { get; set; } = false;
+        public bool CanHorizontallyScroll { get; set; } = false;
 
         /// <summary>
         /// Return whether we are allowed to scroll vertically.
         /// </summary>
-        public Boolean CanVerticallyScroll { get; set; } = false;
+        public bool CanVerticallyScroll { get; set; } = false;
 
         /// <summary>
         /// The height of the canvas to be scrolled.
         /// </summary>
-        public Double ExtentHeight => Extent.Height * Scale.ScaleY;
+        public double ExtentHeight => Extent.Height * Scale.ScaleY;
 
         /// <summary>
         /// The width of the canvas to be scrolled.
         /// </summary>
-        public Double ExtentWidth => Extent.Width * Scale.ScaleX;
+        public double ExtentWidth => Extent.Width * Scale.ScaleX;
 
         /// <summary>
         /// Scroll down one small scroll increment.
@@ -847,9 +859,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// Scroll to the given absolute horizontal scroll position.
         /// </summary>
         /// <param name="offset">The horizontal position to scroll to</param>
-        public void SetHorizontalOffset(Double offset)
+        public void SetHorizontalOffset(double offset)
         {
-            Double xoffset = Math.Max(Math.Min(offset, ExtentWidth - ViewportWidth), 0);
+            double xoffset = Math.Max(Math.Min(offset, ExtentWidth - ViewportWidth), 0);
             Translate.X = -xoffset;
             OnScrollChanged();
         }
@@ -858,9 +870,9 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// Scroll to the given absolute vertical scroll position.
         /// </summary>
         /// <param name="offset">The vertical position to scroll to</param>
-        public void SetVerticalOffset(Double offset)
+        public void SetVerticalOffset(double offset)
         {
-            Double yoffset = Math.Max(Math.Min(offset, ExtentHeight - ViewportHeight), 0);
+            double yoffset = Math.Max(Math.Min(offset, ExtentHeight - ViewportHeight), 0);
             Translate.Y = -yoffset;
             OnScrollChanged();
         }
@@ -868,25 +880,25 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// <summary>
         /// Get the current horizontal scroll position.
         /// </summary>
-        public Double HorizontalOffset => -Translate.X;
+        public double HorizontalOffset => -Translate.X;
 
         /// <summary>
         /// Return the current vertical scroll position.
         /// </summary>
-        public Double VerticalOffset => -Translate.Y;
+        public double VerticalOffset => -Translate.Y;
 
         /// <summary>
         /// Return the height of the current viewport that is visible in the ScrollViewer.
         /// </summary>
-        public Double ViewportHeight => _viewPortSize.Height;
+        public double ViewportHeight => _viewPortSize.Height;
 
         /// <summary>
         /// Return the width of the current viewport that is visible in the ScrollViewer.
         /// </summary>
-        public Double ViewportWidth => _viewPortSize.Width;
+        public double ViewportWidth => _viewPortSize.Width;
 
         public SizeF SmallScrollIncrement1 { get; set; } = new SizeF(10, 10);
-        public Int32 Removed { get; set; }
+        public int Removed { get; set; }
 
         #endregion IScrollInfo Members
 
@@ -898,10 +910,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         private RectangleF GetVisibleRect()
         {
             // Add a bit of extra around the edges so we are sure to create nodes that have a tiny bit showing.
-            Single xstart = (Single)((HorizontalOffset - SmallScrollIncrement1.Width) / Scale.ScaleX);
-            Single ystart = (Single)((VerticalOffset - SmallScrollIncrement1.Height) / Scale.ScaleY);
-            Single xend = (Single)((HorizontalOffset + (_viewPortSize.Width + (2 * SmallScrollIncrement1.Width))) / Scale.ScaleX);
-            Single yend = (Single)((VerticalOffset + (_viewPortSize.Height + (2 * SmallScrollIncrement1.Height))) / Scale.ScaleY);
+            float xstart = (float)((HorizontalOffset - SmallScrollIncrement1.Width) / Scale.ScaleX);
+            float ystart = (float)((VerticalOffset - SmallScrollIncrement1.Height) / Scale.ScaleY);
+            float xend = (float)((HorizontalOffset + (_viewPortSize.Width + (2 * SmallScrollIncrement1.Width))) / Scale.ScaleX);
+            float yend = (float)((VerticalOffset + (_viewPortSize.Height + (2 * SmallScrollIncrement1.Height))) / Scale.ScaleY);
             return new RectangleF(xstart, ystart, xend - xstart, yend - ystart);
         }
 

@@ -18,22 +18,22 @@ namespace MinoriDemo.Core.ViewModels
     /// </summary>
     public class VirtualCanvasViewModel : MesDocument, IMesVirtualCanvas
     {
-        private readonly Boolean _animateStatus = true;
-        private readonly Int32 _totalVisuals = 0;
-        private readonly String[] _colorNames = new String[10];
+        private readonly bool _animateStatus = true;
+        private readonly int _totalVisuals = 0;
+        private readonly string[] _colorNames = new string[10];
         private readonly Color[] _baseColor = new Color[10];
-        private readonly Double _tileWidth = 50;
-        private readonly Double _tileHeight = 30;
-        private readonly Double _tileMargin = 10;
+        private readonly double _tileWidth = 50;
+        private readonly double _tileHeight = 30;
+        private readonly double _tileMargin = 10;
         private readonly IMesStatusBar _statusbar;
-        private Int32 _rows;
-        private Int32 _cols;
-        private Boolean _showGridLines;
+        private int _rows;
+        private int _cols;
+        private bool _showGridLines;
         //private readonly Polyline _gridLines = new Polyline();
 
         public EventHandler IsClosing;
 
-        public Boolean ShowContextRibbon => true;
+        public bool ShowContextRibbon => true;
 
         public ICommand OnHelpCommand => new MvxCommand(() =>
         {
@@ -68,14 +68,14 @@ namespace MinoriDemo.Core.ViewModels
             //}
         });
 
-        public ICommand RowColChange => new MvxCommand<Object>((x) =>
+        public ICommand RowColChange => new MvxCommand<object>((x) =>
         {
-            Int32 value = Int32.Parse(x.ToString());
+            int value = int.Parse(x.ToString());
             _rows = _cols = value;
             AllocateNodes();
         });
 
-        public ICommand ZoomCommand => new MvxCommand<String>((x) =>
+        public ICommand ZoomCommand => new MvxCommand<string>((x) =>
         {
             if (x == "Fit")
             {
@@ -83,13 +83,13 @@ namespace MinoriDemo.Core.ViewModels
             }
             else
             {
-                Double value = Double.Parse(x);
+                double value = double.Parse(x);
                 Zoom.Value = value / 100;
                 _statusbar.Text = $"Zoom is {Zoom.Value}";
             }
         });
 
-        public Double ZoomValue
+        public double ZoomValue
         {
             get => Zoom?.Value ?? 0;
             set => Zoom.Value = value;
@@ -142,20 +142,20 @@ namespace MinoriDemo.Core.ViewModels
             // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
             Random r = new Random(Environment.TickCount);
             Graph.VirtualChildren.Clear();
-            Double w = _tileWidth + _tileMargin;
-            Double h = _tileHeight + _tileMargin;
-            Int32 count = _rows * _cols / 20;
-            Double width = w * (_cols - 1);
-            Double height = h * (_rows - 1);
+            double w = _tileWidth + _tileMargin;
+            double h = _tileHeight + _tileMargin;
+            int count = _rows * _cols / 20;
+            double width = w * (_cols - 1);
+            double height = h * (_rows - 1);
             while (count > 0)
             {
-                Double x = r.NextDouble() * width;
-                Double y = r.NextDouble() * height;
+                double x = r.NextDouble() * width;
+                double y = r.NextDouble() * height;
 
-                PointF pos = new PointF((Single)(_tileMargin + x), (Single)(_tileMargin + y));
-                SizeF size = new SizeF(r.Next((Int32)_tileWidth, (Int32)_tileWidth * 5),
-                                    r.Next((Int32)_tileHeight, (Int32)_tileHeight * 5));
-                TestShapeType type = (TestShapeType)r.Next(0, (Int32)TestShapeType.Last);
+                PointF pos = new PointF((float)(_tileMargin + x), (float)(_tileMargin + y));
+                SizeF size = new SizeF(r.Next((int)_tileWidth, (int)_tileWidth * 5),
+                                    r.Next((int)_tileHeight, (int)_tileHeight * 5));
+                TestShapeType type = (TestShapeType)r.Next(0, (int)TestShapeType.Last);
 
                 //Color color = HlsColor.ColorFromHLS((int)((x * 240) / _cols), 100, (int)(240 - ((y * 240) / _rows)));
                 ITestShape shape = Mvx.IoCProvider.Resolve<ITestShape>();
@@ -168,10 +168,10 @@ namespace MinoriDemo.Core.ViewModels
 
         private void SetRandomBrushes(ITestShape s, Random r)
         {
-            Int32 i = r.Next(0, 10);
+            int i = r.Next(0, 10);
             if (_baseColor[i].IsEmpty)
             {
-                Color color = Color.FromArgb((Byte)r.Next(0, 255), (Byte)r.Next(0, 255), (Byte)r.Next(0, 255));
+                Color color = Color.FromArgb((byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255));
 
                 _colorNames[i] = "#" + color.R.ToString("X2", CultureInfo.InvariantCulture) +
                     color.G.ToString("X2", CultureInfo.InvariantCulture) +
@@ -242,7 +242,7 @@ namespace MinoriDemo.Core.ViewModels
         //    //DestroyedLabel.Text = "";
         //}
 
-        public Boolean ShowGridLines
+        public bool ShowGridLines
         {
             get => _showGridLines;
             set
@@ -251,10 +251,10 @@ namespace MinoriDemo.Core.ViewModels
                 {
                     if (value)
                     {
-                        Double width = _tileWidth + _tileMargin;
-                        Double height = _tileHeight + _tileMargin;
+                        double width = _tileWidth + _tileMargin;
+                        double height = _tileHeight + _tileMargin;
 
-                        Double numTileToAccumulate = 16;
+                        double numTileToAccumulate = 16;
 
                         //            Polyline gridCell = _gridLines;
                         //            gridCell.Margin = new Thickness(_tileMargin);

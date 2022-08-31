@@ -25,7 +25,7 @@ namespace MinoriEditorShell.Results
 
 #warning CoroutineExecutionContext
 
-        public override void Execute(/*CoroutineExecutionContext*/Object context)
+        public override void Execute(/*CoroutineExecutionContext*/object context)
         {
 #if false
             var window = _windowLocator();

@@ -10,7 +10,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Name of the light theme
         /// </summary>
-        public override String Name => Properties.Resources.ThemeLightName;
+        public override string Name => Properties.Resources.ThemeLightName;
 
         /// <summary>
         /// Light theme constructor

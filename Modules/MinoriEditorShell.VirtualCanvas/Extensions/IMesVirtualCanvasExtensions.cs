@@ -41,7 +41,7 @@ namespace MinoriEditorShell.VirtualCanvas.Extensions
         /// <param name="zoomToContent"></param>
         public static void ZoomToContent(this IMesVirtualCanvas canvas, ZoomToContent zoomToContent)
         {
-            Double? zoom = null;
+            double? zoom = null;
             switch (zoomToContent)
             {
                 case Extensions.ZoomToContent.Manual:
@@ -57,8 +57,8 @@ namespace MinoriEditorShell.VirtualCanvas.Extensions
                     break;
 
                 case Extensions.ZoomToContent.WidthAndHeight:
-                    Double scaleX = canvas.Graph.ViewportWidth / canvas.Graph.Extent.Width;
-                    Double scaleY = canvas.Graph.ViewportHeight / canvas.Graph.Extent.Height;
+                    double scaleX = canvas.Graph.ViewportWidth / canvas.Graph.Extent.Width;
+                    double scaleY = canvas.Graph.ViewportHeight / canvas.Graph.Extent.Height;
 
                     zoom = Math.Min(scaleX, scaleY);
                     break;

@@ -8,7 +8,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
     {
 #warning ResultCompletionEventArgs
 
-        public event EventHandler</*ResultCompletionEventArgs*/ Object> Completed;
+        public event EventHandler</*ResultCompletionEventArgs*/ object> Completed;
 
 #warning fix commmon dialog
         //private readonly CommonDialog _commonDialog;
@@ -20,7 +20,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
 
 #warning CoroutineExecutionContext
 
-        public void Execute(/*CoroutineExecutionContext*/Object context)
+        public void Execute(/*CoroutineExecutionContext*/object context)
         {
             throw new NotImplementedException();
             //var result = _commonDialog.ShowDialog().GetValueOrDefault(false);

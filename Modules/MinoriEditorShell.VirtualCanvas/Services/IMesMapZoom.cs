@@ -5,9 +5,9 @@ namespace MinoriEditorShell.VirtualCanvas.Services
 {
     public interface IMesMapZoom
     {
-        event EventHandler<Double> ValueChanged;
+        event EventHandler<double> ValueChanged;
 
-        Double Value { get; set; }
+        double Value { get; set; }
 
         void ZoomToRect(RectangleF rectangle);
 

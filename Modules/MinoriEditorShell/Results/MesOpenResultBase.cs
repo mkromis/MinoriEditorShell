@@ -39,10 +39,10 @@ namespace MinoriEditorShell.Results
 
 #warning CoRoutine Base
 
-        public abstract void Execute(/*CoroutineExecutionContext*/Object context);
+        public abstract void Execute(/*CoroutineExecutionContext*/object context);
 
 #warning ResultCompletionEventArgs
 
-        public event EventHandler</*ResultCompletionEventArgs*/ Object> Completed;
+        public event EventHandler</*ResultCompletionEventArgs*/ object> Completed;
     }
 }

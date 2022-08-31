@@ -40,12 +40,12 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
             Initialized += MesRibbonWindow_Initialized;
         }
 
-        private void MesRibbonWindow_Initialized(Object sender, EventArgs e)
+        private void MesRibbonWindow_Initialized(object sender, EventArgs e)
         {
             if (this == Application.Current.MainWindow)
             {
                 // Apply tempate if we are window. We invalidate later for rendering.
-                String template =
+                string template =
                     "<DataTemplate " +
                     " xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"" +
                     " xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"" +
@@ -63,7 +63,7 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf.Views
         /// </summary>
         /// <seealso cref="https://fluentribbon.github.io/documentation/interop_with_MahApps.Metro"/>
         /// <seealso cref="https://stackoverflow.com/questions/5755455/how-to-set-control-template-in-code"/>
-        private void MesRibbonWindow_Loaded(Object sender, RoutedEventArgs e)
+        private void MesRibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Finding title must be done after init, (Time to render?)
             TitleBar = this.FindChild<RibbonTitleBar>("ribbonTitleBar");

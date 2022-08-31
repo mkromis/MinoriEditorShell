@@ -21,9 +21,9 @@ namespace MinoriEditorShell.Services
         [Browsable(false)]
         public virtual Uri IconSource => null;
 
-        private String _displayName;
+        private string _displayName;
 
-        public String DisplayName
+        public string DisplayName
         {
             get => _displayName;
             protected set => SetProperty(ref _displayName, value);

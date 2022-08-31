@@ -8,6 +8,6 @@ namespace MinoriEditorShell.Services
         IEnumerable<IMesTheme> Themes { get; }
         IMesTheme CurrentTheme { get; }
 
-        Boolean SetCurrentTheme(String name);
+        bool SetCurrentTheme(string name);
     }
 }

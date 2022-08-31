@@ -20,9 +20,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
     public class NullObjectToVisibiltyConverter : IValueConverter
     {
-        public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture) =>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
             (value == null) ? Visibility.Collapsed : Visibility.Visible;
 
-        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) => null;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null;
     }
 }

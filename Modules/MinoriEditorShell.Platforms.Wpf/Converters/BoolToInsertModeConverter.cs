@@ -20,9 +20,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
     {
         #region IValueConverter Members
 
-        public Object Convert(Object value, Type targetType, Object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Boolean? actValue = value as Boolean?;
+            bool? actValue = value as bool?;
             if (actValue == null)
             {
                 return null;
@@ -31,7 +31,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
             return actValue == false ? "INS" : "OVR";
         }
 
-        public Object ConvertBack(Object value, Type targetType, Object parameter,
+        public object ConvertBack(object value, Type targetType, object parameter,
                                   System.Globalization.CultureInfo culture) => throw new NotImplementedException();
 
         #endregion IValueConverter Members

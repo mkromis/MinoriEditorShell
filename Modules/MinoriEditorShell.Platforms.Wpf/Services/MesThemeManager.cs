@@ -45,9 +45,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
         public IEnumerable<IMesTheme> Themes { get; private set; }
 
         // Needed for Interface
-        public Boolean SetCurrentTheme(String name) => SetCurrentTheme(name, true);
+        public bool SetCurrentTheme(string name) => SetCurrentTheme(name, true);
 
-        public Boolean SetCurrentTheme(String name, Boolean applySetting)
+        public bool SetCurrentTheme(string name, bool applySetting)
         {
             try
             {

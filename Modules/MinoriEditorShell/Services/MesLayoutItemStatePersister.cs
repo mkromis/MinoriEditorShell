@@ -12,7 +12,7 @@ namespace MinoriEditorShell.Modules.Services
     {
         private static readonly Type LayoutBaseType = typeof(IMesLayoutItem);
 
-        public Boolean SaveState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName)
+        public bool SaveState(IMesDocumentManager shell, IMesDocumentManagerView shellView, string fileName)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace MinoriEditorShell.Modules.Services
                 {
                     IEnumerable<IMesLayoutItem> itemStates = shell.Documents.Concat(shell.Tools.Cast<IMesLayoutItem>());
 
-                    Int32 itemCount = 0;
+                    int itemCount = 0;
                     // reserve some space for items count, it'll be updated later
                     writer.Write(itemCount);
 
@@ -38,7 +38,7 @@ namespace MinoriEditorShell.Modules.Services
 
                         // get exports with explicit types or names that inherit from ILayoutItem
                         List<Type> exportTypes = new List<Type>();
-                        Boolean foundExportContract = false;
+                        bool foundExportContract = false;
                         foreach (ExportAttribute att in exportAttributes)
                         {
                             // select the contract type if it is of type ILayoutitem.
@@ -68,21 +68,21 @@ namespace MinoriEditorShell.Modules.Services
                         Type firstExport = exportTypes.FirstOrDefault();
                         if (firstExport == null)
                         {
-                            throw new InvalidOperationException(String.Format(
+                            throw new InvalidOperationException(string.Format(
                                 "A ViewModel that participates in LayoutItem.ShouldReopenOnStart must be decorated with an ExportAttribute who's ContractType that inherits from ILayoutItem, infringing type is {0}.", itemType));
                         }
 
                         if (exportTypes.Count > 1)
                         {
-                            throw new InvalidOperationException(String.Format(
+                            throw new InvalidOperationException(string.Format(
                                 "A ViewModel that participates in LayoutItem.ShouldReopenOnStart can't be decorated with more than one ExportAttribute which inherits from ILayoutItem. infringing type is {0}.", itemType));
                         }
 
-                        String selectedTypeName = firstExport.AssemblyQualifiedName;
+                        string selectedTypeName = firstExport.AssemblyQualifiedName;
 
-                        if (String.IsNullOrEmpty(selectedTypeName))
+                        if (string.IsNullOrEmpty(selectedTypeName))
                         {
-                            throw new InvalidOperationException(String.Format(
+                            throw new InvalidOperationException(string.Format(
                                 "Could not retrieve the assembly qualified type name for {0}, most likely because the type is generic.", firstExport));
                         }
                         // TODO: it is possible to save generic types. It requires that every generic parameter is saved, along with its position in the generic tree... A lot of work.
@@ -93,16 +93,16 @@ namespace MinoriEditorShell.Modules.Services
                         // Here's the tricky part. Because some items might fail to save their state, or they might be removed (a plug-in assembly deleted and etc.)
                         // we need to save the item's state size to be able to skip the data during deserialization.
                         // Save current stream position. We'll need it later.
-                        Int64 stateSizePosition = writer.BaseStream.Position;
+                        long stateSizePosition = writer.BaseStream.Position;
 
                         // Reserve some space for item state size
                         writer.Write(0L);
 
-                        Int64 stateSize;
+                        long stateSize;
 
                         try
                         {
-                            Int64 stateStartPosition = writer.BaseStream.Position;
+                            long stateStartPosition = writer.BaseStream.Position;
                             item.SaveState(writer);
                             stateSize = writer.BaseStream.Position - stateStartPosition;
                         }
@@ -141,7 +141,7 @@ namespace MinoriEditorShell.Modules.Services
 
         private static Type GetTypeFromContractNameAsILayoutItem(ExportAttribute attribute)
         {
-            String typeName;
+            string typeName;
             if ((typeName = attribute.ContractName) == null)
             {
                 return null;
@@ -151,9 +151,9 @@ namespace MinoriEditorShell.Modules.Services
             return typeof(IMesLayoutItem).IsAssignableFrom(type) ? type : null;
         }
 
-        public Boolean LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName)
+        public bool LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, string fileName)
         {
-            Dictionary<String, IMesLayoutItem> layoutItems = new Dictionary<String, IMesLayoutItem>();
+            Dictionary<string, IMesLayoutItem> layoutItems = new Dictionary<string, IMesLayoutItem>();
 
             if (!File.Exists(fileName))
             {
@@ -164,17 +164,17 @@ namespace MinoriEditorShell.Modules.Services
             {
                 using (BinaryReader reader = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
                 {
-                    Int32 count = reader.ReadInt32();
+                    int count = reader.ReadInt32();
 
-                    for (Int32 i = 0; i < count; i++)
+                    for (int i = 0; i < count; i++)
                     {
-                        String typeName = reader.ReadString();
-                        String contentId = reader.ReadString();
-                        Int64 stateEndPosition = reader.ReadInt64();
+                        string typeName = reader.ReadString();
+                        string contentId = reader.ReadString();
+                        long stateEndPosition = reader.ReadInt64();
                         stateEndPosition += reader.BaseStream.Position;
 
                         Type contentType = Type.GetType(typeName);
-                        Boolean skipStateData = true;
+                        bool skipStateData = true;
 
 #warning LoadState
 #if false

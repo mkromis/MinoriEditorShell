@@ -91,9 +91,9 @@ namespace MinoriEditorShell.Platforms.Wpf
             iocProvider.LazyConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
 
             // try to setup culture info
-            String code = Properties.Settings.Default.LanguageCode;
+            string code = Properties.Settings.Default.LanguageCode;
 
-            if (!String.IsNullOrWhiteSpace(code))
+            if (!string.IsNullOrWhiteSpace(code))
             {
                 CultureInfo culture = CultureInfo.GetCultureInfo(code);
                 // If code == "en", force to use default resource (Resources.resx)

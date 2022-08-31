@@ -59,7 +59,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
-            HwndSourceParameters param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (Int32)Width, (Int32)Height)
+            HwndSourceParameters param = new HwndSourceParameters("MinoriEditorStudioClippingHwndHost", (int)Width, (int)Height)
             {
                 ParentWindow = hwndParent.Handle,
                 WindowStyle = NativeMethods.WS_VISIBLE | NativeMethods.WS_CHILD,

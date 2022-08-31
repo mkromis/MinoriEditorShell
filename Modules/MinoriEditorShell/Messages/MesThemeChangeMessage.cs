@@ -13,7 +13,7 @@ namespace MinoriEditorShell.Messages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="themeName"></param>
-        public MesThemeChangeMessage(Object sender, String themeName) : base(sender)
+        public MesThemeChangeMessage(object sender, string themeName) : base(sender)
         {
             ThemeName = themeName;
         }
@@ -21,6 +21,6 @@ namespace MinoriEditorShell.Messages
         /// <summary>
         /// Name of theme
         /// </summary>
-        public String ThemeName { get; set; }
+        public string ThemeName { get; set; }
     }
 }

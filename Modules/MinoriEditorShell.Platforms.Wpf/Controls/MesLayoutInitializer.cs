@@ -9,12 +9,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
     public class MesLayoutInitializer : ILayoutUpdateStrategy
     {
-        public Boolean BeforeInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableToShow, ILayoutContainer destinationContainer)
+        public bool BeforeInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableToShow, ILayoutContainer destinationContainer)
         {
             if (anchorableToShow.Content is IMesTool tool)
             {
                 MesPaneLocation preferredLocation = tool.PreferredLocation;
-                String paneName = GetPaneName(preferredLocation);
+                string paneName = GetPaneName(preferredLocation);
                 LayoutAnchorablePane toolsPane = layout.Descendents().OfType<LayoutAnchorablePane>().FirstOrDefault(d => d.Name == paneName);
                 if (toolsPane == null)
                 {
@@ -43,7 +43,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             return false;
         }
 
-        private static String GetPaneName(MesPaneLocation location)
+        private static string GetPaneName(MesPaneLocation location)
         {
             switch (location)
             {
@@ -62,7 +62,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         }
 
         private static LayoutAnchorablePane CreateAnchorablePane(LayoutRoot layout, Orientation orientation,
-            String paneName, InsertPosition position)
+            string paneName, InsertPosition position)
         {
             LayoutPanel parent = layout.Descendents().OfType<LayoutPanel>().First(d => d.Orientation == orientation);
             LayoutAnchorablePane toolsPane = new LayoutAnchorablePane { Name = paneName };
@@ -109,7 +109,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             }
         }
 
-        public Boolean BeforeInsertDocument(LayoutRoot layout, LayoutDocument anchorableToShow, ILayoutContainer destinationContainer) => false;
+        public bool BeforeInsertDocument(LayoutRoot layout, LayoutDocument anchorableToShow, ILayoutContainer destinationContainer) => false;
 
         public void AfterInsertDocument(LayoutRoot layout, LayoutDocument anchorableShown)
         {

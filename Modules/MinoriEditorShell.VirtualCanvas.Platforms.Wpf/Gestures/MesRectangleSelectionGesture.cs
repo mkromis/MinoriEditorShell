@@ -20,12 +20,12 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     {
         private MesSelectionRectVisual _selectionRectVisual;
         private Point _start;
-        private Boolean _watching;
+        private bool _watching;
         private readonly FrameworkElement _target;
         private readonly MesMapZoom _zoom;
         private readonly Panel _container;
         private Point _mouseDownPoint;
-        private readonly Int32 _selectionThreshold = 5; // allow some mouse wiggle on mouse down without actually selecting stuff!
+        private readonly int _selectionThreshold = 5; // allow some mouse wiggle on mouse down without actually selecting stuff!
 
         public event EventHandler Selected;
 
@@ -58,14 +58,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Get/Set whether to also zoom the selected rectangle.
         /// </summary>
-        public Boolean ZoomSelection { get; set; } = true;
+        public bool ZoomSelection { get; set; } = true;
 
         /// <summary>
         /// Handle the mouse left button down event
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse down information</param>
-        private void OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ModifierKeys modifier = ConsoleModifiers.ToModifierKeys();
             if (!e.Handled && (Keyboard.Modifiers & modifier) == modifier)
@@ -81,7 +81,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// This allows user to start drawing a rectangle by then change their mind and mouse up
         /// without trigging an almost infinite zoom out to a very smalle piece of real-estate.
         /// </summary>
-        public Int32 ZoomSizeThreshold { get; set; } = 20;
+        public int ZoomSizeThreshold { get; set; } = 20;
 
         /// <summary>
         /// Specify modifier keys for mouse manipulation
@@ -94,7 +94,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse move information.</param>
-        private void OnMouseMove(Object sender, MouseEventArgs e)
+        private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (_watching)
             {
@@ -124,14 +124,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse button information</param>
-        private void OnMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _watching = false;
             if (_selectionRectVisual != null)
             {
                 Mouse.Capture(_target, CaptureMode.None);
                 Point pos = e.GetPosition(_container);
-                Double f = Math.Min(Math.Abs(pos.X - _mouseDownPoint.X), Math.Abs(pos.Y - _mouseDownPoint.Y));
+                double f = Math.Min(Math.Abs(pos.X - _mouseDownPoint.X), Math.Abs(pos.Y - _mouseDownPoint.Y));
                 Rect r = GetSelectionRect(pos);
                 SelectionRectangle = r;
 

@@ -8,13 +8,13 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
     public class DrawingColorToMediaColorConverter : IValueConverter
     {
         // Convert from Drawing Color to meda brush
-        public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             System.Drawing.Color? color = value as System.Drawing.Color?;
-            return color == null ? null : (Object)System.Windows.Media.Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B);
+            return color == null ? null : (object)System.Windows.Media.Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B);
         }
 
-        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Color? color = value as Color?;
             return color == null ? System.Drawing.Color.Empty :

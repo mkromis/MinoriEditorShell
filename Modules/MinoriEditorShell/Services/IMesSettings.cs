@@ -12,12 +12,12 @@ namespace MinoriEditorShell.Services
         /// <summary>
         /// Page name
         /// </summary>
-        String SettingsPageName { get; }
+        string SettingsPageName { get; }
 
         /// <summary>
         /// Path to the page
         /// </summary>
-        String SettingsPagePath { get; }
+        string SettingsPagePath { get; }
 
         /// <summary>
         /// View page, automatically set by the presenter

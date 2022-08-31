@@ -20,7 +20,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
     public class MesAutoScroll : IMesAutoScroll
     {
         private readonly Panel _container;
-        private Boolean _autoScrolling;
+        private bool _autoScrolling;
         private Point _startPos;
         private readonly MesMapZoom _zoom;
         private Canvas _marker;
@@ -46,21 +46,21 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">The container</param>
         /// <param name="e">Mouse wheel info</param>
-        private void OnMouseWheel(Object sender, MouseWheelEventArgs e) => StopAutoScrolling();
+        private void OnMouseWheel(object sender, MouseWheelEventArgs e) => StopAutoScrolling();
 
         /// <summary>
         /// Receive mouse move event and do the actual autoscroll if it is active.
         /// </summary>
         /// <param name="sender">The container</param>
         /// <param name="e">Mouse move info</param>
-        private void OnMouseMove(Object sender, MouseEventArgs e)
+        private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (_autoScrolling)
             {
                 Point pt = e.GetPosition(_container);
                 Vector v = new Vector(pt.X - _startPos.X, pt.Y - _startPos.Y);
                 Vector v2 = new Vector(pt.X - _startPos.X, _startPos.Y);
-                Double angle = Vector.AngleBetween(v, v2);
+                double angle = Vector.AngleBetween(v, v2);
 
                 // Calculate which quadrant the mouse is in relative to start position.
                 Cursor c = null;
@@ -98,7 +98,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 }
                 _container.Cursor = c;
 
-                Double length = v.Length;
+                double length = v.Length;
                 if (length > 0)
                 {
                     v.Normalize();
@@ -117,7 +117,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Mouse</param>
         /// <param name="e">Mouse button information</param>
-        private void OnMouseDown(Object sender, MouseButtonEventArgs e)
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.MiddleButton == MouseButtonState.Pressed)
             {
@@ -196,7 +196,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="sender">Keyboard</param>
         /// <param name="e">Event information</param>
-        private void OnKeyDown(Object sender, RoutedEventArgs e) => StopAutoScrolling();
+        private void OnKeyDown(object sender, RoutedEventArgs e) => StopAutoScrolling();
 
         /// <summary>
         /// Stop any active auto-scrolling behavior.

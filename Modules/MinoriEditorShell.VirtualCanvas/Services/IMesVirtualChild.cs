@@ -21,14 +21,14 @@ namespace MinoriEditorShell.VirtualCanvas.Services
         /// <summary>
         /// Return the current Visual or null if it has not been created yet.
         /// </summary>
-        Object Visual { get; }
+        object Visual { get; }
 
         /// <summary>
         /// Create the WPF visual for this object.
         /// </summary>
         /// <param name="parent">The canvas that is calling this method</param>
         /// <returns>The visual that can be displayed</returns>
-        Object CreateVisual(IMesVirtualCanvasControl parent);
+        object CreateVisual(IMesVirtualCanvasControl parent);
 
         /// <summary>
         /// Dispose the WPF visual for this object.

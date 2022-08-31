@@ -6,16 +6,16 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
     public class MesStatusBarItemViewModel : MvxNotifyPropertyChanged
     {
-        private Int32 _index;
-        private String _message;
+        private int _index;
+        private string _message;
 
-        public Int32 Index
+        public int Index
         {
             get => _index;
             internal set => SetProperty(ref _index, value);
         }
 
-        public String Message
+        public string Message
         {
             get => _message;
             set => SetProperty(ref _message, value);
@@ -23,7 +23,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 
         public GridLength Width { get; }
 
-        public MesStatusBarItemViewModel(String message, GridLength width)
+        public MesStatusBarItemViewModel(string message, GridLength width)
         {
             _message = message;
             Width = width;

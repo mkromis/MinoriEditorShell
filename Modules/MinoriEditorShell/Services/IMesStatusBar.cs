@@ -5,21 +5,21 @@ namespace MinoriEditorShell.Services
 {
     public interface IMesStatusBar
     {
-        Boolean Animation(Image image);
+        bool Animation(Image image);
 
-        Boolean Clear();
+        bool Clear();
 
-        Boolean FreezeOutput();
+        bool FreezeOutput();
 
-        Boolean IsFrozen { get; }
-        String Text { get; set; }
+        bool IsFrozen { get; }
+        string Text { get; set; }
         Color Foreground { get; set; }
         Color Background { get; set; }
-        Boolean? InsertMode { get; set; }
-        Int32? LineNumber { get; set; }
-        Int32? CharPosition { get; set; }
-        Int32? ColPosition { get; set; }
+        bool? InsertMode { get; set; }
+        int? LineNumber { get; set; }
+        int? CharPosition { get; set; }
+        int? ColPosition { get; set; }
 
-        Boolean Progress(Boolean On, UInt32 current, UInt32 total);
+        bool Progress(bool On, uint current, uint total);
     }
 }

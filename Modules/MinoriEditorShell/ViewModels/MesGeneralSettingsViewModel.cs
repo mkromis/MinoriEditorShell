@@ -11,8 +11,8 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
     {
         private readonly IMesThemeManager _themeManager;
 
-        private readonly static List<String> _availableLanguages = new List<String> {
-            String.Empty,
+        private readonly static List<string> _availableLanguages = new List<string> {
+            string.Empty,
             "en",
             "de",
             "ru",
@@ -21,7 +21,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         };
 
         private IMesTheme _selectedTheme;
-        private String _selectedLanguage;
+        private string _selectedLanguage;
 
         public MesGeneralSettingsViewModel()
         {
@@ -44,17 +44,17 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             }
         }
 
-        public IEnumerable<String> Languages => _availableLanguages;
+        public IEnumerable<string> Languages => _availableLanguages;
 
-        public String SelectedLanguage
+        public string SelectedLanguage
         {
             get => _selectedLanguage;
             set => SetProperty(ref _selectedLanguage, value);
         }
 
-        public String SettingsPageName => Properties.Resources.SettingsPageGeneral;
+        public string SettingsPageName => Properties.Resources.SettingsPageGeneral;
 
-        public String SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
+        public string SettingsPagePath => Properties.Resources.SettingsPathEnvironment;
 
         public IMvxView View { get; set; }
 

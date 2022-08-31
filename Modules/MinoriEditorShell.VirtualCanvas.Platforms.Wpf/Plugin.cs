@@ -2,12 +2,15 @@
 using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures;
 using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
-using MvvmCross.Plugin;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf
 {
-    [MvxPlugin]
-    public class Plugin : IMvxPlugin
+    // Using long name to remove warning about Plugin name collision
+    /// <summary>
+    /// Plugin to assist in setup of virtual canvas for wpf
+    /// </summary>
+    [MvvmCross.Plugin.MvxPlugin]
+    public class Plugin : MvvmCross.Plugin.IMvxPlugin
     {
         public void Load()
         {
