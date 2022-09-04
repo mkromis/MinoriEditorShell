@@ -4,6 +4,8 @@ using System.ComponentModel.Composition;
 
 namespace MinoriEditorShell.Results
 {
+#warning Not Implemented
+#if false
     public class MesShowToolResult<TTool> : MesOpenResultBase<TTool>
         where TTool : IMesTool
     {
@@ -31,7 +33,6 @@ namespace MinoriEditorShell.Results
         public override void Execute(/*CoroutineExecutionContext*/object context)
         {
             throw new NotImplementedException();
-#if false
             var tool = _toolLocator();
 
 			if (_setData != null)
@@ -52,7 +53,7 @@ namespace MinoriEditorShell.Results
 			};
 
 			_shell.ShowTool(tool);
-#endif
         }
     }
+#endif
 }

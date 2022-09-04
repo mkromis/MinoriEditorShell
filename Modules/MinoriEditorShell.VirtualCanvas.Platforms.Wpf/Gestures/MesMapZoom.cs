@@ -76,7 +76,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// This event is raised when the scale or translation is changed.
         /// </summary>
-        public event EventHandler<double> ValueChanged;
+        public event EventHandler<MesMapZoomEventArgs> ValueChanged;
 
         /// <summary>
         /// Construct new MapZoom object that manages the RenderTransform of the given target object.
@@ -219,7 +219,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         {
             _scale.ScaleX = _scale.ScaleY = _value;
 
-            ValueChanged?.Invoke(this, Value);
+            ValueChanged?.Invoke(this, new MesMapZoomEventArgs() { Value = _value});
 
             // focus rectangles may need to be repainted.
             _target.InvalidateVisual();

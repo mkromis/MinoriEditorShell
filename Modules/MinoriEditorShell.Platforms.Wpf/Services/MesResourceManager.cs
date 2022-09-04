@@ -2,35 +2,29 @@ using MinoriEditorShell.Services;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
 namespace MinoriEditorShell.Platforms.Wpf.Services
 {
-    [Export(typeof(IMesResourceManager))]
+    /// <inheritdoc cref="IMesResourceManager" />
     public class MesResourceManager : IMesResourceManager
     {
-        public Stream GetStream(string relativeUri, string assemblyName)
+        /// <inheritdoc />
+        public Stream GetStream(string relativePath, string assemblyName)
         {
-            try
-            {
-                StreamResourceInfo resource = Application.GetResourceStream(new Uri(assemblyName + ";component/" + relativeUri, UriKind.Relative))
-                    ?? Application.GetResourceStream(new Uri(relativeUri, UriKind.Relative));
+            StreamResourceInfo resource = Application.GetResourceStream(new Uri(assemblyName + ";component/" + relativePath, UriKind.Relative))
+                ?? Application.GetResourceStream(new Uri(relativePath, UriKind.Relative));
 
-                return (resource != null)
-                    ? resource.Stream
-                    : null;
-            }
-            catch
-            {
-                return null;
-            }
+            return resource?.Stream;
         }
 
-        public BitmapImage GetBitmap(string relativeUri, string assemblyName)
+        /// <inheritdoc />
+        public BitmapImage GetBitmap(string relativePath, string assemblyName)
         {
-            Stream s = GetStream(relativeUri, assemblyName);
+            Stream s = GetStream(relativePath, assemblyName);
             if (s == null) { return null; }
 
             using (s)
@@ -44,6 +38,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
             }
         }
 
-        public BitmapImage GetBitmap(string relativeUri) => GetBitmap(relativeUri, MesExtensionMethods.GetExecutingAssemblyName());
+        /// <inheritdoc />
+        public BitmapImage GetBitmap(string relativePath) => GetBitmap(relativePath, Assembly.GetExecutingAssembly().GetName().FullName);
     }
 }

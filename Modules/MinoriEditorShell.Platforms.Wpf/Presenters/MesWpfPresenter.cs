@@ -29,12 +29,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
         {
             // New style logging can return nulls
             _log = MvxLogHost.GetLog<MesWpfPresenter>();
-            _log?.LogTrace("Setup: Creating Presenter");
+            _log.LogTrace("Setup: Creating Presenter");
 
             // Setup main window as singleton
             if (mainWindow is IMesWindow mesWindow)
             {
-                _log?.LogTrace("Setting IMesWindow to main window");
+                _log.LogTrace("Setting IMesWindow to main window");
                 Mvx.IoCProvider.RegisterSingleton<IMesWindow>(mesWindow);
             }
         }
@@ -77,17 +77,19 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log?.LogTrace($"Add {tool} to IDocumentManager.Tools");
+                        _log.LogTrace($"Add {tool} to IDocumentManager.Tools");
                         return true;
 
                     default:
-                        _log?.LogTrace($"Passing to parent {view.ViewModel.ToString()}");
+                        _log.LogTrace($"Passing to parent {view.ViewModel.ToString()}");
                         return await base.ShowContentView(element, attribute, request);
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                _log?.LogError(exception, $"Error seen during navigation request to {request.ViewModelType.Name} - error {exception.ToLongString()}");
+                _log.LogError(ex, 
+                    "Error seen during navigation request to {Name} - error {Message}",
+                    request.ViewModelType.Name, ex.ToLongString());
                 throw;
             }
         }

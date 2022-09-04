@@ -37,8 +37,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         private static void OnStylesChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            var mergedStyles = GetMergedStyles<FrameworkElement>(target, GetBaseStyle(target), GetDerivedStyle(target));
-            var element = (FrameworkElement)target;
+            Style mergedStyles = GetMergedStyles<FrameworkElement>(target, GetBaseStyle(target), GetDerivedStyle(target));
+            FrameworkElement element = (FrameworkElement)target;
             element.Style = mergedStyles;
         }
 
@@ -72,10 +72,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         private static void OnItemContainerStylesChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            var mergedStyles = GetMergedStyles<ItemsControl>(target,
+            Style mergedStyles = GetMergedStyles<ItemsControl>(target,
                 GetItemContainerBaseStyle(target),
                 GetItemContainerDerivedStyle(target));
-            var element = (ItemsControl)target;
+            ItemsControl element = (ItemsControl)target;
             element.ItemContainerStyle = mergedStyles;
         }
 
@@ -88,9 +88,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             if (derivedStyle == null) return baseStyle;
             if (baseStyle == null) return derivedStyle;
 
-            var newStyle = new Style { BasedOn = baseStyle, TargetType = derivedStyle.TargetType };
-            foreach (var setter in derivedStyle.Setters) newStyle.Setters.Add(setter);
-            foreach (var trigger in derivedStyle.Triggers) newStyle.Triggers.Add(trigger);
+            Style newStyle = new Style { BasedOn = baseStyle, TargetType = derivedStyle.TargetType };
+            foreach (SetterBase setter in derivedStyle.Setters) newStyle.Setters.Add(setter);
+            foreach (TriggerBase trigger in derivedStyle.Triggers) newStyle.Triggers.Add(trigger);
             return newStyle;
         }
     }

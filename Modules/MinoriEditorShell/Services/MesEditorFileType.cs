@@ -1,5 +1,7 @@
 namespace MinoriEditorShell.Services
 {
+#warning Not Implemented
+#if false
     public class MesEditorFileType
     {
         public string Name { get; set; }
@@ -15,4 +17,5 @@ namespace MinoriEditorShell.Services
         {
         }
     }
+#endif
 }

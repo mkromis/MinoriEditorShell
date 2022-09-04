@@ -177,7 +177,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
         /// Add a new IVirtualChild.  The VirtualCanvas will call CreateVisual on them
         /// when the Bounds of your child intersects the current visible view port.
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="child">Child to add</param>
         public void AddVirtualChild(IMesVirtualChild child) => _children.Add(child);
 
         /// <summary>

@@ -6,30 +6,20 @@ using System.IO;
 
 namespace MinoriEditorShell.ViewModels
 {
-    /// <summary>
-    /// View model for custom views. This is instantiated with IoC methods.
-    /// </summary>
+    /// <inheritdoc cref="IMesDocumentManager"/>
     public class MesDocumentManagerViewModel : MvxViewModel, IMesDocumentManager
     {
         // Determine if we are in a closing event
         // private readonly bool _closing;
         private IMesLayoutItem _activeItem;
 
-        /// <summary>
-        /// Event on active document about to be changed.
-        /// </summary>
+        /// <inheritdoc />
         public event EventHandler ActiveDocumentChanging;
-        /// <summary>
-        /// Event that document has been changed.
-        /// </summary>
+        /// <inheritdoc />
         public event EventHandler ActiveDocumentChanged;
-        /// <summary>
-        /// This contains the platform implementation view
-        /// </summary>
+        /// <inheritdoc />
         public IMesDocumentManagerView ManagerView { get; set; }
-        /// <summary>
-        /// This contains the active view
-        /// </summary>
+        /// <inheritdoc />
         public IMesLayoutItem ActiveItem
         {
             get => _activeItem;
@@ -41,15 +31,11 @@ namespace MinoriEditorShell.ViewModels
                 }
             }
         }
-        /// <summary>
-        /// This contains all of the tool (side) windows
-        /// </summary>
+        /// <inheritdoc />
         public MvxObservableCollection<IMesTool> Tools { get; }
-        /// <summary>
-        /// This contains all of the content (main) windows
-        /// </summary>
+        /// <inheritdoc />
         public MvxObservableCollection<IMesDocument> Documents { get; }
-
+        /// <inheritdoc />
         public bool ShowFloatingWindowsInTaskbar
         {
             get => _showFloatingWindowsInTaskbar;
@@ -63,15 +49,18 @@ namespace MinoriEditorShell.ViewModels
                 }
             }
         }
-
-        public virtual string StateFile => @".\ApplicationState.bin";
-
+        /// <inheritdoc />
+        protected virtual string StateFile => @".\ApplicationState.bin";
+        /// <inheritdoc />
         public bool HasPersistedState => File.Exists(StateFile);
-
+        /// <inheritdoc />
         public IMesDocument SelectedDocument { get; private set; }
-
+        /// <inheritdoc />
         public IMesLayoutItemStatePersister LayoutItemStatePersister { get; private set; }
 
+        /// <summary>
+        /// Default class constructor for IoC
+        /// </summary>
         public MesDocumentManagerViewModel()
         {
             LayoutItemStatePersister = Mvx.IoCProvider.Resolve<IMesLayoutItemStatePersister>();
@@ -125,13 +114,14 @@ namespace MinoriEditorShell.ViewModels
         }
 #endif
 
+        /// <inheritdoc />
         public void ShowTool<TTool>()
             where TTool : IMesTool
         {
 #warning ShowTool<TTool>
             //ShowTool(Mvx.IoCProvider.Resolve<TTool>());
         }
-
+        /// <inheritdoc />
         public void ShowTool(IMesTool model)
         {
             if (Tools.Contains(model))
@@ -146,13 +136,13 @@ namespace MinoriEditorShell.ViewModels
             model.IsSelected = true;
             ActiveItem = model;
         }
-
+        /// <inheritdoc />
         public void OpenDocument(IMesDocument model)
         {
 #warning OpenDocument(IDocument model)
             //ActivateItem(model);
         }
-
+        /// <inheritdoc />
         public void CloseDocument(IMesDocument document)
         {
 #warning CloseDocument(IDocument document)
@@ -190,10 +180,8 @@ namespace MinoriEditorShell.ViewModels
             }
         }
 #endif
-
-        private void RaiseActiveDocumentChanging() => ActiveDocumentChanging?.Invoke(this, EventArgs.Empty);
-
-        private void RaiseActiveDocumentChanged() => ActiveDocumentChanged?.Invoke(this, EventArgs.Empty);
+        //private void RaiseActiveDocumentChanging() => ActiveDocumentChanging?.Invoke(this, EventArgs.Empty);
+        //private void RaiseActiveDocumentChanged() => ActiveDocumentChanged?.Invoke(this, EventArgs.Empty);
 
 #warning OnActivationProcessed(IDocument item, bool success)
 #if false
@@ -251,7 +239,7 @@ namespace MinoriEditorShell.ViewModels
             base.OnDeactivate(close);
         }
 #endif
-
+        /// <inheritdoc />
         public void Close() => Environment.Exit(0);
     }
 }

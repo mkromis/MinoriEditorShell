@@ -2,6 +2,11 @@ using System;
 
 namespace MinoriEditorShell.Results
 {
+    public class MesCompletedEventArgs : EventArgs
+    {
+
+    }
+
     public abstract class MesOpenResultBase<TTarget> : IMesOpenResult<TTarget>
     {
         protected Action<TTarget> _setData;
@@ -43,6 +48,9 @@ namespace MinoriEditorShell.Results
 
 #warning ResultCompletionEventArgs
 
-        public event EventHandler</*ResultCompletionEventArgs*/ object> Completed;
+        /// <summary>
+        /// To notify when task is completed.
+        /// </summary>
+        public event EventHandler<MesCompletedEventArgs> Completed;
     }
 }

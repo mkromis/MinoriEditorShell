@@ -93,7 +93,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="defaultOriginValue"></param>
         /// <param name="defaultDestinationValue"></param>
-        /// <param name="clock"></param>
+        /// <param name="animationClock"></param>
         /// <returns></returns>
         protected override double GetCurrentValueCore(double defaultOriginValue, double defaultDestinationValue, AnimationClock animationClock)
         {
@@ -124,7 +124,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         }
 
         /// <summary>
-        /// All Freesable objects have to implement this method.
+        /// All Free-able objects have to implement this method.
         /// </summary>
         /// <returns></returns>
         protected override Freezable CreateInstanceCore() => new MesExponentialDoubleAnimation();

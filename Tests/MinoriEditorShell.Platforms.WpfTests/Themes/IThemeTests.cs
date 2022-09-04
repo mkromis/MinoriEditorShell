@@ -1,12 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MinoriEditorShell.Platforms.Wpf.Services;
+using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross.IoC;
 using MvvmCross.Tests;
 using System;
 using System.Linq;
 
-namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
+namespace MinoriEditorShell.Platforms.WpfTests.Themes
 {
     [TestClass()]
     public class IThemeTests : MvxIoCSupportingTest

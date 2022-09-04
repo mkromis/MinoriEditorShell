@@ -1,9 +1,7 @@
 using MinoriEditorShell.Services;
-using System;
 using System.Collections.Generic;
 
 namespace MinoriEditorShell.DataClasses
-
 {
     /// <summary>
     /// Tree model to hold settings
@@ -18,20 +16,17 @@ namespace MinoriEditorShell.DataClasses
             Children = new List<MesSettingsTreeItem>();
             Editors = new List<IMesSettings>();
         }
-
         /// <summary>
         /// Name of setting
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// Holds the editor viewmodel
         /// </summary>
-        public List<IMesSettings> Editors { get; private set; }
-
+        public IList<IMesSettings> Editors { get; }
         /// <summary>
         /// Children contains more views
         /// </summary>
-        public List<MesSettingsTreeItem> Children { get; private set; }
+        public IList<MesSettingsTreeItem> Children { get; }
     }
 }

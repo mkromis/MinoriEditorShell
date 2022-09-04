@@ -5,7 +5,7 @@ using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 
-namespace MinoriEditorShell.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public class MesGeneralSettingsViewModel : MvxViewModel, IMesSettings
     {

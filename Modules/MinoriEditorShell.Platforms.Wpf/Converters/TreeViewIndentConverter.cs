@@ -15,7 +15,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
         {
             DependencyObject target = item;
 
-            var depth = 0;
+            int depth = 0;
             do
             {
                 if (target is TreeView)

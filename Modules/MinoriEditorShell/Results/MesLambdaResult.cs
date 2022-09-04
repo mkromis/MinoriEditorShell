@@ -2,6 +2,9 @@ namespace MinoriEditorShell.Results
 {
 #warning CoRoutine
 
+    /// <summary>
+    /// Future implementation for window for window result of a lambda.
+    /// </summary>
     public class MesLambdaResult /*: IResult*/
     {
         //private readonly Action<CoroutineExecutionContext> _lambda;

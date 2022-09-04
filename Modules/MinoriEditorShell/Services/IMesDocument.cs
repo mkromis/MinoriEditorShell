@@ -14,7 +14,7 @@ namespace MinoriEditorShell.Services
         IMvxView View { get; set; }
 
         /// <summary>
-        /// Determines
+        /// Determines weather document can be closed.
         /// </summary>
         bool CanClose { get; }
     }

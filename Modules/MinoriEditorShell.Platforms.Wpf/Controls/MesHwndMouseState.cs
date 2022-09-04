@@ -18,31 +18,31 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         /// <summary>
         /// The current state of the left mouse button.
         /// </summary>
-        public MouseButtonState LeftButton;
+        public MouseButtonState LeftButton { get; set; }
 
         /// <summary>
         /// The current state of the right mouse button.
         /// </summary>
-        public MouseButtonState RightButton;
+        public MouseButtonState RightButton { get; set; }
 
         /// <summary>
         /// The current state of the middle mouse button.
         /// </summary>
-        public MouseButtonState MiddleButton;
+        public MouseButtonState MiddleButton { get; set; }
 
         /// <summary>
         /// The current state of the first extra mouse button.
         /// </summary>
-        public MouseButtonState X1Button;
+        public MouseButtonState X1Button { get; set; }
 
         /// <summary>
         /// The current state of the second extra mouse button.
         /// </summary>
-        public MouseButtonState X2Button;
+        public MouseButtonState X2Button { get; set; }
 
         /// <summary>
         /// The current position of the mouse in screen coordinates.
         /// </summary>
-        public Point ScreenPosition;
+        public Point ScreenPosition { get; set; }
     }
 }

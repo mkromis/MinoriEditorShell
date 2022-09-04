@@ -1,8 +1,6 @@
 using MinoriEditorShell.Messages;
-using MinoriEditorShell.Modules.Services;
 using MinoriEditorShell.Platforms.Wpf.Presenters;
 using MinoriEditorShell.Platforms.Wpf.Services;
-using MinoriEditorShell.Platforms.Wpf.ViewModels;
 using MinoriEditorShell.Platforms.Wpf.Views;
 using MinoriEditorShell.Services;
 using MinoriEditorShell.ViewModels;
@@ -19,7 +17,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Controls;
 
-namespace MinoriEditorShell.Platforms.Wpf
+namespace MinoriEditorShell.Platforms.Wpf.Core
 {
     /// <summary>
     /// This is the main initializer for the kit. Call or over-ride this simualr to any other MvxWpfSetup setup
@@ -77,7 +75,8 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// <summary>
         /// Sets up initial connected types and setup
         /// </summary>
-        public override void InitializePrimary() {
+        public override void InitializePrimary()
+        {
             base.InitializePrimary();
 
             // register necessary interfaces
@@ -111,7 +110,8 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// Creates the app.
         /// </summary>
         /// <returns>An instance of MvxApplication</returns>
-        public override void InitializeSecondary() {
+        public override void InitializeSecondary()
+        {
             base.InitializeSecondary();
 
             _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();

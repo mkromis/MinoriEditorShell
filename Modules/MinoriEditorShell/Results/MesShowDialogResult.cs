@@ -3,6 +3,9 @@ using System;
 
 namespace MinoriEditorShell.Results
 {
+
+#warning Not Implemented
+#if false
     public class MesShowDialogResult<TWindow> : MesOpenResultBase<TWindow>
         where TWindow : IMesWindow
     {
@@ -27,7 +30,7 @@ namespace MinoriEditorShell.Results
         public override void Execute(/*CoroutineExecutionContext*/object context)
         {
             throw new NotImplementedException();
-#if false
+
             TWindow window = _windowLocator();
 
             if (_setData != null)
@@ -42,7 +45,7 @@ namespace MinoriEditorShell.Results
                 _onShutDown(window);
 
             OnCompleted(null, !result);
-#endif
-        }
     }
+    }
+#endif
 }

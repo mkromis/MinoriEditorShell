@@ -3,6 +3,8 @@ using System;
 
 namespace MinoriEditorShell.Results
 {
+#warning Not Implemented
+#if false
     public class MesShowWindowResult<TWindow> : MesOpenResultBase<TWindow>
         where TWindow : IMesWindow
     {
@@ -51,4 +53,5 @@ namespace MinoriEditorShell.Results
 #endif
         }
     }
+#endif
 }

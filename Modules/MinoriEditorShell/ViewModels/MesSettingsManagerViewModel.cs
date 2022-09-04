@@ -15,7 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MinoriEditorShell.Platforms.Wpf.ViewModels
+namespace MinoriEditorShell.ViewModels
 {
     public class MesSettingsManagerViewModel : MvxViewModel, IMesSettingsManager
     {
@@ -32,7 +32,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         public ICommand CancelCommand => new MvxCommand(() => NavigationService.Close(this));
         public string DisplayName { get => displayName; set => SetProperty(ref displayName, value); }
         public ICommand OkCommand => new MvxCommand(SaveChanges);
-        public List<MesSettingsTreeItem> Pages { get; private set; }
+        public IReadOnlyCollection<MesSettingsTreeItem> Pages { get; private set; }
 
         public MesSettingsTreeItem SelectedPage
         {
@@ -55,7 +55,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
         public override async Task Initialize()
         {
             IMvxViewsContainer viewFinder = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
-            await base.Initialize();
+            await base.Initialize().ConfigureAwait(true);
 
             List<MesSettingsTreeItem> pages = new List<MesSettingsTreeItem>();
             _settingsEditors = Mvx.IoCProvider.GetAll<IMesSettings>();
@@ -100,7 +100,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             }
 
             MesSettingsTreeItem firstPage = pages.First();
-            return !firstPage.Children.Any() ? firstPage : GetFirstLeafPageRecursive(firstPage.Children);
+            return !firstPage.Children.Any() ? firstPage : GetFirstLeafPageRecursive(firstPage.Children.ToList());
         }
 
         private List<MesSettingsTreeItem> GetParentCollection(
@@ -124,7 +124,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
                     pages.Add(page);
                 }
 
-                pages = page.Children;
+                pages = page.Children.ToList();
             }
 
             return pages;

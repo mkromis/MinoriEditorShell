@@ -1,13 +1,11 @@
-using MinoriEditorShell.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 
-namespace MinoriEditorShell.Modules.Services
+namespace MinoriEditorShell.Services
 {
-    [Export(typeof(IMesLayoutItemStatePersister))]
     public class MesLayoutItemStatePersister : IMesLayoutItemStatePersister
     {
         private static readonly Type LayoutBaseType = typeof(IMesLayoutItem);

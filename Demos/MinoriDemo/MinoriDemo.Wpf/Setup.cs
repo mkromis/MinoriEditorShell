@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using MinoriEditorShell.Platforms.Wpf;
+using MinoriEditorShell.Platforms.Wpf.Core;
 
 namespace MinoriDemo.WpfCore
 {

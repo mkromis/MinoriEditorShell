@@ -6,6 +6,7 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Services
 {
+    /// <inheritdoc cref="IMesDocument"/>
     public abstract class MesDocument : MesLayoutItemBase, IMesDocument
 #warning fix command handler inherit.
     //ICommandHandler<UndoCommandDefinition>,
@@ -16,14 +17,10 @@ namespace MinoriEditorShell.Services
         //private IMesUndoRedoManager _undoRedoManager;
         //public IMesUndoRedoManager UndoRedoManager => _undoRedoManager ?? (_undoRedoManager = new MesUndoRedoManager());
 
-        /// <summary>
-        /// Sets weather a document can be closed by close button
-        /// </summary>
+        /// <inheritdoc />
         public bool CanClose { get; protected set; } = true;
 
-        /// <summary>
-        /// Removes the document from manager
-        /// </summary>
+        /// <inheritdoc />
         public override ICommand CloseCommand => new MvxCommand(() => Mvx.IoCProvider.Resolve<IMesDocumentManager>().Documents.Remove(this));
 
 #warning Fix Toolbar
@@ -59,7 +56,7 @@ namespace MinoriEditorShell.Services
             }
         }
 #endif
-
+        /// <inheritdoc />
         public IMvxView View { get; set; }
 
 #if false

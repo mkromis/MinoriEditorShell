@@ -6,7 +6,7 @@ using MvvmCross.IoC;
 using System;
 using System.Linq;
 
-namespace MinoriEditorShell.RibbonTests.Wpf.Platforms.Wpf.Extensions
+namespace MinoriEditorShell.RibbonTests.Platforms.Wpf.Extensions
 {
     [TestClass]
     public class IThemeTests : MvvmCross.Tests.MvxIoCSupportingTest

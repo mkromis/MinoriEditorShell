@@ -174,7 +174,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
             // Check whether the application is active (it almost certainly is, at this point).
             if (Application.Current.Windows.Cast<Window>().Any(x => x.IsActive))
+            {
                 _applicationHasFocus = true;
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -207,7 +209,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         {
             // Don't do anything if the mouse is already captured
             if (_isMouseCaptured)
+            {
                 return;
+            }
 
             NativeMethods.SetCapture(_hWnd);
             _isMouseCaptured = true;
@@ -220,7 +224,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         {
             // Don't do anything if the mouse is not captured
             if (!_isMouseCaptured)
+            {
                 return;
+            }
 
             NativeMethods.ReleaseCapture();
             _isMouseCaptured = false;
@@ -233,12 +239,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         private void OnCompositionTargetRendering(object sender, EventArgs e)
         {
             // Get the current width and height of the control
-            var width = (int)ActualWidth;
-            var height = (int)ActualHeight;
+            int width = (int)ActualWidth;
+            int height = (int)ActualHeight;
 
             // If the control has no width or no height, skip drawing since it's not visible
             if (width < 1 || height < 1)
+            {
                 return;
+            }
 
             Render(_hWnd);
         }
@@ -258,7 +266,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             if (_mouseInWindow)
             {
                 _mouseInWindow = false;
-                RaiseHwndMouseLeave(new MesHwndMouseEventArgs(_mouseState));
+                HwndMouseLeave?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
             }
 
             ReleaseMouseCapture();
@@ -281,17 +289,31 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             _mouseState.X2Button = MouseButtonState.Released;
 
             // Fire any events
-            var args = new MesHwndMouseEventArgs(_mouseState);
+            MesHwndMouseEventArgs args = new MesHwndMouseEventArgs(_mouseState);
             if (fireL)
-                RaiseHwndLButtonUp(args);
+            {
+                HwndLButtonUp?.Invoke(this, args);
+            }
+
             if (fireM)
-                RaiseHwndMButtonUp(args);
+            {
+                HwndMButtonUp?.Invoke(this, args);
+            }
+
             if (fireR)
-                RaiseHwndRButtonUp(args);
+            {
+                HwndRButtonUp?.Invoke(this, args);
+            }
+
             if (fireX1)
-                RaiseHwndX1ButtonUp(args);
+            {
+                HwndX1ButtonUp?.Invoke(this, args);
+            }
+
             if (fireX2)
-                RaiseHwndX2ButtonUp(args);
+            {
+                HwndX2ButtonUp?.Invoke(this, args);
+            }
 
             // The mouse is no longer considered to be in our window
             _mouseInWindow = false;
@@ -334,7 +356,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         /// </summary>
         private void RegisterWindowClass()
         {
-            var wndClass = new NativeMethods.WNDCLASSEX();
+            NativeMethods.WNDCLASSEX wndClass = new NativeMethods.WNDCLASSEX();
             wndClass.cbSize = (uint)Marshal.SizeOf(wndClass);
             wndClass.hInstance = NativeMethods.GetModuleHandle(null);
             wndClass.lpfnWndProc = NativeMethods.DefaultWindowProc;
@@ -356,62 +378,62 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     if (_mouseInWindow)
                     {
                         int delta = NativeMethods.GetWheelDeltaWParam(wParam.ToInt32());
-                        RaiseHwndMouseWheel(new MesHwndMouseEventArgs(_mouseState, delta, 0));
+                        HwndMouseWheel?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, delta, 0));
                     }
                     break;
 
                 case NativeMethods.WM_LBUTTONDOWN:
                     _mouseState.LeftButton = MouseButtonState.Pressed;
-                    RaiseHwndLButtonDown(new MesHwndMouseEventArgs(_mouseState));
+                    HwndLButtonDown?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_LBUTTONUP:
                     _mouseState.LeftButton = MouseButtonState.Released;
-                    RaiseHwndLButtonUp(new MesHwndMouseEventArgs(_mouseState));
+                    HwndLButtonUp?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_LBUTTONDBLCLK:
-                    RaiseHwndLButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Left));
+                    HwndLButtonDblClick?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, MouseButton.Left));
                     break;
 
                 case NativeMethods.WM_RBUTTONDOWN:
                     _mouseState.RightButton = MouseButtonState.Pressed;
-                    RaiseHwndRButtonDown(new MesHwndMouseEventArgs(_mouseState));
+                    HwndRButtonDown?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_RBUTTONUP:
                     _mouseState.RightButton = MouseButtonState.Released;
-                    RaiseHwndRButtonUp(new MesHwndMouseEventArgs(_mouseState));
+                    HwndRButtonUp?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_RBUTTONDBLCLK:
-                    RaiseHwndRButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Right));
+                    HwndRButtonDblClick?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, MouseButton.Right));
                     break;
 
                 case NativeMethods.WM_MBUTTONDOWN:
                     _mouseState.MiddleButton = MouseButtonState.Pressed;
-                    RaiseHwndMButtonDown(new MesHwndMouseEventArgs(_mouseState));
+                    HwndMButtonDown?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_MBUTTONUP:
                     _mouseState.MiddleButton = MouseButtonState.Released;
-                    RaiseHwndMButtonUp(new MesHwndMouseEventArgs(_mouseState));
+                    HwndMButtonUp?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     break;
 
                 case NativeMethods.WM_MBUTTONDBLCLK:
-                    RaiseHwndMButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.Middle));
+                    HwndMButtonDblClick?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, MouseButton.Middle));
                     break;
 
                 case NativeMethods.WM_XBUTTONDOWN:
                     if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
                     {
                         _mouseState.X1Button = MouseButtonState.Pressed;
-                        RaiseHwndX1ButtonDown(new MesHwndMouseEventArgs(_mouseState));
+                        HwndX1ButtonDown?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     }
                     else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
                     {
                         _mouseState.X2Button = MouseButtonState.Pressed;
-                        RaiseHwndX2ButtonDown(new MesHwndMouseEventArgs(_mouseState));
+                        HwndX2ButtonDown?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     }
                     break;
 
@@ -419,26 +441,33 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
                     {
                         _mouseState.X1Button = MouseButtonState.Released;
-                        RaiseHwndX1ButtonUp(new MesHwndMouseEventArgs(_mouseState));
+                        HwndX1ButtonUp?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     }
                     else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
                     {
                         _mouseState.X2Button = MouseButtonState.Released;
-                        RaiseHwndX2ButtonUp(new MesHwndMouseEventArgs(_mouseState));
+                        HwndX2ButtonUp?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     }
                     break;
 
                 case NativeMethods.WM_XBUTTONDBLCLK:
                     if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
-                        RaiseHwndX1ButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton1));
+                    {
+                        HwndX1ButtonDblClick?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton1));
+                    }
                     else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
-                        RaiseHwndX2ButtonDblClick(new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton2));
+                    {
+                        HwndX2ButtonDblClick?.Invoke(this, new MesHwndMouseEventArgs(_mouseState, MouseButton.XButton2));
+                    }
+
                     break;
 
                 case NativeMethods.WM_MOUSEMOVE:
                     // If the application isn't in focus, we don't handle this message
                     if (!_applicationHasFocus)
+                    {
                         break;
+                    }
 
                     // record the prevous and new position of the mouse
                     _mouseState.ScreenPosition = PointToScreen(new Point(
@@ -449,14 +478,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     {
                         _mouseInWindow = true;
 
-                        RaiseHwndMouseEnter(new MesHwndMouseEventArgs(_mouseState));
+                        HwndMouseEnter?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
 
                         // Track the previously focused window, and set focus to this window.
                         _hWndPrev = NativeMethods.GetFocus();
                         NativeMethods.SetFocus(_hWnd);
 
                         // send the track mouse event so that we get the WM_MOUSELEAVE message
-                        var tme = new NativeMethods.TRACKMOUSEEVENT
+                        NativeMethods.TRACKMOUSEEVENT tme = new NativeMethods.TRACKMOUSEEVENT
                         {
                             cbSize = Marshal.SizeOf(typeof(NativeMethods.TRACKMOUSEEVENT)),
                             dwFlags = NativeMethods.TME_LEAVE,
@@ -466,7 +495,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     }
 
                     if (_mouseState.ScreenPosition != _previousPosition)
-                        RaiseHwndMouseMove(new MesHwndMouseEventArgs(_mouseState));
+                    {
+                        HwndMouseMove?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
+                    }
 
                     _previousPosition = _mouseState.ScreenPosition;
 
@@ -477,153 +508,20 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                     // If we have capture, we ignore this message because we're just
                     // going to reset the cursor position back into the window
                     if (_isMouseCaptured)
+                    {
                         break;
+                    }
 
                     // Reset the state which releases all buttons and
                     // marks the mouse as not being in the window.
                     ResetMouseState();
-
-                    RaiseHwndMouseLeave(new MesHwndMouseEventArgs(_mouseState));
-
+                    HwndMouseLeave?.Invoke(this, new MesHwndMouseEventArgs(_mouseState));
                     NativeMethods.SetFocus(_hWndPrev);
 
                     break;
             }
 
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);
-        }
-
-        protected virtual void RaiseHwndLButtonDown(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndLButtonDown;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndLButtonUp(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndLButtonUp;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndRButtonDown(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndRButtonDown;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndRButtonUp(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndRButtonUp;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMButtonDown(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMButtonDown;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMButtonUp(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMButtonUp;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndLButtonDblClick(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndLButtonDblClick;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndRButtonDblClick(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndRButtonDblClick;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMButtonDblClick(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMButtonDblClick;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMouseEnter(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMouseEnter;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX1ButtonDown(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX1ButtonDown;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX1ButtonUp(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX1ButtonUp;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX2ButtonDown(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX2ButtonDown;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX2ButtonUp(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX2ButtonUp;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX1ButtonDblClick(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX1ButtonDblClick;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndX2ButtonDblClick(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndX2ButtonDblClick;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMouseLeave(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMouseLeave;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMouseMove(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMouseMove;
-            if (handler != null)
-                handler(this, args);
-        }
-
-        protected virtual void RaiseHwndMouseWheel(MesHwndMouseEventArgs args)
-        {
-            var handler = HwndMouseWheel;
-            if (handler != null)
-                handler(this, args);
         }
 
         #endregion WndProc Implementation

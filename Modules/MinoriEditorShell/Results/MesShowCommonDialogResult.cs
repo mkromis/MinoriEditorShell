@@ -1,30 +1,23 @@
 using System;
 
-namespace MinoriEditorShell.Platforms.Wpf.Results
+namespace MinoriEditorShell.Results
 {
-#warning IResult
+#warning Not Implemented
+    //public class MesShowCommonDialogResult /*: IResult*/
+    //{
+    //    public event EventHandler<ResultCompletionEventArgs> Completed;
 
-    public class MesShowCommonDialogResult /*: IResult*/
-    {
-#warning ResultCompletionEventArgs
+    //    private readonly CommonDialog _commonDialog;
 
-        public event EventHandler</*ResultCompletionEventArgs*/ object> Completed;
+    //    public MesShowCommonDialogResult(CommonDialog commonDialog)
+    //    {
+    //    	_commonDialog = commonDialog;
+    //    }
 
-#warning fix commmon dialog
-        //private readonly CommonDialog _commonDialog;
-
-        //      public MesShowCommonDialogResult(CommonDialog commonDialog)
-        //{
-        //	_commonDialog = commonDialog;
-        //}
-
-#warning CoroutineExecutionContext
-
-        public void Execute(/*CoroutineExecutionContext*/object context)
-        {
-            throw new NotImplementedException();
-            //var result = _commonDialog.ShowDialog().GetValueOrDefault(false);
-            //Completed(this, new ResultCompletionEventArgs { WasCancelled = !result });
-        }
-    }
+    //    public void Execute(CoroutineExecutionContext context)
+    //    {
+    //        var result = _commonDialog.ShowDialog().GetValueOrDefault(false);
+    //        Completed(this, new ResultCompletionEventArgs { WasCancelled = !result });
+    //    }
+    //}
 }

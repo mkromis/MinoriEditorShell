@@ -9,7 +9,7 @@ using System.Drawing;
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
     /// <summary>
-    /// Each node stored in the tree has a position, width & height.
+    /// Each node stored in the tree has a position, width and height.
     /// </summary>
     internal class MesQuadNode<T> : IMesQuadNode<T>
     {

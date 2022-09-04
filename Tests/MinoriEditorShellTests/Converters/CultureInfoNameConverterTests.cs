@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MinoriEditorShell.Converters;
 using MvvmCross.Tests;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace MinoriEditorShell.ConvertersTests
+namespace MinoriEditorShell.Converters
 {
     [TestClass]
     public class CultureInfoNameConverterTests : MvxIoCSupportingTest

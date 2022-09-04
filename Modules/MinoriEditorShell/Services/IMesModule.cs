@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace MinoriEditorShell.Services
 {
+#warning Not Implemented
+#if false
     public interface IMesModule
     {
 #warning GlobalResourceDictionaries Disabled
@@ -18,4 +20,5 @@ namespace MinoriEditorShell.Services
 
         void PostInitialize();
     }
+#endif
 }

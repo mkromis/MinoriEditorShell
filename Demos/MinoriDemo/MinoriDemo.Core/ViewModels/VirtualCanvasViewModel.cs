@@ -112,7 +112,7 @@ namespace MinoriDemo.Core.ViewModels
 
             Zoom.ValueChanged += (s, e) =>
             {
-                RaisePropertyChanged("ZoomValue");
+                RaisePropertyChanged(nameof(ZoomValue));
                 _statusbar.Text = $"Zoom:{e}";
             };
 
