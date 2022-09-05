@@ -5,6 +5,8 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
+#warning not implemented
+#if false
     public class NullableValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value == null ? DependencyProperty.UnsetValue : value;
@@ -14,4 +16,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
             throw new NotSupportedException();
         }
     }
+#endif
 }

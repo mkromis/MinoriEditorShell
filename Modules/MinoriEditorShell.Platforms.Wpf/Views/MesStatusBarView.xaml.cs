@@ -9,17 +9,15 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
     /// </summary>
     public partial class MesStatusBarView : UserControl
     {
+        /// <summary>
+        /// Creates status bar view with IMesStatusBar backing
+        /// </summary>
         public MesStatusBarView()
         {
             InitializeComponent();
 
             // for Design Editor
-            try
-            {
-                IMesStatusBar statusBar = Mvx.IoCProvider.Resolve<IMesStatusBar>();
-                DataContext = statusBar;
-            }
-            catch { }
+            DataContext = Mvx.IoCProvider.Resolve<IMesStatusBar>();
         }
     }
 }

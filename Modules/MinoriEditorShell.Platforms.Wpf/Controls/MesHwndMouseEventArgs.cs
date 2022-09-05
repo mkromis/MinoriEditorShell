@@ -14,6 +14,8 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     public class MesHwndMouseEventArgs : EventArgs
     {
         /// <summary>
@@ -107,4 +109,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             DoubleClickButton = doubleClickButton;
         }
     }
+#endif
 }

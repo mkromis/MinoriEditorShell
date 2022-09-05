@@ -4,6 +4,8 @@ using System.Windows;
 
 namespace MinoriEditorShell.Platforms.Wpf.ViewModels
 {
+#warning
+#if false
     public class MesStatusBarItemViewModel : MvxNotifyPropertyChanged
     {
         private int _index;
@@ -29,4 +31,5 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             Width = width;
         }
     }
+#endif
 }

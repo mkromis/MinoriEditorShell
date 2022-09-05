@@ -3,6 +3,8 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
 {
+#warning Not Implemented
+#if false
     public class MesGrayscaleEffect : MesShaderEffectBase<MesGrayscaleEffect>
     {
         public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(MesGrayscaleEffect), 0);
@@ -18,4 +20,5 @@ namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
             UpdateShaderValue(InputProperty);
         }
     }
+#endif
 }

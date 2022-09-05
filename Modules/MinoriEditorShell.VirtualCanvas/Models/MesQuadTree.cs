@@ -7,37 +7,25 @@ using MinoriEditorShell.VirtualCanvas.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
-    /// <summary>
-    /// This class efficiently stores and retrieves arbitrarily sized and positioned
-    /// objects in a quad-tree data structure.  This can be used to do efficient hit
-    /// detection or visiblility checks on objects in a virtualized canvas.
-    /// The object does not need to implement any special interface because the Rect Bounds
-    /// of those objects is handled as a separate argument to Insert.
-    /// </summary>
-    public partial class MesQuadTree<T> : IMesQuadTree<T> where T : class
+    /// <inheritdoc cref="IMesQuadTree{T}"/>
+    public class MesQuadTree<T> : IMesQuadTree<T> where T : class
     {
         private RectangleF _bounds; // overall bounds we are indexing.
+        /// <inheritdoc />
         public IMesQuadrant<T> Root { get; private set; }
         private IDictionary<T, IMesQuadrant<T>> _table;
-
-        /// <summary>
-        /// This determines the overall quad-tree indexing strategy, changing this bounds
-        /// is expensive since it has to re-divide the entire thing - like a re-hash operation.
-        /// </summary>
+        /// <inheritdoc />
         public RectangleF Bounds
         {
             get => _bounds;
             set { _bounds = value; ReIndex(); }
         }
 
-        /// <summary>
-        /// Insert a node with given bounds into this QuadTree.
-        /// </summary>
-        /// <param name="node">The node to insert</param>
-        /// <param name="bounds">The bounds of this node</param>
+        /// <inheritdoc />
         public void Insert(T node, RectangleF bounds)
         {
             if (_bounds.Width == 0 || _bounds.Height == 0)
@@ -64,65 +52,35 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             _table[node] = parent;
         }
 
-        /// <summary>
-        /// Get a list of the nodes that intersect the given bounds.
-        /// </summary>
-        /// <param name="bounds">The bounds to test</param>
-        /// <returns>List of zero or mode nodes found inside the given bounds</returns>
-        public IEnumerable<T> GetNodesInside(RectangleF bounds)
-        {
-            foreach (MesQuadNode<T> n in GetNodes(bounds))
-            {
-                yield return n.Node;
-            }
-        }
-
-        /// <summary>
-        /// Get a list of the nodes that intersect the given bounds.
-        /// </summary>
-        /// <param name="bounds">The bounds to test</param>
-        /// <returns>List of zero or mode nodes found inside the given bounds</returns>
+        /// <inheritdoc />
+        public IEnumerable<T> GetNodesInside(RectangleF bounds) => 
+            GetNodes(bounds).OfType<MesQuadNode<T>>().Select(n => n.Node);
+        /// <inheritdoc />
         public bool HasNodesInside(RectangleF bounds)
         {
-            if (Root != null)
-            {
-                Root.HasIntersectingNodes(bounds);
-            }
+            Root?.HasIntersectingNodes(bounds);
             return false;
         }
 
-        /// <summary>
-        /// Get list of nodes that intersect the given bounds.
-        /// </summary>
-        /// <param name="bounds">The bounds to test</param>
-        /// <returns>The list of nodes intersecting the given bounds</returns>
+        /// <inheritdoc />
         public IEnumerable<IMesQuadNode<T>> GetNodes(RectangleF bounds)
         {
             List<IMesQuadNode<T>> result = new List<IMesQuadNode<T>>();
-            if (Root != null)
-            {
-                Root.GetIntersectingNodes(result, bounds);
-            }
+            Root?.GetIntersectingNodes(result, bounds);
             return result;
         }
 
-        /// <summary>
-        /// Remove the given node from this QuadTree.
-        /// </summary>
-        /// <param name="node">The node to remove</param>
-        /// <returns>True if the node was found and removed.</returns>
+        /// <inheritdoc />
         public bool Remove(T node)
         {
-            if (_table != null)
+            if (_table == null || !_table.TryGetValue(node, out IMesQuadrant<T> parent))
             {
-                if (_table.TryGetValue(node, out IMesQuadrant<T> parent))
-                {
-                    parent.RemoveNode(node);
-                    _table.Remove(node);
-                    return true;
-                }
+                return false;
             }
-            return false;
+
+            parent.RemoveNode(node);
+            _table.Remove(node);
+            return true;
         }
 
         /// <summary>
@@ -139,10 +97,8 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             }
         }
 
-        /// <summary>
-        /// Staticail visual information
-        /// </summary>
-        /// <param name="container"></param>
-        public void ShowQuadTree(object container) => Root?.ShowQuadTree(container);
+        /// <inheritdoc />
+        public void ShowQuadTree(object container) => 
+            Root?.ShowQuadTree(container);
     }
 }

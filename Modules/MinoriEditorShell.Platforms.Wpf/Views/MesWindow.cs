@@ -11,11 +11,13 @@ using MvxApplication = MvvmCross.Platforms.Wpf.Views.MvxApplication;
 
 namespace MinoriEditorShell.Platforms.Wpf.Views
 {
+    /// <inheritdoc cref="IMesWindow"/>
     public class MesWindow : MetroWindow, IMesWindow, IMvxWindow, IMvxWpfView
     {
         private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
 
+        /// <inheritdoc />
         public IMvxViewModel ViewModel
         {
             get => _viewModel;
@@ -26,9 +28,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
                 BindingContext.DataContext = value;
             }
         }
-
+        /// <inheritdoc />
         public string Identifier { get; set; }
-
+        /// <inheritdoc />
         public IMvxBindingContext BindingContext
         {
             get
@@ -47,13 +49,16 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             }
             set => _bindingContext = value;
         }
-
+        /// <inheritdoc />
         public string DisplayName
         {
             get => Title;
             set => Title = value;
         }
 
+        /// <summary>
+        /// Opens as main window
+        /// </summary>
         public MesWindow()
         {
             Unloaded += MesWindow_Unloaded;
@@ -103,8 +108,8 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             IMesThemeManager manager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
             IMesTheme theme = manager.Themes.FirstOrDefault(x => x.GetType().Name == themeName);
 
-            // Set to defualt if missing or error
-            if (theme == null) theme = manager.Themes.First(x => x.GetType().Name == themeName);
+            // Set to default if missing or error
+            theme ??= manager.Themes.First(x => x.GetType().Name == themeName);
 
             manager.SetCurrentTheme(theme.Name);
 
@@ -113,17 +118,20 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
         }
     }
 
+    /// <summary>
+    /// Generics implementation of main window
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
     public class MesWindow<TViewModel> : MesWindow, IMvxWpfView<TViewModel> where TViewModel : class, IMvxViewModel
     {
+        /// <inheritdoc />
         public new TViewModel ViewModel
         {
             get => (TViewModel)base.ViewModel;
             set => base.ViewModel = value;
         }
-
-        MvxFluentBindingDescriptionSet<IMvxWpfView<TViewModel>, TViewModel> IMvxWpfView<TViewModel>.CreateBindingSet()
-        {
-            return this.CreateBindingSet<IMvxWpfView<TViewModel>, TViewModel>();
-        }
+        /// <inheritdoc />
+        MvxFluentBindingDescriptionSet<IMvxWpfView<TViewModel>, TViewModel> IMvxWpfView<TViewModel>.CreateBindingSet() => 
+            this.CreateBindingSet<IMvxWpfView<TViewModel>, TViewModel>();
     }
 }

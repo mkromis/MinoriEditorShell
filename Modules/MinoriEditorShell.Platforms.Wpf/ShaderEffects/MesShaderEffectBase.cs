@@ -3,6 +3,8 @@ using System.Windows.Media.Effects;
 
 namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
 {
+#warning not implemented
+#if false
     public class MesShaderEffectBase<T> : ShaderEffect, IDisposable
         where T : MesShaderEffectBase<T>
     {
@@ -15,4 +17,5 @@ namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
 
         void IDisposable.Dispose() => PixelShader = null;
     }
+#endif
 }

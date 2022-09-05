@@ -9,6 +9,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
     [MvxWindowPresentation]
     public partial class MesSettingsView
     {
+        /// <summary>
+        /// Creates view for settings window.
+        /// </summary>
         public MesSettingsView()
         {
             InitializeComponent();

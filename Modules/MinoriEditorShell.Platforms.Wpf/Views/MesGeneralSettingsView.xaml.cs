@@ -1,13 +1,13 @@
 ﻿namespace MinoriEditorShell.Platforms.Wpf.Views
 {
     /// <summary>
-    ///     Interaction logic for MainMenuSettingsView.xaml
+    /// Interaction logic for MainMenuSettingsView.xaml
     /// </summary>
     public partial class MesGeneralSettingsView
     {
-        public MesGeneralSettingsView()
-        {
-            InitializeComponent();
-        }
+        /// <summary>
+        /// General options for application
+        /// </summary>
+        public MesGeneralSettingsView() => InitializeComponent();
     }
 }

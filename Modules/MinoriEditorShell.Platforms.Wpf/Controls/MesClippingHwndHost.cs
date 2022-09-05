@@ -8,6 +8,8 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     public class MesClippingHwndHost : HwndHost
     {
         private HwndSource _source;
@@ -87,4 +89,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             base.OnRenderSizeChanged(sizeInfo);
         }
     }
+#endif
 }

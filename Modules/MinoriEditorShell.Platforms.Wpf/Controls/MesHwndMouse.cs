@@ -4,6 +4,8 @@ using System.Windows;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     public static class MesHwndMouse
     {
         public static Point GetCursorPosition()
@@ -19,4 +21,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
 
         public static void HideCursor() => NativeMethods.ShowCursor(false);
     }
+#endif
 }

@@ -5,6 +5,8 @@ using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not implemented
+#if false
     public class MesPanesStyleSelector : StyleSelector
     {
         public Style ToolStyle { get; set; }
@@ -25,4 +27,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             }
         }
     }
+#endif
 }

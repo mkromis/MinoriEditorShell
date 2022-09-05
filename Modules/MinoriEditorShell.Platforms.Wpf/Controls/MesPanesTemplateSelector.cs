@@ -4,6 +4,8 @@ using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     public class MesPanesTemplateSelector : DataTemplateSelector
     {
         public DataTemplate ToolTemplate { get; set; }
@@ -24,4 +26,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             }
         }
     }
+#endif
 }

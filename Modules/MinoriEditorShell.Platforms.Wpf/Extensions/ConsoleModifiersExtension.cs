@@ -5,6 +5,11 @@ namespace MinoriEditorShell.Platforms.Wpf.Extensions
 {
     public static class ConsoleModifiersExtension
     {
+        /// <summary>
+        /// Helper to convert console modifiers to normal modifiers
+        /// </summary>
+        /// <param name="console"></param>
+        /// <returns></returns>
         public static ModifierKeys ToModifierKeys(this ConsoleModifiers console)
         {
             switch (console)

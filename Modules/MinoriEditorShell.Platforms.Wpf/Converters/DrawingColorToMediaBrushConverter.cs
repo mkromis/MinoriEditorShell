@@ -5,6 +5,8 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
+#warning Not Implemented
+#if false
     public class DrawingColorToMediaBrushConverter : IValueConverter
     {
         // Convert from Drawing Color to meda brush
@@ -22,4 +24,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
                 System.Drawing.Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B);
         }
     }
+#endif
 }

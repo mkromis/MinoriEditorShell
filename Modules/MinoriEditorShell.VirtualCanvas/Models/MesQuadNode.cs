@@ -8,9 +8,7 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
-    /// <summary>
-    /// Each node stored in the tree has a position, width and height.
-    /// </summary>
+    /// <inheritdoc cref="IMesQuadNode{T}"/>
     internal class MesQuadNode<T> : IMesQuadNode<T>
     {
         /// <summary>
@@ -23,20 +21,11 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             Node = node;
             Bounds = bounds;
         }
-
-        /// <summary>
-        /// The node
-        /// </summary>
+        /// <inheritdoc />
         public T Node { get; set; }
-
-        /// <summary>
-        /// The Rect bounds of the node
-        /// </summary>
+        /// <inheritdoc />
         public RectangleF Bounds { get; }
-
-        /// <summary>
-        /// QuadNodes form a linked list in the Quadrant.
-        /// </summary>
+        /// <inheritdoc />
         public IMesQuadNode<T> Next { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.Services
 {
+#warning Not Implemented
+#if false
     public interface IMesMainWindow
     {
         WindowState WindowState { get; set; }
@@ -15,4 +17,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
         IMesDocumentManager Shell { get; }
     }
+#endif
 }

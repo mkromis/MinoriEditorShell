@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MinoriEditorShell.Services
 {
     /// <summary>
-    /// Manager of themes
+    /// Manager of themes, used by IoC
     /// </summary>
     public interface IMesThemeManager
     {

@@ -11,32 +11,25 @@ using System.Drawing;
 
 namespace MinoriEditorShell.VirtualCanvas.Models
 {
-    /// <summary>
-    /// The canvas is split up into four Quadrants and objects are stored in the quadrant that contains them
-    /// and each quadrant is split up into four child Quadrants recurrsively.  Objects that overlap more than
-    /// one quadrant are stored in the _nodes list for this Quadrant.
-    /// </summary>
+    /// <inheritdoc cref="IMesQuadNode{T}"/>
     internal class MesQuadrant<T> : IMesQuadrant<T>
     {
-        /// <summary>
-        /// The bounds of this quadrant
-        /// </summary>
-        public RectangleF Bounds { get; private set; } // quadrant bounds.
+        private readonly IMesQuadrant<T> _parent;
 
-        public IMesQuadNode<T> Nodes { get; private set; } // nodes that overlap the sub quadrant boundaries.
-
-        // The quadrant is subdivided when nodes are inserted that are
-        // completely contained within those subdivisions.
+        /// <inheritdoc/>
+        public RectangleF Bounds { get; private set; } 
+        /// <inheritdoc/>
+        public IMesQuadNode<T> Nodes { get; private set; }
+        /// <inheritdoc/>
         public IMesQuadrant<T> TopLeft { get; private set; }
-
+        /// <inheritdoc/>
         public IMesQuadrant<T> TopRight { get; private set; }
+        /// <inheritdoc/>
         public IMesQuadrant<T> BottomLeft { get; private set; }
+        /// <inheritdoc/>
         public IMesQuadrant<T> BottomRight { get; private set; }
 
-        /// <summary>
-        /// Statictial information for rendering use.
-        /// </summary>
-        /// <param name="o"></param>
+        /// <inheritdoc/>
         public void ShowQuadTree(object o)
         {
             //if (o is Canvas c)
@@ -70,7 +63,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <param name="bounds">The bounds of this quadrant</param>
         public MesQuadrant(IMesQuadrant<T> parent, RectangleF bounds)
         {
-            Parent = parent;
+            _parent = parent;
             Debug.Assert(bounds.Width != 0 && bounds.Height != 0);
             if (bounds.Width == 0 || bounds.Height == 0)
             {
@@ -79,18 +72,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             }
             Bounds = bounds;
         }
-
-        /// <summary>
-        /// The parent Quadrant or null if this is the root
-        /// </summary>
-        internal IMesQuadrant<T> Parent { get; }
-
-        /// <summary>
-        /// Insert the given node
-        /// </summary>
-        /// <param name="node">The node </param>
-        /// <param name="bounds">The bounds of that node</param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public IMesQuadrant<T> Insert(T node, RectangleF bounds)
         {
             Debug.Assert(bounds.Width != 0 && bounds.Height != 0);
@@ -159,31 +141,23 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             {
                 return child.Insert(node, bounds);
             }
+
+            MesQuadNode<T> n = new MesQuadNode<T>(node, bounds);
+            if (Nodes == null)
+            {
+                n.Next = n;
+            }
             else
             {
-                MesQuadNode<T> n = new MesQuadNode<T>(node, bounds);
-                if (Nodes == null)
-                {
-                    n.Next = n;
-                }
-                else
-                {
-                    // link up in circular link list.
-                    IMesQuadNode<T> x = Nodes;
-                    n.Next = x.Next;
-                    x.Next = n;
-                }
-                Nodes = n;
-                return this;
+                // link up in circular link list.
+                IMesQuadNode<T> x = Nodes;
+                n.Next = x.Next;
+                x.Next = n;
             }
+            Nodes = n;
+            return this;
         }
-
-        /// <summary>
-        /// Returns all nodes in this quadrant that intersect the given bounds.
-        /// The nodes are returned in pretty much random order as far as the caller is concerned.
-        /// </summary>
-        /// <param name="nodes">List of nodes found in the given bounds</param>
-        /// <param name="bounds">The bounds that contains the nodes you want returned</param>
+        /// <inheritdoc />
         public void GetIntersectingNodes(IList<IMesQuadNode<T>> nodes, RectangleF bounds)
         {
             if (bounds.IsEmpty) { return; }
@@ -221,35 +195,25 @@ namespace MinoriEditorShell.VirtualCanvas.Models
 
             GetIntersectingNodes(Nodes, nodes, bounds);
         }
-
-        /// <summary>
-        /// Walk the given linked list of QuadNodes and check them against the given bounds.
-        /// Add all nodes that intersect the bounds in to the list.
-        /// </summary>
-        /// <param name="last">The last QuadNode in a circularly linked list</param>
-        /// <param name="nodes">The resulting nodes are added to this list</param>
-        /// <param name="bounds">The bounds to test against each node</param>
+        /// <inheritdoc />
         public void GetIntersectingNodes(IMesQuadNode<T> last, IList<IMesQuadNode<T>> nodes, RectangleF bounds)
         {
-            if (last != null)
+            if (last == null)
             {
-                IMesQuadNode<T> n = last;
-                do
-                {
-                    n = n.Next; // first node.
-                    if (n.Bounds.IntersectsWith(bounds))
-                    {
-                        nodes.Add(n);
-                    }
-                } while (n != last);
+                return;
             }
-        }
 
-        /// <summary>
-        /// Return true if there are any nodes in this Quadrant that intersect the given bounds.
-        /// </summary>
-        /// <param name="bounds">The bounds to test</param>
-        /// <returns>boolean</returns>
+            IMesQuadNode<T> n = last;
+            do
+            {
+                n = n.Next; // first node.
+                if (n.Bounds.IntersectsWith(bounds))
+                {
+                    nodes.Add(n);
+                }
+            } while (n != last);
+        }
+        /// <inheritdoc />
         public bool HasIntersectingNodes(RectangleF bounds)
         {
             if (bounds.IsEmpty) { return false; }
@@ -292,62 +256,57 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             }
             return found;
         }
-
-        /// <summary>
-        /// Walk the given linked list and test each node against the given bounds/
-        /// </summary>
-        /// <param name="last">The last node in the circularly linked list.</param>
-        /// <param name="bounds">Bounds to test</param>
-        /// <returns>Return true if a node in the list intersects the bounds</returns>
+        /// <inheritdoc />
         public bool HasIntersectingNodes(IMesQuadNode<T> last, RectangleF bounds)
         {
-            if (last != null)
+            if (last == null)
             {
-                IMesQuadNode<T> n = last;
-                do
-                {
-                    n = n.Next; // first node.
-                    if (n.Bounds.IntersectsWith(bounds))
-                    {
-                        return true;
-                    }
-                } while (n != last);
+                return false;
             }
+
+            IMesQuadNode<T> n = last;
+            do
+            {
+                n = n.Next; // first node.
+                if (n.Bounds.IntersectsWith(bounds))
+                {
+                    return true;
+                }
+            } while (n != last);
             return false;
         }
-
-        /// <summary>
-        /// Remove the given node from this Quadrant.
-        /// </summary>
-        /// <param name="node">The node to remove</param>
-        /// <returns>Returns true if the node was found and removed.</returns>
+        /// <inheritdoc />
         public bool RemoveNode(T node)
         {
-            bool rc = false;
-            if (Nodes != null)
+            if (Nodes == null)
             {
-                IMesQuadNode<T> p = Nodes;
-                while (!p.Next.Node.Equals(node) && p.Next != Nodes)
-                {
-                    p = p.Next;
-                }
-                if (p.Next.Node.Equals(node))
-                {
-                    rc = true;
-                    IMesQuadNode<T> n = p.Next;
-                    if (p == n)
-                    {
-                        // list goes to empty
-                        Nodes = null;
-                    }
-                    else
-                    {
-                        if (Nodes == n) { Nodes = p; }
-                        p.Next = n.Next;
-                    }
-                }
+                return false;
             }
-            return rc;
+
+            IMesQuadNode<T> p = Nodes;
+            while (!p.Next.Node.Equals(node) && p.Next != Nodes)
+            {
+                p = p.Next;
+            }
+
+            if (!p.Next.Node.Equals(node))
+            {
+                return false;
+            }
+
+            // Remove Node
+            IMesQuadNode<T> n = p.Next;
+            if (p == n)
+            {
+                // list goes to empty
+                Nodes = null;
+            }
+            else
+            {
+                if (Nodes == n) { Nodes = p; }
+                p.Next = n.Next;
+            }
+            return true;
         }
     }
 }

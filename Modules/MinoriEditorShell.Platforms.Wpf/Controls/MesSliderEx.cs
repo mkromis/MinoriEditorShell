@@ -4,6 +4,8 @@ using System.Windows.Controls.Primitives;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     /// <summary>
     /// Slider that exposes the thumb drag started / completed events directly
     /// to allow Caliburn Micro to attach to the messages.
@@ -30,4 +32,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             base.OnThumbDragCompleted(e);
         }
     }
+#endif
 }

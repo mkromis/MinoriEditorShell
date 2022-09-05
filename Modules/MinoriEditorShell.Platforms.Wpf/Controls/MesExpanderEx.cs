@@ -3,6 +3,8 @@ using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     public class MesExpanderEx : Expander
     {
         static MesExpanderEx()
@@ -11,4 +13,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
                 new FrameworkPropertyMetadata(typeof(MesExpanderEx)));
         }
     }
+#endif
 }

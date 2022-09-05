@@ -13,6 +13,7 @@ using System.Windows;
 
 namespace MinoriEditorShell.Platforms.Wpf.Services
 {
+    /// <inheritdoc cref="IMesThemeManager"/>
     public class MesThemeManager : IMesThemeManager
     {
         private readonly ILogger<MesThemeManager> _log;
@@ -21,7 +22,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
         private readonly IMvxMessenger _messenger;
 
         /// <summary>
-        /// Local theme menager
+        /// Local theme manager
         /// </summary>
         /// <param name="messenger"></param>
         public MesThemeManager(IMvxMessenger messenger)
@@ -40,14 +41,12 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 }
             });
         }
-
+        /// <inheritdoc />
         public IMesTheme CurrentTheme { get; private set; }
+        /// <inheritdoc />
         public IEnumerable<IMesTheme> Themes { get; private set; }
-
-        // Needed for Interface
-        public bool SetCurrentTheme(string name) => SetCurrentTheme(name, true);
-
-        public bool SetCurrentTheme(string name, bool applySetting)
+        /// <inheritdoc />
+        public bool SetCurrentTheme(string name)
         {
             try
             {
@@ -56,7 +55,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 if (theme == null) { return false; }
                 CurrentTheme = theme;
 
-                // Setup asnc info
+                // Setup async info
                 Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>()
                     .ExecuteOnMainThreadAsync(() =>
                 {
@@ -82,22 +81,19 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                     appTheme.EndInit();
                 });
 
-                _log?.LogInformation($"Theme set to {name}");
+                _log?.LogInformation("Theme set to {Name}", name);
 
                 // publish event
                 _messenger.Publish(new MesThemeChangeMessage(this, CurrentTheme.Name));
 
-                if (applySetting)
-                {
-                    Properties.Settings.Default.ThemeName = CurrentTheme.GetType().Name;
-                    Properties.Settings.Default.Save();
-                }
+                Properties.Settings.Default.ThemeName = CurrentTheme.GetType().Name;
+                Properties.Settings.Default.Save();
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _log?.LogInformation(e, "Log Theme Setting");
+                _log?.LogInformation(ex, "Log Theme Setting");
                 return false;
             }
         }

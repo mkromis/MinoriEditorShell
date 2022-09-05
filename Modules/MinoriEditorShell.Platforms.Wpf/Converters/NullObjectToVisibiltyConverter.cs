@@ -18,6 +18,8 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
+#warning Not Implemented
+#if false
     public class NullObjectToVisibiltyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
@@ -25,4 +27,5 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null;
     }
+#endif
 }

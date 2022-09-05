@@ -16,10 +16,10 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
+#warning Not Implemented
+#if false
     public class BoolToInsertModeConverter : IValueConverter
     {
-        #region IValueConverter Members
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool? actValue = value as bool?;
@@ -34,6 +34,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter,
                                   System.Globalization.CultureInfo culture) => throw new NotImplementedException();
 
-        #endregion IValueConverter Members
     }
+#endif
 }

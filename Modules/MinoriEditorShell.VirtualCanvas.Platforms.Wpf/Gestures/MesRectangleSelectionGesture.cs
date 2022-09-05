@@ -13,9 +13,7 @@ using System.Windows.Input;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
 {
-    /// <summary>
-    /// This class provides the ability to draw a rectangle on a zoomable object and zoom into that location.
-    /// </summary>
+    /// <inheritdoc cref="IMesRectangleSelectionGesture" />
     public class MesRectangleSelectionGesture : IMesRectangleSelectionGesture
     {
         private MesSelectionRectVisual _selectionRectVisual;
@@ -27,8 +25,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         private Point _mouseDownPoint;
         private readonly int _selectionThreshold = 5; // allow some mouse wiggle on mouse down without actually selecting stuff!
 
+        /// <inheritdoc />
         public event EventHandler Selected;
 
+        /// <inheritdoc />
         public event EventHandler ZoomReset;
 
         /// <summary>
@@ -83,9 +83,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         public int ZoomSizeThreshold { get; set; } = 20;
 
-        /// <summary>
-        /// Specify modifier keys for mouse manipulation
-        /// </summary>
+
+        /// <inheritdoc />
         public ConsoleModifiers ConsoleModifiers { get; set; } = ConsoleModifiers.Control;
 
         /// <summary>
