@@ -10,7 +10,7 @@
     d:DesignHeight="20" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converter:NullObjectToVisibiltyConverter x:Key="nullToVisibilityConverter" />
+            <converter:NullObjectToVisibilityConverter x:Key="nullToVisibilityConverter" />
             <converter:BoolToInsertModeConverter x:Key="booleanToInsertModeConverter" />
             <avalon:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             <converter:DrawingColorToMediaBrushConverter x:Key="drawingColorToMediaBrushConverter" />

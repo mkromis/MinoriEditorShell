@@ -18,14 +18,20 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
-#warning Not Implemented
-#if false
-    public class NullObjectToVisibiltyConverter : IValueConverter
+    /// <summary>
+    /// Convert object to visible not viable based on null or not null.
+    /// </summary>
+    public class NullObjectToVisibilityConverter : IValueConverter
     {
+        /// <summary>
+        /// If object is not null, then return visible.
+        /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            (value == null) ? Visibility.Collapsed : Visibility.Visible;
+            value == null ? Visibility.Collapsed : Visibility.Visible;
 
+        /// <summary>
+        /// No reverse conversion
+        /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null;
     }
-#endif
 }

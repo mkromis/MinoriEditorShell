@@ -19,13 +19,15 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
+#warning Not Implemented
+#if false
     /// <summary>
     /// A control that enables graphics rendering inside a WPF control through
     /// the use of a hosted child Hwnd.
     /// </summary>
     public abstract class MesHwndWrapper : HwndHost
     {
-        #region Fields
+#region Fields
 
         // The name of our window class
         private const string WindowClass = "GraphicsDeviceControlHostWindowClass";
@@ -51,9 +53,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         // Tracking whether we've "capture" the mouse
         private bool _isMouseCaptured;
 
-        #endregion Fields
+#endregion Fields
 
-        #region Events
+#region Events
 
         /// <summary>
         /// Invoked when the control receives a left mouse down message.
@@ -150,18 +152,18 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         /// </summary>
         public event EventHandler<MesHwndMouseEventArgs> HwndMouseWheel;
 
-        #endregion Events
+#endregion Events
 
-        #region Properties
+#region Properties
 
         public new bool IsMouseCaptured
         {
             get { return _isMouseCaptured; }
         }
 
-        #endregion Properties
+#endregion Properties
 
-        #region Construction and Disposal
+#region Construction and Disposal
 
         protected MesHwndWrapper()
         {
@@ -192,9 +194,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             base.Dispose(disposing);
         }
 
-        #endregion Construction and Disposal
+#endregion Construction and Disposal
 
-        #region Public Methods
+#region Public Methods
 
         /// <summary>
         /// Captures the mouse, hiding it and trapping it inside the window bounds.
@@ -232,9 +234,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             _isMouseCaptured = false;
         }
 
-        #endregion Public Methods
+#endregion Public Methods
 
-        #region Graphics Device Control Implementation
+#region Graphics Device Control Implementation
 
         private void OnCompositionTargetRendering(object sender, EventArgs e)
         {
@@ -319,9 +321,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             _mouseInWindow = false;
         }
 
-        #endregion Graphics Device Control Implementation
+#endregion Graphics Device Control Implementation
 
-        #region HWND Management
+#region HWND Management
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
@@ -366,9 +368,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             NativeMethods.RegisterClassEx(ref wndClass);
         }
 
-        #endregion HWND Management
+#endregion HWND Management
 
-        #region WndProc Implementation
+#region WndProc Implementation
 
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
@@ -524,6 +526,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);
         }
 
-        #endregion WndProc Implementation
+#endregion WndProc Implementation
     }
+#endif
 }

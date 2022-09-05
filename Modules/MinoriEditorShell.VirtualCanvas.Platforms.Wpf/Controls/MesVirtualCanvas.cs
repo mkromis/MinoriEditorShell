@@ -445,7 +445,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Controls
             _removeQuanta = SelfThrottlingWorker(_removeQuanta, _idealDuration, new QuantizedWorkHandler(LazyRemoveNodes));
             _gcQuanta = SelfThrottlingWorker(_gcQuanta, _idealDuration, new QuantizedWorkHandler(LazyGarbageCollectNodes));
 
-            VisualsChanged?.Invoke(this, new VisualChangeEventArgs(_added, Removed));
+            VisualsChanged?.Invoke(this, new VisualChangeEventArgs() { Added = _added, Removed = Removed});
 
             if (_added > 0)
             {

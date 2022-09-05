@@ -12,11 +12,11 @@ namespace MinoriEditorShell.VirtualCanvas.Services
         /// <summary>
         /// Specified added child
         /// </summary>
-        public int Added { get; internal set; }
+        public int Added { get; set; }
         /// <summary>
         /// Specified removed child
         /// </summary>
-        public int Removed { get; internal set; }
+        public int Removed { get; set; }
     }
 
     /// <summary>

@@ -5,11 +5,19 @@ using System.Windows.Media;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
-#warning Not Implemented
-#if false
+    /// <summary>
+    /// Converter used in xaml for UI conversion
+    /// </summary>
     public class DrawingColorToMediaBrushConverter : IValueConverter
     {
-        // Convert from Drawing Color to meda brush
+        /// <summary>
+        /// Convert from Drawing Color to media brush
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             System.Drawing.Color? color = value as System.Drawing.Color?;
@@ -17,6 +25,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
                 new SolidColorBrush(Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B));
         }
 
+        /// <summary>
+        /// Convert media brush to model's Drawing Color
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Color? color = value as Color?;
@@ -24,5 +40,4 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
                 System.Drawing.Color.FromArgb(color.Value.A, color.Value.R, color.Value.G, color.Value.B);
         }
     }
-#endif
 }

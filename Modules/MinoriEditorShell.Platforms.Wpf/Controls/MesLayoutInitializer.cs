@@ -7,9 +7,7 @@ using System.Windows.Controls;
 
 namespace MinoriEditorShell.Platforms.Wpf.Controls
 {
-#warning Not Implemented
-#if false
-    public class MesLayoutInitializer : ILayoutUpdateStrategy
+    internal class MesLayoutInitializer : ILayoutUpdateStrategy
     {
         public bool BeforeInsertAnchorable(LayoutRoot layout, LayoutAnchorable anchorableToShow, ILayoutContainer destinationContainer)
         {
@@ -117,5 +115,4 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         {
         }
     }
-#endif
 }

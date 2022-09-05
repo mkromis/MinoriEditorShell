@@ -92,7 +92,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
         }
 
         /// <summary>
-        /// Load inital settings if possible
+        /// Load initial settings if possible
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -109,7 +109,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             IMesTheme theme = manager.Themes.FirstOrDefault(x => x.GetType().Name == themeName);
 
             // Set to default if missing or error
-            theme ??= manager.Themes.First(x => x.GetType().Name == themeName);
+            theme = theme ?? manager.Themes.First(x => x.GetType().Name == themeName);
 
             manager.SetCurrentTheme(theme.Name);
 

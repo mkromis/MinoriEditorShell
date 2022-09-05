@@ -16,10 +16,14 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
-#warning Not Implemented
-#if false
+    /// <summary>
+    /// if true then insert mode active
+    /// </summary>
     public class BoolToInsertModeConverter : IValueConverter
     {
+        /// <summary>
+        /// if true then insert mode active
+        /// </summary>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool? actValue = value as bool?;
@@ -31,9 +35,11 @@ namespace MinoriEditorShell.Platforms.Wpf.Converters
             return actValue == false ? "INS" : "OVR";
         }
 
+        /// <summary>
+        /// No Revere conversion
+        /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter,
-                                  System.Globalization.CultureInfo culture) => throw new NotImplementedException();
+            System.Globalization.CultureInfo culture) => null;
 
     }
-#endif
 }

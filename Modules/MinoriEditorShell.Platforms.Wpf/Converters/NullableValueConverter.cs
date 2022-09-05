@@ -5,16 +5,21 @@ using System.Windows.Data;
 
 namespace MinoriEditorShell.Platforms.Wpf.Converters
 {
-#warning not implemented
-#if false
+    /// <summary>
+    /// Nullable to value for xaml
+    /// </summary>
     public class NullableValueConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value == null ? DependencyProperty.UnsetValue : value;
+        /// <summary>
+        /// Return value, if value is null return unset value
+        /// </summary>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => 
+            value ?? DependencyProperty.UnsetValue;
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
+        /// <summary>
+        /// No reverse conversion
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => 
             throw new NotSupportedException();
-        }
     }
-#endif
 }

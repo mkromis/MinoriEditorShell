@@ -3,9 +3,11 @@ using System.Runtime.InteropServices;
 
 namespace MinoriEditorShell.Platforms.Wpf.Win32
 {
+#warning Not used
+#if false
     internal static class NativeMethods
     {
-        #region Constants
+#region Constants
 
         public const int GWL_STYLE = -16;
         public const int GWL_EXSTYLE = -20;
@@ -56,9 +58,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
         // Define the TME_LEAVE value so we can register for WM_MOUSELEAVE messages
         public const uint TME_LEAVE = 0x00000002;
 
-        #endregion Constants
+#endregion Constants
 
-        #region Delegates and Structs
+#region Delegates and Structs
 
         public delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
@@ -100,9 +102,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
             public int Y;
         }
 
-        #endregion Delegates and Structs
+#endregion Delegates and Structs
 
-        #region DllImports
+#region DllImports
 
         [DllImport("user32.dll")]
         public extern static int GetWindowLong(IntPtr hwnd, int index);
@@ -174,9 +176,9 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
         [DllImport("user32.dll")]
         public static extern int ShowCursor(bool bShow);
 
-        #endregion DllImports
+#endregion DllImports
 
-        #region Helpers
+#region Helpers
 
         public static int GetXLParam(int lParam)
         {
@@ -203,6 +205,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Win32
             return (short)(input >> 16);
         }
 
-        #endregion Helpers
+#endregion Helpers
     }
+#endif
 }
