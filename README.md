@@ -27,17 +27,17 @@ Dual-Licensed with either
 
 ## Breaking Changes (For Develop pre-release
 
-The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
+The goal is to minimize the main library into a more concise library. Thus the following changes will/have been made.
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
 * Undo - Redo interface was moved to MinoriEditorShell.History -- This is currently un-tested and no nuget yet.
 
 * IMesManager renamed to IMesDocumentManager to clarify what the manager does, manages documents/persistant documents and tools.
 * IMesSettings is for custom setting view models in the settings manager, (Still need to have a view for them in platform target).
-* IMesSettingsManger is for managaing all of the settings view models. 
+* IMesSettingsManger is for managing all of the settings view models. 
 
-## Build environmant
+## Build environment
 
-For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platfom development**, and **.Net Desktop Envirionment**
+For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platform development**, and **.Net Desktop Environment**
 This project depends on netstandard library for its core build. Future plans involves targeting other platforms.
 
 ## What is this
@@ -68,7 +68,7 @@ way of separating out the code for each part of your application.
 
 ## More Documentation
 
-Doumentation can be found on the github [wiki](https://github.com/TorisanKitsune/MinoriEditorShell/wiki/)
+Documentation can be found on the github [wiki](https://github.com/TorisanKitsune/MinoriEditorShell/wiki/)
 
 ## Acknowledgements
 
