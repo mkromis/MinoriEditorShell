@@ -30,9 +30,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.4.1" />
-        <PackageReference Include="System.ComponentModel.Composition" Version="4.6.0" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+        <PackageReference Include="System.ComponentModel.Composition" Version="4.7.2" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.2" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
     </ItemGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">

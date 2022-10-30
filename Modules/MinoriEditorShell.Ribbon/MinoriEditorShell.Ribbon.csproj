@@ -22,7 +22,7 @@
     <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-    <PackageReference Include="Fluent.Ribbon" Version="9.0.1" />
+    <PackageReference Include="Fluent.Ribbon" Version="9.0.4" />
     <PackageReference Include="MvvmCross" Version="8.0.2" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
   </ItemGroup>
