@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
-    <Description>Easy Virtual Canvas with zoom</Description>
+	  <LangVersion>latest</LangVersion>
+	  <Copyright>Copyright 2019-2024</Copyright>
+	  <Description>Easy Virtual Canvas with zoom</Description>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>

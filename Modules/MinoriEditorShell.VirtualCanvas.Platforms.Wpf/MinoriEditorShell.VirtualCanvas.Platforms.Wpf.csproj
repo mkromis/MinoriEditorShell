@@ -1,17 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net461;net5.0-windows</TargetFrameworks>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
-    <Description>Easy Virtual Canvas with zoom</Description>
+	  <Copyright>Copyright 2019-2024</Copyright>
+	  <Description>Easy Virtual Canvas with zoom</Description>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>IDE VirtualCanvas Module</PackageTags>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+	  <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
     <CodeAnalysisRuleSet>MinoriEditorShell.VirtualCanvas.Platforms.Wpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
