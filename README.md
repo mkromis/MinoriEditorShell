@@ -5,10 +5,9 @@
 [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Status
-
-[![Build Status](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_apis/build/status/TorisanKitsune.MinoriEditorShell?branchName=develop)](https://dev.azure.com/TorisanKitsune/MinoriEditorShell/_build/latest?definitionId=4&branchName=develop)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_shield)
-[![CodeFactor](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/badge/develop)](https://www.codefactor.io/repository/github/torisankitsune/minorieditorshell/overview/develop)
+[![Verification Build](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml/badge.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TorisanKitsune_MinoriEditorShell&metric=alert_status)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
+[![Build Coverage](https://img.shields.io/sonar/coverage/TorisanKitsune_MinoriEditorShell?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
 [![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
@@ -20,25 +19,26 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
-## MvvmCross 8 troubleshooting / Known Issues
+## MvvmCross 9 troubleshooting / Known Issues
 
+* dot net v6 or greater to be compatable with dependencies.
 * If view does not showing add `[MvxContentPresentation]` for MesDocuments or Main Content view .i.e. MainView.
 * Add`[MvxWindowPresentation]` for windows.
 * If using logging you only need `ILoggerFactory`, otherwise return null.
 
 ## Breaking Changes (For Develop pre-release
 
-The goal is to minimize the main library into a more consice library. Thus the following changes will/have been made.
+The goal is to minimize the main library into a more concise library. Thus the following changes will/have been made.
 * Command interface was moved to MinoriEditorShell.Command -- This is currently un-tested and no nuget yet.
 * Undo - Redo interface was moved to MinoriEditorShell.History -- This is currently un-tested and no nuget yet.
 
 * IMesManager renamed to IMesDocumentManager to clarify what the manager does, manages documents/persistant documents and tools.
 * IMesSettings is for custom setting view models in the settings manager, (Still need to have a view for them in platform target).
-* IMesSettingsManger is for managaing all of the settings view models. 
+* IMesSettingsManger is for managing all of the settings view models. 
 
-## Build environmant
+## Build environment
 
-For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platfom development**, and **.Net Desktop Envirionment**
+For windows this is currently being ran on Visual Studio 2019 Community edition with **.Net Core cross platform development**, and **.Net Desktop Environment**
 This project depends on netstandard library for its core build. Future plans involves targeting other platforms.
 
 ## What is this
@@ -69,7 +69,7 @@ way of separating out the code for each part of your application.
 
 ## More Documentation
 
-Doumentation can be found on the github [wiki](https://github.com/TorisanKitsune/MinoriEditorShell/wiki/)
+Documentation can be found on the github [wiki](https://github.com/TorisanKitsune/MinoriEditorShell/wiki/)
 
 ## Acknowledgements
 

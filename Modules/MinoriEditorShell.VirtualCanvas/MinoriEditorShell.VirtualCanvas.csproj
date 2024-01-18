@@ -1,33 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Authors>Mark Kromis</Authors>
-        <Company>Mark Kromis</Company>
-        <Description>Easy Virtual Canvas with zoom</Description>
-        <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-        <RepositoryType>Git</RepositoryType>
-        <PackageTags>IDE VirtualCanvas Module</PackageTags>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-        <CodeAnalysisRuleSet>..\..\.sonarlint\minorieditorshellcsharp.ruleset</CodeAnalysisRuleSet>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mark Kromis</Authors>
+    <Company>Mark Kromis</Company>
+	  <LangVersion>latest</LangVersion>
+	  <Copyright>Copyright 2019-2024</Copyright>
+	  <Description>Easy Virtual Canvas with zoom</Description>
+    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>IDE VirtualCanvas Module</PackageTags>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>MinoriEditorShell.VirtualCanvas.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <AdditionalFiles Include="..\..\.sonarlint\minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
 
-    <ItemGroup>
-
-        <PackageReference Include="GitVersionTask" Version="5.5.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+  </ItemGroup>
 </Project>

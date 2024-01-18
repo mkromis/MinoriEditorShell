@@ -1,0 +1,74 @@
+#Note: This is a third party action and currently only supports Linux: https://github.com/marketplace/actions/create-zip-file
+
+name: ${{ env.GitVersion.NuGetVersion }}
+
+env:
+  solution: '**/MinoriEditorShell.sln'
+  buildPlatform: Any CPU
+  buildConfiguration: Release
+
+on:
+  push:
+    branches:
+      - stable
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: microsoft/setup-msbuild@v1.0.2
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: 5.x
+    - name: Use NuGet > 5.0.0
+      uses: nuget/setup-nuget@v1
+    - name: GitVersion
+      uses: gittools/actions/gitversion/execute@v0.9.7
+      with:
+        updateAssemblyInfo: true
+    - run: nuget restore ${{env.solution}}
+    - run: msbuild '${{ env.solution }}' /p:configuration='${{ env.buildConfiguration }}' /p:platform='${{ env.buildPlatform }}'
+    - name: Copy Nugets to demo folder
+      run: Copy '${{ env.agent.builddirectory }}/**/*.nupkg' '${{ env.Build.BinariesDirectory }}\Minori-${{ env.GitVersion.NuGetVersion }}\Nugets'
+    - name: Copy Nuget Files to artifacts
+      run: Copy '${{ env.agent.builddirectory }}/**/*.nupkg' '${{ github.workspace }}'
+
+    - name: Copy SimpleDemo.WPF Files
+      run: |
+        Copy 'Demos/SimpleDemo/SimpleDemo.Wpf/bin/Release/*.exe
+        *.dll
+        *\*.dll
+        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/SimpleDemo'
+
+    - name: Copy SimpleDemo.RibbonWPF Files
+      run: |
+        Copy 'Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release/*.exe
+        *.dll
+        */*.dll
+        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/SimpleDemo'
+
+    - name: Copy MinoriDemo.WPF Files
+      run: |
+        Copy 'Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release/*.exe
+        *.dll
+        */*.dll
+        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/MinoriDemo'
+
+    - name: Copy MinoriEditorShell.RibbonWPF Files
+      run: |
+        Copy 'Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release/*.exe
+        *.dll
+        */*.dll
+        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/MinoriDemo'
+
+    - # 'Note: This is a third party action and currently only supports Linux: https://github.com/marketplace/actions/create-zip-file'
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ${{ github.workspace }}/Minori-${{ env.GitVersion.NuGetVersion }}.7z ${{ env.Build.BinariesDirectory }}\Minori-${{ env.GitVersion.NuGetVersion }}
+
+    - uses: actions/upload-artifact@v2
+      with:
+        path: ${{ github.workspace }}
+        name: drop
+                    
