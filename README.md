@@ -19,8 +19,9 @@ Dual-Licensed with either
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
 [![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
 
-## MvvmCross 8 troubleshooting / Known Issues
+## MvvmCross 9 troubleshooting / Known Issues
 
+* dot net v6 or greater to be compatable with dependencies.
 * If view does not showing add `[MvxContentPresentation]` for MesDocuments or Main Content view .i.e. MainView.
 * Add`[MvxWindowPresentation]` for windows.
 * If using logging you only need `ILoggerFactory`, otherwise return null.
