@@ -107,7 +107,7 @@ jobs:
           $basedir = 'MinoriEditorSystem-' + $env:GitVersion_NuGetVersion
 
           # Move each item into artifacts
-          rm Artifacts -Recurse -Force
+          # rm Artifacts -Recurse -Force
           mkdir Artifacts\$basedir\Nugets
 
           # Copy nugets to nuget folder
