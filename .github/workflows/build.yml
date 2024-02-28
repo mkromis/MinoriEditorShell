@@ -123,11 +123,6 @@ jobs:
           cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
           cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
 
-          # Compress folder into 7z file
-          cd Artifacts
-          7z a "$basedir.7z" $basedir
-          cd ..
-
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
 
