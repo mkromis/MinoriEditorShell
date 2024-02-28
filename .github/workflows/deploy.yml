@@ -7,7 +7,7 @@ on:
       - stable
 
 env:
-  solution: '**/MinoriEditorShell.sln'
+  solution: 'MinoriEditorShell.sln'
   buildPlatform: Any CPU
   buildConfiguration: Release
 
@@ -15,64 +15,62 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: microsoft/setup-msbuild@v1.0.2
+    - name: 'Checkout Sources'
+      uses: actions/checkout@v2
+
+    - name: 'Setup msbuild'
+      uses: microsoft/setup-msbuild@v1.0.2
+
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.7
       with:
         versionSpec: 5.x
-    - name: Use NuGet > 5.0.0
+
+    - name: Setup NuGet
       uses: nuget/setup-nuget@v1
-    - name: GitVersion
+
+    - name: Determine Version
       uses: gittools/actions/gitversion/execute@v0.9.7
-      with:
-        updateAssemblyInfo: true
     
     - run: nuget restore ${{env.solution}}
     
     - run: msbuild '${{ env.solution }}' /p:configuration='${{ env.buildConfiguration }}' /p:platform='${{ env.buildPlatform }}'
 
-    - name: Copy Nugets to demo folder
-      run: Copy '${{ env.agent.builddirectory }}/**/*.nupkg' '${{ env.Build.BinariesDirectory }}\Minori-${{ env.GitVersion.NuGetVersion }}\Nugets'
-    
-    - name: Copy Nuget Files to artifacts
-      run: Copy '${{ env.agent.builddirectory }}/**/*.nupkg' '${{ github.workspace }}'
-
-    - name: Copy SimpleDemo.WPF Files
+    - name: Create Artifacts
       run: |
-        Copy 'Demos/SimpleDemo/SimpleDemo.Wpf/bin/Release/*.exe
-        *.dll
-        *\*.dll
-        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/SimpleDemo'
+        # Get list of all nupkgs
+        $nupkgs = Get-ChildItem -Path .\Modules -Filter *.nupkg -Recurse
 
-    - name: Copy SimpleDemo.RibbonWPF Files
-      run: |
-        Copy 'Demos/SimpleDemo/SimpleDemo.RibbonWpf/bin/Release/*.exe
-        *.dll
-        */*.dll
-        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/SimpleDemo'
+        $basedir = 'MinoriEditorSystem-' + $env:GitVersion_NuGetVersion
 
-    - name: Copy MinoriDemo.WPF Files
-      run: |
-        Copy 'Demos/MinoriDemo/MinoriDemo.Wpf/bin/Release/*.exe
-        *.dll
-        */*.dll
-        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/MinoriDemo'
+        # Move each item into artifacts
+        # rm Artifacts -Recurse -Force
+        mkdir Artifacts\$basedir\Nugets
 
-    - name: Copy MinoriEditorShell.RibbonWPF Files
-      run: |
-        Copy 'Demos/MinoriDemo/MinoriDemo.RibbonWpf/bin/Release/*.exe
-        *.dll
-        */*.dll
-        ' '${{ env.Build.BinariesDirectory }}/Minori-${{ env.GitVersion.NuGetVersion }}/Demos/MinoriDemo'
+        # Copy nugets to nuget folder
+        foreach ($nupkg in $nupkgs) {
+          $leaf = Split-Path $nupkg -Leaf
+          $outFile = "Artifacts\$basedir\Nugets\$leaf"
+          echo $nupkg.FullName ' -> ' $outFile
+          Copy-Item $nupkg.FullName $outFile
+        }
 
-    - # 'Note: This is a third party action and currently only supports Linux: https://github.com/marketplace/actions/create-zip-file'
-      uses: montudor/action-zip@v0.1.0
+        # Copy Demo Folder
+        #mkdir Artifacts\$basedir\Demos
+        cp Demos\SimpleDemo\SimpleDemo.WPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\SimpleDemo.WPF -Recurse
+        cp Demos\SimpleDemo\SimpleDemo.RibbonWPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\SimpleDemo.RibbonWPF -Recurse
+        cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
+        cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net6.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
+
+        # Compress folder into 7z file
+        cd Artifacts
+        7z a "$basedir.7z" $basedir
+        cd ..
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
-        args: zip -qq -r ${{ github.workspace }}/Minori-${{ env.GitVersion.NuGetVersion }}.7z ${{ env.Build.BinariesDirectory }}\Minori-${{ env.GitVersion.NuGetVersion }}
-
-    - uses: actions/upload-artifact@v2
-      with:
-        path: ${{ github.workspace }}
-        name: drop
+        name: MinoriEditorShell
+        path: Artifacts/*.7z
+        if-no-files-found: error
                     
