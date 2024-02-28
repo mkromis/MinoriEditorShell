@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: 'Checkout Sources'
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
     - name: 'Setup msbuild'
       uses: microsoft/setup-msbuild@v1.0.2
@@ -31,9 +33,9 @@ jobs:
 
     - name: Determine Version
       uses: gittools/actions/gitversion/execute@v0.9.7
-    
+
     - run: nuget restore ${{env.solution}}
-    
+
     - run: msbuild '${{ env.solution }}' /p:configuration='${{ env.buildConfiguration }}' /p:platform='${{ env.buildPlatform }}'
 
     - name: Create Artifacts
