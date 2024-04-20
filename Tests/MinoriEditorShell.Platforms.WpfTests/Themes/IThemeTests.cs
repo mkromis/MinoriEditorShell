@@ -4,6 +4,7 @@ using MinoriEditorShell.Services;
 using MvvmCross.IoC;
 using MvvmCross.Tests;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
@@ -18,10 +19,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
 
             IMesThemeManager themeManager = Ioc.Resolve<IMesThemeManager>();
 
-            var themes = themeManager.Themes;
+            IEnumerable<IMesTheme> themes = themeManager.Themes;
             Assert.AreEqual(3, themes.Count());
 
-            var blue = themes.First(x => x.Name.Contains("Blue"));
+            IMesTheme blue = themes.First(x => x.Name.Contains("Blue"));
             Assert.AreEqual(1, blue.ApplicationResources.Count());
         }
 
@@ -30,14 +31,14 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes.Tests
         {
             Setup();
 
-            MesBlueTheme blue = new MesBlueTheme();
+            MesBlueTheme blue = new();
             Assert.AreEqual(1, blue.ApplicationResources.Count());
         }
 
         protected override void AdditionalSetup()
         {
             String _ = System.IO.Packaging.PackUriHelper.UriSchemePack;
-            new MvvmCross.Plugin.Messenger.Plugin().Load();
+            new MvvmCross.Plugin.Messenger.Plugin().Load(Ioc);
 
             // register necessary interfaces
             Ioc.ConstructAndRegisterSingleton<IMesThemeManager, MesThemeManager>();
