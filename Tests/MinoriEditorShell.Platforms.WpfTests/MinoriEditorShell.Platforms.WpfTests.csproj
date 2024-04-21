@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+    <ProjectReference Include="..\..\Modules\MinoriEditorShell.VirtualCanvas.Platforms.Wpf\MinoriEditorShell.VirtualCanvas.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
 </Project>
