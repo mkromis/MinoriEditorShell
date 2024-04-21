@@ -17,7 +17,6 @@
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
     <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>MinoriEditorShell.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -64,9 +63,5 @@
     <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>

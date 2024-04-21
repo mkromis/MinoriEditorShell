@@ -13,7 +13,6 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Ribbon Mahapp IDE</PackageTags>
     <UseWPF>true</UseWPF>
-    <CodeAnalysisRuleSet>MinoriEditorShell.Ribbon.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,9 +22,5 @@
     <PackageReference Include="Fluent.Ribbon" Version="10.1.0" />
     <PackageReference Include="MvvmCross" Version="9.2.0" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="9.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>

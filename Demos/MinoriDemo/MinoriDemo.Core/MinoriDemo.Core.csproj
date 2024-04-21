@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <CodeAnalysisRuleSet>MinoriDemo.Core.ruleset</CodeAnalysisRuleSet>
 	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -23,9 +22,4 @@
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
-  </ItemGroup>
-
 </Project>

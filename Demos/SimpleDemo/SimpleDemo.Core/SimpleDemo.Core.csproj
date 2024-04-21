@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <CodeAnalysisRuleSet>SimpleDemo.Core.ruleset</CodeAnalysisRuleSet>
 	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -14,9 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
-  </ItemGroup>
-
 </Project>

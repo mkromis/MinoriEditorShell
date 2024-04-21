@@ -5,7 +5,6 @@
     <TargetFramework>net7.0-windows</TargetFramework>
 	  <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
-    <CodeAnalysisRuleSet>MinoriDemo.Wpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,9 +16,5 @@
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas.Platforms.Wpf\MinoriEditorShell.VirtualCanvas.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
     <ProjectReference Include="..\MinoriDemo.Core\MinoriDemo.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>

@@ -14,14 +14,9 @@
     <PackageTags>IDE VirtualCanvas Module</PackageTags>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>MinoriEditorShell.VirtualCanvas.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>

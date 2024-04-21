@@ -5,7 +5,6 @@
     <TargetFramework>net7.0-windows</TargetFramework>
 	  <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
-    <CodeAnalysisRuleSet>MinoriDemo.RibbonWpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,9 +27,5 @@
 
   <ItemGroup>
     <SplashScreen Include="Resources\Splash.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>
