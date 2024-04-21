@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <CodeAnalysisRuleSet>MinoriDemo.Core.ruleset</CodeAnalysisRuleSet>
+    <TargetFramework>net7.0</TargetFramework>
 	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -13,13 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="9.1.1" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.1.1" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.1" />
+    <PackageReference Include="MvvmCross" Version="9.2.0" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.4" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
 
@@ -27,5 +22,4 @@
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell\MinoriEditorShell.csproj" />
     <ProjectReference Include="..\..\..\Modules\MinoriEditorShell.VirtualCanvas\MinoriEditorShell.VirtualCanvas.csproj" />
   </ItemGroup>
-
 </Project>

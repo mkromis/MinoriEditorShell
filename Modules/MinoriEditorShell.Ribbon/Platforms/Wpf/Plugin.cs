@@ -1,6 +1,7 @@
 ﻿using MinoriEditorShell.Platforms.Wpf.Themes;
 using MinoriEditorShell.Services;
 using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using System;
 
@@ -9,11 +10,11 @@ namespace MinoriEditorShell.Ribbon.Platforms.Wpf
     [MvxPlugin]
     public class Plugin : IMvxPlugin
     {
-        public void Load()
+        public void Load(IMvxIoCProvider provider)
         {
             // for repeatable ribbon items
-            IMesThemeManager thememanager = Mvx.IoCProvider.Resolve<IMesThemeManager>();
-            foreach (var theme in thememanager.Themes)
+            IMesThemeManager thememanager = provider.Resolve<IMesThemeManager>();
+            foreach (IMesTheme theme in thememanager.Themes)
             {
                 switch (theme)
                 {

@@ -2,6 +2,7 @@
 using MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures;
 using MinoriEditorShell.VirtualCanvas.Services;
 using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.Plugin;
 
 namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf
@@ -9,14 +10,18 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf
     [MvxPlugin]
     public class Plugin : IMvxPlugin
     {
-        public void Load()
+        /// <summary>
+        /// Helper to load types for usage with views.
+        /// </summary>
+        /// <param name="provider"></param>
+        public void Load(IMvxIoCProvider provider)
         {
-            Mvx.IoCProvider.RegisterType<IMesAutoScroll, MesAutoScroll>();
-            Mvx.IoCProvider.RegisterType<IMesContentCanvas, MesContentCanvas>();
-            Mvx.IoCProvider.RegisterType<IMesMapZoom, MesMapZoom>();
-            Mvx.IoCProvider.RegisterType<IMesPan, MesPan>();
-            Mvx.IoCProvider.RegisterType<IMesRectangleSelectionGesture, MesRectangleSelectionGesture>();
-            Mvx.IoCProvider.RegisterType<IMesVirtualCanvasControl, MesVirtualCanvas>();
+            provider.RegisterType<IMesAutoScroll, MesAutoScroll>();
+            provider.RegisterType<IMesContentCanvas, MesContentCanvas>();
+            provider.RegisterType<IMesMapZoom, MesMapZoom>();
+            provider.RegisterType<IMesPan, MesPan>();
+            provider.RegisterType<IMesRectangleSelectionGesture, MesRectangleSelectionGesture>();
+            provider.RegisterType<IMesVirtualCanvasControl, MesVirtualCanvas>();
         }
     }
 }
