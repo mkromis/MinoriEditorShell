@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Description>
       MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
       This uses AvalonDock and has an MVVM architecture based on MvvmCross.
@@ -17,21 +17,16 @@
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
     <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>MinoriEditorShell.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
 
-  <ItemGroup>
-
-    <PackageReference Include="MvvmCross" Version="9.1.1" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.1.1" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="9.1.1" />
+    <PackageReference Include="MvvmCross" Version="9.2.0" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.2.0" />
+    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="9.2.0" />
     <PackageReference Include="System.ComponentModel.Composition" Version="8.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
