@@ -10,6 +10,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf
     [MvxPlugin]
     public class Plugin : IMvxPlugin
     {
+        /// <summary>
+        /// Helper to load types for usage with views.
+        /// </summary>
+        /// <param name="provider"></param>
         public void Load(IMvxIoCProvider provider)
         {
             provider.RegisterType<IMesAutoScroll, MesAutoScroll>();

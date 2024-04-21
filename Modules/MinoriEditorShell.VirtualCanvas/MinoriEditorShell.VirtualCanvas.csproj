@@ -18,10 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\..\.sonarlint\torisankitsune_minorieditorshell\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+    <AdditionalFiles Remove="C:\Users\mkrom\AppData\Roaming\SonarLint for Visual Studio\Bindings\MinoriEditorShell\csharp\SonarLint.xml" />
   </ItemGroup>
 </Project>
