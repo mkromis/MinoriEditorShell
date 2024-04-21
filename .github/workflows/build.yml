@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - stable
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -47,9 +48,6 @@ jobs:
         with:
             useConfigFile: true
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
-
       - name: Use NuGet > 5.0.0
         uses: nuget/setup-nuget@v1
 
@@ -83,9 +81,9 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         shell: powershell
-        run: > 
+        run: >
             .\.sonar\scanner\dotnet-sonarscanner
-            begin /k:"mkromis_MinoriEditorShell" /o:"mkromis" 
+            begin /k:"mkromis_MinoriEditorShell" /o:"mkromis"
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
             /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             /v:${{steps.gitversion.outputs.semVer}}
@@ -125,11 +123,6 @@ jobs:
           cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
           cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
 
-          # Compress folder into 7z file
-          cd Artifacts
-          7z a "$basedir.7z" $basedir
-          cd ..
-
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
 
@@ -144,5 +137,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: MinoriEditorShell
-          path: Artifacts/*.7z
+          path: Artifacts/*
           if-no-files-found: error
