@@ -118,10 +118,10 @@ jobs:
 
           # Copy Demo Folder
           #mkdir Artifacts\$basedir\Demos
-          cp Demos\SimpleDemo\SimpleDemo.WPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\SimpleDemo.WPF -Recurse
-          cp Demos\SimpleDemo\SimpleDemo.RibbonWPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\SimpleDemo.RibbonWPF -Recurse
-          cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
-          cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net7.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
+          cp Demos\SimpleDemo\SimpleDemo.WPF\bin\Release\net8.0-windows Artifacts\$basedir\Demos\SimpleDemo.WPF -Recurse
+          cp Demos\SimpleDemo\SimpleDemo.RibbonWPF\bin\Release\net8.0-windows Artifacts\$basedir\Demos\SimpleDemo.RibbonWPF -Recurse
+          cp Demos\MinoriDemo\MinoriDemo.WPF\bin\Release\net8.0-windows Artifacts\$basedir\Demos\MinoriDemo.WPF -Recurse
+          cp Demos\MinoriDemo\MinoriDemo.RibbonWPF\bin\Release\net8.0-windows Artifacts\$basedir\Demos\MinoriDemo.RibbonWPF -Recurse
 
       - name: Test
         run: dotnet test ${{env.solution}} --collect:"XPlat Code Coverage" --settings coverlet.runsettings
