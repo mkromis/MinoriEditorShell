@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using MinoriEditorShell.Services;
 using MvvmCross;
-using MvvmCross.Exceptions;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Wpf.Presenters;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
@@ -67,7 +66,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Documents.Add(docViewModel);
-                        _log?.LogTrace($"Add {document} to IMesDocumentManager.Documents");
+                        _log?.LogTrace("Add {document} to IMesDocumentManager.Documents", document);
                         return true;
 
                     case IMesTool tool:
@@ -77,17 +76,17 @@ namespace MinoriEditorShell.Platforms.Wpf.Presenters
 
                         // Add to manager model
                         manager.Tools.Add(toolViewModel);
-                        _log?.LogTrace($"Add {tool} to IDocumentManager.Tools");
+                        _log?.LogTrace("Add {tool} to IDocumentManager.Tools", tool);
                         return true;
 
                     default:
-                        _log?.LogTrace($"Passing to parent {view.ViewModel.ToString()}");
+                        _log?.LogTrace("Passing to parent {ViewModel}", view.ViewModel);
                         return await base.ShowContentView(element, attribute, request);
                 }
             }
             catch (Exception exception)
             {
-                _log?.LogError(exception, $"Error seen during navigation request to {request.ViewModelType.Name} - error {exception.ToLongString()}");
+                _log?.LogError(exception, "Error seen during navigation request to {Name}", request.ViewModelType.Name);
                 throw;
             }
         }
