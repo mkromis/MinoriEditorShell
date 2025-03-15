@@ -17,7 +17,7 @@
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.3.1" />
     <PackageReference Include="MvvmCross.Tests" Version="9.3.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.Text.Json" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
