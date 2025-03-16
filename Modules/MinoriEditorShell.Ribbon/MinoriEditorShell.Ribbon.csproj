@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mark Kromis</Authors>
     <Company>Mark Kromis</Company>
 	  <LangVersion>latest</LangVersion>
-	  <Copyright>Copyright 2019-2024</Copyright>
+	  <Copyright>Copyright© 2019-2025</Copyright>
 	  <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
@@ -19,8 +19,9 @@
     <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
     <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-    <PackageReference Include="Fluent.Ribbon" Version="10.1.0" />
-    <PackageReference Include="MvvmCross" Version="9.2.0" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="9.2.0" />
+    <PackageReference Include="Fluent.Ribbon" Version="11.0.0" />
+    <PackageReference Include="MvvmCross" Version="9.3.1" />
+    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="9.3.1" />
+    <PackageReference Include="System.Text.Json" Version="9.0.3" />
   </ItemGroup>
 </Project>

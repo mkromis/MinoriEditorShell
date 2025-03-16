@@ -5,19 +5,19 @@
 [![Join the chat at https://gitter.im/MinoriEditorShell/community](https://badges.gitter.im/MinoriEditorShell/community.svg)](https://gitter.im/MinoriEditorShell/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Status
-[![Verification Build](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml/badge.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/actions/workflows/build.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TorisanKitsune_MinoriEditorShell&metric=alert_status)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
-[![Build Coverage](https://img.shields.io/sonar/coverage/TorisanKitsune_MinoriEditorShell?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=TorisanKitsune_MinoriEditorShell)
+[![Verification Build](https://github.com/mkromis/MinoriEditorShell/actions/workflows/build.yml/badge.svg)](https://github.com/mkromis/MinoriEditorShell/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mkromis_MinoriEditorShell&metric=alert_status)](https://sonarcloud.io/dashboard?id=mkromis_MinoriEditorShell)
+[![Build Coverage](https://img.shields.io/sonar/coverage/mkromis_MinoriEditorShell?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=mkromis_MinoriEditorShell)
 [![Downloads](https://img.shields.io/nuget/dt/MinoriEditorShell.svg)](https://www.nuget.org/packages/MinoriEditorShell/)
 
-[![Open Issues](https://img.shields.io/github/issues-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Closed Issues](https://img.shields.io/github/issues-closed-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
-[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/TorisanKitsune/MinoriEditorShell.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/issues)
+[![Open Issues](https://img.shields.io/github/issues-raw/mkromis/MinoriEditorShell.svg)](https://github.com/mkromis/MinoriEditorShell/issues)
+[![Closed Issues](https://img.shields.io/github/issues-closed-raw/mkromis/MinoriEditorShell.svg)](https://github.com/mkromis/MinoriEditorShell/issues)
+[![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/mkromis/MinoriEditorShell.svg)](https://github.com/mkromis/MinoriEditorShell/issues)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/mkromis/MinoriEditorShell.svg)](https://github.com/mkromis/MinoriEditorShell/issues)
 
 Dual-Licensed with either
-[![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt) or
-[![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/TorisanKitsune/MinoriEditorShell/blob/master/LICENCE.txt)
+[![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/mkromis/MinoriEditorShell/blob/master/LICENCE.txt) or
+[![MS-PL](https://img.shields.io/badge/license-MsPL-blue.svg)](https://github.com/mkromis/MinoriEditorShell/blob/master/LICENCE.txt)
 
 ## MvvmCross 9 troubleshooting / Known Issues
 
@@ -50,7 +50,7 @@ MinoriEditorShell is a IDE framework designed specifically for building multi do
 
 MinoriEditorShell ships with three themes: a Blue theme(Default), a Light theme, and a Dark theme.
 
-![Screenshot - Blue theme](https://raw.github.com/TorisanKitsune/MinoriEditorShell/develop/Images/BlueDemoApp.png)
+![Screenshot - Blue theme](https://raw.github.com/mkromis/MinoriEditorShell/develop/Images/BlueDemoApp.png)
 
 ## Modules used
 
@@ -69,7 +69,7 @@ way of separating out the code for each part of your application.
 
 ## More Documentation
 
-Documentation can be found on the github [wiki](https://github.com/TorisanKitsune/MinoriEditorShell/wiki/)
+Documentation can be found on the github [wiki](https://github.com/mkromis/MinoriEditorShell/wiki/)
 
 ## Acknowledgements
 
@@ -88,4 +88,4 @@ MinoriEditorShell is not the only WPF framework for building IDE-like applicatio
 
 
 ## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FTorisanKitsune%2FMinoriEditorShell?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmkromis%2FMinoriEditorShell.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmkromis%2FMinoriEditorShell?ref=badge_large)
