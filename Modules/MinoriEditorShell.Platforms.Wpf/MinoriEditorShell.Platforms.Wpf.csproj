@@ -7,7 +7,7 @@
       This uses AvalonDock and has an MVVM architecture based on MvvmCross.
     </Description>
 	  <LangVersion>latest</LangVersion>
-    <Copyright>Copyright 2019-2024</Copyright>
+    <Copyright>Copyright© 2019-2025</Copyright>
     <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
     <PackageIconUrl></PackageIconUrl>
