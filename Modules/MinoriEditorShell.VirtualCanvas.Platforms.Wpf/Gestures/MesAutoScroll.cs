@@ -58,8 +58,8 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             if (_autoScrolling)
             {
                 Point pt = e.GetPosition(_container);
-                Vector v = new Vector(pt.X - _startPos.X, pt.Y - _startPos.Y);
-                Vector v2 = new Vector(pt.X - _startPos.X, _startPos.Y);
+                Vector v = new(pt.X - _startPos.X, pt.Y - _startPos.Y);
+                Vector v2 = new(pt.X - _startPos.X, _startPos.Y);
                 Double angle = Vector.AngleBetween(v, v2);
 
                 // Calculate which quadrant the mouse is in relative to start position.
@@ -130,7 +130,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                     if (_marker == null)
                     {
                         _marker = new Canvas();
-                        Ellipse sign = new Ellipse();
+                        Ellipse sign = new();
                         Brush brush = new SolidColorBrush(Color.FromArgb(0x90, 0x90, 0x90, 0x90));
                         sign.Stroke = brush;
                         sign.StrokeThickness = 2;
@@ -138,35 +138,35 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                         sign.Height = 40;
                         _marker.Children.Add(sign);
 
-                        Polygon down = new Polygon
+                        Polygon down = new()
                         {
-                            Points = new PointCollection(new Point[] { new Point(20 - 6, 28), new Point(20 + 6, 28), new Point(20, 34) }),
+                            Points = new PointCollection(new Point[] { new(20 - 6, 28), new(20 + 6, 28), new(20, 34) }),
                             Fill = brush
                         };
                         _marker.Children.Add(down);
 
-                        Polygon up = new Polygon
+                        Polygon up = new()
                         {
-                            Points = new PointCollection(new Point[] { new Point(20 - 6, 12), new Point(20 + 6, 12), new Point(20, 6) }),
+                            Points = new PointCollection(new Point[] { new(20 - 6, 12), new(20 + 6, 12), new(20, 6) }),
                             Fill = brush
                         };
                         _marker.Children.Add(up);
 
-                        Polygon left = new Polygon
+                        Polygon left = new()
                         {
-                            Points = new PointCollection(new Point[] { new Point(28, 20 - 6), new Point(28, 20 + 6), new Point(34, 20) }),
+                            Points = new PointCollection(new Point[] { new(28, 20 - 6), new(28, 20 + 6), new(34, 20) }),
                             Fill = brush
                         };
                         _marker.Children.Add(left);
 
-                        Polygon right = new Polygon
+                        Polygon right = new()
                         {
-                            Points = new PointCollection(new Point[] { new Point(12, 20 - 6), new Point(12, 20 + 6), new Point(6, 20) }),
+                            Points = new PointCollection(new Point[] { new(12, 20 - 6), new(12, 20 + 6), new(6, 20) }),
                             Fill = brush
                         };
                         _marker.Children.Add(right);
 
-                        Ellipse dot = new Ellipse
+                        Ellipse dot = new()
                         {
                             Fill = brush,
                             Width = 3,

@@ -104,7 +104,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             IMesTheme theme = manager.Themes.FirstOrDefault(x => x.GetType().Name == themeName);
 
             // Set to defualt if missing or error
-            if (theme == null) theme = manager.Themes.First(x => x.GetType().Name == themeName);
+            theme ??= manager.Themes.First(x => x.GetType().Name == themeName);
 
             manager.SetCurrentTheme(theme.Name);
 

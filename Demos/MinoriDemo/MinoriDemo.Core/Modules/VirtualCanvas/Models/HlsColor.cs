@@ -35,7 +35,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
             min = Math.Min(Math.Min(r, g), b);
             sum = max + min;
 
-            Luminosity = (((sum * HLSMax) + RGBMax) / (2 * RGBMax));
+            Luminosity = ((sum * HLSMax) + RGBMax) / (2 * RGBMax);
 
             dif = max - min;
             if (dif == 0)
@@ -62,7 +62,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
                 {
                     Hue = g == max
                         ? (HLSMax / 3) + Rdelta - Bdelta
-                        : ((2 * HLSMax) / 3) + Gdelta - Rdelta;
+                        : (2 * HLSMax / 3) + Gdelta - Rdelta;
                 }
 
                 if (Hue < 0)

@@ -5,7 +5,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
 {
     internal static class MesShaderEffectUtility
     {
-        public static PixelShader GetPixelShader(string name) => new PixelShader
+        public static PixelShader GetPixelShader(string name) => new()
         {
             UriSource = new Uri($@"pack://application:,,,/MinoriEditorStudio;component/Framework/ShaderEffects/{name}.ps")
         };

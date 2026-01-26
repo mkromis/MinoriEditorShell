@@ -18,7 +18,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
         /// <returns></returns>
         public IDictionary<String, SolidColorBrush> GetBrushes()
         {
-            SortedDictionary<String, SolidColorBrush> results = new SortedDictionary<String, SolidColorBrush>();
+            SortedDictionary<String, SolidColorBrush> results = [];
 
             // Get theme dict
             ResourceDictionary theme = CurrentThemeDictionary;
@@ -71,7 +71,7 @@ namespace MinoriDemo.RibbonWPF.Modules.Themes
                 throw new InvalidOperationException("CurrentThemeDictionary");
             }
 
-            StringBuilder export = new StringBuilder();
+            StringBuilder export = new();
             export.AppendLine("<ResourceDictionary");
             export.AppendLine("    xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
             export.AppendLine("    xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"");

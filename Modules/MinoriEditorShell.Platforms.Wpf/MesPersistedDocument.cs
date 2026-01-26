@@ -38,7 +38,7 @@ namespace MinoriEditorShell.Platforms.Wpf
         }
 #endif
 
-        private void UpdateDisplayName() => DisplayName = (IsDirty) ? FileName + "*" : FileName;
+        private void UpdateDisplayName() => DisplayName = IsDirty ? FileName + "*" : FileName;
 
         public async Task New(String fileName)
         {

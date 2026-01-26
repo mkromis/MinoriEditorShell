@@ -12,7 +12,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
     {
         public static void SaveLayout(DockingManager manager, Stream stream)
         {
-            XmlLayoutSerializer layoutSerializer = new XmlLayoutSerializer(manager);
+            XmlLayoutSerializer layoutSerializer = new(manager);
             layoutSerializer.Serialize(stream);
         }
 
@@ -20,7 +20,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Views
             DockingManager manager, Stream stream, Action<IMesDocument> addDocumentCallback,
             Action<IMesTool> addToolCallback, Dictionary<String, IMesLayoutItem> items)
         {
-            XmlLayoutSerializer layoutSerializer = new XmlLayoutSerializer(manager);
+            XmlLayoutSerializer layoutSerializer = new(manager);
 
             layoutSerializer.LayoutSerializationCallback += (s, e) =>
                 {

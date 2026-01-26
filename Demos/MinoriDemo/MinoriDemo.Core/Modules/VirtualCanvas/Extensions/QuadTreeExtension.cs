@@ -7,10 +7,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Extensions
     {
         public static void Dump<T>(this IMesQuadTree<T> source, LogWriter w) where T : class
         {
-            if (source.Root != null)
-            {
-                source.Root.Dump(w);
-            }
+            source.Root?.Dump(w);
         }
     }
 }

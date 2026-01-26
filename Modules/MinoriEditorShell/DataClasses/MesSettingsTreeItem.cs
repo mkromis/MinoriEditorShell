@@ -15,8 +15,8 @@ namespace MinoriEditorShell.DataClasses
         /// </summary>
         public MesSettingsTreeItem()
         {
-            Children = new List<MesSettingsTreeItem>();
-            Editors = new List<IMesSettings>();
+            Children = [];
+            Editors = [];
         }
 
         /// <summary>

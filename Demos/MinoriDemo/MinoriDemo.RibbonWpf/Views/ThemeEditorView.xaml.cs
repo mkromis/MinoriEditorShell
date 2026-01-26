@@ -59,7 +59,7 @@ namespace MinoriDemo.RibbonWPF.Views
                 MessageBox.Show("Select a theme to export");
                 return;
             }
-            SaveFileDialog saveFile = new SaveFileDialog
+            SaveFileDialog saveFile = new()
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Filter = "Resource Dictionary (*.xaml)|*.xaml",
@@ -132,7 +132,7 @@ namespace MinoriDemo.RibbonWPF.Views
                 IEnumerable<KeyValuePair<String, SolidColorBrush>> select = brushes
                     .Where(x => x.Key.ToLower().Contains(search.Text.ToLower()));
 
-                SortedDictionary<String, SolidColorBrush> result = new SortedDictionary<String, SolidColorBrush>();
+                SortedDictionary<String, SolidColorBrush> result = [];
                 foreach (KeyValuePair<String, SolidColorBrush> item in select) { result[item.Key] = item.Value; }
 
                 UpdateList(result);

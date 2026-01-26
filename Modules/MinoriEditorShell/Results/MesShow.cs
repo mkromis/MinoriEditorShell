@@ -9,10 +9,10 @@ namespace MinoriEditorShell.Platforms.Wpf.Results
         //public static MesShowCommonDialogResult CommonDialog(CommonDialog commonDialog) => new MesShowCommonDialogResult(commonDialog);
 
         public static MesShowToolResult<TTool> Tool<TTool>()
-            where TTool : IMesTool => new MesShowToolResult<TTool>();
+            where TTool : IMesTool => new();
 
         public static MesShowToolResult<TTool> Tool<TTool>(TTool tool)
-            where TTool : IMesTool => new MesShowToolResult<TTool>(tool);
+            where TTool : IMesTool => new(tool);
 
 #warning IWindow
 #if false

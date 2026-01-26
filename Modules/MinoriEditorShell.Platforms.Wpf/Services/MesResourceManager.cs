@@ -18,9 +18,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
                 StreamResourceInfo resource = Application.GetResourceStream(new Uri(assemblyName + ";component/" + relativeUri, UriKind.Relative))
                     ?? Application.GetResourceStream(new Uri(relativeUri, UriKind.Relative));
 
-                return (resource != null)
-                    ? resource.Stream
-                    : null;
+                return resource?.Stream;
             }
             catch
             {
@@ -35,7 +33,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
             using (s)
             {
-                BitmapImage bmp = new BitmapImage();
+                BitmapImage bmp = new();
                 bmp.BeginInit();
                 bmp.StreamSource = s;
                 bmp.EndInit();

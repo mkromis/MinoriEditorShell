@@ -36,10 +36,6 @@ namespace MinoriEditorShell.Platforms.Wpf.Themes
         /// <summary>
         /// Setup base load definition
         /// </summary>
-        protected MesThemeBase()
-        {
-            // Initialize the base Mahapps.Metro resources.
-            _resources = new List<Uri>();
-        }
+        protected MesThemeBase() => _resources = [];
     }
 }

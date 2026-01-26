@@ -9,7 +9,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ShaderEffects
         [ThreadStatic]
         private static PixelShader _shader;
 
-        private static PixelShader Shader => _shader ?? (_shader = MesShaderEffectUtility.GetPixelShader(typeof(T).Name));
+        private static PixelShader Shader => _shader ??= MesShaderEffectUtility.GetPixelShader(typeof(T).Name);
 
         protected MesShaderEffectBase() => PixelShader = Shader;
 

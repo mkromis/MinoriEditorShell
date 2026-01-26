@@ -20,7 +20,7 @@ namespace MinoriEditorShell.Extensions
         public static IEnumerable<T> GetAll<T>(this IMvxIoCProvider _) where T : class
         {
             // Setup results
-            List<T> results = new List<T>();
+            List<T> results = [];
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().OrderBy(x => x.FullName);
             foreach (Assembly assembly in assemblies)
