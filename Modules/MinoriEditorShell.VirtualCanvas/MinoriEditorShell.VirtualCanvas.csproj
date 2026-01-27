@@ -1,22 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-	  <LangVersion>latest</LangVersion>
-	  <Copyright>Copyright© 2019-2025</Copyright>
-	  <Description>Easy Virtual Canvas with zoom</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>IDE VirtualCanvas Module</PackageTags>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Mark Kromis</Authors>
+		<Company>Mark Kromis</Company>
+		<LangVersion>latest</LangVersion>
+		<Copyright>Copyright© 2019-2025</Copyright>
+		<Description>Easy Virtual Canvas with zoom</Description>
+		<PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>IDE VirtualCanvas Module</PackageTags>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<DocumentationFile>bin\MinoriEditorStudio.VirtualCanvas.xml</DocumentationFile>
+		<NoWarn>CS1591</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Collections.Immutable" Version="10.0.2" />
+	  <PackageReference Include="System.Reflection.Metadata" Version="10.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+	</ItemGroup>
 </Project>

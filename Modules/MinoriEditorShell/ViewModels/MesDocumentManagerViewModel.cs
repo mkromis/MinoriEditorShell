@@ -42,10 +42,7 @@ namespace MinoriEditorShell.ViewModels
             {
                 _showFloatingWindowsInTaskbar = value;
                 RaisePropertyChanged(() => ShowFloatingWindowsInTaskbar);
-                if (ManagerView != null)
-                {
-                    ManagerView.UpdateFloatingWindows();
-                }
+                ManagerView?.UpdateFloatingWindows();
             }
         }
 
@@ -63,8 +60,8 @@ namespace MinoriEditorShell.ViewModels
 
             //((IActivate)this).Activate();
 
-            Tools = new MvxObservableCollection<IMesTool>();
-            Documents = new MvxObservableCollection<IMesDocument>();
+            Tools = [];
+            Documents = [];
         }
 
 #warning OnViewLoaded(object view)

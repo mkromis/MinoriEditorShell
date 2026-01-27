@@ -1,27 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-	  <LangVersion>latest</LangVersion>
-	  <Copyright>Copyright© 2019-2025</Copyright>
-	  <Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>Ribbon Mahapp IDE</PackageTags>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Mark Kromis</Authors>
+		<Company>Mark Kromis</Company>
+		<LangVersion>latest</LangVersion>
+		<Copyright>Copyright© 2019-2025</Copyright>
+		<Description>Use a Mahapp.Metro window with Fluent.Ribbon easy</Description>
+		<PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>Ribbon Mahapp IDE</PackageTags>
+		<UseWPF>true</UseWPF>
+		<NoWarn>CS1591</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
-    <ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
+	<ItemGroup>
+		<ProjectReference Include="..\MinoriEditorShell.Platforms.Wpf\MinoriEditorShell.Platforms.Wpf.csproj" />
+		<ProjectReference Include="..\MinoriEditorShell\MinoriEditorShell.csproj" />
 
-    <PackageReference Include="Fluent.Ribbon" Version="11.0.0" />
-    <PackageReference Include="MvvmCross" Version="9.3.1" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="9.3.1" />
-    <PackageReference Include="System.Text.Json" Version="9.0.3" />
-  </ItemGroup>
+		<PackageReference Include="Fluent.Ribbon" Version="11.0.2" />
+		<PackageReference Include="MvvmCross" Version="10.1.2" />
+		<PackageReference Include="MvvmCross.Platforms.Wpf" Version="10.1.2" />
+		<PackageReference Include="System.Text.Json" Version="10.0.2" />
+	</ItemGroup>
 </Project>

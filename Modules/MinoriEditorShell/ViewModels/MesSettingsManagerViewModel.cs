@@ -57,7 +57,7 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
             IMvxViewsContainer viewFinder = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             await base.Initialize();
 
-            List<MesSettingsTreeItem> pages = new List<MesSettingsTreeItem>();
+            List<MesSettingsTreeItem> pages = [];
             _settingsEditors = Mvx.IoCProvider.GetAll<IMesSettings>();
 
             foreach (IMesSettings settingsEditor in _settingsEditors)

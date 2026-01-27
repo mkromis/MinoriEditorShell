@@ -1,67 +1,69 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Description>
-      MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
-      This uses AvalonDock and has an MVVM architecture based on MvvmCross.
-    </Description>
-	  <LangVersion>latest</LangVersion>
-    <Copyright>Copyright© 2019-2025</Copyright>
-    <PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Mark Kromis</Authors>
-    <Company>Mark Kromis</Company>
-    <DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Description>
+			MinoriEditorStudio is an application shell similar in concept to the Visual Studio Shell.
+			This uses AvalonDock and has an MVVM architecture based on MvvmCross.
+		</Description>
+		<LangVersion>latest</LangVersion>
+		<Copyright>Copyright© 2019-2025</Copyright>
+		<PackageProjectUrl>https://github.com/TorisanKitsune/MinoriEditorShell</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TorisanKitsune/MinoriEditorShell</RepositoryUrl>
+		<PackageIconUrl></PackageIconUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>.net40 WPF MvvmCross AvalonDock Visual Studio IDE Shell</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Mark Kromis</Authors>
+		<Company>Mark Kromis</Company>
+		<DocumentationFile>bin\MinoriEditorShell.xml</DocumentationFile>
+		<NoWarn>CS1591</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
 
-    <PackageReference Include="MvvmCross" Version="9.3.1" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.3.1" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="9.3.1" />
-    <PackageReference Include="System.ComponentModel.Composition" Version="9.0.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.3" />
-  </ItemGroup>
+		<PackageReference Include="MvvmCross" Version="10.1.2" />
+		<PackageReference Include="MvvmCross.Plugin.Messenger" Version="10.1.2" />
+		<PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="10.1.2" />
+		<PackageReference Include="System.ComponentModel.Composition" Version="10.0.2" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.2" />
+		<PackageReference Include="System.Drawing.Common" Version="10.0.2" />
+		<PackageReference Include="System.Formats.Nrbf" Version="10.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>PublicSettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Update="Properties\Resources.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.ko.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<EmbeddedResource Update="Properties\Resources.de.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.ko.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.ru.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.zh-Hans.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 </Project>

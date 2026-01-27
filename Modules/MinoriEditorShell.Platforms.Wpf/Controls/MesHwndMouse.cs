@@ -8,7 +8,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
     {
         public static Point GetCursorPosition()
         {
-            NativeMethods.NativePoint point = new NativeMethods.NativePoint();
+            NativeMethods.NativePoint point = new();
             NativeMethods.GetCursorPos(ref point);
             return new Point(point.X, point.Y);
         }

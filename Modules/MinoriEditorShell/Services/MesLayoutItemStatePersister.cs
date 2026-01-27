@@ -16,7 +16,7 @@ namespace MinoriEditorShell.Modules.Services
         {
             try
             {
-                using (BinaryWriter writer = new BinaryWriter(new FileStream(fileName, FileMode.Create, FileAccess.Write)))
+                using (BinaryWriter writer = new(new FileStream(fileName, FileMode.Create, FileAccess.Write)))
                 {
                     IEnumerable<IMesLayoutItem> itemStates = shell.Documents.Concat(shell.Tools.Cast<IMesLayoutItem>());
 
@@ -37,7 +37,7 @@ namespace MinoriEditorShell.Modules.Services
                                 .Cast<ExportAttribute>().ToList();
 
                         // get exports with explicit types or names that inherit from ILayoutItem
-                        List<Type> exportTypes = new List<Type>();
+                        List<Type> exportTypes = [];
                         Boolean foundExportContract = false;
                         foreach (ExportAttribute att in exportAttributes)
                         {
@@ -153,7 +153,7 @@ namespace MinoriEditorShell.Modules.Services
 
         public Boolean LoadState(IMesDocumentManager shell, IMesDocumentManagerView shellView, String fileName)
         {
-            Dictionary<String, IMesLayoutItem> layoutItems = new Dictionary<String, IMesLayoutItem>();
+            Dictionary<String, IMesLayoutItem> layoutItems = [];
 
             if (!File.Exists(fileName))
             {
@@ -162,7 +162,7 @@ namespace MinoriEditorShell.Modules.Services
 
             try
             {
-                using (BinaryReader reader = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
+                using (BinaryReader reader = new(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
                 {
                     Int32 count = reader.ReadInt32();
 

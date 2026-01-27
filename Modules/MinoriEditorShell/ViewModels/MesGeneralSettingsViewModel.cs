@@ -11,14 +11,14 @@ namespace MinoriEditorShell.Platforms.Wpf.ViewModels
     {
         private readonly IMesThemeManager _themeManager;
 
-        private readonly static List<String> _availableLanguages = new List<String> {
+        private readonly static List<String> _availableLanguages = [
             String.Empty,
             "en",
             "de",
             "ru",
             "zh-Hans",
             "ko",
-        };
+        ];
 
         private IMesTheme _selectedTheme;
         private String _selectedLanguage;

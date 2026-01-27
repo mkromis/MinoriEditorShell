@@ -93,11 +93,10 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         /// <param name="defaultOriginValue"></param>
         /// <param name="defaultDestinationValue"></param>
-        /// <param name="clock"></param>
+        /// <param name="animationClock"></param>
         /// <returns></returns>
         protected override Double GetCurrentValueCore(Double defaultOriginValue, Double defaultDestinationValue, AnimationClock animationClock)
         {
-            Double returnValue;
             Double start = (Double)From;
             Double delta = (Double)To - start;
             Double timeFraction = animationClock.CurrentProgress.Value;
@@ -105,21 +104,13 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             {
                 return (Double)To;
             }
-            switch (EdgeBehavior)
+
+            Double returnValue = EdgeBehavior switch
             {
-                case EdgeBehavior.EaseIn:
-                    returnValue = EaseIn(timeFraction, start, delta, Power);
-                    break;
-
-                case EdgeBehavior.EaseOut:
-                    returnValue = EaseOut(timeFraction, start, delta, Power);
-                    break;
-
-                case EdgeBehavior.EaseInOut:
-                default:
-                    returnValue = EaseInOut(timeFraction, start, delta, Power);
-                    break;
-            }
+                EdgeBehavior.EaseIn => EaseIn(timeFraction, start, delta, Power),
+                EdgeBehavior.EaseOut => EaseOut(timeFraction, start, delta, Power),
+                _ => EaseInOut(timeFraction, start, delta, Power),
+            };
             return returnValue;
         }
 
@@ -184,7 +175,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             else
             {
                 returnValue = EaseIn((timeFraction - 0.5) * 2, start, delta / 2, power);
-                returnValue += (delta / 2);
+                returnValue += delta / 2;
             }
             return returnValue;
         }

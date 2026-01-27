@@ -11,7 +11,7 @@ namespace MinoriDemo.Core.Modules.VirtualCanvas.Models
 
         public LogWriter(TextWriter w)
         {
-            XmlWriterSettings s = new XmlWriterSettings
+            XmlWriterSettings s = new()
             {
                 Indent = true
             };

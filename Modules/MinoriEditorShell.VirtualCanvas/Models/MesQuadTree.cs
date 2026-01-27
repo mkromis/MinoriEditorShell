@@ -50,17 +50,11 @@ namespace MinoriEditorShell.VirtualCanvas.Models
                 // todo: localize.
                 throw new InvalidOperationException("Inserted node must have a non-zero width and height");
             }
-            if (Root == null)
-            {
-                Root = new MesQuadrant<T>(null, _bounds);
-            }
+            Root ??= new MesQuadrant<T>(null, _bounds);
 
             IMesQuadrant<T> parent = Root.Insert(node, bounds);
 
-            if (_table == null)
-            {
-                _table = new Dictionary<T, IMesQuadrant<T>>();
-            }
+            _table ??= new Dictionary<T, IMesQuadrant<T>>();
             _table[node] = parent;
         }
 
@@ -84,10 +78,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <returns>List of zero or mode nodes found inside the given bounds</returns>
         public Boolean HasNodesInside(RectangleF bounds)
         {
-            if (Root != null)
-            {
-                Root.HasIntersectingNodes(bounds);
-            }
+            Root?.HasIntersectingNodes(bounds);
             return false;
         }
 
@@ -98,11 +89,8 @@ namespace MinoriEditorShell.VirtualCanvas.Models
         /// <returns>The list of nodes intersecting the given bounds</returns>
         public IEnumerable<IMesQuadNode<T>> GetNodes(RectangleF bounds)
         {
-            List<IMesQuadNode<T>> result = new List<IMesQuadNode<T>>();
-            if (Root != null)
-            {
-                Root.GetIntersectingNodes(result, bounds);
-            }
+            List<IMesQuadNode<T>> result = [];
+            Root?.GetIntersectingNodes(result, bounds);
             return result;
         }
 

@@ -35,11 +35,9 @@ namespace MinoriEditorShell.Platforms.Wpf
         /// </summary>
         /// <param name="root">Control of the main windows for wpf</param>
         /// <returns></returns>
-        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root)
-        {
+        protected override IMvxWpfViewPresenter CreateViewPresenter(ContentControl root) =>
             // This handles main window.
-            return new MesWpfPresenter(root);
-        }
+            new MesWpfPresenter(root);
 
         /// <summary>
         /// Load any additional plugins, calling parent
@@ -117,7 +115,7 @@ namespace MinoriEditorShell.Platforms.Wpf
             _messenger = Mvx.IoCProvider.Resolve<MvvmCross.Plugin.Messenger.IMvxMessenger>();
             Properties.Settings.Default.PropertyChanged += (s, e) =>
             {
-                MesSettingsChangedMessage message = new MesSettingsChangedMessage(
+                MesSettingsChangedMessage message = new(
                     s, e.PropertyName,
                     Properties.Settings.Default.PropertyValues[e.PropertyName]);
                 _messenger.Publish(message);
@@ -127,12 +125,12 @@ namespace MinoriEditorShell.Platforms.Wpf
     public abstract class MesWpfSetup<TApplication> : MesWpfSetup where TApplication : class, IMvxApplication, new()
     {
         protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) => iocProvider.IoCConstruct<TApplication>();
-        public override IEnumerable<Assembly> GetViewModelAssemblies() => new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        public override IEnumerable<Assembly> GetViewModelAssemblies() => [typeof(TApplication).GetTypeInfo().Assembly];
     }
 
-    ///// <summary>
-    ///// By default, we are configured to use MEF
-    ///// </summary>
+    /// <summary>
+    /// By default, we are configured to use MEF
+    /// </summary>
     //protected override void Configure()
     //{
     //          // Add all assemblies to AssemblySource (using a temporary DirectoryCatalog).

@@ -67,14 +67,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// </summary>
         /// <param name="ticks">Number of ticks returned from GetTicks()</param>
         /// <returns>Milliseconds</returns>
-        public Int64 GetMilliseconds(Int64 ticks) => (ticks * (Int64)1000) / _freq;
+        public Int64 GetMilliseconds(Int64 ticks) => ticks * (Int64)1000 / _freq;
 
         /// <summary>
         /// Get the time between Start() and Stop() in the highest fidelity possible
         /// as defined by Windows QueryPerformanceFrequency.  Usually this is nanoseconds.
         /// </summary>
         /// <returns>High fidelity tick count</returns>
-        public Int64 GetDurationInTicks() => (_end - _start);
+        public Int64 GetDurationInTicks() => _end - _start;
 
         /// <summary>
         /// Get current time in ighest fidelity possible as defined by Windows QueryPerformanceCounter.
@@ -121,7 +121,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         /// Return the median of the values recorded by the Count() method since the last Clear
         /// </summary>
         /// <returns>The median value</returns>
-        public Double Median() => (_min + ((_max - _min) / 2.0));
+        public Double Median() => _min + ((_max - _min) / 2.0);
 
         /// <summary>
         /// Return the variance in the numbers recorded by the Count() method since the last Clear
@@ -130,7 +130,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Models
         public Double PercentError()
         {
             Double spread = (_max - _min) / 2.0;
-            Double percent = ((Double)(spread * 100.0) / _min);
+            Double percent = (Double)(spread * 100.0) / _min;
             return percent;
         }
 

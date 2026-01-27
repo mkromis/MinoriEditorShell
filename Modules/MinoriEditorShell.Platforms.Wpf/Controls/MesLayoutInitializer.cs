@@ -65,7 +65,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
             String paneName, InsertPosition position)
         {
             LayoutPanel parent = layout.Descendents().OfType<LayoutPanel>().First(d => d.Orientation == orientation);
-            LayoutAnchorablePane toolsPane = new LayoutAnchorablePane { Name = paneName };
+            LayoutAnchorablePane toolsPane = new() { Name = paneName };
             if (position == InsertPosition.Start)
             {
                 parent.InsertChildAt(0, toolsPane);

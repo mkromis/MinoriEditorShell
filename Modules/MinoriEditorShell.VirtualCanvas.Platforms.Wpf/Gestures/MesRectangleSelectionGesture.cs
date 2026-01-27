@@ -161,7 +161,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <returns></returns>
         private Rect GetSelectionRect(Point p)
         {
-            Rect r = new Rect(_start, p);
+            Rect r = new(_start, p);
             return _container.TransformToDescendant(_target).TransformBounds(r);
         }
     }
