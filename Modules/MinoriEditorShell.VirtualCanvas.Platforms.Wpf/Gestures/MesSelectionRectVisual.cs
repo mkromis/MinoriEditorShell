@@ -27,7 +27,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// </summary>
         public MesSelectionRectVisual(Point firstPointP, Point secondPointP, Double zoomP)
         {
-            DrawingGroup drawing = new DrawingGroup();
+            DrawingGroup drawing = new();
             DrawingContext context = drawing.Open();
             context.DrawRectangle(Brushes.White, null, new Rect(-1, -1, 3, 3));
             context.DrawRectangle(Brushes.Black, null, new Rect(0.25, -1, 0.5, 3));
@@ -37,7 +37,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             // Create a drawing brush that tiles the unit square from the drawing created above.
             // The size of the viewport and the rotation angle will be updated as we use the
             // dashed pen.
-            DrawingBrush drawingBrush = new DrawingBrush(drawing)
+            DrawingBrush drawingBrush = new(drawing)
             {
                 ViewportUnits = BrushMappingMode.Absolute,
                 Viewport = new Rect(0, 0, _dashRepeatLength, _dashRepeatLength),
@@ -100,7 +100,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 {
                     // Calculate line thickness.
                     Double thickness = 1;
-                    Vector cornerSize = new Vector(thickness, thickness);
+                    Vector cornerSize = new(thickness, thickness);
                     Vector lineOffset = cornerSize / 2;
 
                     // Draw the two horizontal lines.
@@ -142,6 +142,6 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <summary>
         /// Get the actual Rectangle of the rubber band.
         /// </summary>
-        internal Rect SelectedRect => new Rect(FirstPoint, SecondPoint);
+        internal Rect SelectedRect => new(FirstPoint, SecondPoint);
     }
 }

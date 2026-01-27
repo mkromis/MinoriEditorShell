@@ -270,7 +270,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 return;
             }
 
-            Point delta = new Point(moved.X - _onTarget.X, moved.Y - _onTarget.Y);
+            Point delta = new(moved.X - _onTarget.X, moved.Y - _onTarget.Y);
 
             Double x = _translate.X + (delta.X * _value);
             Double y = _translate.Y + (delta.Y * _value);
@@ -382,7 +382,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             BeginAnimation(ZoomToRectProperty, null);
 
             // make sure offset and translate are in sync.
-            Point t = new Point(_translate.X, _translate.Y);
+            Point t = new(_translate.X, _translate.Y);
             BeginAnimation(OffsetProperty, null);
             Translate(t.X, t.Y);
         }
@@ -393,7 +393,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="rectangle"></param>
         public void ZoomToRect(System.Drawing.RectangleF rectangle)
         {
-            Rect r = new Rect(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+            Rect r = new(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
             ZoomToRect(r);
         }
 
@@ -510,7 +510,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         /// <param name="d">The amound of time we can take to do the animation</param>
         private void AnimateZoom(DependencyProperty property, Double oldZoom, Double newZoom, Duration d)
         {
-            MesExponentialDoubleAnimation a = new MesExponentialDoubleAnimation(oldZoom, newZoom, 2, EdgeBehavior.EaseOut, d);
+            MesExponentialDoubleAnimation a = new(oldZoom, newZoom, 2, EdgeBehavior.EaseOut, d);
             BeginAnimation(property, a);
         }
 
@@ -521,7 +521,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
         public Rect ScrollIntoView(FrameworkElement e)
         {
             StopAnimations();
-            Rect rect = new Rect(0, 0, e.ActualWidth, e.ActualHeight);
+            Rect rect = new(0, 0, e.ActualWidth, e.ActualHeight);
             // Get zoomed & translated coordinates of this object by transforming to the container coordinates.
             rect = e.TransformToAncestor(_container).TransformBounds(rect);
             rect.Inflate(margin, margin);
@@ -539,7 +539,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Rect result = Rect.Empty;
             foreach (FrameworkElement e in elements)
             {
-                Rect rect = new Rect(0, 0, e.ActualWidth, e.ActualHeight);
+                Rect rect = new(0, 0, e.ActualWidth, e.ActualHeight);
                 // Get zoomed & translated coordinates of this object by transforming to the container coordinates.
                 rect = e.TransformToAncestor(_container).TransformBounds(rect);
                 if (result == Rect.Empty)
@@ -579,7 +579,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             Double height = containerSize.Height;
 
             // Get the bounds of the container so we can see if the selected node is inside these bounds right now.
-            Rect window = new Rect(0, 0, width, height);
+            Rect window = new(0, 0, width, height);
 
             if (rect.Width > width || rect.Height > height)
             {
@@ -592,7 +592,7 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
             }
 
             // Calculate the delta needed to get the node to be visible in the container.
-            Point delta = new Point();
+            Point delta = new();
             if (rect.Left < window.Left)
             {
                 delta.X = window.Left - rect.Left + margin;
@@ -615,14 +615,14 @@ namespace MinoriEditorShell.VirtualCanvas.Platforms.Wpf.Gestures
                 // the selected node is visble.  We need to change the current translation by the 'delta'
                 // amount.
 
-                Point startPos = new Point(_translate.X, _translate.Y);
+                Point startPos = new(_translate.X, _translate.Y);
                 Double x = startPos.X + delta.X;
                 if (x > 0) { x = 0; }
                 Double y = startPos.Y + delta.Y;
                 if (y > 0) { y = 0; }
 
-                Point newPos = new Point(x, y);
-                PointAnimation pa = new PointAnimation(startPos, newPos, duration);
+                Point newPos = new(x, y);
+                PointAnimation pa = new(startPos, newPos, duration);
                 BeginAnimation(OffsetProperty, pa);
             }
         }

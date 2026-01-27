@@ -114,44 +114,32 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             // assumption that the Rect struct is almost as fast as doing the operations
             // manually since Rect is a value type.
 
-            RectangleF topLeft = new RectangleF(Bounds.Left, Bounds.Top, w, h);
-            RectangleF topRight = new RectangleF(Bounds.Left + w, Bounds.Top, w, h);
-            RectangleF bottomLeft = new RectangleF(Bounds.Left, Bounds.Top + h, w, h);
-            RectangleF bottomRight = new RectangleF(Bounds.Left + w, Bounds.Top + h, w, h);
+            RectangleF topLeft = new(Bounds.Left, Bounds.Top, w, h);
+            RectangleF topRight = new(Bounds.Left + w, Bounds.Top, w, h);
+            RectangleF bottomLeft = new(Bounds.Left, Bounds.Top + h, w, h);
+            RectangleF bottomRight = new(Bounds.Left + w, Bounds.Top + h, w, h);
 
             IMesQuadrant<T> child = null;
 
             // See if any child quadrants completely contain this node.
             if (topLeft.Contains(bounds))
             {
-                if (TopLeft == null)
-                {
-                    TopLeft = new MesQuadrant<T>(this, topLeft);
-                }
+                TopLeft ??= new MesQuadrant<T>(this, topLeft);
                 child = TopLeft;
             }
             else if (topRight.Contains(bounds))
             {
-                if (TopRight == null)
-                {
-                    TopRight = new MesQuadrant<T>(this, topRight);
-                }
+                TopRight ??= new MesQuadrant<T>(this, topRight);
                 child = TopRight;
             }
             else if (bottomLeft.Contains(bounds))
             {
-                if (BottomLeft == null)
-                {
-                    BottomLeft = new MesQuadrant<T>(this, bottomLeft);
-                }
+                BottomLeft ??= new MesQuadrant<T>(this, bottomLeft);
                 child = BottomLeft;
             }
             else if (bottomRight.Contains(bounds))
             {
-                if (BottomRight == null)
-                {
-                    BottomRight = new MesQuadrant<T>(this, bottomRight);
-                }
+                BottomRight ??= new MesQuadrant<T>(this, bottomRight);
                 child = BottomRight;
             }
 
@@ -161,7 +149,7 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             }
             else
             {
-                MesQuadNode<T> n = new MesQuadNode<T>(node, bounds);
+                MesQuadNode<T> n = new(node, bounds);
                 if (Nodes == null)
                 {
                     n.Next = n;
@@ -193,10 +181,10 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             // assumption that the Rect struct is almost as fast as doing the operations
             // manually since Rect is a value type.
 
-            RectangleF topLeft = new RectangleF(Bounds.Left, Bounds.Top, w, h);
-            RectangleF topRight = new RectangleF(Bounds.Left + w, Bounds.Top, w, h);
-            RectangleF bottomLeft = new RectangleF(Bounds.Left, Bounds.Top + h, w, h);
-            RectangleF bottomRight = new RectangleF(Bounds.Left + w, Bounds.Top + h, w, h);
+            RectangleF topLeft = new(Bounds.Left, Bounds.Top, w, h);
+            RectangleF topRight = new(Bounds.Left + w, Bounds.Top, w, h);
+            RectangleF bottomLeft = new(Bounds.Left, Bounds.Top + h, w, h);
+            RectangleF bottomRight = new(Bounds.Left + w, Bounds.Top + h, w, h);
 
             // See if any child quadrants completely contain this node.
             if (topLeft.IntersectsWith(bounds) && TopLeft != null)
@@ -259,10 +247,10 @@ namespace MinoriEditorShell.VirtualCanvas.Models
             // assumption that the Rect struct is almost as fast as doing the operations
             // manually since Rect is a value type.
 
-            RectangleF topLeft = new RectangleF(Bounds.Left, Bounds.Top, w, h);
-            RectangleF topRight = new RectangleF(Bounds.Left + w, Bounds.Top, w, h);
-            RectangleF bottomLeft = new RectangleF(Bounds.Left, Bounds.Top + h, w, h);
-            RectangleF bottomRight = new RectangleF(Bounds.Left + w, Bounds.Top + h, w, h);
+            RectangleF topLeft = new(Bounds.Left, Bounds.Top, w, h);
+            RectangleF topRight = new(Bounds.Left + w, Bounds.Top, w, h);
+            RectangleF bottomLeft = new(Bounds.Left, Bounds.Top + h, w, h);
+            RectangleF bottomRight = new(Bounds.Left + w, Bounds.Top + h, w, h);
 
             Boolean found = false;
 

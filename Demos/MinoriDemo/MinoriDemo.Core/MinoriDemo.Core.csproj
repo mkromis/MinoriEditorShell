@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="9.3.1" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="9.3.1" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.3" />
+    <PackageReference Include="MvvmCross" Version="10.1.2" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="10.1.2" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.2" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
 

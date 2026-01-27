@@ -140,7 +140,7 @@ namespace MinoriDemo.Core.ViewModels
 
             // Fill a sparse grid of rectangular color palette nodes with each tile being 50x30.
             // with hue across x-axis and saturation on y-axis, brightness is fixed at 100;
-            Random r = new Random(Environment.TickCount);
+            Random r = new(Environment.TickCount);
             Graph.VirtualChildren.Clear();
             Double w = _tileWidth + _tileMargin;
             Double h = _tileHeight + _tileMargin;
@@ -152,8 +152,8 @@ namespace MinoriDemo.Core.ViewModels
                 Double x = r.NextDouble() * width;
                 Double y = r.NextDouble() * height;
 
-                PointF pos = new PointF((Single)(_tileMargin + x), (Single)(_tileMargin + y));
-                SizeF size = new SizeF(r.Next((Int32)_tileWidth, (Int32)_tileWidth * 5),
+                PointF pos = new((Single)(_tileMargin + x), (Single)(_tileMargin + y));
+                SizeF size = new(r.Next((Int32)_tileWidth, (Int32)_tileWidth * 5),
                                     r.Next((Int32)_tileHeight, (Int32)_tileHeight * 5));
                 TestShapeType type = (TestShapeType)r.Next(0, (Int32)TestShapeType.Last);
 

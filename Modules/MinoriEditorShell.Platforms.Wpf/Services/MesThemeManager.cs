@@ -67,22 +67,27 @@ namespace MinoriEditorShell.Platforms.Wpf.Services
 
                     if (appTheme == null)
                     {
-                        appTheme = new ResourceDictionary();
+                        appTheme = [];
                         Application.Current.Resources.MergedDictionaries.Add(appTheme);
                     }
 
-                    appTheme.BeginInit();
+                    try { 
+                        appTheme.BeginInit();
 
-                    appTheme.MergedDictionaries.Clear();
-                    foreach (Uri uri in theme.ApplicationResources)
+                        appTheme.MergedDictionaries.Clear();
+                        foreach (Uri uri in theme.ApplicationResources)
+                        {
+                            ResourceDictionary newDict = new() { Source = uri };
+                            appTheme.MergedDictionaries.Add(newDict);
+                        }
+                        appTheme.EndInit();
+                    } catch (Exception ex)
                     {
-                        ResourceDictionary newDict = new ResourceDictionary { Source = uri };
-                        appTheme.MergedDictionaries.Add(newDict);
+                        _log?.LogError(ex, "Error applying theme: {Name} resources", name);
                     }
-                    appTheme.EndInit();
                 });
 
-                _log?.LogInformation($"Theme set to {name}");
+                _log?.LogInformation("Theme set to {name}", name);
 
                 // publish event
                 _messenger.Publish(new MesThemeChangeMessage(this, CurrentTheme.Name));

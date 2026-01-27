@@ -17,7 +17,8 @@ namespace MinoriEditorShell.ConvertersTests
             Setup();
 
             CultureInfoNameConverter converter = new();
-            Assert.ThrowsException<NotSupportedException>(() => converter.ConvertBack(new Object(), typeof(Object), new Object(), CultureInfo.CurrentCulture));
+            Assert.ThrowsExactly<NotSupportedException>(() => 
+                converter.ConvertBack(new Object(), typeof(Object), new Object(), CultureInfo.CurrentCulture));
         }
 
         [TestMethod, Ignore("Need Finished")]

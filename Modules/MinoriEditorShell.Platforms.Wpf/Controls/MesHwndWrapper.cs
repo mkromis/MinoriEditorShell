@@ -46,7 +46,7 @@ namespace MinoriEditorShell.Platforms.Wpf.Controls
         private Point _previousPosition;
 
         // Track the mouse state
-        private readonly MesHwndMouseState _mouseState = new MesHwndMouseState();
+        private readonly MesHwndMouseState _mouseState = new();
 
         // Tracking whether we've "capture" the mouse
         private bool _isMouseCaptured;

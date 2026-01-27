@@ -34,7 +34,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 baseColor = value;
 
                 // use hls color for shading
-                HlsColor hls = new HlsColor(baseColor);
+                HlsColor hls = new(baseColor);
                 System.Drawing.Color c1 = hls.Darker(0.25f);
                 System.Drawing.Color c2 = hls.Lighter(0.25f);
 
@@ -125,18 +125,18 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 {
                     case TestShapeType.Curve:
                         {
-                            PathGeometry g = new PathGeometry();
-                            PathFigure f = new PathFigure
+                            PathGeometry g = new();
+                            PathFigure f = new()
                             {
                                 StartPoint = _points[0]
                             };
                             g.Figures.Add(f);
                             for (Int32 i = 0, n = _points.Length; i < n; i += 3)
                             {
-                                BezierSegment s = new BezierSegment(_points[i], _points[i + 1], _points[i + 2], true);
+                                BezierSegment s = new(_points[i], _points[i + 1], _points[i + 2], true);
                                 f.Segments.Add(s);
                             }
-                            Path p = new Path
+                            Path p = new()
                             {
                                 Data = g,
 
@@ -154,9 +154,9 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                         }
                     case TestShapeType.Ellipse:
                         {
-                            Canvas c = new Canvas();
+                            Canvas c = new();
 
-                            Ellipse e = new Ellipse();
+                            Ellipse e = new();
                             c.Width = e.Width = _bounds.Width;
                             c.Height = e.Height = _bounds.Height;
                             c.Children.Add(e);
@@ -165,7 +165,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                             Double x = (_bounds.Width - s.Width) / 2;
                             Double y = (_bounds.Height - s.Height) / 2;
 
-                            TextBlock text = new TextBlock
+                            TextBlock text = new()
                             {
                                 Text = Label
                             };
@@ -187,13 +187,13 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                         }
                     case TestShapeType.Rectangle:
                         {
-                            Border b = new Border
+                            Border b = new()
                             {
                                 CornerRadius = new CornerRadius(3),
                                 Width = _bounds.Width,
                                 Height = _bounds.Height
                             };
-                            TextBlock text = new TextBlock
+                            TextBlock text = new()
                             {
                                 Text = Label,
                                 VerticalAlignment = VerticalAlignment.Center,
@@ -241,7 +241,7 @@ namespace MinoriDemo.RibbonWPF.Modules.VirtualCanvas.Models
                 _typeface = new Typeface(fontFamily, fontStyle, fontWeight, fontStretch);
                 _parent = parent;
             }
-            FormattedText ft = new FormattedText(label, CultureInfo.CurrentUICulture,
+            FormattedText ft = new(label, CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight, _typeface, _fontSize, Brushes.Black);
             return new Size(ft.Width, ft.Height);
         }
